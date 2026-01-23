@@ -1,17 +1,17 @@
-import CalendlyEmbed from "../components/CalendlyEmbed";
+import EnquiryForm from "../components/EnquiryForm";
 
 export default function BookPage() {
-  const calendlyUrl = "https://calendly.com/YOUR-LINK-HERE"; // <- replace
-
   return (
-    <section className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold mb-2">Book an Appointment</h1>
+    <section className="max-w-3xl mx-auto">
+      <h1 className="text-3xl font-semibold mb-3">Request an Appointment</h1>
+
       <p className="text-gray-600 mb-6">
-        Choose a time that suits you using the booking calendar below.
+        As a mobile service, appointments are arranged by location and availability.
+        Please submit an enquiry and we will contact you to arrange a suitable time.
       </p>
 
-      <div className="border rounded-2xl p-4 md:p-6">
-        <CalendlyEmbed url={calendlyUrl} />
+      <div className="border rounded-2xl p-5 md:p-6">
+        <EnquiryForm />
       </div>
     </section>
   );

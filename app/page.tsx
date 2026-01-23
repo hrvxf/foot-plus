@@ -85,11 +85,12 @@ export default function Home() {
           Use the booking form and we’ll get back to you to confirm a time.
         </p>
         <Link
-          href="/book"
-          className="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg"
-        >
-          Book now
-        </Link>
+  href="/book"
+  className="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg"
+>
+  Request an Appointment
+</Link>
+
       </section>
     </div>
   );
