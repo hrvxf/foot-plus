@@ -1,25 +1,18 @@
+import CalendlyEmbed from "../components/CalendlyEmbed";
+
 export default function BookPage() {
+  const calendlyUrl = "https://calendly.com/YOUR-LINK-HERE"; // <- replace
+
   return (
-    <section className="max-w-xl mx-auto">
-      <h1 className="text-3xl font-semibold mb-4">Book an Appointment</h1>
+    <section className="max-w-4xl mx-auto">
+      <h1 className="text-3xl font-semibold mb-2">Book an Appointment</h1>
       <p className="text-gray-600 mb-6">
-        For now, this can be a simple request form. Later we can connect Calendly
-        or a full booking system.
+        Choose a time that suits you using the booking calendar below.
       </p>
 
-      <form className="space-y-4">
-        <input className="w-full border p-3 rounded" placeholder="Full name" />
-        <input className="w-full border p-3 rounded" placeholder="Email" />
-        <input className="w-full border p-3 rounded" placeholder="Phone" />
-        <textarea
-          className="w-full border p-3 rounded"
-          placeholder="What do you need help with?"
-          rows={5}
-        />
-        <button className="w-full bg-black text-white py-3 rounded">
-          Request appointment
-        </button>
-      </form>
+      <div className="border rounded-2xl p-4 md:p-6">
+        <CalendlyEmbed url={calendlyUrl} />
+      </div>
     </section>
   );
 }
