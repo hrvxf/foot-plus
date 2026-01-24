@@ -193,9 +193,12 @@ export default function EnquiryForm() {
                 key={day}
                 type="button"
                 onClick={() => toggleDay(day)}
-                className={`px-4 py-2 rounded-full border text-sm ${
-                  active ? "bg-black text-white" : "bg-white"
-                }`}
+                className={`px-4 py-2 rounded-full border text-sm transition ${
+  active
+    ? "bg-black text-white border-black"
+    : "bg-white text-black border-gray-300 hover:bg-gray-100"
+}`}
+
               >
                 {day}
               </button>
