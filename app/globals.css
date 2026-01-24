@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
-@theme {
+/* Brand tokens */
+:root {
   --color-ink: #0F172A;
   --color-sage: #7C8F7A;
-  --color-lightbg: #F8FAF9;
+  --color-lightbg: #F3F6F4;
   --color-muted: #6B7280;
 }
 
-/* Optional: base styling */
+/* Tailwind v4 theme mapping */
+@theme {
+  --color-ink: var(--color-ink);
+  --color-sage: var(--color-sage);
+  --color-lightbg: var(--color-lightbg);
+  --color-muted: var(--color-muted);
+}
+
+/* Base */
 html,
 body {
   height: 100%;

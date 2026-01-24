@@ -7,6 +7,7 @@ export default function AboutPage() {
         comfort, safety, and helping you stay active.
       </p>
 
+
       <h2 className="text-xl font-semibold mt-8 mb-2">Services</h2>
       <ul className="list-disc pl-5 space-y-2 text-gray-700">
         <li>Routine nail care</li>
