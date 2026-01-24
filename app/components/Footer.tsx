@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat text-white">
+    <footer className="relative z-10 mt-20 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat text-white">
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-3">
         <div>
           <h3 className="font-heading text-lg font-semibold">Foot+ Bristol</h3>
