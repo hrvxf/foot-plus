@@ -31,7 +31,7 @@ export default function Header() {
   ];
 
   const headerBase =
-    "sticky top-0 z-50 h-[120px] border-b border-transparent transition-colors transition-shadow duration-300";
+    "sticky top-0 z-50 h-[180px] border-b border-transparent transition-colors transition-shadow duration-300";
   const headerSurface = isScrolled
     ? isHome
       ? "bg-white/10 shadow-[0_12px_30px_rgba(15,23,42,0.12)] backdrop-blur-xl border-white/15"
@@ -41,25 +41,25 @@ export default function Header() {
       : "bg-brand-offwhite/80 backdrop-blur-0";
 
   const linkBase =
-    "px-3 py-2 text-sm font-medium transition border-b-2 border-transparent";
+    "px-4 py-2 text-base font-medium transition border-b-2 border-transparent";
   const navTracking = isScrolled ? "tracking-normal" : "tracking-wide";
   const linkTone = isHome
     ? "text-white/90 hover:text-white"
     : "text-brand-charcoal/80 hover:text-brand-sageDark";
   const activeBorder = isHome ? "border-white/60" : "border-brand-sageDark";
   const bookButtonClasses = isHome
-    ? "rounded-full border border-white/20 bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur hover:bg-white/20"
-    : "rounded-full bg-brand-sage px-4 py-2 text-sm font-semibold text-white hover:bg-brand-sageDark";
+    ? "rounded-full border border-white/20 bg-white/15 px-6 py-3 text-base font-semibold text-white backdrop-blur hover:bg-white/20"
+    : "rounded-full bg-brand-sage px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDark";
 
   return (
     <header className={`${headerBase} ${headerSurface}`}>
-      <nav className="mx-auto flex h-full max-w-6xl items-start justify-between px-6 pt-2">
+      <nav className="mx-auto flex h-full max-w-6xl items-start justify-between px-6 pt-6">
         <Link href="/" className="flex items-center gap-3">
           <div
             className={`origin-left transition-transform transition-opacity transition-shadow duration-300 ${
               isScrolled
                 ? "scale-[1.15] opacity-90"
-                : "scale-[1.6] drop-shadow-sm"
+                : "scale-[1.55] drop-shadow-sm"
             }`}
           >
             <Image
@@ -72,12 +72,12 @@ export default function Header() {
               width={140}
               height={40}
               priority
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
           </div>
         </Link>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-9 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
