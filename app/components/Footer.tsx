@@ -1,114 +1,77 @@
 export default function Footer() {
   return (
-    <footer className="relative z-10 mt-20 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat text-white">
-      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-3">
-        <div>
-          <div className="flex items-center gap-4">
+    <footer className="mt-16 relative overflow-hidden text-white">
+      {/* Background texture */}
+      <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat" />
+      {/* Tint overlay for readability */}
+      <div className="absolute inset-0 bg-brand-sage/65" />
+
+      <div className="relative mx-auto max-w-6xl px-6 py-10">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          {/* Brand */}
+          <div className="flex items-center gap-3">
             <img
               src="/images/footplus-illustration.svg"
               alt=""
               aria-hidden
-              className="h-12 w-12 opacity-80"
+              className="h-10 w-10 opacity-80"
             />
-            <h3 className="font-heading text-lg font-semibold tracking-tight">
-              Foot+ Bristol
-            </h3>
+            <div>
+              <div className="font-heading text-base font-semibold tracking-tight">
+                Foot+ Bristol
+              </div>
+              <div className="mt-1 text-sm text-white/80">
+                Calm, professional foot care at home.
+              </div>
+            </div>
           </div>
 
-          <p className="mt-4 text-sm text-white/85 leading-relaxed">
-            Professional foot health services delivered with care, comfort, and
-            clinical precision.
-          </p>
-
-          {/* Trust chips */}
-          <div className="mt-5 flex flex-wrap gap-2">
-            {["Qualified FHP", "Sterile instruments", "Home visits"].map((t) => (
-              <span
-                key={t}
-                className="rounded-full bg-white/10 px-3 py-1 text-[11px] text-white/85 border border-white/15"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide text-white/80">
-            Contact
-          </h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/90">
-            <li>
+          {/* Contact + CTA */}
+          <div className="flex flex-col gap-3 md:items-end">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/85">
               <a
-                className="hover:text-white underline-offset-4 hover:underline"
+                className="hover:text-white hover:underline underline-offset-4"
                 href="tel:+447000000000"
               >
-                Call: 07XXX XXXXXX
+                Call
               </a>
-              <span className="text-white/60"> • </span>
               <a
-                className="hover:text-white underline-offset-4 hover:underline"
+                className="hover:text-white hover:underline underline-offset-4"
                 href="https://wa.me/447000000000"
                 target="_blank"
                 rel="noreferrer"
               >
                 WhatsApp
               </a>
-            </li>
-            <li>
               <a
-                className="hover:text-white underline-offset-4 hover:underline"
+                className="hover:text-white hover:underline underline-offset-4"
                 href="mailto:hello@footplusbristol.co.uk"
               >
-                hello@footplusbristol.co.uk
+                Email
               </a>
-            </li>
-            <li className="text-white/80">
-              Serving Bristol & nearby areas
-            </li>
-          </ul>
-        </div>
+            </div>
 
-        {/* Why Foot+ */}
-        <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide text-white/80">
-            Why Foot+
-          </h4>
-          <ul className="mt-4 space-y-3 text-sm text-white/90 leading-relaxed">
-            <li>Calm, unhurried appointments in your own home</li>
-            <li>Clear explanations and gentle, professional care</li>
-            <li>Focused on comfort, dignity, and long-term foot health</li>
-          </ul>
-
-          <a
-            href="/book"
-            className="inline-flex mt-6 rounded-full bg-white/15 px-5 py-2.5 text-sm font-medium border border-white/20 hover:bg-white/20 transition"
-          >
-            Book an appointment
-          </a>
-        </div>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="relative border-t border-white/15">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
-          <div>
-            © {new Date().getFullYear()} Foot+ • Bristol
+            <a
+              href="/book"
+              className="inline-flex w-fit rounded-full bg-white/15 px-5 py-2.5 text-sm font-medium border border-white/20 hover:bg-white/20 transition"
+            >
+              Book an appointment
+            </a>
           </div>
-          <div className="flex gap-4">
-            <a
-              className="hover:text-white hover:underline underline-offset-4"
-              href="/privacy"
-            >
-              Privacy
-            </a>
-            <a
-              className="hover:text-white hover:underline underline-offset-4"
-              href="/terms"
-            >
-              Terms
-            </a>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-8 border-t border-white/15 pt-4">
+          <div className="flex flex-col gap-2 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
+            <div>© {new Date().getFullYear()} Foot+ • Bristol</div>
+            <div className="flex gap-4">
+              <a className="hover:text-white hover:underline underline-offset-4" href="/privacy">
+                Privacy
+              </a>
+              <a className="hover:text-white hover:underline underline-offset-4" href="/terms">
+                Terms
+              </a>
+            </div>
           </div>
         </div>
       </div>
