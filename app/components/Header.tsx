@@ -56,7 +56,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3">
           <div
             className={`origin-left transition-transform duration-300 ${
-              isScrolled ? "scale-[1.2]" : "scale-[1.7]"
+              isScrolled ? "scale-[1.15]" : "scale-[1.5]"
             }`}
           >
             <Image
@@ -69,6 +69,7 @@ export default function Header() {
               width={140}
               height={40}
               priority
+              className="h-10 w-auto"
             />
           </div>
         </Link>
