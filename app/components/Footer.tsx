@@ -17,8 +17,13 @@ export default function Footer() {
               className="h-16 w-16 opacity-80"
             />
             <div className="flex flex-col justify-center">
-              <div className="font-heading text-2xl font-semibold tracking-tight">
-                Foot+ Bristol
+              <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
+                <img
+                  src="/images/footplus-logo-white.svg"
+                  alt="Foot+ logo"
+                  className="h-7 w-auto"
+                />
+                <span>Bristol</span>
               </div>
               <div className="mt-1 text-base text-white/80">
                 Calm, professional foot care at home.
