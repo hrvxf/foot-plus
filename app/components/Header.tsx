@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Header() {
-  const pathname = usePathname();
+  const [pathname, setPathname] = useState(
+    typeof window === "undefined" ? "/" : window.location.pathname
+  );
   const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,6 +19,36 @@ export default function Header() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const updatePath = () => setPathname(window.location.pathname);
+    updatePath();
+
+    const handlePopState = () => updatePath();
+    window.addEventListener("popstate", handlePopState);
+    window.addEventListener("hashchange", handlePopState);
+
+    const { pushState, replaceState } = window.history;
+
+    window.history.pushState = function (...args) {
+      const result = pushState.apply(this, args as Parameters<History["pushState"]>);
+      updatePath();
+      return result;
+    };
+
+    window.history.replaceState = function (...args) {
+      const result = replaceState.apply(this, args as Parameters<History["replaceState"]>);
+      updatePath();
+      return result;
+    };
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("hashchange", handlePopState);
+      window.history.pushState = pushState;
+      window.history.replaceState = replaceState;
+    };
   }, []);
 
   useEffect(() => {
@@ -125,10 +156,7 @@ export default function Header() {
             <Link className={bookButtonClasses} href="/book">
               Book
             </Link>
-            <Link
-              className={`${linkBase} ${linkTone}`}
-              href="/contact"
-            >
+            <Link className={`${linkBase} ${linkTone}`} href="/contact">
               Call / WhatsApp
             </Link>
           </div>
