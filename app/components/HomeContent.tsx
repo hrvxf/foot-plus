@@ -61,11 +61,13 @@ export default function HomeContent() {
         <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col gap-10 px-6 pb-12 pt-6 md:flex-row md:items-start md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
             <Image
-              src="/images/footplus-logo-white.svg"
-              alt="Foot+"
-              width={200}
-              height={60}
+              src="/images/footplus-illustration.svg"
+              alt=""
+              aria-hidden="true"
+              width={112}
+              height={112}
               priority
+              className="mb-4 opacity-90"
             />
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
