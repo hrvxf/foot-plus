@@ -9,26 +9,26 @@ export default function Footer() {
       <div className="relative mx-auto max-w-6xl px-6 py-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           {/* Brand */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <img
               src="/images/footplus-illustration.svg"
               alt=""
               aria-hidden
-              className="h-10 w-10 opacity-80"
+              className="h-16 w-16 opacity-80"
             />
             <div>
-              <div className="font-heading text-base font-semibold tracking-tight">
+              <div className="font-heading text-2xl font-semibold tracking-tight">
                 Foot+ Bristol
               </div>
-              <div className="mt-1 text-sm text-white/80">
+              <div className="mt-1 text-base text-white/80">
                 Calm, professional foot care at home.
               </div>
             </div>
           </div>
 
           {/* Contact + CTA */}
-          <div className="flex flex-col gap-3 md:items-end">
-            <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/85">
+          <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/85">
               <a
                 className="hover:text-white hover:underline underline-offset-4"
                 href="tel:+447000000000"
