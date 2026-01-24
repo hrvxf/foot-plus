@@ -100,7 +100,7 @@ export default function Home() {
                     Clinical, calm care tailored to your feet.
                   </p>
                 </div>
-                <h2 className="mt-3 font-heading text-xl font-semibold">Our services</h2>
+                
                 <div className="mt-5 space-y-5">
                   {heroServices.map((group) => (
                     <div key={group.category}>
