@@ -9,19 +9,15 @@ const badges = [
 
 export default function AboutPage() {
   return (
-    <main className="relative">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat" />
-      <div className="absolute inset-0 -z-10 bg-brand-sage/45" />
-
+    <main className="bg-white">
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-14 md:pt-20">
         {/* Page header */}
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <h1 className="font-heading text-4xl font-semibold tracking-tight text-white md:text-5xl">
+            <h1 className="font-heading text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
               About Foot+ Bristol
             </h1>
-            <p className="mt-5 max-w-prose text-lg leading-relaxed text-white/85">
+            <p className="mt-5 max-w-prose text-lg leading-relaxed text-slate-600">
               We provide calm, professional foot health care in the comfort of your home.
               Our approach is gentle, unhurried, and focused on long-term comfort — with
               clear explanations and care tailored to you.
@@ -31,7 +27,7 @@ export default function AboutPage() {
               {badges.map((b) => (
                 <span
                   key={b}
-                  className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs text-white/85"
+                  className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600"
                 >
                   {b}
                 </span>
@@ -41,7 +37,7 @@ export default function AboutPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/15 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
               >
                 Book an appointment
               </Link>
@@ -49,7 +45,7 @@ export default function AboutPage() {
                 href="https://wa.me/447000000000"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/15"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
               >
                 WhatsApp a question
               </a>
@@ -58,46 +54,44 @@ export default function AboutPage() {
 
           {/* Editorial image frame placeholder */}
           <div className="md:justify-self-end">
-            <div className="relative w-full max-w-md overflow-hidden rounded-[32px] border border-white/18 shadow-[0_28px_80px_-50px_rgba(0,0,0,0.65)]">
-              <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center" />
-              <div className="absolute inset-0 bg-brand-sage/35" />
-              <div className="absolute -left-20 top-0 h-full w-[70%] rotate-12 bg-white/10 blur-2xl opacity-40" />
+            <div className="relative w-full max-w-md overflow-hidden rounded-[32px] border border-slate-200 bg-slate-50 shadow-[0_28px_80px_-60px_rgba(15,23,42,0.25)]">
+              <div className="absolute -left-20 top-0 h-full w-[70%] rotate-12 bg-white blur-2xl opacity-70" />
 
               <div className="relative aspect-[4/5] p-6">
-                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1 text-xs text-white/80 border border-white/15">
-                  <span className="h-2 w-2 rounded-full bg-white/60" />
+                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs text-slate-600">
+                  <span className="h-2 w-2 rounded-full bg-slate-400" />
                   Photo coming soon
                 </div>
 
-                <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/10 border border-white/15 p-4 backdrop-blur-[2px]">
-                  <p className="text-sm font-medium text-white/90">
+                <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm">
+                  <p className="text-sm font-medium text-slate-900">
                     Calm, respectful care
                   </p>
-                  <p className="mt-1 text-xs text-white/75">
+                  <p className="mt-1 text-xs text-slate-500">
                     Home visits across Bristol & nearby areas
                   </p>
                 </div>
               </div>
 
-              <div className="pointer-events-none absolute inset-0 rounded-[32px] ring-1 ring-white/10" />
+              <div className="pointer-events-none absolute inset-0 rounded-[32px] ring-1 ring-slate-200/60" />
             </div>
           </div>
         </div>
 
         {/* Glass content card */}
-        <div className="mt-14 rounded-[28px] border border-white/15 bg-white/10 p-8 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.55)] backdrop-blur-[2px] md:p-10">
+        <div className="mt-14 rounded-[28px] border border-slate-200 bg-white p-8 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-10">
           <div className="grid gap-10 md:grid-cols-3">
             <div>
-              <h2 className="font-heading text-lg font-semibold text-white">
+              <h2 className="font-heading text-lg font-semibold text-slate-900">
                 What we help with
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-white/80">
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 Common foot and nail concerns treated with gentle, professional care.
               </p>
             </div>
 
             <div className="md:col-span-2">
-              <ul className="grid gap-3 text-sm text-white/85 md:grid-cols-2">
+              <ul className="grid gap-3 text-sm text-slate-600 md:grid-cols-2">
                 {[
                   "Nail care & thickened/problem nails",
                   "Ingrowing toenail relief",
@@ -109,7 +103,7 @@ export default function AboutPage() {
                   "Diabetic foot care guidance",
                 ].map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-white/60" />
+                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-slate-400" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -139,23 +133,23 @@ export default function AboutPage() {
           ].map((c) => (
             <div
               key={c.title}
-              className="rounded-[22px] border border-white/12 bg-white/8 p-6 shadow-[0_14px_40px_-35px_rgba(0,0,0,0.6)] backdrop-blur-[2px]"
+              className="rounded-[22px] border border-slate-200 bg-white p-6 shadow-[0_14px_40px_-40px_rgba(15,23,42,0.16)]"
             >
-              <h3 className="font-heading text-base font-semibold text-white">
+              <h3 className="font-heading text-base font-semibold text-slate-900">
                 {c.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/80">{c.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">{c.body}</p>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-[26px] border border-white/15 bg-white/10 p-7 backdrop-blur-[2px] md:flex-row md:items-center">
+        <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-[26px] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_-40px_rgba(15,23,42,0.18)] md:flex-row md:items-center">
           <div>
-            <h2 className="font-heading text-lg font-semibold text-white">
+            <h2 className="font-heading text-lg font-semibold text-slate-900">
               Ready to book?
             </h2>
-            <p className="mt-1 text-sm text-white/80">
+            <p className="mt-1 text-sm text-slate-600">
               If you’re not sure what you need, message us and we’ll point you in the right direction.
             </p>
           </div>
@@ -163,13 +157,13 @@ export default function AboutPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/book"
-              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/15 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
             >
               Book an appointment
             </Link>
             <a
               href="mailto:hello@footplusbristol.co.uk"
-              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/15"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
             >
               Email
             </a>
