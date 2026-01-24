@@ -1,14 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0F172A;
-  --color-sage: #7C8F7A;
-  --color-lightbg: #F8FAF9;
-  --color-muted: #6B7280;
+  --color-brand-sage: #6C917B;
+  --color-brand-sageDark: #4F6F5F;
+  --color-brand-sageLight: #8FB39C;
+  --color-brand-offwhite: #F7F6F2;
+  --color-brand-charcoal: #243028;
+  --color-brand-white: #FFFFFF;
+  --font-heading: "Poppins", "Montserrat", sans-serif;
+  --font-body: "Inter", "Montserrat", sans-serif;
 }
 
-/* Optional: base styling */
 html,
 body {
   height: 100%;
+}
+
+body {
+  background-color: var(--color-brand-offwhite);
+  color: var(--color-brand-charcoal);
+  font-family: var(--font-body);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+* {
+  scroll-behavior: smooth;
 }

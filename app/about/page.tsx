@@ -1,14 +1,18 @@
 export default function AboutPage() {
   return (
-    <section className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-semibold mb-4">About Foot+</h1>
-      <p className="text-gray-700 mb-4">
+    <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">
+      <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
+        About Foot+
+      </h1>
+      <p className="mt-4 text-sm text-brand-charcoal/80">
         Foot+ provides professional foot health services in Bristol. Our focus is
         comfort, safety, and helping you stay active.
       </p>
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">Services</h2>
-      <ul className="list-disc pl-5 space-y-2 text-gray-700">
+      <h2 className="font-heading mt-10 text-xl font-semibold text-brand-sageDark">
+        Services
+      </h2>
+      <ul className="mt-4 space-y-2 text-sm text-brand-charcoal/80">
         <li>Routine nail care</li>
         <li>Corn and callus reduction</li>
         <li>Thickened nail management</li>
