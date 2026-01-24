@@ -29,9 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://assets.calendly.com/assets/external/widget.css"
         />
       </head>
-      <body className="min-h-screen bg-lightbg text-ink">
+      <body className="min-h-screen bg-lightbg text-ink flex flex-col">
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
