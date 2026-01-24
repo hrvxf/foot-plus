@@ -72,16 +72,17 @@ export default function Home() {
           </div>
 
           <div className="flex-1">
-            <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-6 shadow-[0_20px_60px_-25px_rgba(0,0,0,0.45)] ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-              <div className="absolute -left-10 top-8 h-32 w-32 rounded-full bg-white/30 blur-3xl" />
-              <div className="absolute -right-12 bottom-6 h-36 w-36 rounded-full bg-brand-sageLight/30 blur-3xl" />
+            <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 shadow-[0_32px_90px_-35px_rgba(0,0,0,0.6)] ring-1 ring-white/10 backdrop-blur-2xl md:p-8">
+              <div className="absolute inset-x-0 top-0 h-px bg-white/40" />
+              <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-white/25 blur-[80px]" />
+              <div className="absolute -right-14 bottom-4 h-44 w-44 rounded-full bg-brand-sageLight/25 blur-[90px]" />
               <div className="relative">
                 <h2 className="font-heading text-xl font-semibold">Our services:</h2>
-                <ul className="mt-4 space-y-3 text-sm text-white/80">
+                <ul className="mt-4 space-y-4">
                   {heroServices.map((service) => (
-                    <li key={service} className="flex gap-3">
+                    <li key={service} className="flex gap-3 text-[15px] leading-relaxed text-white/80">
                       <span
-                        className="mt-1 h-2 w-2 rounded-full bg-white"
+                        className="mt-2 h-1.5 w-1.5 rounded-full bg-white/50"
                         aria-hidden="true"
                       />
                       <span>{service}</span>
