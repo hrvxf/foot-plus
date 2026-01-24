@@ -1,18 +1,12 @@
 import "./globals.css";
-import { Inter, Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-body",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat",
 });
 
 export const metadata = {
@@ -22,7 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={montserrat.variable}>
       <head>
         <link
           rel="stylesheet"

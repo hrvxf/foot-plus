@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="mt-20 bg-brand-sage text-white">
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-3">
         <div>
-          <h3 className="font-heading text-lg font-semibold">Foot+ Bristol</h3>
+          <h3 className="font-heading text-lg font-medium">Foot+ Bristol</h3>
           <p className="mt-2 text-sm text-white/80">
             Professional foot health services delivered with care, comfort, and clinical
             precision.

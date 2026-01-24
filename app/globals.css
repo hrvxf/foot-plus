@@ -7,8 +7,9 @@
   --color-brand-offwhite: #F7F6F2;
   --color-brand-charcoal: #243028;
   --color-brand-white: #FFFFFF;
-  --font-heading: "Poppins", "Montserrat", sans-serif;
-  --font-body: "Inter", "Montserrat", sans-serif;
+  --font-sans: var(--font-montserrat);
+  --font-heading: var(--font-montserrat);
+  --font-body: var(--font-montserrat);
 }
 
 html,
@@ -19,7 +20,7 @@ body {
 body {
   background-color: var(--color-brand-offwhite);
   color: var(--color-brand-charcoal);
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
 }
 
 .font-heading {
