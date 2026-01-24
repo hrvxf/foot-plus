@@ -32,9 +32,9 @@ export default function Header() {
 
   const headerClasses = isHome
     ? isScrolled
-      ? "sticky top-0 z-50 border-b border-white/15 bg-white/10 shadow-[0_12px_40px_-24px_rgba(15,23,42,0.6)] backdrop-blur-xl"
-      : "absolute top-0 left-0 right-0 z-20"
-    : "sticky top-0 z-50 border-b border-brand-sageLight/40 bg-brand-offwhite/95 backdrop-blur";
+      ? "sticky top-0 z-50 h-20 border-b border-white/15 bg-white/10 backdrop-blur-xl"
+      : "sticky top-0 z-50 h-20 border-b border-transparent bg-transparent backdrop-blur-0"
+    : "sticky top-0 z-50 h-20 border-b border-brand-sageLight/40 bg-brand-offwhite/95 backdrop-blur";
 
   const linkBase =
     "px-3 py-2 text-sm font-medium transition border-b-2 border-transparent";
@@ -48,7 +48,7 @@ export default function Header() {
 
   return (
     <header className={headerClasses}>
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:py-5">
+      <nav className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 py-4 md:py-5">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src={
