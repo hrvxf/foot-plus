@@ -3,20 +3,52 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  const navLinks = [
+    { label: "About", href: "/about", active: pathname === "/about" },
+    { label: "Services", href: "/#services", active: pathname === "/" },
+    { label: "Contact", href: "/contact", active: pathname === "/contact" },
+  ];
+
+  const headerClasses = isHome
+    ? isScrolled
+      ? "sticky top-0 z-50 border-b border-white/15 bg-white/10 shadow-[0_12px_40px_-24px_rgba(15,23,42,0.6)] backdrop-blur-xl"
+      : "absolute top-0 left-0 right-0 z-20"
+    : "sticky top-0 z-50 border-b border-brand-sageLight/40 bg-brand-offwhite/95 backdrop-blur";
+
+  const linkBase =
+    "px-3 py-2 text-sm font-medium transition border-b-2 border-transparent";
+  const linkTone = isHome
+    ? "text-white/90 hover:text-white"
+    : "text-brand-charcoal/80 hover:text-brand-sageDark";
+  const activeBorder = isHome ? "border-white/60" : "border-brand-sageDark";
+  const bookButtonClasses = isHome
+    ? "rounded-full border border-white/20 bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur hover:bg-white/20"
+    : "rounded-full bg-brand-sage px-4 py-2 text-sm font-semibold text-white hover:bg-brand-sageDark";
 
   return (
-    <header
-      className={
-        isHome
-          ? "absolute top-0 left-0 right-0 z-20"
-          : "sticky top-0 z-20 border-b border-brand-sageLight/40 bg-brand-offwhite/95 backdrop-blur"
-      }
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+    <header className={headerClasses}>
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:py-5">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src={
@@ -31,24 +63,77 @@ export default function Header() {
           />
         </Link>
 
-        <div
-          className={
-            isHome
-              ? "flex gap-6 text-sm font-medium text-white"
-              : "flex gap-6 text-sm font-medium text-brand-charcoal"
-          }
-        >
-          <Link className="transition hover:text-brand-sageLight" href="/about">
-            About
-          </Link>
-          <Link className="transition hover:text-brand-sageLight" href="/book">
+        <div className="hidden items-center gap-2 md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              className={`${linkBase} ${linkTone} ${link.active ? activeBorder : ""}`}
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link className={bookButtonClasses} href="/book">
             Book
           </Link>
-          <Link className="transition hover:text-brand-sageLight" href="/contact">
-            Contact
-          </Link>
         </div>
+
+        <button
+          type="button"
+          className={`inline-flex items-center justify-center rounded-full border px-3 py-2 text-sm font-semibold md:hidden ${
+            isHome
+              ? "border-white/30 text-white/90 hover:text-white"
+              : "border-brand-sageLight/40 text-brand-sageDark"
+          }`}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          <span className="sr-only">Open navigation</span>
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d={isMenuOpen ? "M6 6l12 12M18 6l-12 12" : "M4 7h16M4 12h16M4 17h16"} />
+          </svg>
+        </button>
       </nav>
+      {isMenuOpen ? (
+        <div
+          className={`border-t px-6 pb-6 md:hidden ${
+            isHome
+              ? "border-white/20 bg-white/10 text-white/90 backdrop-blur-xl"
+              : "border-brand-sageLight/30 bg-brand-offwhite/95 text-brand-charcoal"
+          }`}
+        >
+          <div className="flex flex-col gap-2 pt-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                className={`${linkBase} ${linkTone} ${link.active ? activeBorder : ""}`}
+                href={link.href}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link className={bookButtonClasses} href="/book">
+              Book
+            </Link>
+            <Link
+              className={`${linkBase} ${linkTone}`}
+              href="/contact"
+            >
+              Call / WhatsApp
+            </Link>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }

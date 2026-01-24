@@ -161,7 +161,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="mx-auto max-w-6xl px-6">
+      <section id="services" className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col gap-3">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
             Services
