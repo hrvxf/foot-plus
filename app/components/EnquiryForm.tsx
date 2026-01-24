@@ -89,11 +89,11 @@ export default function EnquiryForm() {
 
   if (isSubmitted) {
     return (
-      <div className="border rounded-2xl p-6 text-center">
-        <h2 className="text-xl font-semibold mb-2">
+      <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 text-center">
+        <h2 className="font-heading text-xl font-semibold text-brand-sageDark">
           Thank you for your enquiry.
         </h2>
-        <p className="text-gray-600">
+        <p className="mt-2 text-sm text-brand-charcoal/70">
           We aim to respond within <strong>24–48 hours</strong> to arrange your appointment.
         </p>
       </div>
@@ -103,30 +103,30 @@ export default function EnquiryForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-6">
       {error && (
-        <div className="border border-red-200 bg-red-50 text-red-700 rounded-lg p-3 text-sm">
+        <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
           {error}
         </div>
       )}
 
       {/* Name + Postcode */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="mb-1 block text-sm font-medium text-brand-charcoal">
             Full name *
           </label>
           <input
-            className="w-full border rounded-lg p-3 bg-white text-black border-gray-300"
+            className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
             value={data.fullName}
             onChange={(e) => update("fullName", e.target.value)}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="mb-1 block text-sm font-medium text-brand-charcoal">
             Postcode *
           </label>
           <input
-            className="w-full border rounded-lg p-3 bg-white text-black border-gray-300"
+            className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
             value={data.postcode}
             onChange={(e) => update("postcode", e.target.value)}
           />
@@ -134,25 +134,25 @@ export default function EnquiryForm() {
       </div>
 
       {/* Phone + Email */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="mb-1 block text-sm font-medium text-brand-charcoal">
             Contact number *
           </label>
           <input
-            className="w-full border rounded-lg p-3 bg-white text-black border-gray-300"
+            className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
             value={data.phone}
             onChange={(e) => update("phone", e.target.value)}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="mb-1 block text-sm font-medium text-brand-charcoal">
             Email address *
           </label>
           <input
             type="email"
-            className="w-full border rounded-lg p-3 bg-white text-black border-gray-300"
+            className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
             value={data.email}
             onChange={(e) => update("email", e.target.value)}
           />
@@ -161,27 +161,25 @@ export default function EnquiryForm() {
 
       {/* Appointment Type */}
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="mb-1 block text-sm font-medium text-brand-charcoal">
           Type of appointment *
         </label>
 
         <select
-          className="w-full border rounded-lg p-3 bg-white text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+          className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
           value={data.appointmentType}
-          onChange={(e) =>
-            update("appointmentType", e.target.value as AppointmentType)
-          }
+          onChange={(e) => update("appointmentType", e.target.value as AppointmentType)}
         >
-          <option className="text-black bg-white">
+          <option className="text-brand-charcoal bg-white">
             New Patient Assessment & Treatment
           </option>
-          <option className="text-black bg-white">
+          <option className="text-brand-charcoal bg-white">
             Routine Foot Care
           </option>
-          <option className="text-black bg-white">
+          <option className="text-brand-charcoal bg-white">
             Nail Care
           </option>
-          <option className="text-black bg-white">
+          <option className="text-brand-charcoal bg-white">
             Other / Unsure
           </option>
         </select>
@@ -189,7 +187,7 @@ export default function EnquiryForm() {
 
       {/* Preferred Days */}
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="mb-2 block text-sm font-medium text-brand-charcoal">
           Preferred days *
         </label>
 
@@ -201,10 +199,10 @@ export default function EnquiryForm() {
                 key={day}
                 type="button"
                 onClick={() => toggleDay(day)}
-                className={`px-4 py-2 rounded-full border text-sm transition ${
+                className={`rounded-full border px-4 py-2 text-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight ${
                   active
-                    ? "bg-black text-white border-black"
-                    : "bg-white text-black border-gray-300 hover:bg-gray-100"
+                    ? "border-brand-sageDark bg-brand-sageDark text-white"
+                    : "border-brand-sageLight/40 bg-white text-brand-charcoal hover:bg-brand-offwhite"
                 }`}
               >
                 {day}
@@ -213,19 +211,17 @@ export default function EnquiryForm() {
           })}
         </div>
 
-        <p className="text-xs text-gray-500 mt-2">
-          Select at least one day.
-        </p>
+        <p className="mt-2 text-xs text-brand-charcoal/60">Select at least one day.</p>
       </div>
 
       {/* Appointment Details */}
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="mb-1 block text-sm font-medium text-brand-charcoal">
           Appointment details *
         </label>
         <textarea
           rows={4}
-          className="w-full border rounded-lg p-3 bg-white text-black border-gray-300"
+          className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
           placeholder="Brief description of what you need help with"
           value={data.appointmentDetails}
           onChange={(e) => update("appointmentDetails", e.target.value)}
@@ -234,12 +230,12 @@ export default function EnquiryForm() {
 
       {/* Clinical Notes */}
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="mb-1 block text-sm font-medium text-brand-charcoal">
           Any mobility, access, or medical considerations? *
         </label>
         <textarea
           rows={4}
-          className="w-full border rounded-lg p-3 bg-white text-black border-gray-300"
+          className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
           placeholder="e.g. stairs, diabetes, poor circulation, recent surgery"
           value={data.clinicalNotes}
           onChange={(e) => update("clinicalNotes", e.target.value)}
@@ -248,18 +244,18 @@ export default function EnquiryForm() {
 
       {/* How did you hear */}
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="mb-1 block text-sm font-medium text-brand-charcoal">
           How did you hear about us? (optional)
         </label>
         <input
-          className="w-full border rounded-lg p-3 bg-white text-black border-gray-300"
+          className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
           value={data.heardAboutUs}
           onChange={(e) => update("heardAboutUs", e.target.value)}
         />
       </div>
 
       {/* Consent */}
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-brand-charcoal/70">
         By submitting this form, you agree to be contacted regarding your enquiry.
         Appointment times are confirmed directly and are subject to availability.
       </p>
@@ -268,7 +264,7 @@ export default function EnquiryForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-black text-white py-3 rounded-xl text-lg disabled:opacity-60"
+        className="w-full rounded-xl bg-brand-sageDark py-3 text-lg font-medium text-white shadow-md shadow-black/10 transition hover:bg-brand-sage disabled:opacity-60"
       >
         {isSubmitting ? "Submitting..." : "Request an Appointment"}
       </button>
