@@ -211,7 +211,7 @@ export default function EnquiryForm() {
       <div>
         <label className="block text-sm font-medium mb-1">Appointment details *</label>
         <textarea
-          className="w-full border rounded-lg p-3"
+          className="w-full border rounded-lg p-3 bg-white text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
           rows={4}
           value={data.appointmentDetails}
           onChange={(e) => update("appointmentDetails", e.target.value)}
