@@ -9,7 +9,7 @@ const badges = [
 
 export default function AboutPage() {
   return (
-    <main className="bg-[#F7F6F2]">
+    <main className="bg-white">
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-14 md:pt-20">
         {/* Page header */}
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
@@ -54,16 +54,16 @@ export default function AboutPage() {
 
           {/* Editorial image frame placeholder */}
           <div className="md:justify-self-end">
-            <div className="relative w-full max-w-md overflow-hidden rounded-[32px] border border-slate-200/80 bg-slate-50/80 shadow-[0_28px_80px_-55px_rgba(15,23,42,0.2)]">
-              <div className="absolute -left-20 top-0 h-full w-[70%] rotate-12 bg-white blur-2xl opacity-60" />
+            <div className="relative w-full max-w-md overflow-hidden rounded-[32px] border border-slate-200 bg-slate-50 shadow-[0_28px_80px_-60px_rgba(15,23,42,0.25)]">
+              <div className="absolute -left-20 top-0 h-full w-[70%] rotate-12 bg-white blur-2xl opacity-70" />
 
               <div className="relative aspect-[4/5] p-6">
-                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/90 px-3 py-1 text-xs text-slate-600">
-                  <span className="h-2 w-2 rounded-full bg-slate-400/80" />
+                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs text-slate-600">
+                  <span className="h-2 w-2 rounded-full bg-slate-400" />
                   Photo coming soon
                 </div>
 
-                <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-slate-200/70 bg-white/95 p-4 shadow-sm">
+                <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm">
                   <p className="text-sm font-medium text-slate-900">
                     Calm, respectful care
                   </p>
@@ -73,13 +73,13 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="pointer-events-none absolute inset-0 rounded-[32px] ring-1 ring-slate-200/70" />
+              <div className="pointer-events-none absolute inset-0 rounded-[32px] ring-1 ring-slate-200/60" />
             </div>
           </div>
         </div>
 
         {/* Glass content card */}
-        <div className="mt-14 rounded-[28px] border border-slate-200/80 bg-slate-50/80 p-8 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.16)] backdrop-blur-[2px] md:p-10">
+        <div className="mt-14 rounded-[28px] border border-slate-200 bg-white p-8 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-10">
           <div className="grid gap-10 md:grid-cols-3">
             <div>
               <h2 className="font-heading text-lg font-semibold text-slate-900">
@@ -133,7 +133,7 @@ export default function AboutPage() {
           ].map((c) => (
             <div
               key={c.title}
-              className="rounded-[22px] border border-slate-200/80 bg-slate-50/70 p-6 shadow-[0_14px_40px_-40px_rgba(15,23,42,0.15)] backdrop-blur-[2px]"
+              className="rounded-[22px] border border-slate-200 bg-white p-6 shadow-[0_14px_40px_-40px_rgba(15,23,42,0.16)]"
             >
               <h3 className="font-heading text-base font-semibold text-slate-900">
                 {c.title}
@@ -144,7 +144,7 @@ export default function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-[26px] border border-slate-200/80 bg-slate-50/80 p-7 shadow-[0_18px_45px_-40px_rgba(15,23,42,0.16)] backdrop-blur-[2px] md:flex-row md:items-center">
+        <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-[26px] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_-40px_rgba(15,23,42,0.18)] md:flex-row md:items-center">
           <div>
             <h2 className="font-heading text-lg font-semibold text-slate-900">
               Ready to book?
