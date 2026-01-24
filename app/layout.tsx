@@ -1,19 +1,6 @@
 import "./globals.css";
-import { Inter, Poppins } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-body",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-heading",
-});
 
 export const metadata = {
   title: "Foot+ | Foot Health in Bristol",
@@ -22,8 +9,12 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en">
       <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap"
+        />
         <link
           rel="stylesheet"
           href="https://assets.calendly.com/assets/external/widget.css"
