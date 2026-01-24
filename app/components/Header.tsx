@@ -31,17 +31,18 @@ export default function Header() {
   ];
 
   const headerBase =
-    "sticky top-0 z-50 h-[104px] border-b border-transparent transition-colors duration-300";
+    "sticky top-0 z-50 h-[120px] border-b border-transparent transition-colors transition-shadow duration-300";
   const headerSurface = isScrolled
     ? isHome
-      ? "bg-white/10 backdrop-blur-xl border-white/15"
-      : "bg-brand-offwhite/95 backdrop-blur border-brand-sageLight/40"
+      ? "bg-white/10 shadow-[0_12px_30px_rgba(15,23,42,0.12)] backdrop-blur-xl border-white/15"
+      : "bg-brand-offwhite/95 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur border-brand-sageLight/40"
     : isHome
       ? "bg-transparent backdrop-blur-0"
       : "bg-brand-offwhite/80 backdrop-blur-0";
 
   const linkBase =
     "px-3 py-2 text-sm font-medium transition border-b-2 border-transparent";
+  const navTracking = isScrolled ? "tracking-normal" : "tracking-wide";
   const linkTone = isHome
     ? "text-white/90 hover:text-white"
     : "text-brand-charcoal/80 hover:text-brand-sageDark";
@@ -55,8 +56,10 @@ export default function Header() {
       <nav className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
           <div
-            className={`origin-left transition-transform duration-300 ${
-              isScrolled ? "scale-[1.15]" : "scale-[1.5]"
+            className={`origin-left transition-transform transition-opacity transition-shadow duration-300 ${
+              isScrolled
+                ? "scale-[1.15] opacity-90"
+                : "scale-[1.6] drop-shadow-sm"
             }`}
           >
             <Image
@@ -78,7 +81,7 @@ export default function Header() {
           {navLinks.map((link) => (
             <Link
               key={link.label}
-              className={`${linkBase} ${linkTone} ${link.active ? activeBorder : ""}`}
+              className={`${linkBase} ${navTracking} ${linkTone} ${link.active ? activeBorder : ""}`}
               href={link.href}
             >
               {link.label}
@@ -127,7 +130,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                className={`${linkBase} ${linkTone} ${link.active ? activeBorder : ""}`}
+                className={`${linkBase} ${navTracking} ${linkTone} ${link.active ? activeBorder : ""}`}
                 href={link.href}
               >
                 {link.label}
