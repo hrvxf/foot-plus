@@ -31,7 +31,7 @@ export default function Header() {
   ];
 
   const headerBase =
-    "sticky top-0 z-50 h-20 border-b border-transparent transition-colors duration-300";
+    "sticky top-0 z-50 h-[104px] border-b border-transparent transition-colors duration-300";
   const headerSurface = isScrolled
     ? isHome
       ? "bg-white/10 backdrop-blur-xl border-white/15"
