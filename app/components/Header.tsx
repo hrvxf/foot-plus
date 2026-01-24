@@ -53,29 +53,31 @@ export default function Header() {
 
   return (
     <header className={`${headerBase} ${headerSurface}`}>
-      <nav className="mx-auto flex h-full max-w-6xl items-start justify-between px-6 pt-6">
-        <Link href="/" className="flex items-center gap-3">
-          <div
-            className={`origin-left transition-transform transition-opacity transition-shadow duration-300 ${
-              isScrolled
-                ? "scale-[1.15] opacity-90"
-                : "scale-[1.55] drop-shadow-sm"
-            }`}
-          >
-            <Image
-              src={
-                isHome
-                  ? "/images/footplus-logo-white.svg"
-                  : "/images/footplus-logo-dark.svg"
-              }
-              alt="Foot+"
-              width={140}
-              height={40}
-              priority
-              className="h-14 w-auto"
-            />
-          </div>
-        </Link>
+      <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+        <div className="flex h-full items-center">
+          <Link href="/" className="flex items-center gap-3">
+            <div
+              className={`origin-left transition-transform transition-opacity transition-shadow duration-300 ${
+                isScrolled
+                  ? "scale-[1.15] opacity-90"
+                  : "scale-[1.55] drop-shadow-sm"
+              }`}
+            >
+              <Image
+                src={
+                  isHome
+                    ? "/images/footplus-logo-white.svg"
+                    : "/images/footplus-logo-dark.svg"
+                }
+                alt="Foot+"
+                width={140}
+                height={40}
+                priority
+                className="block h-14 w-auto translate-y-[1px]"
+              />
+            </div>
+          </Link>
+        </div>
 
         <div className="hidden items-center gap-9 md:flex">
           {navLinks.map((link) => (
