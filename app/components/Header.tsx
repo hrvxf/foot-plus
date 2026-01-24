@@ -30,11 +30,15 @@ export default function Header() {
     { label: "Contact", href: "/contact", active: pathname === "/contact" },
   ];
 
-  const headerClasses = isHome
-    ? isScrolled
-      ? "sticky top-0 z-50 h-20 border-b border-white/15 bg-white/10 backdrop-blur-xl"
-      : "sticky top-0 z-50 h-20 border-b border-transparent bg-transparent backdrop-blur-0"
-    : "sticky top-0 z-50 h-20 border-b border-brand-sageLight/40 bg-brand-offwhite/95 backdrop-blur";
+  const headerBase =
+    "sticky top-0 z-50 h-20 border-b border-transparent transition-colors duration-300";
+  const headerSurface = isScrolled
+    ? isHome
+      ? "bg-white/10 backdrop-blur-xl border-white/15"
+      : "bg-brand-offwhite/95 backdrop-blur border-brand-sageLight/40"
+    : isHome
+      ? "bg-transparent backdrop-blur-0"
+      : "bg-brand-offwhite/80 backdrop-blur-0";
 
   const linkBase =
     "px-3 py-2 text-sm font-medium transition border-b-2 border-transparent";
@@ -47,8 +51,8 @@ export default function Header() {
     : "rounded-full bg-brand-sage px-4 py-2 text-sm font-semibold text-white hover:bg-brand-sageDark";
 
   return (
-    <header className={headerClasses}>
-      <nav className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 py-4 md:py-5">
+    <header className={`${headerBase} ${headerSurface}`}>
+      <nav className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src={
