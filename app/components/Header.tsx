@@ -53,7 +53,7 @@ export default function Header() {
 
   return (
     <header className={`${headerBase} ${headerSurface}`}>
-      <nav className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
+      <nav className="mx-auto flex h-full max-w-6xl items-start justify-between px-6 pt-4">
         <Link href="/" className="flex items-center gap-3">
           <div
             className={`origin-left transition-transform transition-opacity transition-shadow duration-300 ${
