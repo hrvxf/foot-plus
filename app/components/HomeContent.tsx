@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./components/Button";
+import Button from "./Button";
 
 const heroServices = [
   {
@@ -52,7 +52,7 @@ const steps = [
   { t: "3) Appointment", d: "Professional treatment with aftercare guidance." },
 ];
 
-export default function Home() {
+export default function HomeContent() {
   return (
     <div className="space-y-20 pb-16">
       {/* Hero */}
@@ -100,7 +100,7 @@ export default function Home() {
                     Clinical, calm care tailored to your feet.
                   </p>
                 </div>
-                
+
                 <div className="mt-5 space-y-5">
                   {heroServices.map((group) => (
                     <div key={group.category}>
