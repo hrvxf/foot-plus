@@ -13,7 +13,7 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 40);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -54,17 +54,23 @@ export default function Header() {
     <header className={`${headerBase} ${headerSurface}`}>
       <nav className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
-          <Image
-            src={
-              isHome
-                ? "/images/footplus-logo-white.svg"
-                : "/images/footplus-logo-dark.svg"
-            }
-            alt="Foot+"
-            width={140}
-            height={40}
-            priority
-          />
+          <div
+            className={`origin-left transition-transform duration-300 ${
+              isScrolled ? "scale-[1.2]" : "scale-[1.7]"
+            }`}
+          >
+            <Image
+              src={
+                isHome
+                  ? "/images/footplus-logo-white.svg"
+                  : "/images/footplus-logo-dark.svg"
+              }
+              alt="Foot+"
+              width={140}
+              height={40}
+              priority
+            />
+          </div>
         </Link>
 
         <div className="hidden items-center gap-2 md:flex">
