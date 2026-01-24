@@ -1,13 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="mt-20 relative overflow-hidden text-white">
-      {/* Background texture */}
-      <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat" />
-      {/* Tint overlay for readability */}
-      <div className="absolute inset-0 bg-brand-sage/70" />
-
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
-        {/* Brand */}
+    <footer className="relative z-10 mt-20 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat text-white">
+      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-4">
             <img
