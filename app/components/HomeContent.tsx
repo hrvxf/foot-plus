@@ -56,7 +56,7 @@ export default function HomeContent() {
   return (
     <div className="space-y-20 pb-16">
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-[url('/images/footplus-texture.svg')] bg-cover bg-center text-white">
+      <section className="relative isolate -mt-20 overflow-hidden bg-[url('/images/footplus-texture.svg')] bg-cover bg-center pt-20 text-white">
         <div className="absolute inset-0 bg-brand-sage/60" aria-hidden="true" />
         <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col gap-10 px-6 pb-12 pt-6 md:flex-row md:items-start md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
