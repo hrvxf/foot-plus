@@ -1,3 +1,5 @@
+import { Mail, MessageCircle, Phone } from "lucide-react";
+
 export default function Footer() {
   return (
     <footer className="relative z-10 mt-16 text-white">
@@ -14,12 +16,12 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3 md:items-center">
           {/* Brand */}
           <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/12 ring-1 ring-white/15 backdrop-blur-sm">
+            <div className="flex h-14 w-14 items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/15 backdrop-blur-sm">
               <img
                 src="/images/foot.svg"
                 alt=""
                 aria-hidden
-                className="h-10 w-10 opacity-90 drop-shadow-sm"
+                className="h-20 w-20 opacity-95 drop-shadow-md"
               />
             </div>
 
@@ -38,26 +40,29 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
+          <div className="flex items-center gap-3 md:justify-end">
             <a
-              className="rounded-full bg-white/10 px-3 py-1 text-sm text-white/85 ring-1 ring-white/10 transition hover:bg-white/15 hover:text-white"
               href="tel:+447000000000"
+              aria-label="Call"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 transition hover:bg-white/20"
             >
-              Call
+              <Phone className="h-5 w-5 text-white" />
             </a>
             <a
-              className="rounded-full bg-white/10 px-3 py-1 text-sm text-white/85 ring-1 ring-white/10 transition hover:bg-white/15 hover:text-white"
               href="https://wa.me/447000000000"
               target="_blank"
               rel="noreferrer"
+              aria-label="WhatsApp"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 transition hover:bg-white/20"
             >
-              WhatsApp
+              <MessageCircle className="h-5 w-5 text-white" />
             </a>
             <a
-              className="rounded-full bg-white/10 px-3 py-1 text-sm text-white/85 ring-1 ring-white/10 transition hover:bg-white/15 hover:text-white"
               href="mailto:hello@footplusbristol.co.uk"
+              aria-label="Email"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 transition hover:bg-white/20"
             >
-              Email
+              <Mail className="h-5 w-5 text-white" />
             </a>
           </div>
 
