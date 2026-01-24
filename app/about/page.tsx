@@ -9,7 +9,7 @@ const badges = [
 
 export default function AboutPage() {
   return (
-    <main className="bg-white">
+    <main className="bg-[#F7F6F2]">
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-14 md:pt-20">
         {/* Page header */}
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
