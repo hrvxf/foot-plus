@@ -146,14 +146,6 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-                <div className="mt-5 flex flex-wrap gap-4 text-sm font-semibold text-white/85">
-                  <Link href="/about" className="transition hover:text-white">
-                    View full services
-                  </Link>
-                  <Link href="/contact" className="transition hover:text-white">
-                    Enquire
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
