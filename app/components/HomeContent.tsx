@@ -1,32 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
+import HeroImageCard from "./HeroImageCard";
 import HeroSection from "./HeroSection";
-
-const heroServices = [
-  {
-    category: "Nails",
-    items: [
-      "Thickened & problem nail care",
-      "Fungal nail treatment plans",
-      "Ingrowing toenail relief",
-    ],
-  },
-  {
-    category: "Skin",
-    items: ["Corns & callus reduction", "Verrucas & hard skin care", "Dry, cracked heel care"],
-  },
-  {
-    category: "Assessment & specialist care",
-    items: [
-      "Full foot health assessment",
-      "Circulation & sensation checks",
-      "Diabetic foot care guidance",
-    ],
-  },
-];
-
-const trustChips = ["Qualified FHP", "Sterile instruments", "Home visits in Bristol"];
 
 const serviceCards = [
   {
@@ -90,67 +66,7 @@ export default function HomeContent() {
           </div>
 
           <div className="flex-1">
-            <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 shadow-[0_32px_90px_-35px_rgba(0,0,0,0.6)] ring-1 ring-white/10 backdrop-blur-2xl md:p-8">
-              <div className="absolute inset-x-0 top-0 h-px bg-white/40" />
-              <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-white/25 blur-[80px]" />
-              <div className="absolute -right-14 bottom-4 h-44 w-44 rounded-full bg-brand-sageLight/25 blur-[90px]" />
-              <div className="relative">
-                <div className="flex items-center gap-3">
-                  <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
-                    Services
-                  </span>
-                  <p className="text-xs text-white/70">
-                    Clinical, calm care tailored to your feet.
-                  </p>
-                </div>
-
-                <div className="mt-5 space-y-5">
-                  {heroServices.map((group) => (
-                    <div key={group.category}>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
-                        {group.category}
-                      </p>
-                      <ul className="mt-3 space-y-2">
-                        {group.items.map((item) => (
-                          <li
-                            key={item}
-                            className="flex items-start gap-3 text-[15px] leading-relaxed text-white/85"
-                          >
-                            <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/40 bg-white/10">
-                              <svg
-                                viewBox="0 0 20 20"
-                                className="h-3.5 w-3.5 text-white/90"
-                                fill="none"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  d="M5 10.5l3 3 7-7"
-                                  stroke="currentColor"
-                                  strokeWidth="1.6"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {trustChips.map((chip) => (
-                    <span
-                      key={chip}
-                      className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs text-white/75"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <HeroImageCard />
           </div>
         </div>
       </HeroSection>
