@@ -72,16 +72,23 @@ export default function Home() {
           </div>
 
           <div className="flex-1">
-            <div className="rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-xl md:p-8">
-              <h2 className="font-heading text-xl font-semibold">Our services:</h2>
-              <ul className="mt-4 space-y-3 text-sm text-white/90">
-                {heroServices.map((service) => (
-                  <li key={service} className="flex gap-3">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-white" aria-hidden="true" />
-                    <span>{service}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-6 shadow-[0_20px_60px_-25px_rgba(0,0,0,0.45)] ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+              <div className="absolute -left-10 top-8 h-32 w-32 rounded-full bg-white/30 blur-3xl" />
+              <div className="absolute -right-12 bottom-6 h-36 w-36 rounded-full bg-brand-sageLight/30 blur-3xl" />
+              <div className="relative">
+                <h2 className="font-heading text-xl font-semibold">Our services:</h2>
+                <ul className="mt-4 space-y-3 text-sm text-white/80">
+                  {heroServices.map((service) => (
+                    <li key={service} className="flex gap-3">
+                      <span
+                        className="mt-1 h-2 w-2 rounded-full bg-white"
+                        aria-hidden="true"
+                      />
+                      <span>{service}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
