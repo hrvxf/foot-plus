@@ -55,7 +55,7 @@ export default function Header() {
     <header className={`${headerBase} ${headerSurface}`}>
       <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
         <div className="flex h-full items-center">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
             <div
               className={`origin-left transition-transform transition-opacity transition-shadow duration-300 ${
                 isScrolled
@@ -69,7 +69,8 @@ export default function Header() {
                     ? "/images/footplus-logo-white.svg"
                     : "/images/footplus-logo-dark.svg"
                 }
-                alt="Foot+"
+                alt=""
+                aria-hidden="true"
                 width={140}
                 height={40}
                 priority
