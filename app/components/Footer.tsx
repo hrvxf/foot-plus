@@ -16,7 +16,7 @@ export default function Footer() {
               aria-hidden
               className="h-16 w-16 opacity-80"
             />
-            <div>
+            <div className="flex flex-col justify-center">
               <div className="font-heading text-2xl font-semibold tracking-tight">
                 Foot+ Bristol
               </div>
