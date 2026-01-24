@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-16 relative overflow-hidden text-white">
+    <footer className="relative z-10 mt-16 text-white">
       {/* Background texture */}
       <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat" />
       {/* Tint overlay for readability */}
