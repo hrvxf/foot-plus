@@ -78,8 +78,8 @@ export default function Header() {
             <Image
               src={
                 isHome
-                  ? "/images/footplus-logo-white.svg"
-                  : "/images/footplus-logo-dark.svg"
+                  ? "/images/footplus-logo.png"
+                  : "/images/footplus-logo-dark.png"
               }
               alt=""
               aria-hidden="true"

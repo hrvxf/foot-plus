@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 mt-16 text-white">
       {/* Background texture */}
-      <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat" />
+      <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-cover bg-center bg-no-repeat" />
       {/* Tint overlay for readability */}
       <div className="absolute inset-0 bg-brand-sage/65" />
 
@@ -39,7 +39,7 @@ export default function Footer() {
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
                 <img
-                  src="/images/footplus-logo-white.svg"
+                  src="/images/footplus-logo.png"
                   alt="Foot+ logo"
                   className="h-16 w-auto"
                 />
