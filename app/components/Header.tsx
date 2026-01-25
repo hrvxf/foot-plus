@@ -44,6 +44,11 @@ export default function Header() {
     : isHome
       ? "bg-transparent backdrop-blur-0"
       : "bg-brand-offwhite/80 backdrop-blur-0";
+  const mobileMenuSurface = isHome
+    ? "bg-white/10 backdrop-blur-xl"
+    : "bg-brand-offwhite/95";
+  const mobileMenuBorder = isHome ? "border-white/20" : "border-brand-sageLight/30";
+  const mobileMenuText = isHome ? "text-white/90" : "text-brand-charcoal";
 
   const linkBase =
     "px-4 py-2 text-base font-medium transition border-b-2 border-transparent";
@@ -126,29 +131,29 @@ export default function Header() {
         </button>
       </nav>
       {isMenuOpen ? (
-        <div
-          className={`border-t px-6 pb-6 md:hidden ${
-            isHome
-              ? "border-white/20 bg-white/10 text-white/90 backdrop-blur-xl"
-              : "border-brand-sageLight/30 bg-brand-offwhite/95 text-brand-charcoal"
-          }`}
-        >
-          <div className="flex flex-col gap-2 pt-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                className={`${linkBase} ${navTracking} ${linkTone} ${link.active ? activeBorder : ""}`}
-                href={link.href}
-              >
-                {link.label}
+        <div className={`relative border-t md:hidden ${mobileMenuBorder}`}>
+          <div
+            className={`pointer-events-none absolute inset-0 ${mobileMenuSurface}`}
+            aria-hidden="true"
+          />
+          <div className={`relative z-10 px-6 pb-6 ${mobileMenuText}`}>
+            <div className="flex flex-col gap-2 pt-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  className={`${linkBase} ${navTracking} ${linkTone} ${link.active ? activeBorder : ""}`}
+                  href={link.href}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link className={bookButtonClasses} href="/book">
+                Book
               </Link>
-            ))}
-            <Link className={bookButtonClasses} href="/book">
-              Book
-            </Link>
-            <Link className={`${linkBase} ${linkTone}`} href="/contact">
-              Call / WhatsApp
-            </Link>
+              <Link className={`${linkBase} ${linkTone}`} href="/contact">
+                Call / WhatsApp
+              </Link>
+            </div>
           </div>
         </div>
       ) : null}
