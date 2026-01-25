@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BristolMapCard from "../components/BristolMapCard";
 
 const badges = [
   "Qualified FHP",
@@ -54,27 +55,7 @@ export default function AboutPage() {
 
           {/* Editorial image frame placeholder */}
           <div className="w-full md:flex md:justify-end">
-            <div className="relative w-full max-w-md overflow-hidden rounded-[32px] border border-brand-sageLight/40 bg-white shadow-[0_28px_80px_-60px_rgba(15,23,42,0.25)]">
-              <div className="absolute -left-20 top-0 h-full w-[70%] rotate-12 bg-white blur-2xl opacity-70" />
-
-              <div className="relative aspect-[4/5] min-h-[360px] p-6">
-                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-brand-sageLight/40 bg-white/80 px-3 py-1 text-xs text-brand-charcoal/70">
-                  <span className="h-2 w-2 rounded-full bg-brand-sageLight" />
-                  Photo coming soon
-                </div>
-
-                <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-brand-sageLight/40 bg-white/90 p-4 shadow-sm">
-                  <p className="text-sm font-medium text-brand-sageDark">
-                    Calm, respectful care
-                  </p>
-                  <p className="mt-1 text-xs text-brand-charcoal/60">
-                    Home visits across Bristol & nearby areas
-                  </p>
-                </div>
-              </div>
-
-              <div className="pointer-events-none absolute inset-0 rounded-[32px] ring-1 ring-brand-sageLight/50" />
-            </div>
+            <BristolMapCard />
           </div>
         </div>
 
