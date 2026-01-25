@@ -31,11 +31,16 @@ export default function Header() {
   ];
 
   const headerBase =
-    "sticky top-0 z-50 h-[180px] border-b border-transparent transition-colors transition-shadow duration-300";
+    "sticky top-0 z-50 h-[180px] border-b border-transparent transition-colors transition-shadow duration-300 relative";
+  const headerChrome = isScrolled
+    ? isHome
+      ? "border-white/15 shadow-[0_12px_30px_rgba(15,23,42,0.12)]"
+      : "border-brand-sageLight/40 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
+    : "shadow-none";
   const headerSurface = isScrolled
     ? isHome
-      ? "bg-white/10 shadow-[0_12px_30px_rgba(15,23,42,0.12)] backdrop-blur-xl border-white/15"
-      : "bg-brand-offwhite/95 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur border-brand-sageLight/40"
+      ? "bg-white/10 backdrop-blur-xl"
+      : "bg-brand-offwhite/95 backdrop-blur"
     : isHome
       ? "bg-transparent backdrop-blur-0"
       : "bg-brand-offwhite/80 backdrop-blur-0";
@@ -52,15 +57,14 @@ export default function Header() {
     : "rounded-full bg-brand-sage px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDark";
 
   return (
-    <header className={`${headerBase} ${headerSurface}`}>
-      <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+    <header className={`${headerBase} ${headerChrome}`}>
+      <div className={`pointer-events-none absolute inset-0 ${headerSurface}`} aria-hidden="true" />
+      <nav className="relative z-10 mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
         <div className="flex h-full items-center">
           <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
             <div
-              className={`origin-left transition-transform transition-opacity transition-shadow duration-300 ${
-                isScrolled
-                  ? "scale-[1.15] opacity-90"
-                  : "scale-[1.55] drop-shadow-sm"
+              className={`transition-[height,opacity] duration-300 ${
+                isScrolled ? "h-12 opacity-90" : "h-16 opacity-100"
               }`}
             >
               <Image
@@ -74,7 +78,7 @@ export default function Header() {
                 width={140}
                 height={40}
                 priority
-                className="block h-14 w-auto translate-y-[1px]"
+                className="block h-full w-auto"
               />
             </div>
           </Link>
