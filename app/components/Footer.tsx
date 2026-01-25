@@ -16,12 +16,20 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3 md:items-center">
           {/* Brand */}
           <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/15 backdrop-blur-sm">
+            {/* Footer emblem */}
+            <div className="relative flex h-14 w-14 items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/20 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.75)] backdrop-blur-md">
+              {/* soft rim + highlight */}
+              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-white/18 via-transparent to-black/10" />
+              {/* inner depth */}
+              <div className="pointer-events-none absolute inset-[2px] rounded-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),inset_0_-10px_16px_rgba(0,0,0,0.14)]" />
+              {/* restrained glow */}
+              <div className="pointer-events-none absolute -inset-6 rounded-3xl bg-white/8 blur-2xl" />
+
               <img
                 src="/images/foot.svg"
                 alt=""
-                aria-hidden
-                className="h-20 w-20 opacity-95 drop-shadow-md"
+                aria-hidden="true"
+                className="relative h-20 w-20 opacity-95 drop-shadow-[0_10px_18px_rgba(0,0,0,0.22)]"
               />
             </div>
 
