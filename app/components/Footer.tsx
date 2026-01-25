@@ -11,7 +11,7 @@ export default function Footer() {
 
       {/* Subtle top divider + vignette for depth */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/15" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-black/20" />
 
       <div className="relative mx-auto max-w-6xl px-6 py-10">
         <div className="grid gap-8 md:grid-cols-3 md:items-center">
@@ -64,7 +64,7 @@ export default function Footer() {
           <div className="flex flex-col items-center gap-3 md:items-end">
             <a
               href="/book"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-gradient-to-b from-white/20 to-white/10 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:from-white/25 hover:to-white/15"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-linear-to-b from-white/20 to-white/10 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:from-white/25 hover:to-white/15"
             >
               Book an appointment
             </a>
