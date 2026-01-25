@@ -65,8 +65,10 @@ export default function HomeContent() {
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
-            {/* Optically centre the emblem with the headline (less floaty, more anchored) */}
-            <BrandSeal className="mb-4 md:mb-5 md:-mt-1 md:justify-start" />
+            <BrandSeal
+              variant="hero"
+              className="mb-4 md:mb-5 md:-mt-1 md:justify-start"
+            />
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
                 Professional foot health services in Bristol
