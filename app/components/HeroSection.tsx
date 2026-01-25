@@ -7,7 +7,9 @@ type HeroSectionProps = {
 
 export default function HeroSection({ children, className }: HeroSectionProps) {
   return (
-    <section className={`relative isolate -mt-20 pt-20 ${className ?? ""}`}>
+    <section
+      className={`relative isolate -mt-12 pt-24 md:-mt-20 md:pt-20 ${className ?? ""}`}
+    >
       {children}
     </section>
   );
