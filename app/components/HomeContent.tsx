@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
 import HeroSection from "./HeroSection";
@@ -65,15 +64,14 @@ export default function HomeContent() {
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
-            <Image
-              src="/images/footplus-illustration.svg"
-              alt=""
-              aria-hidden="true"
-              width={112}
-              height={112}
-              priority
-              className="mb-4 opacity-90"
-            />
+            <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/15 backdrop-blur-sm md:h-32 md:w-32">
+              <img
+                src="/images/foot.svg"
+                alt=""
+                aria-hidden="true"
+                className="h-40 w-40 opacity-95 drop-shadow-md md:h-48 md:w-48"
+              />
+            </div>
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
                 Professional foot health services in Bristol
