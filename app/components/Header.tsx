@@ -7,14 +7,11 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-    };
+    const onScroll = () => setIsScrolled(window.scrollY > 0);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -31,55 +28,45 @@ export default function Header() {
   ];
 
   const headerBase =
-    "sticky top-0 z-30 border-b border-transparent transition-colors transition-shadow duration-300 relative";
+    "sticky top-0 z-30 border-b border-transparent transition-colors transition-shadow duration-300 relative pt-[env(safe-area-inset-top)]";
+
+  // ✅ Only the “elevation” changes on scroll (no opacity / blur / font shifts)
   const headerChrome = isScrolled
-    ? isHome
-      ? "border-white/15 shadow-[0_12px_30px_rgba(15,23,42,0.12)]"
-      : "border-brand-sageLight/40 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
-    : "shadow-none";
-  const headerSurface = isScrolled
-    ? isHome
-      ? "bg-white/10 backdrop-blur-xl"
-      : "bg-brand-offwhite/95 backdrop-blur"
-    : isHome
-      ? "bg-transparent backdrop-blur-0"
-      : "bg-brand-offwhite/80 backdrop-blur-0";
+    ? "border-brand-sageLight/40 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
+    : "border-transparent shadow-none";
+
+  // ✅ Constant surface prevents translucent snap + font rasterization changes
+  const headerSurface = "bg-brand-offwhite/95 backdrop-blur";
 
   const linkBase =
     "px-4 py-3 text-base font-medium transition border-b-2 border-transparent md:py-2";
-  const navTracking = isScrolled ? "tracking-normal" : "tracking-wide";
-  const navPadding = isScrolled ? "py-3" : "py-5";
-  const logoSize = isScrolled ? "h-12" : "h-16";
-  const linkTone = isHome
-    ? "text-white/90 hover:text-white"
-    : "text-brand-charcoal/80 hover:text-brand-sageDark";
-  const activeBorder = isHome ? "border-white/60" : "border-brand-sageDark";
-  const bookButtonClasses = isHome
-    ? "rounded-full border border-white/20 bg-white/15 px-6 py-3 text-base font-semibold text-white backdrop-blur hover:bg-white/20"
-    : "rounded-full bg-brand-sage px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDark";
+
+  // ✅ Constant tracking prevents nav text “wiggle”
+  const navTracking = "tracking-normal";
+
+  const navPadding = "py-4";
+  const logoSize = "h-12 md:h-14";
+
+  const linkTone = "text-brand-charcoal/80 hover:text-brand-sageDark";
+  const activeBorder = "border-brand-sageDark";
+
+  const bookButtonClasses =
+    "rounded-full bg-brand-sage px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDark";
 
   return (
     <>
       <header className={`${headerBase} ${headerChrome}`}>
         <div
-          className={`pointer-events-none absolute inset-0 z-0 ${headerSurface}`}
+          className={`pointer-events-none absolute -top-px left-0 right-0 bottom-0 z-0 ${headerSurface}`}
           aria-hidden="true"
         />
         <nav
           className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 transition-[padding] duration-300 ${navPadding}`}
         >
           <div className="flex h-full items-center">
-            <Link
-              href="/"
-              className="flex items-center gap-3 backdrop-blur-0"
-              aria-label="Foot Plus"
-            >
+            <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
               <Image
-                src={
-                  isHome
-                    ? "/images/footplus-logo.png"
-                    : "/images/footplus-logo-dark.png"
-                }
+                src="/images/footplus-logo-dark.png"
                 alt=""
                 aria-hidden="true"
                 width={360}
@@ -95,7 +82,9 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                className={`${linkBase} ${navTracking} ${linkTone} ${link.active ? activeBorder : ""}`}
+                className={`${linkBase} ${navTracking} ${linkTone} ${
+                  link.active ? activeBorder : ""
+                }`}
                 href={link.href}
               >
                 {link.label}
@@ -108,11 +97,7 @@ export default function Header() {
 
           <button
             type="button"
-            className={`inline-flex items-center justify-center rounded-full border px-3 py-2 text-sm font-semibold md:hidden ${
-              isHome
-                ? "border-white/30 text-white/90 hover:text-white"
-                : "border-brand-sageLight/40 text-brand-sageDark"
-            }`}
+            className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark md:hidden"
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((open) => !open)}
@@ -128,24 +113,27 @@ export default function Header() {
               strokeLinejoin="round"
               aria-hidden="true"
             >
-              <path d={isMenuOpen ? "M6 6l12 12M18 6l-12 12" : "M4 7h16M4 12h16M4 17h16"} />
+              <path
+                d={
+                  isMenuOpen
+                    ? "M6 6l12 12M18 6l-12 12"
+                    : "M4 7h16M4 12h16M4 17h16"
+                }
+              />
             </svg>
           </button>
         </nav>
       </header>
+
       {isMenuOpen ? (
-        <div
-          className={`fixed inset-0 z-50 overflow-y-auto px-6 pb-6 pt-24 md:hidden ${
-            isHome
-              ? "bg-white/10 text-white/90 backdrop-blur-xl"
-              : "bg-brand-offwhite/95 text-brand-charcoal"
-          }`}
-        >
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-brand-offwhite/95 px-6 pb-6 pt-24 text-brand-charcoal md:hidden">
           <div className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                className={`${linkBase} ${navTracking} ${linkTone} ${link.active ? activeBorder : ""}`}
+                className={`${linkBase} ${navTracking} ${linkTone} ${
+                  link.active ? activeBorder : ""
+                }`}
                 href={link.href}
               >
                 {link.label}
