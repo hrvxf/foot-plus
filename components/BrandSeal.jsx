@@ -1,42 +1,42 @@
-const sizeStyles = {
-  sm: {
-    badge: "h-32 w-32",
-    icon: "h-[72px] w-[72px]",
+const variantStyles = {
+  footer: {
+    badge: "h-14 w-14",
+    icon: "h-20 w-20",
   },
-  md: {
-    badge: "h-40 w-40 md:h-44 md:w-44",
-    icon: "h-[92px] w-[92px] md:h-[104px] md:w-[104px]",
-  },
-  lg: {
-    badge: "h-48 w-48 md:h-52 md:w-52",
-    icon: "h-[112px] w-[112px] md:h-[124px] md:w-[124px]",
+  hero: {
+    badge: "h-28 w-28 md:h-32 md:w-32",
+    icon: "h-[84px] w-[84px] md:h-[96px] md:w-[96px]",
   },
 };
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
-export default function BrandSeal({ className, size = "md", alt = "" }) {
-  const resolvedSize = sizeStyles[size] ?? sizeStyles.md;
+export default function BrandSeal({
+  className,
+  variant = "footer",
+  alt = "",
+}) {
+  const resolvedVariant = variantStyles[variant] ?? variantStyles.footer;
   const isDecorative = alt.length === 0;
 
   return (
     <div className={cx("flex justify-center", className)}>
       <div
         className={cx(
-          "relative flex items-center justify-center rounded-full border border-white/30 bg-white/15 shadow-[0_28px_70px_-35px_rgba(0,0,0,0.55)] ring-1 ring-white/20 backdrop-blur-2xl",
-          resolvedSize.badge
+          "relative flex items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/15 backdrop-blur-sm shadow-[0_20px_50px_-30px_rgba(0,0,0,0.55)]",
+          resolvedVariant.badge
         )}
       >
-        <div className="pointer-events-none absolute inset-0 rounded-full bg-white/10" />
-        <div className="pointer-events-none absolute -left-6 -top-5 h-20 w-20 rounded-full bg-white/60 blur-2xl" />
-        <div className="pointer-events-none absolute -bottom-6 -right-6 h-24 w-24 rounded-full bg-brand-sageLight/45 blur-3xl" />
+        <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-white/20 blur-2xl" />
+        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/35 via-white/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_2px_8px_rgba(255,255,255,0.25),inset_0_-6px_12px_rgba(0,0,0,0.2)]" />
         <img
           src="/images/foot.svg"
           alt={alt}
           aria-hidden={isDecorative ? "true" : undefined}
           className={cx(
             "relative opacity-95 drop-shadow-md",
-            resolvedSize.icon
+            resolvedVariant.icon
           )}
         />
       </div>

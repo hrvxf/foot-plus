@@ -1,4 +1,5 @@
 import { Mail, MessageCircle, Phone } from "lucide-react";
+import BrandSeal from "../../components/BrandSeal";
 
 export default function Footer() {
   return (
@@ -16,14 +17,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3 md:items-center">
           {/* Brand */}
           <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/15 backdrop-blur-sm">
-              <img
-                src="/images/foot.svg"
-                alt=""
-                aria-hidden
-                className="h-20 w-20 opacity-95 drop-shadow-md"
-              />
-            </div>
+            <BrandSeal variant="footer" />
 
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
