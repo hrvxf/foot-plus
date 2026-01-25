@@ -1,7 +1,17 @@
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
+/**
+ * @typedef {Object} BrandSealProps
+ * @property {string} [className]
+ * @property {"footer" | "hero"} [variant]
+ * @property {string} [alt]
+ */
+
+/**
+ * @param {BrandSealProps} props
+ */
 export default function BrandSeal({
-  className,
+  className = "",
   variant = "footer",
   alt = "",
 }) {
