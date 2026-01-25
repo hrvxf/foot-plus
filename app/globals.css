@@ -29,8 +29,6 @@ body {
   background-color: var(--color-brand-offwhite);
   color: var(--color-brand-charcoal);
   font-family: var(--font-body);
-  padding: var(--safe-area-top) var(--safe-area-right) var(--safe-area-bottom)
-    var(--safe-area-left);
 }
 
 .font-heading {
