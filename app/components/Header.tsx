@@ -70,22 +70,25 @@ export default function Header() {
         className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 transition-[padding] duration-300 ${navPadding}`}
       >
         <div className="flex h-full items-center">
-          <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
-            <div className={`transition-[height,opacity] duration-300 ${logoSize} opacity-100`}>
-              <Image
-                src={
-                  isHome
-                    ? "/images/footplus-logo-white.svg"
-                    : "/images/footplus-logo-dark.svg"
-                }
-                alt=""
-                aria-hidden="true"
-                width={140}
-                height={40}
-                priority
-                className="block h-full w-auto"
-              />
-            </div>
+          <Link
+            href="/"
+            className="flex items-center gap-3 backdrop-blur-0"
+            aria-label="Foot Plus"
+          >
+            <Image
+              src={
+                isHome
+                  ? "/images/footplus-logo-white.svg"
+                  : "/images/footplus-logo-dark.svg"
+              }
+              alt=""
+              aria-hidden="true"
+              width={360}
+              height={140}
+              priority
+              sizes="(max-width: 768px) 200px, 280px"
+              className={`block w-auto transition-[height] duration-300 ${logoSize}`}
+            />
           </Link>
         </div>
 
