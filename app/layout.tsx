@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-lightbg">
       <head>
         <meta
           name="viewport"
@@ -28,18 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://assets.calendly.com/assets/external/widget.css"
         />
       </head>
-
-      {/* 
-        Global background: one continuous texture behind header/hero/footer.
-        - fixed: prevents scroll "edge" where texture appears to stop
-        - -z-10: stays behind all content
-      */}
-      <body className="relative min-h-screen text-ink flex flex-col bg-brand-sage">
-        {/* Texture layer */}
-        <div className="pointer-events-none fixed inset-0 -z-10 bg-brand-sage bg-[url('/images/footplus-texture.svg')] bg-cover bg-center bg-no-repeat bg-fixed" />
-        {/* Tint overlay for readability */}
-        <div className="pointer-events-none fixed inset-0 -z-10 bg-brand-sage/60" />
-
+      <body className="min-h-screen bg-lightbg text-ink flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -28,19 +28,18 @@ export default function Header() {
     { label: "Contact", href: "/contact", active: pathname === "/contact" },
   ];
 
-  // No always-on border; add border only when scrolled to avoid iOS seams.
   const headerBase =
-    "sticky top-0 z-40 transition-colors transition-shadow duration-300 relative pt-[env(safe-area-inset-top)]";
+    "sticky top-0 z-30 border-b transition-colors transition-shadow duration-300 relative pt-[env(safe-area-inset-top)]";
 
-  // Elevation + border changes (no layout shifts)
+  // ✅ Only elevation + border changes (no text shifts)
   const headerChrome = isScrolled
-    ? "border-b border-white/20 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.55)]"
-    : "border-b border-transparent shadow-none";
+    ? "border-white/25 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.55)]"
+    : "border-transparent shadow-none";
 
-  // Glass comes in when scrolled; otherwise transparent so texture is continuous behind.
+  // ✅ Glass comes in when scrolled
   const headerSurface = isScrolled
-    ? "bg-white/12 backdrop-blur-xl"
-    : "bg-transparent backdrop-blur-0";
+    ? "bg-white/10 backdrop-blur-xl"
+    : "bg-brand-offwhite/95 backdrop-blur-0";
 
   const linkBase =
     "px-4 py-3 text-base font-medium transition border-b-2 border-transparent md:py-2";
@@ -54,25 +53,19 @@ export default function Header() {
   const bookButtonClasses =
     "rounded-full bg-brand-sage px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDark";
 
-  const burgerBase =
-    "inline-flex items-center justify-center rounded-full border px-3 py-2 text-sm font-semibold md:hidden transition";
-  const burgerTone = isScrolled
-    ? "border-white/25 text-white bg-white/10 backdrop-blur-md"
-    : "border-brand-sageLight/40 text-brand-sageDark bg-transparent";
-
   return (
     <>
       <header className={`${headerBase} ${headerChrome}`}>
-        {/* Surface layer */}
+        {/* ✅ -top-px avoids Safari 1px seam */}
         <div
           className={`pointer-events-none absolute -top-px left-0 right-0 bottom-0 z-0 ${headerSurface}`}
           aria-hidden="true"
         />
 
-        {/* Subtle glass highlight only when scrolled (kept soft to avoid “cut line”) */}
+        {/* ✅ Subtle glass highlight only when scrolled */}
         {isScrolled ? (
           <div
-            className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-white/20"
+            className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-white/35"
             aria-hidden="true"
           />
         ) : null}
@@ -81,11 +74,7 @@ export default function Header() {
           className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 ${navPadding}`}
         >
           <div className="flex h-full items-center">
-            <Link
-              href="/"
-              className="flex items-center gap-3"
-              aria-label="Foot Plus"
-            >
+            <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
               <Image
                 src="/images/footplus-logo-dark.png"
                 alt=""
@@ -118,7 +107,7 @@ export default function Header() {
 
           <button
             type="button"
-            className={`${burgerBase} ${burgerTone}`}
+            className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark md:hidden"
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((open) => !open)}
@@ -148,42 +137,32 @@ export default function Header() {
 
       {isMenuOpen ? (
         <div className="fixed inset-0 z-50 md:hidden">
-          {/* Backdrop (glass + tint) */}
           <button
             type="button"
-            className="absolute inset-0 bg-black/20 backdrop-blur-xl"
+            className="absolute inset-0 bg-brand-offwhite/95"
             aria-label="Close navigation menu"
             onClick={() => setIsMenuOpen(false)}
           />
-
-          {/* Menu panel */}
-          <div className="relative flex h-full flex-col overflow-y-auto px-6 pb-6 pt-20 text-white">
-            {/* Glass surface for the panel */}
-            <div
-              className="pointer-events-none absolute inset-0 -z-10 bg-white/10 backdrop-blur-2xl"
-              aria-hidden="true"
-            />
-
+          <div className="relative flex h-full flex-col overflow-y-auto px-6 pb-6 pt-20 text-brand-charcoal">
             <div className="flex items-center justify-between pb-6">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
                 Menu
               </span>
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-3 py-2 text-sm font-semibold text-white backdrop-blur-md"
+                className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark"
                 aria-label="Close navigation menu"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Close
               </button>
             </div>
-
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
-                  className={`${linkBase} ${navTracking} text-white/90 hover:text-white ${
-                    link.active ? "border-white/60" : ""
+                  className={`${linkBase} ${navTracking} ${linkTone} ${
+                    link.active ? activeBorder : ""
                   }`}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
@@ -191,17 +170,11 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-
-              <Link
-                className={bookButtonClasses}
-                href="/book"
-                onClick={() => setIsMenuOpen(false)}
-              >
+              <Link className={bookButtonClasses} href="/book" onClick={() => setIsMenuOpen(false)}>
                 Book
               </Link>
-
               <Link
-                className={`${linkBase} text-white/90 hover:text-white`}
+                className={`${linkBase} ${linkTone}`}
                 href="/contact"
                 onClick={() => setIsMenuOpen(false)}
               >
