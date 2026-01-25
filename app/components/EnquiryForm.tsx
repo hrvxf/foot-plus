@@ -78,7 +78,30 @@ export default function EnquiryForm() {
     setIsSubmitting(true);
 
     try {
-      // Hook this up to Formspree / Resend later if needed
+      const messageLines = [
+        `Postcode: ${data.postcode}`,
+        `Phone: ${data.phone}`,
+        `Appointment type: ${data.appointmentType}`,
+        `Preferred days: ${data.preferredDays.join(", ")}`,
+        `Appointment details: ${data.appointmentDetails}`,
+        `Clinical notes: ${data.clinicalNotes || "None provided"}`,
+        `Heard about us: ${data.heardAboutUs || "Not provided"}`,
+      ];
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.fullName,
+          email: data.email,
+          message: messageLines.join("\n"),
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send enquiry.");
+      }
+
       setIsSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again or contact us directly.");
