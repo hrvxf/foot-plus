@@ -46,7 +46,7 @@ export default function Header() {
       : "bg-brand-offwhite/80 backdrop-blur-0";
 
   const linkBase =
-    "px-4 py-2 text-base font-medium transition border-b-2 border-transparent";
+    "px-4 py-3 text-base font-medium transition border-b-2 border-transparent md:py-2";
   const navTracking = isScrolled ? "tracking-normal" : "tracking-wide";
   const navPadding = isScrolled ? "py-3" : "py-5";
   const logoSize = isScrolled ? "h-12" : "h-16";

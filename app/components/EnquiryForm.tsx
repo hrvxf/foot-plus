@@ -139,6 +139,7 @@ export default function EnquiryForm() {
           </label>
           <input
             className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+            autoComplete="name"
             value={data.fullName}
             onChange={(e) => update("fullName", e.target.value)}
           />
@@ -150,6 +151,8 @@ export default function EnquiryForm() {
           </label>
           <input
             className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+            autoComplete="postal-code"
+            inputMode="text"
             value={data.postcode}
             onChange={(e) => update("postcode", e.target.value)}
           />
@@ -163,7 +166,10 @@ export default function EnquiryForm() {
             Contact number *
           </label>
           <input
+            type="tel"
             className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+            autoComplete="tel"
+            inputMode="tel"
             value={data.phone}
             onChange={(e) => update("phone", e.target.value)}
           />
@@ -176,6 +182,7 @@ export default function EnquiryForm() {
           <input
             type="email"
             className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+            autoComplete="email"
             value={data.email}
             onChange={(e) => update("email", e.target.value)}
           />
