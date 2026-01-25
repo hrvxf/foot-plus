@@ -5,6 +5,10 @@ import Footer from "./components/Footer";
 export const metadata = {
   title: "Foot+ | Foot Health in Bristol",
   description: "Professional foot health services in Bristol.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
