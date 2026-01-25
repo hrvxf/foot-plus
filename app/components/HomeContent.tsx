@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrandSeal from "../../components/BrandSeal";
 import Button from "./Button";
 import HeroSection from "./HeroSection";
 
@@ -64,25 +65,7 @@ export default function HomeContent() {
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
-            <div className="flex justify-center">
-  <div className="relative mb-6 flex h-28 w-28 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/30 shadow-[0_20px_55px_-28px_rgba(0,0,0,0.7)] backdrop-blur-xl md:h-32 md:w-32">
-    {/* soft top highlight */}
-    <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/18 via-transparent to-black/12" />
-
-    {/* inner depth */}
-    <div className="pointer-events-none absolute inset-[2px] rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.22),inset_0_-12px_18px_rgba(0,0,0,0.14)]" />
-
-    {/* restrained halo */}
-    <div className="pointer-events-none absolute -inset-6 rounded-full bg-white/8 blur-2xl" />
-
-    <img
-      src="/images/foot.svg"
-      alt=""
-      aria-hidden="true"
-      className="relative h-20 w-20 opacity-95 drop-shadow-[0_8px_14px_rgba(0,0,0,0.22)] md:h-[92px] md:w-[92px]"
-    />
-  </div>
-            </div>
+            <BrandSeal className="mb-6" />
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
                 Professional foot health services in Bristol
