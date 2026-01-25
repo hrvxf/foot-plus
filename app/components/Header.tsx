@@ -31,7 +31,7 @@ export default function Header() {
   ];
 
   const headerBase =
-    "sticky top-0 z-50 h-[180px] border-b border-transparent transition-colors transition-shadow duration-300 relative";
+    "sticky top-0 z-50 border-b border-transparent transition-colors transition-shadow duration-300 relative";
   const headerChrome = isScrolled
     ? isHome
       ? "border-white/15 shadow-[0_12px_30px_rgba(15,23,42,0.12)]"
@@ -48,6 +48,8 @@ export default function Header() {
   const linkBase =
     "px-4 py-2 text-base font-medium transition border-b-2 border-transparent";
   const navTracking = isScrolled ? "tracking-normal" : "tracking-wide";
+  const navPadding = isScrolled ? "py-3" : "py-5";
+  const logoSize = isScrolled ? "h-12" : "h-16";
   const linkTone = isHome
     ? "text-white/90 hover:text-white"
     : "text-brand-charcoal/80 hover:text-brand-sageDark";
@@ -59,14 +61,12 @@ export default function Header() {
   return (
     <header className={`${headerBase} ${headerChrome}`}>
       <div className={`pointer-events-none absolute inset-0 ${headerSurface}`} aria-hidden="true" />
-      <nav className="relative z-10 mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+      <nav
+        className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 transition-[padding] duration-300 ${navPadding}`}
+      >
         <div className="flex h-full items-center">
           <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
-            <div
-              className={`transition-[height,opacity] duration-300 ${
-                isScrolled ? "h-12 opacity-90" : "h-16 opacity-100"
-              }`}
-            >
+            <div className={`transition-[height,opacity] duration-300 ${logoSize} opacity-100`}>
               <Image
                 src={
                   isHome
