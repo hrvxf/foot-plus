@@ -55,7 +55,7 @@ const steps = [
 
 export default function HomeContent() {
   return (
-    <div className="space-y-20 pb-16">
+    <div className="space-y-20 pb-24 md:pb-16">
       {/* Hero */}
       <HeroSection className="text-white">
         <div
@@ -63,7 +63,7 @@ export default function HomeContent() {
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
             <div className="flex justify-start">
               <BrandSeal variant="hero" className="-mt-1 mb-3 md:-mt-2 md:mb-4" />
@@ -257,6 +257,23 @@ export default function HomeContent() {
           </div>
         </div>
       </section>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-sageLight/30 bg-white/95 px-4 py-3 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
+        <div className="mx-auto flex max-w-md items-center gap-3">
+          <Link
+            href="/book"
+            className="flex-1 rounded-full bg-brand-sageDark px-4 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-black/10"
+          >
+            Book now
+          </Link>
+          <Link
+            href="/contact"
+            className="flex-1 rounded-full border border-brand-sageLight/60 px-4 py-3 text-center text-sm font-semibold text-brand-sageDark"
+          >
+            Call / WhatsApp
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
