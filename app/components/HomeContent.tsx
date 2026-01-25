@@ -64,12 +64,14 @@ export default function HomeContent() {
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
-            <img
-              src="/images/foot.svg"
-              alt=""
-              aria-hidden="true"
-              className="mb-4 h-20 w-20 self-center opacity-95 drop-shadow-md md:h-24 md:w-24"
-            />
+            <div className="flex justify-center">
+              <img
+                src="/images/foot.svg"
+                alt=""
+                aria-hidden="true"
+                className="mb-4 h-[140px] w-[140px] opacity-95 drop-shadow-md md:h-[168px] md:w-[168px]"
+              />
+            </div>
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
                 Professional foot health services in Bristol
