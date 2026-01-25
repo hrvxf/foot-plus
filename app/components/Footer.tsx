@@ -1,7 +1,24 @@
-import { Mail, MessageCircle, Phone } from "lucide-react";
+import { Mail, Phone, Facebook } from "lucide-react";
 import BrandSeal from "../../components/BrandSeal";
 
+function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
+  // Simple WhatsApp-style mark (inline SVG) so you don't need extra deps
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.33.16 11.9c0 2.1.55 4.15 1.6 5.97L0 24l6.3-1.73a11.86 11.86 0 0 0 5.77 1.47h.01c6.57 0 11.9-5.33 11.9-11.9 0-3.18-1.24-6.17-3.46-8.36Zm-8.45 18.2h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.74 1.03 1-3.65-.24-.38a9.9 9.9 0 1 1 8.38 4.59Zm5.74-7.86c-.31-.15-1.82-.9-2.1-1-.28-.1-.49-.15-.7.15-.2.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.15-1.3-.48-2.48-1.52-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.13-.63.14-.14.31-.36.46-.54.15-.18.2-.31.31-.52.1-.2.05-.38-.03-.54-.08-.15-.7-1.68-.96-2.3-.25-.6-.5-.51-.7-.52h-.6c-.2 0-.54.08-.82.38-.28.31-1.08 1.05-1.08 2.56 0 1.5 1.1 2.95 1.25 3.16.15.2 2.17 3.31 5.25 4.64.73.31 1.3.5 1.74.64.73.23 1.4.2 1.92.12.59-.09 1.82-.74 2.08-1.45.26-.71.26-1.33.18-1.45-.08-.12-.28-.2-.59-.36Z" />
+    </svg>
+  );
+}
+
 export default function Footer() {
+  const iconBtn =
+    "group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 backdrop-blur-sm transition-all duration-200 " +
+    "hover:bg-white/20 hover:-translate-y-0.5 hover:ring-white/25 hover:shadow-[0_10px_24px_-18px_rgba(0,0,0,0.75)] " +
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
+
+  const icon =
+    "h-5 w-5 text-white transition-transform duration-200 group-hover:scale-[1.03]";
+
   return (
     <footer className="relative z-10 mt-16 text-white">
       {/* Background texture */}
@@ -33,31 +50,45 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contact */}
-          <div className="flex items-center gap-3 md:justify-end">
-            <a
-              href="tel:+447000000000"
-              aria-label="Call"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 transition hover:bg-white/20"
-            >
-              <Phone className="h-5 w-5 text-white" />
-            </a>
-            <a
-              href="https://wa.me/447000000000"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="WhatsApp"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 transition hover:bg-white/20"
-            >
-              <MessageCircle className="h-5 w-5 text-white" />
-            </a>
-            <a
-              href="mailto:hello@footplusbristol.co.uk"
-              aria-label="Email"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 transition hover:bg-white/20"
-            >
-              <Mail className="h-5 w-5 text-white" />
-            </a>
+          {/* Contact + Social (optimised order + subtle hover) */}
+          <div className="flex justify-center">
+            <div className="flex items-center gap-3">
+              {/* WhatsApp (first) */}
+              <a
+                href="https://wa.me/447000000000"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="WhatsApp"
+                className={iconBtn}
+              >
+                <WhatsAppIcon className={icon} />
+              </a>
+
+              {/* Call */}
+              <a href="tel:+447000000000" aria-label="Call" className={iconBtn}>
+                <Phone className={icon} />
+              </a>
+
+              {/* Email */}
+              <a
+                href="mailto:hello@footplusbristol.co.uk"
+                aria-label="Email"
+                className={iconBtn}
+              >
+                <Mail className={icon} />
+              </a>
+
+              {/* Facebook */}
+              <a
+                href="https://www.facebook.com/profile.php?id=61586341484139"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className={iconBtn}
+              >
+                <Facebook className={icon} />
+              </a>
+            </div>
           </div>
 
           {/* CTA */}
