@@ -72,7 +72,7 @@ export default function Header() {
         <div className="flex h-full items-center">
           <Link
             href="/"
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 backdrop-blur-0"
             aria-label="Foot Plus"
           >
             <Image

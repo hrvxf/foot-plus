@@ -88,14 +88,10 @@ export default function HomeContent() {
           </div>
 
           <div className="flex-1">
-            <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/25 p-6 shadow-[0_32px_90px_-35px_rgba(0,0,0,0.6)] ring-1 ring-white/10 md:p-8">
-              <div
-                className="pointer-events-none absolute inset-0 bg-white/12 backdrop-blur-2xl"
-                aria-hidden="true"
-              />
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/40" />
-              <div className="pointer-events-none absolute -left-12 top-8 h-40 w-40 rounded-full bg-white/25 blur-[80px]" />
-              <div className="pointer-events-none absolute -right-14 bottom-4 h-44 w-44 rounded-full bg-brand-sageLight/25 blur-[90px]" />
+            <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/25 bg-white/12 p-6 shadow-[0_32px_90px_-35px_rgba(0,0,0,0.6)] ring-1 ring-white/10 backdrop-blur-2xl md:p-8">
+              <div className="absolute inset-x-0 top-0 h-px bg-white/40" />
+              <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-white/25 blur-[80px]" />
+              <div className="absolute -right-14 bottom-4 h-44 w-44 rounded-full bg-brand-sageLight/25 blur-[90px]" />
               <div className="relative">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
