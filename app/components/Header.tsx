@@ -136,25 +136,51 @@ export default function Header() {
       </header>
 
       {isMenuOpen ? (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-brand-offwhite/95 px-6 pb-6 pt-24 text-brand-charcoal md:hidden">
-          <div className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                className={`${linkBase} ${navTracking} ${linkTone} ${
-                  link.active ? activeBorder : ""
-                }`}
-                href={link.href}
+        <div className="fixed inset-0 z-50 md:hidden">
+          <button
+            type="button"
+            className="absolute inset-0 bg-brand-offwhite/95"
+            aria-label="Close navigation menu"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <div className="relative flex h-full flex-col overflow-y-auto px-6 pb-6 pt-20 text-brand-charcoal">
+            <div className="flex items-center justify-between pb-6">
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
+                Menu
+              </span>
+              <button
+                type="button"
+                className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark"
+                aria-label="Close navigation menu"
+                onClick={() => setIsMenuOpen(false)}
               >
-                {link.label}
+                Close
+              </button>
+            </div>
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  className={`${linkBase} ${navTracking} ${linkTone} ${
+                    link.active ? activeBorder : ""
+                  }`}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link className={bookButtonClasses} href="/book" onClick={() => setIsMenuOpen(false)}>
+                Book
               </Link>
-            ))}
-            <Link className={bookButtonClasses} href="/book">
-              Book
-            </Link>
-            <Link className={`${linkBase} ${linkTone}`} href="/contact">
-              Call / WhatsApp
-            </Link>
+              <Link
+                className={`${linkBase} ${linkTone}`}
+                href="/contact"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Call / WhatsApp
+              </Link>
+            </div>
           </div>
         </div>
       ) : null}
