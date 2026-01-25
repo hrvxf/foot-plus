@@ -11,7 +11,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 0);
+    // Small threshold stops iOS “bounce at 0px” flicker
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -28,22 +29,21 @@ export default function Header() {
   ];
 
   const headerBase =
-    "sticky top-0 z-30 border-b border-transparent transition-colors transition-shadow duration-300 relative pt-[env(safe-area-inset-top)]";
+    "sticky top-0 z-30 border-b transition-colors transition-shadow duration-300 relative pt-[env(safe-area-inset-top)]";
 
-  // ✅ Only the “elevation” changes on scroll (no opacity / blur / font shifts)
+  // ✅ Only elevation + border changes (no text shifts)
   const headerChrome = isScrolled
-    ? "border-brand-sageLight/40 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
+    ? "border-white/25 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.55)]"
     : "border-transparent shadow-none";
 
-  // ✅ Constant surface prevents translucent snap + font rasterization changes
-  const headerSurface = "bg-brand-offwhite/95 backdrop-blur";
+  // ✅ Glass comes in when scrolled
+  const headerSurface = isScrolled
+    ? "bg-white/10 backdrop-blur-xl"
+    : "bg-brand-offwhite/95 backdrop-blur-0";
 
   const linkBase =
     "px-4 py-3 text-base font-medium transition border-b-2 border-transparent md:py-2";
-
-  // ✅ Constant tracking prevents nav text “wiggle”
   const navTracking = "tracking-normal";
-
   const navPadding = "py-4";
   const logoSize = "h-12 md:h-14";
 
@@ -56,12 +56,22 @@ export default function Header() {
   return (
     <>
       <header className={`${headerBase} ${headerChrome}`}>
+        {/* ✅ -top-px avoids Safari 1px seam */}
         <div
           className={`pointer-events-none absolute -top-px left-0 right-0 bottom-0 z-0 ${headerSurface}`}
           aria-hidden="true"
         />
+
+        {/* ✅ Subtle glass highlight only when scrolled */}
+        {isScrolled ? (
+          <div
+            className="pointer-events-none absolute -top-px left-0 right-0 h-px bg-white/35"
+            aria-hidden="true"
+          />
+        ) : null}
+
         <nav
-          className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 transition-[padding] duration-300 ${navPadding}`}
+          className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 ${navPadding}`}
         >
           <div className="flex h-full items-center">
             <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
@@ -73,7 +83,7 @@ export default function Header() {
                 height={140}
                 priority
                 sizes="(max-width: 768px) 200px, 280px"
-                className={`block w-auto transition-[height] duration-300 ${logoSize}`}
+                className={`block w-auto ${logoSize}`}
               />
             </Link>
           </div>
