@@ -21,8 +21,8 @@ export default function BrandSeal({
   return (
     <div
       className={cx(
-        "relative flex h-14 w-14 items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/20 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.75)] backdrop-blur-md",
-        isHero && "origin-left scale-[1.8]",
+        "relative flex h-14 w-14 items-center justify-center overflow-visible rounded-2xl bg-white/12 ring-1 ring-white/20 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.75)]",
+        isHero && "h-24 w-24",
         className
       )}
     >
@@ -33,7 +33,10 @@ export default function BrandSeal({
         src="/images/foot.svg"
         alt={alt}
         aria-hidden={isDecorative ? "true" : undefined}
-        className="relative h-20 w-20 opacity-95 drop-shadow-[0_10px_18px_rgba(0,0,0,0.22)]"
+        className={cx(
+          "relative opacity-95",
+          isHero ? "h-28 w-28" : "h-20 w-20"
+        )}
       />
     </div>
   );
