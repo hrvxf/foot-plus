@@ -232,21 +232,48 @@ export default function HomeContent() {
 
       {/* Areas */}
       <section className="mx-auto max-w-6xl px-6">
-        <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">
-          Areas covered
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm text-brand-charcoal/70">
-          Based in Bristol, Foot+ offers calm, professional home-visit care across the city
-          and nearby areas.
-        </p>
-        <p className="mt-2 max-w-2xl text-sm text-brand-charcoal/70">
-          Travel is planned carefully to keep appointments unhurried and fairly priced.
-          Please see{" "}
-          <Link href="/prices" className="underline">
-            prices
-          </Link>{" "}
-          for full coverage information.
-        </p>
+        <div className="rounded-3xl border border-brand-sageLight/40 bg-gradient-to-br from-white via-white to-brand-sageLight/10 p-8 shadow-sm md:p-10">
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+            <div className="md:max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">
+                Areas covered
+              </p>
+              <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark md:text-3xl">
+                Calm, unhurried home visits across Bristol.
+              </h2>
+              <p className="mt-3 text-sm text-brand-charcoal/70">
+                Based in Bristol, Foot+ offers professional home-visit care across the city
+                and nearby areas.
+              </p>
+              <p className="mt-3 text-sm text-brand-charcoal/70">
+                Travel is planned carefully to keep appointments unhurried and fairly priced.
+                Please see{" "}
+                <Link href="/prices" className="font-semibold text-brand-sageDark underline">
+                  prices
+                </Link>{" "}
+                for full coverage information.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-brand-sageLight/40 bg-white/80 p-6 shadow-sm backdrop-blur">
+              <p className="text-sm font-semibold text-brand-sageDark">Coverage highlights</p>
+              <ul className="mt-4 space-y-3 text-sm text-brand-charcoal/70">
+                {[
+                  "Central and North Bristol",
+                  "South and East Bristol",
+                  "Nearby towns by request",
+                ].map((area) => (
+                  <li key={area} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-brand-sageDark/70" />
+                    <span>{area}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5 rounded-xl bg-brand-sageLight/20 px-4 py-3 text-xs text-brand-sageDark">
+                Flexible scheduling keeps travel time fair and appointments relaxed.
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
