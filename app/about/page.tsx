@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BristolMapCard from "../components/BristolMapCard";
+import ServiceMap from "../components/ServiceMap";
 
 const badges = [
   "Qualified FHP",
@@ -55,7 +55,18 @@ export default function AboutPage() {
 
           {/* Editorial image frame placeholder */}
           <div className="w-full md:flex md:justify-end">
-            <BristolMapCard />
+            <section className="w-full max-w-xl space-y-3">
+              <div>
+                <h2 className="text-lg font-semibold text-brand-sageDark">
+                  Home visits across Bristol
+                </h2>
+                <p className="mt-1 text-sm text-brand-charcoal/70">
+                  Domiciliary foot health services available throughout Bristol and surrounding
+                  areas.
+                </p>
+              </div>
+              <ServiceMap />
+            </section>
           </div>
         </div>
 
