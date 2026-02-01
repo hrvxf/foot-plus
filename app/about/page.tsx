@@ -1,11 +1,18 @@
 import Button from "../components/Button";
 import ServiceMap from "../components/ServiceMap";
 
+export const metadata = {
+  title: "Qualified Foot Health Practitioner in Bristol | About Foot+",
+  description:
+    "Meet Foot+ Bristol, a qualified foot health practitioner offering calm, insured, DBS-checked home visits across Bristol.",
+};
+
 const badges = [
-  "Qualified FHP",
+  "Qualified Foot Health Practitioner",
+  "Fully insured",
+  "DBS checked",
   "Sterile instruments",
-  "Home visits",
-  "Calm appointments",
+  "Home visits in Bristol",
 ];
 
 export default function AboutPage() {
@@ -19,9 +26,14 @@ export default function AboutPage() {
               About Foot+ Bristol
             </h1>
             <p className="mt-5 max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
-              We provide calm, professional foot health care in the comfort of your home.
-              Our approach is gentle, unhurried, and focused on long-term comfort — with
-              clear explanations and care tailored to you.
+              We provide calm, professional foot health care in the comfort of your home
+              across Bristol. Our approach is gentle, unhurried, and focused on long-term
+              comfort — with clear explanations and care tailored to you.
+            </p>
+            <p className="mt-4 max-w-prose text-sm text-brand-charcoal/70">
+              Foot+ is led by a qualified Foot Health Practitioner (FHP), trained through
+              an accredited foot health programme. We are fully insured, DBS checked, and
+              follow strict hygiene and infection control standards for every home visit.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -55,11 +67,15 @@ export default function AboutPage() {
             <section className="w-full max-w-xl space-y-3">
               <div>
                 <h2 className="text-lg font-semibold text-brand-sageDark">
-                  Home visits across Bristol
+                  Mobile foot health services in Bristol
                 </h2>
                 <p className="mt-1 text-sm text-brand-charcoal/70">
                   Domiciliary foot health services available throughout Bristol and surrounding
-                  areas.
+                  areas. Explore{" "}
+                  <a className="font-semibold text-brand-sageDark underline" href="/areas">
+                    areas covered
+                  </a>{" "}
+                  for local place names.
                 </p>
               </div>
               <ServiceMap />
@@ -75,7 +91,8 @@ export default function AboutPage() {
                 What we help with
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">
-                Common foot and nail concerns treated with gentle, professional care.
+                Common foot and nail concerns treated with gentle, professional care in
+                Bristol.
               </p>
             </div>
 
@@ -142,6 +159,11 @@ export default function AboutPage() {
             </h2>
             <p className="mt-1 text-sm text-brand-charcoal/70">
               If you’re not sure what you need, message us and we’ll point you in the right direction.
+              You can also review{" "}
+              <a className="font-semibold text-brand-sageDark underline" href="/prices">
+                prices in Bristol
+              </a>{" "}
+              before booking.
             </p>
           </div>
 

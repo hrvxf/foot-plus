@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Privacy Policy | Foot+ Bristol",
+  description: "Privacy policy for Foot+ Bristol home-visit foot health services.",
+};
+
 export default function PrivacyPage() {
   return (
     <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">

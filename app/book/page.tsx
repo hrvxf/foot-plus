@@ -1,15 +1,33 @@
 import EnquiryForm from "../components/EnquiryForm";
 
+export const metadata = {
+  title: "Book a Foot Health Practitioner in Bristol | Foot+",
+  description:
+    "Request a Bristol home-visit appointment with Foot+. Calm, professional foot health care from a qualified practitioner.",
+};
+
 export default function BookPage() {
   return (
     <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">
       <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
-        Request an Appointment
+        Request a Bristol home-visit appointment
       </h1>
 
       <p className="mt-4 text-sm text-brand-charcoal/70">
-        As a mobile service, appointments are arranged by location and availability.
-        Please submit an enquiry and we will contact you to arrange a suitable time.
+        As a mobile service, appointments are arranged by location and availability
+        across Bristol. Please submit an enquiry and we will contact you to arrange
+        a suitable time with a qualified Foot Health Practitioner.
+      </p>
+      <p className="mt-3 text-sm text-brand-charcoal/70">
+        Not sure what to book? Review{" "}
+        <a className="font-semibold text-brand-sageDark underline" href="/prices">
+          prices
+        </a>{" "}
+        or learn more{" "}
+        <a className="font-semibold text-brand-sageDark underline" href="/about">
+          about Foot+ Bristol
+        </a>
+        .
       </p>
 
       <div className="mt-8 grid gap-4 rounded-2xl border border-brand-sageLight/30 bg-white p-5 text-sm text-brand-charcoal/75 shadow-sm md:grid-cols-3 md:p-6">

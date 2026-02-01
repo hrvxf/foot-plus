@@ -26,6 +26,7 @@ export default function Header() {
     { label: "About", href: "/about", active: pathname === "/about" },
     { label: "Services", href: "/#services", active: pathname === "/" },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
+    { label: "Areas", href: "/areas", active: pathname === "/areas" },
   ];
 
   const headerBase =
@@ -77,8 +78,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
               <Image
                 src="/images/footplus-logo-dark.png"
-                alt=""
-                aria-hidden="true"
+                alt="Foot+ Bristol logo"
                 width={360}
                 height={140}
                 priority
@@ -172,13 +172,6 @@ export default function Header() {
               ))}
               <Link className={bookButtonClasses} href="/book" onClick={() => setIsMenuOpen(false)}>
                 Book
-              </Link>
-              <Link
-                className={`${linkBase} ${linkTone}`}
-                href="/prices"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Prices
               </Link>
             </div>
           </div>
