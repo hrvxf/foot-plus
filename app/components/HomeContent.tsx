@@ -55,7 +55,7 @@ const steps = [
 
 export default function HomeContent() {
   return (
-    <div className="space-y-20 pb-12 md:pb-0">
+    <div className="space-y-20 pb-24 md:pb-16">
       {/* Hero */}
       <HeroSection className="text-white">
         <div
@@ -179,7 +179,6 @@ export default function HomeContent() {
                   height="24"
                   viewBox="0 0 24 24"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
                 >
                   <path
@@ -237,7 +236,16 @@ export default function HomeContent() {
           Areas covered
         </h2>
         <p className="mt-3 max-w-2xl text-sm text-brand-charcoal/70">
-          Bristol and nearby areas. If you’re not sure, send a message and we’ll confirm.
+          Based in Bristol, Foot+ offers calm, professional home-visit care across the city
+          and nearby areas.
+        </p>
+        <p className="mt-2 max-w-2xl text-sm text-brand-charcoal/70">
+          Travel is planned carefully to keep appointments unhurried and fairly priced.
+          Please see{" "}
+          <Link href="/prices" className="underline">
+            prices
+          </Link>{" "}
+          for full coverage information.
         </p>
       </section>
 
@@ -258,6 +266,7 @@ export default function HomeContent() {
         </div>
       </section>
 
+      {/* Mobile CTA */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-sageLight/30 bg-white/95 px-4 py-3 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-md items-center gap-3">
           <Link
