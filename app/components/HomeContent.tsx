@@ -55,7 +55,7 @@ const steps = [
 
 export default function HomeContent() {
   return (
-    <div className="space-y-20 pb-24 md:pb-16">
+    <div className="space-y-20 pb-12 md:pb-0">
       {/* Hero */}
       <HeroSection className="text-white">
         <div
