@@ -4,9 +4,17 @@ export default function PricesPage() {
       <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
         Prices
       </h1>
-      <p className="mt-4 text-sm text-brand-charcoal/80">
-        Transparent pricing for thorough, home-visit foot health appointments.
-      </p>
+      <div className="mt-4 space-y-3 text-sm text-brand-charcoal/80">
+        <p>
+          Calm, expert foot care in the comfort of your home. Every appointment
+          includes unhurried time, clear explanations, and treatment tailored to
+          your goals.
+        </p>
+        <p>
+          Transparent pricing with travel included across central Bristol, so you
+          can book with confidence.
+        </p>
+      </div>
 
       <div className="mt-8 space-y-6 text-sm text-brand-charcoal/80">
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
@@ -21,6 +29,15 @@ export default function PricesPage() {
             assessment and treatment. This allows time to understand your medical
             history, assess foot health, and provide tailored care.
           </p>
+          <div className="mt-4 rounded-xl bg-brand-sageLight/20 p-4">
+            <p className="font-semibold text-brand-sageDark">What’s included</p>
+            <ul className="mt-3 space-y-2">
+              <li>Detailed medical history and foot health review.</li>
+              <li>Full neurovascular assessment.</li>
+              <li>Tailored treatment and care plan advice.</li>
+              <li>Time to discuss concerns and next steps.</li>
+            </ul>
+          </div>
         </div>
 
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
@@ -34,6 +51,15 @@ export default function PricesPage() {
             An ongoing treatment appointment focused on maintaining foot health,
             comfort, and mobility.
           </p>
+          <div className="mt-4 rounded-xl bg-brand-sageLight/20 p-4">
+            <p className="font-semibold text-brand-sageDark">What’s included</p>
+            <ul className="mt-3 space-y-2">
+              <li>45-minute focused treatment session.</li>
+              <li>Skin and nail care, including callus and hard skin management.</li>
+              <li>Ongoing assessment of comfort and mobility.</li>
+              <li>Advice to support healthy feet between visits.</li>
+            </ul>
+          </div>
         </div>
 
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
@@ -41,15 +67,67 @@ export default function PricesPage() {
             Travel &amp; Coverage
           </h2>
           <p className="mt-3">
-            Foot+ is based in central Bristol (BS2). Travel within central Bristol is
-            included in the appointment price.
+            Foot+ is based in central Bristol (BS2). Travel across BS1, BS2, BS3,
+            BS4, BS5, BS6, BS7, BS8, and BS9 is included in the appointment price.
           </p>
           <p className="mt-3">
-            A small travel supplement may apply for appointments further afield,
-            depending on distance. This will always be confirmed at the time of
-            booking.
+            A small travel supplement may apply for appointments further afield.
+            If you’re just outside these areas, please get in touch and we’ll
+            confirm any additional travel costs before you book.
           </p>
         </div>
+
+        <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
+          <h2 className="font-heading text-lg font-semibold text-brand-sageDark">
+            Frequently asked questions
+          </h2>
+          <dl className="mt-4 space-y-4">
+            <div>
+              <dt className="font-semibold text-brand-sageDark">
+                How long is each appointment?
+              </dt>
+              <dd className="mt-2">
+                New patient appointments allow extra time for assessment and
+                treatment. Routine appointments are 45 minutes.
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-brand-sageDark">
+                Do you travel to me?
+              </dt>
+              <dd className="mt-2">
+                Yes, appointments are provided at home across central Bristol, with
+                travel included in the price. We’ll confirm any supplement for
+                longer journeys before booking.
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-brand-sageDark">
+                What conditions can you help with?
+              </dt>
+              <dd className="mt-2">
+                Treatments commonly include nail care, callus and hard skin
+                management, corns, and general foot comfort. If you’re unsure, we’re
+                happy to advise.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <a
+          className="inline-flex items-center justify-center rounded-full bg-brand-sageDark px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-sageDark/90"
+          href="/contact"
+        >
+          Book an appointment
+        </a>
+        <a
+          className="inline-flex items-center justify-center rounded-full border border-brand-sageDark/40 px-6 py-3 text-sm font-semibold text-brand-sageDark transition hover:border-brand-sageDark"
+          href="/contact"
+        >
+          Contact us
+        </a>
       </div>
     </section>
   );
