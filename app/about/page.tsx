@@ -79,11 +79,22 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10" />
             </div>
             <div className="space-y-4 md:pr-2">
-              <div className="space-y-2">
-                <h2 className="font-heading text-3xl font-semibold text-brand-sageDark">
-                  Adam James BA Dip FH, MCFHP MAFHP
+              <div>
+                <h2 className="font-heading text-3xl font-semibold tracking-tight text-brand-sageDark md:text-4xl">
+                  Adam James
                 </h2>
-                <p className="text-sm font-semibold uppercase tracking-wide text-brand-charcoal/60">
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {["BA", "Dip FH", "MCFHP", "MAFHP"].map((badge) => (
+                    <span
+                      key={badge}
+                      className="rounded-full border border-brand-sageLight/40 bg-brand-offwhite/60 px-3 py-1 text-xs font-medium text-brand-charcoal/70"
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-charcoal/60">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-sageLight" />
                   Foot Health Practitioner
                 </p>
               </div>
