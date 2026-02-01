@@ -81,8 +81,8 @@ export default function HomeContent() {
               <Button href="/book" variant="primary">
                 Book an appointment
               </Button>
-              <Button href="/contact" variant="secondary">
-                Call or WhatsApp
+              <Button href="/prices" variant="secondary">
+                View prices
               </Button>
             </div>
           </div>
@@ -267,10 +267,10 @@ export default function HomeContent() {
             Book now
           </Link>
           <Link
-            href="/contact"
+            href="/prices"
             className="flex-1 rounded-full border border-brand-sageLight/60 px-4 py-3 text-center text-sm font-semibold text-brand-sageDark"
           >
-            Call / WhatsApp
+            Prices
           </Link>
         </div>
       </div>

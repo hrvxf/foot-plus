@@ -25,7 +25,7 @@ export default function Header() {
   const navLinks = [
     { label: "About", href: "/about", active: pathname === "/about" },
     { label: "Services", href: "/#services", active: pathname === "/" },
-    { label: "Contact", href: "/contact", active: pathname === "/contact" },
+    { label: "Prices", href: "/prices", active: pathname === "/prices" },
   ];
 
   const headerBase =
@@ -175,10 +175,10 @@ export default function Header() {
               </Link>
               <Link
                 className={`${linkBase} ${linkTone}`}
-                href="/contact"
+                href="/prices"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Call / WhatsApp
+                Prices
               </Link>
             </div>
           </div>
