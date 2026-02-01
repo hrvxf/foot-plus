@@ -12,6 +12,30 @@ export default function BookPage() {
         Please submit an enquiry and we will contact you to arrange a suitable time.
       </p>
 
+      <div className="mt-8 grid gap-4 rounded-2xl border border-brand-sageLight/30 bg-white p-5 text-sm text-brand-charcoal/75 shadow-sm md:grid-cols-3 md:p-6">
+        {[
+          {
+            title: "1) Send your request",
+            body: "Share the basics, your preferred days, and any concerns.",
+          },
+          {
+            title: "2) We confirm details",
+            body: "We’ll contact you to confirm availability, location, and pricing.",
+          },
+          {
+            title: "3) Treatment visit",
+            body: "Calm, professional care with clear aftercare guidance.",
+          },
+        ].map((step) => (
+          <div key={step.title} className="space-y-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
+              {step.title}
+            </p>
+            <p>{step.body}</p>
+          </div>
+        ))}
+      </div>
+
       <div className="mt-8 rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm md:p-6">
         <EnquiryForm />
       </div>
