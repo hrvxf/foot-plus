@@ -66,10 +66,15 @@ export default function AboutPage() {
         <div className="mt-12 rounded-[28px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-10">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div
-              className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-brand-offwhite shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)]"
+              className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-white shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)]"
               role="img"
               aria-label="Portrait of Adam James, Foot+ foot health practitioner."
-              style={{ backgroundImage: "url('/image/adam-james.png')" }}
+              style={{
+                backgroundImage: "url('/images/Adam-James.png')",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10" />
             </div>
