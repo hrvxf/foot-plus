@@ -81,7 +81,7 @@ export default function AboutPage() {
             <div className="space-y-4 md:pr-2">
               <div className="space-y-2">
                 <h2 className="font-heading text-3xl font-semibold text-brand-sageDark">
-                  About Adam James
+                  Adam James BA Dip FH, MCFHP MAFHP
                 </h2>
                 <p className="text-sm font-semibold uppercase tracking-wide text-brand-charcoal/60">
                   Foot Health Practitioner
