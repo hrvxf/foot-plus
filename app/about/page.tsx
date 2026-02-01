@@ -1,5 +1,4 @@
 import Button from "../components/Button";
-import ServiceMap from "../components/ServiceMap";
 
 export const metadata = {
   title: "Qualified Foot Health Practitioner in Bristol | About Foot+",
@@ -20,7 +19,7 @@ export default function AboutPage() {
     <main>
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-14 md:pt-20">
         {/* Page header */}
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+        <div className="space-y-10">
           <div>
             <h1 className="font-heading text-4xl font-semibold tracking-tight text-brand-sageDark md:text-5xl">
               About Foot+ Bristol
@@ -60,26 +59,6 @@ export default function AboutPage() {
                 WhatsApp a question
               </Button>
             </div>
-          </div>
-
-          {/* Editorial image frame placeholder */}
-          <div className="w-full md:flex md:justify-end">
-            <section className="w-full max-w-xl space-y-3">
-              <div>
-                <h2 className="text-lg font-semibold text-brand-sageDark">
-                  Mobile foot health services in Bristol
-                </h2>
-                <p className="mt-1 text-sm text-brand-charcoal/70">
-                  Domiciliary foot health services available throughout Bristol and surrounding
-                  areas. Explore{" "}
-                  <a className="font-semibold text-brand-sageDark underline" href="/areas">
-                    areas covered
-                  </a>{" "}
-                  for local place names.
-                </p>
-              </div>
-              <ServiceMap />
-            </section>
           </div>
         </div>
 
