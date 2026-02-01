@@ -233,12 +233,46 @@ export default function HomeContent() {
 
       {/* Areas */}
       <section className="mx-auto max-w-6xl px-6">
-        <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">
-          Areas covered
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm text-brand-charcoal/70">
-          Bristol and nearby areas. If you’re not sure, send a message and we’ll confirm.
-        </p>
+        <div className="rounded-3xl border border-brand-sageLight/30 bg-gradient-to-br from-white via-white to-brand-sageLight/10 p-6 shadow-sm md:p-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-sageLight/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">
+                <span className="h-2 w-2 rounded-full bg-brand-sageDark" />
+                Service radius
+              </div>
+              <h2 className="mt-4 font-heading text-2xl font-semibold text-brand-sageDark md:text-3xl">
+                Areas covered
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm text-brand-charcoal/70 md:text-base">
+                Bristol and nearby areas. If you’re not sure, send a message and we’ll confirm.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-brand-sageLight/40 bg-white/80 p-4 text-sm text-brand-charcoal/80 shadow-sm backdrop-blur md:p-6">
+              <p className="font-semibold text-brand-sageDark">Typical coverage</p>
+              <p className="mt-1 text-sm text-brand-charcoal/70">
+                Central Bristol, North &amp; South Bristol, East &amp; West Bristol, and nearby
+                towns.
+              </p>
+            </div>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {[
+              "Central Bristol",
+              "North Bristol",
+              "South Bristol",
+              "East Bristol",
+              "West Bristol",
+              "Nearby towns",
+            ].map((area) => (
+              <span
+                key={area}
+                className="rounded-full border border-brand-sageLight/40 bg-white px-4 py-2 text-xs font-semibold text-brand-sageDark shadow-sm"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
