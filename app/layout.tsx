@@ -5,6 +5,13 @@ import Footer from "./components/Footer";
 export const metadata = {
   title: "Foot+ | Foot Health in Bristol",
   description: "Professional foot health services in Bristol.",
+  openGraph: {
+    images: ["/images/foot.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/foot.png"],
+  },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
