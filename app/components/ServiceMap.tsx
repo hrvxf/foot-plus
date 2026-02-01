@@ -4,7 +4,11 @@ import { GoogleMap, LoadScript, Marker, Circle } from "@react-google-maps/api";
 
 const center = { lat: 51.4545, lng: -2.5879 }; // Bristol
 
-const mapContainerClassName = "h-[460px] w-full rounded-[18px]";
+const containerStyle = {
+  width: "100%",
+  height: "460px",
+  borderRadius: "18px",
+};
 
 const options = {
   disableDefaultUI: true,
@@ -19,17 +23,16 @@ const options = {
 };
 
 export default function ServiceMap() {
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? "";
-
   return (
-    <div className="overflow-hidden rounded-[18px] shadow-[0_16px_50px_rgba(0,0,0,0.12)]">
-      <LoadScript googleMapsApiKey={apiKey}>
-        <GoogleMap
-          mapContainerClassName={mapContainerClassName}
-          center={center}
-          zoom={12}
-          options={options}
-        >
+    <div
+      style={{
+        overflow: "hidden",
+        borderRadius: containerStyle.borderRadius,
+        boxShadow: "0 16px 50px rgba(0,0,0,0.12)",
+      }}
+    >
+      <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} options={options}>
           <Marker position={center} />
           <Circle
             center={center}
