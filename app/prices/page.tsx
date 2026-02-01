@@ -1,6 +1,6 @@
 export default function PricesPage() {
   return (
-    <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">
+    <section className="mx-auto max-w-4xl px-6 pb-16 pt-12">
       <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
         Prices
       </h1>
