@@ -3,14 +3,17 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export const metadata = {
-  title: "Foot+ | Foot Health in Bristol",
+  title: {
+    default: "Foot+ | Foot Health in Bristol",
+    template: "%s | Foot+",
+  },
   description: "Professional foot health services in Bristol.",
   openGraph: {
-    images: ["/images/foot.png"],
+    images: ["/images/foot-health-practitioner-home-visit-bristol.png"],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/images/foot.png"],
+    images: ["/images/foot-health-practitioner-home-visit-bristol.png"],
   },
   icons: {
     icon: "/favicon.svg",
@@ -33,6 +36,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link
           rel="stylesheet"
           href="https://assets.calendly.com/assets/external/widget.css"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "MedicalBusiness",
+              name: "Foot+ Bristol",
+              description: "Professional home-visit foot health practitioner in Bristol.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Bristol",
+                postalCode: "BS2",
+                addressCountry: "UK",
+              },
+              areaServed: "Bristol",
+              url: "https://www.foot-plus.co.uk",
+              telephone: "+447000000000",
+              priceRange: "££",
+              sameAs: ["https://www.facebook.com/profile.php?id=61586341484139"],
+            }),
+          }}
         />
       </head>
       <body className="min-h-screen bg-lightbg text-ink flex flex-col">

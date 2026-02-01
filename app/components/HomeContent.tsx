@@ -26,7 +26,13 @@ const heroServices = [
   },
 ];
 
-const trustChips = ["Qualified FHP", "Sterile instruments", "Home visits in Bristol"];
+const trustChips = [
+  "Qualified Foot Health Practitioner",
+  "Fully insured",
+  "DBS checked",
+  "Sterile instruments",
+  "Home visits in Bristol",
+];
 
 const serviceCards = [
   {
@@ -70,11 +76,11 @@ export default function HomeContent() {
             </div>
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
-                Professional foot health services in Bristol
+                Professional Foot Health Practitioner in Bristol
               </h1>
               <p className="max-w-xl text-base text-white/90 md:text-lg">
-                Calm, clinical, and compassionate care for healthy, comfortable feet — in
-                the comfort of your home.
+                Calm, clinical, and compassionate care for healthy, comfortable feet in
+                Bristol — in the comfort of your home.
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
@@ -160,11 +166,20 @@ export default function HomeContent() {
             Services
           </p>
           <h2 className="font-heading text-3xl font-semibold text-brand-sageDark">
-            Calm, thorough care tailored to you
+            Home-visit foot care in Bristol
           </h2>
           <p className="max-w-2xl text-base text-brand-charcoal/80">
             We deliver premium foot health services with clear advice and gentle
             treatment. Each visit includes a full assessment and personalised guidance.
+            See{" "}
+            <Link href="/prices" className="font-semibold text-brand-sageDark underline">
+              foot health prices in Bristol
+            </Link>{" "}
+            or{" "}
+            <Link href="/about" className="font-semibold text-brand-sageDark underline">
+              meet your practitioner
+            </Link>{" "}
+            before you book.
           </p>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -239,7 +254,7 @@ export default function HomeContent() {
                 Areas covered
               </p>
               <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark md:text-3xl">
-                Calm, unhurried home visits across Bristol.
+                Calm, unhurried home visits across Bristol
               </h2>
               <p className="mt-3 text-sm text-brand-charcoal/70">
                 Based in Bristol, Foot+ offers professional home-visit care across the city
@@ -247,7 +262,11 @@ export default function HomeContent() {
               </p>
               <p className="mt-3 text-sm text-brand-charcoal/70">
                 Travel is planned carefully to keep appointments unhurried and fairly priced.
-                Please see{" "}
+                Explore{" "}
+                <Link href="/areas" className="font-semibold text-brand-sageDark underline">
+                  areas covered in Bristol
+                </Link>{" "}
+                or see{" "}
                 <Link href="/prices" className="font-semibold text-brand-sageDark underline">
                   prices
                 </Link>{" "}

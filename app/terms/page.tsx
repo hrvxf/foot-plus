@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Terms of Service | Foot+ Bristol",
+  description: "Terms of service for Foot+ Bristol home-visit foot health care.",
+};
+
 export default function TermsPage() {
   return (
     <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">

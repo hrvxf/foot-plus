@@ -1,14 +1,20 @@
+export const metadata = {
+  title: "Foot Health Prices in Bristol | Home Visits",
+  description:
+    "Clear foot health prices for Bristol home visits, including new patient and routine appointments with Foot+.",
+};
+
 export default function PricesPage() {
   return (
     <section className="mx-auto max-w-4xl px-6 pb-16 pt-12">
       <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
-        Prices
+        Foot health prices in Bristol
       </h1>
       <div className="mt-4 space-y-3 text-sm text-brand-charcoal/80">
         <p>
-          Calm, expert foot care in the comfort of your home. Every appointment
+          Calm, expert foot care in the comfort of your Bristol home. Every appointment
           includes unhurried time, clear explanations, and treatment tailored to
-          your goals.
+          your goals by a qualified Foot Health Practitioner.
         </p>
         <p>
           Transparent pricing with travel included across central Bristol, so you
@@ -68,6 +74,11 @@ export default function PricesPage() {
           </h2>
           <p className="mt-3">
             Foot+ is based in central Bristol (BS2). Travel across inner Bristol is included in the appointment price.
+            See{" "}
+            <a className="font-semibold text-brand-sageDark underline" href="/areas">
+              areas covered
+            </a>{" "}
+            for local neighbourhoods.
           </p>
           <p className="mt-3">
             A small travel supplement may apply for appointments further afield.
@@ -80,15 +91,21 @@ export default function PricesPage() {
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
         <a
           className="inline-flex items-center justify-center rounded-full bg-brand-sageDark px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-sageDark/90"
-          href="/contact"
+          href="/book"
         >
           Book an appointment
         </a>
         <a
           className="inline-flex items-center justify-center rounded-full border border-brand-sageDark/40 px-6 py-3 text-sm font-semibold text-brand-sageDark transition hover:border-brand-sageDark"
-          href="/contact"
+          href="/book"
         >
           Contact us
+        </a>
+        <a
+          className="inline-flex items-center justify-center rounded-full border border-brand-sageDark/20 px-6 py-3 text-sm font-semibold text-brand-sageDark/90 transition hover:border-brand-sageDark"
+          href="/about"
+        >
+          About Foot+ Bristol
         </a>
       </div>
     </section>

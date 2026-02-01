@@ -40,7 +40,7 @@ export default function Footer() {
               <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
                 <img
                   src="/images/footplus-logo.png"
-                  alt="Foot+ logo"
+                  alt="Foot+ Bristol logo"
                   className="h-16 w-auto"
                 />
               </div>
@@ -107,6 +107,12 @@ export default function Footer() {
           <div className="flex flex-col gap-2 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
             <div>© {new Date().getFullYear()} Foot+ • Bristol</div>
             <div className="flex items-center gap-2">
+              <a
+                className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
+                href="/areas"
+              >
+                Areas
+              </a>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
                 href="/privacy"

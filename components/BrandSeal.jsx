@@ -30,7 +30,7 @@ export default function BrandSeal({
       <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/35 via-white/10 to-transparent" />
       <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_2px_8px_rgba(255,255,255,0.25),inset_0_-6px_12px_rgba(0,0,0,0.2)]" />
       <img
-        src="/images/foot.png"
+        src="/images/foot-health-practitioner-home-visit-bristol.png"
         alt={alt}
         aria-hidden={isDecorative ? "true" : undefined}
         className="relative h-20 w-20 opacity-95 drop-shadow-[0_10px_18px_rgba(0,0,0,0.22)]"
