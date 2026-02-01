@@ -67,51 +67,13 @@ export default function PricesPage() {
             Travel &amp; Coverage
           </h2>
           <p className="mt-3">
-            Foot+ is based in central Bristol (BS2). Travel across BS1, BS2, BS3,
-            BS4, BS5, BS6, BS7, BS8, and BS9 is included in the appointment price.
+            Foot+ is based in central Bristol (BS2). Travel across inner Bristol is included in the appointment price.
           </p>
           <p className="mt-3">
             A small travel supplement may apply for appointments further afield.
             If you’re just outside these areas, please get in touch and we’ll
             confirm any additional travel costs before you book.
           </p>
-        </div>
-
-        <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-lg font-semibold text-brand-sageDark">
-            Frequently asked questions
-          </h2>
-          <dl className="mt-4 space-y-4">
-            <div>
-              <dt className="font-semibold text-brand-sageDark">
-                How long is each appointment?
-              </dt>
-              <dd className="mt-2">
-                New patient appointments allow extra time for assessment and
-                treatment. Routine appointments are 45 minutes.
-              </dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-sageDark">
-                Do you travel to me?
-              </dt>
-              <dd className="mt-2">
-                Yes, appointments are provided at home across central Bristol, with
-                travel included in the price. We’ll confirm any supplement for
-                longer journeys before booking.
-              </dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-sageDark">
-                What conditions can you help with?
-              </dt>
-              <dd className="mt-2">
-                Treatments commonly include nail care, callus and hard skin
-                management, corns, and general foot comfort. If you’re unsure, we’re
-                happy to advise.
-              </dd>
-            </div>
-          </dl>
         </div>
       </div>
 
