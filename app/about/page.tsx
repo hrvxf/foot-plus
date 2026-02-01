@@ -62,6 +62,49 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Practitioner introduction */}
+        <div className="mt-12 rounded-[28px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-10">
+          <div className="grid items-center gap-10 md:grid-cols-2">
+            <div
+              className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-brand-offwhite shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)]"
+              role="img"
+              aria-label="Portrait of Adam James, Foot+ foot health practitioner."
+              style={{ backgroundImage: "url('/image/adam-james.png')" }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10" />
+            </div>
+            <div className="space-y-4 md:pr-2">
+              <div className="space-y-2">
+                <h2 className="font-heading text-3xl font-semibold text-brand-sageDark">
+                  About Adam James
+                </h2>
+                <p className="text-sm font-semibold uppercase tracking-wide text-brand-charcoal/60">
+                  Foot Health Practitioner
+                </p>
+              </div>
+              <div className="space-y-4 text-base leading-relaxed text-brand-charcoal/80">
+                <p>
+                  Adam is a qualified Foot Health Practitioner with specialist training in
+                  clinical foot care and home-visit practice. He combines evidence-based
+                  techniques with modern, comfort-first methods to keep feet healthy,
+                  supported, and pain free.
+                </p>
+                <p>
+                  His approach is calm, patient-focused, and respectful, taking time to listen
+                  and explain each step so you feel at ease. Every appointment is designed to
+                  feel unhurried and reassuring, with care tailored to your goals and daily
+                  comfort.
+                </p>
+                <p>
+                  Foot+ was created to deliver high-quality foot health care in Bristol with a
+                  premium, welcoming feel. Adam’s mission is to make professional foot care
+                  accessible, consistent, and gentle—so you can move with confidence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Glass content card */}
         <div className="mt-14 rounded-[28px] border border-brand-sageLight/40 bg-white p-8 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-10">
           <div className="grid gap-10 md:grid-cols-3">
