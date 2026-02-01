@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 mt-16 text-white">
       {/* Background texture */}
-      <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-cover bg-center bg-no-repeat" />
+      <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px]" />
       {/* Tint overlay for readability */}
       <div className="absolute inset-0 bg-brand-sage/65" />
 

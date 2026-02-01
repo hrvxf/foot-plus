@@ -59,7 +59,7 @@ export default function HomeContent() {
       {/* Hero */}
       <HeroSection className="text-white">
         <div
-          className="absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-cover bg-center"
+          className="absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-repeat bg-[length:600px_600px]"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />

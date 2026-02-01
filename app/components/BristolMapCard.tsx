@@ -1,7 +1,7 @@
 export default function BristolMapCard() {
   return (
     <div className="relative w-full max-w-md overflow-hidden rounded-4xl border border-brand-sageLight/40 bg-white shadow-[0_28px_80px_-60px_rgba(15,23,42,0.25)]">
-      <div className="absolute inset-0 bg-[url('/images/footplus-texture.svg')] bg-cover bg-center opacity-40" />
+      <div className="absolute inset-0 bg-[url('/images/footplus-texture.svg')] bg-repeat bg-auto opacity-40" />
       <div className="absolute inset-0 bg-linear-to-br from-white/80 via-white/70 to-brand-offwhite/80" />
 
       <div className="relative aspect-4/5 min-h-90 p-6">
