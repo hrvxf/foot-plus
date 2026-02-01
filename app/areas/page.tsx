@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ServiceMap from "../components/ServiceMap";
 
 export const metadata = {
   title: "Areas Covered for Foot Health in Bristol | Foot+",
@@ -22,6 +23,19 @@ export default function AreasPage() {
           </Link>{" "}
           and we’ll confirm availability.
         </p>
+      </div>
+
+      <div className="mt-8 rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-brand-sageDark">
+          Mobile foot health services in Bristol
+        </h2>
+        <p className="mt-1 text-sm text-brand-charcoal/70">
+          Domiciliary foot health services available throughout Bristol and surrounding areas.
+          Explore areas covered below for local place names.
+        </p>
+        <div className="mt-4">
+          <ServiceMap />
+        </div>
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
