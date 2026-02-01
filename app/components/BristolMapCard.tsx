@@ -1,8 +1,8 @@
 export default function BristolMapCard() {
   return (
     <div className="relative w-full max-w-md overflow-hidden rounded-4xl border border-brand-sageLight/40 bg-white shadow-[0_28px_80px_-60px_rgba(15,23,42,0.25)]">
-      <div className="absolute inset-0 bg-[url('/images/footplus-texture.svg')] bg-repeat bg-auto opacity-40" />
-      <div className="absolute inset-0 bg-linear-to-br from-white/80 via-white/70 to-brand-offwhite/80" />
+      <div className="absolute inset-0 z-0 bg-[url('/images/footplus-texture.svg')] bg-repeat bg-auto opacity-25" />
+      <div className="absolute inset-0 z-0 bg-linear-to-br from-white/80 via-white/70 to-brand-offwhite/80 opacity-50" />
 
       <div className="relative aspect-4/5 min-h-90 p-6">
         <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-brand-sageLight/40 bg-white/80 px-3 py-1 text-xs text-brand-charcoal/70 shadow-sm">
@@ -12,7 +12,7 @@ export default function BristolMapCard() {
 
         <svg
           viewBox="0 0 400 500"
-          className="absolute inset-0 h-full w-full"
+          className="absolute inset-0 z-10 h-full w-full"
           role="img"
           aria-label="Stylised map of Bristol"
         >
