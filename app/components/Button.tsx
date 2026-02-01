@@ -1,14 +1,15 @@
 import Link from "next/link";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "solid" | "outline";
 
 type ButtonProps = {
   href?: string;
   variant?: ButtonVariant;
   className?: string;
   children: ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const baseClasses =
   "inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight";
@@ -17,6 +18,9 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary:
     "bg-white text-brand-sageDark shadow-md shadow-black/10 hover:bg-brand-offwhite",
   secondary: "border border-white/70 text-white hover:bg-white/10",
+  solid: "bg-brand-sageDark text-white shadow-md shadow-black/10 hover:bg-brand-sage",
+  outline:
+    "border border-brand-sageLight/40 bg-white text-brand-sageDark hover:bg-brand-offwhite",
 };
 
 export default function Button({

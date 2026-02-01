@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "../components/Button";
 import ServiceMap from "../components/ServiceMap";
 
 const badges = [
@@ -36,20 +36,17 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/book"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
-              >
+              <Button href="/book" variant="solid">
                 Book an appointment
-              </Link>
-              <a
+              </Button>
+              <Button
                 href="https://wa.me/447000000000"
+                variant="outline"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 bg-white px-6 py-3 text-sm font-medium text-brand-charcoal transition hover:bg-brand-offwhite"
               >
                 WhatsApp a question
-              </a>
+              </Button>
             </div>
           </div>
 
@@ -149,18 +146,12 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Link
-              href="/book"
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
-            >
+            <Button href="/book" variant="solid">
               Book an appointment
-            </Link>
-            <a
-              href="mailto:hello@footplusbristol.co.uk"
-              className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 bg-white px-6 py-3 text-sm font-medium text-brand-charcoal transition hover:bg-brand-offwhite"
-            >
+            </Button>
+            <Button href="mailto:hello@footplusbristol.co.uk" variant="outline">
               Email
-            </a>
+            </Button>
           </div>
         </div>
       </section>
