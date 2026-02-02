@@ -19,26 +19,30 @@ export default function AboutPage() {
   return (
     <main>
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-14 md:pt-20">
+        {/* Hero: About + Profile */}
         <div className="grid gap-10 md:grid-cols-2 md:items-start">
           {/* About Foot+ */}
-          <div className="space-y-5">
+          <div className="space-y-6">
             <h1 className="font-heading text-4xl font-semibold tracking-tight text-brand-sageDark md:text-5xl">
               About Foot+ Bristol
             </h1>
 
             <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
-              We provide calm, professional foot health care in the comfort of your home
-              across Bristol. Our approach is gentle, unhurried, and focused on long-term
-              comfort, with clear explanations and care tailored to you.
+              Foot+ provides calm, professional foot health care in the comfort of your
+              home across Bristol. The service is designed to feel reassuring, unhurried,
+              and focused on long-term comfort — with clear explanations and care tailored
+              to you.
             </p>
 
-            <p className="max-w-prose text-sm text-brand-charcoal/70">
-              Foot+ is led by a qualified Foot Health Practitioner (FHP), trained through
-              an accredited foot health programme. We are fully insured, DBS checked, and
-              follow strict hygiene and infection control standards for every home visit.
+            <p className="max-w-prose text-sm leading-relaxed text-brand-charcoal/70">
+              Founded by a qualified Foot Health Practitioner with a background in
+              healthcare and rehabilitation, Foot+ was created to address how often foot
+              health is overlooked. Education, trust, and achievable outcomes sit at the
+              heart of every appointment, so you always feel informed, listened to, and
+              confident in your care.
             </p>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {badges.map((b) => (
                 <span
                   key={b}
@@ -49,7 +53,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-wrap gap-3 pt-3">
               <Button href="/book" variant="solid">
                 Book an appointment
               </Button>
@@ -64,42 +68,42 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Profile card */}
+          {/* Practitioner profile */}
           <PractitionerProfile />
         </div>
 
-        {/* What we help with */}
+        {/* Why patients choose Foot+ */}
         <div className="mt-14 rounded-[28px] border border-brand-sageLight/40 bg-white p-8 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-10">
-          <div className="grid gap-10 md:grid-cols-3">
-            <div>
-              <h2 className="font-heading text-lg font-semibold text-brand-sageDark">
-                What we help with
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">
-                Common foot and nail concerns treated with gentle, professional care in
-                Bristol.
-              </p>
-            </div>
-
-            <div className="md:col-span-2">
-              <ul className="grid gap-3 text-sm text-brand-charcoal/70 md:grid-cols-2">
-                {[
-                  "Nail care & thickened/problem nails",
-                  "Ingrowing toenail relief",
-                  "Corns & callus reduction",
-                  "Verrucas & hard skin care",
-                  "Dry, cracked heel care",
-                  "Foot health assessment",
-                  "Circulation & sensation checks",
-                  "Diabetic foot care guidance",
-                ].map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-brand-sageLight" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                title: "A relaxed, human approach",
+                body:
+                  "Appointments are calm, friendly, and never rushed. You’ll be listened to, treated with respect, and supported at every step.",
+              },
+              {
+                title: "Clear explanations & education",
+                body:
+                  "Understanding your foot health matters. Everything is explained clearly so you can make informed decisions with confidence.",
+              },
+              {
+                title: "Focused on achievable outcomes",
+                body:
+                  "Care is realistic, tailored, and outcome-focused — helping you stay comfortable, mobile, and confident between visits.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[22px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_14px_40px_-40px_rgba(15,23,42,0.16)]"
+              >
+                <h3 className="font-heading text-base font-semibold text-brand-sageDark">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">
+                  {item.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -109,17 +113,17 @@ export default function AboutPage() {
             {
               title: "A calm first visit",
               body:
-                "We’ll talk through your concerns, check your feet and nails, and agree a plan. We’ll explain what we’re doing as we go.",
+                "We’ll talk through your concerns, check your feet and nails, and agree a plan. You’ll always know what’s happening and why.",
             },
             {
               title: "Hygiene & safety",
               body:
-                "Clean, professional practice with sterile instruments and careful infection control standards throughout.",
+                "Professional infection control, sterile instruments, and careful hygiene standards are followed at every visit.",
             },
             {
               title: "Aftercare you can follow",
               body:
-                "Simple, realistic advice to keep you comfortable between appointments — including footwear and skin care tips.",
+                "Clear, realistic advice to help you stay comfortable between appointments — including footwear and skin care guidance.",
             },
           ].map((c) => (
             <div
@@ -145,7 +149,10 @@ export default function AboutPage() {
             <p className="mt-1 text-sm text-brand-charcoal/70">
               If you’re not sure what you need, message us and we’ll point you in the right
               direction. You can also review{" "}
-              <a className="font-semibold text-brand-sageDark underline" href="/prices">
+              <a
+                className="font-semibold text-brand-sageDark underline"
+                href="/prices"
+              >
                 prices in Bristol
               </a>{" "}
               before booking.

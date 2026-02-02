@@ -65,7 +65,7 @@ export default function HomeContent() {
       {/* Hero */}
       <HeroSection className="text-white">
         <div
-          className="absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-repeat bg-[length:600px_600px]"
+          className="absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px]"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
@@ -247,7 +247,7 @@ export default function HomeContent() {
 
       {/* Areas */}
       <section className="mx-auto max-w-6xl px-6">
-        <div className="rounded-3xl border border-brand-sageLight/40 bg-gradient-to-br from-white via-white to-brand-sageLight/10 p-8 shadow-sm md:p-10">
+        <div className="rounded-3xl border border-brand-sageLight/40 bg-linear-to-br from-white via-white to-brand-sageLight/10 p-8 shadow-sm md:p-10">
           <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
             <div className="md:max-w-2xl">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">
