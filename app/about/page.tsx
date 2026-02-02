@@ -28,18 +28,21 @@ export default function AboutPage() {
             </h1>
 
             <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
-              Foot+ provides calm, professional foot health care in the comfort of your
-              home across Bristol. The service is designed to feel reassuring, unhurried,
-              and focused on long-term comfort — with clear explanations and care tailored
-              to you.
+              Foot+ is a calm, professional home-visit foot health service across Bristol,
+              led by Adam James. Appointments are designed to feel reassuring and unhurried
+              — with clear explanations and care tailored to you.
             </p>
 
             <p className="max-w-prose text-sm leading-relaxed text-brand-charcoal/70">
-              Founded by a qualified Foot Health Practitioner with a background in
-              healthcare and rehabilitation, Foot+ was created to address how often foot
-              health is overlooked. Education, trust, and achievable outcomes sit at the
-              heart of every appointment, so you always feel informed, listened to, and
-              confident in your care.
+              After six years working in healthcare and rehabilitation, Adam saw how often
+              foot health is overlooked — and how much of a difference the right care and
+              simple education can make. Foot+ was created around three things: trust,
+              clarity, and achievable outcomes you can actually feel day to day.
+            </p>
+
+            <p className="max-w-prose text-sm italic leading-relaxed text-brand-charcoal/60">
+              You should leave feeling listened to, reassured, and confident about what
+              happens next.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-1">
@@ -149,10 +152,7 @@ export default function AboutPage() {
             <p className="mt-1 text-sm text-brand-charcoal/70">
               If you’re not sure what you need, message us and we’ll point you in the right
               direction. You can also review{" "}
-              <a
-                className="font-semibold text-brand-sageDark underline"
-                href="/prices"
-              >
+              <a className="font-semibold text-brand-sageDark underline" href="/prices">
                 prices in Bristol
               </a>{" "}
               before booking.
