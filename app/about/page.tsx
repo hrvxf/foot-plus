@@ -19,15 +19,18 @@ export default function AboutPage() {
     <main>
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-14 md:pt-20">
         <div className="grid gap-10 md:grid-cols-2 md:items-start">
+          {/* About Foot+ */}
           <div className="space-y-5">
             <h1 className="font-heading text-4xl font-semibold tracking-tight text-brand-sageDark md:text-5xl">
               About Foot+ Bristol
             </h1>
+
             <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
               We provide calm, professional foot health care in the comfort of your home
               across Bristol. Our approach is gentle, unhurried, and focused on long-term
               comfort — with clear explanations and care tailored to you.
             </p>
+
             <p className="max-w-prose text-sm text-brand-charcoal/70">
               Foot+ is led by a qualified Foot Health Practitioner (FHP), trained through
               an accredited foot health programme. We are fully insured, DBS checked, and
@@ -60,27 +63,29 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* Profile card */}
           <div className="rounded-[28px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:sticky md:top-24 md:p-8">
             <div className="grid gap-6">
-              <div
-                className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-white shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)]"
-                role="img"
-                aria-label="Portrait of Adam James, Foot+ foot health practitioner."
-                style={{
-                  backgroundImage: "url('/images/Adam-James.png')",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10" />
-              </div>
+              {/* Portrait */}
+             <div
+  className="relative aspect-4/5 overflow-hidden rounded-3xl bg-white shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)]"
+  role="img"
+  aria-label="Portrait of Adam James, Foot+ foot health practitioner."
+  style={{
+    backgroundImage: "url('/images/Adam-James.png')",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+  }}
+/>
 
+              {/* Header */}
               <div className="space-y-4">
                 <div>
                   <h2 className="font-heading text-3xl font-semibold tracking-tight text-brand-sageDark">
                     Adam James
                   </h2>
+
                   <div className="mt-3 flex flex-wrap gap-2">
                     {["BA", "Dip FH", "MCFHP", "MAFHP"].map((badge) => (
                       <span
@@ -91,28 +96,36 @@ export default function AboutPage() {
                       </span>
                     ))}
                   </div>
+
                   <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-charcoal/60">
                     <span className="h-1.5 w-1.5 rounded-full bg-brand-sageLight" />
                     Foot Health Practitioner
                   </p>
                 </div>
+
+                {/* Bio */}
                 <div className="space-y-4 text-base leading-relaxed text-brand-charcoal/80">
                   <p>
-                    Adam is a qualified Foot Health Practitioner with specialist training in
-                    clinical foot care and home-visit practice. He combines evidence-based
-                    techniques with modern, comfort-first methods to keep feet healthy,
-                    supported, and pain free.
+                    Adam has over six years’ experience working in healthcare and
+                    rehabilitation, supporting people to regain confidence, mobility,
+                    and independence. Through this work, he became increasingly aware of
+                    how often foot health is overlooked — and the difference that proper
+                    care and education can make.
                   </p>
+
                   <p>
-                    His approach is calm, patient-focused, and respectful, taking time to listen
-                    and explain each step so you feel at ease. Every appointment is designed to
-                    feel unhurried and reassuring, with care tailored to your goals and daily
-                    comfort.
+                    As a fully trained Foot Health Practitioner, Adam offers a friendly,
+                    relaxed service built on trust, clear communication, and achievable,
+                    measurable outcomes. He takes time to listen, explain each step, and
+                    ensure every client feels comfortable and informed throughout their
+                    appointment.
                   </p>
+
                   <p>
-                    Foot+ was created to deliver high-quality foot health care in Bristol with a
-                    premium, welcoming feel. Adam’s mission is to make professional foot care
-                    accessible, consistent, and gentle—so you can move with confidence.
+                    Adam is fully insured and professionally recognised as a member of
+                    the College of Foot Health Practitioners and the Association of Foot
+                    Health Practitioners. His priority is simple: that every client feels
+                    heard, reassured, and confident in their foot health.
                   </p>
                 </div>
               </div>
@@ -120,7 +133,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Glass content card */}
+        {/* What we help with */}
         <div className="mt-14 rounded-[28px] border border-brand-sageLight/40 bg-white p-8 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-10">
           <div className="grid gap-10 md:grid-cols-3">
             <div>
@@ -195,8 +208,8 @@ export default function AboutPage() {
               Ready to book?
             </h2>
             <p className="mt-1 text-sm text-brand-charcoal/70">
-              If you’re not sure what you need, message us and we’ll point you in the right direction.
-              You can also review{" "}
+              If you’re not sure what you need, message us and we’ll point you in the right
+              direction. You can also review{" "}
               <a className="font-semibold text-brand-sageDark underline" href="/prices">
                 prices in Bristol
               </a>{" "}
