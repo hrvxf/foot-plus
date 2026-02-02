@@ -31,12 +31,12 @@ export default function AboutPage() {
               <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
                 Foot+ is a calm, professional home-visit foot health service across
                 Bristol, led by Adam James. Appointments are designed to feel reassuring
-                and unhurried — with clear explanations and care tailored to you.
+                and unhurried - with clear explanations and care tailored to you.
               </p>
 
               <p className="max-w-prose text-sm leading-relaxed text-brand-charcoal/70">
                 After six years working in healthcare and rehabilitation, Adam saw how
-                often foot health is overlooked — and how much of a difference the right
+                often foot health is overlooked - and how much of a difference the right
                 care and simple education can make. Foot+ was created around three
                 things: trust, clarity, and achievable outcomes you can actually feel
                 day to day.
@@ -84,9 +84,7 @@ export default function AboutPage() {
                     A friendly service built around trust, clarity, and outcomes.
                   </p>
                 </div>
-                <div className="hidden text-xs font-semibold text-brand-charcoal/40 md:block">
-                  Home visits • Bristol
-                </div>
+                
               </div>
 
               <div className="mt-6 grid gap-4">
@@ -94,7 +92,7 @@ export default function AboutPage() {
                   {
                     title: "A relaxed, human approach",
                     body:
-                      "Appointments are calm, friendly, and never rushed. You’ll be listened to, treated with respect, and supported at every step.",
+                      "Appointments are calm, friendly, and always patient led. You’ll be listened to, treated with respect, and supported at every step.",
                   },
                   {
                     title: "Clear explanations & education",
@@ -104,7 +102,7 @@ export default function AboutPage() {
                   {
                     title: "Focused on achievable outcomes",
                     body:
-                      "Care is realistic, tailored, and outcome-focused — helping you stay comfortable, mobile, and confident between visits.",
+                      "Care is realistic, tailored, and outcome-focused - helping you stay comfortable, mobile, and confident between visits.",
                   },
                 ].map((item) => (
                   <div
@@ -128,7 +126,7 @@ export default function AboutPage() {
                 What to expect
               </h2>
               <p className="mt-1 text-sm leading-relaxed text-brand-charcoal/70">
-                Simple, reassuring care — with hygiene, comfort, and aftercare at the
+                Simple, reassuring care - with hygiene, comfort, and aftercare at the
                 centre.
               </p>
 
