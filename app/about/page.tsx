@@ -29,7 +29,7 @@ export default function AboutPage() {
             <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
               We provide calm, professional foot health care in the comfort of your home
               across Bristol. Our approach is gentle, unhurried, and focused on long-term
-              comfort — with clear explanations and care tailored to you.
+              comfort, with clear explanations and care tailored to you.
             </p>
 
             <p className="max-w-prose text-sm text-brand-charcoal/70">
