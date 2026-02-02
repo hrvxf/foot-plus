@@ -45,7 +45,7 @@ export default function PractitionerProfile() {
               Adam has over six years’ experience working in healthcare and
               rehabilitation, supporting people to regain confidence, mobility, and
               independence. Through this work, he became increasingly aware of how often
-              foot health is overlooked — and the difference that proper care and
+              foot health is overlooked - and the difference that proper care and
               education can make.
             </p>
 
