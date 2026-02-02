@@ -1,6 +1,7 @@
 export default function PractitionerProfile() {
   return (
-    <div className="rounded-[28px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:sticky md:top-24 md:p-8">
+    <div className="relative rounded-[28px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] transition-all duration-200 ease-out focus-within:ring-1 focus-within:ring-brand-sageLight/40 focus-within:shadow-[0_22px_60px_-40px_rgba(15,23,42,0.22)] md:sticky md:top-24 md:p-8 md:hover:-translate-y-0.5 md:hover:shadow-[0_22px_60px_-40px_rgba(15,23,42,0.22)] md:focus-within:-translate-y-0.5">
+      <div className="pointer-events-none absolute inset-x-6 top-3 hidden h-px bg-gradient-to-r from-transparent via-brand-sageLight/60 to-transparent opacity-15 transition-opacity duration-200 md:block md:hover:opacity-35 md:focus-within:opacity-35" />
       <div className="grid gap-6">
         {/* Portrait */}
         <div
