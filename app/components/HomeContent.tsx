@@ -91,13 +91,13 @@ export default function HomeContent() {
 
               {/* Headline (intentional line breaks) */}
               <h1 className="font-heading text-4xl font-semibold leading-[1.05] md:text-5xl">
-                <span className="block">Professional foot health services in Bristol</span>
+                <span className="block">Foot Health Practitioner in Bristol</span>
               
               </h1>
 
               <p className="max-w-xl text-base text-white/90 md:text-lg">
-                Calm, clinical, and compassionate care for healthy, comfortable feet in
-                Bristol — in the comfort of your home.
+                Care for healthy, comfortable feet in
+                Bristol - in the comfort of your home.
               </p>
             </div>
 
