@@ -61,7 +61,7 @@ const steps = [
 
 export default function HomeContent() {
   return (
-    <div className="space-y-10 pb-12 md:pb-0">
+    <div className="space-y-10 pb-28 md:pb-0">
       {/* Hero */}
       <HeroSection className="text-white">
         <div
@@ -296,7 +296,7 @@ export default function HomeContent() {
       </section>
 
       {/* Mobile CTA */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-sageLight/30 bg-white/95 px-4 py-3 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-sageLight/30 bg-white/95 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-3 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-md items-center gap-3">
           <Link
             href="/book"
