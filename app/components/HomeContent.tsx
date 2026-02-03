@@ -121,7 +121,7 @@ export default function HomeContent() {
                   <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
                     Services
                   </span>
-                  <p className="text-sm text-white/70">Clinical, calm care tailored to your feet.</p>
+                  <p className="text-sm text-white/70">Feel great in your feet again.</p>
                 </div>
 
                 <div className="mt-5 space-y-5">
