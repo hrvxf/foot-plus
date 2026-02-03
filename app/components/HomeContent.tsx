@@ -76,7 +76,7 @@ export default function HomeContent() {
             </div>
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
-                Professional Foot Health Practitioner in Bristol
+                Foot+ is a Professional Foot Health Practitioner in Bristol
               </h1>
               <p className="max-w-xl text-base text-white/90 md:text-lg">
                 Calm, clinical, and compassionate care for healthy, comfortable feet in

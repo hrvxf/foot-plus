@@ -34,17 +34,13 @@ export default function AboutPage() {
               </h1>
 
               <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
-                Foot+ is a calm, professional home-visit foot health service across
-                Bristol, led by Adam James. Appointments are designed to feel reassuring
-                and unhurried - with clear explanations and care tailored to you.
+                Foot+ is a professional, home-visit foot health service across
+                Bristol, led by Adam James. Appointments are designed to feel reassuring - 
+                with clear explanations and care tailored to you.
               </p>
 
               <p className="max-w-prose text-sm leading-relaxed text-brand-charcoal/70">
-                After six years working in healthcare and rehabilitation, Adam saw how
-                often foot health is overlooked - and how much of a difference the right
-                care and simple education can make. Foot+ was created around three
-                things: trust, clarity, and achievable outcomes you can actually feel
-                day to day.
+                Foot+ is 
               </p>
 
               <p className="max-w-prose text-sm italic leading-relaxed text-brand-charcoal/60">
