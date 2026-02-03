@@ -76,16 +76,16 @@ export default function HomeContent() {
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
-            <div className="space-y-4">
+            <div className="space-y-6">
               {/* Brand mark (removed Bristol pill) */}
-              <div className="inline-flex items-center">
+              <div className="flex w-full items-center justify-center md:justify-start">
                 <Image
                   src="/images/footplus-logo.png"
                   alt="Foot+ Bristol"
                   width={520}
                   height={200}
                   priority
-                  className="h-10 w-auto opacity-90 md:h-12"
+                  className="h-30 w-auto opacity-90 md:h-36"
                 />
               </div>
 
