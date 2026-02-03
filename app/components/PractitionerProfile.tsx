@@ -45,7 +45,7 @@ export default function PractitionerProfile() {
 
             {/* Credentials chips - make them crisp + premium */}
             <div className="flex flex-wrap gap-2">
-              {["BA", "Dip FH", "MCFHP", "MAFHP"].map((badge) => (
+              {["BA (Hons)", "Dip FH", "MCFHP", "MAFHP"].map((badge) => (
                 <span
                   key={badge}
                   className="rounded-full border border-brand-sageLight/40 bg-white/80 px-3 py-1 text-xs font-medium text-brand-charcoal/70 shadow-[0_10px_24px_-22px_rgba(15,23,42,0.35)] backdrop-blur"
