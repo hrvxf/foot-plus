@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import BrandSeal from "../../components/BrandSeal";
 import Button from "./Button";
 import HeroSection from "./HeroSection";
 
@@ -15,7 +14,11 @@ const heroServices = [
   },
   {
     category: "Skin",
-    items: ["Corns & callus reduction", "Verrucas & hard skin care", "Dry, cracked heel care"],
+    items: [
+      "Corns & callus reduction",
+      "Verrucas & hard skin care",
+      "Dry, cracked heel care",
+    ],
   },
   {
     category: "Assessment & specialist care",
@@ -70,31 +73,34 @@ export default function HomeContent() {
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
+
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
-            <div className="flex justify-start">
-              <BrandSeal variant="hero" className="-mt-1 mb-3 md:-mt-2 md:mb-4" />
-            </div>
             <div className="space-y-4">
-              <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
-                <span className="sr-only">Foot+ Bristol</span>
-                <span className="inline-flex flex-wrap items-center">
-                  <Image
-                    src="/images/footplus-logo.png"
-                    alt="Foot+ Bristol"
-                    width={320}
-                    height={120}
-                    priority
-                    className="inline-block h-[3.125rem] w-auto md:h-[3.75rem]"
-                  />
-                  <span className="ml-2">is a Professional Foot Health Practitioner in Bristol</span>
-                </span>
+              {/* Brand mark (removed Bristol pill) */}
+              <div className="inline-flex items-center">
+                <Image
+                  src="/images/footplus-logo.png"
+                  alt="Foot+ Bristol"
+                  width={520}
+                  height={200}
+                  priority
+                  className="h-10 w-auto opacity-90 md:h-12"
+                />
+              </div>
+
+              {/* Headline (intentional line breaks) */}
+              <h1 className="font-heading text-4xl font-semibold leading-[1.05] md:text-5xl">
+                <span className="block">Professional foot health practitioner</span>
+                <span className="block text-white/90">Home visits across Bristol</span>
               </h1>
+
               <p className="max-w-xl text-base text-white/90 md:text-lg">
                 Calm, clinical, and compassionate care for healthy, comfortable feet in
                 Bristol — in the comfort of your home.
               </p>
             </div>
+
             <div className="flex flex-wrap gap-4">
               <Button href="/book" variant="primary">
                 Book an appointment
@@ -115,9 +121,7 @@ export default function HomeContent() {
                   <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
                     Services
                   </span>
-                  <p className="text-sm text-white/70">
-                    Clinical, calm care tailored to your feet.
-                  </p>
+                  <p className="text-sm text-white/70">Clinical, calm care tailored to your feet.</p>
                 </div>
 
                 <div className="mt-5 space-y-5">
@@ -155,6 +159,7 @@ export default function HomeContent() {
                     </div>
                   ))}
                 </div>
+
                 <div className="mt-6 flex flex-wrap gap-2">
                   {trustChips.map((chip) => (
                     <span
@@ -181,9 +186,8 @@ export default function HomeContent() {
             Home-visit foot care in Bristol
           </h2>
           <p className="max-w-2xl text-base text-brand-charcoal/80">
-            We deliver premium foot health services with clear advice and gentle
-            treatment. Each visit includes a full assessment and personalised guidance.
-            See{" "}
+            We deliver premium foot health services with clear advice and gentle treatment.
+            Each visit includes a full assessment and personalised guidance. See{" "}
             <Link href="/prices" className="font-semibold text-brand-sageDark underline">
               foot health prices in Bristol
             </Link>{" "}
@@ -194,6 +198,7 @@ export default function HomeContent() {
             before you book.
           </p>
         </div>
+
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {serviceCards.map((s) => (
             <div
@@ -201,13 +206,7 @@ export default function HomeContent() {
               className="group rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm shadow-brand-sage/10 transition hover:-translate-y-1"
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-sageLight/20 text-brand-sageDark">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M6 12.5C6 8 10 4 14.5 4c2.5 0 4.5 2 4.5 4.5 0 4.5-3.5 11.5-9.5 11.5C7.5 20 6 18.5 6 16.5v-4Z"
                     stroke="currentColor"
@@ -223,13 +222,12 @@ export default function HomeContent() {
                   />
                 </svg>
               </div>
-              <h3 className="font-heading text-lg font-semibold text-brand-sageDark">
-                {s.title}
-              </h3>
+              <h3 className="font-heading text-lg font-semibold text-brand-sageDark">{s.title}</h3>
               <p className="mt-2 text-sm text-brand-charcoal/70">{s.desc}</p>
             </div>
           ))}
         </div>
+
         <div className="mt-6">
           <Link href="/about" className="text-sm font-semibold text-brand-sageDark">
             See full service details →
@@ -239,18 +237,14 @@ export default function HomeContent() {
 
       {/* How it works */}
       <section className="mx-auto max-w-6xl px-6">
-        <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">
-          How it works
-        </h2>
+        <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">How it works</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {steps.map((x) => (
             <div
               key={x.t}
               className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm"
             >
-              <h3 className="font-heading text-base font-semibold text-brand-sageDark">
-                {x.t}
-              </h3>
+              <h3 className="font-heading text-base font-semibold text-brand-sageDark">{x.t}</h3>
               <p className="mt-2 text-sm text-brand-charcoal/70">{x.d}</p>
             </div>
           ))}
@@ -269,8 +263,8 @@ export default function HomeContent() {
                 Calm, unhurried home visits across Bristol
               </h2>
               <p className="mt-3 text-sm text-brand-charcoal/70">
-                Based in Bristol, Foot+ offers professional home-visit care across the city
-                and nearby areas.
+                Based in Bristol, Foot+ offers professional home-visit care across the city and
+                nearby areas.
               </p>
               <p className="mt-3 text-sm text-brand-charcoal/70">
                 Travel is planned carefully to keep appointments unhurried and fairly priced.
@@ -285,19 +279,18 @@ export default function HomeContent() {
                 for full coverage information.
               </p>
             </div>
+
             <div className="rounded-2xl border border-brand-sageLight/40 bg-white/80 p-6 shadow-sm backdrop-blur">
               <p className="text-sm font-semibold text-brand-sageDark">Coverage highlights</p>
               <ul className="mt-4 space-y-3 text-sm text-brand-charcoal/70">
-                {[
-                  "Central and North Bristol",
-                  "South and East Bristol",
-                  "Nearby towns by request",
-                ].map((area) => (
-                  <li key={area} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-brand-sageDark/70" />
-                    <span>{area}</span>
-                  </li>
-                ))}
+                {["Central and North Bristol", "South and East Bristol", "Nearby towns by request"].map(
+                  (area) => (
+                    <li key={area} className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-brand-sageDark/70" />
+                      <span>{area}</span>
+                    </li>
+                  )
+                )}
               </ul>
               <div className="mt-5 rounded-xl bg-brand-sageLight/20 px-4 py-3 text-xs text-brand-sageDark">
                 Flexible scheduling keeps travel time fair and appointments relaxed.
