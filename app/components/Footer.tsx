@@ -20,7 +20,7 @@ export default function Footer() {
     "h-5 w-5 text-white transition-transform duration-200 group-hover:scale-[1.03]";
 
   return (
-    <footer className="relative z-10 mt-16 text-white">
+    <footer className="relative z-10 mt-8 text-white md:mt-10">
       {/* Background texture */}
       <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px]" />
       {/* Tint overlay for readability */}
