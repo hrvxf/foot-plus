@@ -61,7 +61,11 @@ const steps = [
 
 export default function HomeContent() {
   return (
+<<<<<<< codex/identify-mobile-scrolling-issue-38moab
     <div className="space-y-10 pb-[calc(env(safe-area-inset-bottom)+26px)] md:pb-0">
+=======
+    <div className="space-y-10 pb-[calc(env(safe-area-inset-bottom)+128px)] md:pb-0">
+>>>>>>> main
       {/* Hero */}
       <HeroSection className="text-white">
         <div
