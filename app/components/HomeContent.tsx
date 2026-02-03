@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import BrandSeal from "../../components/BrandSeal";
 import Button from "./Button";
@@ -76,7 +77,18 @@ export default function HomeContent() {
             </div>
             <div className="space-y-4">
               <h1 className="font-heading text-4xl font-semibold leading-tight md:text-5xl">
-                Foot+ is a Professional Foot Health Practitioner in Bristol
+                <span className="sr-only">Foot+ Bristol</span>
+                <span className="inline-flex flex-wrap items-center">
+                  <Image
+                    src="/images/footplus-logo.png"
+                    alt="Foot+ Bristol"
+                    width={320}
+                    height={120}
+                    priority
+                    className="inline-block h-[3.125rem] w-auto md:h-[3.75rem]"
+                  />
+                  <span className="ml-2">is a Professional Foot Health Practitioner in Bristol</span>
+                </span>
               </h1>
               <p className="max-w-xl text-base text-white/90 md:text-lg">
                 Calm, clinical, and compassionate care for healthy, comfortable feet in
