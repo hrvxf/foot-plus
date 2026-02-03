@@ -168,31 +168,6 @@ export default function AboutPage() {
           <PractitionerProfile />
         </div>
 
-        {/* CTA (full width) */}
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-[26px] border border-brand-sageLight/40 bg-white p-7 shadow-[0_18px_45px_-40px_rgba(15,23,42,0.18)] md:flex-row md:items-center">
-          <div>
-            <h2 className="font-heading text-lg font-semibold text-brand-sageDark">
-              Ready to book?
-            </h2>
-            <p className="mt-1 text-sm text-brand-charcoal/70">
-              If you’re not sure what you need, message us and we’ll point you in the
-              right direction. You can also review{" "}
-              <a className="font-semibold text-brand-sageDark underline" href="/prices">
-                prices in Bristol
-              </a>{" "}
-              before booking.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Button href="/book" variant="solid">
-              Book an appointment
-            </Button>
-            <Button href="mailto:hello@footplusbristol.co.uk" variant="outline">
-              Email
-            </Button>
-          </div>
-        </div>
       </section>
     </main>
   );

@@ -295,23 +295,6 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-5xl px-6">
-        <div className="rounded-3xl border border-brand-sageLight/30 bg-white p-8 text-center shadow-sm">
-          <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">
-            Ready to book?
-          </h2>
-          <p className="mt-2 text-sm text-brand-charcoal/70">
-            Use the booking form and we’ll get back to you to confirm a time.
-          </p>
-          <div className="mt-6 flex justify-center">
-            <Button href="/book" variant="primary">
-              Request an appointment
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Mobile CTA */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-sageLight/30 bg-white/95 px-4 py-3 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-md items-center gap-3">
