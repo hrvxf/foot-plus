@@ -20,8 +20,13 @@ export default function AboutPage() {
     <main>
       <section className="mx-auto max-w-6xl px-6 pb-15 pt-10 md:pt-10">
         <div className="grid gap-10 md:grid-cols-2 md:items-start">
+          {/* RIGHT COLUMN (mobile first): Practitioner profile */}
+          <div className="order-1 md:order-2">
+            <PractitionerProfile />
+          </div>
+
           {/* LEFT COLUMN: Intro + continuing sections */}
-          <div className="space-y-10">
+          <div className="order-2 space-y-10 md:order-1">
             {/* About Foot+ */}
             <div className="space-y-6">
               <h1 className="font-heading text-4xl font-semibold tracking-tight text-brand-sageDark md:text-5xl">
@@ -163,9 +168,6 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-
-          {/* RIGHT COLUMN: Sticky practitioner card */}
-          <PractitionerProfile />
         </div>
 
       </section>
