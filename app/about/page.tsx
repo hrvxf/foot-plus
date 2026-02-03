@@ -29,24 +29,27 @@ export default function AboutPage() {
           <div className="order-2 space-y-10 md:order-1">
             {/* About Foot+ */}
             <div className="space-y-6">
-              <h1 className="font-heading text-4xl font-semibold tracking-tight text-brand-sageDark md:text-5xl">
-                About Foot+ Bristol
+              <h1 className="font-heading text-4xl font-semibold tracking-tight text-brand-sageDark md:text-4xl">
+                Purposeful Foot Care, Delivered with Precision
               </h1>
 
-              <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
-                Foot+ is a professional, home-visit foot health service across
-                Bristol, led by Adam James. Appointments are designed to feel reassuring - 
-                with clear explanations and care tailored to you.
-              </p>
+             <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
+  Foot+ was founded to improve access to quality foot care and empower people 
+  through education. Behind it is Adam James, a fully qualified Foot Health 
+  Practitioner with a strong background in healthcare and rehabilitation.
+</p>
 
-              <p className="max-w-prose text-sm leading-relaxed text-brand-charcoal/70">
-                Foot+ is 
-              </p>
+<p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
+  With over six years of clinical experience, Adam has helped individuals regain 
+  their confidence and independence through hands-on, compassionate rehabilitation. 
+  His approach blends medical expertise with a calm, person-centred focus - delivering 
+  the highest standards of care right to your doorstep.
+</p>
 
-              <p className="max-w-prose text-sm italic leading-relaxed text-brand-charcoal/60">
-                You should leave feeling listened to, reassured, and confident about what
-                happens next.
-              </p>
+<p className="max-w-prose text-sm italic leading-relaxed text-brand-charcoal/60">
+  At Foot+, every treatment is more than just a procedure — it’s a step toward better 
+  mobility, comfort, and wellbeing.
+</p>
 
               <div className="flex flex-wrap gap-2 pt-1">
                 {badges.map((b) => (
