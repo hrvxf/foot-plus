@@ -87,24 +87,6 @@ export default function PractitionerProfile() {
             </p>
           </div>
 
-          {/* Optional: quick “promise” list to make the card more scannable */}
-          <div className="rounded-2xl border border-brand-sageLight/35 bg-white p-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-brand-charcoal/55">
-              What you can expect
-            </h3>
-            <ul className="mt-3 space-y-2 text-sm text-brand-charcoal/70">
-              {[
-                "A calm, unhurried appointment",
-                "Clear explanations at every step",
-                "Realistic aftercare you can follow",
-              ].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-brand-sageLight" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </div>

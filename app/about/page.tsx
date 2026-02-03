@@ -125,48 +125,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Appointment expectations (also left column) */}
-            <div className="rounded-[28px] border border-brand-sageLight/40 bg-white p-7 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-8">
-              <h2 className="font-heading text-lg font-semibold text-brand-sageDark">
-                What to expect
-              </h2>
-              <p className="mt-1 text-sm leading-relaxed text-brand-charcoal/70">
-                Simple, reassuring care - with hygiene, comfort, and aftercare at the
-                centre.
-              </p>
 
-              <div className="mt-6 grid gap-4">
-                {[
-                  {
-                    title: "A calm first visit",
-                    body:
-                      "We’ll talk through your concerns, check your feet and nails, and agree a plan. You’ll always know what’s happening and why.",
-                  },
-                  {
-                    title: "Hygiene & safety",
-                    body:
-                      "Professional infection control, sterile instruments, and careful hygiene standards are followed at every visit.",
-                  },
-                  {
-                    title: "Aftercare you can follow",
-                    body:
-                      "Clear, realistic advice to help you stay comfortable between appointments — including footwear and skin care guidance.",
-                  },
-                ].map((c) => (
-                  <div
-                    key={c.title}
-                    className="rounded-[22px] border border-brand-sageLight/40 bg-white p-5 shadow-[0_14px_40px_-40px_rgba(15,23,42,0.16)]"
-                  >
-                    <h3 className="font-heading text-base font-semibold text-brand-sageDark">
-                      {c.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">
-                      {c.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
