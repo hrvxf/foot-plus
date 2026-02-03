@@ -3,39 +3,27 @@ import Link from "next/link";
 import Button from "./Button";
 import HeroSection from "./HeroSection";
 
-const heroServices = [
+const heroHighlights = [
   {
-    category: "Nails",
-    items: [
-      "Thickened & problem nail care",
-      "Fungal nail treatment plans",
-      "Ingrowing toenail relief",
-    ],
+    title: "Home visits across Bristol",
+    desc: "We bring a calm, clinical setup to you — no travel or waiting rooms.",
   },
   {
-    category: "Skin",
-    items: [
-      "Corns & callus reduction",
-      "Verrucas & hard skin care",
-      "Dry, cracked heel care",
-    ],
+    title: "Comfort-first care",
+    desc: "Gentle treatments for sensitive feet, with careful explanations.",
   },
   {
-    category: "Assessment & specialist care",
-    items: [
-      "Full foot health assessment",
-      "Circulation & sensation checks",
-      "Diabetic foot care guidance",
-    ],
+    title: "Clear, lasting results",
+    desc: "Personalised aftercare so your feet stay healthy between visits.",
   },
 ];
 
 const trustChips = [
-  "Qualified Foot Health Practitioner",
-  "Fully insured",
-  "DBS checked",
+  "Qualified practitioner",
+  "Fully insured & DBS checked",
   "Sterile instruments",
-  "Home visits in Bristol",
+  "Evening & weekend slots",
+  "Bristol & nearby areas",
 ];
 
 const serviceCards = [
@@ -77,27 +65,17 @@ export default function HomeContent() {
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
           <div className="flex-1 space-y-6">
             <div className="space-y-4">
-              {/* Brand mark (removed Bristol pill) */}
-              <div className="inline-flex items-center">
-                <Image
-                  src="/images/footplus-logo.png"
-                  alt="Foot+ Bristol"
-                  width={520}
-                  height={200}
-                  priority
-                  className="h-10 w-auto opacity-90 md:h-12"
-                />
-              </div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/85">
+                Foot health at home
+              </span>
 
-              {/* Headline (intentional line breaks) */}
-              <h1 className="font-heading text-4xl font-semibold leading-[1.05] md:text-5xl">
-                <span className="block">Professional foot health practitioner</span>
-                <span className="block text-white/90">Home visits across Bristol</span>
+              <h1 className="font-heading text-4xl font-semibold leading-[1.05] md:text-6xl">
+                Feel confident on your feet again.
               </h1>
 
               <p className="max-w-xl text-base text-white/90 md:text-lg">
-                Calm, clinical, and compassionate care for healthy, comfortable feet in
-                Bristol — in the comfort of your home.
+                Foot+ delivers premium foot health care in Bristol. We arrive with
+                everything needed for comfortable, clinical treatment in your home.
               </p>
             </div>
 
@@ -117,50 +95,36 @@ export default function HomeContent() {
               <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-white/25 blur-[80px]" />
               <div className="absolute -right-14 bottom-4 h-44 w-44 rounded-full bg-brand-sageLight/25 blur-[90px]" />
               <div className="relative">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col items-center text-center">
                   <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
-                    Services
+                    Foot+ Bristol
                   </span>
-                  <p className="text-sm text-white/70">Clinical, calm care tailored to your feet.</p>
+                  <Image
+                    src="/images/footplus-logo.png"
+                    alt="Foot+ Bristol"
+                    width={520}
+                    height={200}
+                    priority
+                    className="mt-6 h-16 w-auto opacity-95 md:h-20"
+                  />
+                  <p className="mt-4 text-sm text-white/75">
+                    Professional foot health care that feels calm, modern, and reassuring.
+                  </p>
                 </div>
 
-                <div className="mt-5 space-y-5">
-                  {heroServices.map((group) => (
-                    <div key={group.category}>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
-                        {group.category}
-                      </p>
-                      <ul className="mt-3 space-y-2">
-                        {group.items.map((item) => (
-                          <li
-                            key={item}
-                            className="flex items-start gap-3 text-[15px] leading-relaxed text-white/85"
-                          >
-                            <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/40 bg-white/10">
-                              <svg
-                                viewBox="0 0 20 20"
-                                className="h-3.5 w-3.5 text-white/90"
-                                fill="none"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  d="M5 10.5l3 3 7-7"
-                                  stroke="currentColor"
-                                  strokeWidth="1.6"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                <div className="mt-8 space-y-4">
+                  {heroHighlights.map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-2xl border border-white/15 bg-white/5 p-4 text-left"
+                    >
+                      <p className="text-sm font-semibold text-white">{item.title}</p>
+                      <p className="mt-2 text-sm text-white/75">{item.desc}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap justify-center gap-2 md:justify-start">
                   {trustChips.map((chip) => (
                     <span
                       key={chip}
