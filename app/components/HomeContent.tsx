@@ -61,7 +61,7 @@ const steps = [
 
 export default function HomeContent() {
   return (
-    <div className="space-y-10 pb-28 md:pb-0">
+    <div className="space-y-10 pb-[calc(env(safe-area-inset-bottom)+24px)] md:pb-0">
       {/* Hero */}
       <HeroSection className="text-white">
         <div
