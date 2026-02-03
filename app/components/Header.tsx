@@ -22,6 +22,13 @@ export default function Header() {
     setIsMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   const navLinks = [
     { label: "About", href: "/about", active: pathname === "/about" },
     { label: "Services", href: "/#services", active: pathname === "/" },
@@ -43,7 +50,7 @@ export default function Header() {
     : "bg-brand-offwhite/95 backdrop-blur-0";
 
   const linkBase =
-    "px-4 py-3 text-base font-medium transition border-b-2 border-transparent md:py-2";
+    "px-4 py-4 text-base font-medium transition border-b-2 border-transparent md:py-2";
   const navTracking = "tracking-normal";
   const navPadding = "py-4";
   const logoSize = "h-12 md:h-14";
@@ -110,6 +117,7 @@ export default function Header() {
             className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark md:hidden"
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen((open) => !open)}
           >
             <span className="sr-only">Open navigation</span>
@@ -136,7 +144,7 @@ export default function Header() {
       </header>
 
       {isMenuOpen ? (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div id="mobile-menu" className="fixed inset-0 z-50 md:hidden">
           <button
             type="button"
             className="absolute inset-0 bg-brand-offwhite/95"
