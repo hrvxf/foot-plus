@@ -20,7 +20,7 @@ export default function Footer() {
     "h-5 w-5 text-white transition-transform duration-200 group-hover:scale-[1.03]";
 
   return (
-    <footer className="relative z-10 mt-8 text-white md:mt-10">
+    <footer className="relative z-10 mt-6 text-white md:mt-8">
       {/* Background texture */}
       <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px]" />
       {/* Tint overlay for readability */}
@@ -30,8 +30,8 @@ export default function Footer() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/15" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-black/20" />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-10">
-        <div className="grid gap-8 md:grid-cols-3 md:items-center">
+      <div className="relative mx-auto max-w-6xl px-6 py-6 md:py-7">
+        <div className="grid gap-5 md:grid-cols-3 md:items-center">
           {/* Brand */}
           <div className="flex items-center gap-4">
             <BrandSeal variant="footer" />
@@ -103,7 +103,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 border-t border-white/15 pt-4">
+        <div className="mt-5 border-t border-white/15 pt-3">
           <div className="flex flex-col gap-2 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
             <div>© {new Date().getFullYear()} Foot+ • Bristol</div>
             <div className="flex items-center gap-2">
