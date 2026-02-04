@@ -11,6 +11,11 @@ function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function Footer() {
+  const message = encodeURIComponent(
+    "Hi Adam, I’d like to enquire about an appointment with Foot+."
+  );
+  const whatsappHref = `https://wa.me/447380301555?text=${message}`;
+
   const iconBtn =
     "group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 backdrop-blur-sm transition-all duration-200 " +
     "hover:bg-white/20 hover:-translate-y-0.5 hover:ring-white/25 hover:shadow-[0_10px_24px_-18px_rgba(0,0,0,0.75)] " +
@@ -55,9 +60,9 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               {/* WhatsApp (first) */}
               <a
-                href="https://wa.me/447000000000"
+                href={whatsappHref}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="WhatsApp"
                 className={iconBtn}
               >
