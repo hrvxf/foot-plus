@@ -260,7 +260,7 @@ export default function HomeContent() {
                 Areas covered
               </p>
               <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark md:text-3xl">
-                Calm, unhurried home visits across Bristol
+                Local, Reliable Foot Care - Now Welcoming New Patients
               </h2>
               <p className="mt-3 text-sm text-brand-charcoal/70">
                 Based in Bristol, Foot+ offers professional home-visit care across the city and
