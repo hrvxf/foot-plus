@@ -1,0 +1,87 @@
+[33me179aef[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m reverted
+[33m5569adc[m moved texture to endless scroll
+[33m5f9dafe[m updated global theme error
+[33m4fbcdbd[m Refactor metadata icons to use favicon instead of image paths
+[33mc6fc33a[m Fix punctuation in AboutPage and PractitionerProfile for consistency
+[33m740e7e5[m Update BookPage text for clarity and conciseness
+[33m0cb62cd[m Update AreasPage description for clarity and consistency
+[33mcf3551e[m Update Adam-James.png image file
+[33m92441ec[m Update hero section headline to emphasize local foot care services and new patient welcome
+[33m3dc361e[m Update hero section headline and description for clarity
+[33m9ed1cdf[m Remove unused footplus-texture1.png image file
+[33m53bec11[m Refactor code structure for improved readability and maintainability
+[33m22e98ef[m Update hero section headline for clarity and location emphasis
+[33mb783440[m Merge branch 'main' of https://github.com/hrvxf/foot-plus
+[33mff32687[m Merge pull request #100 from hrvxf/codex/separate-and-enlarge-brand-logo
+[33m0df956a[m[33m ([m[1;31morigin/codex/separate-and-enlarge-brand-logo[m[33m)[m Reduce hero logo size
+[33m43a8695[m Update hero section tagline for improved messaging
+[33m0dd5896[m Merge pull request #99 from hrvxf/revert-98-codex/redesign-home-page-hero-section
+[33m5a467ff[m[33m ([m[1;31morigin/revert-98-codex/redesign-home-page-hero-section[m[33m)[m Revert "Refresh home hero layout"
+[33mf231b9a[m Merge branches 'main' and 'main' of https://github.com/hrvxf/foot-plus
+[33m58992c6[m Merge pull request #98 from hrvxf/codex/redesign-home-page-hero-section
+[33m3cfbd80[m[33m ([m[1;31morigin/codex/redesign-home-page-hero-section[m[33m)[m Refresh home hero layout
+[33m01ff50e[m Revise AboutPage content for clarity and engagement
+[33m4cccac8[m Refactor HomeContent component for improved readability and layout consistency
+[33m21c67f2[m Merge pull request #97 from hrvxf/codex/replace-foot+-text-with-logo-in-headline
+[33m4eb620b[m[33m ([m[1;31morigin/codex/replace-foot+-text-with-logo-in-headline[m[33m)[m Enlarge hero logo and tighten headline
+[33m778e42e[m Replace favicon and add new 32x32 icon file
+[33mb3bca8d[m Add new 32x32 icon file to public directory
+[33m5118d54[m Update AboutPage and HomeContent for clarity and consistency in messaging
+[33m503a134[m Remove redundant appointment expectations and promise list from AboutPage and PractitionerProfile components
+[33mc9c008c[m Implement feature X to enhance user experience and fix bug Y in module Z
+[33m415c9ce[m Update favicon paths and remove unused SVG files
+[33m266313c[m Merge pull request #96 from hrvxf/codex/improve-about-page-layout-for-mobile
+[33m813450a[m[33m ([m[1;31morigin/codex/improve-about-page-layout-for-mobile[m[33m)[m Reorder about page profile for mobile
+[33m9c44cb2[m Merge pull request #95 from hrvxf/codex/identify-mobile-scrolling-issue-xxqstb
+[33m408214f[m[33m ([m[1;31morigin/codex/identify-mobile-scrolling-issue-xxqstb[m[33m)[m Tighten mobile CTA padding
+[33meca6943[m Fix mobile bottom padding for consistent layout
+[33m6693fec[m Merge pull request #94 from hrvxf/codex/identify-mobile-scrolling-issue-38moab
+[33m72f2565[m[33m ([m[1;31morigin/codex/identify-mobile-scrolling-issue-38moab[m[33m)[m Merge branch 'main' into codex/identify-mobile-scrolling-issue-38moab
+[33m4337c73[m Reduce mobile bottom padding
+[33ma3e81cb[m Merge pull request #93 from hrvxf/codex/identify-mobile-scrolling-issue
+[33m2c930a5[m[33m ([m[1;31morigin/codex/identify-mobile-scrolling-issue[m[33m)[m Add mobile-safe padding for fixed CTA
+[33m8212aa3[m Merge pull request #92 from hrvxf/codex/suggest-improvements-for-mobile-app
+[33m3ce266e[m[33m ([m[1;31morigin/codex/suggest-improvements-for-mobile-app[m[33m)[m Improve mobile layout and menu behavior
+[33md25576f[m Merge pull request #91 from hrvxf/codex/reduce-section-spacing-on-home-page
+[33m1fc650f[m[33m ([m[1;31morigin/codex/reduce-section-spacing-on-home-page[m[33m)[m Reduce homepage section spacing
+[33md1a11d6[m Merge pull request #90 from hrvxf/codex/remove-ready-to-book-section-on-web
+[33mecb84f6[m[33m ([m[1;31morigin/codex/remove-ready-to-book-section-on-web[m[33m)[m Remove ready-to-book CTAs
+[33m25764f0[m Update credentials badges to include full degree title
+[33mabf8694[m Merge pull request #89 from hrvxf/codex/slimline-website-footer-by-30-40%
+[33m376a377[m[33m ([m[1;31morigin/codex/slimline-website-footer-by-30-40%[m[33m)[m Reduce footer vertical spacing
+[33mf2d26d6[m Merge branch 'main' of https://github.com/hrvxf/foot-plus
+[33mce950fb[m Update Adam-James image file
+[33m3ee613e[m Merge pull request #88 from hrvxf/codex/reduce-distance-between-content-and-footer
+[33mcbde41e[m[33m ([m[1;31morigin/codex/reduce-distance-between-content-and-footer[m[33m)[m Reduce footer top spacing
+[33me2cf699[m Refactor code structure for improved readability and maintainability
+[33m56f6f52[m Update About page content for clarity and consistency in language
+[33m6c548c8[m Refactor About page layout and enhance content for clarity and engagement
+[33m8f1af0c[m Refine About page content and enhance PractitionerProfile component with additional details and structure
+[33m13e4235[m Merge branch 'main' of https://github.com/hrvxf/foot-plus
+[33m5dce230[m Merge pull request #87 from hrvxf/codex/fix-tailwind-conflicts-in-practitionerprofile
+[33m4a06bdd[m[33m ([m[1;31morigin/codex/fix-tailwind-conflicts-in-practitionerprofile[m[33m)[m Fix Tailwind transitions in profile card
+[33m5507d6b[m Refine About page content and update HomeContent styles
+[33m2a74eeb[m Merge pull request #86 from hrvxf/codex/enhance-practitionerprofile-card-styling-5jknya
+[33m32de8a7[m[33m ([m[1;31morigin/codex/enhance-practitionerprofile-card-styling-5jknya[m[33m)[m Merge branch 'main' into codex/enhance-practitionerprofile-card-styling-5jknya
+[33m4b116e5[m Refine practitioner card hover focus styling
+[33m19ef0f9[m Merge pull request #85 from hrvxf/codex/enhance-practitionerprofile-card-styling
+[33md9ee52d[m[33m ([m[1;31morigin/codex/enhance-practitionerprofile-card-styling[m[33m)[m Enhance practitioner profile card states
+[33m2235019[m Fix punctuation in PractitionerProfile bio for consistency
+[33m61bc529[m Refine wording for clarity in About page description
+[33me2b0347[m Merge pull request #84 from hrvxf/codex/create-practitionerprofile-component
+[33mdd0b26c[m[33m ([m[1;31morigin/codex/create-practitionerprofile-component[m[33m)[m Extract practitioner profile component
+[33mb4a43ca[m Enhance About page content and layout for clarity and engagement
+[33ma89b195[m Merge pull request #83 from hrvxf/codex/redesign-about-page-layout-and-profile-card
+[33m8f6d7ee[m[33m ([m[1;31morigin/codex/redesign-about-page-layout-and-profile-card[m[33m)[m Redesign about hero layout
+[33m9783b62[m Merge branch 'main' of https://github.com/hrvxf/foot-plus
+[33m71f2aaa[m Merge pull request #82 from hrvxf/codex/improve-visual-design-of-about-header
+[33mb9861e0[m[33m ([m[1;31morigin/codex/improve-visual-design-of-about-header[m[33m)[m Refine practitioner header layout
+[33m7ba509e[m Update practitioner name in About section
+[33md759875[m Merge pull request #81 from hrvxf/codex/investigate-portrait-image-rendering-issue
+[33m1a61f34[m[33m ([m[1;31morigin/codex/investigate-portrait-image-rendering-issue[m[33m)[m Fix about portrait background
+[33mcbaa5db[m Merge branch 'main' of https://github.com/hrvxf/foot-plus
+[33m267fd65[m Add Adam-James image to the project
+[33m29c3544[m Merge pull request #80 from hrvxf/codex/create-about-section-for-foot+
+[33m8e3cfea[m[33m ([m[1;31morigin/codex/create-about-section-for-foot+[m[33m)[m Revise about practitioner image handling
+[33me7f45be[m Merge pull request #79 from hrvxf/codex/move-foot-health-services-to-area-page
+[33m364e64e[m[33m ([m[1;31morigin/codex/move-foot-health-services-to-area-page[m[33m)[m Move service map to ar
