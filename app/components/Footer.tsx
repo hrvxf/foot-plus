@@ -21,6 +21,11 @@ export default function Footer() {
 
   return (
     <footer className="relative z-10 mt-6 text-white md:mt-8">
+      {/* Background texture */}
+      <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px]" />
+      {/* Tint overlay for readability */}
+      <div className="absolute inset-0 bg-brand-sage/65" />
+
       {/* Subtle top divider + vignette for depth */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/15" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-black/20" />
