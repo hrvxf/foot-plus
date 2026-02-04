@@ -1,16 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-  --color-brand-sage: #6C917B;
-  --color-brand-sageDark: #4F6F5F;
-  --color-brand-sageLight: #8FB39C;
-  --color-brand-offwhite: #F7F6F2;
-  --color-brand-charcoal: #243028;
-  --color-brand-white: #FFFFFF;
-  --font-heading: "Poppins", "Montserrat", sans-serif;
-  --font-body: "Inter", "Montserrat", sans-serif;
-}
-
 html,
 body {
   height: 100%;
@@ -20,6 +9,14 @@ body {
 }
 
 :root {
+  --color-brand-sage: #6C917B;
+  --color-brand-sageDark: #4F6F5F;
+  --color-brand-sageLight: #8FB39C;
+  --color-brand-offwhite: #F7F6F2;
+  --color-brand-charcoal: #243028;
+  --color-brand-white: #FFFFFF;
+  --font-heading: "Poppins", "Montserrat", sans-serif;
+  --font-body: "Inter", "Montserrat", sans-serif;
   --safe-area-top: env(safe-area-inset-top, -0px);
   --safe-area-right: env(safe-area-inset-right, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
