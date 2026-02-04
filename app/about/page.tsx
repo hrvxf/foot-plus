@@ -16,6 +16,11 @@ const badges = [
 ];
 
 export default function AboutPage() {
+  const message = encodeURIComponent(
+    "Hi Adam, I’d like to enquire about an appointment with Foot+."
+  );
+  const whatsappHref = `https://wa.me/447380301555?text=${message}`;
+
   return (
     <main>
       <section className="mx-auto max-w-6xl px-6 pb-15 pt-10 md:pt-10">
@@ -67,10 +72,10 @@ export default function AboutPage() {
                   Book an appointment
                 </Button>
                 <Button
-                  href="https://wa.me/447000000000"
+                  href={whatsappHref}
                   variant="outline"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   WhatsApp a question
                 </Button>
