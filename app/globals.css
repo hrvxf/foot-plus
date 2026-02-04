@@ -17,14 +17,18 @@
 
 html,
 body {
+  min-height: 100%;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  background-color: var(--color-brand-offwhite);
+  background-image: url("/images/footplus-texture.png");
+  background-repeat: repeat;
+  background-size: 600px 600px;
 }
 
 body {
-  background-color: var(--color-brand-offwhite);
   color: var(--color-brand-charcoal);
   font-family: var(--font-body);
 }
