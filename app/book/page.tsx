@@ -16,7 +16,7 @@ export default function BookPage() {
       <p className="mt-4 text-sm text-brand-charcoal/70">
         As a mobile service, appointments are arranged by location and availability
         across Bristol. Please submit an enquiry and we will contact you to arrange
-        a suitable time with a qualified Foot Health Practitioner.
+        a suitable time.
       </p>
       <p className="mt-3 text-sm text-brand-charcoal/70">
         Not sure what to book? Review{" "}
@@ -42,7 +42,7 @@ export default function BookPage() {
           },
           {
             title: "3) Treatment visit",
-            body: "Calm, professional care with clear aftercare guidance.",
+            body: "Sit back, and we'll do the rest",
           },
         ].map((step) => (
           <div key={step.title} className="space-y-1">
