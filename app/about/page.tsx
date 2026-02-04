@@ -47,7 +47,7 @@ export default function AboutPage() {
 </p>
 
 <p className="max-w-prose text-sm italic leading-relaxed text-brand-charcoal/60">
-  At Foot+, every treatment is more than just a procedure - it’s a step toward better 
+  At Foot+ every treatment is more than just a procedure - it’s a step toward better 
   mobility, comfort, and wellbeing.
 </p>
 
