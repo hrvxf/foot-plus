@@ -15,8 +15,7 @@ export default function AreasPage() {
           Areas covered in Bristol
         </h1>
         <p className="max-w-3xl text-sm text-brand-charcoal/70">
-          Foot+ provides calm, professional home-visit foot health care across Bristol.
-          Appointments are planned carefully to keep travel fair and visits unhurried.
+          At Foot+ we try to schedule appointments by areas, so they are planned carefully to keep travel fair and visits unhurried.
           If you’re unsure about coverage,{" "}
           <Link className="font-semibold text-brand-sageDark underline" href="/book">
             contact us
