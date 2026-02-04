@@ -16,14 +16,8 @@ export const metadata = {
     images: ["/images/foot-health-practitioner-home-visit-bristol.png"],
   },
   icons: {
-    icon: {
-      url: "/images/foot-health-practitioner-home-visit-bristol.png",
-      type: "image/png",
-    },
-    shortcut: {
-      url: "/images/foot-health-practitioner-home-visit-bristol.png",
-      type: "image/png",
-    },
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
   },
 };
 
