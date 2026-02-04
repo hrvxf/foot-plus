@@ -12,12 +12,6 @@ export default function PractitionerProfile() {
             <span className="h-1.5 w-1.5 rounded-full bg-brand-sageLight" />
             Practitioner profile
           </div>
-
-          {/* Scroll affordance (desktop only, subtle) */}
-          <div className="hidden items-center gap-2 text-[11px] font-semibold text-brand-charcoal/40 md:flex">
-            <span className="h-4 w-px bg-brand-sageLight/30" />
-            Sticky
-          </div>
         </div>
 
         {/* Portrait */}
