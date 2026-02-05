@@ -36,9 +36,15 @@ export default function Footer() {
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-black/20" />
 
       <div className="relative mx-auto max-w-6xl px-6 py-6 md:py-7">
-        <div className="grid gap-5 md:grid-cols-3 md:items-center">
-          {/* Brand */}
-          <div className="flex items-center gap-4">
+        {/* 
+          KEY CHANGE:
+          On md+, this becomes a 3-col / 2-row grid so:
+          - Row 1: brand mark + icons + CTA
+          - Row 2: tagline (col 1) aligns with contact info (col 2)
+        */}
+        <div className="grid gap-5 md:grid-cols-3 md:grid-rows-[auto_auto] md:gap-y-3 md:items-start">
+          {/* Brand (row 1, col 1) */}
+          <div className="flex items-center gap-4 md:row-start-1 md:col-start-1">
             <BrandSeal variant="footer" />
 
             <div className="flex flex-col justify-center">
@@ -49,14 +55,16 @@ export default function Footer() {
                   className="h-16 w-auto"
                 />
               </div>
-              <div className="mt-1 text-sm text-white/80">
+
+              {/* Mobile tagline stays here */}
+              <div className="mt-1 text-sm text-white/80 md:hidden">
                 Calm, professional foot care at home.
               </div>
             </div>
           </div>
 
-          {/* Contact + Social (optimised order + subtle hover) */}
-          <div className="flex justify-center">
+          {/* Icons (row 1, col 2) */}
+          <div className="flex justify-center md:row-start-1 md:col-start-2">
             <div className="flex items-center gap-3">
               {/* WhatsApp (first) */}
               <a
@@ -70,13 +78,13 @@ export default function Footer() {
               </a>
 
               {/* Call */}
-              <a href="tel:+447000000000" aria-label="Call" className={iconBtn}>
+              <a href="tel:+447380301555" aria-label="Call" className={iconBtn}>
                 <Phone className={icon} />
               </a>
 
               {/* Email */}
               <a
-                href="mailto:hello@footplusbristol.co.uk"
+                href="mailto:hello@foot-plus.co.uk"
                 aria-label="Email"
                 className={iconBtn}
               >
@@ -96,8 +104,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col items-center gap-3 md:items-end">
+          {/* CTA (row 1, col 3) */}
+          <div className="flex flex-col items-center gap-3 md:row-start-1 md:col-start-3 md:items-end">
             <a
               href="/book"
               className="inline-flex w-fit items-center justify-center rounded-full bg-linear-to-b from-white/20 to-white/10 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:from-white/25 hover:to-white/15"
@@ -105,6 +113,26 @@ export default function Footer() {
               Book an appointment
             </a>
           </div>
+
+          {/* Tagline (row 2, col 1) — md+ only, aligns with contact info */}
+          <div className="hidden text-sm text-white/80 md:block md:row-start-2 md:col-start-1">
+           Care that starts from the ground up.
+          </div>
+
+          {/* Contact info (row 2, col 2) — aligns with tagline on md+ */}
+          <div className="text-sm text-white/80 md:row-start-2 md:col-start-2 md:text-center">
+            <span className="whitespace-nowrap">07380 301555</span>
+            <span className="mx-2 text-white/40">•</span>
+            <a
+              href="mailto:hello@foot-plus.co.uk"
+              className="whitespace-nowrap transition hover:text-white"
+            >
+              hello@foot-plus.co.uk
+            </a>
+          </div>
+
+          {/* Spacer (row 2, col 3) to keep row alignment clean on md+ */}
+          <div className="hidden md:block md:row-start-2 md:col-start-3" />
         </div>
 
         {/* Bottom bar */}
