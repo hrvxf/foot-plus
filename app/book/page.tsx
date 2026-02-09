@@ -3,8 +3,9 @@ import EnquiryForm from "../components/EnquiryForm";
 export const metadata = {
   title: "Book a Foot Health Practitioner in Bristol | Foot+",
   description:
-    "Request a Bristol home-visit appointment with Foot+. Calm, professional foot health care from a qualified practitioner.",
+    "Request a Bristol home-visit appointment with Foot+. Professional foot health care from a qualified practitioner.",
 };
+
 
 export default function BookPage() {
   return (

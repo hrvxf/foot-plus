@@ -56,10 +56,11 @@ export default function Footer() {
                 />
               </div>
 
-              {/* Mobile tagline stays here */}
-              <div className="mt-1 text-sm text-white/80 md:hidden">
-                Calm, professional foot care at home.
-              </div>
+             {/* Mobile tagline stays here */}
+            <div className="mt-1 text-sm text-white/80 md:hidden">
+            Professional foot care at home.
+            </div>
+
             </div>
           </div>
 

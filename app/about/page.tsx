@@ -2,9 +2,9 @@ import Button from "../components/Button";
 import PractitionerProfile from "../components/PractitionerProfile";
 
 export const metadata = {
-  title: "Qualified Foot Health Practitioner in Bristol | About Foot+",
-  description:
-    "Meet Foot+ Bristol, a qualified foot health practitioner offering calm, insured, DBS-checked home visits across Bristol.",
+ title: "Qualified Foot Health Practitioner in Bristol | About Foot+",
+description:
+  "Meet Foot+ Bristol, a qualified foot health practitioner offering insured, DBS-checked home visits across Bristol.",
 };
 
 const badges = [
@@ -101,8 +101,9 @@ export default function AboutPage() {
                   {
                     title: "A relaxed, human approach",
                     body:
-                      "Appointments are calm, friendly, and always patient led. You’ll be listened to, treated with respect, and supported at every step.",
+                    "Appointments are friendly, patient-led, and always focused on your needs. You’ll be listened to, treated with respect, and supported at every step.",
                   },
+
                   {
                     title: "Clear explanations & education",
                     body:

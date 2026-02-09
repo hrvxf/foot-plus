@@ -11,11 +11,12 @@ export default function PricesPage() {
         Foot health prices in Bristol
       </h1>
       <div className="mt-4 space-y-3 text-sm text-brand-charcoal/80">
-        <p>
-          Calm, expert foot care in the comfort of your Bristol home. Every appointment
-          includes unhurried time, clear explanations, and treatment tailored to
-          your goals by a qualified Foot Health Practitioner.
+       <p>
+        Expert foot care in the comfort of your Bristol home. Every appointment
+        includes unhurried time, clear explanations, and treatment tailored to
+         your goals by a qualified Foot Health Practitioner.
         </p>
+
         <p>
           Transparent pricing with travel included across central Bristol, so you
           can book with confidence.
