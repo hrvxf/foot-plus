@@ -36,39 +36,24 @@ export default function Footer() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/15" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-black/20" />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-6 md:py-7">
-        {/* 
-          KEY CHANGE:
-          On md+, this becomes a 3-col / 2-row grid so:
-          - Row 1: brand mark + icons + CTA
-          - Row 2: tagline (col 1) aligns with contact info (col 2)
-        */}
-        <div className="flex flex-col gap-6 md:grid md:grid-cols-3 md:grid-rows-[auto_auto] md:gap-5 md:gap-y-3 md:items-start">
-          {/* Brand (row 1, col 1) */}
-          <div className="order-1 flex items-center justify-center gap-4 text-center md:order-0md:row-start-1 md:col-start-1 md:justify-start md:text-left">
-            <div className="flex flex-col items-center justify-center md:items-start">
-              <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
-                <img
-                  src="/images/footplus-logo_WHITE.svg"
-                  alt="Foot+ Bristol logo"
-                  className="h-16 w-auto"
-                />
-              </div>
-
-              {/* Mobile tagline stays here */}
-              <div className="mt-1 text-sm text-white/80 md:hidden">
-                Professional foot care at home.
-              </div>
+      <div className="relative mx-auto max-w-6xl px-6 py-4 md:py-5">
+        <div className="grid gap-5 md:grid-cols-[1.1fr_minmax(0,1.2fr)_0.9fr] md:items-center">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left">
+            <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
+              <img
+                src="/images/footplus-logo_WHITE.svg"
+                alt="Foot+ Bristol logo"
+                className="h-16 w-auto"
+              />
             </div>
+            <p className="mt-1 hidden text-sm text-white/70 md:block">Care that starts from the ground up.</p>
           </div>
 
-          {/* Icons (row 1, col 2) */}
-          <nav
-            aria-label="Quick contact options"
-            className="order-4 flex justify-center md:order-0md:row-start-1 md:col-start-2"
-          >
-            <div className="flex items-center gap-3">
-              {/* WhatsApp (first) */}
+          <div className="flex flex-col items-center text-center md:text-left">
+            <div className="text-[12px] tracking-[0.24em] uppercase text-white/70">
+              {coverageMessage}
+            </div>
+            <nav aria-label="Quick contact options" className="mt-3 flex items-center justify-center gap-3">
               <a
                 href={whatsappHref}
                 target="_blank"
@@ -79,8 +64,6 @@ export default function Footer() {
               >
                 <WhatsAppIcon className={icon} />
               </a>
-
-              {/* Call */}
               <a
                 href="tel:+447380301555"
                 aria-label="Call"
@@ -89,8 +72,6 @@ export default function Footer() {
               >
                 <Phone className={icon} />
               </a>
-
-              {/* Email */}
               <a
                 href="mailto:hello@foot-plus.co.uk"
                 aria-label="Email"
@@ -99,8 +80,6 @@ export default function Footer() {
               >
                 <Mail className={icon} />
               </a>
-
-              {/* Facebook */}
               <a
                 href="https://www.facebook.com/profile.php?id=61586341484139"
                 target="_blank"
@@ -111,51 +90,34 @@ export default function Footer() {
               >
                 <Facebook className={icon} />
               </a>
-            </div>
-          </nav>
-
-          {/* CTA (row 1, col 3) */}
-          <div className="order-2 flex flex-col items-stretch gap-3 md:order-0md:row-start-1 md:col-start-3 md:items-end">
-            <a
-              href="/book"
-              className="inline-flex w-full items-center justify-center rounded-full bg-linear-to-b from-white/20 to-white/10 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:from-white/25 hover:to-white/15 md:w-fit"
-              data-analytics-id="footer-book"
-            >
-              Book an appointment
-            </a>
-          </div>
-
-          {/* Tagline (row 2, col 1) - md+ only, aligns with contact info */}
-          <div className="hidden text-sm text-white/80 md:block md:row-start-2 md:col-start-1">
-            Care that starts from the ground up.
-          </div>
-
-          {/* Contact info (row 2, col 2) - aligns with tagline on md+ */}
-          <div className="order-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 text-center text-sm text-white/80 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.65)] backdrop-blur-sm md:order-0md:border-0 md:bg-transparent md:px-0 md:py-0 md:shadow-none md:row-start-2 md:col-start-2">
-            <div className="flex flex-col items-center gap-1 md:flex-row md:justify-center">
-              <span className="font-semibold tracking-wide">07380 301555</span>
-              <span className="mx-2 hidden text-white/40 md:inline" aria-hidden="true">
+            </nav>
+            <div className="mt-3 inline-flex items-center gap-4 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-[13px] text-white/80 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.65)] backdrop-blur md:justify-start">
+              <span className="font-semibold text-white/90">07380 301555</span>
+              <span className="opacity-50" aria-hidden="true">
                 &bull;
               </span>
               <a
                 href="mailto:hello@foot-plus.co.uk"
-                className="whitespace-nowrap transition hover:text-white"
+                className="transition hover:text-white"
                 data-analytics-id="footer-email-inline"
               >
                 hello@foot-plus.co.uk
               </a>
             </div>
-            <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/60">
-              {coverageMessage}
-            </div>
           </div>
 
-          {/* Spacer (row 2, col 3) to keep row alignment clean on md+ */}
-          <div className="hidden md:block md:row-start-2 md:col-start-3" />
+          <div className="flex flex-col items-center gap-3 text-center md:items-end md:text-right">
+            <a
+              href="/book"
+              className="inline-flex w-full items-center justify-center rounded-full bg-linear-to-b from-white/20 to-white/10 px-5 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:from-white/25 hover:to-white/15 md:w-auto"
+              data-analytics-id="footer-book"
+            >
+              Book an appointment
+            </a>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-5 border-t border-white/15 pt-3">
+        <div className="mt-4 border-t border-white/15 pt-2">
           <div className="flex flex-col gap-2 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
             <div>&copy; {new Date().getFullYear()} Foot+ &bull; Bristol</div>
             <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-2">
