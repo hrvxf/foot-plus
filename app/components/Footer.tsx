@@ -45,7 +45,7 @@ export default function Footer() {
         */}
         <div className="flex flex-col gap-6 md:grid md:grid-cols-3 md:grid-rows-[auto_auto] md:gap-5 md:gap-y-3 md:items-start">
           {/* Brand (row 1, col 1) */}
-          <div className="order-1 flex items-center justify-center gap-4 text-center md:order-none md:row-start-1 md:col-start-1 md:justify-start md:text-left">
+          <div className="order-1 flex items-center justify-center gap-4 text-center md:order-0md:row-start-1 md:col-start-1 md:justify-start md:text-left">
             <div className="flex flex-col items-center justify-center md:items-start">
               <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
                 <img
@@ -65,7 +65,7 @@ export default function Footer() {
           {/* Icons (row 1, col 2) */}
           <nav
             aria-label="Quick contact options"
-            className="order-4 flex justify-center md:order-none md:row-start-1 md:col-start-2"
+            className="order-4 flex justify-center md:order-0md:row-start-1 md:col-start-2"
           >
             <div className="flex items-center gap-3">
               {/* WhatsApp (first) */}
@@ -115,7 +115,7 @@ export default function Footer() {
           </nav>
 
           {/* CTA (row 1, col 3) */}
-          <div className="order-2 flex flex-col items-stretch gap-3 md:order-none md:row-start-1 md:col-start-3 md:items-end">
+          <div className="order-2 flex flex-col items-stretch gap-3 md:order-0md:row-start-1 md:col-start-3 md:items-end">
             <a
               href="/book"
               className="inline-flex w-full items-center justify-center rounded-full bg-linear-to-b from-white/20 to-white/10 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:from-white/25 hover:to-white/15 md:w-fit"
@@ -131,7 +131,7 @@ export default function Footer() {
           </div>
 
           {/* Contact info (row 2, col 2) - aligns with tagline on md+ */}
-          <div className="order-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 text-center text-sm text-white/80 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.65)] backdrop-blur-sm md:order-none md:border-0 md:bg-transparent md:px-0 md:py-0 md:shadow-none md:row-start-2 md:col-start-2">
+          <div className="order-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 text-center text-sm text-white/80 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.65)] backdrop-blur-sm md:order-0md:border-0 md:bg-transparent md:px-0 md:py-0 md:shadow-none md:row-start-2 md:col-start-2">
             <div className="flex flex-col items-center gap-1 md:flex-row md:justify-center">
               <span className="font-semibold tracking-wide">07380 301555</span>
               <span className="mx-2 hidden text-white/40 md:inline" aria-hidden="true">

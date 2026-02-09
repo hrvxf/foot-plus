@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const shouldInvertLogoOnScroll = pathname === "/";
+  const invert = isScrolled && shouldInvertLogoOnScroll;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -90,7 +92,7 @@ export default function Header() {
                   fill
                   priority
                   sizes="160px"
-                  className={`transition-opacity duration-300 ${isScrolled ? "opacity-0" : "opacity-100"}`}
+                  className={`transition-opacity duration-300 ${invert ? "opacity-0" : "opacity-100"}`}
                 />
                 <Image
                   src="/images/footplus-logo-white.svg"
@@ -98,7 +100,7 @@ export default function Header() {
                   fill
                   priority
                   sizes="160px"
-                  className={`transition-opacity duration-300 ${isScrolled ? "opacity-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "opacity-0"}`}
+                  className={`transition-opacity duration-300 ${invert ? "opacity-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "opacity-0"}`}
                 />
               </div>
             </Link>
