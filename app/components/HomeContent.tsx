@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
 import HeroSection from "./HeroSection";
+import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 
 const heroServices = [
   {
@@ -74,34 +74,28 @@ export default function HomeContent() {
         />
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-10 px-6 pb-12 pt-6 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-14 md:pb-16 md:pt-8">
-          <div className="flex-1 space-y-6">
-            <div className="space-y-6">
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-12 px-6 pb-16 pt-2 sm:gap-14 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-20 md:pb-20 md:pt-8">
+          <div className="flex flex-1 flex-col items-center space-y-8 text-center md:space-y-10">
+            <div className="space-y-7">
               {/* Brand mark (removed Bristol pill) */}
-              <div className="flex w-full items-center justify-center md:justify-start">
-                <Image
-                  src="/images/footplus-logo.png"
-                  alt="Foot+ Bristol"
-                  width={520}
-                  height={200}
-                  priority
-                  className="h-30 w-auto opacity-90 md:h-36"
-                />
+              <div
+                className="flex w-full items-center justify-center"
+                style={{ paddingBottom: "15px", paddingTop: "0px" }}
+              >
+                <AnimatedFootPlusLogo className="h-28 w-auto text-white/95 sm:h-32 md:h-44 lg:h-48" />
               </div>
 
               {/* Headline (intentional line breaks) */}
-              <h1 className="font-heading text-4xl font-semibold leading-[1.05] md:text-5xl">
+              <h1 className="font-heading text-4xl font-semibold leading-[1.05] sm:text-[2.75rem] md:text-5xl">
                 <span className="block">Foot Health Practitioner in Bristol</span>
-              
               </h1>
 
-              <p className="max-w-xl text-base text-white/90 md:text-lg">
-                Care for healthy, comfortable feet in
-                Bristol - in the comfort of your home.
+              <p className="mx-auto max-w-2xl text-base text-white/90 sm:text-lg">
+                Care for healthy, comfortable feet in Bristol - in the comfort of your home.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center gap-4 md:justify-center">
               <Button href="/book" variant="primary">
                 Book an appointment
               </Button>
@@ -116,6 +110,7 @@ export default function HomeContent() {
               <div className="absolute inset-x-0 top-0 h-px bg-white/40" />
               <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-white/25 blur-[80px]" />
               <div className="absolute -right-14 bottom-4 h-44 w-44 rounded-full bg-brand-sageLight/25 blur-[90px]" />
+
               <div className="relative">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
@@ -186,8 +181,8 @@ export default function HomeContent() {
             Home-visit foot care in Bristol
           </h2>
           <p className="max-w-2xl text-base text-brand-charcoal/80">
-            We deliver premium foot health services with clear advice and gentle treatment.
-            Each visit includes a full assessment and personalised guidance. See{" "}
+            We deliver premium foot health services with clear advice and gentle treatment. Each
+            visit includes a full assessment and personalised guidance. See{" "}
             <Link href="/prices" className="font-semibold text-brand-sageDark underline">
               foot health prices in Bristol
             </Link>{" "}
