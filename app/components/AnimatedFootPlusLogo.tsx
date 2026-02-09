@@ -356,8 +356,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
     };
   }, []);
 
-  const baseClasses =
-    "block h-28 w-auto max-w-full shrink-0 sm:h-36 md:h-48";
+  const baseClasses = "block h-28 w-auto max-w-full shrink-0 md:h-48";
   const svgClasses = className ? `${baseClasses} ${className}` : baseClasses;
 
   return (

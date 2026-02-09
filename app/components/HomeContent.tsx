@@ -74,7 +74,7 @@ export default function HomeContent() {
         />
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-12 px-6 pb-16 pt-2 sm:gap-14 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-20 md:pb-20 md:pt-8">
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-12 px-6 pb-10 pt-0 sm:gap-14 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-20 md:pb-20 md:pt-8">
           <div className="flex flex-1 flex-col items-center space-y-8 text-center md:space-y-10">
             <div className="space-y-7">
               {/* Brand mark (removed Bristol pill) */}
