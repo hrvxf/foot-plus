@@ -60,34 +60,23 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
         "(prefers-reduced-motion: reduce)"
       );
 
-      const settleStaticState = () => {
-        gsap.set(allLogoElements, {
-          opacity: 1,
-          clearProps: "filter,transform",
-          willChange: "auto",
-        });
-        gsap.set(drawTargets, {
-          clearProps:
-            "filter,opacity,strokeDasharray,strokeDashoffset,strokeWidth,stroke,fillOpacity,transform",
-        });
-        if (toes.length) {
-          gsap.set(toes, {
-            opacity: 1,
-            scale: 1,
-            scaleY: 1,
-            y: 0,
-            clearProps: "transform",
-            willChange: "auto",
-            transformOrigin: "50% 100%",
-          });
-        }
-      };
+      const allTargets = Array.from(
+        new Set([...wordmark, ...plus, ...drawTargets, ...toes])
+      );
 
       if (prefersReducedMotion.matches) {
-        settleStaticState();
+        gsap.set(allTargets, {
+          opacity: 1,
+          scale: 1,
+          clearProps: "all",
+        });
         return;
       }
 
+      gsap.set(allLogoElements, {
+        opacity: 1,
+        willChange: "transform, opacity",
+      });
       const getPathLength = (target: Element): number | null => {
         try {
           if (
@@ -106,10 +95,6 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
         return null;
       };
 
-      gsap.set(allLogoElements, {
-        opacity: 1,
-        willChange: "transform, opacity",
-      });
       if (toes.length) {
         gsap.set(toes, {
           opacity: 0,
@@ -136,7 +121,11 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
       });
 
       if (!drawTargets.length) {
-        settleStaticState();
+        gsap.set(allTargets, {
+          opacity: 1,
+          scale: 1,
+          clearProps: "all",
+        });
         return;
       }
 
@@ -204,7 +193,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
     <svg
       id="footplus-logo"
       ref={svgRef}
-      className={`${className ? `${className} ` : ""}w-[min(520px,90vw)] h-auto`.trim()}
+      className={`${className ? `${className} ` : ""}block h-20 w-auto max-w-full shrink-0 md:h-28`.trim()}
       viewBox="0 0 520 200"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
