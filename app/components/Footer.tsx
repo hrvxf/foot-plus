@@ -45,8 +45,8 @@ export default function Footer() {
         */}
         <div className="flex flex-col gap-6 md:grid md:grid-cols-3 md:grid-rows-[auto_auto] md:gap-5 md:gap-y-3 md:items-start">
           {/* Brand (row 1, col 1) */}
-          <div className="order-1 flex items-center gap-4 md:order-none md:row-start-1 md:col-start-1">
-            <div className="flex flex-col justify-center">
+          <div className="order-1 flex items-center justify-center gap-4 text-center md:order-none md:row-start-1 md:col-start-1 md:justify-start md:text-left">
+            <div className="flex flex-col items-center justify-center md:items-start">
               <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
                 <img
                   src="/images/footplus-logo_WHITE.svg"
