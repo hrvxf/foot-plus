@@ -10,10 +10,12 @@ function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function Footer() {
-  const message = encodeURIComponent(
-    "Hi Adam, I’d like to enquire about an appointment with Foot+."
-  );
-  const whatsappHref = `https://wa.me/447380301555?text=${message}`;
+  const whatsappPresetMessage =
+    "Hi Adam, I'd like to enquire about an appointment with Foot+.";
+  const whatsappHref = `https://wa.me/447380301555?text=${encodeURIComponent(
+    whatsappPresetMessage
+  )}`;
+  const coverageMessage = "Serving Bristol and nearby towns";
 
   const iconBtn =
     "group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 backdrop-blur-sm transition-all duration-200 " +
@@ -43,25 +45,28 @@ export default function Footer() {
         */}
         <div className="grid gap-5 md:grid-cols-3 md:grid-rows-[auto_auto] md:gap-y-3 md:items-start">
           {/* Brand (row 1, col 1) */}
-  <div className="flex items-center gap-4 md:row-start-1 md:col-start-1">
-    <div className="flex flex-col justify-center">
-      <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
-        <img
-          src="/images/footplus-logo_WHITE.svg"
-          alt="Foot+ Bristol logo"
-          className="h-16 w-auto"
-        />
-      </div>
+          <div className="flex items-center gap-4 md:row-start-1 md:col-start-1">
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
+                <img
+                  src="/images/footplus-logo_WHITE.svg"
+                  alt="Foot+ Bristol logo"
+                  className="h-16 w-auto"
+                />
+              </div>
 
-      {/* Mobile tagline stays here */}
-      <div className="mt-1 text-sm text-white/80 md:hidden">
-        Professional foot care at home.
-      </div>
-    </div>
-  </div>
+              {/* Mobile tagline stays here */}
+              <div className="mt-1 text-sm text-white/80 md:hidden">
+                Professional foot care at home.
+              </div>
+            </div>
+          </div>
 
           {/* Icons (row 1, col 2) */}
-          <div className="flex justify-center md:row-start-1 md:col-start-2">
+          <nav
+            aria-label="Quick contact options"
+            className="flex justify-center md:row-start-1 md:col-start-2"
+          >
             <div className="flex items-center gap-3">
               {/* WhatsApp (first) */}
               <a
@@ -70,12 +75,18 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
                 className={iconBtn}
+                data-analytics-id="footer-whatsapp"
               >
                 <WhatsAppIcon className={icon} />
               </a>
 
               {/* Call */}
-              <a href="tel:+447380301555" aria-label="Call" className={iconBtn}>
+              <a
+                href="tel:+447380301555"
+                aria-label="Call"
+                className={iconBtn}
+                data-analytics-id="footer-phone"
+              >
                 <Phone className={icon} />
               </a>
 
@@ -84,6 +95,7 @@ export default function Footer() {
                 href="mailto:hello@foot-plus.co.uk"
                 aria-label="Email"
                 className={iconBtn}
+                data-analytics-id="footer-email"
               >
                 <Mail className={icon} />
               </a>
@@ -95,37 +107,47 @@ export default function Footer() {
                 rel="noreferrer"
                 aria-label="Facebook"
                 className={iconBtn}
+                data-analytics-id="footer-facebook"
               >
                 <Facebook className={icon} />
               </a>
             </div>
-          </div>
+          </nav>
 
           {/* CTA (row 1, col 3) */}
           <div className="flex flex-col items-center gap-3 md:row-start-1 md:col-start-3 md:items-end">
             <a
               href="/book"
               className="inline-flex w-fit items-center justify-center rounded-full bg-linear-to-b from-white/20 to-white/10 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:from-white/25 hover:to-white/15"
+              data-analytics-id="footer-book"
             >
               Book an appointment
             </a>
           </div>
 
-          {/* Tagline (row 2, col 1) — md+ only, aligns with contact info */}
+          {/* Tagline (row 2, col 1) - md+ only, aligns with contact info */}
           <div className="hidden text-sm text-white/80 md:block md:row-start-2 md:col-start-1">
-           Care that starts from the ground up.
+            Care that starts from the ground up.
           </div>
 
-          {/* Contact info (row 2, col 2) — aligns with tagline on md+ */}
-          <div className="text-sm text-white/80 md:row-start-2 md:col-start-2 md:text-center">
-            <span className="whitespace-nowrap">07380 301555</span>
-            <span className="mx-2 text-white/40">•</span>
-            <a
-              href="mailto:hello@foot-plus.co.uk"
-              className="whitespace-nowrap transition hover:text-white"
-            >
-              hello@foot-plus.co.uk
-            </a>
+          {/* Contact info (row 2, col 2) - aligns with tagline on md+ */}
+          <div className="text-center text-sm text-white/80 md:row-start-2 md:col-start-2">
+            <div className="flex flex-col items-center gap-1 md:flex-row md:justify-center">
+              <span className="font-semibold tracking-wide">07380 301555</span>
+              <span className="mx-2 hidden text-white/40 md:inline" aria-hidden="true">
+                &bull;
+              </span>
+              <a
+                href="mailto:hello@foot-plus.co.uk"
+                className="whitespace-nowrap transition hover:text-white"
+                data-analytics-id="footer-email-inline"
+              >
+                hello@foot-plus.co.uk
+              </a>
+            </div>
+            <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/60">
+              {coverageMessage}
+            </div>
           </div>
 
           {/* Spacer (row 2, col 3) to keep row alignment clean on md+ */}
@@ -135,27 +157,30 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-5 border-t border-white/15 pt-3">
           <div className="flex flex-col gap-2 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
-            <div>© {new Date().getFullYear()} Foot+ • Bristol</div>
-            <div className="flex items-center gap-2">
+            <div>&copy; {new Date().getFullYear()} Foot+ &bull; Bristol</div>
+            <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-2">
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
                 href="/areas"
+                data-analytics-id="footer-link-areas"
               >
                 Areas
               </a>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
                 href="/privacy"
+                data-analytics-id="footer-link-privacy"
               >
                 Privacy
               </a>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
                 href="/terms"
+                data-analytics-id="footer-link-terms"
               >
                 Terms
               </a>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
