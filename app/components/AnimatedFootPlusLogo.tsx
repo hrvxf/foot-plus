@@ -23,9 +23,10 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
       return;
     }
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
+    const mediaQuery =
+      typeof window.matchMedia === "function"
+        ? window.matchMedia("(prefers-reduced-motion: reduce)")
+        : null;
 
     const ctx = gsap.context(() => {
       timelineRef.current?.kill();
@@ -44,30 +45,24 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
       }
 
       const selectToeGroups = (selector: string) =>
-        [...q(selector)].map((element) => element as unknown as SVGGElement);
+        [...q(selector)].map(
+          (element) => element as unknown as SVGGElement
+        );
 
-      const sortByPosition = (items: SVGGElement[]) =>
-        [...items].sort((a, b) => {
-          try {
-            const boxA = a.getBBox();
-            const boxB = b.getBBox();
-            return boxA.x - boxB.x;
-          } catch {
-            return (
-              Number(a.dataset.toe ?? "0") - Number(b.dataset.toe ?? "0")
-            );
-          }
-        });
+      const sortByToeIndex = (items: SVGGElement[]) =>
+        [...items].sort(
+          (a, b) =>
+            Number(a.dataset.toe ?? "0") - Number(b.dataset.toe ?? "0")
+        );
 
-      const leftToes = selectToeGroups(
-        '[data-logo="toe"][data-side="left"]'
+      const leftToes = sortByToeIndex(
+        selectToeGroups('[data-logo="toe"][data-side="left"]')
       );
-      const leftToesByPosition = sortByPosition(leftToes);
 
-      const rightToes = selectToeGroups(
-        '[data-logo="toe"][data-side="right"]'
+      const rightToes = sortByToeIndex(
+        selectToeGroups('[data-logo="toe"][data-side="right"]')
       );
-      const rightToesByPosition = sortByPosition(rightToes);
+      const rightToesAnimationOrder = [...rightToes].reverse();
 
       const allToes = [...leftToes, ...rightToes];
 
@@ -126,9 +121,11 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
         );
       }
 
-      const reducedMotion = prefersReducedMotion.matches;
+      const reducedMotion = mediaQuery?.matches ?? false;
       // eslint-disable-next-line no-console
-      console.log("reducedMotion", reducedMotion);
+      console.log("reducedMotion", reducedMotion, {
+        supported: !!mediaQuery,
+      });
 
       if (reducedMotion) {
         gsap.set(allTargets, {
@@ -264,7 +261,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
         timeline
           .addLabel("toes")
           .fromTo(
-            leftToesByPosition,
+            leftToes,
             {
               autoAlpha: 0,
               scaleY: 0,
@@ -281,7 +278,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
             "toes"
           )
           .to(
-            leftToesByPosition,
+            leftToes,
             {
               scaleY: 1,
               duration: 0.1,
@@ -292,7 +289,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
             "toes+=0.12"
           )
           .fromTo(
-            rightToesByPosition,
+            rightToesAnimationOrder,
             {
               autoAlpha: 0,
               scaleY: 0,
@@ -309,7 +306,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
             "toes+=0.35"
           )
           .to(
-            rightToesByPosition,
+            rightToesAnimationOrder,
             {
               scaleY: 1,
               duration: 0.1,
@@ -415,7 +412,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="right"
-            data-toe="1"
+            data-toe="5"
           >
             <path
               id="ellipse28"
@@ -429,7 +426,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="right"
-            data-toe="2"
+            data-toe="4"
           >
             <path
               id="ellipse29"
@@ -457,7 +454,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="right"
-            data-toe="4"
+            data-toe="2"
           >
             <path
               id="ellipse31"
@@ -471,7 +468,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="right"
-            data-toe="5"
+            data-toe="1"
           >
             <path
               id="ellipse32"
@@ -499,7 +496,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="left"
-            data-toe="5"
+            data-toe="1"
           >
             <path
               id="path24"
@@ -513,7 +510,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="left"
-            data-toe="4"
+            data-toe="2"
           >
             <path
               id="ellipse24"
@@ -541,7 +538,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="left"
-            data-toe="2"
+            data-toe="4"
           >
             <path
               id="ellipse26"
@@ -555,7 +552,7 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           <g
             data-logo="toe"
             data-side="left"
-            data-toe="1"
+            data-toe="5"
           >
             <path
               id="ellipse27"
