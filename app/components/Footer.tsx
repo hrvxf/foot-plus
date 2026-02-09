@@ -1,5 +1,4 @@
 import { Mail, Phone, Facebook } from "lucide-react";
-import BrandSeal from "../../components/BrandSeal";
 
 function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
   // Simple WhatsApp-style mark (inline SVG) so you don't need extra deps
@@ -44,25 +43,22 @@ export default function Footer() {
         */}
         <div className="grid gap-5 md:grid-cols-3 md:grid-rows-[auto_auto] md:gap-y-3 md:items-start">
           {/* Brand (row 1, col 1) */}
-          <div className="flex items-center gap-4 md:row-start-1 md:col-start-1">
-            <BrandSeal variant="footer" />
+  <div className="flex items-center gap-4 md:row-start-1 md:col-start-1">
+    <div className="flex flex-col justify-center">
+      <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
+        <img
+          src="/images/footplus-logo_WHITE.svg"
+          alt="Foot+ Bristol logo"
+          className="h-16 w-auto"
+        />
+      </div>
 
-            <div className="flex flex-col justify-center">
-              <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
-                <img
-                  src="/images/footplus-logo_WHITE.svg"
-                  alt="Foot+ Bristol logo"
-                  className="h-16 w-auto"
-                />
-              </div>
-
-             {/* Mobile tagline stays here */}
-            <div className="mt-1 text-sm text-white/80 md:hidden">
-            Professional foot care at home.
-            </div>
-
-            </div>
-          </div>
+      {/* Mobile tagline stays here */}
+      <div className="mt-1 text-sm text-white/80 md:hidden">
+        Professional foot care at home.
+      </div>
+    </div>
+  </div>
 
           {/* Icons (row 1, col 2) */}
           <div className="flex justify-center md:row-start-1 md:col-start-2">
