@@ -47,13 +47,13 @@ export default function Header() {
   // ✅ Glass comes in when scrolled
   const headerSurface = isScrolled
     ? "bg-white/10 backdrop-blur-xl"
-    : "bg-brand-offwhite/95 backdrop-blur-0";
+    : "bg-white";
 
   const linkBase =
     "px-4 py-4 text-base font-medium transition border-b-2 border-transparent md:py-2";
   const navTracking = "tracking-normal";
   const navPadding = "py-4";
-  const logoSize = "h-12 md:h-14";
+  const logoWrapper = "relative h-[48px] w-[160px]";
 
   const linkTone = "text-brand-charcoal/80 hover:text-brand-sageDark";
   const activeBorder = "border-brand-sageDark";
@@ -83,15 +83,24 @@ export default function Header() {
         >
           <div className="flex h-full items-center">
             <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
-              <Image
-                src="/images/footplus-logo_GREEN.svg"
-                alt="Foot+ Bristol logo"
-                width={360}
-                height={120}
-                priority
-                sizes="(max-width: 768px) 200px, 280px"
-                className={`block w-auto ${logoSize}`}
-              />
+              <div className={logoWrapper}>
+                <Image
+                  src="/images/footplus-logo-green.svg"
+                  alt="Foot+ Bristol logo"
+                  fill
+                  priority
+                  sizes="160px"
+                  className={`transition-opacity duration-300 ${isScrolled ? "opacity-0" : "opacity-100"}`}
+                />
+                <Image
+                  src="/images/footplus-logo-white.svg"
+                  alt="Foot+ Bristol logo"
+                  fill
+                  priority
+                  sizes="160px"
+                  className={`transition-opacity duration-300 ${isScrolled ? "opacity-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "opacity-0"}`}
+                />
+              </div>
             </Link>
           </div>
 
