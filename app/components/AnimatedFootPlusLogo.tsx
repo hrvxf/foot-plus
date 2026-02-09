@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 type Props = {
@@ -8,71 +8,201 @@ type Props = {
 };
 
 export default function AnimatedFootPlusLogo({ className }: Props) {
-  useEffect(() => {
-    const tl = gsap.timeline({
-      defaults: { ease: "power2.out" },
-    });
+  const svgRef = useRef<SVGSVGElement>(null);
+  const idleTweenRef = useRef<gsap.core.Tween | null>(null);
 
-    // Overall logo fade + lift
-    tl.fromTo(
-      "#footplus-logo",
-      { opacity: 0, y: 8 },
-      { opacity: 0.92, y: 0, duration: 0.6 }
-    );
+  useLayoutEffect(() => {
+    const svg = svgRef.current;
 
-    // Os settle in
-    tl.fromTo(
-      ["#O_left", "#O_right"],
-      { scale: 0.96 },
-      { scale: 1, duration: 0.45 },
-      "<"
-    );
+    if (!svg) {
+      return;
+    }
 
-    // Left toes
-    tl.fromTo(
-      "#O_left_toes > *",
-      { opacity: 0, y: 6, scale: 0.9 },
-      {
+    const ctx = gsap.context(() => {
+      const q = gsap.utils.selector(svg);
+      const wordmark = q('[data-logo="wordmark"]');
+      const plus = q('[data-logo="plus"]');
+      const toes = q('[data-toe]');
+      const allLogoElements = Array.from(new Set([...wordmark, ...plus]));
+      const drawTargets = Array.from(
+        new Set(
+          gsap.utils.toArray<SVGElement>(
+            q(
+              '[data-logo="wordmark"] path, [data-logo="wordmark"] rect, [data-logo="wordmark"] circle, [data-logo="wordmark"] ellipse, [data-logo="wordmark"] polygon, [data-logo="wordmark"] polyline, [data-logo="plus"] path, [data-logo="plus"] rect'
+            )
+          )
+        )
+      );
+      if (
+        process.env.NODE_ENV !== "production" &&
+        (!wordmark.length || !plus.length || !toes.length)
+      ) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          "AnimatedFootPlusLogo: Missing expected SVG elements. Confirm data-logo/data-toe attributes exist."
+        );
+      }
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      const settleStaticState = () => {
+        gsap.set(allLogoElements, {
+          opacity: 1,
+          clearProps: "filter,transform",
+          willChange: "auto",
+        });
+        gsap.set(drawTargets, {
+          clearProps:
+            "filter,opacity,strokeDasharray,strokeDashoffset,strokeWidth,stroke,fillOpacity,transform",
+        });
+        if (toes.length) {
+          gsap.set(toes, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            clearProps: "transform",
+            willChange: "auto",
+          });
+        }
+      };
+
+      if (prefersReducedMotion.matches) {
+        settleStaticState();
+        return;
+      }
+
+      const getPathLength = (target: Element): number | null => {
+        try {
+          if (
+            "getTotalLength" in target &&
+            typeof (target as SVGGeometryElement).getTotalLength === "function"
+          ) {
+            return (target as SVGGeometryElement).getTotalLength();
+          }
+        } catch (error) {
+          if (process.env.NODE_ENV !== "production") {
+            // eslint-disable-next-line no-console
+            console.warn("AnimatedFootPlusLogo: getTotalLength failed", error);
+          }
+        }
+
+        return null;
+      };
+
+      gsap.set(allLogoElements, {
         opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.45,
-        stagger: 0.05,
-      },
-      "-=0.15"
-    );
+        willChange: "transform, opacity",
+      });
+      if (toes.length) {
+        gsap.set(toes, {
+          opacity: 0,
+          scale: 0.7,
+          y: -4,
+          transformOrigin: "50% 80%",
+          willChange: "transform, opacity",
+        });
+      }
 
-    // Right toes
-    tl.fromTo(
-      "#O_right_toes > *",
-      { opacity: 0, y: 6, scale: 0.9 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.45,
-        stagger: 0.05,
-      },
-      "<"
-    );
+      drawTargets.forEach((target) => {
+        const length = getPathLength(target);
 
-    // Plus pop
-    tl.fromTo(
-      "#plus",
-      { opacity: 0, scale: 0.85, transformOrigin: "50% 50%" },
-      { opacity: 1, scale: 1, duration: 0.35 },
-      "-=0.2"
-    );
+        if (length) {
+          gsap.set(target, {
+            strokeDasharray: length,
+            strokeDashoffset: length,
+            stroke: "currentColor",
+            strokeWidth: 1,
+            fillOpacity: 0,
+          });
+        }
+
+        gsap.set(target, { opacity: 0.7, filter: "blur(4px)" });
+      });
+
+      if (!drawTargets.length) {
+        settleStaticState();
+        return;
+      }
+
+      const startIdle = () => {
+        idleTweenRef.current?.kill();
+        if (!toes.length) return;
+
+        idleTweenRef.current = gsap.to(toes, {
+          rotation: "+=1.5",
+          y: "+=0.8",
+          repeat: -1,
+          yoyo: true,
+          duration: 2.8,
+          ease: "sine.inOut",
+          stagger: { each: 0.2, from: "random" },
+          force3D: true,
+        });
+      };
+
+      const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      timeline
+        .to(drawTargets, {
+          strokeDashoffset: 0,
+          duration: 0.9,
+          stagger: 0.02,
+        })
+        .to(
+          drawTargets,
+          {
+            filter: "blur(0px)",
+            opacity: 1,
+            fillOpacity: 1,
+            duration: 0.35,
+            ease: "power1.out",
+            stagger: 0.01,
+          },
+          "-=0.3"
+        )
+        .set(drawTargets, {
+          strokeDasharray: "none",
+          strokeDashoffset: 0,
+          strokeWidth: 0,
+          stroke: "none",
+          clearProps: "filter",
+        });
+
+      if (toes.length) {
+        timeline
+          .to(
+            toes,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+            duration: 0.45,
+            ease: "back.out(2)",
+            stagger: 0.07,
+            force3D: true,
+          },
+          "-=0.2"
+        )
+          .call(startIdle);
+      } else {
+        timeline.call(startIdle);
+      }
+    }, svg);
 
     return () => {
-      tl.kill();
+      idleTweenRef.current?.kill();
+      idleTweenRef.current = null;
+      ctx.revert();
     };
   }, []);
 
   return (
     <svg
       id="footplus-logo"
-      className={className}
+      ref={svgRef}
+      className={`${className ? `${className} ` : ""}w-[min(520px,90vw)] h-auto`.trim()}
       viewBox="0 0 520 200"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
@@ -103,8 +233,9 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
          d="M -11.677166,-11.677163 H 472.32281 V 232.32283 H -11.677166 Z"
          clipRule="evenodd"
          id="path4" /></clipPath></defs><g
-     id="layer2"><path
+     id="layer2" data-logo="wordmark"><path
        id="rect45"
+       data-logo="plus"
        fill="#ffffff" strokeWidth={0.11355}
        d="m 271.32183,29.747393 c -0.67921,0.418661 -1.32037,0.965893 -1.33152,1.943466 l -0.10827,6.618101 -6.69292,-0.0047 c -1.06494,-7.42e-4 -2.64842,0.782852 -3.27866,1.837467 -0.50488,0.844839 -0.34359,1.873629 -0.33343,2.907566 0.0102,1.033037 -0.13125,2.071213 0.33336,2.936192 0.51656,0.961676 1.68887,1.867053 2.75374,1.879529 l 7.21784,0.08456 -0.0309,6.782147 c -0.005,0.977621 1.03863,2.136561 2.0584,2.627071 0.87377,0.420277 1.92062,0.417587 2.95342,0.443235 1.10404,0.02742 2.19422,0.05326 3.11064,-0.428363 0.86741,-0.455865 1.60324,-1.426407 1.59492,-2.404006 l 0.2011,-7.079568 8.85274,0.02974 c 1.06496,0.0036 1.62323,-1.073238 2.03038,-1.890023 0.52186,-1.046869 0.38771,-2.753817 0.33393,-3.46791 -0.0772,-1.025497 -0.17881,-2.00596 -0.76698,-2.809084 -0.55873,-0.762941 -1.49128,-1.347559 -2.55621,-1.339793 l -8.03315,-0.01487 0.031,-5.755579 c 0.006,-0.977616 -0.31071,-1.934961 -1.02268,-2.523438 -1.03354,-0.854271 -2.6273,-0.816092 -3.9894,-0.861323 -1.12136,-0.03724 -2.4072,-0.03601 -3.32738,0.489546 -10e-6,2e-6 2e-5,0 2e-5,0 z"
        clipPath="none"
@@ -116,27 +247,32 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
        mask="none" /><g
        id="layer6"><g
          id="layer7"><path
-           id="ellipse28"
+          id="ellipse28"
+          data-toe="1"
            fill="#ffffff" strokeWidth={0.217459}
            d="m 173.07643,30.623117 c 0.0209,1.603267 -0.75242,3.328999 -1.9749,4.419479 -1.18558,1.057566 -2.97132,1.502679 -4.58846,1.515402 -1.56493,0.01231 -3.34245,-0.347637 -4.46473,-1.396433 -1.20586,-1.126918 -1.71368,-2.95137 -1.69651,-4.56819 0.016,-1.501765 0.558,-3.152355 1.66558,-4.211283 1.12666,-1.077164 2.87614,-1.579555 4.46473,-1.60463 1.58105,-0.02495 3.31987,0.439264 4.49566,1.455917 1.24539,1.076823 2.07765,2.779418 2.09863,4.389738 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse29"
+          id="ellipse29"
+          data-toe="2"
            fill="#ffffff" strokeWidth={0.199317}
            d="m 184.03722,25.88031 c 0.10655,1.377166 -0.13013,3.036242 -1.17208,3.986674 -1.10287,1.006009 -2.93313,1.093197 -4.44781,0.969017 -1.27661,-0.104662 -2.62652,-0.561972 -3.5508,-1.415148 -0.91839,-0.847754 -1.49223,-2.113033 -1.60512,-3.332348 -0.12953,-1.398927 0.11041,-3.052035 1.11022,-4.0759 0.89041,-0.911846 2.40464,-1.171855 3.70545,-1.177212 1.47044,-0.006 3.10331,0.354689 4.20036,1.296179 1.06374,0.912906 1.65401,2.381535 1.75978,3.748738 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse30"
+          id="ellipse30"
+          data-toe="3"
            fill="#ffffff" strokeWidth={0.17392}
            d="m 194.60068,25.109997 c -0.0552,1.086996 -0.49942,2.266005 -1.33208,3.003126 -0.95691,0.847116 -2.40607,1.273548 -3.70332,1.182336 -1.2288,-0.0864 -2.49628,-0.701776 -3.30119,-1.598729 -0.77316,-0.861578 -1.11547,-2.103077 -1.11555,-3.241061 -7e-5,-1.075282 0.32315,-2.248476 1.05369,-3.062608 0.81993,-0.913765 2.10849,-1.591939 3.36305,-1.628471 1.37669,-0.04009 2.87226,0.586754 3.79611,1.568983 0.92082,0.978994 1.30618,2.458003 1.23929,3.776424 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse31"
+          id="ellipse31"
+          data-toe="4"
            fill="#ffffff" strokeWidth={0.157137}
            d="m 204.96225,25.787163 c 0.0434,1.136058 -0.29111,2.447989 -1.15434,3.224796 -0.8556,0.769961 -2.22142,0.92429 -3.39261,0.886269 -1.09771,-0.03564 -2.33209,-0.293544 -3.11424,-1.034982 -0.78409,-0.743285 -1.09878,-1.928393 -1.12339,-2.986856 -0.0242,-1.042651 0.23278,-2.220764 0.96874,-2.986856 0.76649,-0.797884 2.01615,-1.177453 3.14515,-1.213436 1.15635,-0.03685 2.44593,0.284323 3.29983,1.034979 0.85625,0.752713 1.32832,1.9613 1.37086,3.076086 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse32"
+          id="ellipse32"
+          data-toe="5"
            fill="#ffffff" strokeWidth={0.148021}
            d="m 213.70713,29.58751 c -0.0189,1.017411 -0.27461,2.186601 -1.04739,2.881803 -0.68088,0.612521 -1.76404,0.740063 -2.69613,0.716572 -1.11009,-0.02798 -2.34033,-0.293714 -3.1601,-1.01399 -0.73844,-0.648811 -1.19867,-1.682048 -1.20206,-2.643869 -0.004,-1.002152 0.45411,-2.096935 1.23299,-2.762837 0.7889,-0.674466 1.9811,-0.891962 3.03638,-0.865279 1.0516,0.02659 2.24573,0.284529 2.97451,1.013992 0.67222,0.672861 0.87909,1.740728 0.8618,2.673608 z"
            clipPath="none"
@@ -146,29 +282,33 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
            d="m 191.86042,30.673439 c 8.01738,0.542291 16.35126,2.523585 23.05573,6.785571 3.15695,2.006856 5.73188,5.045554 7.30996,8.353058 1.48663,3.115817 1.71172,6.603876 1.71169,10.151653 1.1e-4,14.19111 -14.99836,26.752319 -32.5466,26.752329 -8.77412,5e-6 -16.81419,-2.961751 -22.66072,-7.697396 -5.84653,-4.735645 -10.05624,-11.483116 -10.05622,-18.578671 1e-5,-3.547777 0.2866,-7.232477 1.89443,-10.306622 1.60783,-3.074145 4.20068,-5.782534 7.03506,-7.942642 3.28674,-2.504843 7.2019,-4.281103 11.18836,-5.533628 4.19194,-1.317081 8.66913,-2.28121 13.06831,-1.983652 z m 0.38206,5.636874 c -5.59782,0.0496 -11.45708,2.753041 -15.29296,6.673533 -3.14684,3.216249 -5.36047,7.979342 -4.91838,12.374699 0.48134,4.785478 4.03823,9.231061 7.94088,12.236589 2.95969,2.279333 5.58114,3.623903 10.73343,3.623947 5.15238,6.5e-5 9.13931,-1.364691 12.51304,-4.088451 3.74857,-3.0264 6.64338,-7.691541 7.05883,-12.381038 0.40029,-4.518303 -1.39927,-9.537156 -4.60473,-12.863307 -3.31433,-3.439123 -8.55411,-5.619174 -13.43011,-5.575972 z"
            clipPath="none"
            mask="none" /></g></g><g
-       id="layer4"><g
+       id="layer4" data-logo="wordmark"><g
          id="layer5"><path
            id="path24"
            fill="#ffffff" strokeWidth={0.199998}
            d="m 98.615837,24.918673 c -0.0415,1.347247 -0.847357,2.711213 -1.889947,3.612132 -1.01482,0.876914 -2.467309,1.405242 -3.831534,1.38459 -1.226044,-0.01856 -2.523337,-0.524573 -3.400998,-1.347955 -1.035231,-0.971208 -1.774839,-2.426469 -1.751816,-3.817015 0.02042,-1.232945 0.700751,-2.521671 1.664524,-3.335149 1.00056,-0.844527 2.463134,-1.201245 3.794498,-1.198894 1.356387,0.0024 2.861766,0.353238 3.861126,1.23507 0.96433,0.850924 1.592877,2.209253 1.554147,3.467221 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse24"
+          id="ellipse24"
+          data-toe="6"
            fill="#ffffff" strokeWidth={0.205213}
            d="m 109.25463,20.142201 c 0.088,1.317535 -0.34668,2.827259 -1.33015,3.748559 -1.05756,0.990693 -2.75293,1.331498 -4.228,1.269715 -1.34894,-0.0565 -2.81641,-0.539165 -3.746813,-1.480024 -0.91766,-0.927973 -1.31631,-2.341929 -1.33016,-3.622373 -0.0138,-1.271384 0.28698,-2.743658 1.24267,-3.622373 0.981403,-0.902353 2.565473,-1.121904 3.921793,-1.059406 1.33787,0.06165 2.7592,0.525902 3.74681,1.3959 0.95997,0.845654 1.64039,2.120716 1.72385,3.370002 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse25"
+          id="ellipse25"
+          data-toe="7"
            fill="#ffffff" strokeWidth={0.221284}
            d="m 121.67575,17.215028 c 1.9e-4,1.424624 -0.40351,3.014384 -1.4216,4.049379 -1.00514,1.021814 -2.6105,1.578454 -4.0732,1.569782 -1.53323,-0.0091 -3.22909,-0.594448 -4.24818,-1.695969 -0.93972,-1.015735 -1.17417,-2.563788 -1.15914,-3.923192 0.0161,-1.455975 0.30161,-3.110455 1.33411,-4.175563 1.00296,-1.034632 2.64718,-1.584612 4.11695,-1.527722 1.52191,0.05891 3.10814,0.808993 4.11694,1.906277 0.92022,1.000921 1.33394,2.461058 1.33412,3.797008 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse26"
+          id="ellipse26"
+          data-toe="8"
            fill="#ffffff" strokeWidth={0.217459}
            d="m 134.48798,18.314039 c 0.0187,1.616358 -0.5834,3.447065 -1.84807,4.51206 -1.06336,0.895488 -2.71059,1.125912 -4.11606,0.980916 -1.35844,-0.140144 -2.76398,-0.762153 -3.67863,-1.738032 -0.93907,-1.001937 -1.40704,-2.448992 -1.45437,-3.797005 -0.0494,-1.405895 0.25292,-3.007324 1.23565,-4.049377 1.00424,-1.064848 2.66489,-1.621631 4.15981,-1.611847 1.40846,0.0092 2.90105,0.612469 3.89735,1.569782 1.09926,1.05624 1.78706,2.639316 1.80432,4.133503 z"
            clipPath="none"
            mask="none" /><path
-           id="ellipse27"
+          id="ellipse27"
+          data-toe="9"
            fill="#ffffff" strokeWidth={0.217459}
            d="m 149.64591,21.234698 c 0.32881,1.394491 0.19302,2.947934 -0.35871,4.275756 -0.38341,0.922705 -1.04147,1.842586 -1.94867,2.318364 -1.46902,0.770423 -3.31939,0.59223 -4.99095,0.518236 -0.84102,-0.03723 -1.68783,-0.195859 -2.4756,-0.481488 -0.76322,-0.276731 -1.5309,-0.631589 -2.12164,-1.17242 -0.62579,-0.572899 -1.08154,-1.325296 -1.40024,-2.097534 -0.31411,-0.761061 -0.5205,-1.597182 -0.4697,-2.414522 0.0951,-1.529631 0.52107,-3.128855 1.4325,-4.385872 0.54035,-0.745243 1.3701,-1.319339 2.24365,-1.66548 0.83969,-0.332723 1.79536,-0.323307 2.70355,-0.324923 0.91403,-0.0016 1.85451,0.04097 2.72218,0.317333 0.8587,0.273504 1.71428,0.681724 2.35625,1.294511 1.08641,1.037021 1.9689,2.382518 2.30738,3.818039 z"
            clipPath="none"
@@ -178,12 +318,13 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
            d="m 113.596,24.593725 c -7.1421,0.956137 -13.665493,2.729329 -20.266706,7.275094 -3.126703,2.153122 -5.749173,5.164585 -7.326773,8.36596 -1.5776,3.201375 -2.345755,6.722589 -2.345718,10.434445 -1.3e-4,14.847425 16.891137,27.98957 36.653967,27.98958 9.88141,5e-6 18.93614,-3.098727 25.52049,-8.053388 6.58436,-4.954661 10.6983,-11.765251 10.69828,-19.188963 -2e-5,-3.711856 0.21041,-7.400071 -1.29984,-10.675321 -1.52972,-3.317459 -4.43327,-6.017172 -7.44961,-8.198222 -4.19154,-3.030795 -9.18577,-5.110603 -14.25562,-6.400899 C 127.08185,24.50234 120.1968,23.710052 113.596,24.593725 Z m 6.01739,7.097408 c 6.3772,-0.421933 13.73419,0.887715 18.44631,5.041012 3.99573,3.521867 6.12151,9.410523 5.78653,14.61257 -0.31129,4.834154 -3.21712,9.727301 -7.07839,12.837583 -4.22892,3.406423 -10.24994,5.227582 -15.75446,4.875002 -5.10887,-0.327238 -10.338,-2.783984 -13.86874,-6.349522 -3.72981,-3.766577 -6.39068,-9.199829 -6.24978,-14.398952 0.1105,-4.077102 2.4574,-8.195047 5.506,-11.030742 3.45801,-3.21652 8.41265,-5.269378 13.21253,-5.586951 z"
            clipPath="none"
            mask="none" /></g></g><path
-       id="rect20"
+      id="rect20"
+      data-logo="wordmark"
        fill="#ffffff" strokeWidth={0.244642}
        d="m 46.353862,7.2933647 c -2.523029,0.679952 -2.979362,2.617552 -3.253392,3.9929113 -0.06377,0.320028 -0.06035,1.872047 -0.04736,2.094926 l -0.445096,60.618093 c -0.01797,2.447261 1.737031,3.627583 8.511294,3.572251 l 1.293753,-0.01057 c 5.539817,-0.04525 7.886749,-0.862312 7.856471,-3.30946 -0.120115,-9.70783 -0.181287,-24.191392 -0.113994,-26.847928 0.06374,-2.516417 -0.530707,-1.712148 4.627756,-2.060645 5.158463,-0.348497 15.570265,-1.514027 16.628877,-1.585112 1.058613,-0.07109 3.297062,-1.301793 3.567418,-4.985748 0.351681,-4.792128 -1.709024,-6.738567 -3.831178,-6.708702 -3.504307,0.04932 -13.828953,-0.220314 -17.304764,0.211348 -3.460347,0.429741 -3.668362,0.601223 -3.655139,-0.380424 0.0865,-6.421769 0.153858,-13.86792 0.153858,-13.86792 L 88.818945,16.25106 c 1.765908,-0.110093 6.359309,-0.631191 6.359309,-3.987828 v -0.665017 c 0,-3.3566363 -1.117574,-5.7238913 -2.864477,-5.9956369 C 84.569533,4.3978963 77.114768,4.8023961 68.993128,4.8628621 57.840233,4.9458971 53.135117,5.8049697 46.353862,7.2933677 Z"
        clipPath="none"
        mask="none" /></g><g
-     id="layer8"><path
+    id="layer8" data-logo="wordmark"><path
        fontWeight={900}
        fontSize="19.7556px"
        fontFamily="Montserrat"
@@ -195,24 +336,8 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
        clipPath="none"
        mask="none" /></g></svg>}
 
-      {/* Example structure only — delete once real SVG is pasted */}
-      <g id="wordmark" fill="currentColor">
-        <g id="F" />
-        <g id="O_left">
-          <g id="O" />
-          <g id="O_left_toes" />
-        </g>
-        <g id="O_right">
-          <g id="O" />
-          <g id="O_right_toes" />
-        </g>
-        <g id="T" />
-        <g id="plus" />
-      </g>
-
-      <g id="location" fill="currentColor" opacity="0.9">
-        <g id="bristol" />
-      </g>
     </svg>
   );
 }
+
+
