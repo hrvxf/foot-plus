@@ -50,7 +50,7 @@ export default function Footer() {
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
                 <img
-                  src="/images/footplus-logo.png"
+                  src="/images/footplus-logo_WHITE.svg"
                   alt="Foot+ Bristol logo"
                   className="h-16 w-auto"
                 />

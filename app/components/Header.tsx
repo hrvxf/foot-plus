@@ -84,10 +84,10 @@ export default function Header() {
           <div className="flex h-full items-center">
             <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
               <Image
-                src="/images/footplus-logo-dark.png"
+                src="/images/footplus-logo_GREEN.svg"
                 alt="Foot+ Bristol logo"
                 width={360}
-                height={140}
+                height={120}
                 priority
                 sizes="(max-width: 768px) 200px, 280px"
                 className={`block w-auto ${logoSize}`}
