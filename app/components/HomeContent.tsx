@@ -74,12 +74,12 @@ export default function HomeContent() {
         />
         <div className="absolute inset-0 bg-brand-sage/40" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-12 px-6 pb-10 pt-14 sm:gap-14 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-20 md:pb-20 md:pt-8">
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col items-center gap-12 px-6 pb-6 pt-8 sm:gap-14 md:min-h-[calc(100vh-80px)] md:flex-row md:items-center md:gap-20 md:pb-20 md:pt-8">
           <div className="flex flex-1 flex-col items-center space-y-8 text-center md:space-y-10">
             <div className="space-y-7">
               {/* Brand mark (removed Bristol pill) */}
               <div className="relative z-10 flex min-h-55 w-full items-center justify-center overflow-visible">
-                <AnimatedFootPlusLogo className="text-white/95 sm:h-32 md:h-44 lg:h-48" />
+                <AnimatedFootPlusLogo className="text-white/95 h-28 sm:h-40 md:h-48 lg:h-52" />
               </div>
 
               {/* Headline (intentional line breaks) */}
