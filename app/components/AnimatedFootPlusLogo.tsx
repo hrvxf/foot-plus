@@ -9,7 +9,6 @@ type Props = {
 
 export default function AnimatedFootPlusLogo({ className }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const idleTweenRef = useRef<gsap.core.Tween | null>(null);
 
   useLayoutEffect(() => {
     const svg = svgRef.current;
@@ -22,7 +21,21 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
       const q = gsap.utils.selector(svg);
       const wordmark = q('[data-logo="wordmark"]');
       const plus = q('[data-logo="plus"]');
-      const toes = q('[data-toe]');
+      const getToePosition = (target: Element): number => {
+        if ("getBBox" in target) {
+          try {
+            const box = (target as SVGGraphicsElement).getBBox();
+            return box.x + box.width / 2;
+          } catch {
+            // ignore
+          }
+        }
+        return Number((target as HTMLElement).getAttribute("data-toe")) || 0;
+      };
+      const toes = gsap
+        .utils
+        .toArray<SVGElement>(q('[data-toe]'))
+        .sort((a, b) => getToePosition(a) - getToePosition(b));
       const allLogoElements = Array.from(new Set([...wordmark, ...plus]));
       const drawTargets = Array.from(
         new Set(
@@ -61,9 +74,11 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
           gsap.set(toes, {
             opacity: 1,
             scale: 1,
+            scaleY: 1,
             y: 0,
             clearProps: "transform",
             willChange: "auto",
+            transformOrigin: "50% 100%",
           });
         }
       };
@@ -98,9 +113,8 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
       if (toes.length) {
         gsap.set(toes, {
           opacity: 0,
-          scale: 0.7,
-          y: -4,
-          transformOrigin: "50% 80%",
+          scale: 0.65,
+          transformOrigin: "50% 100%",
           willChange: "transform, opacity",
         });
       }
@@ -125,22 +139,6 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
         settleStaticState();
         return;
       }
-
-      const startIdle = () => {
-        idleTweenRef.current?.kill();
-        if (!toes.length) return;
-
-        idleTweenRef.current = gsap.to(toes, {
-          rotation: "+=1.5",
-          y: "+=0.8",
-          repeat: -1,
-          yoyo: true,
-          duration: 2.8,
-          ease: "sine.inOut",
-          stagger: { each: 0.2, from: "random" },
-          force3D: true,
-        });
-      };
 
       const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
 
@@ -171,29 +169,33 @@ export default function AnimatedFootPlusLogo({ className }: Props) {
         });
 
       if (toes.length) {
-        timeline
-          .to(
-            toes,
-            {
+        toes.forEach((toe) => {
+          timeline
+            .to(toe, {
               opacity: 1,
+              scale: 1.05,
+              duration: 0.18,
+              ease: "power2.out",
+              force3D: true,
+            })
+            .to(toe, {
+              scaleY: 0.92,
+              duration: 0.08,
+              ease: "power1.inOut",
+              force3D: true,
+            })
+            .to(toe, {
               scale: 1,
-              y: 0,
-            duration: 0.45,
-            ease: "back.out(2)",
-            stagger: 0.07,
-            force3D: true,
-          },
-          "-=0.2"
-        )
-          .call(startIdle);
-      } else {
-        timeline.call(startIdle);
+              scaleY: 1,
+              duration: 0.12,
+              ease: "power1.out",
+              force3D: true,
+            });
+        });
       }
     }, svg);
 
     return () => {
-      idleTweenRef.current?.kill();
-      idleTweenRef.current = null;
       ctx.revert();
     };
   }, []);

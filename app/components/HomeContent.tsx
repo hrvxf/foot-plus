@@ -78,7 +78,7 @@ export default function HomeContent() {
           <div className="flex flex-1 flex-col items-center space-y-8 text-center md:space-y-10">
             <div className="space-y-7">
               {/* Brand mark (removed Bristol pill) */}
-              <div className="flex min-h-[220px] w-full items-center justify-center">
+              <div className="flex min-h-55 w-full items-center justify-center">
                 <AnimatedFootPlusLogo className="h-28 w-auto text-white/95 sm:h-32 md:h-44 lg:h-48" />
               </div>
 
