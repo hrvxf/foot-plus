@@ -1,4 +1,102 @@
+'use client';
+
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+
 export default function PractitionerProfile() {
+  const [isPortraitLoaded, setIsPortraitLoaded] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const portraitRef = useRef<HTMLDivElement | null>(null);
+  const hasAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const img = new Image();
+    const finish = () => {
+      if (cancelled) return;
+      requestAnimationFrame(() => {
+        if (!cancelled) {
+          setIsPortraitLoaded(true);
+        }
+      });
+    };
+    const handleLoad = () => {
+      if (typeof img.decode === "function") {
+        img
+          .decode()
+          .catch(() => {})
+          .finally(finish);
+      } else {
+        finish();
+      }
+    };
+    img.src = "/images/Adam-James.svg";
+    if (img.complete) {
+      handleLoad();
+    } else {
+      img.addEventListener("load", handleLoad);
+      img.addEventListener("error", finish);
+    }
+    return () => {
+      cancelled = true;
+      img.removeEventListener("load", handleLoad);
+      img.removeEventListener("error", finish);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = () => setPrefersReducedMotion(media.matches);
+    handleChange();
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!portraitRef.current || hasAnimatedRef.current) return;
+    if (prefersReducedMotion) {
+      gsap.set(portraitRef.current, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+      });
+      return;
+    }
+    gsap.set(portraitRef.current, {
+      opacity: 0,
+      y: 10,
+      scale: 0.985,
+      filter: "blur(6px)",
+    });
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (!isPortraitLoaded || !portraitRef.current || hasAnimatedRef.current) return;
+    hasAnimatedRef.current = true;
+    if (prefersReducedMotion) {
+      gsap.set(portraitRef.current, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+      });
+      return;
+    }
+    gsap.to(portraitRef.current, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 0.7,
+      ease: "power3.out",
+    });
+  }, [isPortraitLoaded, prefersReducedMotion]);
+
+  const portraitBase =
+    "relative aspect-4/5 overflow-hidden rounded-3xl bg-white shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)] opacity-0";
+
   return (
     <div className="relative rounded-[28px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] transition-[box-shadow,transform] duration-300 ease-out focus-within:shadow-[0_22px_60px_-40px_rgba(15,23,42,0.22)] md:sticky md:top-24 md:p-8 md:hover:-translate-y-0.5 md:hover:shadow-[0_22px_60px_-40px_rgba(15,23,42,0.22)] md:focus-within:-translate-y-0.5">
       {/* Subtle top sheen / divider (makes the sticky card feel deliberate) */}
@@ -16,7 +114,8 @@ export default function PractitionerProfile() {
 
         {/* Portrait */}
         <div
-          className="relative aspect-4/5 overflow-hidden rounded-3xl bg-white shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)]"
+          ref={portraitRef}
+          className={portraitBase}
           role="img"
           aria-label="Portrait of Adam James, Foot+ foot health practitioner."
           style={{
