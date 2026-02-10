@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 
 export default function Header() {
   const pathname = usePathname();
@@ -55,7 +55,10 @@ export default function Header() {
     "px-4 py-4 text-base font-medium transition border-b-2 border-transparent md:py-2";
   const navTracking = "tracking-normal";
   const navPadding = "py-4";
-  const logoWrapper = "relative h-[48px] w-[160px]";
+  const logoWrapper =
+    "relative h-[48px] w-[160px] transition-[color,filter] duration-300";
+  const shouldAnimateLogo = pathname !== "/";
+  const logoKey = shouldAnimateLogo ? pathname : "static-logo";
 
   const linkTone = "text-brand-charcoal/80 hover:text-brand-sageDark";
   const activeBorder = "border-brand-sageDark";
@@ -85,22 +88,15 @@ export default function Header() {
         >
           <div className="flex h-full items-center">
             <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
-              <div className={logoWrapper}>
-                <Image
-                  src="/images/footplus-logo-green.svg"
-                  alt="Foot+ Bristol logo"
-                  fill
-                  priority
-                  sizes="160px"
-                  className={`transition-opacity duration-300 ${invert ? "opacity-0" : "opacity-100"}`}
-                />
-                <Image
-                  src="/images/footplus-logo-white.svg"
-                  alt="Foot+ Bristol logo"
-                  fill
-                  priority
-                  sizes="160px"
-                  className={`transition-opacity duration-300 ${invert ? "opacity-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "opacity-0"}`}
+              <div
+                className={`${logoWrapper} ${
+                  invert ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "text-brand-sageDark"
+                }`}
+              >
+                <AnimatedFootPlusLogo
+                  key={logoKey}
+                  className="h-full w-full"
+                  animate={shouldAnimateLogo}
                 />
               </div>
             </Link>
