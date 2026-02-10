@@ -5,6 +5,11 @@ import Footer from "./components/Footer";
 export const metadata = {
   metadataBase: new URL("https://foot-plus.co.uk"),
 
+  // ✅ Canonical (site-wide default)
+  alternates: {
+    canonical: "/",
+  },
+
   title: {
     default: "Foot+ | Foot Health in Bristol",
     template: "%s | Foot+",
