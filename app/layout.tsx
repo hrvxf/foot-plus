@@ -22,6 +22,32 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Foot+",
+    alternateName: ["Foot Plus", "Foot+ Bristol"],
+    url: "https://foot-plus.co.uk",
+  };
+
+  const medicalBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    name: "Foot+",
+    description: "Professional home-visit foot health practitioner in Bristol.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bristol",
+      postalCode: "BS2",
+      addressCountry: "GB",
+    },
+    areaServed: "Bristol",
+    url: "https://foot-plus.co.uk",
+    telephone: "+447000000000",
+    priceRange: "££",
+    sameAs: ["https://www.facebook.com/profile.php?id=61586341484139"],
+  };
+
   return (
     <html lang="en" className="bg-lightbg">
       <head>
@@ -37,29 +63,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://assets.calendly.com/assets/external/widget.css"
         />
+
+        {/* Site name signal for Google ("Foot+") */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "MedicalBusiness",
-              name: "Foot+ Bristol",
-              description: "Professional home-visit foot health practitioner in Bristol.",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Bristol",
-                postalCode: "BS2",
-                addressCountry: "UK",
-              },
-              areaServed: "Bristol",
-              url: "https://www.foot-plus.co.uk",
-              telephone: "+447000000000",
-              priceRange: "££",
-              sameAs: ["https://www.facebook.com/profile.php?id=61586341484139"],
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+
+        {/* Local business / medical schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalBusinessJsonLd) }}
         />
       </head>
+
       <body className="min-h-screen bg-lightbg text-ink flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>
