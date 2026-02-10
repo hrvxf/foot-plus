@@ -113,13 +113,13 @@ export default function Footer() {
         </div>
 
         <div className="mt-4 border-t border-white/15 pt-2">
-          <div className="grid grid-cols-1 gap-3 text-xs text-white/70 md:grid-cols-[1fr_auto_1fr] md:items-center">
-            <div className="text-sm text-white/80 text-center md:text-left md:justify-self-start">
+          <div className="grid grid-cols-1 gap-3 text-xs text-white/70 md:grid-cols-[1fr_auto] md:items-center">
+            <div className="text-sm text-white/80 text-center md:text-left">
               &copy; {new Date().getFullYear()} Foot+ &bull; Bristol
             </div>
             <nav
               aria-label="Footer navigation"
-              className="flex flex-wrap items-center justify-center gap-3 md:justify-end md:justify-self-end"
+              className="flex flex-wrap items-center justify-center gap-3 text-sm text-white/80 md:justify-end md:justify-self-end"
             >
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
