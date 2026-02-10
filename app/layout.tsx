@@ -9,11 +9,11 @@ export const metadata = {
   },
   description: "Professional foot health services in Bristol.",
   openGraph: {
-    images: ["/images/foot-health-practitioner-home-visit-bristol.png"],
+    images: ["/images/social-card.png"],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/images/foot-health-practitioner-home-visit-bristol.png"],
+    images: ["/images/social-card.png"],
   },
   icons: {
     icon: "/favicon.ico",
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://assets.calendly.com/assets/external/widget.css"
         />
 
-        {/* Site name signal for Google ("Foot+") */}
+        {/* Site name signal for Google */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
@@ -73,7 +73,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Local business / medical schema */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalBusinessJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(medicalBusinessJsonLd),
+          }}
         />
       </head>
 
