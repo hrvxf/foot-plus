@@ -50,9 +50,6 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center text-center md:text-left">
-            <div className="text-[12px] tracking-[0.24em] uppercase text-white/70">
-              {coverageMessage}
-            </div>
             <nav aria-label="Quick contact options" className="mt-3 flex items-center justify-center gap-3">
               <a
                 href={whatsappHref}
@@ -118,9 +115,19 @@ export default function Footer() {
         </div>
 
         <div className="mt-4 border-t border-white/15 pt-2">
-          <div className="flex flex-col gap-2 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
-            <div>&copy; {new Date().getFullYear()} Foot+ &bull; Bristol</div>
-            <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-2">
+          <div className="grid grid-cols-1 gap-3 text-xs text-white/70 md:grid-cols-[1fr_auto_1fr] md:items-center">
+            <div className="text-sm text-white/80 text-center md:text-left md:justify-self-start">
+              &copy; {new Date().getFullYear()} Foot+ &bull; Bristol
+            </div>
+            <div className="flex w-full justify-center md:justify-center md:justify-self-center">
+              <div className="text-[12px] tracking-[0.24em] uppercase text-white/65 text-center">
+                {coverageMessage}
+              </div>
+            </div>
+            <nav
+              aria-label="Footer navigation"
+              className="flex flex-wrap items-center justify-center gap-3 md:justify-end md:justify-self-end"
+            >
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
                 href="/areas"

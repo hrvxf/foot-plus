@@ -20,7 +20,7 @@ export default function PractitionerProfile() {
           role="img"
           aria-label="Portrait of Adam James, Foot+ foot health practitioner."
           style={{
-            backgroundImage: "url('/images/Adam-James.png')",
+            backgroundImage: "url('/images/Adam-James.svg')",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
