@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export const metadata = {
-  metadataBase: new URL("https://www.foot-plus.co.uk"),
+  metadataBase: new URL("https://foot-plus.co.uk"),
 
   // Canonical (site-wide default)
   alternates: {
@@ -19,7 +19,7 @@ export const metadata = {
 
   openGraph: {
     type: "website",
-    url: "https://www.foot-plus.co.uk/",
+    url: "https://foot-plus.co.uk/",
     title: "Foot+ | Foot Health in Bristol",
     description: "Professional foot health services in Bristol.",
     images: [
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "WebSite",
     name: "Foot+",
     alternateName: ["Foot Plus", "Foot+ Bristol"],
-    url: "https://www.foot-plus.co.uk",
+    url: "https://foot-plus.co.uk",
   };
 
   const medicalBusinessJsonLd = {
@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       addressCountry: "GB",
     },
     areaServed: "Bristol",
-    url: "https://www.foot-plus.co.uk",
+    url: "https://foot-plus.co.uk",
     telephone: "+447000000000",
     priceRange: "££",
     sameAs: ["https://www.facebook.com/profile.php?id=61586341484139"],
