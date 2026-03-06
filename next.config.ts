@@ -1,5 +1,21 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.foot-plus.co.uk",
+          },
+        ],
+        destination: "https://foot-plus.co.uk/:path*",
+        permanent: true,
+      },
+    ];
+  },
+};
 
 export default nextConfig;
