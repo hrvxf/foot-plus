@@ -20,6 +20,14 @@ export default function BookPage() {
         a suitable time.
       </p>
       <p className="mt-3 text-sm text-brand-charcoal/70">
+        New patients can complete the{" "}
+        <a className="font-semibold text-brand-sageDark underline" href="/forms">
+          medical history form online
+        </a>{" "}
+        before we visit.
+      </p>
+
+      <p className="mt-3 text-sm text-brand-charcoal/70">
         Not sure what to book? Review{" "}
         <a className="font-semibold text-brand-sageDark underline" href="/prices">
           prices
