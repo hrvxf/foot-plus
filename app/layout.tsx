@@ -7,6 +7,7 @@ const SITE_URL = "https://foot-plus.co.uk";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
+  manifest: "/site.webmanifest",
 
   // Canonical (site-wide default)
   alternates: {
@@ -44,8 +45,13 @@ export const metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
 
