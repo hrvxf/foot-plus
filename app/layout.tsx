@@ -9,7 +9,7 @@ export const metadata = {
 
   // Canonical (site-wide default)
   alternates: {
-    canonical: "./",
+    canonical: `${SITE_URL}/`,
   },
 
   title: {

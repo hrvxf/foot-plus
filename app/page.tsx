@@ -7,7 +7,7 @@ export const metadata = {
   description:
     "Foot Health Practitioner in Bristol. Home visits for nail, skin, and diabetic foot care. Book with Foot+ today.",
   alternates: {
-    canonical: "https://foot-plus.co.uk/",
+    canonical: "/",
   },
 };
 
