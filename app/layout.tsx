@@ -22,6 +22,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: `${SITE_URL}/`,
+    siteName: "Foot+ Bristol",
     title: "Foot+ | Foot Health in Bristol",
     description: "Professional foot health services in Bristol.",
     images: [
@@ -51,15 +52,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Foot+",
+    name: "Foot+ Bristol",
     alternateName: ["Foot Plus", "Foot+ Bristol"],
+    url: `${SITE_URL}/`,
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Foot+ Bristol",
     url: SITE_URL,
+    logo: `${SITE_URL}/images/footplus-logo-green.svg`,
   };
 
   const medicalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    name: "Foot+",
+    name: "Foot+ Bristol",
     description: "Professional home-visit foot health practitioner in Bristol.",
     address: {
       "@type": "PostalAddress",
@@ -81,6 +90,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
+
+        <meta property="og:site_name" content="Foot+ Bristol" />
 
         <link
           rel="stylesheet"
@@ -105,6 +116,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(medicalBusinessJsonLd),
+          }}
+        />
+
+        {/* Organization schema for brand/site-name confidence */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
           }}
         />
       </head>
