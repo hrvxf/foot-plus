@@ -33,7 +33,7 @@ export default function Header() {
 
   const navLinks = [
     { label: "About", href: "/about", active: pathname === "/about" },
-    { label: "Services", href: "/#services", active: pathname === "/" },
+    { label: "Services", href: "/services", active: pathname === "/services" },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
     { label: "Areas", href: "/areas", active: pathname === "/areas" },
   ];
