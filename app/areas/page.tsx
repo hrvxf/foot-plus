@@ -15,8 +15,12 @@ export default function AreasPage() {
           Areas covered in Bristol
         </h1>
         <p className="max-w-3xl text-sm text-brand-charcoal/70">
-          At Foot+ we try to schedule appointments by areas, so they are planned carefully to keep travel fair and visits unhurried.
-          If you’re unsure about coverage,{" "}
+          At Foot+ we try to schedule appointments by areas, so they are planned carefully to keep
+          travel fair and visits unhurried. Explore{" "}
+          <Link className="font-semibold text-brand-sageDark underline" href="/services">
+            foot care services available for home visits
+          </Link>{" "}
+          before booking. If you’re unsure about coverage,{" "}
           <Link className="font-semibold text-brand-sageDark underline" href="/book">
             contact us
           </Link>{" "}
@@ -39,26 +43,19 @@ export default function AreasPage() {
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">
-            Central Bristol
-          </h2>
+          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">Central Bristol</h2>
           <p className="mt-3 text-sm text-brand-charcoal/70">
-            City Centre, Harbourside, Clifton, Hotwells, Redland, Cotham, and
-            Stokes Croft.
+            City Centre, Harbourside, Clifton, Hotwells, Redland, Cotham, and Stokes Croft.
           </p>
         </div>
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">
-            North Bristol
-          </h2>
+          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">North Bristol</h2>
           <p className="mt-3 text-sm text-brand-charcoal/70">
             Bishopston, Horfield, Ashley Down, Filton, Henleaze, and Westbury-on-Trym.
           </p>
         </div>
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">
-            South Bristol
-          </h2>
+          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">South Bristol</h2>
           <p className="mt-3 text-sm text-brand-charcoal/70">
             Bedminster, Southville, Knowle, Brislington, and Totterdown.
           </p>
@@ -75,7 +72,11 @@ export default function AreasPage() {
 
       <div className="mt-10 rounded-2xl border border-brand-sageLight/30 bg-white p-6 text-sm text-brand-charcoal/70 shadow-sm">
         <p>
-          Looking for pricing? See{" "}
+          Need treatment details? Explore{" "}
+          <Link className="font-semibold text-brand-sageDark underline" href="/services">
+            home-visit foot health services in Bristol
+          </Link>{" "}
+          then compare costs. Looking for pricing? See{" "}
           <Link className="font-semibold text-brand-sageDark underline" href="/prices">
             foot health prices in Bristol
           </Link>{" "}

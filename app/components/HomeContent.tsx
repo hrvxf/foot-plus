@@ -179,7 +179,11 @@ export default function HomeContent() {
           </h2>
           <p className="max-w-2xl text-base text-brand-charcoal/80">
             We deliver premium foot health services with clear advice and gentle treatment. Each
-            visit includes a full assessment and personalised guidance. See{" "}
+            visit includes a full assessment and personalised guidance. Explore{" "}
+            <Link href="/services" className="font-semibold text-brand-sageDark underline">
+              home-visit foot care services in Bristol
+            </Link>{" "}
+            and see{" "}
             <Link href="/prices" className="font-semibold text-brand-sageDark underline">
               foot health prices in Bristol
             </Link>{" "}
@@ -221,7 +225,7 @@ export default function HomeContent() {
         </div>
 
         <div className="mt-6">
-          <Link href="/about" className="text-sm font-semibold text-brand-sageDark">
+          <Link href="/services" className="text-sm font-semibold text-brand-sageDark">
             See full service details →
           </Link>
         </div>

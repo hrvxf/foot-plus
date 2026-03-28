@@ -19,7 +19,11 @@ export default function PricesPage() {
 
         <p>
           Transparent pricing with travel included across central Bristol, so you
-          can book with confidence.
+          can book with confidence. Compare these options with our{" "}
+          <a className="font-semibold text-brand-sageDark underline" href="/services">
+            home-visit foot care services
+          </a>{" "}
+          to find the right appointment type.
         </p>
       </div>
 

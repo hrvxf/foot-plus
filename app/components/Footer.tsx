@@ -123,6 +123,13 @@ export default function Footer() {
             >
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
+                href="/services"
+                data-analytics-id="footer-link-services"
+              >
+                Services
+              </a>
+              <a
+                className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
                 href="/areas"
                 data-analytics-id="footer-link-areas"
               >

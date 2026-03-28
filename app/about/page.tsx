@@ -1,5 +1,6 @@
 import Button from "../components/Button";
 import PractitionerProfile from "../components/PractitionerProfile";
+import Link from "next/link";
 
 export const metadata = {
  title: "Qualified Foot Health Practitioner in Bristol | About Foot+",
@@ -48,7 +49,11 @@ export default function AboutPage() {
   With over six years of clinical experience, Adam has helped individuals regain 
   their confidence and independence through hands-on, compassionate rehabilitation. 
   His approach blends medical expertise with a calm, person-centred focus - delivering 
-  the highest standards of care right to your doorstep.
+  the highest standards of care right to your doorstep. Explore{" "}
+  <Link className="font-semibold text-brand-sageDark underline" href="/services">
+    foot health services in Bristol
+  </Link>{" "}
+  to see what is available for your needs.
 </p>
 
 <p className="max-w-prose text-sm italic leading-relaxed text-brand-charcoal/60">
@@ -70,6 +75,9 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-3 pt-3">
                 <Button href="/book" variant="solid">
                   Book an appointment
+                </Button>
+                <Button href="/services" variant="outline">
+                  View services
                 </Button>
                 <Button
                   href={whatsappHref}
