@@ -115,7 +115,7 @@ export default function Footer() {
         <div className="mt-4 border-t border-white/15 pt-2">
           <div className="grid grid-cols-1 gap-3 text-xs text-white/70 md:grid-cols-[1fr_auto] md:items-center">
             <div className="text-sm text-white/80 text-center md:text-left">
-              &copy; {new Date().getFullYear()} Foot+ &bull; Bristol
+              &copy; {new Date().getFullYear()} Foot+ Bristol
             </div>
             <nav
               aria-label="Footer navigation"

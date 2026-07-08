@@ -87,7 +87,7 @@ export default function Header() {
           className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 ${navPadding}`}
         >
           <div className="flex h-full items-center">
-            <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
+            <Link href="/" className="flex items-center gap-3" aria-label="Foot+ Bristol home">
               <div
                 className={`${logoWrapper} ${
                   invert ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "text-brand-sageDark"
