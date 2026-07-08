@@ -57,7 +57,7 @@ const structuredData = {
     {
       "@type": "MedicalBusiness",
       "@id": BUSINESS_ID,
-      name: "Foot+",
+      name: "Foot+ Bristol",
       url: SITE_URL,
       areaServed: {
         "@type": "City",
@@ -72,7 +72,7 @@ const structuredData = {
 export const metadata = {
   title: "Foot Care Services in Bristol | Home Visits",
   description:
-    "Foot Care Services in Bristol from Foot+, including corn and callus removal, nail care, diabetic foot care, verruca treatment, and ingrown toenail care through home visits.",
+    "Foot Care Services in Bristol from Foot+ Bristol, including corn and callus removal, nail care, diabetic foot care, verruca treatment, and ingrown toenail care through home visits.",
   alternates: {
     canonical: "/services",
   },

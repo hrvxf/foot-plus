@@ -15,32 +15,35 @@ export const metadata = {
   },
 
   title: {
-    default: "Foot+ | Foot Health in Bristol",
-    template: "%s | Foot+",
+    default: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    template: "%s | Foot+ Bristol",
   },
 
-  description: "Professional foot health services in Bristol.",
+  description:
+    "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
 
   openGraph: {
     type: "website",
     url: `${SITE_URL}/`,
     siteName: "Foot+ Bristol",
-    title: "Foot+ | Foot Health in Bristol",
-    description: "Professional foot health services in Bristol.",
+    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    description:
+      "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
     images: [
       {
         url: "/images/social-card.png",
         width: 1200,
         height: 630,
-        alt: "Foot+ - Professional foot health services in Bristol",
+        alt: "Foot+ Bristol - mobile foot health care and home visits in Bristol",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Foot+ | Foot Health in Bristol",
-    description: "Professional foot health services in Bristol.",
+    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    description:
+      "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
     images: ["/images/social-card.png"],
   },
 
@@ -60,13 +63,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Foot+ Bristol",
-    alternateName: ["Foot Plus", "Foot+ Bristol"],
+    alternateName: ["Foot+", "Foot Plus Bristol"],
     url: `${SITE_URL}/`,
   };
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     name: "Foot+ Bristol",
     url: SITE_URL,
     logo: `${SITE_URL}/images/footplus-logo-green.svg`,
@@ -76,18 +79,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     name: "Foot+ Bristol",
-    description: "Professional home-visit foot health practitioner in Bristol.",
+    description:
+      "Foot+ Bristol provides mobile foot health care and home visits in Bristol.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Bristol",
       postalCode: "BS2",
       addressCountry: "GB",
     },
-    areaServed: "Bristol",
+    areaServed: {
+      "@type": "City",
+      name: "Bristol",
+    },
     url: SITE_URL,
-    telephone: "+447000000000",
     priceRange: "££",
-    sameAs: ["https://www.facebook.com/profile.php?id=61586341484139"],
   };
 
   return (
