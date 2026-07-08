@@ -2,8 +2,11 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-const SITE_URL = "https://foot-plus.co.uk";
+import {
+  SEARCH_PREVIEW_IMAGE,
+  SEARCH_PREVIEW_IMAGE_METADATA,
+  SITE_URL,
+} from "./seo";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -27,21 +30,14 @@ export const metadata = {
     siteName: "Foot+ Bristol",
     title: "Foot+ | Foot Health in Bristol",
     description: "Professional foot health services in Bristol.",
-    images: [
-      {
-        url: "/images/social-card.png",
-        width: 1200,
-        height: 630,
-        alt: "Foot+ - Professional foot health services in Bristol",
-      },
-    ],
+    images: [SEARCH_PREVIEW_IMAGE_METADATA],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "Foot+ | Foot Health in Bristol",
     description: "Professional foot health services in Bristol.",
-    images: ["/images/social-card.png"],
+    images: [SEARCH_PREVIEW_IMAGE_METADATA],
   },
 
   icons: {
@@ -62,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: "Foot+ Bristol",
     alternateName: ["Foot Plus", "Foot+ Bristol"],
     url: `${SITE_URL}/`,
+    image: SEARCH_PREVIEW_IMAGE,
   };
 
   const organizationJsonLd = {
@@ -69,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "Organization",
     name: "Foot+ Bristol",
     url: SITE_URL,
+    image: SEARCH_PREVIEW_IMAGE,
     logo: `${SITE_URL}/images/footplus-logo-green.svg`,
   };
 
@@ -85,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     },
     areaServed: "Bristol",
     url: SITE_URL,
+    image: SEARCH_PREVIEW_IMAGE,
     telephone: "+447000000000",
     priceRange: "££",
     sameAs: ["https://www.facebook.com/profile.php?id=61586341484139"],
