@@ -6,6 +6,13 @@ export const metadata = {
   title: "Foot+ Bristol | Foot Health Practitioner Bristol",
   description:
     "Foot+ Bristol provides mobile foot health care and home visits in Bristol for nail, skin, and diabetic foot care.",
+  keywords: [
+    "Foot Health Practitioner Bristol",
+    "mobile foot care Bristol",
+    "home visit foot care Bristol",
+    "LGBT friendly foot care Bristol",
+    "LGBTQ friendly foot health Bristol",
+  ],
   openGraph: {
     title: "Foot+ Bristol | Foot Health Practitioner Bristol",
     description:
