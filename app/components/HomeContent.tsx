@@ -160,7 +160,7 @@ export default function HomeContent() {
                       key={chip.label}
                       className={
                         chip.variant === "rainbow"
-                          ? "rounded-full border border-white/35 bg-[linear-gradient(90deg,#E40303B3,#FF8C00B3,#FFED00B3,#008026B3,#24408EB3,#732982B3)] px-3 py-1 text-xs font-medium text-white shadow-[0_8px_24px_-14px_rgba(0,0,0,0.7)]"
+                          ? "rounded-full border border-white/35 bg-[linear-gradient(90deg,#E40303,#FF8C00,#FFED00,#008026,#24408E,#732982)] px-3 py-1 text-xs font-medium text-white shadow-[0_8px_24px_-14px_rgba(0,0,0,0.7)]"
                           : "rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white/75"
                       }
                     >
