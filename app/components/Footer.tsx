@@ -11,7 +11,7 @@ function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Footer() {
   const whatsappPresetMessage =
-    "Hi Adam, I'd like to enquire about an appointment with Foot+.";
+    "Hi Adam, I'd like to enquire about an appointment with Foot+ Bristol.";
   const whatsappHref = `https://wa.me/447380301555?text=${encodeURIComponent(
     whatsappPresetMessage
   )}`;

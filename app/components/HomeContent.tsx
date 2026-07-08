@@ -260,7 +260,7 @@ export default function HomeContent() {
                 Local, Reliable Foot Care - Now Welcoming New Patients
               </h2>
               <p className="mt-3 text-sm text-brand-charcoal/70">
-                Based in Bristol, Foot+ offers professional home-visit care across the city and
+                Based in Bristol, Foot+ Bristol offers professional home-visit care across the city and
                 nearby areas.
               </p>
               <p className="mt-3 text-sm text-brand-charcoal/70">

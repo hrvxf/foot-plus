@@ -10,12 +10,12 @@ export default function TermsPage() {
         Terms &amp; Conditions
       </h1>
       <p className="mt-4 text-sm text-brand-charcoal/80">
-        Appointments are provided by qualified Foot+ practitioners. Please give
+        Appointments are provided by qualified Foot+ Bristol practitioners. Please give
         at least 24 hours&apos; notice to reschedule or cancel. Missed appointments
         may incur a fee.
       </p>
       <p className="mt-4 text-sm text-brand-charcoal/80">
-        By booking with Foot+, you confirm that the information you provide is
+        By booking with Foot+ Bristol, you confirm that the information you provide is
         accurate and that you will follow any aftercare guidance shared during
         your visit.
       </p>

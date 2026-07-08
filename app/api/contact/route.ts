@@ -36,15 +36,15 @@ export async function POST(req: Request) {
     const safeMessage = escapeHtml(String(message)).replace(/\n/g, "<br/>");
 
     const to = process.env.CONTACT_TO_EMAIL || "hello@foot-plus.co.uk";
-    const from = "Foot+ Contact <hello@foot-plus.co.uk>";
+    const from = "Foot+ Bristol Contact <hello@foot-plus.co.uk>";
 
-    const subject = `New Foot+ website enquiry — ${safeName}`;
+    const subject = `New Foot+ Bristol website enquiry — ${safeName}`;
 
     const html = `
       <div style="background:#0f1a16;padding:28px 16px;">
         <div style="max-width:640px;margin:0 auto;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:18px;overflow:hidden;">
           <div style="padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.12);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:#ffffff;">
-            <div style="font-size:13px;letter-spacing:0.22em;text-transform:uppercase;opacity:0.75;">Foot+ Website Enquiry</div>
+            <div style="font-size:13px;letter-spacing:0.22em;text-transform:uppercase;opacity:0.75;">Foot+ Bristol Website Enquiry</div>
             <div style="margin-top:6px;font-size:18px;font-weight:700;line-height:1.25;">New contact form submission</div>
           </div>
 
