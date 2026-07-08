@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 const SITE_URL = "https://foot-plus.co.uk";
 const BUSINESS_ID = `${SITE_URL}/#medicalbusiness`;
@@ -69,12 +70,22 @@ const structuredData = {
   ],
 };
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Foot Care Services in Bristol | Home Visits",
   description:
     "Foot Care Services in Bristol from Foot+ Bristol, including corn and callus removal, nail care, diabetic foot care, verruca treatment, and ingrown toenail care through home visits.",
   alternates: {
-    canonical: "/services",
+    canonical: `${SITE_URL}/services`,
+  },
+  openGraph: {
+    url: `${SITE_URL}/services`,
+    title: "Foot Care Services in Bristol | Home Visits",
+    description:
+      "Foot Care Services in Bristol from Foot+ Bristol, including corn and callus removal, nail care, diabetic foot care, verruca treatment, and ingrown toenail care through home visits.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
