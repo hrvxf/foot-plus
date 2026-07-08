@@ -23,6 +23,14 @@ export const metadata = {
   description:
     "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
 
+  keywords: [
+    "Foot Health Practitioner Bristol",
+    "mobile foot care Bristol",
+    "home visit foot care Bristol",
+    "LGBT friendly foot care Bristol",
+    "LGBTQ friendly foot health Bristol",
+  ],
+
   openGraph: {
     type: "website",
     url: `${SITE_URL}/`,
@@ -65,6 +73,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "WebSite",
     name: "Foot+ Bristol",
     url: `${SITE_URL}/`,
+    inLanguage: "en-GB",
+    keywords:
+      "Foot Health Practitioner Bristol, mobile foot care Bristol, home visit foot care Bristol, LGBT friendly foot care Bristol, LGBTQ friendly foot health Bristol",
   };
 
   const organizationJsonLd = {
@@ -83,6 +94,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: "Foot+ Bristol",
     description:
       "Foot+ Bristol provides mobile foot health care and home visits in Bristol.",
+    keywords:
+      "Foot Health Practitioner Bristol, mobile foot care Bristol, home visit foot care Bristol, LGBT friendly foot care Bristol, LGBTQ friendly foot health Bristol",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Bristol",
