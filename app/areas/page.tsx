@@ -2,9 +2,9 @@ import Link from "next/link";
 import ServiceMap from "../components/ServiceMap";
 
 export const metadata = {
-  title: "Areas Covered for Foot Health in Bristol | Foot+",
+  title: "Areas Covered for Foot Health in Bristol | Foot+ Bristol",
   description:
-    "Foot+ provides home-visit foot health care across Bristol, including Clifton, Redland, Bedminster, Bishopston, Horfield, and nearby areas.",
+    "Foot+ Bristol provides home-visit foot health care across Bristol, including Clifton, Redland, Bedminster, Bishopston, Horfield, and nearby areas.",
 };
 
 export default function AreasPage() {
@@ -15,7 +15,7 @@ export default function AreasPage() {
           Areas covered in Bristol
         </h1>
         <p className="max-w-3xl text-sm text-brand-charcoal/70">
-          At Foot+ we try to schedule appointments by areas, so they are planned carefully to keep
+          At Foot+ Bristol we try to schedule appointments by areas, so they are planned carefully to keep
           travel fair and visits unhurried. Explore{" "}
           <Link className="font-semibold text-brand-sageDark underline" href="/services">
             foot care services available for home visits

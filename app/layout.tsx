@@ -8,6 +8,7 @@ const SITE_URL = "https://foot-plus.co.uk";
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   manifest: "/site.webmanifest",
+  applicationName: "Foot+ Bristol",
 
   // Canonical (site-wide default)
   alternates: {
@@ -63,13 +64,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Foot+ Bristol",
-    alternateName: ["Foot+", "Foot Plus Bristol"],
     url: `${SITE_URL}/`,
   };
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${SITE_URL}/#organization`,
     name: "Foot+ Bristol",
     url: SITE_URL,
     logo: `${SITE_URL}/images/footplus-logo-green.svg`,
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const medicalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
+    "@id": `${SITE_URL}/#medicalbusiness`,
     name: "Foot+ Bristol",
     description:
       "Foot+ Bristol provides mobile foot health care and home visits in Bristol.",

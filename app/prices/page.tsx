@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Foot Health Prices in Bristol | Home Visits",
   description:
-    "Clear foot health prices for Bristol home visits, including new patient and routine appointments with Foot+.",
+    "Clear foot health prices for Bristol home visits, including new patient and routine appointments with Foot+ Bristol.",
 };
 
 export default function PricesPage() {
@@ -78,7 +78,7 @@ export default function PricesPage() {
             Travel &amp; Coverage
           </h2>
           <p className="mt-3">
-            Foot+ is based in central Bristol (BS2). Travel across inner Bristol is included in the appointment price.
+            Foot+ Bristol is based in central Bristol (BS2). Travel across inner Bristol is included in the appointment price.
             See{" "}
             <a className="font-semibold text-brand-sageDark underline" href="/areas">
               areas covered

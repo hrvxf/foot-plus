@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Patient Forms | Foot+ Bristol",
   description:
-    "Complete Foot+ patient forms online, including the new patient and medical history form.",
+    "Complete Foot+ Bristol patient forms online, including the new patient and medical history form.",
 };
 
 export default function FormsPage() {
