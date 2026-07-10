@@ -101,6 +101,22 @@ export default function EnquiryForm() {
         <p className="mt-2 text-sm text-brand-charcoal/70">
           We aim to respond within <strong>24–48 hours</strong> to arrange your appointment.
         </p>
+
+        <div className="mt-5 rounded-xl bg-brand-cream p-4 text-left">
+          <h3 className="font-heading text-lg font-semibold text-brand-sageDark">
+            Get ahead and submit your patient form
+          </h3>
+          <p className="mt-2 text-sm text-brand-charcoal/70">
+            If you are a new patient, you can complete your medical history form online before
+            your appointment.
+          </p>
+          <a
+            href="/forms"
+            className="mt-4 inline-flex rounded-xl bg-brand-sageDark px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+          >
+            Complete patient form
+          </a>
+        </div>
       </div>
     );
   }
