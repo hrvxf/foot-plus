@@ -14,13 +14,10 @@ type FormState = {
   phone: string;
   email: string;
   appointmentType: AppointmentType;
-  preferredDays: string[];
   appointmentDetails: string;
   clinicalNotes: string;
   heardAboutUs: string;
 };
-
-const dayOptions = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
 export default function EnquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,7 +30,6 @@ export default function EnquiryForm() {
     phone: "",
     email: "",
     appointmentType: "Other / Unsure",
-    preferredDays: [],
     appointmentDetails: "",
     clinicalNotes: "",
     heardAboutUs: "",
@@ -45,8 +41,7 @@ export default function EnquiryForm() {
       !data.postcode.trim() ||
       !data.phone.trim() ||
       !data.email.trim() ||
-      !data.appointmentDetails.trim() ||
-      data.preferredDays.length === 0
+      !data.appointmentDetails.trim()
     );
   }, [data]);
 
@@ -54,24 +49,12 @@ export default function EnquiryForm() {
     setData((prev) => ({ ...prev, [key]: value }));
   }
 
-  function toggleDay(day: string) {
-    setData((prev) => {
-      const exists = prev.preferredDays.includes(day);
-      return {
-        ...prev,
-        preferredDays: exists
-          ? prev.preferredDays.filter((d) => d !== day)
-          : [...prev.preferredDays, day],
-      };
-    });
-  }
-
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
 
     if (missingRequired) {
-      setError("Please complete all required fields and select at least one preferred day.");
+      setError("Please complete all required fields.");
       return;
     }
 
@@ -82,7 +65,6 @@ export default function EnquiryForm() {
         `Postcode: ${data.postcode}`,
         `Phone: ${data.phone}`,
         `Appointment type: ${data.appointmentType}`,
-        `Preferred days: ${data.preferredDays.join(", ")}`,
         `Appointment details: ${data.appointmentDetails}`,
         `Clinical notes: ${data.clinicalNotes || "None provided"}`,
         `Heard about us: ${data.heardAboutUs || "Not provided"}`,
@@ -238,36 +220,6 @@ export default function EnquiryForm() {
             Other / Unsure
           </option>
         </select>
-      </div>
-
-      {/* Preferred Days */}
-      <div>
-        <label className="mb-2 block text-sm font-medium text-brand-charcoal">
-          Preferred days *
-        </label>
-
-        <div className="flex flex-wrap gap-2">
-          {dayOptions.map((day) => {
-            const active = data.preferredDays.includes(day);
-            return (
-              <button
-                key={day}
-                type="button"
-                onClick={() => toggleDay(day)}
-                aria-pressed={active}
-                className={`rounded-full border px-4 py-2 text-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark ${
-                  active
-                    ? "border-brand-sageDark bg-brand-sageDark text-white"
-                    : "border-brand-sageLight/40 bg-white text-brand-charcoal hover:bg-brand-offwhite"
-                }`}
-              >
-                {day}
-              </button>
-            );
-          })}
-        </div>
-
-        <p className="mt-2 text-xs text-brand-charcoal/60">Select at least one day.</p>
       </div>
 
       {/* Appointment Details */}

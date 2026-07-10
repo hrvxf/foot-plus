@@ -43,7 +43,7 @@ export default function BookPage() {
         {[
           {
             title: "1) Send your request",
-            body: "Share the basics, your preferred days, and any concerns.",
+            body: "Share the basics and any concerns.",
           },
           {
             title: "2) We confirm details",
