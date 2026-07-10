@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: canonical,
     title: "Areas We Cover in Bristol | Foot+ Home Visits",
     description:
-      "Explore selected Bristol areas where Foot+ provides professional foot care in patients&apos; homes.",
+      "Explore selected Bristol areas where Foot+ provides professional foot care in patients’ homes.",
   },
   robots: { index: true, follow: true },
 };
@@ -40,7 +40,7 @@ export default function AreasWeCoverPage() {
       <section className="overflow-hidden rounded-3xl border border-brand-sageLight/35 bg-linear-to-br from-white via-white to-brand-sageLight/20 p-7 shadow-sm md:p-9">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark/75">Areas We Cover</p>
         <h1 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Home-visit foot care across Bristol</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">Foot+ provides professional foot care in patients&apos; homes across selected areas of Bristol. Explore your local area below or contact Foot+ with your postcode to confirm availability.</p>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">Foot+ provides professional foot care in patients’ homes across selected areas of Bristol. Explore your local area below or contact Foot+ with your postcode to confirm availability.</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row"><Button href={bookingHref} variant="solid">Book an appointment</Button><Button href="/services" variant="outline">View services</Button></div>
       </section>
       <section className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-label="Local service areas">
