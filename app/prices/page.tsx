@@ -1,3 +1,5 @@
+import { prices } from "../lib/site";
+
 export const metadata = {
   title: "Foot Health Prices in Bristol | Home Visits",
   description:
@@ -31,9 +33,9 @@ export default function PricesPage() {
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="font-heading text-lg font-semibold text-brand-sageDark">
-              New Patient Appointment
+              {prices[0].name}
             </h2>
-            <span className="text-base font-semibold text-brand-sageDark">£60</span>
+            <span className="text-base font-semibold text-brand-sageDark">{prices[0].price}</span>
           </div>
           <p className="mt-3">
             A comprehensive initial appointment including a full neurovascular
@@ -54,9 +56,9 @@ export default function PricesPage() {
         <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="font-heading text-lg font-semibold text-brand-sageDark">
-              Routine Appointment (45 minutes)
+              {prices[1].name}
             </h2>
-            <span className="text-base font-semibold text-brand-sageDark">£55</span>
+            <span className="text-base font-semibold text-brand-sageDark">{prices[1].price}</span>
           </div>
           <p className="mt-3">
             An ongoing treatment appointment focused on maintaining foot health,

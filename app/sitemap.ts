@@ -12,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/forms",
     "/prices",
     "/services",
+    "/hard-skin-treatment-bristol",
+    "/callus-removal-bristol",
+    "/corn-removal-bristol",
+    "/cracked-heels-bristol",
+    "/toenail-cutting-bristol",
+    "/foot-health-practitioner-bristol",
     "/privacy",
     "/terms",
   ];

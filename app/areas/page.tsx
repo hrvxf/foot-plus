@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ServiceMap from "../components/ServiceMap";
+import { serviceAreas } from "../lib/site";
 
 export const metadata = {
   title: "Areas Covered for Foot Health in Bristol | Foot+ Bristol",
@@ -42,32 +43,12 @@ export default function AreasPage() {
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
-        <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">Central Bristol</h2>
-          <p className="mt-3 text-sm text-brand-charcoal/70">
-            City Centre, Harbourside, Clifton, Hotwells, Redland, Cotham, and Stokes Croft.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">North Bristol</h2>
-          <p className="mt-3 text-sm text-brand-charcoal/70">
-            Bishopston, Horfield, Ashley Down, Filton, Henleaze, and Westbury-on-Trym.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">South Bristol</h2>
-          <p className="mt-3 text-sm text-brand-charcoal/70">
-            Bedminster, Southville, Knowle, Brislington, and Totterdown.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">
-            Surrounding areas
-          </h2>
-          <p className="mt-3 text-sm text-brand-charcoal/70">
-            Fishponds, Stoke Gifford, Kingswood, Keynsham, and nearby towns by request.
-          </p>
-        </div>
+        {serviceAreas.map((area) => (
+          <div key={area.region} className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
+            <h2 className="font-heading text-xl font-semibold text-brand-sageDark">{area.region}</h2>
+            <p className="mt-3 text-sm text-brand-charcoal/70">{area.places}</p>
+          </div>
+        ))}
       </div>
 
       <div className="mt-10 rounded-2xl border border-brand-sageLight/30 bg-white p-6 text-sm text-brand-charcoal/70 shadow-sm">
