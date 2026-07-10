@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function BookPage() {
   return (
-    <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">
+    <section className="mx-auto max-w-4xl px-6 pb-16 pt-12 md:pt-20">
       <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
         Request a Bristol home-visit appointment
       </h1>
