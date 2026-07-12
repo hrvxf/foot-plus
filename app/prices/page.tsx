@@ -82,7 +82,7 @@ export default function PricesPage() {
           <p className="mt-3">
             Foot+ Bristol is based in central Bristol (BS2). Travel across inner Bristol is included in the appointment price.
             See{" "}
-            <a className="font-semibold text-brand-sageDark underline" href="/areas">
+            <a className="font-semibold text-brand-sageDark underline" href="/areas-we-cover">
               areas covered
             </a>{" "}
             for local neighbourhoods.
