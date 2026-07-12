@@ -16,8 +16,10 @@ export type LocationPage = {
   metaDescription: string;
   /** Region used by the /areas-we-cover hub for grouping links. */
   region: LocationRegion;
-  /** Schematic map position as percentages, not precise geographic coordinates. */
+  /** Schematic map position as percentages, not precise geographic coordinates or boundaries. */
   mapPosition: { x: number; y: number };
+  /** Preferred label direction for the illustrative coverage map. */
+  mapLabelPosition?: "left" | "right" | "above" | "below";
 };
 
 export const locationPages: LocationPage[] = [
@@ -25,7 +27,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-clifton",
     area: "Clifton",
     region: "central",
-    mapPosition: { x: 32, y: 40 },
+    mapPosition: { x: 33, y: 43 },
+    mapLabelPosition: "left",
     title: "Foot Health Practitioner in Clifton, Bristol",
     intro:
       "Professional home-visit foot care in Clifton, provided in the comfort of your own home.",
@@ -76,7 +79,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-redland",
     area: "Redland",
     region: "central",
-    mapPosition: { x: 45, y: 30 },
+    mapPosition: { x: 43, y: 32 },
+    mapLabelPosition: "above",
     title: "Foot Health Practitioner in Redland, Bristol",
     intro:
       "Professional home-visit foot care in Redland for patients who prefer practical care at home.",
@@ -131,7 +135,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-cotham",
     area: "Cotham",
     region: "central",
-    mapPosition: { x: 51, y: 39 },
+    mapPosition: { x: 50, y: 39 },
+    mapLabelPosition: "above",
     hubDescription:
       "Professional home-visit foot care in Cotham for convenient foot and nail care at home.",
     title: "Foot Health Practitioner in Cotham, Bristol",
@@ -192,7 +197,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-bishopston",
     area: "Bishopston",
     region: "north-west",
-    mapPosition: { x: 56, y: 22 },
+    mapPosition: { x: 53, y: 22 },
+    mapLabelPosition: "right",
     title: "Foot Health Practitioner in Bishopston, Bristol",
     intro:
       "Home-visit foot care in Bishopston, with professional support for routine foot and nail concerns.",
@@ -247,7 +253,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-henleaze",
     area: "Henleaze",
     region: "north-west",
-    mapPosition: { x: 35, y: 18 },
+    mapPosition: { x: 35, y: 19 },
+    mapLabelPosition: "above",
     title: "Foot Health Practitioner in Henleaze, Bristol",
     intro:
       "Professional home-visit foot care in Henleaze for comfortable, practical support at home.",
@@ -302,7 +309,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-westbury-on-trym",
     area: "Westbury-on-Trym",
     region: "north-west",
-    mapPosition: { x: 23, y: 17 },
+    mapPosition: { x: 24, y: 18 },
+    mapLabelPosition: "left",
     title: "Foot Health Practitioner in Westbury-on-Trym",
     intro:
       "Professional home-visit foot care in Westbury-on-Trym, delivered in the comfort of your home.",
@@ -353,7 +361,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-stoke-bishop",
     area: "Stoke Bishop",
     region: "north-west",
-    mapPosition: { x: 20, y: 33 },
+    mapPosition: { x: 20, y: 35 },
+    mapLabelPosition: "left",
     hubDescription:
       "Professional home-visit foot care in Stoke Bishop, delivered in the comfort of your own home.",
     title: "Foot Health Practitioner in Stoke Bishop, Bristol",
@@ -414,7 +423,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-sneyd-park",
     area: "Sneyd Park",
     region: "north-west",
-    mapPosition: { x: 24, y: 28 },
+    mapPosition: { x: 25, y: 28 },
+    mapLabelPosition: "above",
     hubDescription:
       "Home-visit foot care in Sneyd Park for comfortable and practical support at home.",
     title: "Foot Health Practitioner in Sneyd Park, Bristol",
@@ -475,7 +485,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-st-philips",
     area: "St Philips",
     region: "central",
-    mapPosition: { x: 67, y: 51 },
+    mapPosition: { x: 66, y: 50 },
+    mapLabelPosition: "right",
     hubDescription:
       "Professional home-visit foot care in St Philips, close to central Bristol and Temple Meads.",
     title: "Foot Health Practitioner in St Philips, Bristol",
@@ -536,7 +547,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-old-market",
     area: "Old Market",
     region: "central",
-    mapPosition: { x: 60, y: 48 },
+    mapPosition: { x: 58, y: 46 },
+    mapLabelPosition: "above",
     hubDescription:
       "Convenient home-visit foot care in Old Market for routine foot and nail concerns.",
     title: "Foot Health Practitioner in Old Market, Bristol",
@@ -597,7 +609,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-redcliffe",
     area: "Redcliffe",
     region: "central",
-    mapPosition: { x: 55, y: 58 },
+    mapPosition: { x: 54, y: 59 },
+    mapLabelPosition: "below",
     hubDescription:
       "Professional foot care at home throughout Redcliffe and nearby central Bristol areas.",
     title: "Foot Health Practitioner in Redcliffe, Bristol",
@@ -658,7 +671,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-easton",
     area: "Easton",
     region: "east",
-    mapPosition: { x: 75, y: 43 },
+    mapPosition: { x: 77, y: 42 },
+    mapLabelPosition: "right",
     hubDescription:
       "Home-visit foot care in Easton for patients who prefer practical treatment at home.",
     title: "Foot Health Practitioner in Easton, Bristol",
@@ -719,7 +733,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-barton-hill",
     area: "Barton Hill",
     region: "east",
-    mapPosition: { x: 72, y: 53 },
+    mapPosition: { x: 74, y: 54 },
+    mapLabelPosition: "right",
     hubDescription:
       "Professional foot and nail care appointments delivered at home across Barton Hill.",
     title: "Foot Health Practitioner in Barton Hill, Bristol",
@@ -780,7 +795,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-totterdown",
     area: "Totterdown",
     region: "south",
-    mapPosition: { x: 61, y: 70 },
+    mapPosition: { x: 62, y: 72 },
+    mapLabelPosition: "right",
     hubDescription:
       "Home-visit foot care in Totterdown for routine appointments and ongoing foot health support.",
     title: "Foot Health Practitioner in Totterdown, Bristol",
@@ -841,7 +857,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-southville",
     area: "Southville",
     region: "south",
-    mapPosition: { x: 43, y: 65 },
+    mapPosition: { x: 42, y: 67 },
+    mapLabelPosition: "left",
     hubDescription:
       "Professional home-visit foot care in Southville for patients who prefer convenient care at home.",
     title: "Foot Health Practitioner in Southville, Bristol",
@@ -898,7 +915,8 @@ export const locationPages: LocationPage[] = [
     slug: "foot-health-practitioner-bedminster",
     area: "Bedminster",
     region: "south",
-    mapPosition: { x: 45, y: 75 },
+    mapPosition: { x: 45, y: 78 },
+    mapLabelPosition: "below",
     hubDescription:
       "Home-visit foot care in Bedminster for routine foot and nail concerns.",
     title: "Foot Health Practitioner in Bedminster, Bristol",
