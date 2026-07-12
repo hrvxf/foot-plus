@@ -100,8 +100,8 @@ export default function PricesPage() {
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/75">
             HOME VISIT FOOT CARE IN BRISTOL
           </p>
-          <h1 className="mt-3 max-w-[900px] font-heading text-[clamp(2.08rem,4vw,3.68rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
-            Prices
+          <h1 className="mt-3 max-w-[900px] font-heading text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
+            Home visit foot care prices
           </h1>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
             Professional foot care in the comfort of your home, with travel across central Bristol included.
