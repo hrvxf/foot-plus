@@ -46,13 +46,6 @@ const pricingCards = [
   },
 ];
 
-const reassuranceItems = [
-  "Home visits",
-  "Central Bristol travel included",
-  "Sterile instruments",
-  "Clear pricing",
-];
-
 const nextSteps = [
   {
     title: "Send your request",
@@ -103,19 +96,19 @@ export default function PricesPage() {
           </ol>
         </nav>
 
-        <div className="max-w-3xl">
+        <div className="max-w-[900px]">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/75">
-            Home-visit foot care · Bristol
+            HOME VISIT FOOT CARE IN BRISTOL
           </p>
-          <h1 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tight text-brand-sageDark sm:text-4xl md:text-5xl">
-            Simple, transparent home-visit pricing
+          <h1 className="mt-3 max-w-[900px] font-heading text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
+            Home visit foot care prices
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-            Professional foot care delivered in your Bristol home, with travel across central Bristol included.
+          <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
+            Professional foot care in the comfort of your home, with travel across central Bristol included.
           </p>
         </div>
 
-        <div className="mt-8 grid items-stretch gap-5 lg:grid-cols-2">
+        <div className="mt-7 grid items-stretch gap-5 lg:grid-cols-2">
           {pricingCards.map((card) => (
             <article
               key={card.title}
@@ -182,14 +175,6 @@ export default function PricesPage() {
           ))}
         </div>
 
-        <div className="mt-5 grid gap-3 rounded-[24px] border border-brand-sageLight/35 bg-white/55 px-4 py-4 text-sm font-medium text-brand-charcoal/78 sm:grid-cols-2 sm:px-5 lg:grid-cols-4">
-          {reassuranceItems.map((item) => (
-            <div key={item} className="flex items-center gap-2">
-              <CheckIcon className="text-brand-sageDark" />
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className="border-y border-brand-sageLight/30 bg-brand-sageLight/18">
