@@ -25,7 +25,7 @@ const reasons = [
   { label: "Diabetic foot checks", href: "/services" },
 ];
 
-const benefitItems = ["Older adults", "People with reduced mobility", "People who find it difficult to reach their feet", "People recovering from illness or surgery", "Busy patients who prefer care at home", "Patients who feel more comfortable receiving care in familiar surroundings"];
+const benefitItems = ["People who find travelling difficult", "People with reduced mobility", "People who find it difficult to reach their feet", "People who prefer care in familiar surroundings", "People who want practical home-based appointments", "Busy patients who prefer care at home"];
 const safetyItems = ["open wounds or bleeding", "signs of infection", "sudden swelling", "severe or unexplained pain", "significant loss of sensation", "circulation concerns", "diabetes-related complications", "suspected ingrown toenail infection"];
 
 function CardSection({ title, children }: { title: string; children: React.ReactNode }) {
