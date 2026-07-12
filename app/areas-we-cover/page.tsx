@@ -1,24 +1,53 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { MapPin } from "lucide-react";
 import Button from "../components/Button";
-import { locationPages } from "../lib/location-pages";
-import { bookingHref, SITE_URL } from "../lib/site";
+import CoverageMap from "../components/CoverageMap";
+import { locationPages, type LocationRegion } from "../lib/location-pages";
+import { bookingHref, emailHref, phoneDisplay, phoneHref, SITE_URL } from "../lib/site";
 
 const canonical = `${SITE_URL}/areas-we-cover`;
 
 export const metadata: Metadata = {
   title: "Areas We Cover in Bristol | Foot+ Home Visits",
   description:
-    "Foot+ provides professional home-visit foot care across selected areas of Bristol. Explore Clifton, Redland, Cotham, Bishopston, Henleaze, Westbury-on-Trym, Stoke Bishop, Sneyd Park, St Philips, Old Market, Redcliffe, Easton, Barton Hill, Totterdown, Southville and Bedminster.",
+    "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Contact Foot+ with your postcode to confirm availability.",
   alternates: { canonical },
   openGraph: {
     url: canonical,
     title: "Areas We Cover in Bristol | Foot+ Home Visits",
     description:
-      "Explore selected Bristol areas where Foot+ provides professional foot care in patients’ homes.",
+      "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Contact Foot+ with your postcode to confirm availability.",
   },
   robots: { index: true, follow: true },
 };
+
+const regionContent: Record<LocationRegion, { title: string; description: string }> = {
+  "north-west": {
+    title: "North and north-west Bristol",
+    description: "Home visits across established residential neighbourhoods north and north-west of the city centre.",
+  },
+  central: {
+    title: "Central and inner Bristol",
+    description: "Home visits across central neighbourhoods and areas close to the Foot+ BS2 base.",
+  },
+  east: {
+    title: "East Bristol",
+    description: "Home visits in east Bristol neighbourhoods within the current appointment planning area.",
+  },
+  south: {
+    title: "South Bristol",
+    description: "Home visits across south Bristol neighbourhoods including areas around the river and Wells Road.",
+  },
+};
+
+const regionOrder: LocationRegion[] = ["north-west", "central", "east", "south"];
+
+const groupedLocations = regionOrder.map((region) => ({
+  region,
+  ...regionContent[region],
+  locations: locationPages.filter((location) => location.region === region),
+}));
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -26,100 +55,89 @@ const breadcrumbSchema = {
   "@id": `${canonical}#breadcrumb`,
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Areas We Cover",
-      item: canonical,
-    },
+    { "@type": "ListItem", position: 2, name: "Areas We Cover", item: canonical },
   ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${canonical}#covered-areas`,
+  name: "Foot+ Bristol home-visit coverage areas",
+  itemListElement: locationPages.map((location, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: location.area,
+    url: `${SITE_URL}/${location.slug}`,
+  })),
 };
 
 export default function AreasWeCoverPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 pb-16 pt-8 md:pt-12">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <nav
-        aria-label="Breadcrumb"
-        className="mb-5 text-sm text-brand-charcoal/65"
-      >
+    <main className="mx-auto max-w-6xl px-6 pb-16 pt-8 md:pt-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <nav aria-label="Breadcrumb" className="mb-5 text-sm text-brand-charcoal/65">
         <ol className="flex flex-wrap gap-2">
-          <li>
-            <Link
-              className="font-semibold text-brand-sageDark underline underline-offset-4"
-              href="/"
-            >
-              Home
-            </Link>
-          </li>
+          <li><Link className="font-semibold text-brand-sageDark underline underline-offset-4" href="/">Home</Link></li>
           <li aria-hidden="true">/</li>
           <li aria-current="page">Areas We Cover</li>
         </ol>
       </nav>
+
       <section className="overflow-hidden rounded-3xl border border-brand-sageLight/35 bg-linear-to-br from-white via-white to-brand-sageLight/20 p-7 shadow-sm md:p-9">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark/75">
-          Areas We Cover
-        </p>
-        <h1 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">
-          Home-visit foot care across Bristol
-        </h1>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark/75">Areas We Cover</p>
+        <h1 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Home visits across Bristol</h1>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">
-          Foot+ provides professional foot care in patients’ homes across
-          selected areas of Bristol. Explore your local area below or contact
-          Foot+ with your postcode to confirm availability.
+          Foot+ provides professional foot care in patients’ homes across Bristol. Explore the areas currently covered or contact Foot+ with your postcode to confirm availability.
         </p>
+        <p className="mt-4 inline-flex items-center rounded-full bg-brand-sageLight/20 px-3 py-1 text-xs font-semibold text-brand-sageDark"><MapPin aria-hidden="true" className="mr-1.5 h-4 w-4" />Based in central Bristol, BS2</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href={bookingHref} variant="solid">
-            Book an appointment
-          </Button>
-          <Button href="/services" variant="outline">
-            View services
-          </Button>
+          <Button href={bookingHref} variant="solid">Book an appointment</Button>
+          <Button href="/services" variant="outline">View services</Button>
         </div>
       </section>
-      <section
-        className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        aria-label="Local service areas"
-      >
-        {locationPages.map((area) => (
-          <Link
-            key={area.slug}
-            href={`/${area.slug}`}
-            className="group rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-sageLight/60 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
-          >
-            <h2 className="font-heading text-xl font-semibold text-brand-sageDark">
-              {area.area}
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/75">
-              {area.hubDescription ?? area.intro}
-            </p>
-            <span className="mt-4 inline-flex text-sm font-semibold text-brand-sageDark underline underline-offset-4">
-              Explore home visits in {area.area}
-            </span>
-          </Link>
-        ))}
-      </section>
-      <section className="mt-8 rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-        <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">
-          Not sure whether your postcode is covered?
-        </h2>
-        <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 md:text-base">
-          The areas above are helpful local guides rather than a guarantee of
-          every appointment slot. If you are nearby, contact Foot+ with your
-          postcode so availability and any travel details can be confirmed
-          before booking.
-        </p>
-        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-          <Button href={bookingHref} variant="solid">
-            Enquire with your postcode
-          </Button>
-          <Button href="/areas" variant="outline">
-            View wider Bristol areas
-          </Button>
+
+      <section className="mt-10" aria-labelledby="coverage-map-heading">
+        <div className="mb-5 max-w-3xl">
+          <h2 id="coverage-map-heading" className="font-heading text-2xl font-semibold text-brand-sageDark">Bristol areas currently covered</h2>
+          <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/75 md:text-base">Select an area on the map or browse the regional lists below.</p>
         </div>
+        <CoverageMap locations={locationPages} />
+      </section>
+
+      <section className="mt-12" aria-labelledby="browse-area-heading">
+        <h2 id="browse-area-heading" className="font-heading text-2xl font-semibold text-brand-sageDark">Browse by area</h2>
+        <div className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {groupedLocations.map((group) => (
+            <article key={group.region} className="rounded-3xl border border-brand-sageLight/30 bg-white p-5 shadow-sm md:p-6">
+              <MapPin aria-hidden="true" className="h-5 w-5 text-brand-sageDark/70" />
+              <h3 className="mt-3 font-heading text-xl font-semibold text-brand-sageDark">{group.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75">{group.description}</p>
+              <ul className="mt-5 space-y-2">
+                {group.locations.map((location) => (
+                  <li key={location.slug}>
+                    <Link className="inline-flex min-h-8 items-center font-semibold text-brand-sageDark underline underline-offset-4 transition hover:text-brand-sage focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight" href={`/${location.slug}`}>
+                      {location.area}<span aria-hidden="true" className="ml-1">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12 rounded-3xl border border-brand-sageLight/30 bg-brand-sageLight/10 p-6 shadow-sm md:p-8">
+        <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">Not sure whether your postcode is covered?</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">Foot+ is based in central Bristol and plans home visits across nearby areas. If your neighbourhood is not listed, contact Foot+ with your postcode to confirm current availability.</p>
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row"><Button href={bookingHref} variant="solid">Check your postcode</Button><Button href={emailHref} variant="outline">Email Foot+</Button></div>
+      </section>
+
+      <section className="mt-12 rounded-3xl bg-brand-sageDark p-7 text-white shadow-sm md:p-9">
+        <h2 className="font-heading text-2xl font-semibold">Book a home foot care appointment</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/80 md:text-base">Arrange professional foot and nail care in the comfort of your own home.</p>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row"><Button href={bookingHref} variant="primary">Book an appointment</Button><Button href={phoneHref} variant="secondary">Call {phoneDisplay}</Button></div>
       </section>
     </main>
   );
