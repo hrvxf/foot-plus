@@ -271,7 +271,7 @@ export default function HomeContent() {
               <p className="mt-3 text-sm text-brand-charcoal/70">
                 Travel is planned carefully to keep appointments unhurried and fairly priced.
                 Explore{" "}
-                <Link href="/areas" className="font-semibold text-brand-sageDark underline">
+                <Link href="/areas-we-cover" className="font-semibold text-brand-sageDark underline">
                   areas covered in Bristol
                 </Link>{" "}
                 or see{" "}

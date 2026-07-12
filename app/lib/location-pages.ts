@@ -16,7 +16,9 @@ export type LocationPage = {
   metaDescription: string;
   /** Region used by the /areas-we-cover hub for grouping links. */
   region: LocationRegion;
-  /** Schematic map position as percentages, not precise geographic coordinates or boundaries. */
+  /** Geographic centre used by the interactive Bristol coverage map. */
+  mapCoordinates: { lat: number; lng: number };
+  /** Fallback label position as percentages for non-map visual treatments. */
   mapPosition: { x: number; y: number };
   /** Preferred label direction for the illustrative coverage map. */
   mapLabelPosition?: "left" | "right" | "above" | "below";
@@ -25,6 +27,7 @@ export type LocationPage = {
 export const locationPages: LocationPage[] = [
   {
     slug: "foot-health-practitioner-clifton",
+    mapCoordinates: { lat: 51.4619, lng: -2.619 },
     area: "Clifton",
     region: "central",
     mapPosition: { x: 33, y: 43 },
@@ -77,6 +80,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-redland",
+    mapCoordinates: { lat: 51.4683, lng: -2.6018 },
     area: "Redland",
     region: "central",
     mapPosition: { x: 43, y: 32 },
@@ -133,6 +137,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-cotham",
+    mapCoordinates: { lat: 51.4629, lng: -2.5952 },
     area: "Cotham",
     region: "central",
     mapPosition: { x: 50, y: 39 },
@@ -195,6 +200,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-bishopston",
+    mapCoordinates: { lat: 51.475, lng: -2.5896 },
     area: "Bishopston",
     region: "north-west",
     mapPosition: { x: 53, y: 22 },
@@ -251,6 +257,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-henleaze",
+    mapCoordinates: { lat: 51.4893, lng: -2.609 },
     area: "Henleaze",
     region: "north-west",
     mapPosition: { x: 35, y: 19 },
@@ -307,6 +314,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-westbury-on-trym",
+    mapCoordinates: { lat: 51.4935, lng: -2.6194 },
     area: "Westbury-on-Trym",
     region: "north-west",
     mapPosition: { x: 24, y: 18 },
@@ -359,6 +367,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-stoke-bishop",
+    mapCoordinates: { lat: 51.4779, lng: -2.6347 },
     area: "Stoke Bishop",
     region: "north-west",
     mapPosition: { x: 20, y: 35 },
@@ -421,6 +430,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-sneyd-park",
+    mapCoordinates: { lat: 51.4789, lng: -2.625 },
     area: "Sneyd Park",
     region: "north-west",
     mapPosition: { x: 25, y: 28 },
@@ -483,6 +493,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-st-philips",
+    mapCoordinates: { lat: 51.4524, lng: -2.5701 },
     area: "St Philips",
     region: "central",
     mapPosition: { x: 66, y: 50 },
@@ -545,6 +556,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-old-market",
+    mapCoordinates: { lat: 51.4563, lng: -2.5842 },
     area: "Old Market",
     region: "central",
     mapPosition: { x: 58, y: 46 },
@@ -607,6 +619,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-redcliffe",
+    mapCoordinates: { lat: 51.4477, lng: -2.5902 },
     area: "Redcliffe",
     region: "central",
     mapPosition: { x: 54, y: 59 },
@@ -669,6 +682,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-easton",
+    mapCoordinates: { lat: 51.4613, lng: -2.555 },
     area: "Easton",
     region: "east",
     mapPosition: { x: 77, y: 42 },
@@ -731,6 +745,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-barton-hill",
+    mapCoordinates: { lat: 51.4527, lng: -2.56 },
     area: "Barton Hill",
     region: "east",
     mapPosition: { x: 74, y: 54 },
@@ -793,6 +808,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-totterdown",
+    mapCoordinates: { lat: 51.4386, lng: -2.5787 },
     area: "Totterdown",
     region: "south",
     mapPosition: { x: 62, y: 72 },
@@ -855,6 +871,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-southville",
+    mapCoordinates: { lat: 51.4446, lng: -2.6063 },
     area: "Southville",
     region: "south",
     mapPosition: { x: 42, y: 67 },
@@ -913,6 +930,7 @@ export const locationPages: LocationPage[] = [
   },
   {
     slug: "foot-health-practitioner-bedminster",
+    mapCoordinates: { lat: 51.4412, lng: -2.6015 },
     area: "Bedminster",
     region: "south",
     mapPosition: { x: 45, y: 78 },

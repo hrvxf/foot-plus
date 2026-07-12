@@ -21,10 +21,6 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -35,7 +31,7 @@ export default function Header() {
     { label: "About", href: "/about", active: pathname === "/about" },
     { label: "Services", href: "/services", active: pathname === "/services" },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
-    { label: "Areas", href: "/areas", active: pathname === "/areas" },
+    { label: "Areas", href: "/areas-we-cover", active: pathname === "/areas-we-cover" },
   ];
 
   const headerBase =
