@@ -5,7 +5,7 @@ import { SITE_URL } from "../lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/terms` },
   openGraph: { url: `${SITE_URL}/terms` },
-  title: "Terms of Service | Foot+ Bristol",
+  title: "Terms of Service",
   description: "Terms of service for Foot+ Bristol home-visit foot health care.",
   robots: { index: false, follow: true },
 };

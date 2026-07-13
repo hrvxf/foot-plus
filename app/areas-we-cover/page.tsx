@@ -9,13 +9,13 @@ import { bookingHref, emailHref, phoneDisplay, phoneHref, SITE_URL } from "../li
 const canonical = `${SITE_URL}/areas-we-cover`;
 
 export const metadata: Metadata = {
-  title: "Areas We Cover in Bristol | Foot+ Home Visits",
+  title: "Areas We Cover in Bristol | Home Visits",
   description:
     "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Contact Foot+ with your postcode to confirm availability.",
   alternates: { canonical },
   openGraph: {
     url: canonical,
-    title: "Areas We Cover in Bristol | Foot+ Home Visits",
+    title: "Areas We Cover in Bristol | Home Visits",
     description:
       "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Contact Foot+ with your postcode to confirm availability.",
   },

@@ -17,7 +17,7 @@ export const conditionPages: ConditionPage[] = [
   {
     slug: "hard-skin-treatment-bristol",
     title: "Hard Skin Treatment in Bristol",
-    metaTitle: "Hard Skin Treatment in Bristol | Foot+",
+    metaTitle: "Hard Skin Treatment in Bristol",
     description:
       "Professional hard skin treatment in Bristol during Foot+ home visits, with careful reduction, prevention advice and practical aftercare.",
     intro:
@@ -46,7 +46,7 @@ export const conditionPages: ConditionPage[] = [
   {
     slug: "callus-removal-bristol",
     title: "Callus Removal in Bristol",
-    metaTitle: "Callus Removal in Bristol | Home Visits | Foot+",
+    metaTitle: "Callus Removal in Bristol | Home Visits",
     description:
       "Callus removal in Bristol with Foot+ home visits, including professional callus reduction, pressure advice and practical aftercare.",
     intro:
@@ -73,7 +73,7 @@ export const conditionPages: ConditionPage[] = [
   {
     slug: "corn-removal-bristol",
     title: "Corn Treatment in Bristol",
-    metaTitle: "Corn Treatment in Bristol | Foot+ Home Visits",
+    metaTitle: "Corn Treatment in Bristol | Home Visits",
     description:
       "Corn treatment in Bristol from Foot+ home visits, with assessment, careful reduction and advice on pressure and footwear.",
     intro:
@@ -100,7 +100,7 @@ export const conditionPages: ConditionPage[] = [
   {
     slug: "cracked-heels-bristol",
     title: "Cracked Heel Treatment in Bristol",
-    metaTitle: "Cracked Heel Treatment in Bristol | Foot+",
+    metaTitle: "Cracked Heel Treatment in Bristol",
     description:
       "Cracked heel treatment in Bristol with Foot+ home visits, including hard skin reduction, moisturising advice and aftercare guidance.",
     intro:
@@ -124,7 +124,7 @@ export const conditionPages: ConditionPage[] = [
   {
     slug: "toenail-cutting-bristol",
     title: "Toenail Cutting Service in Bristol",
-    metaTitle: "Toenail Cutting Service in Bristol | Foot+ Home Visits",
+    metaTitle: "Toenail Cutting Service in Bristol | Home Visits",
     description:
       "Toenail cutting in Bristol with Foot+ home visits for difficult, thickened or awkward nails as part of professional foot and nail care.",
     intro:
@@ -151,7 +151,7 @@ export const conditionPages: ConditionPage[] = [
   {
     slug: "foot-health-practitioner-bristol",
     title: "Foot Health Practitioner in Bristol",
-    metaTitle: "Foot Health Practitioner in Bristol | Foot+ Home Visits",
+    metaTitle: "Foot Health Practitioner in Bristol | Home Visits",
     description:
       "Foot+ provides Foot Health Practitioner home visits in Bristol for professional foot care, nail care, hard skin, callus, corns and routine appointments.",
     intro:
