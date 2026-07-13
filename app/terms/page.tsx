@@ -1,6 +1,13 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+import { SITE_URL } from "../lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: `${SITE_URL}/terms` },
+  openGraph: { url: `${SITE_URL}/terms` },
   title: "Terms of Service | Foot+ Bristol",
   description: "Terms of service for Foot+ Bristol home-visit foot health care.",
+  robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {

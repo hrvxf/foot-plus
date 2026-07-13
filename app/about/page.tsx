@@ -1,9 +1,14 @@
 import Button from "../components/Button";
 import PractitionerProfile from "../components/PractitionerProfile";
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
+import { SITE_URL } from "../lib/site";
+
+export const metadata: Metadata = {
   title: "Qualified Foot Health Practitioner in Bristol | Foot+ Bristol",
+  alternates: { canonical: `${SITE_URL}/about` },
+  openGraph: { url: `${SITE_URL}/about` },
   description:
     "Meet Foot+ Bristol, a qualified foot health practitioner offering insured, DBS-checked home visits across Bristol.",
 };

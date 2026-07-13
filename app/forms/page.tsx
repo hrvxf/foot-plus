@@ -1,7 +1,14 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+import { SITE_URL } from "../lib/site";
+
+export const metadata: Metadata = {
   title: "Patient Forms | Foot+ Bristol",
+  alternates: { canonical: `${SITE_URL}/forms` },
+  openGraph: { url: `${SITE_URL}/forms` },
   description:
     "Complete Foot+ Bristol patient forms online, including the new patient and medical history form.",
+  robots: { index: false, follow: true },
 };
 
 export default function FormsPage() {
