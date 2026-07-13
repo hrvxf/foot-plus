@@ -19,7 +19,7 @@ export const localPartners: LocalPartner[] = [
     name: "Severn Physiotherapy",
     category: "Home physiotherapy and occupational therapy",
     description:
-      "Expert home-visit physiotherapy and occupational therapy for older adults across Bristol and nearby areas. Severn supports independence, mobility, falls prevention, neurological rehabilitation and recovery after illness or injury with practical, personalised care at home.",
+      "Home-visit physiotherapy and occupational therapy for older adults, focused on mobility, falls prevention, rehabilitation, and practical support at home.",
     website: "https://www.severnphysiotherapy.co.uk/",
     phone: "01275 400466",
     email: "hello@severnphysiotherapy.co.uk",
