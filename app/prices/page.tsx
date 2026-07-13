@@ -107,7 +107,7 @@ export default function PricesPage() {
             Home visit foot care prices
           </h1>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-            Professional foot care in the comfort of your home, with travel across central Bristol included.
+            Professional foot care in the comfort of your home. Travel within central Bristol is included; surrounding Bristol and farther afield may incur a fee.
           </p>
         </div>
 
@@ -184,10 +184,10 @@ export default function PricesPage() {
         <div className="mx-auto grid max-w-6xl gap-6 px-5 py-10 sm:px-6 md:grid-cols-[1fr_auto] md:items-center md:py-12">
           <div className="max-w-3xl">
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-brand-sageDark sm:text-3xl">
-              Travel across central Bristol is included
+              Travel within central Bristol is included
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">
-              Foot+ is based in BS2 and provides home visits across central and surrounding Bristol. A small supplement may apply farther afield, but this will always be confirmed before booking.
+              Foot+ is based in BS2. Travel within central Bristol is included; appointments in surrounding Bristol or farther afield may incur a small supplement, always confirmed before booking.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:justify-end">

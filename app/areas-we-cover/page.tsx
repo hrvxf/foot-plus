@@ -17,13 +17,13 @@ const canonical = `${SITE_URL}/areas-we-cover`;
 export const metadata: Metadata = {
   title: "Areas We Cover in Bristol | Home Visits",
   description:
-    "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Contact Foot+ with your postcode to confirm availability.",
+    "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Central Bristol travel is included; surrounding areas may incur a fee confirmed before booking.",
   alternates: { canonical },
   openGraph: {
     url: canonical,
     title: "Areas We Cover in Bristol | Home Visits",
     description:
-      "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Contact Foot+ with your postcode to confirm availability.",
+      "Explore the Bristol areas covered by Foot+ home visits, including central, north, east and south Bristol. Central Bristol travel is included; surrounding areas may incur a fee confirmed before booking.",
   },
   robots: { index: true, follow: true },
 };
@@ -133,8 +133,8 @@ export default function AreasWeCoverPage() {
         </h1>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">
           Foot+ provides professional foot care in patients’ homes across
-          Bristol. Explore the areas currently covered or contact Foot+ with
-          your postcode to confirm availability.
+          Bristol. Travel within central Bristol is included; surrounding
+          Bristol and farther afield may incur a fee confirmed before booking.
         </p>
         <p className="mt-4 inline-flex items-center rounded-full bg-brand-sageLight/20 px-3 py-1 text-xs font-semibold text-brand-sageDark">
           <MapPin aria-hidden="true" className="mr-1.5 h-4 w-4" />
@@ -217,8 +217,10 @@ export default function AreasWeCoverPage() {
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">
           Foot+ is based in central Bristol and plans home visits across nearby
-          areas. If your neighbourhood is not listed, contact Foot+ with your
-          postcode to confirm current availability.
+          areas. Travel within central Bristol is included; surrounding Bristol
+          and farther afield may incur a fee. If your neighbourhood is not
+          listed, contact Foot+ with your postcode to confirm availability and
+          any supplement before booking.
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <Button href={bookingHref} variant="solid">

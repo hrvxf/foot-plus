@@ -305,11 +305,11 @@ export default function HomeContent() {
                 Local, Reliable Foot Care - Now Welcoming New Patients
               </h2>
               <p className="mt-3 text-sm text-brand-charcoal/70">
-                Based in Bristol, Foot+ Bristol offers professional home-visit care across the city and
-                nearby areas.
+                Based in Bristol, Foot+ Bristol offers professional home-visit care across central Bristol,
+                surrounding Bristol and nearby areas.
               </p>
               <p className="mt-3 text-sm text-brand-charcoal/70">
-                Travel is planned carefully to keep appointments unhurried and fairly priced.
+                Travel within central Bristol is included. Surrounding Bristol and farther afield may incur a fee, confirmed before booking.
                 Explore{" "}
                 <Link href="/areas-we-cover" className="font-semibold text-brand-sageDark underline">
                   areas covered in Bristol
@@ -335,7 +335,7 @@ export default function HomeContent() {
                 )}
               </ul>
               <div className="mt-5 rounded-xl bg-brand-sageLight/20 px-4 py-3 text-xs text-brand-sageDark">
-                Flexible scheduling keeps travel time fair and appointments relaxed.
+                Central Bristol travel included; wider areas confirmed before booking.
               </div>
             </div>
           </div>
