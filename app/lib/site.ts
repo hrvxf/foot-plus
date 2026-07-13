@@ -4,7 +4,8 @@ export const BUSINESS_ID = `${SITE_URL}/#medicalbusiness`;
 export const bookingHref = "/book";
 export const phoneDisplay = "07380 301555";
 export const phoneHref = "tel:+447380301555";
-export const emailHref = "mailto:hello@foot-plus.co.uk";
+export const emailDisplay = "hello@foot-plus.co.uk";
+export const emailHref = `mailto:${emailDisplay}`;
 
 export const serviceAreas = [
   {

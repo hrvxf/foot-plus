@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { SITE_URL } from "../lib/site";
+import { emailDisplay, emailHref, SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/privacy` },
@@ -24,7 +24,14 @@ export default function PrivacyPage() {
       </p>
       <p className="mt-4 text-sm text-brand-charcoal/80">
         You can request access to or deletion of your information at any time by
-        emailing hello@footplusbristol.co.uk.
+        emailing{" "}
+        <a
+          className="font-medium text-brand-sageDark underline decoration-brand-sageDark/30 underline-offset-4 transition hover:decoration-brand-sageDark"
+          href={emailHref}
+        >
+          {emailDisplay}
+        </a>
+        .
       </p>
     </section>
   );
