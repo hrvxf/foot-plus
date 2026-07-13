@@ -37,7 +37,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Clifton, provided in the comfort of your own home.",
     description:
       "Foot+ provides professional foot care at home in Clifton for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Clifton, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Clifton, Bristol",
     metaDescription:
       "Professional home-visit foot care in Clifton, Bristol. Foot+ provides routine nail care, hard skin reduction, corn care and diabetic foot checks at home.",
     local: [
@@ -90,7 +90,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Redland for patients who prefer practical care at home.",
     description:
       "Foot+ provides home-visit foot care across Redland, helping with routine nail care, hard skin, callus, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Redland, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Redland, Bristol",
     metaDescription:
       "Home-visit foot care in Redland, Bristol for routine foot care, toenail cutting, hard skin reduction, corn care and diabetic foot checks.",
     local: [
@@ -149,7 +149,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Cotham for patients who prefer convenient foot and nail care at home.",
     description:
       "Foot+ provides professional foot care at home in Cotham for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Cotham, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Cotham, Bristol",
     metaDescription:
       "Professional home-visit foot care in Cotham, Bristol, including routine nail care, hard skin and callus reduction, corn care and diabetic foot checks at home.",
     local: [
@@ -210,7 +210,7 @@ export const locationPages: LocationPage[] = [
       "Home-visit foot care in Bishopston, with professional support for routine foot and nail concerns.",
     description:
       "Foot+ provides professional foot health appointments at home in Bishopston for routine care, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Bishopston, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Bishopston, Bristol",
     metaDescription:
       "Professional home-visit foot care in Bishopston, Bristol, including toenail cutting, routine foot care, hard skin reduction and diabetic foot checks.",
     local: [
@@ -267,7 +267,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Henleaze for comfortable, practical support at home.",
     description:
       "Foot+ provides home foot health appointments in Henleaze for nail care, routine maintenance, hard skin, callus, corn care and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Henleaze, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Henleaze, Bristol",
     metaDescription:
       "Home-visit foot care in Henleaze, Bristol. Foot+ helps with routine nail care, hard skin, callus, corn care, cracked heels and diabetic foot checks.",
     local: [
@@ -324,7 +324,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Westbury-on-Trym, delivered in the comfort of your home.",
     description:
       "Foot+ provides home-visit foot care in Westbury-on-Trym, supporting routine nail care, hard skin, callus, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Westbury-on-Trym | Foot+",
+    metaTitle: "Foot Health Practitioner in Westbury-on-Trym",
     metaDescription:
       "Professional home-visit foot care in Westbury-on-Trym, including routine nail care, hard skin reduction, corn care and diabetic foot checks at home.",
     local: [
@@ -379,7 +379,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Stoke Bishop, delivered in the comfort of your own home.",
     description:
       "Foot+ provides professional foot health appointments at home in Stoke Bishop for routine care, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Stoke Bishop, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Stoke Bishop, Bristol",
     metaDescription:
       "Professional home-visit foot care in Stoke Bishop, Bristol, supporting routine foot care, toenail cutting, hard skin reduction and diabetic foot checks at home.",
     local: [
@@ -442,7 +442,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Sneyd Park for comfortable and practical support at home.",
     description:
       "Foot+ provides home-visit foot care across Sneyd Park, helping with routine nail care, hard skin, callus, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Sneyd Park, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Sneyd Park, Bristol",
     metaDescription:
       "Home-visit foot care in Sneyd Park, Bristol for routine foot care, nail care, hard skin and callus reduction, corn care and diabetic foot checks.",
     local: [
@@ -505,7 +505,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in St Philips, delivered in the comfort of your own home.",
     description:
       "Foot+ provides professional foot care at home in St Philips for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in St Philips, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in St Philips, Bristol",
     metaDescription:
       "Professional home-visit foot care in St Philips, Bristol, including nail care, hard skin reduction, corn care and diabetic foot checks at home.",
     local: [
@@ -568,7 +568,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Old Market for patients who prefer convenient care at home.",
     description:
       "Foot+ provides professional foot care at home in Old Market for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Old Market, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Old Market, Bristol",
     metaDescription:
       "Convenient home-visit foot care in Old Market, Bristol for routine nail care, hard skin, callus, corns and diabetic foot checks.",
     local: [
@@ -631,7 +631,7 @@ export const locationPages: LocationPage[] = [
       "Home-visit foot care in Redcliffe, providing practical foot and nail care in familiar surroundings.",
     description:
       "Foot+ provides professional foot care at home in Redcliffe for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Redcliffe, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Redcliffe, Bristol",
     metaDescription:
       "Home-visit foot care in Redcliffe, Bristol, supporting routine foot care, toenail cutting, hard skin reduction and diabetic foot checks at home.",
     local: [
@@ -694,7 +694,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care across Easton, helping patients manage routine foot and nail concerns at home.",
     description:
       "Foot+ provides professional foot care at home in Easton for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Easton, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Easton, Bristol",
     metaDescription:
       "Professional home-visit foot care in Easton, Bristol for routine foot and nail care, hard skin, callus, corn care and diabetic foot checks.",
     local: [
@@ -757,7 +757,7 @@ export const locationPages: LocationPage[] = [
       "Home-visit foot care in Barton Hill, delivered professionally and conveniently in your own home.",
     description:
       "Foot+ provides professional foot care at home in Barton Hill for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Barton Hill, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Barton Hill, Bristol",
     metaDescription:
       "Home-visit foot care in Barton Hill, Bristol, including routine toenail care, hard skin reduction, corn care and diabetic foot checks at home.",
     local: [
@@ -820,7 +820,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Totterdown for patients looking for convenient appointments at home.",
     description:
       "Foot+ provides professional foot care at home in Totterdown for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Totterdown, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Totterdown, Bristol",
     metaDescription:
       "Professional home-visit foot care in Totterdown, Bristol for routine nail care, hard skin reduction, corn care and diabetic foot checks at home.",
     local: [
@@ -883,7 +883,7 @@ export const locationPages: LocationPage[] = [
       "Home-visit foot care in Southville for patients who prefer professional foot and nail care at home.",
     description:
       "Foot+ provides professional foot care at home in Southville for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Southville, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Southville, Bristol",
     metaDescription:
       "Professional home-visit foot care in Southville, Bristol, including routine nail care, hard skin reduction, corn care and diabetic foot checks at home.",
     local: [
@@ -942,7 +942,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Bedminster for routine foot and nail concerns.",
     description:
       "Foot+ provides home-visit foot care in Bedminster, supporting routine nail care, hard skin, callus, corns and diabetic foot checks.",
-    metaTitle: "Foot Health Practitioner in Bedminster, Bristol | Foot+",
+    metaTitle: "Foot Health Practitioner in Bedminster, Bristol",
     metaDescription:
       "Home-visit foot care in Bedminster, Bristol for routine foot and nail concerns, hard skin and callus reduction, corn care and diabetic foot checks.",
     local: [

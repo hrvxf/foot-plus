@@ -3,7 +3,7 @@ import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const SITE_URL = "https://foot-plus.co.uk";
+import { SITE_URL } from "./lib/site";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -16,7 +16,7 @@ export const metadata = {
   },
 
   title: {
-    default: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    default: "Foot+ Bristol",
     template: "%s | Foot+ Bristol",
   },
 

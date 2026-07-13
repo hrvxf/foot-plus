@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Book a Foot Health Practitioner in Bristol | Foot+ Bristol",
+  title: "Book a Foot Health Practitioner in Bristol",
   alternates: { canonical: `${SITE_URL}/book` },
   openGraph: { url: `${SITE_URL}/book` },
   description:

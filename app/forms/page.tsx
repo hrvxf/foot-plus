@@ -14,7 +14,7 @@ const preparationPoints = [
 ];
 
 export const metadata: Metadata = {
-  title: "Patient Forms | Foot+ Bristol",
+  title: "Patient Forms",
   alternates: { canonical: `${SITE_URL}/forms` },
   openGraph: { url: `${SITE_URL}/forms` },
   description:
