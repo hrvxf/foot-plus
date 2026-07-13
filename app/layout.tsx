@@ -2,15 +2,14 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import {
-  SEARCH_PREVIEW_IMAGE,
-  SEARCH_PREVIEW_IMAGE_METADATA,
-  SITE_URL,
-} from "./seo";
+import AnalyticsClickTracker from "./components/AnalyticsClickTracker";
+
+import { SITE_URL } from "./lib/site";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   manifest: "/site.webmanifest",
+  applicationName: "Foot+ Bristol",
 
   // Canonical (site-wide default)
   alternates: {
@@ -18,32 +17,48 @@ export const metadata = {
   },
 
   title: {
-    default: "Foot+ | Foot Health in Bristol",
-    template: "%s | Foot+",
+    default: "Foot+ Bristol",
+    template: "%s | Foot+ Bristol",
   },
 
-  description: "Professional foot health services in Bristol.",
+  description:
+    "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
+
+  keywords: [
+    "Foot Health Practitioner Bristol",
+    "mobile foot care Bristol",
+    "home visit foot care Bristol",
+    "LGBT friendly foot care Bristol",
+    "LGBTQ friendly foot health Bristol",
+  ],
 
   openGraph: {
     type: "website",
     url: `${SITE_URL}/`,
     siteName: "Foot+ Bristol",
-    title: "Foot+ | Foot Health in Bristol",
-    description: "Professional foot health services in Bristol.",
-    images: [SEARCH_PREVIEW_IMAGE_METADATA],
+    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    description:
+      "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
+    images: [
+      {
+        url: "/images/social-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Foot+ Bristol - mobile foot health care and home visits in Bristol",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Foot+ | Foot Health in Bristol",
-    description: "Professional foot health services in Bristol.",
-    images: [SEARCH_PREVIEW_IMAGE_METADATA],
+    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    description:
+      "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
+    images: ["/images/social-card.png"],
   },
 
   icons: {
     icon: [
-      // Prefer a vector favicon where supported, with raster fallbacks for older browsers.
-      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon.ico", sizes: "any" },
@@ -58,37 +73,54 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Foot+ Bristol",
-    alternateName: ["Foot Plus", "Foot+ Bristol"],
     url: `${SITE_URL}/`,
-    image: SEARCH_PREVIEW_IMAGE,
+    inLanguage: "en-GB",
+    keywords:
+      "Foot Health Practitioner Bristol, mobile foot care Bristol, home visit foot care Bristol, LGBT friendly foot care Bristol, LGBTQ friendly foot health Bristol",
   };
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
+    "@id": `${SITE_URL}/#organization`,
     name: "Foot+ Bristol",
     url: SITE_URL,
-    image: SEARCH_PREVIEW_IMAGE,
     logo: `${SITE_URL}/images/footplus-logo-green.svg`,
+  };
+
+  const practitionerJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_URL}/about#adam-james`,
+    name: "Adam James",
+    jobTitle: "Foot Health Practitioner",
+    url: `${SITE_URL}/about`,
+    image: `${SITE_URL}/images/Adam-James.svg`,
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+    knowsAbout: ["Routine foot care", "Toenail cutting", "Hard skin and callus care", "Corn care", "Cracked heel care"],
   };
 
   const medicalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
+    "@id": `${SITE_URL}/#medicalbusiness`,
     name: "Foot+ Bristol",
-    description: "Professional home-visit foot health practitioner in Bristol.",
+    description:
+      "Foot+ Bristol provides mobile foot health care and home visits in Bristol.",
+    keywords:
+      "Foot Health Practitioner Bristol, mobile foot care Bristol, home visit foot care Bristol, LGBT friendly foot care Bristol, LGBTQ friendly foot health Bristol",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Bristol",
       postalCode: "BS2",
       addressCountry: "GB",
     },
-    areaServed: "Bristol",
+    areaServed: {
+      "@type": "City",
+      name: "Bristol",
+    },
     url: SITE_URL,
-    image: SEARCH_PREVIEW_IMAGE,
-    telephone: "+447000000000",
     priceRange: "££",
-    sameAs: ["https://www.facebook.com/profile.php?id=61586341484139"],
   };
 
   return (
@@ -138,6 +170,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
+
+        {/* Canonical practitioner schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(practitionerJsonLd),
+          }}
+        />
       </head>
 
       <body className="min-h-screen bg-lightbg text-ink flex flex-col">
@@ -176,6 +216,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src="https://www.facebook.com/tr?id=948452367747908&ev=PageView&noscript=1"
           />
         </noscript>
+        <AnalyticsClickTracker />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

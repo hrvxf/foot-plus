@@ -1,29 +1,32 @@
-import type { Metadata } from "next";
-
 import HomeContent from "./components/HomeContent";
-import { SEARCH_PREVIEW_IMAGE_METADATA } from "./seo";
 
 // App Router homepage route (Pages Router index removed to avoid "/" conflicts).
 
-export const metadata: Metadata = {
-  title: "Foot+ Bristol | Foot Health Practitioner | Home Visits",
+export const metadata = {
+  title: { absolute: "Foot+ Bristol | Foot Health Practitioner Bristol" },
   description:
-    "Foot Health Practitioner in Bristol. Home visits for nail, skin, and diabetic foot care. Book with Foot+ today.",
-  alternates: {
-    canonical: "/",
-  },
-  // Repeat the image on the homepage metadata so route-level merges stay explicit.
+    "Foot+ Bristol provides mobile foot health care and home visits in Bristol for nail, skin, and diabetic foot care.",
+  keywords: [
+    "Foot Health Practitioner Bristol",
+    "mobile foot care Bristol",
+    "home visit foot care Bristol",
+    "LGBT friendly foot care Bristol",
+    "LGBTQ friendly foot health Bristol",
+  ],
   openGraph: {
-    title: "Foot+ Bristol | Foot Health Practitioner | Home Visits",
+    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
     description:
-      "Foot Health Practitioner in Bristol. Home visits for nail, skin, and diabetic foot care. Book with Foot+ today.",
-    images: [SEARCH_PREVIEW_IMAGE_METADATA],
+      "Foot+ Bristol provides mobile foot health care and home visits in Bristol for nail, skin, and diabetic foot care.",
+    url: "/",
+    siteName: "Foot+ Bristol",
   },
   twitter: {
-    title: "Foot+ Bristol | Foot Health Practitioner | Home Visits",
+    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
     description:
-      "Foot Health Practitioner in Bristol. Home visits for nail, skin, and diabetic foot care. Book with Foot+ today.",
-    images: [SEARCH_PREVIEW_IMAGE_METADATA],
+      "Foot+ Bristol provides mobile foot health care and home visits in Bristol for nail, skin, and diabetic foot care.",
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 

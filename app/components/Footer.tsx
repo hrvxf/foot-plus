@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { Mail, Phone, Facebook } from "lucide-react";
+
+import { emailDisplay, emailHref, phoneDisplay, phoneHref } from "../lib/site";
 
 function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
   // Simple WhatsApp-style mark (inline SVG) so you don't need extra deps
@@ -11,7 +14,7 @@ function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Footer() {
   const whatsappPresetMessage =
-    "Hi Adam, I'd like to enquire about an appointment with Foot+.";
+    "Hi Adam, I'd like to enquire about an appointment with Foot+ Bristol.";
   const whatsappHref = `https://wa.me/447380301555?text=${encodeURIComponent(
     whatsappPresetMessage
   )}`;
@@ -60,7 +63,7 @@ export default function Footer() {
                 <WhatsAppIcon className={icon} />
               </a>
               <a
-                href="tel:+447380301555"
+                href={phoneHref}
                 aria-label="Call"
                 className={iconBtn}
                 data-analytics-id="footer-phone"
@@ -68,7 +71,7 @@ export default function Footer() {
                 <Phone className={icon} />
               </a>
               <a
-                href="mailto:hello@foot-plus.co.uk"
+                href={emailHref}
                 aria-label="Email"
                 className={iconBtn}
                 data-analytics-id="footer-email"
@@ -87,16 +90,16 @@ export default function Footer() {
               </a>
             </nav>
             <div className="mt-3 inline-flex items-center gap-4 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-[13px] text-white/80 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.65)] backdrop-blur md:justify-start">
-              <span className="font-semibold text-white/90">07380 301555</span>
+              <span className="font-semibold text-white/90">{phoneDisplay}</span>
               <span className="opacity-50" aria-hidden="true">
                 &bull;
               </span>
               <a
-                href="mailto:hello@foot-plus.co.uk"
+                href={emailHref}
                 className="transition hover:text-white"
                 data-analytics-id="footer-email-inline"
               >
-                hello@foot-plus.co.uk
+                {emailDisplay}
               </a>
             </div>
           </div>
@@ -115,7 +118,7 @@ export default function Footer() {
         <div className="mt-4 border-t border-white/15 pt-2">
           <div className="grid grid-cols-1 gap-3 text-xs text-white/70 md:grid-cols-[1fr_auto] md:items-center">
             <div className="text-sm text-white/80 text-center md:text-left">
-              &copy; {new Date().getFullYear()} Foot+ &bull; Bristol
+              &copy; {new Date().getFullYear()} Foot+ Bristol
             </div>
             <nav
               aria-label="Footer navigation"
@@ -128,12 +131,19 @@ export default function Footer() {
               >
                 Services
               </a>
+              <Link
+                className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
+                href="/advice"
+                data-analytics-id="footer-link-advice"
+              >
+                Advice
+              </Link>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
-                href="/areas"
-                data-analytics-id="footer-link-areas"
+                href="/areas-we-cover"
+                data-analytics-id="footer-link-areas-we-cover"
               >
-                Areas
+                Areas We Cover
               </a>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"

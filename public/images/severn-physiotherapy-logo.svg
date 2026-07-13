@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 340" role="img" aria-labelledby="title desc">
+  <title id="title">Severn Physiotherapy logo</title>
+  <desc id="desc">Severn Physiotherapy wordmark with blue crutch icon and flowing silver and blue waves.</desc>
+  <rect width="650" height="340" fill="none"/>
+  <g fill="none" stroke="#3157a4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 18h47c9 0 16 7 16 16v15c0 9-7 16-16 16H92v98" stroke-width="13"/>
+    <path d="M92 66 80 188" stroke-width="13"/>
+    <path d="M63 17v232" stroke-width="14"/>
+    <path d="M62 103h53" stroke-width="10"/>
+  </g>
+  <g opacity="0.98">
+    <path d="M23 204c77-44 169-48 276-24 126 28 232 12 318-50 9-7 21 5 14 16-47 70-158 96-298 75-132-20-231-15-310 22-14 7-20-30 0-39Z" fill="#eef6f5" stroke="#7f9796" stroke-width="5"/>
+    <path d="M28 220c84-38 179-34 287-7 105 27 195 22 276-13-66 48-165 60-286 35-108-23-201-25-277 17Z" fill="#d9ecea"/>
+    <path d="M24 232c90-24 173-17 262 14 103 36 207 35 302-1-93 53-199 61-318 24-100-31-178-34-246-8Z" fill="#3157a4" opacity="0.92"/>
+  </g>
+  <g fill="#3157a4" font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <text x="0" y="268" font-size="52" letter-spacing="2">SEVERN</text>
+    <text x="0" y="324" font-size="52" letter-spacing="2">PHYSIOTHERAPY</text>
+  </g>
+  <text x="4" y="338" fill="#3157a4" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" letter-spacing="1.5">FREEDOM THROUGH MOVEMENT</text>
+</svg>

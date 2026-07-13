@@ -1,6 +1,13 @@
-export const metadata = {
-  title: "Privacy Policy | Foot+ Bristol",
+import type { Metadata } from "next";
+
+import { emailDisplay, emailHref, SITE_URL } from "../lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: `${SITE_URL}/privacy` },
+  openGraph: { url: `${SITE_URL}/privacy` },
+  title: "Privacy Policy",
   description: "Privacy policy for Foot+ Bristol home-visit foot health services.",
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPage() {
@@ -10,14 +17,21 @@ export default function PrivacyPage() {
         Privacy Policy
       </h1>
       <p className="mt-4 text-sm text-brand-charcoal/80">
-        Foot+ respects your privacy and only collects information needed to
+        Foot+ Bristol respects your privacy and only collects information needed to
         arrange appointments and provide care. We do not sell personal data and
         only share details with trusted providers when required to deliver our
         services.
       </p>
       <p className="mt-4 text-sm text-brand-charcoal/80">
         You can request access to or deletion of your information at any time by
-        emailing hello@footplusbristol.co.uk.
+        emailing{" "}
+        <a
+          className="font-medium text-brand-sageDark underline decoration-brand-sageDark/30 underline-offset-4 transition hover:decoration-brand-sageDark"
+          href={emailHref}
+        >
+          {emailDisplay}
+        </a>
+        .
       </p>
     </section>
   );

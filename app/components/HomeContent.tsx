@@ -31,11 +31,12 @@ const heroServices = [
 ];
 
 const trustChips = [
-  "Qualified Foot Health Practitioner",
-  "Fully insured",
-  "DBS checked",
-  "Sterile instruments",
-  "Home visits in Bristol",
+  { label: "Qualified Foot Health Practitioner" },
+  { label: "Fully insured" },
+  { label: "DBS checked" },
+  { label: "Sterile instruments" },
+  { label: "Home visits in Bristol" },
+  { label: "LGBT friendly", variant: "rainbow" },
 ];
 
 const serviceCards = [
@@ -84,6 +85,7 @@ export default function HomeContent() {
 
               {/* Headline (intentional line breaks) */}
               <h1 className="font-heading text-4xl font-semibold leading-[1.05] sm:text-[2.75rem] md:text-5xl">
+                <span className="block">Foot+ Bristol</span>
                 <span className="block">Foot Health Practitioner in Bristol</span>
               </h1>
 
@@ -110,23 +112,23 @@ export default function HomeContent() {
 
               <div className="relative">
                 <div className="flex items-center gap-3">
-                  <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
+                  <span className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">
                     Services
                   </span>
-                  <p className="text-sm text-white/70">Care that starts from the ground up.</p>
+                  <p className="text-sm font-medium text-white/70">Care that starts from the ground up.</p>
                 </div>
 
                 <div className="mt-5 space-y-5">
                   {heroServices.map((group) => (
                     <div key={group.category}>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/60">
                         {group.category}
                       </p>
                       <ul className="mt-3 space-y-2">
                         {group.items.map((item) => (
                           <li
                             key={item}
-                            className="flex items-start gap-3 text-[15px] leading-relaxed text-white/85"
+                            className="flex items-start gap-3 text-[15px] font-medium leading-relaxed text-white/85"
                           >
                             <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/40 bg-white/10">
                               <svg
@@ -155,10 +157,14 @@ export default function HomeContent() {
                 <div className="mt-6 flex flex-wrap gap-2">
                   {trustChips.map((chip) => (
                     <span
-                      key={chip}
-                      className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs text-white/75"
+                      key={chip.label}
+                      className={
+                        chip.variant === "rainbow"
+                          ? "rounded-full border border-white/35 bg-[linear-gradient(90deg,rgba(228,3,3,0.48),rgba(255,140,0,0.48),rgba(255,237,0,0.48),rgba(0,128,38,0.48),rgba(36,64,142,0.48),rgba(115,41,130,0.48))] px-3 py-1 text-xs font-medium text-white shadow-[0_8px_24px_-14px_rgba(0,0,0,0.7)]"
+                          : "rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white/75"
+                      }
                     >
-                      {chip}
+                      {chip.label}
                     </span>
                   ))}
                 </div>
@@ -259,13 +265,13 @@ export default function HomeContent() {
                 Local, Reliable Foot Care - Now Welcoming New Patients
               </h2>
               <p className="mt-3 text-sm text-brand-charcoal/70">
-                Based in Bristol, Foot+ offers professional home-visit care across the city and
+                Based in Bristol, Foot+ Bristol offers professional home-visit care across the city and
                 nearby areas.
               </p>
               <p className="mt-3 text-sm text-brand-charcoal/70">
                 Travel is planned carefully to keep appointments unhurried and fairly priced.
                 Explore{" "}
-                <Link href="/areas" className="font-semibold text-brand-sageDark underline">
+                <Link href="/areas-we-cover" className="font-semibold text-brand-sageDark underline">
                   areas covered in Bristol
                 </Link>{" "}
                 or see{" "}

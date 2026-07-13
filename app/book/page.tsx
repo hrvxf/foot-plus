@@ -1,15 +1,20 @@
 import EnquiryForm from "../components/EnquiryForm";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Book a Foot Health Practitioner in Bristol | Foot+",
+import { SITE_URL } from "../lib/site";
+
+export const metadata: Metadata = {
+  title: "Book a Foot Health Practitioner in Bristol",
+  alternates: { canonical: `${SITE_URL}/book` },
+  openGraph: { url: `${SITE_URL}/book` },
   description:
-    "Request a Bristol home-visit appointment with Foot+. Professional foot health care from a qualified practitioner.",
+    "Request a Bristol home-visit appointment with Foot+ Bristol. Professional foot health care from a qualified practitioner.",
 };
 
 
 export default function BookPage() {
   return (
-    <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">
+    <section className="mx-auto max-w-4xl px-6 pb-16 pt-12 md:pt-20">
       <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
         Request a Bristol home-visit appointment
       </h1>
@@ -43,7 +48,7 @@ export default function BookPage() {
         {[
           {
             title: "1) Send your request",
-            body: "Share the basics, your preferred days, and any concerns.",
+            body: "Share the basics and any concerns.",
           },
           {
             title: "2) We confirm details",

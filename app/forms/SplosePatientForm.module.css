@@ -1,0 +1,41 @@
+.formShell {
+  width: 100%;
+  min-height: 720px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .formShell {
+    min-height: 950px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .formShell {
+    min-height: 1100px;
+  }
+}
+
+.skeletonBlock {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, rgba(143, 179, 156, 0.18), rgba(143, 179, 156, 0.34), rgba(143, 179, 156, 0.18));
+  background-size: 220% 100%;
+  animation: skeletonPulse 1.45s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonBlock {
+    animation: none;
+  }
+}

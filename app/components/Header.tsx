@@ -21,10 +21,6 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -34,8 +30,9 @@ export default function Header() {
   const navLinks = [
     { label: "About", href: "/about", active: pathname === "/about" },
     { label: "Services", href: "/services", active: pathname === "/services" },
+    { label: "Advice", href: "/advice", active: pathname.startsWith("/advice") },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
-    { label: "Areas", href: "/areas", active: pathname === "/areas" },
+    { label: "Areas", href: "/areas-we-cover", active: pathname === "/areas-we-cover" },
   ];
 
   const headerBase =
@@ -87,7 +84,7 @@ export default function Header() {
           className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 ${navPadding}`}
         >
           <div className="flex h-full items-center">
-            <Link href="/" className="flex items-center gap-3" aria-label="Foot Plus">
+            <Link href="/" className="flex items-center gap-3" aria-label="Foot+ Bristol home">
               <div
                 className={`${logoWrapper} ${
                   invert ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "text-brand-sageDark"

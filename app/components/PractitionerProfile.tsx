@@ -117,7 +117,7 @@ export default function PractitionerProfile() {
           ref={portraitRef}
           className={portraitBase}
           role="img"
-          aria-label="Portrait of Adam James, Foot+ foot health practitioner."
+          aria-label="Portrait of Adam James, Foot+ Bristol foot health practitioner."
           style={{
             backgroundImage: "url('/images/Adam-James.svg')",
             backgroundPosition: "center",
