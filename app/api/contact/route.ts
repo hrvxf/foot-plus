@@ -1,5 +1,7 @@
 import { Resend } from "resend";
 
+import { emailDisplay } from "../../lib/site";
+
 export const runtime = "nodejs";
 
 const escapeHtml = (input: string) =>
@@ -35,8 +37,8 @@ export async function POST(req: Request) {
     const safeEmail = escapeHtml(String(email));
     const safeMessage = escapeHtml(String(message)).replace(/\n/g, "<br/>");
 
-    const to = process.env.CONTACT_TO_EMAIL || "hello@foot-plus.co.uk";
-    const from = "Foot+ Bristol Contact <hello@foot-plus.co.uk>";
+    const to = process.env.CONTACT_TO_EMAIL || emailDisplay;
+    const from = `Foot+ Bristol Contact <${emailDisplay}>`;
 
     const subject = `New Foot+ Bristol website enquiry — ${safeName}`;
 
