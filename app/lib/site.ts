@@ -10,11 +10,13 @@ export const emailHref = `mailto:${emailDisplay}`;
 export const serviceAreas = [
   {
     region: "Central Bristol",
-    places: "City Centre, Harbourside, Clifton, Hotwells, Redland, Cotham, and Stokes Croft.",
+    places:
+      "City Centre, Harbourside, Clifton, Hotwells, Redland, Cotham, and Stokes Croft.",
   },
   {
     region: "North Bristol",
-    places: "Bishopston, Horfield, Ashley Down, Filton, Henleaze, and Westbury-on-Trym.",
+    places:
+      "Bishopston, Horfield, Ashley Down, Filton, Henleaze, and Westbury-on-Trym.",
   },
   {
     region: "South Bristol",
@@ -22,7 +24,8 @@ export const serviceAreas = [
   },
   {
     region: "Surrounding areas",
-    places: "Fishponds, Stoke Gifford, Kingswood, Keynsham, and nearby towns by request.",
+    places:
+      "Fishponds, Stoke Gifford, Kingswood, Keynsham, and nearby towns by request.",
   },
 ];
 
@@ -31,7 +34,7 @@ export const prices = [
     name: "New Patient Appointment",
     price: "£60",
     description:
-      "A comprehensive initial appointment including a full neurovascular assessment and treatment.",
+      "An initial appointment covering relevant health information, foot-health observations and appropriate routine treatment.",
   },
   {
     name: "Routine Appointment (45 minutes)",

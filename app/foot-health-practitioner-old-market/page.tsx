@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LocalServicePage from "../components/locations/LocationPage";
 import { getLocationPage, locationCanonical } from "../lib/location-pages";
-import { BUSINESS_ID, SITE_URL } from "../lib/site";
+import { SITE_URL } from "../lib/site";
 
 const page = getLocationPage("foot-health-practitioner-old-market")!;
 const canonical = locationCanonical(page.slug);
@@ -28,7 +28,7 @@ const structuredData = {
       description: page.metaDescription,
       serviceType: "Home visit foot care",
       areaServed: { "@type": "Place", name: page.area },
-      provider: { "@id": BUSINESS_ID },
+      provider: { "@id": `${SITE_URL}/#organization` },
       url: canonical,
     },
     {
