@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Activity, Footprints, HeartPulse, Scissors, ShieldCheck } from "lucide-react";
+import { Activity, Footprints, HeartPulse, Scissors, ShieldCheck, UsersRound } from "lucide-react";
 import Button from "../components/Button";
 import { bookingHref, BUSINESS_ID, SITE_URL } from "../lib/site";
 
@@ -77,6 +77,37 @@ const conditionCards = [
   },
 ];
 
+const inclusiveCarePoints = [
+  "Clear explanations at a comfortable pace",
+  "Treatment provided in familiar surroundings",
+  "Carers, relatives and support workers are welcome",
+  "Individual communication and sensory needs considered",
+  "Dignity, consent and personal choice respected",
+];
+
+const serviceFaqs = [
+  {
+    question: "Do you provide foot care for adults with learning disabilities?",
+    answer:
+      "Yes. Home visits can be adapted for adults who need additional time, reassurance or communication support. Please explain any individual needs when arranging the appointment so the visit can be planned appropriately.",
+  },
+  {
+    question: "Can a carer or support worker be present during the appointment?",
+    answer:
+      "Yes. A relative, carer or support worker is welcome to be present where this helps the patient feel comfortable and supports communication or practical arrangements.",
+  },
+  {
+    question: "Can the appointment be adapted for someone who feels anxious?",
+    answer:
+      "Appointments are provided calmly and at an appropriate pace. You can share relevant communication, sensory or anxiety-related needs before the visit.",
+  },
+  {
+    question: "Do you support vulnerable adults in Bristol?",
+    answer:
+      "Foot+ provides respectful home-visit foot care for adults who may need additional support, including people with reduced mobility, learning disabilities or help from relatives, carers and support workers.",
+  },
+];
+
 const servicesSchema = serviceSections.map((section) => ({
   "@type": "Service",
   "@id": `${SITE_URL}/services#${section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
@@ -107,13 +138,25 @@ const structuredData = {
       makesOffer: servicesSchema.map((service) => ({ "@id": service["@id"] })),
     },
     ...servicesSchema,
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/services#faq`,
+      mainEntity: serviceFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
   ],
 };
 
 export const metadata: Metadata = {
   title: "Foot Care Services in Bristol | Home Visits",
   description:
-    "Foot+ Bristol home visit services, including new patient assessments, routine foot care, diabetic foot checks, and common foot and nail concerns treated at home.",
+    "Explore home-visit foot care services in Bristol, including routine care, diabetic foot checks and adaptable appointments for adults who may need additional support.",
   alternates: {
     canonical: `${SITE_URL}/services`,
   },
@@ -121,7 +164,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/services`,
     title: "Foot Care Services in Bristol | Home Visits",
     description:
-      "Explore Foot+ Bristol home visit foot care services and common foot and nail conditions treated at home.",
+      "Explore home-visit foot care services in Bristol, including routine care, diabetic foot checks and adaptable appointments for adults who may need additional support.",
   },
   robots: {
     index: true,
@@ -236,6 +279,48 @@ export default function ServicesPage() {
         </div>
       </section>
 
+
+      <section className="mx-auto max-w-6xl px-5 pb-12 sm:px-6 md:pb-16" aria-labelledby="inclusive-care-heading">
+        <div className="overflow-hidden rounded-[28px] border border-brand-sageLight/40 bg-brand-sageLight/16 shadow-[0_18px_50px_-48px_rgba(15,23,42,0.22)]">
+          <div className="grid gap-7 p-6 sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-10">
+            <div className="max-w-3xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/75">INCLUSIVE HOME VISITS</p>
+              <h2 id="inclusive-care-heading" className="mt-2 font-heading text-2xl font-semibold tracking-tight text-brand-sageDark sm:text-3xl">
+                Foot care for adults who need additional support
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-brand-charcoal/78 sm:text-base">
+                Foot+ provides calm, respectful home visits for adults who may need additional time, reassurance or communication support. Appointments can be adapted for people with learning disabilities, reduced mobility, anxiety or other support needs.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">
+                This includes foot care for adults with learning disabilities in Bristol, foot care for adults with additional needs and accessible home foot care in Bristol. Carers and support workers welcome at appointments when that helps the patient feel comfortable.
+              </p>
+              <div className="mt-6">
+                <Button href={bookingHref} variant="solid" className="w-full rounded-full sm:w-auto">
+                  Discuss support needs
+                </Button>
+              </div>
+            </div>
+
+            <div className="rounded-[24px] border border-brand-sageDark/15 bg-white/76 p-5 sm:p-6">
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-sageLight/22 text-brand-sageDark" aria-hidden="true">
+                  <UsersRound className="h-5 w-5" />
+                </span>
+                <h3 className="font-heading text-lg font-semibold tracking-tight text-brand-sageDark">How visits can be adapted</h3>
+              </div>
+              <ul className="mt-5 grid gap-3 text-sm leading-relaxed text-brand-charcoal/78 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                {inclusiveCarePoints.map((item) => (
+                  <li key={item} className="flex gap-3 rounded-2xl border border-brand-sageLight/28 bg-white p-3">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-sageLight/20"><CheckIcon /></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-brand-sageLight/30 bg-brand-sageLight/18" aria-labelledby="conditions-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 md:py-16">
           <div className="max-w-3xl">
@@ -264,6 +349,27 @@ export default function ServicesPage() {
             <Link href="/callus-removal-bristol" className="underline underline-offset-4">Learn about localised callus removal</Link>
             <Link href="/foot-health-practitioner-bristol" className="underline underline-offset-4">Learn about Foot Health Practitioner home visits in Bristol</Link>
           </div>
+        </div>
+      </section>
+
+
+      <section className="mx-auto max-w-6xl px-5 py-12 sm:px-6 md:py-16" aria-labelledby="services-faq-heading">
+        <div className="max-w-3xl">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/75">Support needs FAQs</p>
+          <h2 id="services-faq-heading" className="mt-2 font-heading text-2xl font-semibold tracking-tight text-brand-sageDark sm:text-3xl">
+            Questions about accessible home foot care
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/72 sm:text-base">
+            These answers explain how home-visit foot care for vulnerable adults and other adults who need support can be discussed before booking.
+          </p>
+        </div>
+        <div className="mt-7 grid gap-4 md:grid-cols-2">
+          {serviceFaqs.map((faq) => (
+            <article key={faq.question} className="rounded-[24px] border border-brand-sageLight/35 bg-white p-5">
+              <h3 className="font-heading text-lg font-semibold tracking-tight text-brand-sageDark">{faq.question}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/74">{faq.answer}</p>
+            </article>
+          ))}
         </div>
       </section>
 
