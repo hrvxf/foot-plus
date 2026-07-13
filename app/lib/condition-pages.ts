@@ -16,6 +16,7 @@ export type ConditionPage = {
   lastReviewed: string;
   faqs: { question: string; answer: string }[];
   related: { title: string; href: string }[];
+  relatedAdvice?: { title: string; href: string }[];
 };
 
 export const conditionPages: ConditionPage[] = [
