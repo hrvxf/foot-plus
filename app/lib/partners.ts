@@ -24,7 +24,7 @@ export const localPartners: LocalPartner[] = [
     phone: "01275 400466",
     email: "hello@severnphysiotherapy.co.uk",
     logo: {
-      src: "/images/severn-physiotherapy-logo.svg",
+      src: "/images/SevernPhysiotherapy.png",
       alt: "Severn Physiotherapy logo",
     },
     areasCovered: ["Bristol", "surrounding areas"],
