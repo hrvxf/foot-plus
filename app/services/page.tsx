@@ -294,9 +294,12 @@ export default function ServicesPage() {
               <p className="mt-4 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">
                 This includes foot care for adults with learning disabilities in Bristol, foot care for adults with additional needs and accessible home foot care in Bristol. Carers and support workers welcome at appointments when that helps the patient feel comfortable.
               </p>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button href={bookingHref} variant="solid" className="w-full rounded-full sm:w-auto">
                   Discuss support needs
+                </Button>
+                <Button href="/advice/foot-care-learning-disabilities-bristol" variant="outline" className="w-full rounded-full sm:w-auto">
+                  Read the accessible foot-care guide
                 </Button>
               </div>
             </div>
