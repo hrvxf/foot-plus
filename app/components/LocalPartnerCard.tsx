@@ -10,11 +10,12 @@ const relationshipLabels: Record<LocalPartner["relationship"], string> = {
 export default function LocalPartnerCard({ partner }: { partner: LocalPartner }) {
   return (
     <article className="overflow-hidden rounded-[24px] border border-brand-sageLight/35 bg-white shadow-[0_14px_40px_-40px_rgba(15,23,42,0.16)]">
-      <div className="grid gap-0 md:grid-cols-[216px_minmax(0,1fr)]">
+      {/* Stack the logo above the copy so the partner brand reads first and the card feels less split. */}
+      <div className="flex flex-col">
         {partner.logo ? (
-          <div className="flex items-center justify-center border-b border-brand-sageLight/25 bg-linear-to-br from-brand-sageLight/12 via-white to-brand-offwhite px-5 py-5 md:border-b-0 md:border-r">
+          <div className="flex items-center justify-center border-b border-brand-sageLight/25 bg-linear-to-br from-brand-sageLight/12 via-white to-brand-offwhite px-5 py-5">
             <Image
-              className="h-auto w-full max-w-[168px] object-contain"
+              className="h-auto w-full max-w-[188px] object-contain"
               src={partner.logo.src}
               alt={partner.logo.alt}
               width={336}

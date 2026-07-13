@@ -99,11 +99,11 @@ export default function PricesPage() {
           </ol>
         </nav>
 
-        <div className="max-w-[900px]">
+        <div className="max-w-225">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/75">
             HOME VISIT FOOT CARE IN BRISTOL
           </p>
-          <h1 className="mt-3 max-w-[900px] font-heading text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
+          <h1 className="mt-3 max-w-225 font-heading text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
             Home visit foot care prices
           </h1>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
@@ -213,7 +213,7 @@ export default function PricesPage() {
 
         <div className="mt-7 grid gap-4 md:grid-cols-3">
           {nextSteps.map((step, index) => (
-            <article key={step.title} className="rounded-[24px] border border-brand-sageLight/35 bg-white p-5">
+            <article key={step.title} className="rounded-3xl border border-brand-sageLight/35 bg-white p-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-sageDark font-heading text-base font-semibold text-white">
                 {index + 1}
               </div>
