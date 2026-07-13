@@ -145,7 +145,7 @@ function FootPlusHeroIcon() {
       aria-hidden="true"
       width={112}
       height={112}
-      className="h-28 w-28 object-contain opacity-60 mix-blend-multiply"
+      className="h-auto w-[clamp(84px,7vw,88px)] object-contain opacity-[0.58] mix-blend-multiply"
       priority={false}
     />
   );
@@ -172,7 +172,7 @@ export default function ServicesPage() {
         <div className="relative overflow-hidden rounded-[32px] border border-brand-sageLight/35 bg-white p-6 sm:p-8 md:p-10">
           <div className="pointer-events-none absolute right-[-4rem] top-[-5rem] hidden h-72 w-72 rounded-full bg-brand-sageLight/18 lg:block" />
           <div className="pointer-events-none absolute bottom-[-5.5rem] right-20 hidden h-44 w-44 rounded-full border border-brand-sageDark/15 lg:block" />
-          <div className="pointer-events-none absolute right-16 top-20 hidden lg:block">
+          <div className="pointer-events-none absolute right-[4.25rem] top-[3.75rem] hidden lg:block">
             <FootPlusHeroIcon />
           </div>
 
