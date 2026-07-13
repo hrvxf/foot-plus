@@ -155,8 +155,8 @@ export default function AboutPage() {
             </div>
 
             <div className="rounded-[28px] border border-brand-sageLight/40 bg-brand-offwhite p-7 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-8">
-              <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Local referral partner</h2>
-              <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">Foot+ may work alongside other local health and support services when this is useful for the patient. Inclusion does not imply shared ownership or formal clinical integration, and patients should independently confirm whether another provider is suitable for their needs.</p>
+              <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Local partner</h2>
+              <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">A trusted local service Foot+ may signpost to when wider mobility or rehabilitation support could be helpful.</p>
               <div className="mt-5 grid gap-4">
                 {publishedLocalPartners.map((partner) => <LocalPartnerCard key={partner.website} partner={partner} />)}
               </div>

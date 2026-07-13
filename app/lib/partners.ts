@@ -13,8 +13,8 @@ export const localPartners: LocalPartner[] = [
     name: "Severn Physiotherapy",
     category: "Home physiotherapy and occupational therapy",
     description:
-      "A home-visit physiotherapy and occupational therapy service. Foot+ Bristol and Severn Physiotherapy may refer patients between services where appropriate and with patient consent.",
-    website: "https://severnphysiotherapy.co.uk",
+      "Home-visit physiotherapy and occupational therapy support for patients who may benefit from wider mobility or rehabilitation input.",
+    website: "https://www.severnphysiotherapy.co.uk/",
     relationship: "referral-partner",
     isPublished: true,
   },

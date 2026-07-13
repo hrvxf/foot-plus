@@ -13,9 +13,6 @@ export default function LocalPartnerCard({ partner }: { partner: LocalPartner })
       <h3 className="mt-2 font-heading text-xl font-semibold text-brand-sageDark">{partner.name}</h3>
       <p className="mt-1 text-sm font-semibold text-brand-charcoal/70">{partner.category}</p>
       <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75">{partner.description}</p>
-      <p className="mt-3 text-xs leading-relaxed text-brand-charcoal/65">
-        Patient information is not transferred automatically. Referrals only happen where appropriate and information is shared only with the patient’s knowledge and consent. Patients may contact either service directly.
-      </p>
       <a className="mt-4 inline-flex rounded-full border border-brand-sageDark/25 px-4 py-2 text-sm font-semibold text-brand-sageDark transition hover:bg-brand-sageLight/10" href={partner.website} target="_blank" rel="noopener noreferrer">
         Visit {partner.name}
       </a>
