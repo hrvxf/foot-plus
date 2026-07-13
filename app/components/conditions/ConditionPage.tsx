@@ -2,6 +2,7 @@ import Link from "next/link";
 import Button from "../Button";
 import AuthorCard from "../AuthorCard";
 import type { ConditionPage as ConditionPageData } from "../../lib/condition-pages";
+import { isPublishedAdviceHref } from "../../lib/advice";
 import { bookingHref, emailHref, phoneDisplay, phoneHref, prices, serviceAreas } from "../../lib/site";
 
 const safetyItems = [
@@ -13,6 +14,8 @@ const safetyItems = [
 ];
 
 export default function ConditionPage({ page }: { page: ConditionPageData }) {
+  const publishedAdviceLinks = page.relatedAdvice?.filter((link) => isPublishedAdviceHref(link.href)) ?? [];
+
   return (
     <main className="mx-auto max-w-5xl px-6 pb-16 pt-12">
       <section className="overflow-hidden rounded-3xl border border-brand-sageLight/35 bg-linear-to-br from-white via-white to-brand-sageLight/20 p-7 shadow-sm md:p-9">
@@ -105,6 +108,15 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
             </div>
             <Link href="/prices" className="mt-3 inline-block text-sm font-semibold text-brand-sageDark underline">View full pricing</Link>
           </section>
+
+          {publishedAdviceLinks.length ? (
+          <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm">
+            <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Helpful advice guides</h2>
+            <div className="mt-3 flex flex-col gap-2">
+              {publishedAdviceLinks.map((link) => <Link key={link.href} href={link.href} className="rounded-xl border border-brand-sageLight/25 px-3 py-2 text-sm font-semibold text-brand-sageDark transition hover:bg-brand-sageLight/10">{link.title}</Link>)}
+            </div>
+          </section>
+          ) : null}
 
           <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm">
             <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Related pages</h2>
