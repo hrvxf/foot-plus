@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Activity, Footprints, HeartPulse, Scissors, ShieldCheck } from "lucide-react";
@@ -136,13 +137,17 @@ function CheckIcon({ className = "text-brand-sageDark" }: { className?: string }
   );
 }
 
-function LeafLineIcon() {
+function FootPlusHeroIcon() {
   return (
-    <svg className="h-24 w-24 text-brand-sageDark/30" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-      <path d="M26 87c24-1 49-19 59-47" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M67 37c17 2 27 13 29 31-18-1-30-11-29-31Z" stroke="currentColor" strokeWidth="2" />
-      <path d="M49 59c-17-1-28 8-32 25 17 2 30-7 32-25Z" stroke="currentColor" strokeWidth="2" />
-    </svg>
+    <Image
+      src="/android-chrome-512x512.png"
+      alt=""
+      aria-hidden="true"
+      width={112}
+      height={112}
+      className="h-28 w-28 object-contain opacity-60 mix-blend-multiply"
+      priority={false}
+    />
   );
 }
 
@@ -168,7 +173,7 @@ export default function ServicesPage() {
           <div className="pointer-events-none absolute right-[-4rem] top-[-5rem] hidden h-72 w-72 rounded-full bg-brand-sageLight/18 lg:block" />
           <div className="pointer-events-none absolute bottom-[-5.5rem] right-20 hidden h-44 w-44 rounded-full border border-brand-sageDark/15 lg:block" />
           <div className="pointer-events-none absolute right-16 top-20 hidden lg:block">
-            <LeafLineIcon />
+            <FootPlusHeroIcon />
           </div>
 
           <div className="relative max-w-[65rem] lg:max-w-[62%]">
