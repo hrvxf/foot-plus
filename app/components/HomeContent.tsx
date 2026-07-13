@@ -85,7 +85,6 @@ export default function HomeContent() {
 
               {/* Headline (intentional line breaks) */}
               <h1 className="font-heading text-4xl font-semibold leading-[1.05] sm:text-[2.75rem] md:text-5xl">
-                <span className="block">Foot+ Bristol</span>
                 <span className="block">Foot Health Practitioner in Bristol</span>
               </h1>
 
