@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "../Button";
+import AuthorCard from "../AuthorCard";
 import type { ConditionPage as ConditionPageData } from "../../lib/condition-pages";
 import { bookingHref, emailHref, phoneDisplay, phoneHref, prices, serviceAreas } from "../../lib/site";
 
@@ -34,6 +35,14 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
           </section>
 
           <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
+            <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">Common signs and causes</h2>
+            <div className="mt-4 grid gap-4 text-sm leading-relaxed text-brand-charcoal/75 md:grid-cols-2 md:text-base">
+              <div><h3 className="font-heading text-lg font-semibold text-brand-sageDark">Common signs or concerns</h3>{page.signs.map((paragraph) => <p className="mt-2" key={paragraph}>{paragraph}</p>)}</div>
+              <div><h3 className="font-heading text-lg font-semibold text-brand-sageDark">Common causes</h3>{page.causes.map((paragraph) => <p className="mt-2" key={paragraph}>{paragraph}</p>)}</div>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
             <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">How Foot+ can help</h2>
             <div className="mt-4 space-y-3 text-sm leading-relaxed text-brand-charcoal/75 md:text-base">
               {page.help.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -43,6 +52,16 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
                 <li key={item} className="rounded-xl bg-brand-sageLight/15 p-3">{item}</li>
               ))}
             </ul>
+          </section>
+
+          <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
+            <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">What happens during an appointment</h2>
+            <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-brand-charcoal/75 md:text-base">{page.appointment.map((item) => <li key={item}>{item}</li>)}</ol>
+          </section>
+
+          <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
+            <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">What is outside Foot+ scope?</h2>
+            <p className="mt-4 text-sm leading-relaxed text-brand-charcoal/75 md:text-base">{page.scope}</p>
           </section>
 
           <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
@@ -69,12 +88,14 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
         </div>
 
         <aside className="space-y-5">
+          <AuthorCard lastReviewed={page.lastReviewed} />
           <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm">
             <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Home visits and areas covered</h2>
-            <p className="mt-3 text-sm text-brand-charcoal/75">Foot+ provides home visits in Bristol and currently focuses on these service areas.</p>
+            <p className="mt-3 text-sm text-brand-charcoal/75">Foot+ provides home visits in Bristol and currently focuses on these service areas. See the full coverage page for current local information.</p>
             <ul className="mt-3 space-y-2 text-sm text-brand-charcoal/75">
               {serviceAreas.map((area) => <li key={area.region}><strong className="text-brand-sageDark">{area.region}:</strong> {area.places}</li>)}
             </ul>
+            <Link href="/areas-we-cover" className="mt-3 inline-block text-sm font-semibold text-brand-sageDark underline">View areas covered</Link>
           </section>
 
           <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm">

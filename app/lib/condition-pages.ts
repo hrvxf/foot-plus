@@ -7,8 +7,13 @@ export type ConditionPage = {
   description: string;
   intro: string;
   overview: string[];
+  signs: string[];
+  causes: string[];
   help: string[];
+  appointment: string[];
+  scope: string;
   aftercare: string[];
+  lastReviewed: string;
   faqs: { question: string; answer: string }[];
   related: { title: string; href: string }[];
 };
@@ -26,10 +31,15 @@ export const conditionPages: ConditionPage[] = [
       "Hard skin is a thickened area of skin that often develops where the foot experiences regular pressure, rubbing or dryness. It is common around heels, the balls of the feet and other pressure points.",
       "It can feel rough, tight or uncomfortable in footwear. If the cause continues, hard skin may gradually build up again, so ongoing care and pressure management are often helpful.",
     ],
+    signs: ["Common signs include rough, thickened or yellowish skin, tenderness under pressure and discomfort in shoes."],
+    causes: ["Common causes include repeated rubbing, pressure points, dry skin, footwear fit and changes in walking pattern."],
     help: [
       "During a foot health appointment, Foot+ can assess the area, reduce hard or thickened skin where appropriate and check for factors that may be contributing to discomfort.",
       "You will receive practical aftercare guidance, which may include moisturising routines, footwear advice and ways to reduce pressure between visits.",
     ],
+    appointment: ["Adam will ask about your concern and relevant health information.", "Feet are assessed in your home before suitable nail or skin care is provided.", "You receive aftercare advice and guidance on whether further medical or podiatry assessment may be needed."],
+    scope: "Foot+ does not diagnose underlying medical conditions or provide emergency care. Hard skin linked to wounds, infection signs, sudden colour change or acute diabetic concerns needs medical advice.",
+    lastReviewed: "13 July 2026",
     aftercare: ["Moisturise dry skin regularly, avoiding between the toes unless advised.", "Choose footwear that gives pressure points enough room.", "Arrange routine foot care if hard skin builds up quickly or affects comfort."],
     faqs: [
       { question: "Is hard skin the same as a callus?", answer: "Callus is a type of hard skin, usually linked to repeated pressure or friction in a more localised area." },
@@ -55,10 +65,15 @@ export const conditionPages: ConditionPage[] = [
       "A callus is a localised area of thickened skin that forms as the foot protects itself from repeated pressure or rubbing. It is often found under the ball of the foot, around the heel or where footwear presses.",
       "Callus can return if the pressure point remains. Footwear shape, activity levels and the way weight is carried through the foot can all influence how quickly it builds up.",
     ],
+    signs: ["Common signs include a broader patch of thick skin, pressure discomfort under the forefoot or heel and skin that rebuilds in the same place."],
+    causes: ["Common causes include repeated friction, footwear seams or tight areas, activity levels and how weight is carried through the foot."],
     help: [
       "Foot+ can assess the callus, reduce thickened skin where suitable and talk through likely pressure sources. The aim is to improve comfort and help you manage build-up between appointments.",
       "If the area looks unusual, is very painful, or may need further assessment, you will be advised to seek appropriate medical support.",
     ],
+    appointment: ["Adam will ask about your concern and relevant health information.", "Feet are assessed in your home before suitable nail or skin care is provided.", "You receive aftercare advice and guidance on whether further medical or podiatry assessment may be needed."],
+    scope: "Foot+ can reduce suitable callus, but unusual lesions, wounds, infection signs, severe pain or acute diabetic concerns may need GP, podiatry or urgent care support.",
+    lastReviewed: "13 July 2026",
     aftercare: ["Check footwear for seams, tight areas or worn soles.", "Use moisturiser to keep skin more supple.", "Consider regular routine appointments if callus quickly becomes uncomfortable."],
     faqs: [
       { question: "Why does callus keep coming back?", answer: "Callus often returns because pressure or friction continues in the same place. Reducing pressure can help slow build-up." },
@@ -82,10 +97,15 @@ export const conditionPages: ConditionPage[] = [
       "Corns are small, concentrated areas of hard skin that can form where pressure is focused on one spot. They may feel like a sharp or tender point, especially in shoes or when walking.",
       "Not every painful area is definitely a corn, so assessment is important. Pressure from footwear, toe shape or activity can mean corns return unless the cause is managed.",
     ],
+    signs: ["Common signs include a small focused area of pressure pain, tenderness in footwear or a sharp feeling when weight goes through one spot."],
+    causes: ["Common causes include local pressure from shoes, toe position, prominent joints or nearby callus concentrating pressure."],
     help: [
       "Foot+ can assess the painful area, provide careful reduction where appropriate and explain how it differs from broader callus or other skin concerns.",
       "You may receive footwear and pressure-relief advice to support comfort after your appointment.",
     ],
+    appointment: ["Adam will ask about your concern and relevant health information.", "Feet are assessed in your home before suitable nail or skin care is provided.", "You receive aftercare advice and guidance on whether further medical or podiatry assessment may be needed."],
+    scope: "Foot+ can help where corn care is suitable, but severe pain, infection signs, wounds or uncertainty about the cause may require podiatry or medical assessment.",
+    lastReviewed: "13 July 2026",
     aftercare: ["Avoid cutting corns yourself, especially if you have diabetes or reduced sensation.", "Review footwear that rubs or squeezes toes.", "Book follow-up care if pressure pain returns."],
     faqs: [
       { question: "How do I know if I have a corn?", answer: "A corn often feels like a small focused pressure point, but assessment is needed because other problems can feel similar." },
@@ -109,10 +129,15 @@ export const conditionPages: ConditionPage[] = [
       "Cracked heels can develop when dry skin and hard skin build up around the heel. The skin may split, feel tight or become uncomfortable when standing and walking.",
       "Some cracks are shallow, while deeper fissures may need additional medical advice, especially if there is bleeding, infection risk or an underlying health concern.",
     ],
+    signs: ["Common signs include dry heel skin, tightness, visible splits, soreness when standing and hard skin around the heel edge."],
+    causes: ["Common causes include dry skin, heel pressure, open-backed footwear, hard skin build-up and reduced skin flexibility."],
     help: [
       "Foot+ can assess heel skin, reduce surrounding hard skin where suitable and provide practical moisturising and aftercare guidance.",
       "Routine care can support comfort and maintenance, but severe or complicated fissures may need medical support as well as foot care.",
     ],
+    appointment: ["Adam will ask about your concern and relevant health information.", "Feet are assessed in your home before suitable nail or skin care is provided.", "You receive aftercare advice and guidance on whether further medical or podiatry assessment may be needed."],
+    scope: "Foot+ can support routine cracked heel care where suitable, but bleeding fissures, weeping, spreading redness, infection signs or acute diabetic concerns need medical advice.",
+    lastReviewed: "13 July 2026",
     aftercare: ["Use an appropriate foot moisturiser consistently.", "Avoid open-backed footwear if it worsens heel pressure or dryness.", "Seek advice promptly if cracks bleed, weep or show signs of infection."],
     faqs: [
       { question: "Can cracked heels be treated during a home visit?", answer: "Yes, Foot+ can assess cracked heels and reduce surrounding hard skin where appropriate during a home visit." },
@@ -133,10 +158,15 @@ export const conditionPages: ConditionPage[] = [
       "Toenails can become harder to manage because of thickness, shape, reduced mobility, eyesight changes or discomfort when reaching the feet.",
       "This service is professional foot and nail care rather than a cosmetic pedicure, with attention to comfort, safe trimming and practical maintenance advice.",
     ],
+    signs: ["Common concerns include nails that are hard to reach, thickened nails, rough edges, discomfort in shoes and worry about cutting too short."],
+    causes: ["Common causes include reduced mobility, eyesight changes, nail thickening, footwear pressure and natural changes in nail shape."],
     help: [
       "Foot+ can trim and file toenails, reduce thickened nails where appropriate and check surrounding skin for pressure or irritation.",
       "Appointments can also include routine skin care when suitable, helping keep feet comfortable between visits.",
     ],
+    appointment: ["Adam will ask about your concern and relevant health information.", "Feet are assessed in your home before suitable nail or skin care is provided.", "You receive aftercare advice and guidance on whether further medical or podiatry assessment may be needed."],
+    scope: "Foot+ provides routine nail care, not cosmetic pedicure or emergency treatment. Ingrown nails with infection signs, significant bleeding or acute diabetic foot concerns need medical or podiatry advice.",
+    lastReviewed: "13 July 2026",
     aftercare: ["Avoid cutting nails too short or down the sides.", "Wear shoes with enough depth for thicker nails.", "Arrange routine care if nails become difficult to manage safely."],
     faqs: [
       { question: "Can you help with thick toenails?", answer: "Yes, thickened nails can often be reduced and trimmed as part of professional foot and nail care." },
@@ -160,10 +190,15 @@ export const conditionPages: ConditionPage[] = [
       "A Foot Health Practitioner provides practical foot care, including nail care, hard skin and callus reduction, corn care where appropriate and routine checks during appointments.",
       "Home visits can help people who find it difficult to travel, prefer care at home or need regular maintenance to keep feet comfortable.",
     ],
+    signs: ["Common reasons for booking include hard-to-cut nails, thickened nails, hard skin, callus, corns, cracked heels and routine diabetic foot checks."],
+    causes: ["Common contributing factors include reduced mobility, footwear pressure, dry skin, nail changes and regular pressure on the feet."],
     help: [
       "Foot+ appointments may include assessment, nail trimming, hard skin or callus reduction, diabetic foot checks and tailored advice based on your needs.",
       "You can discuss symptoms, footwear, moisturising routines and how often future care may be helpful.",
     ],
+    appointment: ["Adam will ask about your concern and relevant health information.", "Feet are assessed in your home before suitable nail or skin care is provided.", "You receive aftercare advice and guidance on whether further medical or podiatry assessment may be needed."],
+    scope: "Foot+ provides routine Foot Health Practitioner care and advice. Concerns outside scope, including infection, wounds, sudden severe pain, colour change or acute diabetic foot problems, should be assessed by the right medical professional.",
+    lastReviewed: "13 July 2026",
     aftercare: ["Keep a note of any changes in comfort, skin or nails between appointments.", "Follow moisturising and footwear advice given during your visit.", "Contact Foot+ if you are unsure which appointment type to book."],
     faqs: [
       { question: "Who may benefit from home visit foot care?", answer: "Adults who need help with nail care, hard skin, callus, corns or routine maintenance may benefit, especially if travel is difficult." },

@@ -1,9 +1,11 @@
 import Button from "../components/Button";
 import PractitionerProfile from "../components/PractitionerProfile";
+import LocalPartnerCard from "../components/LocalPartnerCard";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 import { SITE_URL } from "../lib/site";
+import { publishedLocalPartners } from "../lib/partners";
 
 export const metadata: Metadata = {
   title: "Qualified Foot Health Practitioner in Bristol",
@@ -53,7 +55,7 @@ export default function AboutPage() {
               <p className="max-w-prose text-lg leading-relaxed text-brand-charcoal/80">
                 With over six years of clinical experience, Adam has helped individuals regain
                 their confidence and independence through hands-on, compassionate rehabilitation.
-                His approach blends medical expertise with a calm, person-centred focus - delivering
+                His approach blends practical foot health knowledge with a calm, person-centred focus - delivering
                 the highest standards of care right to your doorstep. Explore{" "}
                 <Link className="font-semibold text-brand-sageDark underline" href="/services">
                   foot health services in Bristol
@@ -103,7 +105,7 @@ export default function AboutPage() {
                     Why patients choose Foot+ Bristol
                   </h2>
                   <p className="mt-1 text-sm leading-relaxed text-brand-charcoal/70">
-                    A friendly service built around trust, clarity, and outcomes.
+                    A friendly service built around trust, clarity, dignity, and appropriate onward referral.
                   </p>
                 </div>
 
@@ -140,6 +142,24 @@ export default function AboutPage() {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-brand-sageLight/40 bg-white p-7 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-8">
+              <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Practitioner identity and scope</h2>
+              <div className="mt-4 space-y-3 text-sm leading-relaxed text-brand-charcoal/75">
+                <p>Foot+ Bristol is provided by Adam James, Foot Health Practitioner, MCFHP, MAFHP, offering mobile foot health appointments across Bristol.</p>
+                <p>Adam supports routine nail care, hard skin and callus care, corn care where suitable, cracked heel maintenance and practical foot health advice in the patient’s own home.</p>
+                <p>Foot+ does not provide emergency medical care. If symptoms suggest infection, an open wound, sudden severe pain, significant bleeding, sudden colour change, new loss of sensation or an acute diabetic foot concern, patients should seek appropriate NHS urgent care, GP or podiatry support.</p>
+                <p><strong>TODO for Adam:</strong> confirm the exact wording the website may publish for infection-control processes, record keeping, professional insurance and continuing professional development beyond the currently published insured, DBS-checked and sterile-instrument statements.</p>
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-brand-sageLight/40 bg-brand-offwhite p-7 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-8">
+              <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Local referral partner</h2>
+              <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">Foot+ may work alongside other local health and support services when this is useful for the patient. Inclusion does not imply shared ownership or formal clinical integration, and patients should independently confirm whether another provider is suitable for their needs.</p>
+              <div className="mt-5 grid gap-4">
+                {publishedLocalPartners.map((partner) => <LocalPartnerCard key={partner.website} partner={partner} />)}
               </div>
             </div>
 
