@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/areas-we-cover",
     "/book",
-    "/forms",
     "/prices",
     "/services",
     "/hard-skin-treatment-bristol",
@@ -34,8 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/foot-health-practitioner-totterdown",
     "/foot-health-practitioner-southville",
     "/foot-health-practitioner-bedminster",
-    "/privacy",
-    "/terms",
   ];
 
   return routes.map((route) => ({

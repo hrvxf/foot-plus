@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/areas",
+        destination: "/areas-we-cover",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           {

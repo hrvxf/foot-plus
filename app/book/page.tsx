@@ -1,7 +1,12 @@
 import EnquiryForm from "../components/EnquiryForm";
+import type { Metadata } from "next";
 
-export const metadata = {
+import { SITE_URL } from "../lib/site";
+
+export const metadata: Metadata = {
   title: "Book a Foot Health Practitioner in Bristol | Foot+ Bristol",
+  alternates: { canonical: `${SITE_URL}/book` },
+  openGraph: { url: `${SITE_URL}/book` },
   description:
     "Request a Bristol home-visit appointment with Foot+ Bristol. Professional foot health care from a qualified practitioner.",
 };

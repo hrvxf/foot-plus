@@ -1,6 +1,13 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+import { SITE_URL } from "../lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: `${SITE_URL}/privacy` },
+  openGraph: { url: `${SITE_URL}/privacy` },
   title: "Privacy Policy | Foot+ Bristol",
   description: "Privacy policy for Foot+ Bristol home-visit foot health services.",
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPage() {

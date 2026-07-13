@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Button from "../components/Button";
-import { bookingHref, prices } from "../lib/site";
+import { bookingHref, prices, SITE_URL } from "../lib/site";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Foot Health Prices in Bristol | Home Visits",
+  alternates: { canonical: `${SITE_URL}/prices` },
+  openGraph: { url: `${SITE_URL}/prices` },
   description:
     "Clear foot health prices for Bristol home visits, including new patient and routine appointments with Foot+ Bristol.",
 };
