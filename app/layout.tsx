@@ -87,6 +87,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     logo: `${SITE_URL}/images/footplus-logo-green.svg`,
   };
 
+  const practitionerJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_URL}/about#adam-james`,
+    name: "Adam James",
+    jobTitle: "Foot Health Practitioner",
+    url: `${SITE_URL}/about`,
+    image: `${SITE_URL}/images/Adam-James.svg`,
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+    knowsAbout: ["Routine foot care", "Toenail cutting", "Hard skin and callus care", "Corn care", "Cracked heel care"],
+  };
+
   const medicalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
@@ -155,6 +167,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+
+        {/* Canonical practitioner schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(practitionerJsonLd),
           }}
         />
       </head>

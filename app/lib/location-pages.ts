@@ -34,7 +34,7 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "left",
     title: "Foot Health Practitioner in Clifton, Bristol",
     intro:
-      "Professional home-visit foot care in Clifton, provided in the comfort of your own home.",
+      "Foot+ provides mobile foot health appointments in Clifton for people who would rather receive practical nail and skin care at home than travel to a clinic. Home visits can suit older adults, people with reduced mobility, busy residents and anyone who finds parking, hills or public transport around Clifton inconvenient for routine care. Appointments may help with toenail cutting, hard skin and callus reduction, corn care where suitable, cracked heel maintenance and diabetic foot checks. Clifton coverage includes the Clifton Village and Clifton Down area, with nearby links towards Redland and Cotham. Because the appointment takes place in your own home, Adam can work around common access considerations such as flats, steps or shared entrances when these details are provided in advance.",
     description:
       "Foot+ provides professional foot care at home in Clifton for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
     metaTitle: "Foot Health Practitioner in Clifton, Bristol",
@@ -44,39 +44,8 @@ export const locationPages: LocationPage[] = [
       "Foot+ provides home visits across Clifton, including Clifton Village, Clifton Down and surrounding streets near Whiteladies Road and Pembroke Road.",
       "Appointments take place in your home, so you do not need to travel across Clifton or arrange clinic parking for routine foot care.",
     ],
-    nearby: [
-      {
-        title: "Foot health appointments in Redland",
-        href: "/foot-health-practitioner-redland",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you provide home visits throughout Clifton?",
-        answer:
-          "Foot+ covers Clifton and surrounding parts of Bristol. Please include your postcode when enquiring so current availability can be confirmed.",
-      },
-      {
-        question: "Can I book directly without a referral?",
-        answer:
-          "Yes. You can request a home-visit foot health appointment directly through Foot+ using the booking enquiry page.",
-      },
-      {
-        question: "Can you help with hard skin and corns at home?",
-        answer:
-          "Where appropriate, Foot+ can reduce hard skin, callus and corns during a home visit and provide pressure and aftercare advice.",
-      },
-      {
-        question: "What should I prepare before an appointment in Clifton?",
-        answer:
-          "Please have a comfortable chair, good lighting where possible, and any relevant medical or medication information available.",
-      },
-      {
-        question: "Can family members arrange an appointment?",
-        answer:
-          "Family members can help submit an enquiry, but Foot+ will still need suitable appointment details and consent from the person receiving care.",
-      },
-    ],
+    nearby: [{ title: "Foot health appointments in Redland", href: "/foot-health-practitioner-redland" },{ title: "Foot health appointments in Cotham", href: "/foot-health-practitioner-cotham" }],
+    faqs: [{ question: "Do you cover Clifton Village and Clifton Down?", answer: "Yes. Foot+ covers Clifton and nearby parts of Bristol, including Clifton Village and Clifton Down. Please include your postcode so current availability can be confirmed." },{ question: "Can appointments take place in Clifton flats?", answer: "Yes, home appointments can usually take place in flats or shared buildings. Please mention stairs, lift access, intercom details or parking instructions when enquiring." },{ question: "Can a family member arrange a Clifton appointment?", answer: "A family member can help with the enquiry, but Foot+ will need appropriate details and consent from the person receiving care." },{ question: "What if my foot problem is outside Foot+ scope?", answer: "Adam will advise you to seek appropriate GP, podiatry, urgent or emergency care if symptoms suggest infection, wounds, sudden severe pain or another concern outside routine Foot Health Practitioner care." }],
   },
   {
     slug: "foot-health-practitioner-redland",
@@ -87,7 +56,7 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "above",
     title: "Foot Health Practitioner in Redland, Bristol",
     intro:
-      "Professional home-visit foot care in Redland for patients who prefer practical care at home.",
+      "Foot+ offers home-visit foot care in Redland for patients who want calm, practical treatment without travelling across Bristol. The service can be useful for people living around Redland Green, Chandos Road, Zetland Road and nearby residential streets, as well as those close to Clifton, Cotham and Bishopston. Appointments are suitable for routine nail care, thickened nails, hard skin, callus, corns where appropriate, cracked heel care and diabetic foot checks. Redland has a mix of family homes, flats and busy local routes, so a home appointment can be simpler for people who find walking, parking or arranging transport difficult. Please share access details in advance so Adam can plan the visit appropriately.",
     description:
       "Foot+ provides home-visit foot care across Redland, helping with routine nail care, hard skin, callus, corns and diabetic foot checks.",
     metaTitle: "Foot Health Practitioner in Redland, Bristol",
@@ -97,43 +66,8 @@ export const locationPages: LocationPage[] = [
       "Home visits are available throughout Redland, including areas around Redland Green, Chandos Road, Cranbrook Road and nearby residential streets.",
       "This can be useful if getting to an appointment around Redland Road or Zetland Road would be difficult, or if you simply prefer care in familiar surroundings.",
     ],
-    nearby: [
-      {
-        title: "Foot health appointments in Clifton",
-        href: "/foot-health-practitioner-clifton",
-      },
-      {
-        title: "Foot health appointments in Bishopston",
-        href: "/foot-health-practitioner-bishopston",
-      },
-    ],
-    faqs: [
-      {
-        question: "Which parts of Redland do you cover?",
-        answer:
-          "Foot+ provides home visits in Redland and nearby Bristol areas. Send your postcode when enquiring so availability can be checked.",
-      },
-      {
-        question: "Do I need to know which service to choose?",
-        answer:
-          "No. Share your main concerns on the enquiry form and Foot+ can confirm whether a new patient or routine appointment is most suitable.",
-      },
-      {
-        question: "Can you help if toenails are difficult to cut?",
-        answer:
-          "Yes. Toenail cutting and nail care are part of Foot+ routine foot care, including help with thickened or awkward nails where appropriate.",
-      },
-      {
-        question: "Do you provide diabetic foot checks in Redland?",
-        answer:
-          "Yes. Diabetic foot checks are listed as a Foot+ service and can be included where appropriate during home-visit care.",
-      },
-      {
-        question: "How long is a routine appointment?",
-        answer:
-          "The current routine appointment listed by Foot+ is 45 minutes. New patient appointments allow time for a fuller assessment.",
-      },
-    ],
+    nearby: [{ title: "Foot health appointments in Clifton", href: "/foot-health-practitioner-clifton" },{ title: "Foot health appointments in Cotham", href: "/foot-health-practitioner-cotham" },{ title: "Foot health appointments in Bishopston", href: "/foot-health-practitioner-bishopston" }],
+    faqs: [{ question: "Do you cover Redland Green and Chandos Road?", answer: "Yes. Foot+ covers Redland and nearby Bristol areas. Include your postcode when enquiring so current home-visit availability can be checked." },{ question: "Can you visit family homes and flats in Redland?", answer: "Yes. Please provide any useful access details such as stairs, lift access, parking instructions or an intercom number before the appointment." },{ question: "Is Redland close enough for Bishopston or Cotham appointments?", answer: "Redland sits between several covered areas. If you are near Bishopston, Cotham or Clifton, send your postcode and Foot+ can confirm availability." },{ question: "How far ahead should I book?", answer: "Book as soon as you know you would like care, especially if you need a particular time window. Availability depends on existing home-visit travel plans." }],
   },
   {
     slug: "foot-health-practitioner-cotham",
@@ -146,7 +80,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Cotham for convenient foot and nail care at home.",
     title: "Foot Health Practitioner in Cotham, Bristol",
     intro:
-      "Professional home-visit foot care in Cotham for patients who prefer convenient foot and nail care at home.",
+      "Foot+ provides home-visit foot care in Cotham for patients who prefer routine foot health support in familiar surroundings. The area includes residential streets around Cotham Hill, Cotham Brow and Hampton Road, with natural links towards Clifton, Redland, Bishopston and Kingsdown. Mobile appointments can suit people who find hills, parking, public transport or walking to appointments difficult, as well as students, professionals, older adults and patients supported by family members. Adam can help with routine toenail cutting, thickened nails, hard skin and callus reduction, corn care where appropriate, cracked heel maintenance and diabetic foot checks. When booking, share your postcode and any access information so current availability and practical arrangements can be confirmed.",
     description:
       "Foot+ provides professional foot care at home in Cotham for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
     metaTitle: "Foot Health Practitioner in Cotham, Bristol",
@@ -156,47 +90,8 @@ export const locationPages: LocationPage[] = [
       "Foot+ provides home-visit appointments across Cotham, including residential streets around Cotham Hill, Cotham Brow, Hampton Road and nearby parts of Kingsdown.",
       "Cotham is included in the existing Central Bristol service-area wording, but appointment availability still depends on travel arrangements, so please contact Foot+ with your postcode to confirm current home-visit availability.",
     ],
-    nearby: [
-      {
-        title: "Foot health appointments in Clifton",
-        href: "/foot-health-practitioner-clifton",
-      },
-      {
-        title: "Foot health appointments in Redland",
-        href: "/foot-health-practitioner-redland",
-      },
-      {
-        title: "Foot health appointments in Bishopston",
-        href: "/foot-health-practitioner-bishopston",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you provide home visits throughout Cotham?",
-        answer:
-          "Foot+ provides home visits in Cotham and nearby Bristol areas. Contact Foot+ with your postcode to confirm current availability.",
-      },
-      {
-        question: "Can I book without a referral?",
-        answer:
-          "Yes. You can request a home-visit foot health appointment directly through Foot+ using the booking enquiry page.",
-      },
-      {
-        question: "Can you help with hard skin and calluses at home?",
-        answer:
-          "Where appropriate, Foot+ can reduce hard skin and callus during a home visit and provide practical aftercare advice.",
-      },
-      {
-        question: "Can you cut thick or difficult toenails?",
-        answer:
-          "Yes. Toenail cutting and nail care are part of routine foot care, including support with thickened or awkward nails where suitable.",
-      },
-      {
-        question: "What should I prepare before an appointment in Cotham?",
-        answer:
-          "Please have a comfortable chair, good lighting if possible, and any relevant medical or medication information available.",
-      },
-    ],
+    nearby: [{ title: "Foot health appointments in Clifton", href: "/foot-health-practitioner-clifton" },{ title: "Foot health appointments in Redland", href: "/foot-health-practitioner-redland" },{ title: "Foot health appointments in Bishopston", href: "/foot-health-practitioner-bishopston" }],
+    faqs: [{ question: "Do you cover Cotham Hill and nearby Kingsdown?", answer: "Foot+ covers Cotham and nearby central Bristol areas. If you are close to Kingsdown, send your postcode so availability can be confirmed." },{ question: "Can you visit student or shared accommodation in Cotham?", answer: "Appointments can take place where there is a suitable, private and comfortable space for foot care. Please provide access details before the visit." },{ question: "Can you help if walking to a clinic is difficult around Cotham?", answer: "Yes. Foot+ is a mobile service, so Adam visits your home for routine foot health appointments rather than asking you to travel." },{ question: "Can I book without a referral?", answer: "Yes. You can request a home-visit foot health appointment directly through Foot+ using the booking enquiry page." }],
   },
   {
     slug: "foot-health-practitioner-bishopston",
@@ -207,7 +102,7 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "right",
     title: "Foot Health Practitioner in Bishopston, Bristol",
     intro:
-      "Home-visit foot care in Bishopston, with professional support for routine foot and nail concerns.",
+      "Foot+ provides mobile foot health appointments across Bishopston, including residential areas around Gloucester Road, Bishop Road and Ashley Down. A home visit can be helpful for older adults, people with reduced mobility, carers arranging support, or anyone who finds travelling along busy local routes inconvenient for routine foot care. Services include toenail cutting, thickened nail care, hard skin and callus reduction, corn care where suitable, cracked heel maintenance and diabetic foot checks. Bishopston links naturally with Redland and Cotham, so nearby patients can use the closest relevant area page or provide a postcode through the booking enquiry. Please mention access details such as flats, steps or parking instructions so the visit can be planned smoothly.",
     description:
       "Foot+ provides professional foot health appointments at home in Bishopston for routine care, nail care, hard skin, corns and diabetic foot checks.",
     metaTitle: "Foot Health Practitioner in Bishopston, Bristol",
@@ -217,43 +112,8 @@ export const locationPages: LocationPage[] = [
       "Foot+ provides appointments across Bishopston, including residential areas around Gloucester Road, Bishop Road and Ashley Down.",
       "A home visit can avoid the need to travel along busy local routes when you need routine foot care, nail care or help with uncomfortable skin build-up.",
     ],
-    nearby: [
-      {
-        title: "Foot health appointments in Redland",
-        href: "/foot-health-practitioner-redland",
-      },
-      {
-        title: "Foot health appointments in Henleaze",
-        href: "/foot-health-practitioner-henleaze",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you offer home foot care around Gloucester Road?",
-        answer:
-          "Foot+ provides Bishopston home visits, including residential streets around Gloucester Road. Please provide your postcode to confirm current availability.",
-      },
-      {
-        question: "What foot problems can you help with?",
-        answer:
-          "Foot+ helps with routine foot care, toenail cutting, thickened nails, hard skin, callus, corns, cracked heels and diabetic foot checks.",
-      },
-      {
-        question: "Is this a cosmetic pedicure?",
-        answer:
-          "No. Foot+ provides professional foot care focused on comfort, nail maintenance and foot health rather than cosmetic pedicure treatments.",
-      },
-      {
-        question: "Can I ask about footwear or moisturising?",
-        answer:
-          "Yes. Appointments may include practical aftercare advice, including footwear, moisturising or pressure management where relevant.",
-      },
-      {
-        question: "Are nearby areas covered too?",
-        answer:
-          "Foot+ covers selected Bristol areas nearby, including Redland and Henleaze. Contact Foot+ with your postcode for confirmation.",
-      },
-    ],
+    nearby: [{ title: "Foot health appointments in Redland", href: "/foot-health-practitioner-redland" },{ title: "Foot health appointments in Cotham", href: "/foot-health-practitioner-cotham" }],
+    faqs: [{ question: "Do you offer home foot care around Gloucester Road?", answer: "Yes. Foot+ provides Bishopston home visits, including residential streets around Gloucester Road. Please provide your postcode to confirm current availability." },{ question: "Can appointments work in Bishopston flats or shared houses?", answer: "Yes, where there is a suitable place to sit for treatment. Please share any stairs, access codes, intercom or parking details before the visit." },{ question: "Do you cover Ashley Down from the Bishopston page?", answer: "Ashley Down is a logical nearby area for Bishopston home visits. Send your postcode so Foot+ can confirm current availability." },{ question: "What foot problems can you help with?", answer: "Foot+ helps with routine foot care, toenail cutting, thickened nails, hard skin, callus, corns, cracked heels and diabetic foot checks where suitable." }],
   },
   {
     slug: "foot-health-practitioner-henleaze",
@@ -880,7 +740,7 @@ export const locationPages: LocationPage[] = [
       "Professional home-visit foot care in Southville for patients who prefer convenient care at home.",
     title: "Foot Health Practitioner in Southville, Bristol",
     intro:
-      "Home-visit foot care in Southville for patients who prefer professional foot and nail care at home.",
+      "Foot+ offers home-visit foot care in Southville for patients who prefer practical treatment without travelling to a clinic. Appointments can suit people living around North Street, Greville Smyth Park and nearby residential streets, as well as those close to Bedminster and the wider BS3 area. Mobile care is useful for patients who find walking, parking or arranging transport difficult, and for relatives organising support for an older family member. Services include routine toenail cutting, thickened nail care, hard skin and callus reduction, corn care where appropriate, cracked heel maintenance and diabetic foot checks. Please provide your postcode and any access notes, such as flats, steps or parking instructions, so Adam can plan the visit.",
     description:
       "Foot+ provides professional foot care at home in Southville for routine appointments, nail care, hard skin, corns and diabetic foot checks.",
     metaTitle: "Foot Health Practitioner in Southville, Bristol",
@@ -890,43 +750,8 @@ export const locationPages: LocationPage[] = [
       "Foot+ provides home-visit appointments across Southville, including residential streets around North Street, Greville Smyth Park, Coronation Road and nearby parts of Bedminster.",
       "Southville is included in the existing South Bristol service-area wording, but appointments are arranged by location and availability, so please include the patient’s postcode when enquiring.",
     ],
-    nearby: [
-      {
-        title: "Foot health appointments in Bedminster",
-        href: "/foot-health-practitioner-bedminster",
-      },
-      {
-        title: "Foot health appointments in Clifton",
-        href: "/foot-health-practitioner-clifton",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you provide home visits throughout Southville?",
-        answer:
-          "Foot+ provides home visits in Southville and nearby Bristol areas. Contact Foot+ with your postcode to confirm current availability.",
-      },
-      {
-        question: "Can you cut toenails that are hard to reach?",
-        answer:
-          "Yes. Routine foot care can include toenail cutting and nail care for patients who find it difficult to reach their feet.",
-      },
-      {
-        question: "Can I book for general foot maintenance?",
-        answer:
-          "Yes. Routine appointments can support general nail and skin maintenance, comfort and practical home-based foot care.",
-      },
-      {
-        question: "Can you help with cracked heels?",
-        answer:
-          "Foot+ can assess cracked heel skin, reduce surrounding hard skin where suitable and provide moisturising and aftercare guidance.",
-      },
-      {
-        question: "What should I include in my enquiry?",
-        answer:
-          "Please include the patient’s postcode, the main foot concerns, and any relevant medical or medication information.",
-      },
-    ],
+    nearby: [{ title: "Foot health appointments in Bedminster", href: "/foot-health-practitioner-bedminster" }],
+    faqs: [{ question: "Do you cover North Street and Greville Smyth Park area?", answer: "Foot+ covers Southville and nearby parts of Bristol. Please send your postcode so current home-visit availability can be confirmed." },{ question: "Can a relative arrange a Southville appointment?", answer: "Yes, a relative can help enquire or coordinate practical details, but consent from the person receiving care is still needed." },{ question: "Do you also cover Bedminster?", answer: "Yes. Bedminster is a nearby covered area and has its own local page for home-visit foot care information." },{ question: "Should I provide parking or access details?", answer: "Yes. Any parking, intercom, stairs, lift or access details are helpful because appointments are planned around mobile home visits." }],
   },
   {
     slug: "foot-health-practitioner-bedminster",
@@ -939,7 +764,7 @@ export const locationPages: LocationPage[] = [
       "Home-visit foot care in Bedminster for routine foot and nail concerns.",
     title: "Foot Health Practitioner in Bedminster, Bristol",
     intro:
-      "Professional home-visit foot care in Bedminster for routine foot and nail concerns.",
+      "Foot+ provides mobile foot health appointments in Bedminster for people who want routine nail and skin care at home. The service is suitable for older adults, people with reduced mobility, family members arranging support, and busy patients who would rather avoid travelling for a clinic appointment. Bedminster coverage links naturally with Southville, Windmill Hill and nearby south Bristol neighbourhoods. Appointments may include toenail cutting, thickened nail care, hard skin and callus reduction, corn care where suitable, cracked heel care and diabetic foot checks. Home visits can be particularly useful where parking, walking distance, steps or flats make outside appointments less convenient. Please include your postcode and practical access details when enquiring.",
     description:
       "Foot+ provides home-visit foot care in Bedminster, supporting routine nail care, hard skin, callus, corns and diabetic foot checks.",
     metaTitle: "Foot Health Practitioner in Bedminster, Bristol",
@@ -949,47 +774,8 @@ export const locationPages: LocationPage[] = [
       "Home visits are available across Bedminster, including residential areas around East Street, Bedminster Parade, West Street and nearby parts of Windmill Hill and Southville.",
       "Bedminster is included in the existing South Bristol service-area wording. Contact Foot+ with your postcode to confirm current home-visit availability for your address.",
     ],
-    nearby: [
-      {
-        title: "Foot health appointments in Southville",
-        href: "/foot-health-practitioner-southville",
-      },
-      {
-        title: "Foot health appointments in Cotham",
-        href: "/foot-health-practitioner-cotham",
-      },
-      {
-        title: "Foot health appointments in Clifton",
-        href: "/foot-health-practitioner-clifton",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you provide home visits throughout Bedminster?",
-        answer:
-          "Foot+ provides home visits in Bedminster and nearby areas. Contact Foot+ with your postcode to confirm current availability.",
-      },
-      {
-        question: "Can you help with thickened toenails?",
-        answer:
-          "Yes. Foot+ can help with toenail cutting and nail care, including thickened nails where routine care is suitable.",
-      },
-      {
-        question: "Do I need to travel to a clinic?",
-        answer:
-          "No. Bedminster appointments take place in the patient’s home at the address arranged with Foot+.",
-      },
-      {
-        question: "Can a family member be present?",
-        answer:
-          "If the patient is comfortable with this, a family member or carer may be present to help with details or aftercare discussion.",
-      },
-      {
-        question: "Can you provide diabetic foot checks?",
-        answer:
-          "Yes. Diabetic foot checks are available where appropriate as part of Foot+ home-visit foot care.",
-      },
-    ],
+    nearby: [{ title: "Foot health appointments in Southville", href: "/foot-health-practitioner-southville" }],
+    faqs: [{ question: "Do you cover Bedminster and nearby Windmill Hill?", answer: "Foot+ covers Bedminster and nearby parts of south Bristol. Please include your postcode so current availability can be confirmed." },{ question: "Can you visit flats or sheltered accommodation in Bedminster?", answer: "Yes, home visits can usually take place in flats or sheltered accommodation. Please provide lift, stair, intercom or parking details in advance." },{ question: "Is Southville covered from Bedminster?", answer: "Yes. Southville is a nearby covered area, and there is a separate Southville page with local information." },{ question: "What should someone do if symptoms look urgent?", answer: "Foot+ does not provide emergency care. Seek appropriate medical support for open wounds, spreading redness, pus, sudden severe pain, sudden colour change or acute diabetic foot concerns." }],
   },
 ];
 
