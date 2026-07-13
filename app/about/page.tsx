@@ -1,4 +1,5 @@
 import Button from "../components/Button";
+import PartnerCard from "../components/PartnerCard";
 import PractitionerProfile from "../components/PractitionerProfile";
 import Link from "next/link";
 
@@ -138,7 +139,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-
+            <PartnerCard />
           </div>
         </div>
 
