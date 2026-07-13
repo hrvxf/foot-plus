@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Facebook } from "lucide-react";
 import Button from "./Button";
 import HeroSection from "./HeroSection";
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
@@ -106,10 +105,17 @@ export default function HomeContent() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Visit Foot+ Bristol on Facebook"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-md shadow-black/10 transition hover:bg-[#166FE5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#1877F2] text-white shadow-md shadow-black/10 transition hover:bg-[#166FE5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 data-analytics-id="hero-facebook"
               >
-                <Facebook className="h-5 w-5" />
+                {/* Use a filled glyph so the Facebook mark reads clearly at small sizes. */}
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-[1.55rem] w-[1.55rem] fill-current"
+                >
+                  <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
+                </svg>
               </a>
             </div>
           </div>
