@@ -201,7 +201,7 @@ export default function BristolMapCard() {
         <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-brand-sageLight/40 bg-white/90 p-4 shadow-sm">
           <p className="text-sm font-medium text-brand-sageDark">Based in Bristol</p>
           <p className="mt-1 text-xs text-brand-charcoal/60">
-            Serving Bristol & nearby areas
+            Central Bristol included; nearby areas by request
           </p>
         </div>
       </div>

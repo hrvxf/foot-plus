@@ -87,7 +87,7 @@ export default function CoverageMap({ locations }: CoverageMapProps) {
           View {selected.area} coverage
         </Link>
       </div>
-      <p className="text-xs leading-relaxed text-brand-charcoal/60">Map markers identify approximate neighbourhood centres rather than clinical boundaries. Please include your postcode when enquiring so Foot+ can confirm availability.</p>
+      <p className="text-xs leading-relaxed text-brand-charcoal/60">Map markers identify approximate neighbourhood centres rather than clinical boundaries. Please include your postcode so Foot+ can confirm availability and whether any travel supplement applies.</p>
     </div>
   );
 }
