@@ -119,7 +119,7 @@ export default function HomeContent() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Visit Foot+ Bristol on Facebook"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#1877F2] text-white shadow-md shadow-black/10 transition hover:bg-[#166FE5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#4f8ed8] text-white shadow-md shadow-black/10 transition hover:bg-[#3f7fc9] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 data-analytics-id="hero-facebook"
               >
                 {/* Use a filled glyph so the Facebook mark reads clearly at small sizes. */}
@@ -136,7 +136,7 @@ export default function HomeContent() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ask Foot+ Bristol a question on WhatsApp"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366] text-white shadow-md shadow-black/10 transition hover:bg-[#1EBE5D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#54bf7a] text-white shadow-md shadow-black/10 transition hover:bg-[#46ad6d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 data-analytics-id="hero-whatsapp"
               >
                 <WhatsAppIcon className="h-[1.55rem] w-[1.55rem]" />
