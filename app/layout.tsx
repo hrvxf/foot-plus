@@ -2,6 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AnalyticsClickTracker from "./components/AnalyticsClickTracker";
 
 import { SITE_URL } from "./lib/site";
 
@@ -215,6 +216,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src="https://www.facebook.com/tr?id=948452367747908&ev=PageView&noscript=1"
           />
         </noscript>
+        <AnalyticsClickTracker />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

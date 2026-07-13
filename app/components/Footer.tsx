@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, Phone, Facebook } from "lucide-react";
 
 import { emailDisplay, emailHref, phoneDisplay, phoneHref } from "../lib/site";
@@ -130,6 +131,13 @@ export default function Footer() {
               >
                 Services
               </a>
+              <Link
+                className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
+                href="/advice"
+                data-analytics-id="footer-link-advice"
+              >
+                Advice
+              </Link>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
                 href="/areas-we-cover"

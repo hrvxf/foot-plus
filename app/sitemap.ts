@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { SITE_URL } from "./lib/site";
+import { publishedAdviceArticles } from "./lib/advice";
 const LAST_MODIFIED = new Date("2026-07-08T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -11,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/book",
     "/prices",
     "/services",
+    "/advice",
     "/hard-skin-treatment-bristol",
     "/callus-removal-bristol",
     "/corn-removal-bristol",
@@ -33,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/foot-health-practitioner-totterdown",
     "/foot-health-practitioner-southville",
     "/foot-health-practitioner-bedminster",
+    ...publishedAdviceArticles.map((article) => `/advice/${article.slug}`),
   ];
 
   return routes.map((route) => ({

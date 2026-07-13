@@ -16,6 +16,7 @@ export type ConditionPage = {
   lastReviewed: string;
   faqs: { question: string; answer: string }[];
   related: { title: string; href: string }[];
+  relatedAdvice?: { title: string; href: string }[];
 };
 
 export const conditionPages: ConditionPage[] = [
@@ -52,6 +53,7 @@ export const conditionPages: ConditionPage[] = [
       { title: "Corn treatment", href: "/corn-removal-bristol" },
       { title: "Cracked heel care", href: "/cracked-heels-bristol" },
     ],
+    relatedAdvice: [{ title: "Guide to hard skin causes and prevention", href: "/advice/hard-skin-on-feet" }],
   },
   {
     slug: "callus-removal-bristol",
@@ -84,6 +86,7 @@ export const conditionPages: ConditionPage[] = [
       { title: "Hard skin treatment", href: "/hard-skin-treatment-bristol" },
       { title: "Corn treatment", href: "/corn-removal-bristol" },
     ],
+    relatedAdvice: [{ title: "Corn, callus or verruca differences", href: "/advice/corn-callus-or-verruca" }, { title: "Hard skin causes and professional care", href: "/advice/hard-skin-on-feet" }],
   },
   {
     slug: "corn-removal-bristol",
@@ -116,6 +119,7 @@ export const conditionPages: ConditionPage[] = [
       { title: "Callus removal", href: "/callus-removal-bristol" },
       { title: "Routine foot care services", href: "/services" },
     ],
+    relatedAdvice: [{ title: "Corn, callus or verruca differences", href: "/advice/corn-callus-or-verruca" }],
   },
   {
     slug: "cracked-heels-bristol",
@@ -145,6 +149,7 @@ export const conditionPages: ConditionPage[] = [
       { question: "Are cracked heels linked to hard skin?", answer: "Often, yes. Thick, dry heel skin can lose flexibility and split under pressure." },
     ],
     related: [{ title: "Hard skin treatment", href: "/hard-skin-treatment-bristol" }],
+    relatedAdvice: [{ title: "Hard skin causes and prevention", href: "/advice/hard-skin-on-feet" }],
   },
   {
     slug: "toenail-cutting-bristol",
@@ -177,6 +182,7 @@ export const conditionPages: ConditionPage[] = [
       { title: "Routine foot care services", href: "/services" },
       { title: "Foot Health Practitioner home visits", href: "/foot-health-practitioner-bristol" },
     ],
+    relatedAdvice: [{ title: "Why toenails become thick", href: "/advice/why-toenails-become-thick" }, { title: "Toenail cutting intervals for older adults", href: "/advice/how-often-older-adults-should-cut-toenails" }],
   },
   {
     slug: "foot-health-practitioner-bristol",
@@ -213,6 +219,7 @@ export const conditionPages: ConditionPage[] = [
       { title: "Toenail cutting", href: "/toenail-cutting-bristol" },
       { title: "Services", href: "/services" },
     ],
+    relatedAdvice: [{ title: "Foot Health Practitioner, podiatrist or chiropodist", href: "/advice/foot-health-practitioner-podiatrist-or-chiropodist" }],
   },
 ];
 
