@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 };
 
 const categories = [...new Set(publishedAdviceArticles.map((article) => article.category))];
-const featuredArticle = publishedAdviceArticles[0];
 
 export default function AdvicePage() {
   const hasPublishedGuides = publishedAdviceArticles.length > 0;
@@ -29,7 +28,7 @@ export default function AdvicePage() {
         <h1 className="mt-3 font-heading text-4xl font-semibold text-brand-sageDark md:text-5xl">Foot Health Advice and Guides</h1>
         <p className="mt-4 max-w-3xl text-lg leading-relaxed text-brand-charcoal/75">
           Practical, plain-English guidance written or reviewed by Adam James, Foot Health Practitioner at Foot+ Bristol.
-          Approved guides are listed below; any future drafts will remain hidden until Adam has confirmed factual, scope and procedure wording.
+          Draft guides are held back until Adam has confirmed factual, scope and procedure wording.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button href="/book" variant="solid">Book an appointment</Button>
@@ -38,22 +37,13 @@ export default function AdvicePage() {
       </section>
 
       <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
-        {featuredArticle ? (
-          <Link href={`/advice/${featuredArticle.slug}`} className="rounded-3xl border border-brand-sageLight/30 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">Featured guide</p>
-            <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark">{featuredArticle.title}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75">{featuredArticle.description}</p>
-            <p className="mt-4 text-sm font-semibold text-brand-sageDark">Read {featuredArticle.shortTitle}</p>
-          </Link>
-        ) : (
-          <div className="rounded-3xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">Editorial status</p>
-            <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark">Advice guides are in practitioner review</h2>
-            <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75">
-              {draftAdviceArticles.length} guides have been drafted but are not published, linked from public pages, included in the sitemap or available as indexable routes until Adam has approved them.
-            </p>
-          </div>
-        )}
+        <div className="rounded-3xl border border-brand-sageLight/30 bg-white p-6 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">Editorial status</p>
+          <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark">Advice guides are in practitioner review</h2>
+          <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75">
+            {draftAdviceArticles.length} guides have been drafted but are not published, linked from public pages, included in the sitemap or available as indexable routes until Adam has approved them.
+          </p>
+        </div>
         <AdviceSafetyNotice />
       </section>
 
