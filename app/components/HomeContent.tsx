@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Facebook } from "lucide-react";
 import Button from "./Button";
 import HeroSection from "./HeroSection";
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
@@ -100,6 +101,16 @@ export default function HomeContent() {
               <Button href="/prices" variant="secondary">
                 View prices
               </Button>
+              <a
+                href="https://www.facebook.com/profile.php?id=61586341484139"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Visit Foot+ Bristol on Facebook"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-md shadow-black/10 transition hover:bg-[#166FE5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                data-analytics-id="hero-facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
