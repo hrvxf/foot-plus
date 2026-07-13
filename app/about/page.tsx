@@ -156,15 +156,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-brand-sageLight/40 bg-white p-7 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-8">
-              <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Practitioner identity and scope</h2>
-              <div className="mt-4 space-y-3 text-sm leading-relaxed text-brand-charcoal/75">
-                <p>Foot+ Bristol is provided by Adam James, Foot Health Practitioner, MCFHP, MAFHP, offering mobile foot health appointments across Bristol.</p>
-                <p>Adam supports routine nail care, hard skin and callus care, corn care where suitable, cracked heel maintenance and practical foot health advice in the patient’s own home.</p>
-                <p>Foot+ does not provide emergency medical care. If symptoms suggest infection, an open wound, sudden severe pain, significant bleeding, sudden colour change, new loss of sensation or an acute diabetic foot concern, patients should seek appropriate NHS urgent care, GP or podiatry support.</p>
-              </div>
-            </div>
-
             <div className="rounded-[28px] border border-brand-sageLight/40 bg-brand-offwhite p-7 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] md:p-8">
               <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Local partner</h2>
               <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">A trusted local service Foot+ may signpost to when wider mobility or rehabilitation support could be helpful.</p>
