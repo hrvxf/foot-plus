@@ -45,11 +45,11 @@ export default function FormsPage() {
   return (
     <section className="bg-brand-offwhite">
       <div className="mx-auto max-w-6xl px-5 pb-14 pt-8 sm:px-6 md:pb-16 md:pt-10">
-        <div className="max-w-[900px]">
+        <div className="max-w-225">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/75">
             PATIENT REGISTRATION
           </p>
-          <h1 className="mt-3 max-w-[900px] font-heading text-[clamp(2.4rem,5vw,4.2rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
+          <h1 className="mt-3 max-w-225 font-heading text-[clamp(2.4rem,5vw,4.2rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
             Complete your new patient form
           </h1>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">

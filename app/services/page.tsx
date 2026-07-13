@@ -212,21 +212,21 @@ export default function ServicesPage() {
           </ol>
         </nav>
 
-        <div className="relative overflow-hidden rounded-[32px] border border-brand-sageLight/35 bg-white p-6 sm:p-8 md:p-10">
-          <div className="pointer-events-none absolute right-[-4rem] top-[-5rem] hidden h-72 w-72 rounded-full bg-brand-sageLight/18 lg:block" />
-          <div className="pointer-events-none absolute bottom-[-5.5rem] right-20 hidden h-44 w-44 rounded-full border border-brand-sageDark/15 lg:block" />
-          <div className="pointer-events-none absolute right-[4.25rem] top-[3.75rem] hidden lg:block">
+        <div className="relative overflow-hidden rounded-4xl border border-brand-sageLight/35 bg-white p-6 sm:p-8 md:p-10">
+          <div className="pointer-events-none absolute -right-16 -top-20 hidden h-72 w-72 rounded-full bg-brand-sageLight/18 lg:block" />
+          <div className="pointer-events-none absolute -bottom-22 right-20 hidden h-44 w-44 rounded-full border border-brand-sageDark/15 lg:block" />
+          <div className="pointer-events-none absolute right-17 top-15 hidden lg:block">
             <FootPlusHeroIcon />
           </div>
 
-          <div className="relative max-w-[65rem] lg:max-w-[62%]">
+          <div className="relative max-w-260 lg:max-w-[62%]">
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/75">
               HOME VISIT FOOT CARE IN BRISTOL
             </p>
-            <h1 className="mt-3 max-w-[900px] font-heading text-[clamp(2.6rem,5vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
+            <h1 className="mt-3 max-w-225 font-heading text-[clamp(2.6rem,5vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
               Foot care services in your home
             </h1>
-            <p className="mt-4 max-w-[660px] text-[clamp(1.05rem,1.5vw,1.3rem)] leading-[1.55] text-brand-charcoal/75">
+            <p className="mt-4 max-w-165 text-[clamp(1.05rem,1.5vw,1.3rem)] leading-[1.55] text-brand-charcoal/75">
               Professional support for routine foot care, diabetic foot checks and common skin and nail concerns.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -304,7 +304,7 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            <div className="rounded-[24px] border border-brand-sageDark/15 bg-white/76 p-5 sm:p-6">
+            <div className="rounded-3xl border border-brand-sageDark/15 bg-white/76 p-5 sm:p-6">
               <div className="flex items-center gap-3">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-sageLight/22 text-brand-sageDark" aria-hidden="true">
                   <UsersRound className="h-5 w-5" />
@@ -339,7 +339,7 @@ export default function ServicesPage() {
             {conditionCards.map((condition) => {
               const Icon = condition.icon;
               return (
-                <Link key={`${condition.title}-${condition.href}`} href={condition.href} className="group rounded-[24px] border border-brand-sageLight/35 bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand-sageDark/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight">
+                <Link key={`${condition.title}-${condition.href}`} href={condition.href} className="group rounded-3xl border border-brand-sageLight/35 bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand-sageDark/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-sageLight/18 text-brand-sageDark" aria-hidden="true"><Icon className="h-5 w-5" /></span>
                   <h3 className="mt-5 font-heading text-lg font-semibold tracking-tight text-brand-sageDark">{condition.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/72">{condition.description}</p>
@@ -368,7 +368,7 @@ export default function ServicesPage() {
         </div>
         <div className="mt-7 grid gap-4 md:grid-cols-2">
           {serviceFaqs.map((faq) => (
-            <article key={faq.question} className="rounded-[24px] border border-brand-sageLight/35 bg-white p-5">
+            <article key={faq.question} className="rounded-3xl border border-brand-sageLight/35 bg-white p-5">
               <h3 className="font-heading text-lg font-semibold tracking-tight text-brand-sageDark">{faq.question}</h3>
               <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/74">{faq.answer}</p>
             </article>
