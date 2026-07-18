@@ -3,16 +3,33 @@ import Link from "next/link";
 import Button from "../components/Button";
 import { AdviceSafetyNotice } from "../components/advice/AdviceArticleLayout";
 import { adviceCanonical, publishedAdviceArticles } from "../lib/advice";
+import {
+  ADVICE_SOCIAL_IMAGE,
+  ADVICE_SOCIAL_IMAGE_METADATA,
+} from "../lib/site";
+
+const adviceTitle = "Foot Health Advice | Foot+ Bristol";
+const adviceDescription =
+  "Practical foot health advice from Foot+ Bristol, covering toenail care, hard skin, cracked heels, corns, diabetes and keeping your feet comfortable.";
 
 export const metadata: Metadata = {
-  title: "Foot Health Advice and Guides",
-  description:
-    "Foot+ Bristol advice hub for routine foot care, nail care, hard skin, home appointments and choosing the right professional.",
+  // Absolute titles avoid applying the root layout's title template a second time.
+  title: { absolute: adviceTitle },
+  description: adviceDescription,
   alternates: { canonical: adviceCanonical() },
   openGraph: {
+    type: "website",
     url: adviceCanonical(),
-    title: "Foot Health Advice and Guides",
-    description: "Foot+ Bristol advice hub for routine foot health and home foot-care decisions.",
+    siteName: "Foot+ Bristol",
+    title: adviceTitle,
+    description: adviceDescription,
+    images: [ADVICE_SOCIAL_IMAGE_METADATA],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: adviceTitle,
+    description: adviceDescription,
+    images: [ADVICE_SOCIAL_IMAGE],
   },
   robots: { index: true, follow: true },
 };
