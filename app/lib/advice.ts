@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "./site";
+import {
+  ADVICE_SOCIAL_IMAGE,
+  ADVICE_SOCIAL_IMAGE_METADATA,
+  SITE_URL,
+} from "./site";
 
 export type AdviceLink = { href: string; label: string; kind?: "service" | "article" | "book" | "pricing" | "areas" | "about" | "forms" };
 export type AdviceSection = { heading: string; body: string[]; links?: AdviceLink[] };
@@ -61,5 +65,32 @@ export const draftAdviceArticles = adviceArticles.filter((a) => !a.isPublished |
 export function getAdviceArticle(slug: string) { return publishedAdviceArticles.find((a) => a.slug === slug); }
 export function isPublishedAdviceHref(href: string) { return publishedAdviceArticles.some((article) => href === `/advice/${article.slug}`); }
 export function adviceCanonical(slug = "") { return `${SITE_URL}/advice${slug ? `/${slug}` : ""}`; }
-export function adviceMetadata(article: AdviceArticle): Metadata { const url = adviceCanonical(article.slug); return { title: article.seoTitle ?? article.shortTitle, description: article.description, alternates:{ canonical:url }, openGraph:{ type:"article", url, title: article.title, description: article.description }, twitter:{ card:"summary_large_image", title: article.title, description: article.description }, robots:{ index:true, follow:true } }; }
+export function adviceMetadata(article: AdviceArticle): Metadata {
+  const url = adviceCanonical(article.slug);
+  const title = article.seoTitle ?? article.shortTitle;
+
+  // Keep each guide's existing search copy while extending its server-rendered social metadata.
+  return {
+    title,
+    description: article.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      siteName: "Foot+ Bristol",
+      title,
+      description: article.description,
+      images: [ADVICE_SOCIAL_IMAGE_METADATA],
+      publishedTime: article.datePublished,
+      modifiedTime: article.dateModified,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: article.description,
+      images: [ADVICE_SOCIAL_IMAGE],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 export function articleJsonLd(article: AdviceArticle) { const url = adviceCanonical(article.slug); return { "@context":"https://schema.org", "@graph":[{ "@type":"Article", "@id":`${url}#article`, headline:article.title, description:article.description, mainEntityOfPage:{"@type":"WebPage","@id":url}, author:{"@type":"Person","@id":`${SITE_URL}/about#adam-james`, name:"Adam James", jobTitle:"Foot Health Practitioner", url:`${SITE_URL}/about`}, publisher:{"@type":"Organization","@id":`${SITE_URL}/#organization`, name:"Foot+ Bristol", url:SITE_URL}, datePublished:article.datePublished, dateModified:article.dateModified, articleSection:article.category }, {"@type":"BreadcrumbList","@id":`${url}#breadcrumb`, itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`${SITE_URL}/`},{"@type":"ListItem",position:2,name:"Advice",item:adviceCanonical()},{"@type":"ListItem",position:3,name:article.title,item:url}]}, {"@type":"FAQPage","@id":`${url}#faq`, mainEntity:article.faqs.map((faq)=>({"@type":"Question", name:faq.question, acceptedAnswer:{"@type":"Answer", text:faq.answer}}))}]}; }

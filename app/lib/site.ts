@@ -1,6 +1,16 @@
 export const SITE_URL = "https://foot-plus.co.uk";
 export const BUSINESS_ID = `${SITE_URL}/#medicalbusiness`;
 
+// Advice pages share one stable, absolute social image so link unfurls are consistent.
+export const ADVICE_SOCIAL_IMAGE = `${SITE_URL}/foot-plus-advice-social-preview.png`;
+export const ADVICE_SOCIAL_IMAGE_ALT = "Foot+ Bristol Advice";
+export const ADVICE_SOCIAL_IMAGE_METADATA = {
+  url: ADVICE_SOCIAL_IMAGE,
+  width: 1200,
+  height: 630,
+  alt: ADVICE_SOCIAL_IMAGE_ALT,
+};
+
 export const bookingHref = "/book";
 export const phoneDisplay = "07380 301555";
 export const phoneHref = "tel:+447380301555";

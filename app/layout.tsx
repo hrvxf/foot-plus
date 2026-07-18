@@ -131,7 +131,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
 
-        <meta property="og:site_name" content="Foot+ Bristol" />
         <meta
           name="facebook-domain-verification"
           content="9idrp6n7fq592jktesd6z6bl4qg5kt"
