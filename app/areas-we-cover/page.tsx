@@ -185,10 +185,7 @@ export default function AreasWeCoverPage() {
               <h3 className="mt-3 font-heading text-xl font-semibold text-brand-sageDark">
                 {group.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75">
-                {group.description}
-              </p>
-              <ul className="mt-5 space-y-2">
+              <ul className="mt-4 space-y-2">
                 {group.locations.map((location) => (
                   <li key={location.slug}>
                     <Link
@@ -200,9 +197,6 @@ export default function AreasWeCoverPage() {
                         →
                       </span>
                     </Link>
-                    <p className="mt-1 text-sm leading-relaxed text-brand-charcoal/70">
-                      {location.hubDescription}
-                    </p>
                   </li>
                 ))}
               </ul>
