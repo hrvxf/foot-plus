@@ -12,6 +12,8 @@ export type LocationPage = {
   intro: string;
   localCoverage: string;
   localAccessNote: string;
+  accessInformation?: string;
+  suitableFor?: string[];
   faqs: { question: string; answer: string }[];
   metaTitle: string;
   metaDescription: string;
@@ -145,15 +147,23 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "above",
     hubDescription:
       "Home-visit nail and skin care across Cotham, with local appointment planning, routine foot care, prices and booking information.",
-    title: "Foot Health Practitioner in Cotham, Bristol",
+    title: "Home Foot Care in Cotham, Bristol",
     description:
       "Foot+ provides home-visit nail and skin care across Cotham, including routine foot care, hard skin, corn care and diabetic foot checks.",
     intro:
-      "Foot+ provides home-visit foot care in Cotham, including residential streets around Cotham Hill, Cotham Brow and Hampton Road. Routine appointments can help with toenail care, thickened nails, hard skin, calluses, corns where suitable, cracked heels and diabetic foot checks. Home visits may suit people who find Cotham’s hills, parking or public transport awkward, as well as relatives arranging care for someone at home. The area links naturally with Clifton, Redland and Bishopston, so nearby patients can enquire with their postcode. Please provide any entry, steps or parking details when booking.",
+      "Foot+ provides home foot-care appointments in Cotham for people who would rather receive routine nail and skin care at home. A home visit avoids arranging transport, walking from a parking space or managing a journey when mobility or reaching the feet is difficult. It can also make planning simpler when a relative, carer or support worker is helping with care. Foot+ also has existing coverage pages for neighbouring Clifton, Redland and Bishopston. These links are useful when an address sits close to the edge of Cotham, but the neighbourhood name alone does not confirm availability. Please provide the full appointment postcode when enquiring so Foot+ can check the address and current availability before a visit is arranged.",
     localCoverage:
-      "Foot+ provides home visits across Cotham, including Cotham Hill, Cotham Brow, Hampton Road and nearby parts of Kingsdown.",
+      "Coverage enquiries may include Cotham and addresses towards the existing Clifton, Redland and Bishopston coverage areas. Neighbourhood boundaries do not necessarily determine availability, so please provide the full appointment postcode when enquiring. Foot+ will use it to confirm whether a home visit can be arranged.",
     localAccessNote:
       "For shared houses, flats or hillside streets, please provide entry details and any practical parking notes before the appointment.",
+    accessInformation:
+      "When booking, explain any parking restrictions or permit-controlled parking and whether there are steps or stairs. For a flat or shared entrance, include lift access, the entrance code, intercom instructions or gated-access details. Please also say whether a relative, carer or support worker will be present, so arrival and access can be planned without assumptions about the property.",
+    suitableFor: [
+      "People who find public transport or a clinic journey difficult",
+      "People who cannot comfortably reach their feet",
+      "People living in flats who can provide clear access instructions",
+      "Relatives arranging care for a family member",
+    ],
     nearby: [
       {
         title: "Foot health appointments in Clifton",
@@ -170,30 +180,30 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       {
-        question: "Do you cover Cotham Hill and nearby Kingsdown?",
+        question: "Do you cover my part of Cotham?",
         answer:
-          "Yes. Foot+ covers Cotham and nearby Bristol areas. Please include your postcode so current home-visit availability can be confirmed.",
+          "Please send the full appointment postcode. Area boundaries do not necessarily determine availability, so Foot+ confirms each address and current availability when you enquire.",
       },
       {
         question:
-          "Can appointments take place in student or shared accommodation in Cotham?",
+          "Can you visit a Cotham flat or property with limited parking?",
         answer:
-          "Please provide parking, stairs, lift access, intercom, entry instructions or any other detail that may affect a home visit in Cotham.",
+          "Please provide parking restrictions, permit information, steps, stairs, lift access, entrance codes, intercom or gated-access instructions when enquiring. Foot+ can then consider the practical access details before confirming the visit.",
       },
       {
-        question: "Can I book without a referral?",
+        question: "Can a relative arrange a Cotham appointment?",
         answer:
           "Yes. A relative, carer or support worker can help enquire or be present, with appropriate consent from the person receiving care.",
       },
       {
-        question: "What if walking to a clinic is difficult around Cotham?",
+        question: "Do you also cover Clifton and Redland?",
         answer:
-          "Foot+ will explain if a concern appears outside routine foot-health scope and advise seeking appropriate GP, podiatry, urgent or emergency care.",
+          "Foot+ has existing coverage pages for both Clifton and Redland. Please provide the appointment postcode so availability for the exact address can be confirmed.",
       },
     ],
-    metaTitle: "Foot Health Practitioner in Cotham, Bristol",
+    metaTitle: "Home Foot Care in Cotham, Bristol",
     metaDescription:
-      "Foot+ provides home-visit nail and skin care across Cotham. View routine foot care services, prices and booking options for local appointments.",
+      "Arrange professional home foot-care appointments in Cotham, with practical guidance on postcode coverage, property access and preparing for a visit.",
   },
   {
     slug: "foot-health-practitioner-bishopston",
@@ -204,15 +214,23 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "right",
     hubDescription:
       "Home-visit nail and skin care across Bishopston, with local appointment planning, routine foot care, prices and booking information.",
-    title: "Foot Health Practitioner in Bishopston, Bristol",
+    title: "Home Foot Care in Bishopston, Bristol",
     description:
       "Foot+ provides home-visit nail and skin care across Bishopston, including routine foot care, hard skin, corn care and diabetic foot checks.",
     intro:
-      "Foot+ provides mobile foot-health appointments across Bishopston, including residential areas around Gloucester Road, Bishop Road and Ashley Down. Home visits are available for routine toenail care, thickened nails, hard skin, calluses, corns where suitable, cracked heels and diabetic foot checks. They can be useful for people who find travelling along busy local routes inconvenient, have reduced mobility, or prefer care at home. Bishopston sits close to Redland and Cotham, and postcode details help confirm the best appointment plan. Please mention flats, steps or parking instructions when enquiring.",
+      "Foot+ provides home foot-care appointments in Bishopston, bringing routine nail and skin care to the patient’s own home. This may help people with reduced mobility or anyone who cannot comfortably reach their feet, and removes the need to organise a lift, use public transport or travel to a clinic. A relative or carer can also help arrange the appointment when appropriate. Existing Foot+ coverage pages include nearby Redland and Cotham, while the wider North Bristol coverage information also names Ashley Down. Because familiar neighbourhood labels and actual addresses do not always align, the full postcode is important. Foot+ will check the address and current availability when responding to an enquiry.",
     localCoverage:
-      "Foot+ provides home visits across Bishopston, including streets around Gloucester Road, Bishop Road and Ashley Down.",
+      "Enquiries are welcomed for Bishopston and towards the existing Redland and Cotham coverage areas; Ashley Down is also listed in Foot+ North Bristol coverage. Neighbourhood boundaries do not necessarily determine availability. Please provide the appointment postcode so the exact address and current availability can be checked.",
     localAccessNote:
       "Please share parking, intercom or stair details, especially for flats or homes on busier streets near Gloucester Road.",
+    accessInformation:
+      "Please mention parking restrictions or permit-controlled parking when booking. Also describe steps, stairs, lift access, entrance codes, intercom systems or gated access. If a relative, carer or support worker will meet Foot+ or remain for the appointment, include that information so the arrival can be planned clearly.",
+    suitableFor: [
+      "People with reduced mobility",
+      "People who cannot comfortably reach their feet",
+      "People who no longer drive or find public transport difficult",
+      "Carers or support workers arranging an appointment",
+    ],
     nearby: [
       {
         title: "Foot health appointments in Redland",
@@ -225,29 +243,29 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       {
-        question: "Do you offer home foot care around Gloucester Road?",
+        question: "Do you cover my part of Bishopston?",
         answer:
-          "Yes. Foot+ covers Bishopston and nearby Bristol areas. Please include your postcode so current home-visit availability can be confirmed.",
+          "Please provide the full appointment postcode. Foot+ checks the exact address and current availability rather than relying only on a neighbourhood boundary.",
       },
       {
-        question: "Do you cover Ashley Down from the Bishopston page?",
+        question: "Is Ashley Down included in your coverage information?",
         answer:
-          "Please provide parking, stairs, lift access, intercom, entry instructions or any other detail that may affect a home visit in Bishopston.",
+          "Yes. Ashley Down is named in Foot+ North Bristol coverage information. Please still provide the appointment postcode so availability for the address can be confirmed.",
       },
       {
-        question: "Can appointments work in Bishopston flats or shared houses?",
+        question: "Can you visit a Bishopston flat or gated property?",
+        answer:
+          "Please provide details of parking, stairs, lift access, entrance codes, intercoms or gates. Foot+ will consider the practical access information when confirming the visit.",
+      },
+      {
+        question: "Can a carer book on someone else’s behalf?",
         answer:
           "Yes. A relative, carer or support worker can help enquire or be present, with appropriate consent from the person receiving care.",
       },
-      {
-        question: "What foot problems can Foot+ help with?",
-        answer:
-          "Foot+ will explain if a concern appears outside routine foot-health scope and advise seeking appropriate GP, podiatry, urgent or emergency care.",
-      },
     ],
-    metaTitle: "Foot Health Practitioner in Bishopston, Bristol",
+    metaTitle: "Home Foot Care in Bishopston, Bristol",
     metaDescription:
-      "Foot+ provides home-visit nail and skin care across Bishopston. View routine foot care services, prices and booking options for local appointments.",
+      "Professional home foot-care appointments in Bishopston, Bristol, with clear postcode, access and visit-planning information for patients and carers.",
   },
   {
     slug: "foot-health-practitioner-henleaze",
@@ -716,15 +734,23 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "right",
     hubDescription:
       "Home-visit nail and skin care across Barton Hill, with local appointment planning, routine foot care, prices and booking information.",
-    title: "Foot Health Practitioner in Barton Hill, Bristol",
+    title: "Home Foot Care in Barton Hill, Bristol",
     description:
       "Foot+ provides home-visit nail and skin care across Barton Hill, including routine foot care, hard skin, corn care and diabetic foot checks.",
     intro:
-      "Foot+ provides home-visit foot care across Barton Hill, including areas around Barton Hill Road, Marsh Lane and Avonvale Road. Appointments are available for routine toenail care, thickened nails, hard skin, calluses, corns where suitable, cracked heels and diabetic foot checks. Home visits can be helpful for people who find travelling, parking or walking to appointments difficult, and for residents who prefer practical foot care in familiar surroundings. Please include the appointment postcode and any access notes when enquiring so Foot+ can plan the visit. Foot+ also covers nearby Easton, St Philips and Old Market.",
+      "Foot+ provides home foot-care appointments in Barton Hill, allowing routine nail and skin care to take place without a journey to a clinic. This can be useful for someone with reduced mobility, a person who finds public transport difficult, or a relative coordinating care at home. Avoiding travel also means the patient can prepare for the appointment in familiar surroundings. The existing Foot+ location pages for Easton, St Philips and Old Market provide useful neighbouring coverage references. They do not guarantee that every address between the areas can be served, however, because neighbourhood boundaries do not decide availability. Please send the full appointment postcode with an enquiry so Foot+ can check the address and current availability.",
     localCoverage:
-      "Foot+ provides home visits across Barton Hill, including areas around Barton Hill Road, Marsh Lane and Avonvale Road.",
+      "Barton Hill enquiries can be considered alongside the existing coverage pages for Easton, St Philips and Old Market. Neighbourhood boundaries do not necessarily determine availability. Please provide the full appointment postcode so Foot+ can confirm whether the address can be included when checking current availability.",
     localAccessNote:
       "Please share parking, steps, entry-system or lift information when enquiring so the home visit can be planned around local access needs.",
+    accessInformation:
+      "Tell Foot+ about parking restrictions or permit-controlled parking when enquiring. Include any steps, stairs, lift access, entrance code, intercom system or gated access that affects arrival. Please also say whether a relative, carer or support worker will be present to provide access or support during the appointment.",
+    suitableFor: [
+      "People with reduced mobility",
+      "Patients who find public transport difficult",
+      "People living in flats or supported accommodation",
+      "Relatives arranging care for a family member",
+    ],
     nearby: [
       {
         title: "Foot health appointments in Easton",
@@ -741,19 +767,19 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       {
-        question: "Do you provide home visits around Barton Hill Road?",
+        question: "Do you cover my part of Barton Hill?",
         answer:
           "Yes. Foot+ covers Barton Hill and nearby Bristol areas. Please include your postcode so current home-visit availability can be confirmed.",
       },
       {
-        question: "What access information helps for Barton Hill appointments?",
+        question: "What access information should I provide in Barton Hill?",
         answer:
           "Please provide parking, stairs, lift access, intercom, entry instructions or any other detail that may affect a home visit in Barton Hill.",
       },
       {
-        question: "Can a relative or carer arrange an appointment?",
+        question: "Do you visit supported-living accommodation?",
         answer:
-          "Yes. A relative, carer or support worker can help enquire or be present, with appropriate consent from the person receiving care.",
+          "Please enquire with the full postcode and details of access and any support worker who will be present. Foot+ can then confirm whether the address and appointment arrangements are suitable.",
       },
       {
         question: "What happens if my concern is outside Foot+ scope?",
@@ -761,9 +787,9 @@ export const locationPages: LocationPage[] = [
           "Foot+ will explain if a concern appears outside routine foot-health scope and advise seeking appropriate GP, podiatry, urgent or emergency care.",
       },
     ],
-    metaTitle: "Foot Health Practitioner in Barton Hill, Bristol",
+    metaTitle: "Home Foot Care in Barton Hill, Bristol",
     metaDescription:
-      "Foot+ provides home-visit nail and skin care across Barton Hill. View routine foot care services, prices and booking options for local appointments.",
+      "Foot+ offers professional home foot-care appointments in Barton Hill, with useful guidance for confirming coverage and planning property access.",
   },
   {
     slug: "foot-health-practitioner-totterdown",
@@ -832,15 +858,23 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "left",
     hubDescription:
       "Home-visit nail and skin care across Southville, with local appointment planning, routine foot care, prices and booking information.",
-    title: "Foot Health Practitioner in Southville, Bristol",
+    title: "Home Foot Care in Southville, Bristol",
     description:
       "Foot+ provides home-visit nail and skin care across Southville, including routine foot care, hard skin, corn care and diabetic foot checks.",
     intro:
-      "Foot+ provides home-visit foot care across Southville, including areas around North Street, Greville Smyth Park and Coronation Road. Appointments are available for routine toenail care, thickened nails, hard skin, calluses, corns where suitable, cracked heels and diabetic foot checks. Home visits can be helpful for people who find travelling, parking or walking to appointments difficult, and for residents who prefer practical foot care in familiar surroundings. Please include the appointment postcode and any access notes when enquiring so Foot+ can plan the visit. Foot+ also covers nearby Bedminster and Totterdown.",
+      "Foot+ provides home foot-care appointments in Southville, so routine nail and skin care can be received at home instead of requiring a clinic journey. This can make appointments easier for someone who no longer drives, finds public transport difficult or cannot comfortably reach their feet. It may also help a relative or carer coordinate practical support around the visit. Foot+ has existing location pages for neighbouring Bedminster and Totterdown, which may help people enquiring for an address near the edge of Southville. Area names are only a guide and do not determine whether an appointment is available. Please provide the full postcode so Foot+ can check the address and current availability before confirming arrangements.",
     localCoverage:
-      "Foot+ provides home visits across Southville, including areas around North Street, Greville Smyth Park and Coronation Road.",
+      "Southville enquiries can be checked together with the existing coverage information for neighbouring Bedminster and Totterdown. Neighbourhood boundaries do not necessarily determine availability, so please provide the full appointment postcode. Foot+ will confirm whether the exact address can be covered when responding.",
     localAccessNote:
       "Please share parking, steps, entry-system or lift information when enquiring so the home visit can be planned around local access needs.",
+    accessInformation:
+      "When enquiring, describe parking restrictions or permit-controlled parking and any steps or stairs. For flats or controlled entrances, include lift access, entrance codes, intercom details or gated-access instructions. Please say whether a relative, carer or support worker will be present, particularly if they will help Foot+ enter the property.",
+    suitableFor: [
+      "People who no longer drive",
+      "People who find public transport difficult",
+      "People who cannot comfortably reach their feet",
+      "Relatives or carers coordinating care at home",
+    ],
     nearby: [
       {
         title: "Foot health appointments in Bedminster",
@@ -853,29 +887,29 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       {
-        question: "Do you provide home visits around North Street?",
+        question: "Do you cover my part of Southville?",
         answer:
           "Yes. Foot+ covers Southville and nearby Bristol areas. Please include your postcode so current home-visit availability can be confirmed.",
       },
       {
-        question: "What access information helps for Southville appointments?",
+        question: "Can you visit a Southville flat with limited parking?",
         answer:
           "Please provide parking, stairs, lift access, intercom, entry instructions or any other detail that may affect a home visit in Southville.",
       },
       {
-        question: "Can a relative or carer arrange an appointment?",
+        question: "Can two people at the same Southville address enquire together?",
         answer:
-          "Yes. A relative, carer or support worker can help enquire or be present, with appropriate consent from the person receiving care.",
+          "Yes. Include both people in the enquiry so Foot+ can confirm the appropriate appointment arrangements, current availability and pricing before booking.",
       },
       {
-        question: "What happens if my concern is outside Foot+ scope?",
+        question: "Do you also cover nearby Bedminster and Totterdown?",
         answer:
-          "Foot+ will explain if a concern appears outside routine foot-health scope and advise seeking appropriate GP, podiatry, urgent or emergency care.",
+          "Foot+ has existing coverage pages for both areas. Please provide the appointment postcode because availability is confirmed for the exact address, not from the neighbourhood name alone.",
       },
     ],
-    metaTitle: "Foot Health Practitioner in Southville, Bristol",
+    metaTitle: "Home Foot Care in Southville, Bristol",
     metaDescription:
-      "Foot+ provides home-visit nail and skin care across Southville. View routine foot care services, prices and booking options for local appointments.",
+      "Plan a professional home foot-care appointment in Southville, Bristol, with clear information about local coverage, access and nearby areas served.",
   },
   {
     slug: "foot-health-practitioner-bedminster",
@@ -886,15 +920,23 @@ export const locationPages: LocationPage[] = [
     mapLabelPosition: "below",
     hubDescription:
       "Home-visit nail and skin care across Bedminster, with local appointment planning, routine foot care, prices and booking information.",
-    title: "Foot Health Practitioner in Bedminster, Bristol",
+    title: "Home Foot Care in Bedminster, Bristol",
     description:
       "Foot+ provides home-visit nail and skin care across Bedminster, including routine foot care, hard skin, corn care and diabetic foot checks.",
     intro:
-      "Foot+ provides home-visit foot care across Bedminster, including areas around East Street, Bedminster Parade and West Street. Appointments are available for routine toenail care, thickened nails, hard skin, calluses, corns where suitable, cracked heels and diabetic foot checks. Home visits can be helpful for people who find travelling, parking or walking to appointments difficult, and for residents who prefer practical foot care in familiar surroundings. Please include the appointment postcode and any access notes when enquiring so Foot+ can plan the visit. Foot+ also covers nearby Southville and Totterdown.",
+      "Foot+ provides home foot-care appointments in Bedminster for patients who would benefit from receiving routine nail and skin care at home. Avoiding a clinic journey can be practically helpful for older adults, people with reduced mobility and anyone who finds reaching their feet difficult. It can also simplify arrangements when a relative, carer or support worker is organising care. Existing Foot+ pages cover neighbouring Southville and Totterdown, so those are useful reference points for nearby enquiries. Neighbourhood names and boundaries do not by themselves confirm that an address is available for a visit. Please give the full postcode when enquiring so Foot+ can check the location and current availability before an appointment is arranged.",
     localCoverage:
-      "Foot+ provides home visits across Bedminster, including areas around East Street, Bedminster Parade and West Street.",
+      "Foot+ accepts coverage enquiries for Bedminster and towards the existing Southville and Totterdown coverage areas. Neighbourhood boundaries do not necessarily determine availability. Please provide the full appointment postcode so Foot+ can check the exact address before confirming a home visit.",
     localAccessNote:
       "Please share parking, steps, entry-system or lift information when enquiring so the home visit can be planned around local access needs.",
+    accessInformation:
+      "Provide details of parking restrictions or permit-controlled parking when you enquire, along with steps, stairs or lift access. Entrance codes, intercom systems and gated-access instructions should be shared in advance. Please also explain whether a relative, carer or support worker will be present to assist with entry or the appointment.",
+    suitableFor: [
+      "Older adults who would prefer routine care at home",
+      "People with reduced mobility",
+      "People who cannot comfortably reach their feet",
+      "Support workers arranging an appointment",
+    ],
     nearby: [
       {
         title: "Foot health appointments in Southville",
@@ -907,29 +949,29 @@ export const locationPages: LocationPage[] = [
     ],
     faqs: [
       {
-        question: "Do you provide home visits around East Street?",
+        question: "Do you cover my part of Bedminster?",
         answer:
           "Yes. Foot+ covers Bedminster and nearby Bristol areas. Please include your postcode so current home-visit availability can be confirmed.",
       },
       {
-        question: "What access information helps for Bedminster appointments?",
+        question: "What property access details should I provide?",
         answer:
           "Please provide parking, stairs, lift access, intercom, entry instructions or any other detail that may affect a home visit in Bedminster.",
       },
       {
-        question: "Can a relative or carer arrange an appointment?",
+        question: "Can a relative book a Bedminster visit for someone else?",
         answer:
           "Yes. A relative, carer or support worker can help enquire or be present, with appropriate consent from the person receiving care.",
       },
       {
-        question: "What happens if my concern is outside Foot+ scope?",
+        question: "Do you also cover Southville and Totterdown?",
         answer:
-          "Foot+ will explain if a concern appears outside routine foot-health scope and advise seeking appropriate GP, podiatry, urgent or emergency care.",
+          "Foot+ has existing location pages for Southville and Totterdown. Send the full appointment postcode so coverage and current availability can be checked for the address.",
       },
     ],
-    metaTitle: "Foot Health Practitioner in Bedminster, Bristol",
+    metaTitle: "Home Foot Care in Bedminster, Bristol",
     metaDescription:
-      "Foot+ provides home-visit nail and skin care across Bedminster. View routine foot care services, prices and booking options for local appointments.",
+      "Professional home foot-care appointments in Bedminster, with practical information for checking postcode coverage and preparing property access.",
   },
 ];
 
