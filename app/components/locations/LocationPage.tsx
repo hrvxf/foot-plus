@@ -130,19 +130,17 @@ export default function LocalServicePage({ page }: { page: LocationPageData }) {
           </Link>
         </CardSection>
 
-        <CardSection title={`Home visits across ${page.area}`}>
-          <p className="mb-3">{page.localCoverage}</p>
-          <p>{page.localAccessNote}</p>
+        <CardSection title={`Home foot-care coverage in ${page.area}`}>
+          <p>{page.localCoverage}</p>
+        </CardSection>
+
+        <CardSection title="Planning your home visit">
+          <p>{page.accessInformation ?? page.localAccessNote}</p>
         </CardSection>
 
         <CardSection title="Who home visits may help">
-          <p>
-            Home visits may suit people who find travelling difficult, have
-            reduced mobility, struggle to reach their feet or simply prefer
-            routine care in familiar surroundings.
-          </p>
           <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            {benefitItems.map((item) => (
+            {(page.suitableFor ?? benefitItems).map((item) => (
               <li className="rounded-xl bg-brand-sageLight/15 p-3" key={item}>
                 {item}
               </li>
