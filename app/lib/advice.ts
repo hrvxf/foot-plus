@@ -12,11 +12,80 @@ export type AdviceArticle = {
   slug: string; title: string; shortTitle: string; seoTitle?: string; description: string; category: string; authorId: "adam-james";
   datePublished: string; dateModified: string; isPublished: boolean; approvalStatus: "approved" | "awaiting_adam_confirmation"; readingTime: string; wordCount: number;
   intro: string; introAdditional?: string[]; inBrief: string[]; sections: AdviceSection[]; practitionerView: string; disclaimer?: string; relatedServiceRoutes: AdviceLink[];
-  relatedArticleSlugs: string[]; references: { label: string; url: string }[]; faqs: { question: string; answer: string }[];
+  relatedArticleSlugs: string[]; callToAction?: string; references: { label: string; url: string }[]; faqs: { question: string; answer: string }[];
 };
 
 const d = "2026-07-13";
 export const adviceArticles: AdviceArticle[] = [
+  {
+    slug: "thickened-toenails-causes-treatment-and-when-to-worry",
+    title: "Thickened Toenails: Causes, Treatment and When to Worry",
+    shortTitle: "Thickened toenails: causes and treatment",
+    seoTitle: "Thickened Toenails: Causes, Treatment and When to Worry | Foot Plus",
+    description: "Learn why toenails become thick, what treatment options are available and when a thick or discoloured nail should be professionally assessed.",
+    category: "Toenail care",
+    authorId: "adam-james",
+    datePublished: "2026-07-30",
+    dateModified: "2026-07-30",
+    isPublished: true,
+    approvalStatus: "approved",
+    readingTime: "10 min read",
+    wordCount: 1760,
+    intro: "Toenails can gradually become thicker, harder or more difficult to cut. This is particularly common as people get older, but age is not the only possible cause.",
+    introAdditional: [
+      "A thickened toenail may develop following repeated pressure, an old injury, a fungal infection or changes affecting the way the nail grows.",
+      "Although thickened nails are often manageable, an unexplained or sudden change should not automatically be assumed to be fungal."
+    ],
+    inBrief: [
+      "Thickened toenails can result from repeated pressure, injury, fungal infection, ageing, skin conditions or other health changes.",
+      "Safe nail reduction and suitable footwear can improve comfort, while treatment for an infection or underlying condition depends on an appropriate assessment.",
+      "Seek professional advice for unexplained changes, pain, infection signs or a nail that is too difficult to cut safely."
+    ],
+    sections: [
+      { heading: "What does a thickened toenail look like?", body: ["A thickened toenail may:"], list: ["Feel harder than the other nails", "Become difficult to trim", "Look yellow, white, brown or cloudy", "Develop ridges or an uneven surface", "Become brittle or crumbly", "Curve or change shape", "Lift away from the nail bed", "Cause pressure or discomfort inside footwear", "Collect debris beneath the nail"], subsections: [{ heading: "Appearance is not a diagnosis", body: ["The appearance alone may not reveal the exact cause."] }] },
+      { heading: "What causes toenails to become thick?", body: ["Several different factors can change the way a toenail grows."], subsections: [
+        { heading: "Repeated pressure or injury", body: ["One of the most common causes is damage to the nail-producing area beneath the skin.", "This may follow a single injury, such as dropping something on the toe, or repeated minor trauma caused by:"], list: ["Tight or shallow footwear", "Toes repeatedly striking the front of a shoe", "Running, hiking or other repetitive activities", "Toe deformities", "Pressure from an adjacent toe"], afterList: ["The nail may remain thick or irregular even after the original injury has healed."] },
+        { heading: "Fungal nail infection", body: ["A fungal nail infection can cause a nail to become thickened, discoloured, brittle or crumbly.", "However, not every thick or yellow nail is fungal. Injury, age-related changes and some skin conditions can create a similar appearance.", "A pharmacist, GP or other appropriately qualified healthcare professional may recommend testing before certain antifungal treatments are prescribed."] },
+        { heading: "Age-related nail changes", body: ["Toenails often grow more slowly with age. Years of pressure and minor trauma can also affect their shape and texture.", "This may cause nails to become harder, thicker or more difficult to cut.", "Age-related changes should still be assessed when they are painful, sudden or affecting only one nail without an obvious explanation."] },
+        { heading: "Skin conditions", body: ["Conditions affecting the skin and nails, including psoriasis and some forms of dermatitis, can cause thickening, ridging, pitting, crumbling or separation of the nail.", "These changes may resemble a fungal infection and may require assessment by a GP, dermatologist or podiatrist."] },
+        { heading: "Reduced circulation or other health conditions", body: ["Changes in circulation, mobility, sensation or general health can affect nail growth and make routine nail care more difficult.", "People with diabetes, poor circulation, reduced sensation or a weakened immune system should be particularly cautious about treating thickened nails themselves."] }
+      ] },
+      { heading: "Are thickened toenails always fungal?", body: ["No.", "Although fungal infections commonly cause thickened and discoloured toenails, a similar appearance can result from:"], list: ["Previous injury", "Repeated footwear pressure", "Age-related changes", "Psoriasis", "Other skin conditions", "Changes to the nail-growth area", "A build-up of material beneath the nail"], subsections: [{ heading: "Why assessment matters", body: ["Using an antifungal treatment without knowing the cause may be ineffective.", "A professional assessment can help identify whether fungal infection is likely and whether further testing or medical treatment should be considered."] }] },
+      { heading: "Can thickened toenails cause problems?", body: ["A thickened nail may press against footwear or the neighbouring toes.", "This can lead to:"], list: ["Pain when walking", "Redness or pressure marks", "Difficulty wearing enclosed shoes", "Damage to nearby skin", "Accumulation of debris beneath the nail", "Increased difficulty trimming the nail safely", "The nail becoming ingrown or distorted"], subsections: [{ heading: "Effects on walking", body: ["Very thick nails can also make a person alter the way they walk to avoid pressure."] }] },
+      { heading: "Can you cut a thickened toenail yourself?", body: ["Some mildly thickened nails can be managed at home, provided you can see and reach your feet safely and do not have a medical condition that increases the risk of injury.", "Helpful precautions include:"], list: ["Trim the nail after bathing, when it may be slightly softer", "Use clean, suitable nail clippers", "Remove small amounts at a time", "Cut generally across the nail rather than deeply down the sides", "Avoid forcing clippers through a nail that is too hard", "Gently file rough or sharp edges", "Do not tear or pull at the nail"], subsections: [{ heading: "What to avoid", body: ["Do not use knives, razor blades, household tools or other sharp instruments to reduce the nail.", "Stop if trimming causes pain, bleeding or damage to the surrounding skin."] }] },
+      { heading: "Who should avoid treating thickened nails themselves?", body: ["Seek professional advice rather than attempting self-treatment if you:"], list: ["Have diabetes", "Have poor circulation", "Have reduced sensation in the feet", "Take medication that increases bleeding risk", "Have a weakened immune system", "Cannot safely reach or see your feet", "Have previously injured yourself while cutting your nails", "Have redness, swelling, broken skin or signs of infection"] },
+      { heading: "How are thickened toenails treated?", body: ["Treatment depends on the cause."], subsections: [
+        { heading: "Nail reduction", body: ["A Foot Health Practitioner may carefully cut and reduce the thickness of the nail using appropriate instruments.", "This can make the nail more comfortable, reduce pressure inside footwear and make ongoing care easier.", "Reducing the thickness manages the nail but may not permanently change the way it grows."] },
+        { heading: "Footwear advice", body: ["Shoes with insufficient depth or width can repeatedly press against the nail.", "Advice may include choosing footwear with:"], list: ["Adequate toe-box depth", "Enough width for the toes", "Secure fastening", "Minimal pressure over the affected nail"] },
+        { heading: "Antifungal treatment", body: ["Where fungal infection is suspected or confirmed, treatment may include antifungal nail preparations or prescription tablets.", "Topical treatments often need to be used consistently for many months because toenails grow slowly. Oral antifungal medication is not suitable for everyone and must be prescribed by an appropriate clinician."] },
+        { heading: "Managing the underlying cause", body: ["Where repeated trauma, toe shape, footwear pressure or another health condition is contributing, addressing that factor may help reduce discomfort and prevent further damage."] }
+      ] },
+      { heading: "When should you seek professional advice?", body: ["Arrange an assessment if:"], list: ["The nail is too thick or hard to cut safely", "The nail is painful or pressing against footwear", "A nail has changed colour, shape or thickness without a clear reason", "The surrounding skin is red, swollen, hot or producing discharge", "The nail has lifted significantly from the nail bed", "There is bleeding or broken skin", "Several nails are changing", "The problem is getting worse", "You are unsure whether the nail is fungal", "Home treatment has not helped", "You have diabetes, reduced circulation or reduced sensation"], subsections: [
+        { heading: "Symptoms needing prompt medical advice", body: ["Seek prompt medical advice if there is spreading redness, significant swelling, severe pain, pus, fever or rapidly worsening symptoms."] },
+        { heading: "An unexplained dark mark", body: ["A dark mark beneath a nail that has not followed an obvious injury, does not grow out with the nail, or appears to spread onto the surrounding skin should be assessed promptly by a GP or dermatologist."] }
+      ] },
+      { heading: "How can a Foot Health Practitioner help?", body: ["A Foot Health Practitioner can:"], list: ["Examine the nail and surrounding skin", "Safely trim and reduce a thickened nail", "Reduce pressure and discomfort", "Provide appropriate nail-care advice", "Discuss footwear and possible sources of repeated trauma", "Identify when referral to a GP, podiatrist, pharmacist or dermatologist may be appropriate"], subsections: [{ heading: "The limits of an assessment", body: ["A Foot Health Practitioner does not definitively diagnose fungal nail infection, skin disease, circulation problems or nail cancer. Where necessary, you will be advised to seek assessment from an appropriately qualified healthcare professional."] }] },
+      { heading: "Can thickened toenails return?", body: ["Yes.", "If the area responsible for producing the nail has been permanently affected by injury, pressure or age-related change, the nail may continue to grow thick.", "Regular professional care can help keep the nail manageable and comfortable, even where its appearance cannot be permanently restored."] },
+      { heading: "Final thoughts", body: ["Thickened toenails are common, but there is no single cause or treatment.", "Where the nail is painful, difficult to manage or changing without an obvious reason, a professional assessment is advisable.", "Safe reduction, pressure relief and appropriate footwear can make a substantial difference to comfort, even when the nail continues to grow thick."] }
+    ],
+    practitionerView: "A thick or discoloured nail should not automatically be treated as fungal. Foot+ can provide routine nail care, reduce pressure and recognise when referral to a pharmacist, GP, podiatrist or dermatologist is appropriate.",
+    disclaimer: "This article provides general information and is not a substitute for individual medical advice, diagnosis or treatment. Seek advice from an appropriately qualified healthcare professional if you are concerned about a change to a toenail.",
+    relatedServiceRoutes: [{ href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol", kind: "service" }, { href: "/services", label: "Foot+ services", kind: "service" }, { href: "/book", label: "Book an appointment", kind: "book" }],
+    relatedArticleSlugs: ["maintain-good-foot-health", "how-often-older-adults-should-cut-toenails"],
+    callToAction: "Is a thickened or difficult-to-cut toenail causing discomfort? Contact Foot Plus to arrange a professional foot health appointment in Bristol.",
+    references: [
+      { label: "NHS: Nail problems", url: "https://www.nhs.uk/conditions/nail-problems/" },
+      { label: "NHS: Fungal nail infection", url: "https://www.nhs.uk/conditions/fungal-nail-infection/" },
+      { label: "NHS inform: Foot care", url: "https://www.nhsinform.scot/healthy-living/preventing-falls/keeping-well/foot-care/" }
+    ],
+    faqs: [
+      { question: "Can a thickened toenail become normal again?", answer: "It depends on the cause. A nail affected by temporary trauma or a successfully treated fungal infection may improve as healthy nail grows forwards. However, a nail affected by permanent damage to its growth area may remain thick or irregular." },
+      { question: "How long does a toenail take to grow out?", answer: "Toenails grow slowly. It can take many months for a toenail to grow from its base to its tip, and growth varies between people." },
+      { question: "Is a yellow toenail always fungal?", answer: "No. Yellowing can also result from injury, ageing, nail products, pressure and some health or skin conditions." },
+      { question: "Can I file a thick toenail thinner?", answer: "Gentle filing may help with a mildly thickened nail, but avoid excessive filing, heat, pain or damage to the skin. A very thick, painful or distorted nail is safer to have professionally reduced." },
+      { question: "Will antifungal treatment work on every thick toenail?", answer: "No. Antifungal treatment will not correct thickening caused by injury, pressure or other non-fungal conditions." }
+    ]
+  },
   {
     slug: "why-does-my-heel-hurt-when-i-get-out-of-bed",
     title: "Why Does My Heel Hurt When I Get Out of Bed?",
