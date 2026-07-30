@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/foot-health-practitioner-bristol",
+        destination: "/",
+        permanent: true,
+      },
+      {
         source: "/areas",
         destination: "/areas-we-cover",
         statusCode: 301,

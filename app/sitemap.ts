@@ -21,7 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/corn-removal-bristol",
     "/cracked-heels-bristol",
     "/toenail-cutting-bristol",
-    "/foot-health-practitioner-bristol",
     "/foot-health-practitioner-clifton",
     "/foot-health-practitioner-redland",
     "/foot-health-practitioner-cotham",
