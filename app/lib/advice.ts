@@ -6,16 +6,64 @@ import {
 } from "./site";
 
 export type AdviceLink = { href: string; label: string; kind?: "service" | "article" | "book" | "pricing" | "areas" | "about" | "forms" };
-export type AdviceSection = { heading: string; body: string[]; links?: AdviceLink[] };
+export type AdviceSubsection = { heading: string; body?: string[]; list?: string[]; afterList?: string[] };
+export type AdviceSection = { heading: string; body: string[]; list?: string[]; subsections?: AdviceSubsection[]; links?: AdviceLink[] };
 export type AdviceArticle = {
   slug: string; title: string; shortTitle: string; seoTitle?: string; description: string; category: string; authorId: "adam-james";
   datePublished: string; dateModified: string; isPublished: boolean; approvalStatus: "approved" | "awaiting_adam_confirmation"; readingTime: string; wordCount: number;
-  intro: string; inBrief: string[]; sections: AdviceSection[]; practitionerView: string; relatedServiceRoutes: AdviceLink[];
+  intro: string; introAdditional?: string[]; inBrief: string[]; sections: AdviceSection[]; practitionerView: string; disclaimer?: string; relatedServiceRoutes: AdviceLink[];
   relatedArticleSlugs: string[]; references: { label: string; url: string }[]; faqs: { question: string; answer: string }[];
 };
 
 const d = "2026-07-13";
 export const adviceArticles: AdviceArticle[] = [
+  {
+    slug: "why-does-my-heel-hurt-when-i-get-out-of-bed",
+    title: "Why Does My Heel Hurt When I Get Out of Bed?",
+    shortTitle: "Why does my heel hurt in the morning?",
+    seoTitle: "Why Does My Heel Hurt When I Get Out of Bed? | Foot Plus",
+    description: "Sharp heel pain with your first steps in the morning? Learn the common causes, home treatments and when to seek professional advice from Foot Plus.",
+    category: "Heel pain",
+    authorId: "adam-james",
+    datePublished: "2026-07-30",
+    dateModified: "2026-07-30",
+    isPublished: true,
+    approvalStatus: "approved",
+    readingTime: "6 min read",
+    wordCount: 970,
+    intro: "One of the most common questions we hear is: “Why is the pain so bad when I take my first few steps in the morning?”",
+    introAdditional: ["If you have ever stepped out of bed and felt a sharp pain underneath your heel, you are not alone. This pattern is commonly associated with plantar fasciitis, one of the most frequent causes of heel pain."],
+    inBrief: [
+      "Morning heel pain is commonly associated with plantar fasciitis, although heel pain can have other causes.",
+      "Supportive footwear, activity adjustments and gentle stretching can help in many cases.",
+      "Seek an assessment when pain is severe, persistent or affecting normal walking, or when warning signs are present."
+    ],
+    sections: [
+      { heading: "What is plantar fasciitis?", body: ["The plantar fascia is a strong band of tissue that runs from the heel towards the toes. It supports the arch of the foot and helps absorb force when you stand and walk.", "Plantar fasciitis develops when this tissue becomes irritated or overloaded. The symptoms may appear gradually, particularly following a change in activity, footwear or the amount of time spent standing."] },
+      { heading: "Why is the pain worse in the morning?", body: ["While you are resting or sleeping, the plantar fascia is not being stretched in the same way as it is during walking.", "When you stand up and take your first few steps, the tissue is suddenly placed under tension again. This can produce a sharp or pulling pain underneath the heel.", "The discomfort may ease after walking for a few minutes, but it can return following another period of rest or after prolonged activity."] },
+      { heading: "Common symptoms", body: ["Symptoms can include:"], list: ["Sharp or aching pain underneath the heel", "Pain during the first few steps after getting out of bed", "Pain after sitting for a prolonged period", "Discomfort that eases with movement but returns later", "Tenderness around the underside or inner edge of the heel", "Increased pain after prolonged standing, walking or exercise",], subsections: [{ heading: "Other possible causes", body: ["Not every case of heel pain is plantar fasciitis. Other possible causes include Achilles tendon problems, bursitis, nerve irritation, heel-pad pain and, less commonly, a stress fracture."] }] },
+      { heading: "What can contribute to plantar fasciitis?", body: ["Several factors can increase strain through the plantar fascia:"], list: ["A recent increase in walking, running or exercise", "Spending long periods standing", "Unsupportive or worn footwear", "Walking barefoot on hard floors", "Tight calf muscles", "Changes in body weight", "Flat feet or particularly high arches", "Reduced ankle flexibility"], subsections: [{ heading: "Several factors may be involved", body: ["Often, more than one factor is involved."] }] },
+      { heading: "What can you do at home?", body: ["Many cases improve with sensible changes, although recovery can take time."], subsections: [
+        { heading: "Wear supportive footwear", body: ["Choose footwear with:"], list: ["Cushioning beneath the heel", "A stable sole", "Secure fastening", "Suitable arch support", "Enough width for the foot"], afterList: ["Worn trainers, very flat shoes and loose backless footwear may aggravate symptoms for some people."] },
+        { heading: "Avoid walking barefoot on hard floors", body: ["Walking barefoot on hard kitchen or bathroom floors can increase pressure through the heel. Supportive indoor footwear may be more comfortable while symptoms settle."] },
+        { heading: "Stretch the calves gently", body: ["Tight calf muscles can increase tension through the heel and plantar fascia.", "Gentle calf stretches may help, but they should not cause sharp pain. Stop if a stretch significantly increases your symptoms."] },
+        { heading: "Adjust aggravating activities", body: ["Temporarily reduce activities that repeatedly worsen the pain. This does not necessarily mean complete rest, but the foot may benefit from a more gradual return to longer walks, running or prolonged standing."] },
+        { heading: "Use a cold compress", body: ["A wrapped cold pack can be placed against the painful area for approximately 10 to 15 minutes. Do not apply ice directly to the skin.", "People with reduced sensation, poor circulation or certain medical conditions should seek professional advice before using cold therapy."] }
+      ] },
+      { heading: "When should you seek professional advice?", body: ["Arrange an assessment if:"], list: ["The pain is severe or getting worse", "You are struggling to walk normally", "Symptoms are not improving after two to three weeks", "The pain began after an injury", "There is significant swelling, redness or warmth", "You experience numbness, tingling or burning", "You have diabetes, poor circulation or reduced sensation", "The pain is affecting sleep or normal daily activities"], subsections: [{ heading: "When to seek prompt assessment", body: ["Sudden severe pain, an inability to bear weight or marked swelling following an injury should be assessed promptly."] }] },
+      { heading: "How can a Foot Health Practitioner help?", body: ["A Foot Health Practitioner can discuss your symptoms, examine the foot and identify factors that may be contributing to the discomfort.", "Depending on the findings, support may include:"], list: ["Footwear advice", "Advice on pressure reduction", "Padding or insoles where appropriate", "Guidance on foot and calf stretches", "Management of painful callus or other contributing foot problems", "Referral to a GP, podiatrist or another healthcare professional when required"], subsections: [{ heading: "When referral may be needed", body: ["A Foot Health Practitioner cannot confirm every possible cause of heel pain, so referral may be recommended if the symptoms require further investigation."] }] },
+      { heading: "Final thoughts", body: ["Morning heel pain is common, but persistent pain should not simply be ignored.", "Supportive footwear, activity adjustments and gentle stretching can help in many cases. However, an assessment is advisable when symptoms are severe, prolonged or affecting normal walking."] }
+    ],
+    practitionerView: "Morning heel pain often reflects a combination of factors rather than one isolated issue. An assessment can help identify practical changes and whether referral for further investigation is appropriate.",
+    disclaimer: "This article provides general information and is not a substitute for individual medical advice, diagnosis or treatment.",
+    relatedServiceRoutes: [{ href: "/services", label: "Foot+ services", kind: "service" }, { href: "/foot-health-practitioner-bristol", label: "Foot Health Practitioner Bristol", kind: "service" }, { href: "/book", label: "Book an appointment", kind: "book" }],
+    relatedArticleSlugs: ["maintain-good-foot-health", "foot-health-practitioner-podiatrist-or-chiropodist"],
+    references: [],
+    faqs: [
+      { question: "Why does my heel hurt with my first steps in the morning?", answer: "After rest, the plantar fascia is suddenly placed under tension when you stand. This pattern is commonly associated with plantar fasciitis, but heel pain can have other causes." },
+      { question: "When should morning heel pain be assessed?", answer: "Arrange an assessment if pain is severe, worsening, persists beyond two to three weeks or affects normal walking. Seek prompt assessment after an injury if you cannot bear weight or have marked swelling." }
+    ]
+  },
   { slug:"maintain-good-foot-health", title:"How to Maintain Good Foot Health", shortTitle:"Maintain good foot health", seoTitle:"How to Maintain Good Foot Health | Foot+ Bristol", description:"Simple everyday foot-care habits for checking, washing, moisturising, nail cutting, hard skin and knowing when to ask for professional advice.", category:"Everyday foot care", authorId:"adam-james", datePublished:"2026-07-17", dateModified:"2026-07-17", isPublished:true, approvalStatus:"approved", readingTime:"7 min read", wordCount:1080, intro:"Good foot health is built from small, regular habits: checking your skin, keeping feet clean and dry, moisturising safely, trimming nails carefully and acting early when something changes. This guide adapts NHS patient information into practical advice for routine home foot care.", inBrief:["Check the tops, soles and between toes regularly for cuts, blisters, wounds, bruising, pain or changes.","Wash feet daily, dry carefully between the toes, and avoid long soaking that can soften the skin too much.","Use moisturiser on the tops and bottoms of feet, but avoid putting cream between toes; seek medical advice for infection signs, wounds or diabetic foot concerns."], sections:[
     {heading:"Check your feet regularly", body:["Look at the tops and bottoms of both feet and between the toes. Notice cuts, scratches, bruises, blisters, wounds, painful areas, colour change, swelling or anything that is new for you.","If bending is difficult, use a mirror, place your feet safely on a chair, or ask someone you trust to help. Regular checks are especially important if eyesight, sensation, circulation, mobility or diabetes makes small problems harder to spot." ]},
     {heading:"Wash and dry carefully", body:["Wash your feet every day with soap and water. A shower, bath or clean bowl can all work as long as you can do it safely and avoid slips.","Clean around the toenails gently rather than digging under them. Avoid soaking feet for long periods; prolonged soaking can soften skin and make it more vulnerable. Dry thoroughly with a clean towel, including between every toe." ]},
@@ -71,7 +119,7 @@ export function adviceMetadata(article: AdviceArticle): Metadata {
 
   // Keep each guide's existing search copy while extending its server-rendered social metadata.
   return {
-    title,
+    title: article.seoTitle ? { absolute: title } : title,
     description: article.description,
     alternates: { canonical: url },
     openGraph: {
