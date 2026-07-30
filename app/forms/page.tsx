@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: { url: `${SITE_URL}/forms` },
   description:
     "Complete Foot+ Bristol patient forms online, including the new patient and medical history form.",
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 function CheckIcon() {

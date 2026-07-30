@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: { url: `${SITE_URL}/privacy` },
   title: "Privacy Policy",
   description: "Privacy policy for Foot+ Bristol home-visit foot health services.",
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 const privacySections = [

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: { url: `${SITE_URL}/terms` },
   title: "Terms of Service",
   description: "Terms of service for Foot+ Bristol home-visit foot health care.",
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 export default function TermsPage() {
