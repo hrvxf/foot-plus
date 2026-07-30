@@ -180,46 +180,9 @@ export const conditionPages: ConditionPage[] = [
     ],
     related: [
       { title: "Routine foot care services", href: "/services" },
-      { title: "Foot Health Practitioner home visits", href: "/foot-health-practitioner-bristol" },
+      { title: "Foot Health Practitioner home visits", href: "/" },
     ],
     relatedAdvice: [{ title: "Why toenails become thick", href: "/advice/why-toenails-become-thick" }, { title: "Toenail cutting intervals for older adults", href: "/advice/how-often-older-adults-should-cut-toenails" }],
-  },
-  {
-    slug: "foot-health-practitioner-bristol",
-    title: "Foot Health Practitioner in Bristol",
-    metaTitle: "Foot Health Practitioner in Bristol | Home Visits",
-    description:
-      "Foot+ provides Foot Health Practitioner home visits in Bristol for professional foot care, nail care, hard skin, callus, corns and routine appointments.",
-    intro:
-      "Professional foot care in your home from Foot+ Bristol, supporting comfort, mobility and routine foot health.",
-    overview: [
-      "A Foot Health Practitioner provides practical foot care, including nail care, hard skin and callus reduction, corn care where appropriate and routine checks during appointments.",
-      "Home visits can help people who find it difficult to travel, prefer care at home or need regular maintenance to keep feet comfortable.",
-    ],
-    signs: ["Common reasons for booking include hard-to-cut nails, thickened nails, hard skin, callus, corns, cracked heels and routine diabetic foot checks."],
-    causes: ["Common contributing factors include reduced mobility, footwear pressure, dry skin, nail changes and regular pressure on the feet."],
-    help: [
-      "Foot+ appointments may include assessment, nail trimming, hard skin or callus reduction, diabetic foot checks and tailored advice based on your needs.",
-      "You can discuss symptoms, footwear, moisturising routines and how often future care may be helpful.",
-    ],
-    appointment: ["Adam will ask about your concern and relevant health information.", "Feet are assessed in your home before suitable nail or skin care is provided.", "You receive aftercare advice and guidance on whether further medical or podiatry assessment may be needed."],
-    scope: "Foot+ provides routine Foot Health Practitioner care and advice. Concerns outside scope, including infection, wounds, sudden severe pain, colour change or acute diabetic foot problems, should be assessed by the right medical professional.",
-    lastReviewed: "13 July 2026",
-    aftercare: ["Keep a note of any changes in comfort, skin or nails between appointments.", "Follow moisturising and footwear advice given during your visit.", "Contact Foot+ if you are unsure which appointment type to book."],
-    faqs: [
-      { question: "Who may benefit from home visit foot care?", answer: "Adults who need help with nail care, hard skin, callus, corns or routine maintenance may benefit, especially if travel is difficult." },
-      { question: "What services does Foot+ provide?", answer: "Foot+ provides new patient assessments, routine foot care, diabetic foot checks, nail care and skin care such as hard skin and callus reduction." },
-      { question: "Do appointments take place at home?", answer: "Yes. Foot+ provides home visit foot care across the Bristol service areas listed on the website." },
-    ],
-    related: [
-      { title: "Hard skin treatment", href: "/hard-skin-treatment-bristol" },
-      { title: "Callus removal", href: "/callus-removal-bristol" },
-      { title: "Corn treatment", href: "/corn-removal-bristol" },
-      { title: "Cracked heel care", href: "/cracked-heels-bristol" },
-      { title: "Toenail cutting", href: "/toenail-cutting-bristol" },
-      { title: "Services", href: "/services" },
-    ],
-    relatedAdvice: [{ title: "Foot Health Practitioner, podiatrist or chiropodist", href: "/advice/foot-health-practitioner-podiatrist-or-chiropodist" }],
   },
 ];
 

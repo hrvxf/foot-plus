@@ -350,7 +350,7 @@ export default function ServicesPage() {
           </div>
           <div className="mt-6 flex flex-col gap-2 text-sm font-semibold text-brand-sageDark sm:flex-row sm:flex-wrap sm:gap-4">
             <Link href="/callus-removal-bristol" className="underline underline-offset-4">Learn about localised callus removal</Link>
-            <Link href="/foot-health-practitioner-bristol" className="underline underline-offset-4">Learn about Foot Health Practitioner home visits in Bristol</Link>
+            <Link href="/" className="underline underline-offset-4">Learn about Foot Health Practitioner home visits in Bristol</Link>
           </div>
         </div>
       </section>
