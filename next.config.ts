@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         source: "/areas",
         destination: "/areas-we-cover",
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: "/:path*",
