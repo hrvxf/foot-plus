@@ -7,6 +7,8 @@ const LAST_MODIFIED = new Date("2026-07-08T00:00:00.000Z");
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
+    "/bristol",
+    "/southampton",
     "/about",
     "/areas-we-cover",
     "/book",
