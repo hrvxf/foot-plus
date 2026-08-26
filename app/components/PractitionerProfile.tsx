@@ -2,8 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import type { Practitioner } from "../lib/locations";
+import { serviceLocations } from "../lib/locations";
 
-export default function PractitionerProfile() {
+export default function PractitionerProfile({
+  practitioner = serviceLocations.bristol.practitioner!,
+}: {
+  practitioner?: Practitioner;
+}) {
   const [isPortraitLoaded, setIsPortraitLoaded] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const portraitRef = useRef<HTMLDivElement | null>(null);
@@ -30,7 +36,7 @@ export default function PractitionerProfile() {
         finish();
       }
     };
-    img.src = "/images/Adam-James.svg";
+    img.src = practitioner.imageSrc;
     if (img.complete) {
       handleLoad();
     } else {
@@ -42,7 +48,7 @@ export default function PractitionerProfile() {
       img.removeEventListener("load", handleLoad);
       img.removeEventListener("error", finish);
     };
-  }, []);
+  }, [practitioner.imageSrc]);
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
@@ -117,9 +123,9 @@ export default function PractitionerProfile() {
           ref={portraitRef}
           className={portraitBase}
           role="img"
-          aria-label="Portrait of Adam James, Foot+ Bristol foot health practitioner."
+          aria-label={practitioner.imageAlt}
           style={{
-            backgroundImage: "url('/images/Adam-James.svg')",
+            backgroundImage: `url('${practitioner.imageSrc}')`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -133,12 +139,12 @@ export default function PractitionerProfile() {
         <div className="space-y-5">
           <div className="space-y-2">
             <h2 className="font-heading text-3xl font-semibold tracking-tight text-brand-sageDark">
-              Adam James
+              {practitioner.name}
             </h2>
 
             {/* Credentials chips - make them crisp + premium */}
             <div className="flex flex-wrap gap-2">
-              {["BA (Hons)", "Dip FH", "MCFHP", "MAFHP"].map((badge) => (
+              {practitioner.credentials.map((badge) => (
                 <span
                   key={badge}
                   className="rounded-full border border-brand-sageLight/40 bg-white/80 px-3 py-1 text-xs font-medium text-brand-charcoal/70 shadow-[0_10px_24px_-22px_rgba(15,23,42,0.35)] backdrop-blur"
@@ -150,34 +156,13 @@ export default function PractitionerProfile() {
 
             <p className="pt-1 inline-flex items-center gap-2 text-sm font-semibold text-brand-charcoal/60">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-sageLight" />
-              Foot Health Practitioner
+              {practitioner.role}
             </p>
           </div>
 
           {/* Bio */}
           <div className="space-y-4 text-base leading-relaxed text-brand-charcoal/80">
-            <p>
-              Adam has over six years’ experience working in healthcare and
-              rehabilitation, supporting people to regain confidence, mobility, and
-              independence. Through this work, he became increasingly aware of how often
-              foot health is overlooked - and the difference that proper care and
-              education can make.
-            </p>
-
-            <p>
-              As a fully trained Foot Health Practitioner, Adam offers a friendly,
-              relaxed service built on trust, clear communication, and achievable,
-              measurable outcomes. He takes time to listen, explain each step, and
-              ensure every client feels comfortable and informed throughout their
-              appointment.
-            </p>
-
-            <p>
-              Adam is fully insured and professionally recognised as a member of the
-              College of Foot Health Practitioners and the Association of Foot Health
-              Practitioners. His priority is simple: that every client feels heard,
-              reassured, and confident in their foot health.
-            </p>
+            {practitioner.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
 
         </div>
