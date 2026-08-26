@@ -14,7 +14,7 @@ function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Footer() {
   const whatsappPresetMessage =
-    "Hi Adam, I'd like to enquire about an appointment with Foot+ Bristol.";
+    "Hello, I'd like to enquire about Foot+ home-visit foot care.";
   const whatsappHref = `https://wa.me/447380301555?text=${encodeURIComponent(
     whatsappPresetMessage
   )}`;
@@ -43,7 +43,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
               <img
                 src="/images/footplus-logo_WHITE.svg"
-                alt="Foot+ Bristol logo"
+                alt="Foot+ logo"
                 className="h-16 w-auto"
               />
             </div>
@@ -118,7 +118,7 @@ export default function Footer() {
         <div className="mt-4 border-t border-white/15 pt-2">
           <div className="grid grid-cols-1 gap-3 text-xs text-white/70 md:grid-cols-[1fr_auto] md:items-center">
             <div className="text-sm text-white/80 text-center md:text-left">
-              &copy; {new Date().getFullYear()} Foot+ Bristol
+              &copy; {new Date().getFullYear()} Foot+
             </div>
             <nav
               aria-label="Footer navigation"
