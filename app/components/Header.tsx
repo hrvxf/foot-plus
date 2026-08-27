@@ -53,7 +53,7 @@ export default function Header() {
   const navTracking = "tracking-normal";
   const navPadding = "py-4";
   const logoWrapper =
-    "relative h-[48px] w-[160px] transition-[color,filter] duration-300";
+    "relative h-[38px] w-[128px] sm:h-[40px] sm:w-[136px] transition-[color,filter] duration-300";
   const shouldAnimateLogo = pathname !== "/";
   const logoKey = shouldAnimateLogo ? pathname : "static-logo";
 
