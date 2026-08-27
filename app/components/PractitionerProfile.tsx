@@ -21,28 +21,24 @@ export default function PractitionerProfile({
     const finish = () => {
       if (cancelled) return;
       requestAnimationFrame(() => {
-        if (!cancelled) {
-          setIsPortraitLoaded(true);
-        }
+        if (!cancelled) setIsPortraitLoaded(true);
       });
     };
     const handleLoad = () => {
       if (typeof img.decode === "function") {
-        img
-          .decode()
-          .catch(() => {})
-          .finally(finish);
+        img.decode().catch(() => {}).finally(finish);
       } else {
         finish();
       }
     };
+
     img.src = practitioner.imageSrc;
-    if (img.complete) {
-      handleLoad();
-    } else {
+    if (img.complete) handleLoad();
+    else {
       img.addEventListener("load", handleLoad);
       img.addEventListener("error", finish);
     }
+
     return () => {
       cancelled = true;
       img.removeEventListener("load", handleLoad);
@@ -62,32 +58,17 @@ export default function PractitionerProfile({
   useEffect(() => {
     if (!portraitRef.current || hasAnimatedRef.current) return;
     if (prefersReducedMotion) {
-      gsap.set(portraitRef.current, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        filter: "blur(0px)",
-      });
+      gsap.set(portraitRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
       return;
     }
-    gsap.set(portraitRef.current, {
-      opacity: 0,
-      y: 10,
-      scale: 0.985,
-      filter: "blur(6px)",
-    });
+    gsap.set(portraitRef.current, { opacity: 0, y: 10, scale: 0.985, filter: "blur(6px)" });
   }, [prefersReducedMotion]);
 
   useEffect(() => {
     if (!isPortraitLoaded || !portraitRef.current || hasAnimatedRef.current) return;
     hasAnimatedRef.current = true;
     if (prefersReducedMotion) {
-      gsap.set(portraitRef.current, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        filter: "blur(0px)",
-      });
+      gsap.set(portraitRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
       return;
     }
     gsap.to(portraitRef.current, {
@@ -100,71 +81,35 @@ export default function PractitionerProfile({
     });
   }, [isPortraitLoaded, prefersReducedMotion]);
 
-  const portraitBase =
-    "relative aspect-4/5 overflow-hidden rounded-3xl bg-white shadow-[0_16px_40px_-32px_rgba(15,23,42,0.25)] opacity-0";
-
   return (
-    <div className="relative rounded-[28px] border border-brand-sageLight/40 bg-white p-6 shadow-[0_18px_50px_-45px_rgba(15,23,42,0.18)] transition-[box-shadow,transform] duration-300 ease-out focus-within:shadow-[0_22px_60px_-40px_rgba(15,23,42,0.22)] md:sticky md:top-24 md:p-8 md:hover:-translate-y-0.5 md:hover:shadow-[0_22px_60px_-40px_rgba(15,23,42,0.22)] md:focus-within:-translate-y-0.5">
-      {/* Subtle top sheen / divider (makes the sticky card feel deliberate) */}
-      <div className="pointer-events-none absolute inset-x-6 top-3 hidden h-px bg-linear-to-r from-transparent via-brand-sageLight/60 to-transparent opacity-20 transition-opacity duration-300 md:block md:hover:opacity-40 md:focus-within:opacity-40" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 rounded-[28px] bg-linear-to-b from-brand-sageLight/10 via-transparent to-transparent" />
+    <div className="grid gap-7 md:grid-cols-[minmax(220px,0.85fr)_1.15fr] md:items-start">
+      <div
+        ref={portraitRef}
+        className="relative aspect-4/5 overflow-hidden rounded-[2rem] bg-white opacity-0 shadow-[0_24px_55px_-38px_rgba(15,23,42,0.38)]"
+        role="img"
+        aria-label={practitioner.imageAlt}
+        style={{
+          backgroundImage: `url('${practitioner.imageSrc}')`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent" />
+      </div>
 
-      <div className="grid gap-6">
-        {/* Small label */}
-        <div className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-brand-charcoal/55">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-sageLight" />
-            Practitioner profile
-          </div>
-        </div>
+      <div className="pt-1">
+        <h3 className="font-heading text-3xl font-semibold tracking-tight text-brand-sageDark">
+          {practitioner.name}
+        </h3>
+        <p className="mt-2 text-sm font-semibold text-brand-charcoal/60">{practitioner.role}</p>
 
-        {/* Portrait */}
-        <div
-          ref={portraitRef}
-          className={portraitBase}
-          role="img"
-          aria-label={practitioner.imageAlt}
-          style={{
-            backgroundImage: `url('${practitioner.imageSrc}')`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        >
-          {/* Neutral vignette (doesn't tint white) */}
-          <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent" />
-        </div>
+        <p className="mt-4 text-xs font-medium uppercase tracking-[0.12em] text-brand-charcoal/55">
+          {practitioner.credentials.join(" · ")}
+        </p>
 
-        {/* Header + Bio */}
-        <div className="space-y-5">
-          <div className="space-y-2">
-            <h2 className="font-heading text-3xl font-semibold tracking-tight text-brand-sageDark">
-              {practitioner.name}
-            </h2>
-
-            {/* Credentials chips - make them crisp + premium */}
-            <div className="flex flex-wrap gap-2">
-              {practitioner.credentials.map((badge) => (
-                <span
-                  key={badge}
-                  className="rounded-full border border-brand-sageLight/40 bg-white/80 px-3 py-1 text-xs font-medium text-brand-charcoal/70 shadow-[0_10px_24px_-22px_rgba(15,23,42,0.35)] backdrop-blur"
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
-
-            <p className="pt-1 inline-flex items-center gap-2 text-sm font-semibold text-brand-charcoal/60">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-sageLight" />
-              {practitioner.role}
-            </p>
-          </div>
-
-          {/* Bio */}
-          <div className="space-y-4 text-base leading-relaxed text-brand-charcoal/80">
-            {practitioner.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          </div>
-
+        <div className="mt-6 space-y-4 border-t border-brand-sageLight/35 pt-6 text-base leading-relaxed text-brand-charcoal/80">
+          {practitioner.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
       </div>
     </div>
