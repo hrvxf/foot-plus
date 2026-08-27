@@ -1,10 +1,10 @@
 import { Resend } from "resend";
 
 import { emailDisplay } from "../../lib/site";
+import { validateServicePostcode, type EnquiryLocation } from "../../lib/postcodes";
 
 export const runtime = "nodejs";
 
-type EnquiryLocation = "Bristol" | "Southampton";
 
 const locationRecipients: Record<EnquiryLocation, string> = {
   Bristol: "bristol@foot-plus.co.uk",
@@ -33,10 +33,18 @@ export async function POST(req: Request) {
     }
 
     const resend = new Resend(apiKey);
-    const { name, email, message, location } = await req.json();
+    const { name, email, message, location, postcode } = await req.json();
 
-    if (!name || !email || !message || !isEnquiryLocation(location)) {
+    if (!name || !email || !message || !postcode || !isEnquiryLocation(location)) {
       return new Response(JSON.stringify({ error: "Missing or invalid fields" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const postcodeValidation = validateServicePostcode(String(postcode), location);
+    if (!postcodeValidation.valid) {
+      return new Response(JSON.stringify({ error: postcodeValidation.message }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       });
@@ -103,7 +111,7 @@ export async function POST(req: Request) {
       replyTo,
       subject,
       html,
-      text: `Location: ${location}\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
+      text: `Location: ${location}\nPostcode: ${postcodeValidation.postcode}\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
     });
 
     if (error) {
