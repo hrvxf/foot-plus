@@ -108,9 +108,11 @@ export default function PractitionerProfile({
           {practitioner.credentials.join(" · ")}
         </p>
 
-        <div className="mt-6 space-y-4 border-t border-brand-sageLight/35 pt-6 text-base leading-relaxed text-brand-charcoal/80">
-          {practitioner.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-        </div>
+        {practitioner.bio.length > 0 && (
+          <div className="mt-6 space-y-4 border-t border-brand-sageLight/35 pt-6 text-base leading-relaxed text-brand-charcoal/80">
+            {practitioner.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+        )}
       </div>
     </div>
   );
