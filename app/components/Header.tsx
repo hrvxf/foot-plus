@@ -28,11 +28,10 @@ export default function Header() {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { label: "About", href: "/about", active: pathname === "/about" },
     { label: "Services", href: "/services", active: pathname === "/services" },
     { label: "Advice", href: "/advice", active: pathname.startsWith("/advice") },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
-    { label: "Areas", href: "/areas-we-cover", active: pathname === "/areas-we-cover" },
+    { label: "Locations", href: "/locations", active: pathname.startsWith("/locations") },
   ];
 
   const headerBase =
@@ -53,7 +52,7 @@ export default function Header() {
   const navTracking = "tracking-normal";
   const navPadding = "py-4";
   const logoWrapper =
-    "relative h-[48px] w-[160px] transition-[color,filter] duration-300";
+    "relative h-[38px] w-[128px] sm:h-[40px] sm:w-[136px] transition-[color,filter] duration-300";
   const shouldAnimateLogo = pathname !== "/";
   const logoKey = shouldAnimateLogo ? pathname : "static-logo";
 
@@ -84,7 +83,7 @@ export default function Header() {
           className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 ${navPadding}`}
         >
           <div className="flex h-full items-center">
-            <Link href="/" className="flex items-center gap-3" aria-label="Foot+ Bristol home">
+            <Link href="/" className="flex items-center gap-3" aria-label="Foot+ home">
               <div
                 className={`${logoWrapper} ${
                   invert ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "text-brand-sageDark"

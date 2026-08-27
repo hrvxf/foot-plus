@@ -1,33 +1,21 @@
 import HomeContent from "./components/HomeContent";
 
-// App Router homepage route (Pages Router index removed to avoid "/" conflicts).
-
 export const metadata = {
-  title: { absolute: "Foot+ Bristol | Foot Health Practitioner Bristol" },
+  title: { absolute: "Foot+ | Professional Home-Visit Foot Care" },
   description:
-    "Foot+ Bristol provides mobile foot health care and home visits in Bristol for nail, skin, and diabetic foot care.",
-  keywords: [
-    "Foot Health Practitioner Bristol",
-    "mobile foot care Bristol",
-    "home visit foot care Bristol",
-    "LGBT friendly foot care Bristol",
-    "LGBTQ friendly foot health Bristol",
-  ],
+    "Foot+ provides professional, respectful home-visit foot care through local services in Bristol and Southampton.",
+  keywords: ["Foot+", "home visit foot care", "mobile foot care"],
   openGraph: {
-    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
-    description:
-      "Foot+ Bristol provides mobile foot health care and home visits in Bristol for nail, skin, and diabetic foot care.",
+    title: "Foot+ | Professional Foot Care, Brought Home",
+    description: "Professional home-visit foot care through trusted local Foot+ practitioners.",
     url: "/",
-    siteName: "Foot+ Bristol",
+    siteName: "Foot+",
   },
   twitter: {
-    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
-    description:
-      "Foot+ Bristol provides mobile foot health care and home visits in Bristol for nail, skin, and diabetic foot care.",
+    title: "Foot+ | Professional Foot Care, Brought Home",
+    description: "Professional home-visit foot care through trusted local Foot+ practitioners.",
   },
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
 };
 
 export default function HomePage() {

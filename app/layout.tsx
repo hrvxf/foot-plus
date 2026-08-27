@@ -9,7 +9,7 @@ import { SITE_URL } from "./lib/site";
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   manifest: "/site.webmanifest",
-  applicationName: "Foot+ Bristol",
+  applicationName: "Foot+",
 
   // Canonical (site-wide default)
   alternates: {
@@ -17,12 +17,12 @@ export const metadata = {
   },
 
   title: {
-    default: "Foot+ Bristol",
-    template: "%s | Foot+ Bristol",
+    default: "Foot+",
+    template: "%s | Foot+",
   },
 
   description:
-    "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
+    "Foot+ provides professional home-visit foot care through local services in Bristol and Southampton.",
 
   keywords: [
     "Foot Health Practitioner Bristol",
@@ -35,25 +35,25 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: `${SITE_URL}/`,
-    siteName: "Foot+ Bristol",
-    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    siteName: "Foot+",
+    title: "Foot+ | Professional Foot Care, Brought Home",
     description:
-      "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
+      "Professional home-visit foot care in Bristol and Southampton.",
     images: [
       {
         url: "/images/social-card.png",
         width: 1200,
         height: 630,
-        alt: "Foot+ Bristol - mobile foot health care and home visits in Bristol",
+        alt: "Foot+ professional home-visit foot care",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Foot+ Bristol | Foot Health Practitioner Bristol",
+    title: "Foot+ | Professional Foot Care, Brought Home",
     description:
-      "Foot+ Bristol provides mobile foot health care and home visits across Bristol for healthy, comfortable feet.",
+      "Professional home-visit foot care in Bristol and Southampton.",
     images: ["/images/social-card.png"],
   },
 
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Foot+ Bristol",
+    name: "Foot+",
     url: `${SITE_URL}/`,
     inLanguage: "en-GB",
     keywords:
@@ -83,9 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${SITE_URL}/#organization`,
-    name: "Foot+ Bristol",
+    name: "Foot+",
     url: SITE_URL,
-    logo: `${SITE_URL}/images/footplus-logo-green.svg`,
+    logo: `${SITE_URL}/images/footplus-generic-logo_MASTER_FINAL.svg`,
   };
 
   const practitionerJsonLd = {
@@ -98,29 +98,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     image: `${SITE_URL}/images/Adam-James.svg`,
     worksFor: { "@id": `${SITE_URL}/#organization` },
     knowsAbout: ["Routine foot care", "Toenail cutting", "Hard skin and callus care", "Corn care", "Cracked heel care"],
-  };
-
-  const medicalBusinessJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "@id": `${SITE_URL}/#medicalbusiness`,
-    name: "Foot+ Bristol",
-    description:
-      "Foot+ Bristol provides mobile foot health care and home visits in Bristol.",
-    keywords:
-      "Foot Health Practitioner Bristol, mobile foot care Bristol, home visit foot care Bristol, LGBT friendly foot care Bristol, LGBTQ friendly foot health Bristol",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Bristol",
-      postalCode: "BS2",
-      addressCountry: "GB",
-    },
-    areaServed: {
-      "@type": "City",
-      name: "Bristol",
-    },
-    url: SITE_URL,
-    priceRange: "££",
   };
 
   return (
@@ -151,14 +128,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteJsonLd),
-          }}
-        />
-
-        {/* Local business / medical schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(medicalBusinessJsonLd),
           }}
         />
 

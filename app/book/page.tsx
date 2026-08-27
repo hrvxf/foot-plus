@@ -1,14 +1,15 @@
 import EnquiryForm from "../components/EnquiryForm";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Book a Foot Health Practitioner in Bristol",
+  title: "Request a Foot+ Home-Visit Appointment",
   alternates: { canonical: `${SITE_URL}/book` },
   openGraph: { url: `${SITE_URL}/book` },
   description:
-    "Request a Bristol home-visit appointment with Foot+ Bristol. Professional foot health care from a qualified practitioner.",
+    "Request a Foot+ home-visit appointment in Bristol or register your interest for the Southampton launch.",
 };
 
 
@@ -16,13 +17,12 @@ export default function BookPage() {
   return (
     <section className="mx-auto max-w-4xl px-6 pb-16 pt-12 md:pt-20">
       <h1 className="font-heading text-3xl font-semibold text-brand-sageDark">
-        Request a Bristol home-visit appointment
+        Request a Foot+ home-visit appointment
       </h1>
 
       <p className="mt-4 text-sm text-brand-charcoal/70">
-        As a mobile service, appointments are arranged by location and availability
-        across Bristol. Please submit an enquiry and we will contact you to arrange
-        a suitable time.
+        Bristol appointments are available now. Southampton home visits launch on
+        20 October 2026 and you can register your interest in advance.
       </p>
       <p className="mt-3 text-sm text-brand-charcoal/70">
         New patients can complete the{" "}
@@ -38,8 +38,8 @@ export default function BookPage() {
           prices
         </a>{" "}
         or learn more{" "}
-        <a className="font-semibold text-brand-sageDark underline" href="/about">
-          about Foot+ Bristol
+        <a className="font-semibold text-brand-sageDark underline" href="/locations">
+          about your local Foot+ service
         </a>
         .
       </p>
@@ -69,7 +69,9 @@ export default function BookPage() {
       </div>
 
       <div className="mt-8 rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm md:p-6">
-        <EnquiryForm />
+        <Suspense fallback={<p className="text-sm text-brand-charcoal/65">Loading enquiry form…</p>}>
+          <EnquiryForm />
+        </Suspense>
       </div>
     </section>
   );
