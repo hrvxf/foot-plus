@@ -36,23 +36,17 @@ export default function LocationsChooser() {
       data-leaving={selected ? "true" : "false"}
       className="locations-overlay fixed inset-0 z-[100] flex min-h-dvh items-center justify-center overflow-hidden bg-brand-sageDark px-5 py-10"
     >
+      <div className="locations-daylight absolute inset-0" aria-hidden="true" />
+      <div className="locations-panes absolute inset-0" aria-hidden="true" />
       <div
-        className="locations-texture absolute -inset-8 scale-[1.06] bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[520px_520px] opacity-35"
-        aria-hidden="true"
-      />
-      <div
-        className="locations-mark absolute left-[8%] top-[10%] h-[36rem] w-[72rem] max-w-[92vw] -rotate-6 bg-[url('/images/footplus-generic-logo_MASTER_FINAL.svg')] bg-contain bg-center bg-no-repeat opacity-[0.13]"
-        aria-hidden="true"
-      />
-      <div
-        className="locations-shape absolute -left-20 top-[18%] h-72 w-72 rounded-full border-[36px] border-white/25 bg-brand-sageLight/45"
-        aria-hidden="true"
-      />
-      <div
-        className="locations-shape absolute -right-32 bottom-[8%] h-[28rem] w-[28rem] rounded-[42%] border-[54px] border-white/18 bg-white/20"
+        className="locations-texture absolute -inset-8 scale-[1.06] bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[520px_520px] opacity-[0.16]"
         aria-hidden="true"
       />
       <div className="locations-frost absolute inset-0" aria-hidden="true" />
+      <div
+        className="locations-grain absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[420px_420px] opacity-[0.055] mix-blend-screen"
+        aria-hidden="true"
+      />
 
       <nav
         aria-label="Foot+ locations"
@@ -106,26 +100,54 @@ export default function LocationsChooser() {
             linear-gradient(145deg, #18372d 0%, #274d40 52%, #173128 100%);
         }
 
-        .locations-texture,
-        .locations-mark,
-        .locations-shape {
+        .locations-daylight {
+          background:
+            linear-gradient(105deg, rgba(237, 247, 240, 0.34) 0%, rgba(207, 228, 215, 0.16) 22%, transparent 48%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 42%, rgba(6, 24, 18, 0.16));
+        }
+
+        .locations-panes {
+          background:
+            linear-gradient(90deg,
+              transparent 0%,
+              transparent 24.8%,
+              rgba(235, 245, 239, 0.16) 25%,
+              rgba(10, 35, 27, 0.12) 25.18%,
+              transparent 25.35%,
+              transparent 74.7%,
+              rgba(235, 245, 239, 0.13) 74.9%,
+              rgba(10, 35, 27, 0.1) 75.08%,
+              transparent 75.25%
+            );
+          opacity: 0.72;
+        }
+
+        .locations-daylight,
+        .locations-panes,
+        .locations-texture {
           animation: background-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .locations-frost {
           z-index: 1;
           background:
-            radial-gradient(circle at 26% 20%, rgba(255, 255, 255, 0.2), transparent 28%),
-            radial-gradient(circle at 74% 76%, rgba(255, 255, 255, 0.12), transparent 34%),
-            linear-gradient(115deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035));
-          -webkit-backdrop-filter: blur(24px) saturate(112%);
-          backdrop-filter: blur(24px) saturate(112%);
-          box-shadow: inset 0 0 120px rgba(255, 255, 255, 0.07);
+            linear-gradient(118deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.055) 46%, rgba(255, 255, 255, 0.1)),
+            repeating-linear-gradient(102deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 5px);
+          -webkit-backdrop-filter: blur(30px) saturate(106%);
+          backdrop-filter: blur(30px) saturate(106%);
+          box-shadow:
+            inset 0 1px rgba(255, 255, 255, 0.16),
+            inset 0 0 150px rgba(236, 246, 240, 0.085);
           animation: frost-in 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        .locations-actions {
+        .locations-grain {
           z-index: 2;
+          pointer-events: none;
+        }
+
+        .locations-actions {
+          z-index: 3;
         }
 
         .location-choice {
@@ -137,11 +159,11 @@ export default function LocationsChooser() {
           pointer-events: none;
         }
 
-        .locations-overlay[data-leaving="true"] .locations-texture,
-        .locations-overlay[data-leaving="true"] .locations-mark,
-        .locations-overlay[data-leaving="true"] .locations-shape {
-          transform: scale(1.04);
-          opacity: 0.15;
+        .locations-overlay[data-leaving="true"] .locations-daylight,
+        .locations-overlay[data-leaving="true"] .locations-panes,
+        .locations-overlay[data-leaving="true"] .locations-texture {
+          transform: scale(1.025);
+          opacity: 0.34;
           transition: transform 240ms ease, opacity 240ms ease;
         }
 
@@ -161,7 +183,7 @@ export default function LocationsChooser() {
 
         @keyframes frost-in {
           from { opacity: 0; backdrop-filter: blur(8px); }
-          to { opacity: 1; backdrop-filter: blur(24px); }
+          to { opacity: 1; backdrop-filter: blur(30px); }
         }
 
         @keyframes choice-in {
@@ -175,10 +197,11 @@ export default function LocationsChooser() {
         }
 
         @media (prefers-reduced-motion: reduce) {
+          .locations-daylight,
+          .locations-panes,
           .locations-texture,
-          .locations-mark,
-          .locations-shape,
           .locations-frost,
+          .locations-grain,
           .location-choice,
           .locations-overlay[data-leaving="true"] .location-choice[aria-current="true"] {
             animation: none;
