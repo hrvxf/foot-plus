@@ -24,10 +24,10 @@ export default function Footer() {
       <div className="pointer-events-none absolute -right-24 top-4 h-72 w-72 rounded-full bg-white/8 blur-3xl" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/20" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-7 md:py-8">
-        <div className="grid gap-7 lg:grid-cols-[1.05fr_0.9fr_1.1fr] lg:items-center">
+      <div className="relative mx-auto max-w-6xl px-6 py-5 md:py-6">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr_1.05fr] lg:items-start">
           <div className="max-w-sm">
-            <Link href="/" aria-label="Foot+ home" className="inline-flex text-white">
+            <Link href="/" aria-label="Foot+ home" className="flex w-fit text-white">
               <Image
                 src="/images/footplus-generic-logo_MASTER_FINAL.svg"
                 alt="Foot+"
@@ -38,12 +38,12 @@ export default function Footer() {
             </Link>
             <a
               href={emailHref}
-              className="mt-4 inline-flex text-sm font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white"
+              className="mt-3 flex w-fit text-sm font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white"
               data-analytics-id="footer-general-email"
             >
               {emailDisplay}
             </a>
-            <p className="mt-1 text-xs text-white/55">General enquiries for all locations</p>
+            <p className="mt-1 text-xs text-white/60">General enquiries for all locations</p>
           </div>
 
           <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-8">
@@ -73,17 +73,17 @@ export default function Footer() {
             </div>
           </nav>
 
-          <section className="rounded-2xl border border-white/18 bg-white/10 p-5 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.7)] backdrop-blur-sm" aria-labelledby="footer-booking-title">
+          <section className="rounded-2xl border border-white/18 bg-white/8 p-4 shadow-[0_20px_55px_-38px_rgba(0,0,0,0.65)] backdrop-blur-sm md:p-5" aria-labelledby="footer-booking-title">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55">Appointments</p>
             <h2 id="footer-booking-title" className="mt-2 font-heading text-xl font-semibold text-white">
               Looking to book?
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-white/75">
-              Choose your area to see the correct practitioner, coverage and contact details before requesting an appointment.
+              Choose your area for the correct practitioner, coverage and contact details.
             </p>
             <Link
               href="/locations"
-              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-sageDark shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-offwhite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-sageDark shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-offwhite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               data-analytics-id="footer-choose-location"
             >
               Choose your location
@@ -91,7 +91,7 @@ export default function Footer() {
           </section>
         </div>
 
-        <div className="mt-6 flex flex-col gap-3 border-t border-white/15 pt-4 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-4 flex flex-col gap-3 border-t border-white/15 pt-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Foot+</p>
           <nav aria-label="Legal links" className="flex flex-wrap gap-x-5 gap-y-2">
             <Link className="transition hover:text-white" href="/forms">Forms</Link>
