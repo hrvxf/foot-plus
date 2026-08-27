@@ -53,6 +53,12 @@ const trustChips = [
   { label: "LGBT friendly", variant: "rainbow" },
 ];
 
+const steps = [
+  { t: "1) Request a slot", d: "Tell us what you need and when you’re free." },
+  { t: "2) Confirm details", d: "We’ll reply to confirm time, location, and cost." },
+  { t: "3) Appointment", d: "Professional treatment with aftercare guidance." },
+];
+
 export default function HomeContent() {
   return (
     <div className="space-y-10 pb-[calc(env(safe-area-inset-bottom)+24px)] md:pb-0">
@@ -185,6 +191,19 @@ export default function HomeContent() {
           </div>
         </div>
       </HeroSection>
+
+      {/* How it works */}
+      <section className="mx-auto w-full max-w-6xl px-6 py-4 md:py-8">
+        <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">How it works</h2>
+        <div className="mt-7 grid divide-y divide-brand-sageLight/35 border-y border-brand-sageLight/35 md:grid-cols-3 md:divide-x md:divide-y-0">
+          {steps.map((step) => (
+            <div key={step.t} className="py-7 md:px-8 first:md:pl-0 last:md:pr-0">
+              <h3 className="font-heading text-base font-semibold text-brand-sageDark">{step.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">{step.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Mobile CTA */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-sageLight/30 bg-white/95 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-3 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
