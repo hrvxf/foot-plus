@@ -32,8 +32,7 @@ export default function Header() {
     { label: "Services", href: "/services", active: pathname === "/services" },
     { label: "Advice", href: "/advice", active: pathname.startsWith("/advice") },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
-    { label: "Areas", href: "/areas-we-cover", active: pathname === "/areas-we-cover" },
-    { label: "Locations", href: "/#locations", active: pathname === "/bristol" || pathname === "/southampton" },
+    { label: "Locations", href: "/locations", active: pathname.startsWith("/locations") },
   ];
 
   const headerBase =
