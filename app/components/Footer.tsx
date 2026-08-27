@@ -1,6 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-
-import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 import { emailDisplay, emailHref } from "../lib/site";
 
 const exploreLinks = [
@@ -18,7 +17,7 @@ const locationLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 mt-8 overflow-hidden text-white">
+    <footer id="site-footer" className="relative z-10 mt-8 overflow-hidden bg-brand-sage text-white">
       <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px]" aria-hidden="true" />
       <div className="absolute inset-0 bg-brand-sage/72" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-black/8 via-transparent to-black/25" aria-hidden="true" />
@@ -29,7 +28,13 @@ export default function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.9fr_1.1fr] lg:items-start">
           <div className="max-w-sm">
             <Link href="/" aria-label="Foot+ home" className="inline-flex text-white">
-              <AnimatedFootPlusLogo animate={false} className="h-12 w-auto text-white md:h-14" />
+              <Image
+                src="/images/footplus-generic-logo_MASTER_FINAL.svg"
+                alt="Foot+"
+                width={188}
+                height={59}
+                className="h-12 w-auto md:h-14"
+              />
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
               Professional, respectful foot care delivered in the comfort of home through your local Foot+ service.
