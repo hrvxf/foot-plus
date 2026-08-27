@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Button from "../../components/Button";
+import LocalPartnerCard from "../../components/LocalPartnerCard";
 import PractitionerProfile from "../../components/PractitionerProfile";
 import { serviceLocations } from "../../lib/locations";
+import { publishedLocalPartners } from "../../lib/partners";
 import { SITE_URL } from "../../lib/site";
 
 const canonical = `${SITE_URL}/locations/bristol`;
@@ -124,6 +126,23 @@ export default function BristolLocationPage() {
                 <h3 className="mt-4 font-heading text-xl font-semibold text-brand-sageDark">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/70">{item.text}</p>
               </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-7 border-t border-brand-sageLight/35 pb-14 pt-12 md:grid-cols-[0.7fr_1.3fr] md:gap-16 md:pb-16 md:pt-14" aria-labelledby="bristol-partners">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/75">Local partners</p>
+            <h2 id="bristol-partners" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark">
+              Connected care in Bristol
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-brand-charcoal/70">
+              Trusted local services Foot+ Bristol may signpost to when wider mobility or rehabilitation support could be helpful.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {publishedLocalPartners.map((partner) => (
+              <LocalPartnerCard key={partner.website} partner={partner} />
             ))}
           </div>
         </section>
