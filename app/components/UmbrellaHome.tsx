@@ -88,12 +88,12 @@ export default function UmbrellaHome() {
 
             <article className="flex min-h-80 flex-col rounded-3xl border border-white/25 bg-brand-sageDark/35 p-6 shadow-[0_28px_80px_-40px_rgba(0,0,0,0.75)] backdrop-blur-xl md:p-7">
               <span className="w-fit rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white/85">
-                Launching 20 October 2026
+                Launching 7 November 2026
               </span>
               <h2 className="mt-7 font-heading text-3xl font-semibold">Foot+ Southampton</h2>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-white/80">
                 Foot+ is bringing professional home-visit foot care to Southampton.
-                Register your interest ahead of the October launch.
+                Register your interest ahead of the November launch.
               </p>
               <Link
                 href="/southampton"
@@ -164,7 +164,7 @@ export default function UmbrellaHome() {
           <div className="max-w-2xl">
             <h2 className="font-heading text-3xl font-semibold">Choose your local Foot+ service.</h2>
             <p className="mt-3 text-sm leading-relaxed text-white/80 md:text-base">
-              Bristol appointments are available now. Southampton home visits begin on 20 October 2026.
+              Bristol appointments are available now. Southampton home visits begin on 7 November 2026.
             </p>
           </div>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-0">

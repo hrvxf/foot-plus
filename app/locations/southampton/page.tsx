@@ -10,10 +10,10 @@ const canonical = `${SITE_URL}/locations/southampton`;
 
 export const metadata: Metadata = {
   title: { absolute: "Mobile Foot Health Practitioner Southampton | Foot+" },
-  description: "Foot+ Southampton launches professional home-visit foot care on 20 October 2026. Learn about the service and register your interest.",
+  description: "Foot+ Southampton launches professional home-visit foot care on 7 November 2026. Learn about the service and register your interest.",
   alternates: { canonical },
   openGraph: {
-    title: "Foot+ Southampton | Launching 20 October 2026",
+    title: "Foot+ Southampton | Launching 7 November 2026",
     description: "Professional home-visit foot care is coming to Southampton.",
     url: canonical,
     siteName: "Foot+",
@@ -31,14 +31,14 @@ const processSteps = [
   },
   {
     title: "Arrange your visit",
-    text: "Southampton appointments begin from 20 October 2026.",
+    text: "Southampton appointments begin from 7 November 2026.",
   },
 ];
 
 const faqs = [
   {
     question: "When does Foot+ Southampton launch?",
-    answer: "Home-visit appointments are planned to begin on 20 October 2026.",
+    answer: "Home-visit appointments are planned to begin on 7 November 2026.",
   },
   {
     question: "Can I register before the launch?",
@@ -58,7 +58,7 @@ export default function SouthamptonPage() {
     "@type": "Service",
     "@id": `${canonical}#service`,
     name: "Foot+ Southampton home-visit foot care",
-    description: "Professional home-visit foot care launching in Southampton on 20 October 2026.",
+    description: "Professional home-visit foot care launching in Southampton on 7 November 2026.",
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: { "@type": "City", name: "Southampton" },
     employee: { "@type": "Person", name: practitioner.name, jobTitle: practitioner.role },
@@ -78,7 +78,7 @@ export default function SouthamptonPage() {
       </div>
 
       <LocationHero
-        eyebrow="Foot+ Southampton · Launching 20 October 2026"
+        eyebrow="Foot+ Southampton · Launching 7 November 2026"
         title="Home-visit foot care in Southampton"
         description="Professional foot care in the comfort of your own home, delivered with expertise, dignity and genuine care."
         primaryAction={{ label: "Register your interest", href: "/book?location=southampton" }}
