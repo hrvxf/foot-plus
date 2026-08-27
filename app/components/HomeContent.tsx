@@ -18,7 +18,6 @@ const trustChips = [
   { label: "Qualified practitioners" },
   { label: "Fully insured" },
   { label: "DBS checked" },
-  { label: "Sterile instruments" },
   { label: "LGBT friendly", variant: "rainbow" },
 ];
 
