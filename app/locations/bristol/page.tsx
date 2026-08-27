@@ -87,6 +87,19 @@ export default function BristolLocationPage() {
         practitioner={practitioner}
       />
 
+      <section className="border-b border-brand-sageLight/30 bg-white" aria-labelledby="meet-adam">
+        <div className="mx-auto grid max-w-[1360px] gap-8 px-6 py-12 md:px-10 md:py-14 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20 xl:px-14">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Your Bristol practitioner</p>
+            <h2 id="meet-adam" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Meet Adam</h2>
+          </div>
+          <div className="grid gap-5 text-base leading-relaxed text-brand-charcoal/72 md:grid-cols-2 md:gap-10">
+            <p>{practitioner.bio[0]}</p>
+            <p>{practitioner.bio[1]}</p>
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-brand-sageLight/30 bg-brand-sageLight/10">
         <div className="mx-auto grid max-w-[1360px] gap-14 px-6 py-14 md:px-10 md:py-18 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:px-14">
           <div>
