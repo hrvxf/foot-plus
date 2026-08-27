@@ -82,6 +82,7 @@ export default function EnquiryForm() {
         body: JSON.stringify({
           name: data.fullName,
           email: data.email,
+          location: data.location,
           message: messageLines.join("\n"),
         }),
       });
