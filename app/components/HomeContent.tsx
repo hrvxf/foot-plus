@@ -13,7 +13,7 @@ function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 const whatsappMessage = encodeURIComponent(
-  "Hi Adam, I’d like to enquire about an appointment with Foot+ Bristol."
+  "Hello, I’d like to enquire about a Foot+ home-visit appointment."
 );
 const whatsappHref = `https://wa.me/447380301555?text=${whatsappMessage}`;
 
@@ -49,7 +49,7 @@ const trustChips = [
   { label: "Fully insured" },
   { label: "DBS checked" },
   { label: "Sterile instruments" },
-  { label: "Home visits in Bristol" },
+  { label: "Professional home visits" },
   { label: "LGBT friendly", variant: "rainbow" },
 ];
 
@@ -99,11 +99,11 @@ export default function HomeContent() {
 
               {/* Headline (intentional line breaks) */}
               <h1 className="font-heading text-4xl font-semibold leading-[1.05] sm:text-[2.75rem] md:text-5xl">
-                <span className="block">Foot Health Practitioner in Bristol</span>
+                <span className="block">Professional foot care, brought home</span>
               </h1>
 
               <p className="mx-auto max-w-2xl text-base text-white/90 sm:text-lg">
-                Care for healthy, comfortable feet in Bristol - in the comfort of your home.
+                Qualified, respectful foot care in the comfort of home, delivered through your local Foot+ service.
               </p>
             </div>
 
@@ -118,7 +118,7 @@ export default function HomeContent() {
                 href="https://www.facebook.com/profile.php?id=61586341484139"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Visit Foot+ Bristol on Facebook"
+                aria-label="Visit Foot+ on Facebook"
                 className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#4f8ed8] text-white shadow-md shadow-black/10 transition hover:bg-[#3f7fc9] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 data-analytics-id="hero-facebook"
               >
@@ -135,7 +135,7 @@ export default function HomeContent() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Ask Foot+ Bristol a question on WhatsApp"
+                aria-label="Ask Foot+ a question on WhatsApp"
                 className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#54bf7a] text-white shadow-md shadow-black/10 transition hover:bg-[#46ad6d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 data-analytics-id="hero-whatsapp"
               >
@@ -221,21 +221,21 @@ export default function HomeContent() {
             Services
           </p>
           <h2 className="font-heading text-3xl font-semibold text-brand-sageDark">
-            Home-visit foot care in Bristol
+            Professional home-visit foot care
           </h2>
           <p className="max-w-2xl text-base text-brand-charcoal/80">
-            We deliver premium foot health services with clear advice and gentle treatment. Each
+            Foot+ delivers professional foot-health services with clear advice and gentle treatment. Each
             visit includes a full assessment and personalised guidance. Explore{" "}
             <Link href="/services" className="font-semibold text-brand-sageDark underline">
-              home-visit foot care services in Bristol
+              home-visit foot care services
             </Link>{" "}
             and see{" "}
             <Link href="/prices" className="font-semibold text-brand-sageDark underline">
-              foot health prices in Bristol
+              foot health prices
             </Link>{" "}
             or{" "}
             <Link href="/about" className="font-semibold text-brand-sageDark underline">
-              meet your practitioner
+              learn more about Foot+
             </Link>{" "}
             before you book.
           </p>
@@ -293,52 +293,27 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* Areas */}
-      <section className="mx-auto max-w-6xl px-6">
+      {/* Locations */}
+      <section className="mx-auto max-w-6xl px-6" id="locations">
         <div className="rounded-3xl border border-brand-sageLight/40 bg-linear-to-br from-white via-white to-brand-sageLight/10 p-8 shadow-sm md:p-10">
-          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-            <div className="md:max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">
-                Areas covered
-              </p>
-              <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark md:text-3xl">
-                Local, Reliable Foot Care - Now Welcoming New Patients
-              </h2>
-              <p className="mt-3 text-sm text-brand-charcoal/70">
-                Based in Bristol, Foot+ Bristol offers professional home-visit care across central Bristol,
-                surrounding Bristol and nearby areas.
-              </p>
-              <p className="mt-3 text-sm text-brand-charcoal/70">
-                Travel within central Bristol is included. Surrounding Bristol and farther afield may incur a fee, confirmed before booking.
-                Explore{" "}
-                <Link href="/areas-we-cover" className="font-semibold text-brand-sageDark underline">
-                  areas covered in Bristol
-                </Link>{" "}
-                or see{" "}
-                <Link href="/prices" className="font-semibold text-brand-sageDark underline">
-                  prices
-                </Link>{" "}
-                for full coverage information.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-brand-sageLight/40 bg-white/80 p-6 shadow-sm backdrop-blur">
-              <p className="text-sm font-semibold text-brand-sageDark">Coverage highlights</p>
-              <ul className="mt-4 space-y-3 text-sm text-brand-charcoal/70">
-                {["Central and North Bristol", "South and East Bristol", "Nearby towns by request"].map(
-                  (area) => (
-                    <li key={area} className="flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-brand-sageDark/70" />
-                      <span>{area}</span>
-                    </li>
-                  )
-                )}
-              </ul>
-              <div className="mt-5 rounded-xl bg-brand-sageLight/20 px-4 py-3 text-xs text-brand-sageDark">
-                Central Bristol travel included; wider areas confirmed before booking.
-              </div>
-            </div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">Local Foot+ services</p>
+          <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark md:text-3xl">Find Foot+ in your area</h2>
+          <p className="mt-3 max-w-2xl text-sm text-brand-charcoal/70">Choose your location for local coverage, practitioner information, availability and booking.</p>
+          <div className="mt-7 grid gap-5 md:grid-cols-2">
+            <Link href="/locations/bristol" className="group rounded-2xl border border-brand-sageLight/35 bg-white p-6 shadow-sm transition hover:-translate-y-1">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-sageDark/65">Appointments available</span>
+              <h3 className="mt-2 font-heading text-xl font-semibold text-brand-sageDark">Foot+ Bristol</h3>
+              <p className="mt-2 text-sm text-brand-charcoal/70">View Bristol coverage, meet your practitioner and book a home visit.</p>
+              <span className="mt-5 inline-block text-sm font-semibold text-brand-sageDark">Explore Bristol →</span>
+            </Link>
+            <Link href="/locations/southampton" className="group rounded-2xl border border-brand-sageLight/35 bg-white p-6 shadow-sm transition hover:-translate-y-1">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-sageDark/65">Launching 20 October 2026</span>
+              <h3 className="mt-2 font-heading text-xl font-semibold text-brand-sageDark">Foot+ Southampton</h3>
+              <p className="mt-2 text-sm text-brand-charcoal/70">View launch information, planned coverage and register your interest.</p>
+              <span className="mt-5 inline-block text-sm font-semibold text-brand-sageDark">Explore Southampton →</span>
+            </Link>
           </div>
+          <Link href="/locations" className="mt-6 inline-block text-sm font-semibold text-brand-sageDark underline underline-offset-4">View all Foot+ locations</Link>
         </div>
       </section>
 
