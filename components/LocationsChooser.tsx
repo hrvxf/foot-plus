@@ -27,32 +27,37 @@ export default function LocationsChooser() {
     if (selected) return;
 
     setSelected(href);
-    window.setTimeout(() => router.push(href), 260);
+    window.setTimeout(() => router.push(href), 240);
   }
 
   return (
     <main
       aria-label="Choose your Foot+ location"
       data-leaving={selected ? "true" : "false"}
-      className="locations-overlay fixed inset-0 z-[100] flex min-h-dvh items-center justify-center overflow-hidden bg-brand-sageDark/55 px-6 py-10 backdrop-blur-3xl"
+      className="locations-overlay fixed inset-0 z-[100] flex min-h-dvh items-center justify-center overflow-hidden bg-brand-sageDark px-5 py-10"
     >
       <div
-        className="locations-texture absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px] opacity-25"
+        className="locations-texture absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px] opacity-20"
         aria-hidden="true"
       />
       <div
-        className="absolute -left-24 top-1/4 h-80 w-80 rounded-full bg-white/20 blur-[110px]"
+        className="locations-glow absolute -left-24 top-1/4 h-80 w-80 rounded-full bg-white/15 blur-[110px]"
         aria-hidden="true"
       />
       <div
-        className="absolute -right-24 bottom-1/4 h-80 w-80 rounded-full bg-brand-sageLight/35 blur-[120px]"
+        className="locations-glow absolute -right-24 bottom-1/4 h-80 w-80 rounded-full bg-brand-sageLight/30 blur-[120px]"
         aria-hidden="true"
       />
 
       <nav
         aria-label="Foot+ locations"
-        className="locations-actions relative flex w-full max-w-xl flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center"
+        className="locations-actions relative grid h-14 w-full max-w-md grid-cols-2 overflow-hidden rounded-full border border-white/30 bg-white/[0.07] p-1 shadow-[0_18px_60px_-32px_rgba(0,0,0,0.9)] backdrop-blur-xl"
       >
+        <span
+          aria-hidden="true"
+          className="absolute bottom-3 left-1/2 top-3 w-px bg-white/20"
+        />
+
         {locations.map((location, index) => {
           const isSelected = selected === location.href;
           const isReceding = selected && !isSelected;
@@ -63,22 +68,25 @@ export default function LocationsChooser() {
               href={location.href}
               aria-current={isSelected ? "true" : undefined}
               onClick={(event) => chooseLocation(event, location.href)}
-              style={{ animationDelay: `${80 + index * 70}ms` }}
+              style={{ animationDelay: `${70 + index * 65}ms` }}
               className={[
-                "location-choice group relative flex h-14 flex-1 items-center justify-center overflow-hidden rounded-full border border-white/40 bg-white/10 px-8",
-                "font-heading text-lg font-semibold tracking-[0.01em] text-white backdrop-blur-xl",
-                "shadow-[0_12px_36px_-22px_rgba(0,0,0,0.85)] transition-[transform,opacity,background-color,border-color,box-shadow] duration-200 ease-out",
-                "hover:-translate-y-0.5 hover:border-white/70 hover:bg-white/18 hover:shadow-[0_18px_42px_-22px_rgba(0,0,0,0.9)]",
-                "active:translate-y-0 active:scale-[0.96] active:bg-white/25",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white",
+                "location-choice group relative z-10 flex items-center justify-center rounded-full px-4",
+                "font-heading text-base font-semibold tracking-[0.015em] text-white",
+                "transition-[transform,opacity,background-color,box-shadow] duration-200 ease-out",
+                "hover:bg-white/[0.10] active:scale-[0.95] active:bg-white/[0.18]",
+                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white",
                 isSelected
-                  ? "scale-[0.97] border-white/80 bg-white/25 shadow-[0_0_0_5px_rgba(255,255,255,0.09),0_16px_45px_-20px_rgba(0,0,0,0.9)]"
+                  ? "scale-[0.97] bg-white/[0.18] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.22),0_8px_24px_-16px_rgba(0,0,0,0.9)]"
                   : "",
-                isReceding ? "scale-95 opacity-0" : "",
+                isReceding ? "scale-95 opacity-20" : "",
               ].join(" ")}
             >
-              <span className="relative transition-transform duration-200 group-hover:scale-[1.02]">
+              <span className="relative pb-0.5">
                 {location.name}
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-white/85 transition-[width,opacity] duration-200 group-hover:w-5 group-hover:opacity-100"
+                />
               </span>
             </a>
           );
@@ -87,58 +95,52 @@ export default function LocationsChooser() {
 
       <style jsx>{`
         .locations-overlay {
-          animation: overlay-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-          transition: opacity 260ms ease, backdrop-filter 260ms ease;
+          isolation: isolate;
         }
 
-        .locations-texture {
-          animation: texture-in 600ms ease-out both;
+        .locations-texture,
+        .locations-glow {
+          animation: atmosphere-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .location-choice {
           opacity: 0;
-          animation: choice-in 440ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          animation: choice-in 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         .locations-overlay[data-leaving="true"] {
-          opacity: 0;
-          backdrop-filter: blur(8px);
           pointer-events: none;
         }
 
+        .locations-overlay[data-leaving="true"] .locations-texture,
+        .locations-overlay[data-leaving="true"] .locations-glow {
+          transform: scale(1.025);
+          filter: blur(5px);
+          transition: transform 240ms ease, filter 240ms ease;
+        }
+
         .locations-overlay[data-leaving="true"] .location-choice[aria-current="true"] {
-          animation: selected-out 260ms cubic-bezier(0.4, 0, 1, 1) both;
+          animation: selected-out 240ms cubic-bezier(0.4, 0, 1, 1) both;
         }
 
-        @keyframes overlay-in {
-          from {
-            opacity: 0;
-            backdrop-filter: blur(8px);
-          }
-          to {
-            opacity: 1;
-            backdrop-filter: blur(48px);
-          }
-        }
-
-        @keyframes texture-in {
-          from { opacity: 0; transform: scale(1.04); }
-          to { opacity: 0.25; transform: scale(1); }
+        @keyframes atmosphere-in {
+          from { transform: scale(1.035); filter: blur(8px); }
+          to { transform: scale(1); filter: blur(0); }
         }
 
         @keyframes choice-in {
-          from { opacity: 0; transform: translateY(14px) scale(0.97); }
+          from { opacity: 0; transform: translateY(10px) scale(0.98); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes selected-out {
           from { opacity: 1; transform: scale(0.97); }
-          to { opacity: 0; transform: scale(1.04); }
+          to { opacity: 0; transform: scale(1.035); }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .locations-overlay,
           .locations-texture,
+          .locations-glow,
           .location-choice,
           .locations-overlay[data-leaving="true"] .location-choice[aria-current="true"] {
             animation: none;
