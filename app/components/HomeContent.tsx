@@ -145,10 +145,7 @@ export default function HomeContent() {
           </div>
 
           <div className="flex-1">
-            <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/25 bg-white/12 p-6 shadow-[0_32px_90px_-35px_rgba(0,0,0,0.6)] ring-1 ring-white/10 backdrop-blur-2xl md:p-8">
-              <div className="absolute inset-x-0 top-0 h-px bg-white/40" />
-              <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-white/25 blur-[80px]" />
-              <div className="absolute -right-14 bottom-4 h-44 w-44 rounded-full bg-brand-sageLight/25 blur-[90px]" />
+            <div className="relative w-full max-w-xl border-y border-white/25 py-7 md:py-9">
 
               <div className="relative">
                 <div className="flex items-center gap-3">
@@ -241,13 +238,13 @@ export default function HomeContent() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <div className="mt-10 grid border-y border-brand-sageLight/35 md:grid-cols-2">
           {serviceCards.map((s) => (
             <div
               key={s.title}
-              className="group rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm shadow-brand-sage/10 transition hover:-translate-y-1"
+              className="group border-b border-brand-sageLight/35 py-8 even:md:border-l even:md:pl-10 odd:md:pr-10 nth-[3]:md:border-b-0 nth-[4]:border-b-0"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-sageLight/20 text-brand-sageDark">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center border-b border-brand-sageLight/60 text-brand-sageDark">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M6 12.5C6 8 10 4 14.5 4c2.5 0 4.5 2 4.5 4.5 0 4.5-3.5 11.5-9.5 11.5C7.5 20 6 18.5 6 16.5v-4Z"
@@ -280,40 +277,13 @@ export default function HomeContent() {
       {/* How it works */}
       <section className="mx-auto max-w-6xl px-6">
         <h2 className="font-heading text-2xl font-semibold text-brand-sageDark">How it works</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+        <div className="mt-7 grid divide-y divide-brand-sageLight/35 border-y border-brand-sageLight/35 md:grid-cols-3 md:divide-x md:divide-y-0">
           {steps.map((x) => (
-            <div
-              key={x.t}
-              className="rounded-2xl border border-brand-sageLight/30 bg-white p-6 shadow-sm"
-            >
+            <div key={x.t} className="py-7 md:px-8 first:md:pl-0 last:md:pr-0">
               <h3 className="font-heading text-base font-semibold text-brand-sageDark">{x.t}</h3>
               <p className="mt-2 text-sm text-brand-charcoal/70">{x.d}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Locations */}
-      <section className="mx-auto max-w-6xl px-6" id="locations">
-        <div className="rounded-3xl border border-brand-sageLight/40 bg-linear-to-br from-white via-white to-brand-sageLight/10 p-8 shadow-sm md:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/70">Local Foot+ services</p>
-          <h2 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDark md:text-3xl">Find Foot+ in your area</h2>
-          <p className="mt-3 max-w-2xl text-sm text-brand-charcoal/70">Choose your location for local coverage, practitioner information, availability and booking.</p>
-          <div className="mt-7 grid gap-5 md:grid-cols-2">
-            <Link href="/locations/bristol" className="group rounded-2xl border border-brand-sageLight/35 bg-white p-6 shadow-sm transition hover:-translate-y-1">
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-sageDark/65">Appointments available</span>
-              <h3 className="mt-2 font-heading text-xl font-semibold text-brand-sageDark">Foot+ Bristol</h3>
-              <p className="mt-2 text-sm text-brand-charcoal/70">View Bristol coverage, meet your practitioner and book a home visit.</p>
-              <span className="mt-5 inline-block text-sm font-semibold text-brand-sageDark">Explore Bristol →</span>
-            </Link>
-            <Link href="/locations/southampton" className="group rounded-2xl border border-brand-sageLight/35 bg-white p-6 shadow-sm transition hover:-translate-y-1">
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-sageDark/65">Launching 20 October 2026</span>
-              <h3 className="mt-2 font-heading text-xl font-semibold text-brand-sageDark">Foot+ Southampton</h3>
-              <p className="mt-2 text-sm text-brand-charcoal/70">View launch information, planned coverage and register your interest.</p>
-              <span className="mt-5 inline-block text-sm font-semibold text-brand-sageDark">Explore Southampton →</span>
-            </Link>
-          </div>
-          <Link href="/locations" className="mt-6 inline-block text-sm font-semibold text-brand-sageDark underline underline-offset-4">View all Foot+ locations</Link>
         </div>
       </section>
 
