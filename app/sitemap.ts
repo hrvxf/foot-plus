@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/locations/bristol",
     "/locations/bristol/areas-we-cover",
     "/locations/southampton",
-    "/about",
     "/book",
     "/forms",
     "/prices",
