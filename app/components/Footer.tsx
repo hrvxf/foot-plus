@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, Phone, Facebook } from "lucide-react";
+import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 
 import { emailDisplay, emailHref, phoneDisplay, phoneHref } from "../lib/site";
 
@@ -41,10 +42,9 @@ export default function Footer() {
         <div className="grid gap-5 md:grid-cols-[1.1fr_minmax(0,1.2fr)_0.9fr] md:items-center">
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
             <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
-              <img
-                src="/images/footplus-generic-logo_MASTER_FINAL.svg"
-                alt="Foot+ logo"
-                className="h-16 w-auto"
+              <AnimatedFootPlusLogo
+                animate={false}
+                className="h-12 w-auto text-white md:h-14"
               />
             </div>
             <p className="mt-1 hidden text-sm text-white/70 md:block">Care that starts from the ground up.</p>
