@@ -239,10 +239,10 @@ export default function HomeContent() {
         </div>
 
         <div className="mt-10 grid border-y border-brand-sageLight/35 md:grid-cols-2">
-          {serviceCards.map((s) => (
+          {serviceCards.map((s, index) => (
             <div
               key={s.title}
-              className="group border-b border-brand-sageLight/35 py-8 even:md:border-l even:md:pl-10 odd:md:pr-10 nth-[3]:md:border-b-0 nth-[4]:border-b-0"
+              className={`group py-8 ${index < 3 ? "border-b border-brand-sageLight/35" : ""} ${index % 2 === 1 ? "md:border-l md:pl-10" : "md:pr-10"} ${index < 2 ? "md:border-b" : "md:border-b-0"}`}
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center border-b border-brand-sageLight/60 text-brand-sageDark">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
