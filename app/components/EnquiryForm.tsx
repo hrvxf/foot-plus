@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 type AppointmentType =
   | "New Patient Assessment & Treatment"
@@ -9,6 +10,7 @@ type AppointmentType =
   | "Other / Unsure";
 
 type FormState = {
+  location: "Bristol" | "Southampton";
   fullName: string;
   postcode: string;
   phone: string;
@@ -20,11 +22,14 @@ type FormState = {
 };
 
 export default function EnquiryForm() {
+  const searchParams = useSearchParams();
+  const requestedLocation = searchParams.get("location")?.toLowerCase();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [data, setData] = useState<FormState>({
+    location: requestedLocation === "southampton" ? "Southampton" : "Bristol",
     fullName: "",
     postcode: "",
     phone: "",
@@ -62,6 +67,7 @@ export default function EnquiryForm() {
 
     try {
       const messageLines = [
+        `Service location: ${data.location}`,
         `Postcode: ${data.postcode}`,
         `Phone: ${data.phone}`,
         `Appointment type: ${data.appointmentType}`,
@@ -76,6 +82,7 @@ export default function EnquiryForm() {
         body: JSON.stringify({
           name: data.fullName,
           email: data.email,
+          location: data.location,
           message: messageLines.join("\n"),
         }),
       });
@@ -104,7 +111,7 @@ export default function EnquiryForm() {
 
         <div className="mt-5 rounded-xl bg-brand-cream p-4 text-left">
           <h3 className="font-heading text-lg font-semibold text-brand-sageDark">
-            Get ahead and submit your patient form
+            Complete your patient document
           </h3>
           <p className="mt-2 text-sm text-brand-charcoal/70">
             If you are a new patient, you can complete your medical history form online before
@@ -114,7 +121,7 @@ export default function EnquiryForm() {
             href="/forms"
             className="mt-4 inline-flex rounded-xl bg-brand-sageDark px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
           >
-            Complete patient form
+            Complete your patient document
           </a>
         </div>
       </div>
@@ -128,6 +135,24 @@ export default function EnquiryForm() {
           {error}
         </div>
       )}
+
+      <div>
+        <label htmlFor="service-location" className="mb-1 block text-sm font-medium text-brand-charcoal">
+          Service location *
+        </label>
+        <select
+          id="service-location"
+          className="w-full rounded-lg border border-brand-sageLight/40 bg-white p-3 text-sm text-brand-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+          value={data.location}
+          onChange={(e) => update("location", e.target.value as FormState["location"])}
+        >
+          <option>Bristol</option>
+          <option>Southampton</option>
+        </select>
+        {data.location === "Southampton" ? (
+          <p className="mt-2 text-sm text-brand-charcoal/65">Southampton appointments launch on 20 October 2026. This form registers your interest.</p>
+        ) : null}
+      </div>
 
       {/* Name + Postcode */}
       <div className="grid gap-4 md:grid-cols-2">
