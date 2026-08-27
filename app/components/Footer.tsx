@@ -90,9 +90,6 @@ export default function Footer() {
             <h2 id="footer-booking-title" className="mt-2 font-heading text-xl font-semibold text-white">
               Looking to book?
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-white/75">
-              Choose your area for the correct practitioner, coverage and contact details.
-            </p>
             <Link
               href="/locations"
               className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-sageDark shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-offwhite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"

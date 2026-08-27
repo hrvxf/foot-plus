@@ -37,7 +37,7 @@ export default function LocationsChooser() {
       className="locations-overlay fixed inset-0 z-[100] flex min-h-dvh items-center justify-center overflow-hidden bg-brand-sageDark px-5 py-10"
     >
       <div
-        className="locations-texture absolute inset-0 bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px] opacity-20"
+        className="locations-texture absolute -inset-4 scale-[1.03] bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px] opacity-20 blur-[3px]"
         aria-hidden="true"
       />
       <div
@@ -98,9 +98,12 @@ export default function LocationsChooser() {
           isolation: isolate;
         }
 
-        .locations-texture,
+        .locations-texture {
+          animation: texture-in 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
         .locations-glow {
-          animation: atmosphere-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation: glow-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .location-choice {
@@ -112,20 +115,30 @@ export default function LocationsChooser() {
           pointer-events: none;
         }
 
-        .locations-overlay[data-leaving="true"] .locations-texture,
+        .locations-overlay[data-leaving="true"] .locations-texture {
+          transform: scale(1.06);
+          opacity: 0.12;
+          transition: transform 240ms ease, opacity 240ms ease;
+        }
+
         .locations-overlay[data-leaving="true"] .locations-glow {
-          transform: scale(1.025);
-          filter: blur(5px);
-          transition: transform 240ms ease, filter 240ms ease;
+          transform: scale(1.06);
+          opacity: 0.7;
+          transition: transform 240ms ease, opacity 240ms ease;
         }
 
         .locations-overlay[data-leaving="true"] .location-choice[aria-current="true"] {
           animation: selected-out 240ms cubic-bezier(0.4, 0, 1, 1) both;
         }
 
-        @keyframes atmosphere-in {
-          from { transform: scale(1.035); filter: blur(8px); }
-          to { transform: scale(1); filter: blur(0); }
+        @keyframes texture-in {
+          from { transform: scale(1.08); opacity: 0.08; }
+          to { transform: scale(1.03); opacity: 0.2; }
+        }
+
+        @keyframes glow-in {
+          from { transform: scale(1.08); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
         }
 
         @keyframes choice-in {
