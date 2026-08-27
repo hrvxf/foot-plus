@@ -234,8 +234,8 @@ export default function HomeContent() {
               foot health prices
             </Link>{" "}
             or{" "}
-            <Link href="/about" className="font-semibold text-brand-sageDark underline">
-              learn more about Foot+
+            <Link href="/locations" className="font-semibold text-brand-sageDark underline">
+              find your local Foot+ service
             </Link>{" "}
             before you book.
           </p>
