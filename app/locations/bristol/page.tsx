@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Button from "../../components/Button";
 import LocalPartnerCard from "../../components/LocalPartnerCard";
-import PractitionerProfile from "../../components/PractitionerProfile";
+import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
 import { SITE_URL } from "../../lib/site";
@@ -22,23 +22,39 @@ export const metadata: Metadata = {
   },
 };
 
-const bristolServices = [
+const processSteps = [
   {
-    title: "Nail and skin care",
-    text: "Routine toenail care and support for thickened nails, hard skin, calluses, corns and cracked heels.",
+    title: "Request a visit",
+    text: "Tell us what support you need and provide the appointment postcode.",
+  },
+  {
+    title: "Confirm the details",
+    text: "Foot+ confirms coverage, suitability, availability and the expected cost.",
   },
   {
     title: "Care at home",
-    text: "Appointments in familiar surroundings for older adults, people with reduced mobility and anyone who finds travelling difficult.",
+    text: "Your practitioner visits at the arranged time and provides clear aftercare guidance.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Which parts of Bristol does Foot+ cover?",
+    answer: "Foot+ covers central, north, south and east Bristol. Nearby towns may be considered by request, with exact coverage confirmed from the appointment postcode.",
   },
   {
-    title: "Clear guidance",
-    text: "Practical aftercare and honest onward guidance when podiatry or medical support is more appropriate.",
+    question: "Can a relative or carer arrange the appointment?",
+    answer: "Yes. A relative, carer or support worker can enquire or help coordinate the visit, with appropriate consent from the person receiving care.",
+  },
+  {
+    question: "What if my concern needs podiatry or medical care?",
+    answer: "Foot+ will explain when a concern appears outside routine foot-health scope and advise seeking an appropriate podiatry, GP, urgent or emergency service.",
   },
 ];
 
 export default function BristolLocationPage() {
   const location = serviceLocations.bristol;
+  const practitioner = location.practitioner!;
   const schema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
@@ -46,7 +62,7 @@ export default function BristolLocationPage() {
     name: "Foot+ Bristol",
     url: canonical,
     areaServed: { "@type": "City", name: "Bristol" },
-    employee: location.practitioner ? { "@type": "Person", name: location.practitioner.name, jobTitle: location.practitioner.role } : undefined,
+    employee: { "@type": "Person", name: practitioner.name, jobTitle: practitioner.role },
     priceRange: "££",
   };
 
@@ -54,105 +70,96 @@ export default function BristolLocationPage() {
     <main className="overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      <div className="mx-auto max-w-6xl px-6 pb-20 pt-10 md:pt-16">
-        <nav aria-label="Breadcrumb" className="text-sm text-brand-charcoal/65">
-          <Link className="font-semibold text-brand-sageDark underline underline-offset-4" href="/">Home</Link>
-          <span aria-hidden="true"> / </span>
+      <div className="mx-auto max-w-[1360px] px-6 pt-8 md:px-10 md:pt-10 xl:px-14">
+        <nav aria-label="Breadcrumb" className="text-sm text-brand-charcoal/60">
           <Link className="font-semibold text-brand-sageDark underline underline-offset-4" href="/locations">Locations</Link>
           <span aria-hidden="true"> / </span>
           <span aria-current="page">Bristol</span>
         </nav>
-
-        <section className="relative pb-14 pt-12 md:pb-20 md:pt-16">
-          <div className="pointer-events-none absolute -right-40 -top-24 h-96 w-96 rounded-full bg-brand-sageLight/15 blur-3xl" aria-hidden="true" />
-          <div className="relative">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-sageLight" aria-hidden="true" />
-              Appointments available
-            </span>
-            <h1 className="mt-6 max-w-4xl font-heading text-4xl font-semibold leading-tight text-brand-sageDark md:text-6xl">
-              Mobile Foot Health Practitioner in Bristol
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-brand-charcoal/75 md:text-lg">
-              Professional, respectful foot care across Bristol, provided in the comfort of your home.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/book?location=bristol" variant="solid">Book in Bristol</Button>
-              <Button href="/services" variant="outline">View Foot+ services</Button>
-            </div>
-          </div>
-        </section>
-
-        <section className="grid gap-10 border-t border-brand-sageLight/35 py-14 md:grid-cols-[0.85fr_1.15fr] md:items-start md:gap-16 md:py-20" aria-labelledby="bristol-practitioner">
-          <div className="md:sticky md:top-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/75">Your local practitioner</p>
-            <h2 id="bristol-practitioner" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">
-              Meet your Foot+ Bristol practitioner
-            </h2>
-            <p className="mt-5 max-w-md leading-relaxed text-brand-charcoal/75">
-              Bristol appointments are delivered with clear communication, dignity and care that remains within the practitioner’s professional training and scope.
-            </p>
-          </div>
-          {location.practitioner ? <PractitionerProfile practitioner={location.practitioner} /> : null}
-        </section>
       </div>
 
-      <section className="border-y border-brand-sageLight/30 bg-brand-sageLight/10">
-        <div className="mx-auto grid max-w-6xl gap-7 px-6 py-12 md:grid-cols-[0.75fr_1.25fr] md:items-center md:gap-16 md:py-14">
+      <LocationHero
+        eyebrow="Foot+ Bristol · Appointments available"
+        title="Mobile foot care in Bristol"
+        description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
+        primaryAction={{ label: "Book in Bristol", href: "/book?location=bristol" }}
+        secondaryAction={{ label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" }}
+        practitioner={practitioner}
+      />
+
+      <section className="border-b border-brand-sageLight/30 bg-brand-sageLight/10">
+        <div className="mx-auto grid max-w-[1360px] gap-14 px-6 py-14 md:px-10 md:py-18 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:px-14">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/75">Bristol coverage</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark">Home visits across Bristol</h2>
-          </div>
-          <div>
-            <p className="max-w-3xl leading-relaxed text-brand-charcoal/75">
-              Foot+ Bristol covers central, north, south and east Bristol, with nearby towns considered by request. Travel within central Bristol is included; any wider-area supplement is confirmed before booking.
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Bristol coverage</p>
+            <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Home visits across Bristol</h2>
+            <p className="mt-5 max-w-xl leading-relaxed text-brand-charcoal/72">
+              Central, north, south and east Bristol are covered, with nearby towns considered by request. Travel within central Bristol is included; any wider-area supplement is confirmed before booking.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Button href="/locations/bristol/areas-we-cover" variant="outline">View Bristol areas covered</Button>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Button href="/locations/bristol/areas-we-cover" variant="outline">View areas covered</Button>
               <Button href="/prices" variant="outline">View prices</Button>
             </div>
+          </div>
+
+          <div aria-labelledby="bristol-process">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">How it works</p>
+            <h2 id="bristol-process" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">A straightforward home visit</h2>
+            <ol className="relative mt-9 grid gap-7 md:grid-cols-3 md:gap-8">
+              <span className="absolute left-4 top-4 hidden h-px bg-brand-sageLight/70 md:block md:right-4" aria-hidden="true" />
+              {processSteps.map((step, index) => (
+                <li key={step.title} className="relative grid grid-cols-[2rem_1fr] gap-4 md:block md:pt-11">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-brand-sageLight/75 bg-white text-xs font-semibold text-brand-sageDark md:absolute md:left-0 md:top-0">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-heading text-lg font-semibold text-brand-sageDark">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/68">{step.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 pb-20">
-        <section className="py-14 md:py-20" aria-label="Foot+ Bristol service benefits">
-          <div className="grid divide-y divide-brand-sageLight/35 border-y border-brand-sageLight/35 md:grid-cols-3 md:divide-x md:divide-y-0">
-            {bristolServices.map((item, index) => (
-              <article key={item.title} className="py-8 md:px-8 md:py-2 first:md:pl-0 last:md:pr-0">
-                <span className="text-xs font-semibold tracking-[0.18em] text-brand-sageDark/45" aria-hidden="true">
-                  0{index + 1}
-                </span>
-                <h3 className="mt-4 font-heading text-xl font-semibold text-brand-sageDark">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/70">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-7 border-t border-brand-sageLight/35 pb-14 pt-12 md:grid-cols-[0.7fr_1.3fr] md:gap-16 md:pb-16 md:pt-14" aria-labelledby="bristol-partners">
+      <div className="mx-auto max-w-[1360px] px-6 md:px-10 xl:px-14">
+        <section className="grid gap-10 border-b border-brand-sageLight/35 py-14 md:py-18 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20" aria-labelledby="bristol-partners">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/75">Local partners</p>
-            <h2 id="bristol-partners" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark">
-              Connected care in Bristol
-            </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-brand-charcoal/70">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Local partners</p>
+            <h2 id="bristol-partners" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Connected care in Bristol</h2>
+            <p className="mt-5 max-w-md leading-relaxed text-brand-charcoal/70">
               Trusted local services Foot+ Bristol may signpost to when wider mobility or rehabilitation support could be helpful.
             </p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="divide-y divide-brand-sageLight/35 border-y border-brand-sageLight/35">
             {publishedLocalPartners.map((partner) => (
               <LocalPartnerCard key={partner.website} partner={partner} />
             ))}
           </div>
         </section>
 
-        <section className="border-y border-brand-sageDark bg-brand-sageDark px-7 py-9 text-white md:flex md:items-center md:justify-between md:gap-12 md:px-10 md:py-10">
+        <section className="grid gap-8 py-14 md:grid-cols-[0.7fr_1.3fr] md:gap-16 md:py-18" aria-labelledby="bristol-faqs">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Useful information</p>
+            <h2 id="bristol-faqs" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark">Questions about Foot+ Bristol</h2>
+          </div>
+          <div className="border-b border-brand-sageLight/40">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="group border-t border-brand-sageLight/40 py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold text-brand-sageDark [&::-webkit-details-marker]:hidden">
+                  <span>{faq.question}</span>
+                  <span className="text-2xl font-light leading-none text-brand-sageDark/60 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p className="max-w-3xl pt-3 text-sm leading-relaxed text-brand-charcoal/70">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-20 border-y border-brand-sageDark bg-brand-sageDark px-7 py-9 text-white md:flex md:items-center md:justify-between md:gap-12 md:px-10 md:py-10">
           <div>
             <h2 className="font-heading text-2xl font-semibold">Book a Bristol home visit</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">
-              Tell Foot+ what support you need and provide the appointment postcode so coverage and availability can be confirmed.
-            </p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">Share the appointment postcode and the support you need. Foot+ will confirm coverage, suitability and availability.</p>
           </div>
           <div className="mt-6 shrink-0 md:mt-0">
             <Button href="/book?location=bristol" variant="primary">Book in Bristol</Button>
