@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
+import { emailDisplay, emailHref } from "../lib/site";
 
 const exploreLinks = [
   { href: "/services", label: "Services" },
@@ -33,9 +34,17 @@ export default function Footer() {
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
               Professional, respectful foot care delivered in the comfort of home through your local Foot+ service.
             </p>
+            <a
+              href={emailHref}
+              className="mt-5 inline-flex text-sm font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white"
+              data-analytics-id="footer-general-email"
+            >
+              {emailDisplay}
+            </a>
+            <p className="mt-1 text-xs text-white/55">General enquiries for all locations</p>
             <Link
               href="/locations"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
             >
               Find your local Foot+
               <span aria-hidden="true">→</span>
