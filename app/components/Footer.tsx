@@ -140,10 +140,10 @@ export default function Footer() {
               </Link>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
-                href="/areas-we-cover"
-                data-analytics-id="footer-link-areas-we-cover"
+                href="/locations"
+                data-analytics-id="footer-link-locations"
               >
-                Areas We Cover
+                Locations
               </a>
               <a
                 className="rounded-full px-3 py-1 transition hover:bg-white/10 hover:text-white"
