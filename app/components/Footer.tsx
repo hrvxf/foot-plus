@@ -42,7 +42,7 @@ export default function Footer() {
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
             <div className="flex items-center gap-3 font-heading text-2xl font-semibold tracking-tight">
               <img
-                src="/images/footplus-logo_WHITE.svg"
+                src="/images/footplus-generic-logo_MASTER_FINAL.svg"
                 alt="Foot+ logo"
                 className="h-16 w-auto"
               />
