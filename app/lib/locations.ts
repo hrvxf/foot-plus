@@ -41,8 +41,13 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
     displayName: "Foot+ Southampton",
     status: "launching",
     launchDate: "20 October 2026",
-    // Add the Southampton practitioner here once their approved name, credentials,
-    // portrait and biography are available. The public page hides the profile until
-    // the complete practitioner object is supplied.
+    practitioner: {
+      name: "Katie Preston",
+      role: "Foot Health Practitioner",
+      credentials: ["BSc", "Dip FH", "MCFHP", "MAFHP"],
+      imageSrc: "/images/katie.jpeg",
+      imageAlt: "Portrait of Katie Preston, Foot+ Southampton foot health practitioner.",
+      bio: [],
+    },
   },
 };
