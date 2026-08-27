@@ -125,17 +125,9 @@ export default function AdvicePage() {
                 <li key={topic.id} className="border-b border-brand-sageLight/35 last:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0">
                   <Link
                     href={`#${topic.id}`}
-                    className="group flex items-center justify-between gap-4 py-5 sm:px-5 first:sm:pl-0 last:sm:pr-0"
+                    className="block py-5 font-heading text-lg font-semibold text-brand-sageDark underline-offset-4 hover:underline sm:px-5 first:sm:pl-0 last:sm:pr-0"
                   >
-                    <span className="font-heading text-lg font-semibold text-brand-sageDark">
-                      {topic.title}
-                    </span>
-                    <span
-                      className="text-brand-sageDark/45 transition-transform group-hover:translate-y-0.5"
-                      aria-hidden="true"
-                    >
-                      ↓
-                    </span>
+                    {topic.title}
                   </Link>
                 </li>
               ))}
