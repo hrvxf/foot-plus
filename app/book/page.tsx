@@ -38,8 +38,8 @@ export default function BookPage() {
           prices
         </a>{" "}
         or learn more{" "}
-        <a className="font-semibold text-brand-sageDark underline" href="/about">
-          about Foot+
+        <a className="font-semibold text-brand-sageDark underline" href="/locations">
+          about your local Foot+ service
         </a>
         .
       </p>
