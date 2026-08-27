@@ -36,12 +36,9 @@ export default function Footer() {
                 className="h-10 w-auto md:h-11"
               />
             </Link>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/75">
-              Professional, respectful foot care delivered in the comfort of home through your local Foot+ service.
-            </p>
             <a
               href={emailHref}
-              className="mt-3 inline-flex text-sm font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white"
+              className="mt-4 inline-flex text-sm font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white"
               data-analytics-id="footer-general-email"
             >
               {emailDisplay}
