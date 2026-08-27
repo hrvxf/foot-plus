@@ -43,6 +43,19 @@ export default function Footer() {
               {emailDisplay}
             </a>
             <p className="mt-1 text-xs text-white/60">General enquiries for all locations</p>
+            <a
+              href="https://www.facebook.com/profile.php?id=61586341484139"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-white/75 transition hover:text-white"
+              aria-label="Visit Foot+ on Facebook"
+              data-analytics-id="footer-facebook"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+                <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
+              </svg>
+              Facebook
+            </a>
           </div>
 
           <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-8">
