@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@id": `${SITE_URL}/#organization`,
     name: "Foot+",
     url: SITE_URL,
-    logo: `${SITE_URL}/images/footplus-logo-green.svg`,
+    logo: `${SITE_URL}/images/footplus-generic-logo_MASTER_FINAL.svg`,
   };
 
   const practitionerJsonLd = {
