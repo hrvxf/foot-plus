@@ -399,26 +399,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-brand-sageDark text-white">
-        <div className="mx-auto max-w-[1360px] px-6 py-12 md:flex md:items-center md:justify-between md:gap-14 md:px-10 md:py-14 xl:px-14">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/55">
-              Bristol or Southampton
-            </p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold">
-              Ready to request a visit?
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/75 md:text-base">
-              Choose your local Foot+ service to check coverage and availability.
-            </p>
-          </div>
-          <div className="mt-7 shrink-0 md:mt-0">
-            <Button href="/locations" variant="primary">
-              Choose your location
-            </Button>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
