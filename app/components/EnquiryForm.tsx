@@ -3,13 +3,18 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import {
+  normalisePostcode,
+  validateServicePostcode,
+  type EnquiryLocation as ServiceLocation,
+} from "../lib/postcodes";
+
 type AppointmentType =
   | "New Patient Assessment & Treatment"
   | "Routine Foot Care"
   | "Nail Care"
   | "Other / Unsure";
 
-type ServiceLocation = "Bristol" | "Southampton";
 
 type FormState = {
   location: ServiceLocation;
@@ -68,12 +73,18 @@ export default function EnquiryForm() {
       return;
     }
 
+    const postcodeValidation = validateServicePostcode(data.postcode, data.location);
+    if (!postcodeValidation.valid) {
+      setError(postcodeValidation.message);
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const messageLines = [
         `Service location: ${data.location}`,
-        `Postcode: ${data.postcode}`,
+        `Postcode: ${postcodeValidation.postcode}`,
         `Phone: ${data.phone}`,
         `Appointment type: ${data.appointmentType}`,
         `Appointment details: ${data.appointmentDetails}`,
@@ -88,6 +99,7 @@ export default function EnquiryForm() {
           name: data.fullName,
           email: data.email,
           location: data.location,
+          postcode: postcodeValidation.postcode,
           message: messageLines.join("\n"),
         }),
       });
@@ -140,6 +152,13 @@ export default function EnquiryForm() {
   }
 
   const isSouthampton = data.location === "Southampton";
+  const currentPostcodeValidation = data.postcode.trim()
+    ? validateServicePostcode(data.postcode, data.location)
+    : null;
+  const suggestedLocation =
+    error && currentPostcodeValidation && !currentPostcodeValidation.valid
+      ? currentPostcodeValidation.suggestedLocation
+      : undefined;
   const submitLabel = isSouthampton
     ? "Register Southampton interest"
     : "Request a Bristol appointment";
@@ -156,8 +175,24 @@ export default function EnquiryForm() {
       </div>
 
       {error ? (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-          {error}
+        <div
+          id="enquiry-error"
+          role="alert"
+          className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+        >
+          <p>{error}</p>
+          {suggestedLocation ? (
+            <button
+              type="button"
+              className="mt-2 font-semibold underline underline-offset-4"
+              onClick={() => {
+                update("location", suggestedLocation);
+                setError(null);
+              }}
+            >
+              Change service location to {suggestedLocation}
+            </button>
+          ) : null}
         </div>
       ) : null}
 
@@ -176,7 +211,7 @@ export default function EnquiryForm() {
         </select>
         {isSouthampton ? (
           <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/60">
-            Southampton launches on 20 October 2026. This registers your interest.
+            Southampton launches on 7 November 2026. This registers your interest.
           </p>
         ) : null}
       </div>
@@ -204,8 +239,16 @@ export default function EnquiryForm() {
             className={fieldClass}
             autoComplete="postal-code"
             required
+            aria-invalid={Boolean(error && currentPostcodeValidation && !currentPostcodeValidation.valid)}
+            aria-describedby={error ? "enquiry-error" : undefined}
             value={data.postcode}
-            onChange={(event) => update("postcode", event.target.value)}
+            onChange={(event) => {
+              update("postcode", event.target.value);
+              if (error) setError(null);
+            }}
+            onBlur={() => {
+              if (data.postcode.trim()) update("postcode", normalisePostcode(data.postcode));
+            }}
           />
         </div>
       </div>
