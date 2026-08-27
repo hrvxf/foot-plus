@@ -17,7 +17,7 @@ const locationLinks = [
 
 export default function Footer() {
   return (
-    <footer id="site-footer" className="relative z-10 mt-8 overflow-hidden bg-brand-sage text-white">
+    <footer id="site-footer" className="relative z-10 mt-8 w-full flex-none overflow-hidden bg-brand-sage text-white">
       <div className="absolute inset-0 bg-brand-sage bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px]" aria-hidden="true" />
       <div className="absolute inset-0 bg-brand-sage/72" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-black/8 via-transparent to-black/25" aria-hidden="true" />
