@@ -6,7 +6,6 @@ const exploreLinks = [
   { href: "/services", label: "Services" },
   { href: "/prices", label: "Prices" },
   { href: "/advice", label: "Advice" },
-  { href: "/about", label: "About Foot+" },
 ];
 
 const locationLinks = [
