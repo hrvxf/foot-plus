@@ -68,7 +68,7 @@ export default function BristolLocationPage() {
         <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark">Home visits across Bristol</h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-brand-charcoal/75">Foot+ Bristol covers central, north, south and east Bristol, with nearby towns considered by request. Travel within central Bristol is included; any wider-area supplement is confirmed before booking.</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href="/areas-we-cover" variant="outline">View Bristol areas covered</Button>
+          <Button href="/locations/bristol/areas-we-cover" variant="outline">View Bristol areas covered</Button>
           <Button href="/prices" variant="outline">View prices</Button>
         </div>
       </section>
