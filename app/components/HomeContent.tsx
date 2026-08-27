@@ -22,9 +22,9 @@ const trustChips = [
 ];
 
 const steps = [
-  { t: "1) Choose your location", d: "See your local practitioner, coverage and availability." },
-  { t: "2) Tell us what you need", d: "Request a Bristol appointment or register for Southampton." },
-  { t: "3) Confirm the next step", d: "Your local Foot+ service will confirm suitability, timing and pricing." },
+  { t: "Choose your location", d: "See your local practitioner, coverage and availability." },
+  { t: "Tell us what you need", d: "Request a Bristol appointment or register for Southampton." },
+  { t: "Confirm the next step", d: "Your local Foot+ service will confirm suitability, timing and pricing." },
 ];
 
 export default function HomeContent() {
