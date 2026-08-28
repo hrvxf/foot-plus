@@ -24,36 +24,42 @@ export default function Footer() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/20" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-6xl px-6 py-5 md:py-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr_1.05fr] lg:items-start">
-          <div className="max-w-sm">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.3fr_0.95fr_1.05fr] lg:items-start lg:gap-7">
+          <div>
             <Link href="/" aria-label="Foot+ home" className="flex w-fit text-white">
               <Image
                 src="/images/footplus-generic-logo_MASTER_FINAL.svg"
                 alt="Foot+"
                 width={188}
                 height={59}
-                className="h-10 w-auto md:h-11"
+                className="h-11 w-auto md:h-12"
               />
             </Link>
+          </div>
+
+          <div className="border-t border-white/18 pt-6 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55">General enquiries</p>
             <a
               href={emailHref}
-              className="mt-3 flex w-fit text-sm font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white"
+              className="mt-2 flex w-fit text-base font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white"
               data-analytics-id="footer-general-email"
             >
               {emailDisplay}
             </a>
-            <p className="mt-1 text-xs text-white/60">General enquiries for all locations</p>
+            <p className="mt-1.5 text-xs leading-relaxed text-white/60">Shared inbox for Bristol and Southampton</p>
             <a
               href="https://www.facebook.com/profile.php?id=61586341484139"
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-white/75 transition hover:text-white"
+              className="group mt-4 inline-flex items-center gap-3 text-sm font-semibold text-white/75 transition hover:text-white"
               aria-label="Visit Foot+ on Facebook"
               data-analytics-id="footer-facebook"
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
-                <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
-              </svg>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-brand-sage transition-transform group-hover:-translate-y-0.5">
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+                  <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
+                </svg>
+              </span>
               Facebook
             </a>
           </div>
