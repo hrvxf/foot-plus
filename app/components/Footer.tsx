@@ -25,7 +25,7 @@ export default function Footer() {
 
       <div className="relative mx-auto max-w-6xl px-6 py-5 md:py-6">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.3fr_0.95fr_1.05fr] lg:items-start lg:gap-7">
-          <div>
+          <div className="lg:flex lg:h-full lg:items-center lg:justify-center">
             <Link href="/" aria-label="Foot+ home" className="flex w-fit text-white">
               <Image
                 src="/images/footplus-generic-logo_MASTER_FINAL.svg"
