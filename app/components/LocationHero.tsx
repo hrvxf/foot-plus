@@ -8,6 +8,7 @@ type LocationHeroProps = {
   description: string;
   primaryAction: { label: string; href: string };
   secondaryAction: { label: string; href: string };
+  contactActions?: { label: string; href: string; external?: boolean }[];
   practitioner: Practitioner;
 };
 
@@ -24,6 +25,7 @@ export default function LocationHero({
   description,
   primaryAction,
   secondaryAction,
+  contactActions,
   practitioner,
 }: LocationHeroProps) {
   return (
@@ -44,6 +46,21 @@ export default function LocationHero({
               <Button href={primaryAction.href} variant="solid">{primaryAction.label}</Button>
               <Button href={secondaryAction.href} variant="outline">{secondaryAction.label}</Button>
             </div>
+            {contactActions?.length ? (
+              <div className="mt-4 flex flex-wrap gap-3">
+                {contactActions.map((action) => (
+                  <a
+                    key={action.href}
+                    href={action.href}
+                    className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/45 bg-white/70 px-4 py-2 text-sm font-semibold text-brand-sageDark transition hover:border-brand-sageDark/35 hover:bg-white"
+                    target={action.external ? "_blank" : undefined}
+                    rel={action.external ? "noopener noreferrer" : undefined}
+                  >
+                    {action.label}
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <PractitionerProfile practitioner={practitioner} />

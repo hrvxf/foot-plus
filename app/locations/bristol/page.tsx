@@ -9,6 +9,7 @@ import { publishedLocalPartners } from "../../lib/partners";
 import { SITE_URL } from "../../lib/site";
 
 const canonical = `${SITE_URL}/locations/bristol`;
+const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
 
 export const metadata: Metadata = {
   title: { absolute: "Mobile Foot Health Practitioner Bristol | Foot+" },
@@ -84,6 +85,10 @@ export default function BristolLocationPage() {
         description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
         primaryAction={{ label: "Book in Bristol", href: "/book?location=bristol" }}
         secondaryAction={{ label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" }}
+        contactActions={[
+          { label: "WhatsApp Adam", href: bristolWhatsAppHref, external: true },
+          { label: "Email Foot+ Bristol", href: "mailto:bristol@foot-plus.co.uk" },
+        ]}
         practitioner={practitioner}
       />
 
