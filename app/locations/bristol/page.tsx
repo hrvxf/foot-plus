@@ -86,8 +86,8 @@ export default function BristolLocationPage() {
         primaryAction={{ label: "Book in Bristol", href: "/book?location=bristol" }}
         secondaryAction={{ label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" }}
         contactActions={[
-          { label: "WhatsApp Adam", href: bristolWhatsAppHref, external: true },
-          { label: "Email Foot+ Bristol", href: "mailto:bristol@foot-plus.co.uk" },
+          { label: "WhatsApp Adam", href: bristolWhatsAppHref, icon: "whatsapp", external: true },
+          { label: "Email Foot+ Bristol", href: "mailto:bristol@foot-plus.co.uk", icon: "email" },
         ]}
         practitioner={practitioner}
       />
