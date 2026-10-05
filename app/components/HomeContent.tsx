@@ -139,13 +139,6 @@ function Hero() {
             aria-hidden="true"
           >
             <div className="absolute inset-0 bg-linear-to-br from-brand-sage/20 to-brand-sageDeep/55" />
-            <Image
-              src="/images/foot-health-practitioner-home-visit-bristol.png"
-              alt=""
-              width={300}
-              height={560}
-              className="absolute -bottom-16 -right-8 h-[85%] w-auto opacity-20"
-            />
           </div>
 
           <div className="absolute left-5 top-6 h-[62%] w-[58%] overflow-hidden rounded-3xl bg-white shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)] md:left-20 md:top-10">
@@ -219,7 +212,7 @@ function Locations() {
               </div>
             </div>
             <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-white sm:h-auto sm:w-36 sm:rounded-2xl">
-              <Image src="/images/adam-james.webp" alt="" fill sizes="144px" className="object-cover object-[32%_15%]" />
+              <Image src="/images/adam-james.webp" alt="" fill sizes="144px" className="object-cover object-[center_20%]" />
             </div>
           </article>
 
