@@ -41,7 +41,7 @@ export default function EnquiryForm() {
   const [data, setData] = useState<FormState>({
     location: requestedLocation === "southampton" ? "Southampton" : "Bristol",
     fullName: "",
-    postcode: "",
+    postcode: normalisePostcode(searchParams.get("postcode") ?? ""),
     phone: "",
     email: "",
     appointmentType: "Other / Unsure",

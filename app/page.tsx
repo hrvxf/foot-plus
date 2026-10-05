@@ -1,4 +1,6 @@
 import HomeContent from "./components/HomeContent";
+import { homeFaqs } from "./lib/home";
+import { SITE_URL } from "./lib/site";
 
 export const metadata = {
   title: { absolute: "Foot+ | Professional Home-Visit Foot Care" },
@@ -18,6 +20,22 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
+  mainEntity: homeFaqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 export default function HomePage() {
-  return <HomeContent />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <HomeContent />
+    </>
+  );
 }

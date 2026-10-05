@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Phone } from "lucide-react";
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
+import { phoneDisplay, phoneHref } from "../lib/site";
 
 export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const shouldInvertLogoOnScroll = pathname === "/";
-  const invert = isScrolled && shouldInvertLogoOnScroll;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -39,12 +39,12 @@ export default function Header() {
 
   // ✅ Only elevation + border changes (no text shifts)
   const headerChrome = isScrolled
-    ? "border-white/25 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.55)]"
-    : "border-transparent shadow-none";
+    ? "border-brand-line shadow-[0_14px_40px_-26px_rgba(0,0,0,0.35)]"
+    : "border-brand-line shadow-none";
 
   // ✅ Glass comes in when scrolled
   const headerSurface = isScrolled
-    ? "bg-white/10 backdrop-blur-xl"
+    ? "bg-white/92 backdrop-blur-xl"
     : "bg-white";
 
   const linkBase =
@@ -60,7 +60,7 @@ export default function Header() {
   const activeBorder = "border-brand-sageDark";
 
   const bookButtonClasses =
-    "rounded-full bg-brand-sage px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDark";
+    "rounded-full bg-brand-sageDark px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDeep";
 
   return (
     <>
@@ -85,9 +85,7 @@ export default function Header() {
           <div className="flex h-full items-center">
             <Link href="/" className="flex items-center gap-3" aria-label="Foot+ home">
               <div
-                className={`${logoWrapper} ${
-                  invert ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]" : "text-brand-sageDark"
-                }`}
+                className={`${logoWrapper} text-brand-sageDark`}
               >
                 <AnimatedFootPlusLogo
                   key={logoKey}
@@ -98,7 +96,7 @@ export default function Header() {
             </Link>
           </div>
 
-          <div className="hidden items-center gap-9 md:flex">
+          <div className="hidden items-center gap-7 md:flex lg:gap-9">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -110,14 +108,31 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <a
+              className="hidden items-center gap-2 text-base font-semibold text-brand-sageDark hover:text-brand-sageDeep lg:inline-flex"
+              href={phoneHref}
+              data-analytics-id="header-phone"
+            >
+              <Phone className="h-4.5 w-4.5" aria-hidden="true" />
+              {phoneDisplay}
+            </a>
             <Link className={bookButtonClasses} href="/book">
-              Book
+              Book a visit
             </Link>
           </div>
 
+          <div className="flex items-center gap-2 md:hidden">
+          <a
+            href={phoneHref}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-sageLight/40 text-brand-sageDark"
+            aria-label={`Call Foot+ on ${phoneDisplay}`}
+            data-analytics-id="header-mobile-phone"
+          >
+            <Phone className="h-5 w-5" aria-hidden="true" />
+          </a>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-sageLight/40 text-sm font-semibold text-brand-sageDark"
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -143,6 +158,7 @@ export default function Header() {
               />
             </svg>
           </button>
+          </div>
         </nav>
       </header>
 
@@ -181,9 +197,12 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link className={bookButtonClasses} href="/book" onClick={() => setIsMenuOpen(false)}>
-                Book
+              <Link className={`${bookButtonClasses} mt-4 text-center`} href="/book" onClick={() => setIsMenuOpen(false)}>
+                Book a visit
               </Link>
+              <a className="mt-2 rounded-full border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark" href={phoneHref}>
+                Call {phoneDisplay}
+              </a>
             </div>
           </div>
         </div>
