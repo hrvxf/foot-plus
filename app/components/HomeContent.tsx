@@ -8,7 +8,6 @@ import {
   GraduationCap,
   HeartHandshake,
   Layers,
-  Phone,
   Plus,
   Scissors,
   ShieldCheck,
@@ -22,6 +21,9 @@ import { homeFaqs, homeServices, homeStandards, homeSteps, type HomeServiceIcon 
 import { serviceLocations } from "../lib/locations";
 import { phoneDisplay, phoneHref, prices } from "../lib/site";
 import LaunchCountdown from "./home/LaunchCountdown";
+import ClosingCta from "./site/ClosingCta";
+import MobileActions from "./site/MobileActions";
+import { btnGhost, btnOutlineWhite, btnPrimary, btnWhite, container, eyebrow, h2, textLink } from "./site/ui";
 import PostcodeChecker from "./home/PostcodeChecker";
 
 const serviceIcons: Record<HomeServiceIcon, LucideIcon> = {
@@ -61,17 +63,6 @@ const pricing = [
   },
 ];
 
-const container = "mx-auto w-full max-w-6xl px-5 sm:px-6";
-const eyebrow = "text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-sageDark";
-const h2 = "mt-2 font-heading text-[1.9rem] font-semibold leading-tight text-brand-sageDeep sm:text-4xl md:text-[2.6rem]";
-const btnBase =
-  "inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 text-base font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2";
-const btnPrimary = `${btnBase} bg-brand-sageDark text-white hover:bg-brand-sageDeep focus-visible:outline-brand-sageDark`;
-const btnGhost = `${btnBase} border-[1.5px] border-brand-sageLight bg-white text-brand-sageDeep hover:bg-brand-offwhite focus-visible:outline-brand-sageDark`;
-const btnWhite = `${btnBase} bg-white text-brand-sageDeep hover:bg-brand-offwhite focus-visible:outline-white`;
-const btnOutlineWhite = `${btnBase} border-[1.5px] border-white/60 text-white hover:bg-white/10 focus-visible:outline-white`;
-const textLink = "inline-flex items-center gap-2 font-semibold text-brand-sageDeep underline-offset-4 hover:underline";
-
 export default function HomeContent() {
   return (
     <div className="pb-[calc(env(safe-area-inset-bottom)+88px)] md:pb-0">
@@ -82,8 +73,8 @@ export default function HomeContent() {
       <Standards />
       <Advice />
       <Faq />
-      <ClosingCta />
-      <MobileActions />
+      <ClosingCta analyticsId="home" />
+      <MobileActions analyticsId="home" />
     </div>
   );
 }
@@ -466,53 +457,5 @@ function Faq() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ClosingCta() {
-  return (
-    <section className={`${container} mb-14 md:mb-20`} aria-labelledby="cta-heading">
-      <div className="relative isolate flex flex-col gap-7 overflow-hidden rounded-[2rem] bg-brand-sageDark px-6 py-9 text-white md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
-        <Image
-          src="/images/footplus-generic-logo_MASTER_FINAL.svg"
-          alt=""
-          width={420}
-          height={132}
-          className="pointer-events-none absolute -bottom-10 -right-8 -z-10 hidden h-56 w-auto opacity-[0.045] md:block"
-          aria-hidden="true"
-        />
-        <div>
-          <h2 id="cta-heading" className="font-heading text-[1.75rem] font-semibold leading-tight sm:text-4xl">
-            Ready for comfortable feet?
-          </h2>
-          <p className="mt-2 text-white/85">Book a home visit in Bristol, or join the Southampton launch list.</p>
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Link href="/book" className={btnWhite} data-analytics-id="home-cta-book">
-            Book a visit
-          </Link>
-          <a href={phoneHref} className={btnOutlineWhite} data-analytics-id="home-cta-phone">
-            <Phone className="h-5 w-5" aria-hidden="true" />
-            {phoneDisplay}
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MobileActions() {
-  return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-line bg-white/95 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-3 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
-      <div className="mx-auto flex max-w-md items-center gap-3">
-        <Link href="/book" className={`${btnPrimary} flex-1`} data-analytics-id="home-mobile-book">
-          Book a visit
-        </Link>
-        <a href={phoneHref} className={`${btnGhost} flex-1`} data-analytics-id="home-mobile-phone">
-          <Phone className="h-5 w-5" aria-hidden="true" />
-          Call
-        </a>
-      </div>
-    </div>
   );
 }

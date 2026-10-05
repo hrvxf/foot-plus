@@ -122,7 +122,7 @@ export default function BristolLocationPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-7 text-sm text-brand-charcoal/72">New patient appointments are £60; routine appointments are £55. <Link href="/prices" className="font-semibold text-brand-sageDark underline underline-offset-4">View appointment details and travel charges</Link>.</p>
+          <p className="mt-7 text-sm text-brand-charcoal/72">See <Link href="/services" className="font-semibold text-brand-sageDark underline underline-offset-4">all Foot+ foot care services</Link> for what each treatment involves. New patient appointments are £60; routine appointments are £55. <Link href="/prices" className="font-semibold text-brand-sageDark underline underline-offset-4">View appointment details and travel charges</Link>.</p>
           <div className="mt-7"><Button href="/book?location=bristol" variant="solid">Request a Bristol home visit</Button></div>
         </div>
       </section>

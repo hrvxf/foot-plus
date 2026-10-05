@@ -122,10 +122,10 @@ export default function LocalServicePage({ page }: { page: LocationPageData }) {
             ))}
           </div>
           <Link
-            href="/locations/bristol#bristol-services"
+            href="/services"
             className="mt-4 inline-block font-semibold text-brand-sageDark underline underline-offset-4"
           >
-            View all services
+            View all foot care services
           </Link>
         </CardSection>
 
