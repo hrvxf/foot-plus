@@ -86,6 +86,14 @@ export default function SouthamptonPage() {
         practitioner={practitioner}
       />
 
+      <section id="southampton-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="southampton-services-heading">
+        <div className="mx-auto max-w-[1360px] px-6 py-12 md:px-10 xl:px-14">
+          <h2 id="southampton-services-heading" className="font-heading text-3xl font-semibold text-brand-sageDark">Foot care services in Southampton</h2>
+          <p className="mt-5 max-w-3xl leading-relaxed text-brand-charcoal/72">Foot+ Southampton is preparing to offer routine nail and skin care at home with Katie Preston. Appointments are planned from 7 November 2026. Share the care you need and your postcode so we can confirm suitability and launch availability.</p>
+          <div className="mt-7 flex flex-wrap gap-4"><Button href="/book?location=southampton" variant="solid">Register your interest</Button><Button href="/services" variant="outline">Explore home-visit care</Button></div>
+        </div>
+      </section>
+
       <section id="southampton-coverage" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-brand-sageLight/10">
         <div className="mx-auto grid max-w-[1360px] gap-14 px-6 py-14 md:px-10 md:py-18 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:px-14">
           <div>

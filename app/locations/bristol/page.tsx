@@ -6,6 +6,8 @@ import LocalPartnerCard from "../../components/LocalPartnerCard";
 import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
+import { conditionPages } from "../../lib/condition-pages";
+import { locationPages } from "../../lib/location-pages";
 import { SITE_URL } from "../../lib/site";
 
 const canonical = `${SITE_URL}/locations/bristol`;
@@ -13,7 +15,7 @@ const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponen
 
 export const metadata: Metadata = {
   title: { absolute: "Mobile Foot Health Practitioner Bristol | Foot+" },
-  description: "Foot+ Bristol provides professional home-visit foot care across Bristol, with routine nail, skin and preventative foot-health support.",
+  description: "Foot+ Bristol provides professional home-visit foot care across Bristol, with toenail cutting, corn care, hard skin and preventative foot-health support.",
   alternates: { canonical },
   openGraph: {
     title: "Foot+ Bristol | Mobile Foot Health Practitioner",
@@ -63,7 +65,10 @@ export default function BristolLocationPage() {
     name: "Foot+ Bristol",
     url: canonical,
     areaServed: { "@type": "City", name: "Bristol" },
-    employee: { "@type": "Person", name: practitioner.name, jobTitle: practitioner.role },
+    parentOrganization: { "@id": `${SITE_URL}/#organization` },
+    telephone: "+447380301555",
+    email: "bristol@foot-plus.co.uk",
+    employee: { "@type": "Person", "@id": `${canonical}#adam-james`, name: practitioner.name, jobTitle: practitioner.role },
     priceRange: "££",
   };
 
@@ -92,16 +97,33 @@ export default function BristolLocationPage() {
         practitioner={practitioner}
       />
 
-      <section className="border-b border-brand-sageLight/30 bg-white" aria-labelledby="meet-adam">
+      <section id="meet-adam" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="meet-adam-heading">
         <div className="mx-auto grid max-w-[1360px] gap-8 px-6 py-12 md:px-10 md:py-14 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20 xl:px-14">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Your Bristol practitioner</p>
-            <h2 id="meet-adam" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Meet Adam</h2>
+            <h2 id="meet-adam-heading" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Meet Adam</h2>
           </div>
           <div className="grid gap-5 text-base leading-relaxed text-brand-charcoal/72 md:grid-cols-2 md:gap-10">
             <p>{practitioner.bio[0]}</p>
             <p>{practitioner.bio[1]}</p>
           </div>
+        </div>
+      </section>
+
+      <section id="bristol-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="bristol-services-heading">
+        <div className="mx-auto max-w-[1360px] px-6 py-14 md:px-10 xl:px-14">
+          <h2 id="bristol-services-heading" className="font-heading text-3xl font-semibold text-brand-sageDark">Foot care services in Bristol</h2>
+          <p className="mt-5 max-w-3xl leading-relaxed text-brand-charcoal/72">Adam provides routine toenail cutting, care for thickened nails, corns, calluses, hard skin and cracked heels during home visits. Care is assessed for suitability, with preventative checks and aftercare advice where appropriate.</p>
+          <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {conditionPages.map((service) => (
+              <li key={service.slug} className="border-t border-brand-sageLight/40 pt-4">
+                <Link href={`/${service.slug}`} className="font-semibold text-brand-sageDark underline underline-offset-4">{service.title}</Link>
+                <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">{service.description}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-7 text-sm text-brand-charcoal/72">New patient appointments are £60; routine appointments are £55. <Link href="/prices" className="font-semibold text-brand-sageDark underline underline-offset-4">View appointment details and travel charges</Link>.</p>
+          <div className="mt-7"><Button href="/book?location=bristol" variant="solid">Request a Bristol home visit</Button></div>
         </div>
       </section>
 
@@ -137,6 +159,16 @@ export default function BristolLocationPage() {
               ))}
             </ol>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-brand-sageLight/30 bg-white" aria-labelledby="bristol-neighbourhoods">
+        <div className="mx-auto max-w-[1360px] px-6 py-12 md:px-10 xl:px-14">
+          <h2 id="bristol-neighbourhoods" className="font-heading text-2xl font-semibold text-brand-sageDark">Local home-visit information</h2>
+          <p className="mt-4 text-brand-charcoal/72">Explore coverage and appointment information for your Bristol neighbourhood.</p>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {locationPages.map((area) => <li key={area.slug}><Link href={`/${area.slug}`} className="text-sm font-semibold text-brand-sageDark underline underline-offset-4">Foot care in {area.area}</Link></li>)}
+          </ul>
         </div>
       </section>
 

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Button from "../Button";
 import type { LocationPage as LocationPageData } from "../../lib/location-pages";
 import {
-  bookingHref,
   emailHref,
   phoneDisplay,
   phoneHref,
@@ -71,16 +70,16 @@ export default function LocalServicePage({ page }: { page: LocationPageData }) {
           <li>
             <Link
               className="font-semibold text-brand-sageDark underline underline-offset-4"
-              href="/"
+              href="/locations/bristol"
             >
-              Home
+              Foot+ Bristol
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
             <Link
               className="font-semibold text-brand-sageDark underline underline-offset-4"
-              href="/areas-we-cover"
+              href="/locations/bristol/areas-we-cover"
             >
               Areas We Cover
             </Link>
@@ -101,10 +100,10 @@ export default function LocalServicePage({ page }: { page: LocationPageData }) {
           {page.intro}
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href={bookingHref} variant="solid">
+          <Button href="/book?location=bristol" variant="solid">
             Book an appointment
           </Button>
-          <Button href="/services" variant="outline">
+          <Button href="/locations/bristol#bristol-services" variant="outline">
             View services
           </Button>
         </div>
@@ -123,7 +122,7 @@ export default function LocalServicePage({ page }: { page: LocationPageData }) {
             ))}
           </div>
           <Link
-            href="/services"
+            href="/locations/bristol#bristol-services"
             className="mt-4 inline-block font-semibold text-brand-sageDark underline underline-offset-4"
           >
             View all services
@@ -246,7 +245,7 @@ export default function LocalServicePage({ page }: { page: LocationPageData }) {
           can confirm current availability.
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href={bookingHref} variant="primary">
+          <Button href="/book?location=bristol" variant="primary">
             Book an appointment
           </Button>
           <a

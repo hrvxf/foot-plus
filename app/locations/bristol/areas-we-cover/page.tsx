@@ -5,7 +5,6 @@ import Button from "../../../components/Button";
 import CoverageMap from "../../../components/CoverageMap";
 import { locationPages, type LocationRegion } from "../../../lib/location-pages";
 import {
-  bookingHref,
   emailHref,
   phoneDisplay,
   phoneHref,
@@ -141,10 +140,10 @@ export default function AreasWeCoverPage() {
           Based in central Bristol, BS2
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href={bookingHref} variant="solid">
+          <Button href="/book?location=bristol" variant="solid">
             Book an appointment
           </Button>
-          <Button href="/services" variant="outline">
+          <Button href="/locations/bristol#bristol-services" variant="outline">
             View services
           </Button>
         </div>
@@ -217,7 +216,7 @@ export default function AreasWeCoverPage() {
           any supplement before booking.
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-          <Button href={bookingHref} variant="solid">
+          <Button href="/book?location=bristol" variant="solid">
             Check your postcode
           </Button>
           <Button href={emailHref} variant="outline">
@@ -235,7 +234,7 @@ export default function AreasWeCoverPage() {
           home.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href={bookingHref} variant="primary">
+          <Button href="/book?location=bristol" variant="primary">
             Book an appointment
           </Button>
           <Button href={phoneHref} variant="secondary">
