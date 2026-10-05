@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: "Foot+",
     url: SITE_URL,
@@ -91,12 +91,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const practitionerJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": `${SITE_URL}/about#adam-james`,
+    "@id": `${SITE_URL}/locations/bristol#adam-james`,
     name: "Adam James",
     jobTitle: "Foot Health Practitioner",
-    url: `${SITE_URL}/about`,
+    url: `${SITE_URL}/locations/bristol#meet-adam`,
     image: `${SITE_URL}/images/Adam-James.svg`,
-    worksFor: { "@id": `${SITE_URL}/#organization` },
+    worksFor: { "@id": `${SITE_URL}/locations/bristol#medicalbusiness` },
     knowsAbout: ["Routine foot care", "Toenail cutting", "Hard skin and callus care", "Corn care", "Cracked heel care"],
   };
 

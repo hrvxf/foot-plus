@@ -184,12 +184,17 @@ export default function ServicesPage() {
                 Clear aftercare
               </p>
               <p className="pb-5 text-sm leading-relaxed text-brand-charcoal/62">
-                Available through Foot+ Bristol and Foot+ Southampton.
+                Bristol appointments are available now. Foot+ Southampton launches on 7 November 2026.
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      <nav aria-label="Services by location" className="mx-auto grid max-w-[1360px] gap-6 px-6 py-10 md:grid-cols-2 md:px-10 xl:px-14">
+        <div><Link href="/locations/bristol#bristol-services" className="font-heading text-xl font-semibold text-brand-sageDark underline underline-offset-4">Foot care services in Bristol</Link><p className="mt-3 text-brand-charcoal/70">Home visits with Adam. Appointments available now.</p></div>
+        <div><Link href="/locations/southampton#southampton-services" className="font-heading text-xl font-semibold text-brand-sageDark underline underline-offset-4">Foot care services in Southampton</Link><p className="mt-3 text-brand-charcoal/70">Home visits with Katie, launching 7 November 2026. Register your interest ahead of launch.</p></div>
+      </nav>
 
       <section
         className="mx-auto max-w-[1360px] px-6 py-14 md:px-10 md:py-20 xl:px-14"

@@ -1,5 +1,5 @@
 export const SITE_URL = "https://foot-plus.co.uk";
-export const BUSINESS_ID = `${SITE_URL}/#medicalbusiness`;
+export const BUSINESS_ID = `${SITE_URL}/#organization`;
 
 // Advice pages share one stable, absolute social image so link unfurls are consistent.
 export const ADVICE_SOCIAL_IMAGE = `${SITE_URL}/foot-plus-advice-social-preview.png`;

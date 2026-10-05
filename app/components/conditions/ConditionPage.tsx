@@ -3,7 +3,7 @@ import Button from "../Button";
 import AuthorCard from "../AuthorCard";
 import type { ConditionPage as ConditionPageData } from "../../lib/condition-pages";
 import { isPublishedAdviceHref } from "../../lib/advice";
-import { bookingHref, emailHref, phoneDisplay, phoneHref, prices, serviceAreas } from "../../lib/site";
+import { emailHref, phoneDisplay, phoneHref, prices, serviceAreas } from "../../lib/site";
 
 const safetyItems = [
   "open wounds or bleeding",
@@ -18,13 +18,19 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
 
   return (
     <main className="mx-auto max-w-5xl px-6 pb-16 pt-12">
+      <nav aria-label="Breadcrumb" className="mb-5 text-sm text-brand-charcoal/65">
+        <Link href="/locations/bristol" className="font-semibold text-brand-sageDark underline underline-offset-4">Foot+ Bristol</Link>
+        <span aria-hidden="true"> / </span>
+        <Link href="/locations/bristol#bristol-services" className="font-semibold text-brand-sageDark underline underline-offset-4">Bristol services</Link>
+        <span aria-hidden="true"> / </span><span aria-current="page">{page.title}</span>
+      </nav>
       <section className="overflow-hidden rounded-3xl border border-brand-sageLight/35 bg-linear-to-br from-white via-white to-brand-sageLight/20 p-7 shadow-sm md:p-9">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark/75">Home visit foot care</p>
         <h1 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">{page.title}</h1>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">{page.intro}</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href={bookingHref} variant="solid">Book an appointment</Button>
-          <Button href="/services" variant="outline">Back to services</Button>
+          <Button href="/book?location=bristol" variant="solid">Book an appointment</Button>
+          <Button href="/locations/bristol#bristol-services" variant="outline">Back to services</Button>
         </div>
       </section>
 
@@ -98,7 +104,7 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
             <ul className="mt-3 space-y-2 text-sm text-brand-charcoal/75">
               {serviceAreas.map((area) => <li key={area.region}><strong className="text-brand-sageDark">{area.region}:</strong> {area.places}</li>)}
             </ul>
-            <Link href="/areas-we-cover" className="mt-3 inline-block text-sm font-semibold text-brand-sageDark underline">View areas covered</Link>
+            <Link href="/locations/bristol/areas-we-cover" className="mt-3 inline-block text-sm font-semibold text-brand-sageDark underline">View areas covered</Link>
           </section>
 
           <section className="rounded-2xl border border-brand-sageLight/30 bg-white p-5 shadow-sm">
@@ -131,7 +137,7 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
         <h2 className="font-heading text-2xl font-semibold">Book a home foot care appointment</h2>
         <p className="mt-2 text-sm text-white/85 md:text-base">Appointments take place in your home. Book online or contact Foot+ if you would like to ask a question first.</p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href={bookingHref} variant="primary">Book an appointment</Button>
+          <Button href="/book?location=bristol" variant="primary">Book an appointment</Button>
           <a className="inline-flex items-center justify-center rounded-xl border border-white/70 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10" href={phoneHref}>Call {phoneDisplay}</a>
           <a className="inline-flex items-center justify-center rounded-xl border border-white/70 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10" href={emailHref}>Email Foot+</a>
         </div>

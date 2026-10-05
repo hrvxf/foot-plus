@@ -117,7 +117,7 @@ export const conditionPages: ConditionPage[] = [
     ],
     related: [
       { title: "Callus removal", href: "/callus-removal-bristol" },
-      { title: "Routine foot care services", href: "/services" },
+      { title: "Routine foot care services", href: "/locations/bristol#bristol-services" },
     ],
     relatedAdvice: [{ title: "Corn, callus or verruca differences", href: "/advice/corn-callus-or-verruca" }],
   },
@@ -179,7 +179,7 @@ export const conditionPages: ConditionPage[] = [
       { question: "How often should I arrange routine foot care?", answer: "Many people book every six to eight weeks, but the right interval depends on nail growth and comfort." },
     ],
     related: [
-      { title: "Routine foot care services", href: "/services" },
+      { title: "Routine foot care services", href: "/locations/bristol#bristol-services" },
       { title: "Foot Health Practitioner home visits", href: "/" },
     ],
     relatedAdvice: [{ title: "Why toenails become thick", href: "/advice/why-toenails-become-thick" }, { title: "Toenail cutting intervals for older adults", href: "/advice/how-often-older-adults-should-cut-toenails" }],

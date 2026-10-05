@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type MouseEvent } from "react";
 
 const locations = [
-  { name: "Bristol", href: "/locations/bristol" },
-  { name: "Southampton", href: "/locations/southampton" },
+  { name: "Bristol", href: "/locations/bristol", status: "Appointments available now" },
+  { name: "Southampton", href: "/locations/southampton", status: "Launching 7 November 2026" },
 ];
 
 export default function LocationsChooser() {
@@ -48,9 +49,12 @@ export default function LocationsChooser() {
         aria-hidden="true"
       />
 
+      <div className="relative z-[3] w-full max-w-xl text-center">
+        <h1 className="font-heading text-3xl font-semibold text-white">Choose your local Foot+ service</h1>
+        <p className="mx-auto mb-8 mt-4 max-w-md text-sm leading-relaxed text-white/80">Professional home-visit foot care in Bristol, with Southampton launching on 7 November 2026.</p>
       <nav
         aria-label="Foot+ locations"
-        className="locations-actions relative grid h-14 w-full max-w-md grid-cols-2 overflow-hidden rounded-full border border-white/30 bg-white/[0.07] p-1 shadow-[0_18px_60px_-32px_rgba(0,0,0,0.9)] backdrop-blur-xl"
+        className="locations-actions relative mx-auto grid min-h-24 w-full max-w-xl grid-cols-2 overflow-hidden rounded-full border border-white/30 bg-white/[0.07] p-1 shadow-[0_18px_60px_-32px_rgba(0,0,0,0.9)] backdrop-blur-xl"
       >
         <span
           aria-hidden="true"
@@ -81,7 +85,8 @@ export default function LocationsChooser() {
               ].join(" ")}
             >
               <span className="relative pb-0.5">
-                {location.name}
+                <span className="block">{location.name}</span>
+                <span className="mt-1 block text-xs font-normal leading-relaxed text-white/80">{location.status}</span>
                 <span
                   aria-hidden="true"
                   className="absolute -bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-white/85 transition-[width,opacity] duration-200 group-hover:w-5 group-hover:opacity-100"
@@ -91,6 +96,8 @@ export default function LocationsChooser() {
           );
         })}
       </nav>
+      <Link href="/" className="mt-6 inline-block text-sm text-white/80 underline underline-offset-4">Back to Foot+ home</Link>
+      </div>
 
       <style jsx>{`
         .locations-overlay {
