@@ -56,3 +56,26 @@ export function validateServicePostcode(
 
   return { valid: true, postcode };
 }
+
+export type ServiceAreaCheck =
+  | { status: "invalid"; message: string }
+  | { status: "bristol" | "southampton" | "outside"; postcode: string };
+
+/**
+ * Broad, client-side area check used by the home page postcode checker.
+ * Exact coverage is always confirmed by the local service from the full address.
+ */
+export function checkServiceArea(value: string): ServiceAreaCheck {
+  const postcode = normalisePostcode(value);
+
+  if (!UK_POSTCODE_PATTERN.test(postcode)) {
+    return { status: "invalid", message: "Enter a full UK postcode, for example BS6 7QN." };
+  }
+
+  const outwardCode = postcode.split(" ")[0];
+
+  if (/^BS\d/.test(outwardCode)) return { status: "bristol", postcode };
+  if (/^SO\d/.test(outwardCode)) return { status: "southampton", postcode };
+
+  return { status: "outside", postcode };
+}

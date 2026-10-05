@@ -15,12 +15,8 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
 
   useLayoutEffect(() => {
     const svg = svgRef.current;
-    // eslint-disable-next-line no-console
-    console.log("AnimatedFootPlusLogo mount", { hasSvg: !!svg });
 
     if (!svg || typeof window === "undefined") {
-      // eslint-disable-next-line no-console
-      console.log("AnimatedFootPlusLogo abort: missing svg or window");
       return;
     }
 
@@ -41,11 +37,7 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
       const wordmark = q('[data-logo="wordmark"]');
       const plus = q('[data-logo="plus"]');
       const rawToes = q('[data-logo="toe"][data-toe]');
-      // eslint-disable-next-line no-console
-      console.log("toe count", rawToes.length);
       if (!rawToes.length) {
-        // eslint-disable-next-line no-console
-        console.log("AnimatedFootPlusLogo abort: no toes found");
         return;
       }
 
@@ -73,11 +65,6 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
 
       if (process.env.NODE_ENV === "development" && svg) {
         const toeGroups = svg.querySelectorAll('[data-logo="toe"][data-toe]');
-        // eslint-disable-next-line no-console
-        console.log("toe groups:", toeGroups.length, {
-          left: leftToes.length,
-          right: rightToes.length,
-        });
         const allElements = Array.from(
           svg.querySelectorAll("circle, ellipse, path, rect, g")
         );
@@ -94,11 +81,6 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
             computed.visibility === "hidden";
           return !insideToeGroup && !isHidden;
         });
-        // eslint-disable-next-line no-console
-        console.log(
-          "visible non-toe elements (check for rogue toe):",
-          visibleNonToeElements.slice(0, 40)
-        );
       }
 
       const primaryGroups = Array.from(new Set([...wordmark, ...plus]));
@@ -127,10 +109,6 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
       }
 
       const reducedMotion = mediaQuery?.matches ?? false;
-      // eslint-disable-next-line no-console
-      console.log("reducedMotion", reducedMotion, {
-        supported: !!mediaQuery,
-      });
 
       if (reducedMotion) {
         gsap.set(allTargets, {
@@ -207,8 +185,6 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
         if (allToes.length) {
           gsap.set(allToes, { autoAlpha: 1, scaleY: 1 });
         }
-        // eslint-disable-next-line no-console
-        console.log("AnimatedFootPlusLogo abort: no draw targets");
         return;
       }
 
@@ -327,15 +303,6 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
             () => {
               allToes.forEach((toe, index) => {
                 const styles = window.getComputedStyle(toe);
-                // eslint-disable-next-line no-console
-                console.log(
-                  index,
-                  toe.getAttribute("data-side"),
-                  toe.getAttribute("data-toe"),
-                  styles.display,
-                  styles.visibility,
-                  styles.opacity
-                );
               });
             },
             undefined,
@@ -346,11 +313,7 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
 
       timelineRef.current = timeline;
       timeline.play(0);
-      // eslint-disable-next-line no-console
-      console.log("timeline duration", timeline.duration());
       if (timeline.duration() === 0) {
-        // eslint-disable-next-line no-console
-        console.log("AnimatedFootPlusLogo warning: zero-duration timeline");
       }
     }, svg);
 
