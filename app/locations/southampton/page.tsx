@@ -59,15 +59,14 @@ export default function SouthamptonPage() {
     "@id": `${canonical}#service`,
     name: "Foot+ Southampton home-visit foot care",
     description: "Professional home-visit foot care launching in Southampton on 7 November 2026.",
-    provider: { "@id": `${SITE_URL}/#organization` },
+    provider: { "@id": `${canonical}#medicalbusiness` },
     areaServed: { "@type": "City", name: "Southampton" },
-    employee: { "@type": "Person", name: practitioner.name, jobTitle: practitioner.role },
     url: canonical,
   };
 
   return (
     <main className="overflow-hidden">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [serviceSchema, { "@type": "MedicalBusiness", "@id": `${canonical}#medicalbusiness`, name: "Foot+ Southampton", description: "Home-visit nail and foot care launching on 7 November 2026.", url: canonical, areaServed: { "@type": "City", name: "Southampton" }, parentOrganization: { "@id": `${SITE_URL}/#organization` }, employee: { "@id": `${SITE_URL}/about#katie-preston` } }, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <div className="mx-auto max-w-[1360px] px-6 pt-8 md:px-10 md:pt-10 xl:px-14">
         <nav aria-label="Breadcrumb" className="text-sm text-brand-charcoal/60">

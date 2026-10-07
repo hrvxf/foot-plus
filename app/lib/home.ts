@@ -18,7 +18,7 @@ export const homeServices: {
   {
     title: "Thickened nails",
     description: "Conservative reduction of thick or difficult nails, for comfort in shoes.",
-    href: "/advice/why-toenails-become-thick",
+    href: "/toenail-cutting-bristol#thickened-nails",
     icon: "thick",
   },
   {

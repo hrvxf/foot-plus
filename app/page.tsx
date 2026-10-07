@@ -3,19 +3,19 @@ import { homeFaqs } from "./lib/home";
 import { SITE_URL } from "./lib/site";
 
 export const metadata = {
-  title: { absolute: "Foot+ | Professional Home-Visit Foot Care" },
+  title: { absolute: "Foot+ | Professional Nail & Foot Care at Home" },
   description:
-    "Foot+ provides professional, respectful home-visit foot care through local services in Bristol and Southampton.",
+    "Professional toenail cutting and foot care in your home. Bristol appointments available with Adam James; Southampton opens on 7 November 2026.",
   keywords: ["Foot+", "home visit foot care", "mobile foot care"],
   openGraph: {
-    title: "Foot+ | Professional Foot Care, Brought Home",
-    description: "Professional home-visit foot care through trusted local Foot+ practitioners.",
+    title: "Foot+ | Professional Nail & Foot Care at Home",
+    description: "Nail cutting, thickened nail and routine skin care at home. Bristol appointments available; Southampton opens on 7 November 2026.",
     url: "/",
     siteName: "Foot+",
   },
   twitter: {
-    title: "Foot+ | Professional Foot Care, Brought Home",
-    description: "Professional home-visit foot care through trusted local Foot+ practitioners.",
+    title: "Foot+ | Professional Nail & Foot Care at Home",
+    description: "Nail cutting, thickened nail and routine skin care at home. Bristol appointments available; Southampton opens on 7 November 2026.",
   },
   alternates: { canonical: "/" },
 };

@@ -10,12 +10,14 @@ type Props = {
   text?: string;
   /** Prefix for data-analytics-id values, e.g. "home" or "services". */
   analyticsId: string;
+  bookingHref?: string;
 };
 
 export default function ClosingCta({
   title = "Ready for comfortable feet?",
   text = "Book a home visit in Bristol, or join the Southampton launch list.",
   analyticsId,
+  bookingHref = "/book",
 }: Props) {
   return (
     <section className={`${container} mb-14 md:mb-20`} aria-labelledby={`${analyticsId}-cta-heading`}>
@@ -35,7 +37,7 @@ export default function ClosingCta({
           <p className="mt-2 text-white/85">{text}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Link href="/book" className={btnWhite} data-analytics-id={`${analyticsId}-cta-book`}>
+          <Link href={bookingHref} className={btnWhite} data-analytics-id={`${analyticsId}-cta-book`}>
             Book a visit
           </Link>
           <a href={phoneHref} className={btnOutlineWhite} data-analytics-id={`${analyticsId}-cta-phone`}>

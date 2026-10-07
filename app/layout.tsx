@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AnalyticsClickTracker from "./components/AnalyticsClickTracker";
 
-import { SITE_URL } from "./lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "./lib/site";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,23 +22,17 @@ export const metadata = {
   },
 
   description:
-    "Foot+ provides professional home-visit foot care through local services in Bristol and Southampton.",
+    "Professional nail and foot care at home. Bristol appointments available; Foot+ Southampton opens on 7 November 2026.",
 
-  keywords: [
-    "Foot Health Practitioner Bristol",
-    "mobile foot care Bristol",
-    "home visit foot care Bristol",
-    "LGBT friendly foot care Bristol",
-    "LGBTQ friendly foot health Bristol",
-  ],
+  keywords: ["Foot+", "home visit nail care", "home visit foot care"],
 
   openGraph: {
     type: "website",
     url: `${SITE_URL}/`,
     siteName: "Foot+",
-    title: "Foot+ | Professional Foot Care, Brought Home",
+    title: "Foot+ | Professional Nail & Foot Care at Home",
     description:
-      "Professional home-visit foot care in Bristol and Southampton.",
+      "Nail and foot care at home in Bristol. Southampton opens on 7 November 2026.",
     images: [
       {
         url: "/images/social-card.png",
@@ -51,9 +45,9 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Foot+ | Professional Foot Care, Brought Home",
+    title: "Foot+ | Professional Nail & Foot Care at Home",
     description:
-      "Professional home-visit foot care in Bristol and Southampton.",
+      "Nail and foot care at home in Bristol. Southampton opens on 7 November 2026.",
     images: ["/images/social-card.png"],
   },
 
@@ -76,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     url: `${SITE_URL}/`,
     inLanguage: "en-GB",
     keywords:
-      "Foot Health Practitioner Bristol, mobile foot care Bristol, home visit foot care Bristol, LGBT friendly foot care Bristol, LGBTQ friendly foot health Bristol",
+      "Foot+, home visit nail care, home visit foot care",
   };
 
   const organizationJsonLd = {
@@ -91,12 +85,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const practitionerJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": `${SITE_URL}/locations/bristol#adam-james`,
+    "@id": ADAM_ID,
     name: "Adam James",
     jobTitle: "Foot Health Practitioner",
-    url: `${SITE_URL}/locations/bristol#meet-adam`,
+    url: `${SITE_URL}/about#adam-james`,
     image: `${SITE_URL}/images/Adam-James.svg`,
-    worksFor: { "@id": `${SITE_URL}/locations/bristol#medicalbusiness` },
+    worksFor: { "@id": BRISTOL_BUSINESS_ID },
+    hasCredential: { "@type": "EducationalOccupationalCredential", name: "Diploma in Foot Health" },
+    memberOf: [
+      { "@type": "Organization", name: "College of Foot Health Practitioners" },
+      { "@type": "Organization", name: "Association of Foot Health Practitioners" },
+    ],
     knowsAbout: ["Routine foot care", "Toenail cutting", "Hard skin and callus care", "Corn care", "Cracked heel care"],
   };
 

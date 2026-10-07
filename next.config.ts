@@ -5,12 +5,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/foot-health-practitioner-bristol",
-        destination: "/",
+        destination: "/locations/bristol",
         permanent: true,
       },
       {
         source: "/areas",
-        destination: "/areas-we-cover",
+        destination: "/locations/bristol/areas-we-cover",
         statusCode: 301,
       },
       {

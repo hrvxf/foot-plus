@@ -43,7 +43,7 @@ const adam = bristol.practitioner!;
 const katie = southampton.practitioner!;
 
 const latestAdvice = [...publishedAdviceArticles]
-  .sort((a, b) => b.datePublished.localeCompare(a.datePublished))
+  .sort((a, b) => Number(b.relatedServiceRoutes.some((link) => link.href === "/toenail-cutting-bristol")) - Number(a.relatedServiceRoutes.some((link) => link.href === "/toenail-cutting-bristol")) || b.dateModified.localeCompare(a.dateModified))
   .slice(0, 3);
 
 const pricing = [
@@ -89,11 +89,15 @@ function Hero() {
             id="home-heading"
             className="mt-3 font-heading text-[2.4rem] font-semibold leading-[1.08] tracking-[-0.01em] text-brand-sageDeep sm:text-5xl lg:text-[3.4rem]"
           >
-            Professional foot care, <span className="text-brand-sage">brought home.</span>
+            Professional nail and foot care, <span className="text-brand-sage">brought to your home.</span>
           </h1>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-brand-muted sm:text-xl">
-            Qualified Foot Health Practitioners who come to you, for nails, hard skin, corns and cracked heels,
-            without the trip to a clinic.
+            Help with toenail cutting and difficult nails, alongside care for hard skin, corns and cracked heels,
+            from qualified Foot Health Practitioners who come to you.
+          </p>
+
+          <p className="mt-5 text-base text-brand-muted">
+            Need help with your nails? <Link href="/toenail-cutting-bristol" className={textLink}>Explore toenail-cutting home visits in Bristol</Link>.
           </p>
 
           <div className="mt-7 max-w-xl">
@@ -218,7 +222,7 @@ function Locations() {
                 <LaunchCountdown launchAt="2026-11-07T09:00:00+00:00" />
               </div>
               <div className="mt-auto flex flex-col gap-3 sm:flex-row md:flex-col xl:flex-row">
-                <Link href="/southampton" className={btnPrimary} data-analytics-id="home-location-southampton">
+                <Link href="/book?location=southampton" className={btnPrimary} data-analytics-id="home-location-southampton">
                   Register your interest
                 </Link>
               </div>
