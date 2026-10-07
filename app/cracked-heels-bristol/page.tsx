@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ConditionPage from "../components/conditions/ConditionPage";
 import { canonicalFor, getConditionPage } from "../lib/condition-pages";
-import { BUSINESS_ID } from "../lib/site";
+import { BRISTOL_BUSINESS_ID } from "../lib/site";
 
 const page = getConditionPage("cracked-heels-bristol")!;
 
@@ -42,7 +42,7 @@ const structuredData = {
         name: "Bristol",
       },
       provider: {
-        "@id": BUSINESS_ID,
+        "@id": BRISTOL_BUSINESS_ID,
       },
       url: canonical,
     },

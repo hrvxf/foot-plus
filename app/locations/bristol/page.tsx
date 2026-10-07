@@ -8,13 +8,13 @@ import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
 import { locationPages } from "../../lib/location-pages";
-import { SITE_URL } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
 
 export const metadata: Metadata = {
-  title: { absolute: "Mobile Foot Health Practitioner Bristol | Foot+" },
+  title: { absolute: "Home Foot Care Bristol | Foot Health Practitioner | Foot+" },
   description: "Foot+ Bristol provides professional home-visit foot care across Bristol, with toenail cutting, corn care, hard skin and preventative foot-health support.",
   alternates: { canonical },
   openGraph: {
@@ -61,20 +61,20 @@ export default function BristolLocationPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": `${canonical}#medicalbusiness`,
+    "@id": BRISTOL_BUSINESS_ID,
     name: "Foot+ Bristol",
     url: canonical,
     areaServed: { "@type": "City", name: "Bristol" },
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     telephone: "+447380301555",
     email: "bristol@foot-plus.co.uk",
-    employee: { "@type": "Person", "@id": `${canonical}#adam-james`, name: practitioner.name, jobTitle: practitioner.role },
+    employee: { "@type": "Person", "@id": ADAM_ID, name: practitioner.name, jobTitle: practitioner.role },
     priceRange: "££",
   };
 
   return (
     <main className="overflow-hidden">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Bristol", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <div className="mx-auto max-w-[1360px] px-6 pt-8 md:px-10 md:pt-10 xl:px-14">
         <nav aria-label="Breadcrumb" className="text-sm text-brand-charcoal/60">
@@ -86,7 +86,7 @@ export default function BristolLocationPage() {
 
       <LocationHero
         eyebrow="Foot+ Bristol · Appointments available"
-        title="Mobile foot care in Bristol"
+        title="Home foot care in Bristol"
         description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
         primaryAction={{ label: "Book in Bristol", href: "/book?location=bristol" }}
         secondaryAction={{ label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" }}
@@ -105,7 +105,7 @@ export default function BristolLocationPage() {
           </div>
           <div className="grid gap-5 text-base leading-relaxed text-brand-charcoal/72 md:grid-cols-2 md:gap-10">
             <p>{practitioner.bio[0]}</p>
-            <p>{practitioner.bio[1]}</p>
+            <div><p>{practitioner.bio[1]}</p><Link href="/about#adam-james" className="mt-4 inline-block font-semibold text-brand-sageDark underline underline-offset-4">Adam’s qualifications and approach</Link></div>
           </div>
         </div>
       </section>
@@ -115,7 +115,7 @@ export default function BristolLocationPage() {
           <h2 id="bristol-services-heading" className="font-heading text-3xl font-semibold text-brand-sageDark">Foot care services in Bristol</h2>
           <p className="mt-5 max-w-3xl leading-relaxed text-brand-charcoal/72">Adam provides routine toenail cutting, care for thickened nails, corns, calluses, hard skin and cracked heels during home visits. Care is assessed for suitability, with preventative checks and aftercare advice where appropriate.</p>
           <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {conditionPages.map((service) => (
+            {[...conditionPages].sort((a, b) => Number(b.slug === "toenail-cutting-bristol") - Number(a.slug === "toenail-cutting-bristol")).map((service) => (
               <li key={service.slug} className="border-t border-brand-sageLight/40 pt-4">
                 <Link href={`/${service.slug}`} className="font-semibold text-brand-sageDark underline underline-offset-4">{service.title}</Link>
                 <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">{service.description}</p>

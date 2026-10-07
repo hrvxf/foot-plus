@@ -35,7 +35,7 @@ import { BUSINESS_ID, phoneDisplay, phoneHref, prices, SITE_URL } from "../lib/s
 const PAGE_URL = `${SITE_URL}/services`;
 const TITLE = "Home-Visit Foot Care Services in Bristol & Southampton | Foot+";
 const DESCRIPTION =
-  "Toenail cutting, thickened nails, corns, callus, hard skin and cracked heel care at home from qualified Foot Health Practitioners in Bristol and Southampton.";
+  "Toenail cutting, thickened nails, corns and routine skin care at home. Bristol available now; Foot+ Southampton opens on 7 November 2026.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -95,7 +95,8 @@ const structuredData = {
         "@type": "Offer",
         priceCurrency: "GBP",
         price: prices[1].price.replace(/[^0-9.]/g, ""),
-        description: "Routine home-visit appointment",
+        description: "Returning-patient routine home visit. Southampton launches on 7 November 2026; any travel charge is confirmed before booking.",
+        url: `${SITE_URL}/prices`,
       },
     })),
     {
@@ -480,7 +481,7 @@ function Locations() {
               Home visits with {southampton.practitioner?.name}. Register your interest to hear first when appointments open.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <Link href="/southampton" className={btnPrimary} data-analytics-id="services-location-southampton">
+              <Link href="/book?location=southampton" className={btnPrimary} data-analytics-id="services-location-southampton">
                 Register your interest
               </Link>
               <Link href="/locations/southampton" className={btnGhost}>

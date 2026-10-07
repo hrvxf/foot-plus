@@ -4,11 +4,11 @@ import { bookingHref, prices, SITE_URL } from "../lib/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home Visit Foot Care Prices | Foot+",
+  title: "Home Visit Nail & Foot Care Prices",
   alternates: { canonical: `${SITE_URL}/prices` },
   openGraph: { url: `${SITE_URL}/prices` },
   description:
-    "Clear Foot+ home-visit prices for new and returning patients in Bristol and Southampton.",
+    "Home nail and foot care: £60 for a first visit and £55 for a routine appointment. Bristol available now; Southampton opens on 7 November 2026.",
 };
 
 const pricingCards = [
@@ -99,11 +99,16 @@ export default function PricesPage() {
             CLEAR PRICING · BRISTOL &amp; SOUTHAMPTON
           </p>
           <h1 className="mt-3 max-w-225 font-heading text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
-            Home visit foot care prices
+            Home visit nail and foot care prices
           </h1>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
             The same clear appointment prices apply across Foot+ Bristol and Foot+ Southampton. Select your location when enquiring so coverage and any travel charge can be confirmed.
           </p>
+        </div>
+
+        <div className="mt-6 max-w-3xl text-base leading-relaxed text-brand-charcoal/75">
+          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">What does a toenail-cutting visit cost?</h2>
+          <p className="mt-2">Nail care uses the same appointment prices: {prices[0].price} for your first visit and {prices[1].price} for returning patients. There is no separate nail-only price. Suitable routine skin care can be included within the appointment. <Link href="/toenail-cutting-bristol" className="font-semibold text-brand-sageDark underline underline-offset-4">See what Bristol toenail-cutting visits include</Link>, or explore <Link href="/services" className="font-semibold text-brand-sageDark underline underline-offset-4">all services</Link>.</p>
         </div>
 
         <div className="mt-7 grid items-stretch gap-5 lg:grid-cols-2">

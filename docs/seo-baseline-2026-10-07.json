@@ -1,0 +1,159 @@
+{
+  "capturedAt": "2026-10-07T09:46:59.507145+00:00",
+  "pages": [
+    {
+      "url": "https://foot-plus.co.uk",
+      "status": 200,
+      "location": null,
+      "title": [
+        "Foot+ | Professional Home-Visit Foot Care"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk"
+      ],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/locations/bristol",
+      "status": 200,
+      "location": null,
+      "title": [
+        "Mobile Foot Health Practitioner Bristol | Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk/locations/bristol"
+      ],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/toenail-cutting-bristol",
+      "status": 200,
+      "location": null,
+      "title": [
+        "Toenail Cutting Service in Bristol | Home Visits | Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk/toenail-cutting-bristol"
+      ],
+      "robots": [
+        "index, follow"
+      ]
+    },
+    {
+      "url": "https://foot-plus.co.uk/services",
+      "status": 200,
+      "location": null,
+      "title": [
+        "Home-Visit Foot Care Services in Bristol &amp; Southampton | Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk/services"
+      ],
+      "robots": [
+        "index, follow"
+      ]
+    },
+    {
+      "url": "https://foot-plus.co.uk/prices",
+      "status": 200,
+      "location": null,
+      "title": [
+        "Home Visit Foot Care Prices | Foot+ | Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk/prices"
+      ],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/about",
+      "status": 307,
+      "location": "/locations/bristol",
+      "title": [
+        "Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk"
+      ],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/areas",
+      "status": 301,
+      "location": "/areas-we-cover",
+      "title": [],
+      "canonical": [],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/areas-we-cover",
+      "status": 308,
+      "location": "/locations/bristol/areas-we-cover",
+      "title": [
+        "Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk"
+      ],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/locations/bristol/areas-we-cover",
+      "status": 200,
+      "location": null,
+      "title": [
+        "Areas We Cover in Bristol | Home Visits | Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk/locations/bristol/areas-we-cover"
+      ],
+      "robots": [
+        "index, follow"
+      ]
+    },
+    {
+      "url": "https://foot-plus.co.uk/locations/southampton",
+      "status": 200,
+      "location": null,
+      "title": [
+        "Mobile Foot Health Practitioner Southampton | Foot+"
+      ],
+      "canonical": [
+        "https://foot-plus.co.uk/locations/southampton"
+      ],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/sitemap.xml",
+      "status": 200,
+      "location": null,
+      "title": [],
+      "canonical": [],
+      "robots": []
+    },
+    {
+      "url": "https://foot-plus.co.uk/robots.txt",
+      "status": 200,
+      "location": null,
+      "title": [],
+      "canonical": [],
+      "robots": []
+    },
+    {
+      "url": "https://www.foot-plus.co.uk/toenail-cutting-bristol",
+      "status": 301,
+      "location": "https://foot-plus.co.uk/toenail-cutting-bristol",
+      "title": [],
+      "canonical": [],
+      "robots": []
+    },
+    {
+      "url": "http://foot-plus.co.uk/toenail-cutting-bristol",
+      "status": 308,
+      "location": "https://foot-plus.co.uk/toenail-cutting-bristol",
+      "title": [],
+      "canonical": [],
+      "robots": []
+    }
+  ]
+}

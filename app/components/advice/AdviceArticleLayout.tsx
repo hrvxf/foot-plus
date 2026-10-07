@@ -34,7 +34,7 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-brand-charcoal/75 md:text-xl">{article.intro}</p>
           {article.introAdditional?.map((paragraph) => <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/70" key={paragraph}>{paragraph}</p>)}
           <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-brand-sageLight/30 pt-5 text-sm text-brand-charcoal/55">
-            <time dateTime={article.dateModified}>Updated {article.dateModified}</time><span aria-hidden="true">·</span><span>{article.readingTime}</span><span aria-hidden="true">·</span><span>Reviewed by Adam James, Foot Health Practitioner</span>
+            <time dateTime={article.dateModified}>Updated {article.dateModified}</time><span aria-hidden="true">·</span><span>{article.readingTime}</span><span aria-hidden="true">·</span><Link href="/about#adam-james" className="underline underline-offset-4">Adam James, Foot Health Practitioner</Link>
           </div>
         </header>
       </div>

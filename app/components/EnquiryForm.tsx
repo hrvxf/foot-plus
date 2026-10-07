@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { trackAdviceEvent } from "./advice/AdviceTracker";
 
 import {
   normalisePostcode,
@@ -44,7 +45,7 @@ export default function EnquiryForm() {
     postcode: normalisePostcode(searchParams.get("postcode") ?? ""),
     phone: "",
     email: "",
-    appointmentType: "Other / Unsure",
+    appointmentType: searchParams.get("service") === "nails" ? "Nail Care" : "Other / Unsure",
     appointmentDetails: "",
     accessNotes: "",
     heardAboutUs: "",
@@ -109,6 +110,12 @@ export default function EnquiryForm() {
       }
 
       setIsSubmitted(true);
+      trackAdviceEvent("generate_lead", {
+        method: "enquiry_form",
+        service_location: data.location.toLowerCase(),
+        service_interest: data.appointmentType === "Nail Care" ? "nail_care" : "routine_foot_care",
+        lead_type: data.location === "Southampton" ? "launch_interest" : "appointment_enquiry",
+      });
     } catch {
       setError("Something went wrong. Please try again or contact us directly.");
     } finally {

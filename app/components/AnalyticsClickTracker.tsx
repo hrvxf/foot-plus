@@ -1,5 +1,36 @@
 "use client";
+
 import { useEffect } from "react";
-import { trackAdviceEvent } from "./advice/AdviceTracker";
-function typeFor(href:string){ if(href.startsWith("tel:")) return "phone_click"; if(href.startsWith("mailto:")) return "email_click"; if(href.includes("/book")) return "booking_click"; return undefined; }
-export default function AnalyticsClickTracker(){ useEffect(()=>{ const onClick=(e:MouseEvent)=>{ const a=(e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null; if(!a) return; const name=typeFor(a.getAttribute("href")||""); if(!name) return; trackAdviceEvent(name,{ destination:a.href, link_text:a.textContent?.trim().slice(0,80) }); }; document.addEventListener("click",onClick); return()=>document.removeEventListener("click",onClick);},[]); return null; }
+import { usePathname } from "next/navigation";
+import { captureAttribution, trackAdviceEvent } from "./advice/AdviceTracker";
+
+function typeFor(href: string) {
+  if (href.startsWith("tel:")) return "phone_click";
+  if (href.startsWith("mailto:")) return "email_click";
+  if (href.startsWith("https://wa.me/")) return "whatsapp_click";
+  if (href.startsWith("/book")) return "booking_click";
+  return undefined;
+}
+
+export default function AnalyticsClickTracker() {
+  const pathname = usePathname();
+  useEffect(() => {
+    captureAttribution();
+    const onClick = (event: MouseEvent) => {
+      const anchor = (event.target as Element | null)?.closest?.(
+        "a[href]",
+      ) as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const name = typeFor(anchor.getAttribute("href") || "");
+      if (!name) return;
+      trackAdviceEvent(name, {
+        source_page: pathname,
+        destination: anchor.href,
+        cta_id: anchor.dataset.analyticsId,
+      });
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [pathname]);
+  return null;
+}

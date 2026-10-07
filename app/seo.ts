@@ -1,5 +1,6 @@
 // Centralize absolute metadata URLs so social cards and schema stay in sync.
-export const SITE_URL = "https://foot-plus.co.uk";
+import { SITE_URL } from "./lib/site";
+export { SITE_URL };
 
 // Search engines and social platforms expect a stable absolute URL here.
 export const SEARCH_PREVIEW_IMAGE = `${SITE_URL}/WebsiteSearchThumbnail.png`;

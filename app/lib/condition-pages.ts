@@ -154,9 +154,9 @@ export const conditionPages: ConditionPage[] = [
   {
     slug: "toenail-cutting-bristol",
     title: "Toenail Cutting Service in Bristol",
-    metaTitle: "Toenail Cutting Service in Bristol | Home Visits",
+    metaTitle: "Toenail Cutting Bristol | At-Home Nail Care",
     description:
-      "Toenail cutting in Bristol with Foot+ home visits for difficult, thickened or awkward nails as part of professional foot and nail care.",
+      "Toenail cutting at home in Bristol with Adam James, qualified Foot Health Practitioner. First visit £60, routine visits £55. Check coverage and request a visit.",
     intro:
       "Professional foot and nail care for people who find toenail cutting difficult, provided in your Bristol home.",
     overview: [
@@ -176,11 +176,11 @@ export const conditionPages: ConditionPage[] = [
     faqs: [
       { question: "Can you help with thick toenails?", answer: "Yes, thickened nails can often be reduced and trimmed as part of professional foot and nail care." },
       { question: "Is this a pedicure?", answer: "No. It is professional foot care focused on comfort, nail maintenance and foot health rather than cosmetic treatment." },
-      { question: "How often should I arrange routine foot care?", answer: "Many people book every six to eight weeks, but the right interval depends on nail growth and comfort." },
+      { question: "How often should I arrange routine foot care?", answer: "The right interval depends on nail growth, comfort and individual foot-health needs. Adam can discuss a suitable routine at your appointment." },
     ],
     related: [
       { title: "Routine foot care services", href: "/locations/bristol#bristol-services" },
-      { title: "Foot Health Practitioner home visits", href: "/" },
+      { title: "Foot Health Practitioner home visits", href: "/locations/bristol" },
     ],
     relatedAdvice: [{ title: "Why toenails become thick", href: "/advice/why-toenails-become-thick" }, { title: "Toenail cutting intervals for older adults", href: "/advice/how-often-older-adults-should-cut-toenails" }],
   },
