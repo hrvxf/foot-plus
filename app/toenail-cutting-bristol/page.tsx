@@ -97,10 +97,10 @@ const faqs = [
   },
 ];
 const advice = [
-  "why-toenails-become-thick",
-  "how-often-older-adults-should-cut-toenails",
-  "what-happens-home-foot-health-appointment",
   "why-toenails-are-difficult-to-cut",
+  "how-often-older-adults-should-cut-toenails",
+  "thickened-toenails-causes-treatment-and-when-to-worry",
+  "what-happens-home-foot-health-appointment",
 ]
   .map(getAdviceArticle)
   .filter((article) => article !== undefined);
@@ -325,10 +325,10 @@ export default function ToenailCuttingPage() {
           service is needed.
         </p>
         <Link
-          href="/advice/why-toenails-become-thick"
+          href="/advice/thickened-toenails-causes-treatment-and-when-to-worry"
           className={`${textLink} mt-5 inline-block`}
         >
-          Read why toenails become thick
+          Read about thickened toenails
         </Link>
       </section>
       <section className="border-y border-brand-line bg-brand-wash">

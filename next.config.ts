@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/advice/why-toenails-become-thick",
+        destination: "/advice/thickened-toenails-causes-treatment-and-when-to-worry",
+        permanent: true,
+      },
+      {
         source: "/areas",
         destination: "/locations/bristol/areas-we-cover",
         statusCode: 301,
