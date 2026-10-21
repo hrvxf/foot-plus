@@ -182,7 +182,7 @@ export const conditionPages: ConditionPage[] = [
       { title: "Routine foot care services", href: "/locations/bristol#bristol-services" },
       { title: "Foot Health Practitioner home visits", href: "/locations/bristol" },
     ],
-    relatedAdvice: [{ title: "Why toenails become thick", href: "/advice/why-toenails-become-thick" }, { title: "Toenail cutting intervals for older adults", href: "/advice/how-often-older-adults-should-cut-toenails" }],
+    relatedAdvice: [{ title: "Thickened toenails: causes and treatment", href: "/advice/thickened-toenails-causes-treatment-and-when-to-worry" }, { title: "Toenail cutting intervals for older adults", href: "/advice/how-often-older-adults-should-cut-toenails" }],
   },
 ];
 

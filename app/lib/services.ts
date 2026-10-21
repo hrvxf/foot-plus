@@ -46,7 +46,7 @@ export const serviceDetails: ServiceDetail[] = [
     goodToKnow:
       "Routine nail care improves comfort but does not diagnose or treat every underlying cause, such as a fungal infection.",
     guide: { label: "Nail care in Bristol", href: "/toenail-cutting-bristol" },
-    advice: { label: "Why do toenails become thick?", href: "/advice/why-toenails-become-thick" },
+    advice: { label: "Thickened toenails: causes and treatment", href: "/advice/thickened-toenails-causes-treatment-and-when-to-worry" },
   },
   {
     id: "corns",
