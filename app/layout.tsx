@@ -149,7 +149,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className="min-h-screen bg-lightbg text-ink flex flex-col">
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-95QQQZ87QS"
+          src="https://www.googletagmanager.com/gtag/js?id=GT-NNS2WW3K"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
