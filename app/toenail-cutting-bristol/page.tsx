@@ -22,15 +22,34 @@ import {
   SITE_URL,
 } from "../lib/site";
 const canonical = `${SITE_URL}/toenail-cutting-bristol`;
-const title = "Toenail Cutting Bristol | At-Home Nail Care | Foot+";
-const description =
-  "Toenail cutting at home in Bristol with Adam James, qualified Foot Health Practitioner. First visit £60, routine visits £55. Check coverage and request a visit.";
+const title = "Toenail Cutting at Home in Bristol | Foot+";
+const description = `Professional toenail cutting at home across Bristol by a qualified Foot Health Practitioner. First visit ${prices[0].price}; returning visits from ${prices[1].price}. Request a visit.`;
+// Route-level openGraph/twitter objects replace the layout's, so restate the
+// site-wide social image, site name and card type here.
+const socialImage = {
+  url: "/images/social-card.png",
+  width: 1200,
+  height: 630,
+  alt: "Foot+ professional home-visit foot care",
+};
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
   alternates: { canonical },
-  openGraph: { url: canonical, title, description },
-  twitter: { title, description },
+  openGraph: {
+    type: "website",
+    siteName: "Foot+",
+    url: canonical,
+    title,
+    description,
+    images: [socialImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [socialImage.url],
+  },
   robots: { index: true, follow: true },
 };
 const included = [
