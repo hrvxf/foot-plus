@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AdviceTracker, { AdviceTrackedLink } from "./AdviceTracker";
-import { AdviceArticle, getAdviceArticle } from "../../lib/advice";
+import { AdviceArticle, AdviceNextStep, getAdviceArticle, getAdviceNextStep } from "../../lib/advice";
 
 function sectionId(heading: string) {
   return heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -15,9 +15,37 @@ export function AdviceSafetyNotice() {
   );
 }
 
+const pathOf = (href: string) => href.split("#")[0];
+
+// Treatment links fire advice_service_link_click via AdviceTrackedLink. The
+// booking link is a plain link: AnalyticsClickTracker already sends
+// booking_click (with source_page and cta_id) for every /book link, so adding
+// an advice event here would double-count the same click.
+function AdviceNextStepPanel({ slug, step }: { slug: string; step: AdviceNextStep }) {
+  const headingId = `next-step-${slug}`;
+  return (
+    <section aria-labelledby={headingId} className="border border-brand-sageLight/45 bg-white px-6 py-6 md:px-8">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark/65">Foot+ Bristol</p>
+      <h2 id={headingId} className="mt-2 font-heading text-2xl font-semibold text-brand-sageDark">{step.heading}</h2>
+      <p className="mt-3 max-w-2xl text-base leading-7 text-brand-charcoal/75">{step.summary}</p>
+      <div className="mt-5 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+        {step.treatments.map((link) => (
+          <AdviceTrackedLink key={link.href} href={link.href} eventName="advice_service_link_click" params={{ article_slug: slug, cta_type: "service", position: "next_step" }} className="text-sm font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4 transition hover:decoration-brand-sageDark">{link.label} →</AdviceTrackedLink>
+        ))}
+        {step.bookingHref ? (
+          <Link href={step.bookingHref} data-analytics-id={`advice-${slug}-book`} className="inline-flex min-h-11 items-center rounded-full bg-brand-sageDark px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-sageDark/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark">Request a home visit</Link>
+        ) : null}
+      </div>
+      {step.bookingHref ? <p className="mt-4 text-sm leading-6 text-brand-charcoal/60">Suitability, coverage and cost are confirmed before your visit.</p> : null}
+    </section>
+  );
+}
+
 export default function AdviceArticleLayout({ article }: { article: AdviceArticle }) {
   const related = article.relatedArticleSlugs.map(getAdviceArticle).filter(Boolean) as AdviceArticle[];
-  const serviceLinks = article.relatedServiceRoutes.filter((link) => link.kind !== "about" && link.kind !== "book");
+  const nextStep = getAdviceNextStep(article.slug);
+  const nextStepPaths = new Set(nextStep?.treatments.map((link) => pathOf(link.href)) ?? []);
+  const serviceLinks = article.relatedServiceRoutes.filter((link) => link.kind !== "about" && link.kind !== "book" && !nextStepPaths.has(pathOf(link.href)));
   const sections = article.sections.filter((section) => section.heading !== "Introduction" && section.heading !== "Sources and further reading");
 
   return (
@@ -86,6 +114,7 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
               <p className="mt-3 text-base leading-7 text-brand-charcoal/75 md:text-lg md:leading-8">{article.practitionerView}</p>
             </section>
             <AdviceSafetyNotice />
+            {nextStep ? <AdviceNextStepPanel slug={article.slug} step={nextStep} /> : null}
             <section>
               <h2 className="font-heading text-3xl font-semibold text-brand-sageDark">Common questions</h2>
               <div className="mt-5 border-t border-brand-sageLight/35">

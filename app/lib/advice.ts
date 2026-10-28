@@ -452,6 +452,53 @@ export const adviceArticles: AdviceArticle[] = [
 export const publishedAdviceArticles = adviceArticles.filter((a) => a.isPublished && a.approvalStatus === "approved");
 export const draftAdviceArticles = adviceArticles.filter((a) => !a.isPublished || a.approvalStatus !== "approved");
 export function getAdviceArticle(slug: string) { return publishedAdviceArticles.find((a) => a.slug === slug); }
+
+// End-of-article "next step" for commercially relevant guides: the most
+// relevant Bristol treatment page and, only where booking is a natural next
+// step, a home-visit request link. Omit bookingHref where a direct booking
+// prompt could compete with diagnostic or safety advice.
+export type AdviceNextStep = {
+  heading: string;
+  summary: string;
+  treatments: { href: string; label: string }[];
+  bookingHref?: string;
+};
+const nailBooking = "/book?location=bristol&service=nails";
+export const adviceNextSteps: Record<string, AdviceNextStep> = {
+  "why-toenails-are-difficult-to-cut": {
+    heading: "Toenail cutting at home in Bristol",
+    summary: "If cutting your own toenails has become difficult, Foot+ provides careful routine toenail cutting and filing during a home visit.",
+    treatments: [{ href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" }],
+    bookingHref: nailBooking,
+  },
+  "thickened-toenails-causes-treatment-and-when-to-worry": {
+    heading: "Thickened-nail care at home in Bristol",
+    summary: "Where suitable, Foot+ can trim and conservatively reduce thickened toenails during a home visit. Routine care manages the nail; it does not diagnose or cure an underlying cause.",
+    treatments: [{ href: "/toenail-cutting-bristol#thickened-nails", label: "Thickened-nail care in Bristol" }],
+    bookingHref: nailBooking,
+  },
+  "how-often-older-adults-should-cut-toenails": {
+    heading: "Routine toenail care at home in Bristol",
+    summary: "Foot+ provides routine toenail cutting at home, which can help when reach, eyesight or hand strength make home cutting harder.",
+    treatments: [{ href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" }],
+    bookingHref: nailBooking,
+  },
+  "corn-callus-or-verruca": {
+    heading: "Corn and callus care at home in Bristol",
+    summary: "Foot+ provides routine corn and callus care where suitable. A suspected verruca, or a change you are unsure about, may need pharmacy, GP or podiatry advice instead.",
+    treatments: [
+      { href: "/corn-removal-bristol", label: "Corn treatment in Bristol" },
+      { href: "/callus-removal-bristol", label: "Callus removal in Bristol" },
+    ],
+  },
+  "hard-skin-on-feet": {
+    heading: "Hard-skin care at home in Bristol",
+    summary: "Where suitable, Foot+ reduces hard skin and callus during a home visit and offers practical advice to help keep feet comfortable between appointments.",
+    treatments: [{ href: "/hard-skin-treatment-bristol", label: "Hard skin treatment in Bristol" }],
+    bookingHref: "/book?location=bristol",
+  },
+};
+export function getAdviceNextStep(slug: string) { return adviceNextSteps[slug]; }
 export function isPublishedAdviceHref(href: string) { return publishedAdviceArticles.some((article) => href === `/advice/${article.slug}`); }
 export function adviceCanonical(slug = "") { return `${SITE_URL}/advice${slug ? `/${slug}` : ""}`; }
 export function adviceMetadata(article: AdviceArticle): Metadata {
