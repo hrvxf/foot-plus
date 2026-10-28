@@ -149,7 +149,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className="min-h-screen bg-lightbg text-ink flex flex-col">
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-7X749Z34XF"
+          src="https://www.googletagmanager.com/gtag/js?id=G-95QQQZ87QS"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -157,7 +157,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-7X749Z34XF');
+            gtag('config', 'G-95QQQZ87QS');
           `}
         </Script>
         <Script id="meta-pixel" strategy="afterInteractive">
