@@ -157,7 +157,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-95QQQZ87QS');
+            gtag('config', 'GT-NNS2WW3K');
           `}
         </Script>
         <Script id="meta-pixel" strategy="afterInteractive">
