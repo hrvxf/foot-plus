@@ -10,11 +10,11 @@ const canonical = `${SITE_URL}/locations/southampton`;
 
 export const metadata: Metadata = {
   title: { absolute: "Mobile Foot Health Practitioner Southampton | Foot+" },
-  description: "Foot+ Southampton launches professional home-visit foot care on 7 November 2026. Learn about the service and register your interest.",
+  description: "Professional home-visit nail and foot care in Southampton with Katie Preston, Foot Health Practitioner. Check your postcode and request an appointment.",
   alternates: { canonical },
   openGraph: {
-    title: "Foot+ Southampton | Launching 7 November 2026",
-    description: "Professional home-visit foot care is coming to Southampton.",
+    title: "Foot+ Southampton | Home-visit foot care",
+    description: "Professional home-visit nail and foot care in Southampton.",
     url: canonical,
     siteName: "Foot+",
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 const processSteps = [
   {
-    title: "Register your interest",
+    title: "Send your enquiry",
     text: "Share your postcode, contact details and the support you are looking for.",
   },
   {
@@ -31,22 +31,22 @@ const processSteps = [
   },
   {
     title: "Arrange your visit",
-    text: "Southampton appointments begin from 7 November 2026.",
+    text: "Katie visits you at home at an agreed time.",
   },
 ];
 
 const faqs = [
   {
-    question: "When does Foot+ Southampton launch?",
-    answer: "Home-visit appointments are planned to begin on 7 November 2026.",
+    question: "Are Foot+ Southampton appointments available now?",
+    answer: "Yes. Send your postcode and the type of care you are looking for, and Foot+ will confirm coverage and availability.",
   },
   {
-    question: "Can I register before the launch?",
-    answer: "Yes. Send your postcode and the type of care you are looking for so Foot+ can contact you about availability.",
+    question: "Who will visit me?",
+    answer: "Southampton home visits are provided by Katie Preston, a Foot Health Practitioner.",
   },
   {
     question: "Will appointments take place at home?",
-    answer: "Yes. Foot+ Southampton is being developed as a home-visit foot-care service.",
+    answer: "Yes. Foot+ Southampton is a home-visit foot-care service.",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function SouthamptonPage() {
     "@type": "Service",
     "@id": `${canonical}#service`,
     name: "Foot+ Southampton home-visit foot care",
-    description: "Professional home-visit foot care launching in Southampton on 7 November 2026.",
+    description: "Professional home-visit nail and foot care in Southampton.",
     provider: { "@id": `${canonical}#medicalbusiness` },
     areaServed: { "@type": "City", name: "Southampton" },
     url: canonical,
@@ -66,7 +66,7 @@ export default function SouthamptonPage() {
 
   return (
     <main className="overflow-hidden">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [serviceSchema, { "@type": "MedicalBusiness", "@id": `${canonical}#medicalbusiness`, name: "Foot+ Southampton", description: "Home-visit nail and foot care launching on 7 November 2026.", url: canonical, areaServed: { "@type": "City", name: "Southampton" }, parentOrganization: { "@id": `${SITE_URL}/#organization` }, employee: { "@id": `${SITE_URL}/about#katie-preston` } }, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [serviceSchema, { "@type": "MedicalBusiness", "@id": `${canonical}#medicalbusiness`, name: "Foot+ Southampton", description: "Home-visit nail and foot care in Southampton.", url: canonical, areaServed: { "@type": "City", name: "Southampton" }, parentOrganization: { "@id": `${SITE_URL}/#organization` }, employee: { "@id": `${SITE_URL}/about#katie-preston` } }, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <div className="mx-auto max-w-[1360px] px-6 pt-8 md:px-10 md:pt-10 xl:px-14">
         <nav aria-label="Breadcrumb" className="text-sm text-brand-charcoal/60">
@@ -77,10 +77,10 @@ export default function SouthamptonPage() {
       </div>
 
       <LocationHero
-        eyebrow="Foot+ Southampton · Launching 7 November 2026"
+        eyebrow="Foot+ Southampton · Appointments available now"
         title="Home-visit foot care in Southampton"
         description="Professional foot care in the comfort of your own home, delivered with expertise, dignity and genuine care."
-        primaryAction={{ label: "Register your interest", href: "/book?location=southampton" }}
+        primaryAction={{ label: "Request a home visit", href: "/book?location=southampton" }}
         secondaryAction={{ label: "View coverage", href: "#southampton-coverage" }}
         practitioner={practitioner}
       />
@@ -88,8 +88,8 @@ export default function SouthamptonPage() {
       <section id="southampton-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="southampton-services-heading">
         <div className="mx-auto max-w-[1360px] px-6 py-12 md:px-10 xl:px-14">
           <h2 id="southampton-services-heading" className="font-heading text-3xl font-semibold text-brand-sageDark">Foot care services in Southampton</h2>
-          <p className="mt-5 max-w-3xl leading-relaxed text-brand-charcoal/72">Foot+ Southampton is preparing to offer routine nail and skin care at home with Katie Preston. Appointments are planned from 7 November 2026. Share the care you need and your postcode so we can confirm suitability and launch availability.</p>
-          <div className="mt-7 flex flex-wrap gap-4"><Button href="/book?location=southampton" variant="solid">Register your interest</Button><Button href="/services" variant="outline">Explore home-visit care</Button></div>
+          <p className="mt-5 max-w-3xl leading-relaxed text-brand-charcoal/72">Foot+ Southampton offers routine nail and skin care at home with Katie Preston. Share the care you need and your postcode so we can confirm suitability and availability.</p>
+          <div className="mt-7 flex flex-wrap gap-4"><Button href="/book?location=southampton" variant="solid">Request a home visit</Button><Button href="/services" variant="outline">Explore home-visit care</Button></div>
         </div>
       </section>
 
@@ -97,9 +97,9 @@ export default function SouthamptonPage() {
         <div className="mx-auto grid max-w-[1360px] gap-14 px-6 py-14 md:px-10 md:py-18 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:px-14">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Southampton coverage</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Launch coverage is being finalised</h2>
+            <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Check your postcode</h2>
             <p className="mt-5 max-w-xl leading-relaxed text-brand-charcoal/72">
-              Register with the appointment postcode and Foot+ will confirm whether it falls within the Southampton launch area. Specific districts and any travel supplements will be published once confirmed.
+              Send the appointment postcode and Foot+ will confirm whether it falls within the Southampton home-visit area. Any travel supplement is confirmed before booking.
             </p>
             <div className="mt-7">
               <Button href="/book?location=southampton" variant="outline">Check your postcode</Button>
@@ -148,11 +148,11 @@ export default function SouthamptonPage() {
 
         <section className="mb-20 border-y border-brand-sageDark bg-brand-sageDark px-7 py-9 text-white md:flex md:items-center md:justify-between md:gap-12 md:px-10 md:py-10">
           <div>
-            <h2 className="font-heading text-2xl font-semibold">Register for Southampton launch updates</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">Tell us your postcode and the support you are looking for. We will contact you about Southampton availability ahead of launch.</p>
+            <h2 className="font-heading text-2xl font-semibold">Book a home visit in Southampton</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">Tell us your postcode and the support you are looking for. We will confirm coverage, suitability and availability.</p>
           </div>
           <div className="mt-6 shrink-0 md:mt-0">
-            <Button href="/book?location=southampton" variant="primary">Register your interest</Button>
+            <Button href="/book?location=southampton" variant="primary">Request a home visit</Button>
           </div>
         </section>
       </div>

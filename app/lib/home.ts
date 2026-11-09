@@ -90,7 +90,7 @@ export const homeFaqs = [
   {
     question: "Which areas do you cover?",
     answer:
-      "Foot+ Bristol covers central, north, south and east Bristol, with nearby towns considered by request. Foot+ Southampton opens on 7 November 2026. Exact coverage is confirmed from the appointment postcode.",
+      "Foot+ Bristol covers central, north, south and east Bristol, with nearby towns considered by request. Foot+ Southampton offers home visits with Katie Preston. Exact coverage is confirmed from the appointment postcode.",
   },
   {
     question: "Can a relative or carer book or attend the appointment?",

@@ -6,7 +6,7 @@ import { useState, type MouseEvent } from "react";
 
 const locations = [
   { name: "Bristol", href: "/locations/bristol", status: "Appointments available now" },
-  { name: "Southampton", href: "/locations/southampton", status: "Launching 7 November 2026" },
+  { name: "Southampton", href: "/locations/southampton", status: "Appointments available now" },
 ];
 
 export default function LocationsChooser() {
@@ -51,7 +51,7 @@ export default function LocationsChooser() {
 
       <div className="relative z-[3] w-full max-w-xl text-center">
         <h1 className="font-heading text-3xl font-semibold text-white">Choose your local Foot+ service</h1>
-        <p className="mx-auto mb-8 mt-4 max-w-md text-sm leading-relaxed text-white/80">Professional home-visit foot care in Bristol, with Southampton launching on 7 November 2026.</p>
+        <p className="mx-auto mb-8 mt-4 max-w-md text-sm leading-relaxed text-white/80">Professional home-visit foot care in Bristol and Southampton.</p>
       <nav
         aria-label="Foot+ locations"
         className="locations-actions relative mx-auto grid min-h-24 w-full max-w-xl grid-cols-2 overflow-hidden rounded-full border border-white/30 bg-white/[0.07] p-1 shadow-[0_18px_60px_-32px_rgba(0,0,0,0.9)] backdrop-blur-xl"

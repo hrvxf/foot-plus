@@ -35,7 +35,7 @@ import { BUSINESS_ID, phoneDisplay, phoneHref, prices, SITE_URL } from "../lib/s
 const PAGE_URL = `${SITE_URL}/services`;
 const TITLE = "Home-Visit Foot Care Services in Bristol & Southampton | Foot+";
 const DESCRIPTION =
-  "Toenail cutting, thickened nails, corns and routine skin care at home. Bristol available now; Foot+ Southampton opens on 7 November 2026.";
+  "Toenail cutting, thickened nails, corns and routine skin care at home. Available in Bristol and Southampton.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -95,7 +95,7 @@ const structuredData = {
         "@type": "Offer",
         priceCurrency: "GBP",
         price: prices[1].price.replace(/[^0-9.]/g, ""),
-        description: "Returning-patient routine home visit. Southampton launches on 7 November 2026; any travel charge is confirmed before booking.",
+        description: "Returning-patient routine home visit. Any travel charge is confirmed before booking.",
         url: `${SITE_URL}/prices`,
       },
     })),
@@ -130,7 +130,7 @@ export default function ServicesPage() {
       <ClosingCta
         analyticsId="services"
         title="Book a home foot-care visit"
-        text="Bristol appointments are available now. Foot+ Southampton opens on 7 November 2026."
+        text="Appointments are available now in Bristol and Southampton."
       />
       <MobileActions analyticsId="services" />
     </div>
@@ -474,15 +474,15 @@ function Locations() {
           </article>
           <article className="rounded-3xl border border-brand-line bg-brand-offwhite p-6 sm:p-8">
             <span className="inline-flex rounded-full bg-[#F4EBD8] px-3 py-1 text-[13px] font-semibold text-[#6E5118]">
-              Opening {southampton.launchDate}
+              Appointments available now
             </span>
             <h3 className="mt-4 font-heading text-2xl font-semibold text-brand-sageDeep">Foot care in Southampton</h3>
             <p className="mt-2 leading-relaxed text-brand-muted">
-              Home visits with {southampton.practitioner?.name}. Register your interest to hear first when appointments open.
+              Home visits with {southampton.practitioner?.name}. Share your postcode and the care you need to arrange an appointment.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Link href="/book?location=southampton" className={btnPrimary} data-analytics-id="services-location-southampton">
-                Register your interest
+                Book in Southampton
               </Link>
               <Link href="/locations/southampton" className={btnGhost}>
                 About Foot+ Southampton

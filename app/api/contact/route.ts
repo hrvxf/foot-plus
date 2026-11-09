@@ -58,8 +58,7 @@ export async function POST(req: Request) {
 
     const to = locationRecipients[location];
     const from = `Foot+ Contact <${emailDisplay}>`;
-    const enquiryType =
-      location === "Southampton" ? "launch enquiry" : "appointment enquiry";
+    const enquiryType = "appointment enquiry";
     const subject = `New Foot+ ${location} ${enquiryType} — ${String(name).trim()}`;
 
     const html = `

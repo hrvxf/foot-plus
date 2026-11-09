@@ -116,16 +116,16 @@ function CheckResult({ result }: { result: ServiceAreaCheck }) {
             <MapPin className="h-4 w-4" aria-hidden="true" />
           </span>
           <p className="text-[15px] leading-snug text-brand-charcoal">
-            <strong className="font-semibold">Foot+ Southampton opens on 7 November 2026.</strong>{" "}
-            Register now to hear first when appointments open.
+            <strong className="font-semibold">Foot+ Southampton is now taking appointments.</strong>{" "}
+            Home visits with Katie Preston. We&rsquo;ll confirm coverage for {result.postcode} when you enquire.
           </p>
         </div>
         <Link
           href={`/book?location=southampton&postcode=${encodeURIComponent(result.postcode)}`}
           className={action}
-          data-analytics-id="home-postcode-register-southampton"
+          data-analytics-id="home-postcode-book-southampton"
         >
-          Register interest
+          Book in Southampton
         </Link>
       </div>
     );

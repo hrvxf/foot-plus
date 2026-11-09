@@ -114,12 +114,12 @@ function SouthamptonNotice() {
             Foot+ Southampton
           </p>
           <h1 className="mt-4 font-heading text-[clamp(2.4rem,6vw,4.2rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
-            Patient forms are not open yet
+            Southampton patient forms are not online yet
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-            Foot+ Southampton is not taking patients yet. If you have already submitted an
-            enquiry, it has been received and the Southampton team will contact you as the
-            service prepares to launch.
+            Foot+ Southampton is taking appointments. If you have already sent an enquiry, it
+            has been received and the Southampton team will contact you to arrange your visit
+            and any forms needed.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Link

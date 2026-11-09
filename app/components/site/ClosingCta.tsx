@@ -15,7 +15,7 @@ type Props = {
 
 export default function ClosingCta({
   title = "Ready for comfortable feet?",
-  text = "Book a home visit in Bristol, or join the Southampton launch list.",
+  text = "Book a home visit in Bristol or Southampton.",
   analyticsId,
   bookingHref = "/book",
 }: Props) {
