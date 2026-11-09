@@ -114,7 +114,7 @@ export default function EnquiryForm() {
         method: "enquiry_form",
         service_location: data.location.toLowerCase(),
         service_interest: data.appointmentType === "Nail Care" ? "nail_care" : "routine_foot_care",
-        lead_type: data.location === "Southampton" ? "launch_interest" : "appointment_enquiry",
+        lead_type: "appointment_enquiry",
       });
     } catch {
       setError("Something went wrong. Please try again or contact us directly.");
@@ -124,8 +124,6 @@ export default function EnquiryForm() {
   }
 
   if (isSubmitted) {
-    const isSouthampton = data.location === "Southampton";
-
     return (
       <div className="py-4 sm:py-8">
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/60">
@@ -135,9 +133,7 @@ export default function EnquiryForm() {
           Thank you, {data.fullName.split(" ")[0]}.
         </h2>
         <p className="mt-3 max-w-xl text-base leading-relaxed text-brand-charcoal/70">
-          {isSouthampton
-            ? "Your Southampton interest has been received. We’ll contact you as the service prepares to launch."
-            : "We aim to respond within 24–48 hours to arrange your Bristol appointment."}
+          {`We aim to respond within 24–48 hours to arrange your ${data.location} appointment.`}
         </p>
 
         <div className="mt-8 border-t border-brand-sageLight/30 pt-7">
@@ -158,7 +154,6 @@ export default function EnquiryForm() {
     );
   }
 
-  const isSouthampton = data.location === "Southampton";
   const currentPostcodeValidation = data.postcode.trim()
     ? validateServicePostcode(data.postcode, data.location)
     : null;
@@ -166,9 +161,7 @@ export default function EnquiryForm() {
     error && currentPostcodeValidation && !currentPostcodeValidation.valid
       ? currentPostcodeValidation.suggestedLocation
       : undefined;
-  const submitLabel = isSouthampton
-    ? "Register Southampton interest"
-    : "Request a Bristol appointment";
+  const submitLabel = `Request a ${data.location} appointment`;
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
@@ -216,11 +209,6 @@ export default function EnquiryForm() {
           <option>Bristol</option>
           <option>Southampton</option>
         </select>
-        {isSouthampton ? (
-          <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/60">
-            Southampton launches on 7 November 2026. This registers your interest.
-          </p>
-        ) : null}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">

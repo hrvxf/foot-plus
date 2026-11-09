@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/book` },
   openGraph: { url: `${SITE_URL}/book` },
   description:
-    "Request a Foot+ home-visit appointment in Bristol or register your interest for the Southampton launch.",
+    "Request a Foot+ home-visit appointment in Bristol or Southampton.",
 };
 
 const bookingSteps = [

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/prices` },
   openGraph: { url: `${SITE_URL}/prices` },
   description:
-    "Home nail and foot care: £60 for a first visit and £55 for a routine appointment. Bristol available now; Southampton opens on 7 November 2026.",
+    "Home nail and foot care: £60 for a first visit and £55 for a routine appointment. Available in Bristol and Southampton.",
 };
 
 const pricingCards = [
@@ -194,7 +194,7 @@ export default function PricesPage() {
             </div>
             <div className="border-t border-brand-sageLight/35 pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
               <h3 className="font-heading text-xl font-semibold text-brand-sageDark">Southampton</h3>
-              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">Appointments begin on 7 November 2026. Send the appointment postcode and Foot+ will confirm launch-area coverage and any travel supplement before your visit.</p>
+              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">Appointments are available now. Send the appointment postcode and Foot+ will confirm coverage and any travel supplement before your visit.</p>
               <Link className="mt-5 inline-flex font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4" href="/locations/southampton">View Southampton information →</Link>
             </div>
           </div>

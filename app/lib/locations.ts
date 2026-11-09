@@ -39,8 +39,7 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
     slug: "southampton",
     name: "Southampton",
     displayName: "Foot+ Southampton",
-    status: "launching",
-    launchDate: "7 November 2026",
+    status: "open",
     practitioner: {
       name: "Katie Preston",
       role: "Foot Health Practitioner",

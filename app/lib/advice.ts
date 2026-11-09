@@ -182,7 +182,7 @@ export const adviceArticles: AdviceArticle[] = [
       "heading": "Arranging your home visit",
       "body": [
         "Use the appointment enquiry page to share your postcode and the support you need. A relative or carer can help coordinate the visit, with appropriate consent from the person receiving care.",
-        "Foot+ confirms coverage, suitability, availability and cost. Bristol appointments are available now; Southampton opens on 7 November 2026."
+        "Foot+ confirms coverage, suitability, availability and cost. Appointments are available in Bristol and Southampton."
       ],
       "links": [
         {

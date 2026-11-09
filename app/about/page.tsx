@@ -127,10 +127,9 @@ export default function AboutPage() {
                     ))
                   ) : (
                     <p>
-                      Katie Preston is the practitioner for Foot+ Southampton,
-                      opening on 7 November 2026. Register your interest with
-                      your postcode to discuss the routine nail and skin care
-                      you need.
+                      Katie Preston is the practitioner for Foot+ Southampton.
+                      Share your postcode to arrange the routine nail and skin
+                      care you need.
                     </p>
                   )}
                 </div>
@@ -140,7 +139,7 @@ export default function AboutPage() {
                 >
                   {location.slug === "bristol"
                     ? "Bristol home visits and availability"
-                    : "Southampton launch information"}
+                    : "Southampton home visits and availability"}
                 </Link>
                 {location.slug === "bristol" ? (
                   <p className="mt-4">
@@ -209,8 +208,7 @@ export default function AboutPage() {
         <div className={`${container} py-12 md:py-16`}>
           <h2 className={h2}>Choose your local home-visit service</h2>
           <p className="mt-4 max-w-3xl leading-relaxed text-brand-muted">
-            Bristol appointments are available now. Southampton opens on 7
-            November 2026. Check{" "}
+            Appointments are available now in Bristol and Southampton. Check{" "}
             <Link href="/prices" className={textLink}>
               appointment prices
             </Link>{" "}

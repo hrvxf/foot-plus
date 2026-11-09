@@ -20,7 +20,6 @@ import { publishedAdviceArticles } from "../lib/advice";
 import { homeFaqs, homeServices, homeStandards, homeSteps, type HomeServiceIcon } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
 import { phoneDisplay, phoneHref, prices } from "../lib/site";
-import LaunchCountdown from "./home/LaunchCountdown";
 import ClosingCta from "./site/ClosingCta";
 import MobileActions from "./site/MobileActions";
 import { btnGhost, btnOutlineWhite, btnPrimary, btnWhite, container, eyebrow, h2, textLink } from "./site/ui";
@@ -214,16 +213,14 @@ function Locations() {
           <article className="flex flex-col-reverse gap-5 rounded-[1.75rem] border border-brand-line bg-white p-6 sm:flex-row sm:p-8">
             <div className="flex flex-1 flex-col">
               <span className="inline-flex w-fit rounded-full bg-[#F4EBD8] px-3 py-1 text-[13px] font-semibold text-[#6E5118]">
-                Opening {southampton.launchDate}
+                Appointments available now
               </span>
               <h3 className="mt-4 font-heading text-3xl font-semibold text-brand-sageDeep">{southampton.displayName}</h3>
               <p className="mt-1 text-[15px] text-brand-muted">With {katie.name}, {katie.role}</p>
-              <div className="mb-6 mt-4">
-                <LaunchCountdown launchAt="2026-11-07T09:00:00+00:00" />
-              </div>
+              <div className="mb-6" />
               <div className="mt-auto flex flex-col gap-3 sm:flex-row md:flex-col xl:flex-row">
                 <Link href="/book?location=southampton" className={btnPrimary} data-analytics-id="home-location-southampton">
-                  Register your interest
+                  Book in Southampton
                 </Link>
               </div>
             </div>
