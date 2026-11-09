@@ -11,6 +11,7 @@ export function AdviceSafetyNotice() {
     <aside className="border-l-2 border-amber-400 bg-amber-50/70 px-5 py-4 text-sm leading-relaxed text-brand-charcoal/75">
       <h2 className="font-heading text-lg font-semibold text-brand-sageDark">Safety note</h2>
       <p className="mt-1.5">This guide provides general information only. It does not diagnose your foot concern. Seek appropriate medical support for urgent symptoms, wounds, signs of infection, sudden severe pain or diabetic foot concerns.</p>
+      <p className="mt-1.5">If you need help urgently, contact your GP or call NHS 111. Call 999 for a medical emergency. If you have diabetes and notice a new wound, redness, swelling or colour change on your foot, seek same-day advice from your GP, diabetes team or NHS 111.</p>
     </aside>
   );
 }
@@ -62,8 +63,11 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-brand-charcoal/75 md:text-xl">{article.intro}</p>
           {article.introAdditional?.map((paragraph) => <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/70" key={paragraph}>{paragraph}</p>)}
           <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-brand-sageLight/30 pt-5 text-sm text-brand-charcoal/55">
-            <time dateTime={article.dateModified}>Updated {article.dateModified}</time><span aria-hidden="true">·</span><span>{article.readingTime}</span><span aria-hidden="true">·</span><Link href="/about#adam-james" className="underline underline-offset-4">Adam James, Foot Health Practitioner</Link>
+            <time dateTime={article.dateModified}>Updated {article.dateModified}</time><span aria-hidden="true">·</span><span>{article.readingTime}</span><span aria-hidden="true">·</span><Link href="/about#adam-james" className="underline underline-offset-4">Adam James, Dip FH, MCFHP, MAFHP</Link>
           </div>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-brand-charcoal/60">
+            Written by Adam James, a Diploma-trained Foot Health Practitioner and member of the College of Foot Health Practitioners and the Association of Foot Health Practitioners. Adam is fully insured and DBS checked. He is not a podiatrist or chiropodist, and this guide is not a substitute for an HCPC-registered clinician where one is needed.
+          </p>
         </header>
       </div>
 

@@ -24,8 +24,6 @@ export const metadata = {
   description:
     "Professional nail and foot care at home. Bristol appointments available; Foot+ Southampton opens on 7 November 2026.",
 
-  keywords: ["Foot+", "home visit nail care", "home visit foot care"],
-
   openGraph: {
     type: "website",
     url: `${SITE_URL}/`,
