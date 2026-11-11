@@ -48,7 +48,7 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
     name: "Southampton",
     displayName: "Foot+ Southampton",
     status: "open",
-    availability: "Appointments available now",
+    availability: "Taking new patients",
     // From the Foot+ Southampton Google Business Profile service area.
     coverage: "Southampton and nearby, including Romsey, Chandler's Ford, North Baddesley and Totton.",
     href: "/locations/southampton",
