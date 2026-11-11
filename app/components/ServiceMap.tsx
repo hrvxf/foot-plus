@@ -74,11 +74,11 @@ export default function ServiceMap() {
   const [mapReady, setMapReady] = useState(false);
 
   if (!apiKey) {
-    return <MapFallback message="Map unavailable — missing Google Maps API key." />;
+    return <MapFallback message="Map unavailable: missing Google Maps API key." />;
   }
 
   if (loadError) {
-    return <MapFallback message="Map failed to load — please try again." />;
+    return <MapFallback message="Map failed to load. Please try again." />;
   }
 
   if (!isLoaded) {
