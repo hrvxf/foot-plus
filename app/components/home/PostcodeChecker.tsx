@@ -8,7 +8,16 @@ import { checkServiceArea, type ServiceAreaCheck } from "../../lib/postcodes";
 import { emailHref, phoneDisplay, phoneHref } from "../../lib/site";
 import { trackAdviceEvent } from "../advice/AdviceTracker";
 
-export default function PostcodeChecker() {
+type PostcodeCheckerProps = {
+  /** Analytics prefix, so checks from different pages can be told apart. */
+  source?: string;
+  label?: string;
+};
+
+export default function PostcodeChecker({
+  source = "home",
+  label = "Check we visit your area",
+}: PostcodeCheckerProps = {}) {
   const inputId = useId();
   const resultId = useId();
   const [value, setValue] = useState("");
@@ -20,7 +29,7 @@ export default function PostcodeChecker() {
     setResult(check);
     if (check.status !== "invalid") {
       setValue(check.postcode);
-      trackAdviceEvent("home_postcode_check", {
+      trackAdviceEvent(`${source}_postcode_check`, {
         result: check.status,
         outward_code: check.postcode.split(" ")[0],
       });
@@ -33,7 +42,7 @@ export default function PostcodeChecker() {
     <div className="rounded-3xl border border-brand-line bg-white p-5 shadow-[0_24px_60px_-36px_rgba(36,48,40,0.45)] sm:p-6">
       <form onSubmit={onSubmit} noValidate>
         <label htmlFor={inputId} className="block text-[15px] font-semibold text-brand-sageDeep">
-          Check we visit your area
+          {label}
         </label>
         <div className="mt-3 flex flex-col gap-3 sm:flex-row">
           <input
@@ -65,13 +74,13 @@ export default function PostcodeChecker() {
       </form>
 
       <div id={resultId} aria-live="polite">
-        {result ? <CheckResult result={result} /> : null}
+        {result ? <CheckResult result={result} source={source} /> : null}
       </div>
     </div>
   );
 }
 
-function CheckResult({ result }: { result: ServiceAreaCheck }) {
+function CheckResult({ result, source }: { result: ServiceAreaCheck; source: string }) {
   if (result.status === "invalid") {
     return (
       <p className="mt-3 flex items-center gap-2 text-[15px] font-medium text-red-800">
@@ -100,7 +109,7 @@ function CheckResult({ result }: { result: ServiceAreaCheck }) {
         <Link
           href={`/book?location=bristol&postcode=${encodeURIComponent(result.postcode)}`}
           className={action}
-          data-analytics-id="home-postcode-book-bristol"
+          data-analytics-id={`${source}-postcode-book-bristol`}
         >
           Book in Bristol
         </Link>
@@ -123,7 +132,7 @@ function CheckResult({ result }: { result: ServiceAreaCheck }) {
         <Link
           href={`/book?location=southampton&postcode=${encodeURIComponent(result.postcode)}`}
           className={action}
-          data-analytics-id="home-postcode-book-southampton"
+          data-analytics-id={`${source}-postcode-book-southampton`}
         >
           Book in Southampton
         </Link>
