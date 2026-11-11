@@ -3,7 +3,13 @@ import type { Metadata } from "next";
 import { Check, Info, Mail, MapPin, Phone } from "lucide-react";
 import Button from "../../../components/Button";
 import PostcodeChecker from "../../../components/home/PostcodeChecker";
-import { locationPages } from "../../../lib/location-pages";
+import { locationPages, type LocationRegion } from "../../../lib/location-pages";
+import {
+  estimateTravel,
+  travelBands,
+  travelSummary,
+  type TravelBand,
+} from "../../../lib/travel";
 import {
   BRISTOL_BUSINESS_ID,
   emailHref,
@@ -15,7 +21,7 @@ import {
 const canonical = `${SITE_URL}/locations/bristol/areas-we-cover`;
 const metaTitle = "Areas We Cover in Bristol | Home Visits";
 const metaDescription =
-  "Check whether Foot+ visits your Bristol postcode. Home foot care across central, north, east and south Bristol, with travel included in central Bristol.";
+  "Check whether Foot+ visits your Bristol postcode and what travel costs. Free travel within 2 miles of our BS2 base, £5 across most of Bristol.";
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -26,79 +32,93 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-type Zone = {
-  id: string;
-  title: string;
-  travel: "included" | "supplement" | "request";
-  postcodes: string[];
-  places: string[];
-};
+type Direction = "Central" | "North" | "East" | "South" | "West";
 
-// Coverage mirrors the service areas already published in lib/site.ts.
-// Exact coverage and any travel supplement are always confirmed from the full postcode.
-const zones: Zone[] = [
-  {
-    id: "central",
-    title: "Central Bristol",
-    travel: "included",
-    postcodes: ["BS1", "BS2", "BS6", "BS8"],
-    places: [
-      "City Centre",
-      "Harbourside",
-      "Redcliffe",
-      "St Philips",
-      "Old Market",
-      "Stokes Croft",
-      "Clifton",
-      "Hotwells",
-      "Cotham",
-      "Redland",
-    ],
-  },
-  {
-    id: "north",
-    title: "North Bristol",
-    travel: "supplement",
-    postcodes: ["BS7", "BS9", "BS34"],
-    places: [
-      "Bishopston",
-      "Horfield",
-      "Ashley Down",
-      "Filton",
-      "Henleaze",
-      "Westbury-on-Trym",
-      "Stoke Bishop",
-      "Sneyd Park",
-    ],
-  },
-  {
-    id: "east",
-    title: "East Bristol",
-    travel: "supplement",
-    postcodes: ["BS5"],
-    places: ["Easton", "Barton Hill"],
-  },
-  {
-    id: "south",
-    title: "South Bristol",
-    travel: "supplement",
-    postcodes: ["BS3", "BS4"],
-    places: ["Bedminster", "Southville", "Totterdown", "Knowle", "Brislington"],
-  },
-  {
-    id: "further",
-    title: "Further afield",
-    travel: "request",
-    postcodes: ["BS15", "BS16", "BS31"],
-    places: ["Fishponds", "Kingswood", "Stoke Gifford", "Keynsham"],
-  },
+type Place = { name: string; direction: Direction; lat: number; lng: number };
+
+// Approximate neighbourhood centres. Each place's travel band is worked out with the
+// same estimate the postcode checker uses, so the list and the checker always agree.
+const extraPlaces: Place[] = [
+  { name: "City Centre", direction: "Central", lat: 51.4545, lng: -2.597 },
+  { name: "Harbourside", direction: "Central", lat: 51.449, lng: -2.6 },
+  { name: "Lawrence Hill", direction: "East", lat: 51.458, lng: -2.57 },
+  { name: "St Pauls", direction: "North", lat: 51.463, lng: -2.581 },
+  { name: "Stokes Croft", direction: "North", lat: 51.464, lng: -2.59 },
+  { name: "Kingsdown", direction: "North", lat: 51.461, lng: -2.594 },
+  { name: "Montpelier", direction: "North", lat: 51.468, lng: -2.588 },
+  { name: "St Werburghs", direction: "North", lat: 51.469, lng: -2.577 },
+  { name: "Redfield", direction: "East", lat: 51.459, lng: -2.559 },
+  { name: "St Annes", direction: "East", lat: 51.448, lng: -2.553 },
+  { name: "Windmill Hill", direction: "South", lat: 51.439, lng: -2.589 },
+  { name: "Hotwells", direction: "West", lat: 51.4495, lng: -2.6185 },
+  { name: "St George", direction: "East", lat: 51.46, lng: -2.545 },
+  { name: "Eastville", direction: "East", lat: 51.472, lng: -2.56 },
+  { name: "Knowle", direction: "South", lat: 51.432, lng: -2.57 },
+  { name: "Brislington", direction: "South", lat: 51.433, lng: -2.548 },
+  { name: "Horfield", direction: "North", lat: 51.488, lng: -2.585 },
+  { name: "Ashley Down", direction: "North", lat: 51.48, lng: -2.585 },
+  { name: "Lockleaze", direction: "North", lat: 51.488, lng: -2.562 },
+  { name: "Southmead", direction: "North", lat: 51.497, lng: -2.596 },
+  { name: "Filton", direction: "North", lat: 51.505, lng: -2.577 },
+  { name: "Henbury", direction: "North", lat: 51.507, lng: -2.627 },
+  { name: "Fishponds", direction: "East", lat: 51.481, lng: -2.527 },
+  { name: "Kingswood", direction: "East", lat: 51.456, lng: -2.505 },
+  { name: "Downend", direction: "East", lat: 51.487, lng: -2.496 },
+  { name: "Stoke Gifford", direction: "North", lat: 51.516, lng: -2.545 },
+  { name: "Bedminster Down", direction: "South", lat: 51.427, lng: -2.611 },
+  { name: "Bishopsworth", direction: "South", lat: 51.417, lng: -2.617 },
+  { name: "Hengrove", direction: "South", lat: 51.414, lng: -2.582 },
+  { name: "Keynsham", direction: "South", lat: 51.4135, lng: -2.498 },
+  { name: "Long Ashton", direction: "West", lat: 51.43, lng: -2.655 },
+  { name: "Portishead", direction: "West", lat: 51.484, lng: -2.766 },
+  { name: "Nailsea", direction: "West", lat: 51.43, lng: -2.758 },
+  { name: "Clevedon", direction: "West", lat: 51.442, lng: -2.854 },
+  { name: "Thornbury", direction: "North", lat: 51.609, lng: -2.524 },
+  { name: "Yate", direction: "East", lat: 51.54, lng: -2.411 },
 ];
 
-const travelLabel: Record<Zone["travel"], string> = {
-  included: "Travel included",
-  supplement: "Travel supplement may apply",
-  request: "By request only",
+const regionDirection: Record<LocationRegion, Direction> = {
+  "north-west": "North",
+  central: "Central",
+  east: "East",
+  south: "South",
 };
+
+const pagePlaces: Place[] = locationPages.map((page) => ({
+  name: page.area,
+  // Clifton, Redland and Cotham sit north-west of the centre rather than in it.
+  direction: ["Clifton"].includes(page.area)
+    ? "West"
+    : ["Redland", "Cotham"].includes(page.area)
+      ? "North"
+      : regionDirection[page.region],
+  lat: page.mapCoordinates.lat,
+  lng: page.mapCoordinates.lng,
+}));
+
+const places = [...pagePlaces, ...extraPlaces].map((place) => ({
+  ...place,
+  ...estimateTravel(place.lat, place.lng),
+}));
+
+const bandOrder: TravelBand[] = ["free", "standard", "extended"];
+const directionOrder: Direction[] = ["Central", "North", "East", "South", "West"];
+
+const bands = bandOrder.map((band) => {
+  const inBand = places
+    .filter((place) => place.band === band)
+    .sort((a, b) => a.roadMiles - b.roadMiles);
+  return {
+    band,
+    ...travelBands[band],
+    groups: directionOrder
+      .map((direction) => ({
+        direction,
+        places: inBand.filter((place) => place.direction === direction),
+      }))
+      .filter((group) => group.places.length),
+  };
+});
 
 const pageByArea = new Map(
   locationPages.map((page) => [page.area, `/${page.slug}`])
@@ -113,11 +133,11 @@ const faqs = [
   {
     question: "Is there a travel fee?",
     answer:
-      "Travel within central Bristol is included. Visits elsewhere in Bristol may have a small travel supplement, which is always confirmed before you book.",
+      `${travelSummary} Distances are by road, so the checker gives you an estimate for your exact postcode.`,
   },
   {
     question: "My area isn't listed. Can you still visit?",
-    answer: `Possibly. Nearby towns can be considered by request. Call ${phoneDisplay} or email Foot+ with your postcode.`,
+    answer: `Probably. The list is a guide, not a limit. Check your postcode above, or call ${phoneDisplay} or email Foot+ and we'll let you know.`,
   },
   {
     question: "Can a relative or carer book for someone else?",
@@ -149,10 +169,9 @@ const structuredData = {
       name: "Home-visit foot care in Bristol",
       serviceType: "Home visit foot care",
       provider: { "@id": BRISTOL_BUSINESS_ID },
-      areaServed: zones
-        .filter((zone) => zone.travel !== "request")
-        .flatMap((zone) => zone.places)
-        .map((name) => ({ "@type": "Place", name: `${name}, Bristol` })),
+      areaServed: places
+        .filter((place) => place.band !== "extended")
+        .map((place) => ({ "@type": "Place", name: place.name })),
       url: canonical,
     },
     {
@@ -197,7 +216,7 @@ export default function AreasWeCoverPage() {
           </h1>
           <p className="mt-3 max-w-lg text-base leading-relaxed text-brand-charcoal/75">
             Foot+ comes to you for routine foot and nail care. Check your
-            postcode, or find your area below.
+            postcode to see if we visit and what travel costs.
           </p>
           <p className="mt-4 inline-flex items-center text-sm font-semibold text-brand-sageDark">
             <MapPin aria-hidden="true" className="mr-1.5 h-4 w-4" />
@@ -205,13 +224,13 @@ export default function AreasWeCoverPage() {
           </p>
           <nav aria-label="Jump to an area" className="mt-6 hidden border-t border-brand-line pt-5 lg:block">
             <ul className="flex flex-wrap gap-2">
-              {zones.map((zone) => (
-                <li key={zone.id}>
+              {bands.map((band) => (
+                <li key={band.band}>
                   <a
-                    href={`#${zone.id}`}
+                    href={`#${band.band}`}
                     className="inline-flex min-h-9 items-center rounded-full bg-white px-3.5 text-sm font-semibold text-brand-sageDark ring-1 ring-brand-line transition hover:ring-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
                   >
-                    {zone.title}
+                    {band.label}
                   </a>
                 </li>
               ))}
@@ -231,14 +250,14 @@ export default function AreasWeCoverPage() {
             Where we visit
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-brand-charcoal/70">
-            Neighbourhoods are a guide. Your postcode decides coverage, and any
-            travel supplement is confirmed before you book.
+            Travel is charged by road distance from our BS2 base. Areas are
+            grouped by their centre, so check your postcode for your exact fee.
           </p>
         </div>
 
         <div className="mt-6 divide-y divide-brand-line overflow-hidden rounded-3xl border border-brand-sageLight/30 bg-white shadow-sm">
-          {zones.map((zone) => (
-            <ZoneRow key={zone.id} zone={zone} />
+          {bands.map((band) => (
+            <BandRow key={band.band} band={band} />
           ))}
         </div>
       </section>
@@ -306,56 +325,67 @@ export default function AreasWeCoverPage() {
   );
 }
 
-function ZoneRow({ zone }: { zone: Zone }) {
-  const included = zone.travel === "included";
-  const StatusIcon = included ? Check : Info;
+type Band = (typeof bands)[number];
+
+function BandRow({ band }: { band: Band }) {
+  const free = band.band === "free";
+  const StatusIcon = free ? Check : Info;
 
   return (
     <article
-      id={zone.id}
-      className={`grid scroll-mt-24 gap-4 p-5 md:grid-cols-[15rem_minmax(0,1fr)] md:gap-8 md:p-6 ${
-        included ? "bg-brand-wash/60" : ""
+      id={band.band}
+      className={`grid scroll-mt-24 gap-4 p-5 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-8 md:p-6 ${
+        free ? "bg-brand-wash/60" : ""
       }`}
     >
       <div>
-        <h3 className="font-heading text-lg font-semibold text-brand-sageDark">
-          {zone.title}
+        <h3 className="flex items-baseline gap-2 font-heading text-lg font-semibold text-brand-sageDark">
+          {band.label}
         </h3>
         <p
           className={`mt-1 inline-flex items-center gap-1.5 text-sm ${
-            included ? "font-semibold text-brand-sageDeep" : "text-brand-charcoal/70"
+            free ? "font-semibold text-brand-sageDeep" : "text-brand-charcoal/70"
           }`}
         >
           <StatusIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
-          {travelLabel[zone.travel]}
-        </p>
-        <p className="mt-1 text-xs font-semibold tracking-wide text-brand-charcoal/55">
-          {zone.postcodes.join(" · ")}
+          {band.range}
         </p>
       </div>
-      <ul className="flex flex-wrap content-start gap-2" aria-label={`${zone.title} neighbourhoods`}>
-        {zone.places.map((place) => {
-          const href = pageByArea.get(place);
-          const chip =
-            "inline-flex min-h-9 items-center rounded-full border bg-white px-3 text-sm";
-          return (
-            <li key={place}>
-              {href ? (
-                <Link
-                  href={href}
-                  className={`${chip} border-brand-sageLight/60 font-semibold text-brand-sageDark transition hover:border-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight`}
-                >
-                  {place}
-                </Link>
-              ) : (
-                <span className={`${chip} border-brand-line text-brand-charcoal/75`}>
-                  {place}
-                </span>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+      <div className="space-y-3">
+        {band.groups.map((group) => (
+          <div
+            key={group.direction}
+            className="grid gap-2 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:items-start"
+          >
+            <p className="pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand-charcoal/50">
+              {group.direction}
+            </p>
+            <ul className="flex flex-wrap gap-2" aria-label={`${band.label}: ${group.direction}`}>
+              {group.places.map((place) => {
+                const href = pageByArea.get(place.name);
+                const chip =
+                  "inline-flex min-h-9 items-center rounded-full border bg-white px-3 text-sm";
+                return (
+                  <li key={place.name}>
+                    {href ? (
+                      <Link
+                        href={href}
+                        className={`${chip} border-brand-sageLight/60 font-semibold text-brand-sageDark transition hover:border-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight`}
+                      >
+                        {place.name}
+                      </Link>
+                    ) : (
+                      <span className={`${chip} border-brand-line text-brand-charcoal/75`}>
+                        {place.name}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
     </article>
   );
 }

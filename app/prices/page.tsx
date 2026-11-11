@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Button from "../components/Button";
 import { bookingHref, prices, SITE_URL } from "../lib/site";
+import { travelSummary } from "../lib/travel";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -189,7 +190,7 @@ export default function PricesPage() {
           <div className="mt-7 grid gap-8 md:grid-cols-2 md:gap-0">
             <div className="md:pr-10">
               <h3 className="font-heading text-xl font-semibold text-brand-sageDark">Bristol</h3>
-              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">Travel within central Bristol is included. Appointments in surrounding Bristol or farther afield may incur a small supplement, confirmed before booking.</p>
+              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">{travelSummary}</p>
               <Link className="mt-5 inline-flex font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4" href="/locations/bristol/areas-we-cover">View Bristol coverage →</Link>
             </div>
             <div className="border-t border-brand-sageLight/35 pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
