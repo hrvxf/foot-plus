@@ -8,7 +8,7 @@ const relationshipLabels: Record<LocalPartner["relationship"], string> = {
 };
 
 export default function LocalPartnerCard({ partner }: { partner: LocalPartner }) {
-  const compactAreaLabel = partner.areasCovered?.join(" • ");
+  const compactAreaLabel = partner.areasCovered?.join(", ");
 
   return (
     <article className="grid gap-7 py-8 sm:grid-cols-[190px_1fr] sm:items-center md:gap-10">
@@ -25,24 +25,24 @@ export default function LocalPartnerCard({ partner }: { partner: LocalPartner })
       ) : null}
 
       <div className="min-w-0">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-sageDark/70">
+        <p className="text-base font-semibold text-brand-sageDeep">
           {relationshipLabels[partner.relationship]}
         </p>
-        <h3 className="mt-2 font-heading text-2xl font-semibold leading-tight text-brand-sageDark">{partner.name}</h3>
-        <p className="mt-1 text-sm font-semibold leading-snug text-brand-charcoal/70">{partner.category}</p>
+        <h3 className="mt-1 font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">{partner.name}</h3>
+        <p className="mt-1 text-base leading-6 text-brand-charcoal">{partner.category}</p>
         {compactAreaLabel ? (
-          <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-sageDark/70">{compactAreaLabel}</p>
+          <p className="mt-1 text-base leading-6 text-brand-muted">{compactAreaLabel}</p>
         ) : null}
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-brand-charcoal/75">{partner.description}</p>
-        <div className="mt-5 flex flex-col gap-3 text-sm font-semibold sm:flex-row sm:flex-wrap sm:items-center">
-          <a className="text-brand-sageDark underline decoration-brand-sageLight underline-offset-4 transition hover:decoration-brand-sageDark" href={partner.website} target="_blank" rel="noopener noreferrer">
+        <p className="mt-3 max-w-2xl text-base leading-6 text-brand-muted">{partner.description}</p>
+        <div className="mt-2 flex flex-col gap-x-6 text-base font-semibold sm:flex-row sm:flex-wrap sm:items-center">
+          <a className="inline-flex min-h-11 items-center text-brand-sageDeep underline decoration-brand-sage underline-offset-4" href={partner.website} target="_blank" rel="noopener noreferrer">
             Visit website
           </a>
           {partner.phone ? (
-            <a className="text-brand-charcoal/70 transition hover:text-brand-sageDark" href={`tel:${partner.phone.replace(/\s/g, "")}`}>Call {partner.phone}</a>
+            <a className="inline-flex min-h-11 items-center text-brand-sageDeep underline decoration-brand-sage underline-offset-4" href={`tel:${partner.phone.replace(/\s/g, "")}`}>Call {partner.phone}</a>
           ) : null}
           {partner.email ? (
-            <a className="text-brand-charcoal/70 transition hover:text-brand-sageDark" href={`mailto:${partner.email}`}>Email</a>
+            <a className="inline-flex min-h-11 items-center text-brand-sageDeep underline decoration-brand-sage underline-offset-4" href={`mailto:${partner.email}`}>Email</a>
           ) : null}
         </div>
       </div>

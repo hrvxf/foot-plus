@@ -1,4 +1,4 @@
-import { ArrowUpRight, Quote } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import {
   formatReviewMonth,
   getRating,
@@ -9,8 +9,7 @@ import {
 import Stars from "./Stars";
 
 /**
- * Rating summary above up to three review cards. On mobile the cards become a
- * swipeable row (no autoplay). Use scope "all" on shared pages and a location on
+ * Rating summary above up to three reviews in ruled columns. Use scope "all" on shared pages and a location on
  * that location's page. Renders nothing until the scope has reviews switched on.
  */
 export default function ReviewsSection({
@@ -28,56 +27,41 @@ export default function ReviewsSection({
   if (!rating || !shown.length) return null;
 
   return (
-    <section className="py-14 md:py-20" aria-labelledby={`${id}-heading`}>
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
+    <section className="py-12 md:py-20" aria-labelledby={`${id}-heading`}>
+      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
-          <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-sageDark">
-              Reviews
-            </p>
-            <h2
-              id={`${id}-heading`}
-              className="mt-2 font-heading text-[1.9rem] font-semibold leading-tight text-brand-sageDeep sm:text-4xl"
-            >
-              What patients say
-            </h2>
-          </div>
+          <h2
+            id={`${id}-heading`}
+            className="font-heading text-[1.625rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-sageDeep md:text-[2.125rem] md:leading-[1.15]"
+          >
+            What patients say
+          </h2>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-10">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-10">
             <div className="flex items-center gap-3">
-              <p className="font-heading text-5xl font-semibold leading-none text-brand-sageDeep">
+              <p className="font-heading text-[2.75rem] font-semibold leading-none tracking-[-0.02em] text-brand-sageDeep md:text-[3.25rem]">
                 {rating.average.toFixed(1)}
               </p>
               <div>
                 <Stars rating={rating.average} className="h-5 w-5" />
-                <p className="mt-1 text-sm text-brand-muted">
-                  from {rating.count} Google reviews
-                </p>
+                <p className="mt-1 text-base text-brand-muted">from {rating.count} Google reviews</p>
               </div>
             </div>
             <ReviewLinks links={links} analyticsPrefix={analyticsPrefix} />
           </div>
         </div>
 
-        <ul
-          className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3"
-          aria-label="Recent Google reviews"
-        >
+        {/* Ruled columns rather than cards, in line with the rest of the site. */}
+        <ul className="mt-8 grid gap-8 md:mt-10 md:grid-cols-3 md:gap-10" aria-label="Recent Google reviews">
           {shown.map((review) => (
-            <li
-              key={review.name + review.month}
-              className="flex w-[82%] shrink-0 snap-start flex-col rounded-3xl border border-brand-line bg-white p-6 shadow-[0_18px_40px_-32px_rgba(36,48,40,0.45)] sm:w-auto"
-            >
-              <div className="flex items-center justify-between">
-                <Stars rating={review.rating} />
-                <Quote className="h-5 w-5 text-brand-sageLight" aria-hidden="true" />
-              </div>
-              <blockquote className="mt-4 flex-1 text-[15.5px] leading-relaxed text-brand-charcoal">
+            <li key={review.name + review.month} className="flex flex-col border-t border-brand-charcoal/15 pt-5">
+              <Stars rating={review.rating} />
+              <blockquote className="mt-3 flex-1 text-[1.0625rem] leading-[1.55] text-brand-charcoal md:text-lg md:leading-7">
                 &ldquo;{review.text}&rdquo;
               </blockquote>
-              <p className="mt-5 text-sm">
+              <p className="mt-4 text-base">
                 <span className="font-semibold text-brand-sageDeep">{review.name}</span>
-                <span className="text-brand-muted"> · {formatReviewMonth(review.month)} · Google</span>
+                <span className="text-brand-muted">, {formatReviewMonth(review.month)}, on Google</span>
               </p>
             </li>
           ))}
@@ -88,9 +72,9 @@ export default function ReviewsSection({
 }
 
 const linkStrong =
-  "inline-flex items-center gap-1.5 font-semibold text-brand-sageDeep underline-offset-4 hover:underline";
+  "inline-flex min-h-11 items-center gap-1.5 font-semibold text-brand-sageDeep underline underline-offset-4";
 const linkQuiet =
-  "inline-flex items-center gap-1.5 text-brand-muted underline-offset-4 hover:text-brand-sageDeep hover:underline";
+  "inline-flex min-h-11 items-center gap-1.5 text-brand-muted underline underline-offset-4 hover:text-brand-sageDeep";
 
 function ReviewLinks({
   links,
@@ -105,7 +89,7 @@ function ReviewLinks({
   if (links.length === 1) {
     const [link] = links;
     return (
-      <div className="flex flex-col items-start gap-1.5 text-[15px]">
+      <div className="flex flex-col items-start text-base">
         <a href={link.readUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-read-all`} className={linkStrong}>
           Read all reviews on Google
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -119,7 +103,7 @@ function ReviewLinks({
   }
 
   return (
-    <div className="flex flex-col items-start gap-1.5 text-[15px]">
+    <div className="flex flex-col items-start text-base">
       <p className="font-semibold text-brand-sageDeep">
         Read reviews on Google:{" "}
         {links.map((link, index) => (

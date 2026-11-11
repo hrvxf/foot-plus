@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import Button from "../../components/Button";
 import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
 import { SITE_URL } from "../../lib/site";
-import ReviewsSection from "../../components/reviews/ReviewsSection";
-import PostcodeChecker from "../../components/home/PostcodeChecker";
 import { southamptonTravelSummary } from "../../lib/travel";
+import PostcodeChecker from "../../components/home/PostcodeChecker";
+import ReviewsSection from "../../components/reviews/ReviewsSection";
+import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
+import { body, btnSolid, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/southampton`;
 
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
     siteName: "Foot+",
   },
 };
+
+const section = "py-12 md:py-20";
 
 const processSteps = [
   {
@@ -68,19 +71,12 @@ export default function SouthamptonPage() {
   };
 
   return (
-    <main className="overflow-hidden">
+    <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [serviceSchema, { "@type": "MedicalBusiness", "@id": `${canonical}#medicalbusiness`, name: "Foot+ Southampton", description: "Home-visit nail and foot care in Southampton.", url: canonical, areaServed: { "@type": "City", name: "Southampton" }, parentOrganization: { "@id": `${SITE_URL}/#organization` }, employee: { "@id": `${SITE_URL}/about#katie-preston` } }, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
-      <div className="mx-auto max-w-[1360px] px-6 pt-8 md:px-10 md:pt-10 xl:px-14">
-        <nav aria-label="Breadcrumb" className="text-sm text-brand-charcoal/60">
-          <Link className="font-semibold text-brand-sageDark underline underline-offset-4" href="/locations">Locations</Link>
-          <span aria-hidden="true"> / </span>
-          <span aria-current="page">Southampton</span>
-        </nav>
-      </div>
-
       <LocationHero
-        eyebrow="Foot+ Southampton · Appointments available now"
+        place="Southampton"
+        status="Foot+ Southampton · Appointments available now"
         title="Home-visit foot care in Southampton"
         description="Professional foot care in the comfort of your own home, delivered with expertise, dignity and genuine care."
         primaryAction={{ label: "Request a home visit", href: "/book?location=southampton" }}
@@ -90,77 +86,72 @@ export default function SouthamptonPage() {
 
       <ReviewsSection scope="southampton" id="southampton-reviews" analyticsPrefix="southampton" />
 
-      <section id="southampton-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="southampton-services-heading">
-        <div className="mx-auto max-w-[1360px] px-6 py-12 md:px-10 xl:px-14">
-          <h2 id="southampton-services-heading" className="font-heading text-3xl font-semibold text-brand-sageDark">Foot care services in Southampton</h2>
-          <p className="mt-5 max-w-3xl leading-relaxed text-brand-charcoal/72">Foot+ Southampton offers routine nail and skin care at home with Katie Preston. Share the care you need and your postcode so we can confirm suitability and availability.</p>
-          <div className="mt-7 flex flex-wrap gap-4"><Button href="/book?location=southampton" variant="solid">Request a home visit</Button><Button href="/services" variant="outline">Explore home-visit care</Button></div>
+      <section id="southampton-services" className={`scroll-mt-24 bg-white ${section}`} aria-labelledby="southampton-services-heading">
+        <div className={shell}>
+          <h2 id="southampton-services-heading" className={displayH2}>
+            Foot care services in Southampton
+          </h2>
+          <p className={`${body} mt-4 max-w-[60ch]`}>
+            Foot+ Southampton offers routine nail and skin care at home with Katie Preston. Share the care you need and
+            your postcode so we can confirm suitability and availability.
+          </p>
+          <div className="mt-6 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-center">
+            <Link href="/book?location=southampton" className={btnSolid}>
+              Request a home visit
+            </Link>
+            <Link href="/services" className={linkQuiet}>
+              Explore home-visit care
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section id="southampton-coverage" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-brand-sageLight/10">
-        <div className="mx-auto grid max-w-[1360px] gap-14 px-6 py-14 md:px-10 md:py-18 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:px-14">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Southampton coverage</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Check your postcode</h2>
-            <p className="mt-5 max-w-xl leading-relaxed text-brand-charcoal/72">
+      <section id="southampton-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="southampton-coverage-heading">
+        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
+          <div className="lg:col-span-7">
+            <h2 id="southampton-coverage-heading" className={displayH2}>
+              Check your postcode
+            </h2>
+            <p className={`${body} mt-4 max-w-[52ch]`}>
               {serviceLocations.southampton.coverage} {southamptonTravelSummary}
             </p>
-            <div className="mt-7 max-w-xl">
-              <PostcodeChecker source="southampton" label="Postcode for the visit" />
-            </div>
           </div>
-
-          <div aria-labelledby="southampton-process">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">How it works</p>
-            <h2 id="southampton-process" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">A straightforward home visit</h2>
-            <ol className="relative mt-9 grid gap-7 md:grid-cols-3 md:gap-8">
-              <span className="absolute left-4 top-4 hidden h-px bg-brand-sageLight/70 md:block md:right-4" aria-hidden="true" />
-              {processSteps.map((step, index) => (
-                <li key={step.title} className="relative grid grid-cols-[2rem_1fr] gap-4 md:block md:pt-11">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-brand-sageLight/75 bg-white text-xs font-semibold text-brand-sageDark md:absolute md:left-0 md:top-0">
-                    {index + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold text-brand-sageDark">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/68">{step.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+          <div className="lg:col-span-5">
+            <PostcodeChecker
+              tone="panel"
+              source="southampton"
+              title="Do we visit you?"
+              label="Postcode for the visit"
+              helper="We’ll show any travel fee for your postcode."
+            />
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1360px] px-6 md:px-10 xl:px-14">
-        <section className="grid gap-8 py-14 md:grid-cols-[0.7fr_1.3fr] md:gap-16 md:py-18" aria-labelledby="southampton-faqs">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Useful information</p>
-            <h2 id="southampton-faqs" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark">Questions about Foot+ Southampton</h2>
-          </div>
-          <div className="border-b border-brand-sageLight/40">
-            {faqs.map((faq) => (
-              <details key={faq.question} className="group border-t border-brand-sageLight/40 py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold text-brand-sageDark [&::-webkit-details-marker]:hidden">
-                  <span>{faq.question}</span>
-                  <span className="text-2xl font-light leading-none text-brand-sageDark/60 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
-                </summary>
-                <p className="max-w-3xl pt-3 text-sm leading-relaxed text-brand-charcoal/70">{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
+      <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="southampton-process">
+        <div className={shell}>
+          <h2 id="southampton-process" className={displayH2}>
+            A straightforward home visit
+          </h2>
+          <Steps steps={processSteps.map((step) => ({ title: step.title, body: step.text }))} className="mt-8 md:mt-10" />
+        </div>
+      </section>
 
-        <section className="mb-20 border-y border-brand-sageDark bg-brand-sageDark px-7 py-9 text-white md:flex md:items-center md:justify-between md:gap-12 md:px-10 md:py-10">
-          <div>
-            <h2 className="font-heading text-2xl font-semibold">Book a home visit in Southampton</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">Tell us your postcode and the support you are looking for. We will confirm coverage, suitability and availability.</p>
-          </div>
-          <div className="mt-6 shrink-0 md:mt-0">
-            <Button href="/book?location=southampton" variant="primary">Request a home visit</Button>
-          </div>
-        </section>
-      </div>
-    </main>
+      <section className={section} aria-labelledby="southampton-faqs">
+        <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>
+          <h2 id="southampton-faqs" className={`${displayH2} md:col-span-4`}>
+            Questions about Foot+ Southampton
+          </h2>
+          <FaqList faqs={faqs} className="md:col-span-8" />
+        </div>
+      </section>
+
+      <ClosingBand
+        id="southampton-closing"
+        heading="Request a home visit in Southampton"
+        text="Tell us your postcode and the support you are looking for. We will confirm coverage, suitability and availability."
+        action={{ label: "Request a home visit", href: "/book?location=southampton" }}
+      />
+    </div>
   );
 }
