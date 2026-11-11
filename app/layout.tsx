@@ -64,8 +64,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: "Foot+",
+    // Fallbacks Google can use if it won't display the "+" symbol name.
+    alternateName: ["Foot Plus", "FootPlus"],
     url: `${SITE_URL}/`,
+    publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: "en-GB",
     keywords:
       "Foot+, home visit nail care, home visit foot care",
@@ -76,7 +80,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: "Foot+",
-    url: SITE_URL,
+    alternateName: ["Foot Plus", "FootPlus"],
+    url: `${SITE_URL}/`,
     logo: `${SITE_URL}/images/footplus-generic-logo_MASTER_FINAL.svg`,
   };
 
