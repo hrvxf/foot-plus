@@ -1,14 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Check, Info, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Button from "../../../components/Button";
 import PostcodeChecker from "../../../components/home/PostcodeChecker";
 import { locationPages, type LocationRegion } from "../../../lib/location-pages";
 import {
   estimateTravel,
-  travelBands,
   travelSummary,
-  type TravelBand,
 } from "../../../lib/travel";
 import {
   BRISTOL_BUSINESS_ID,
@@ -21,7 +19,7 @@ import {
 const canonical = `${SITE_URL}/locations/bristol/areas-we-cover`;
 const metaTitle = "Areas We Cover in Bristol | Home Visits";
 const metaDescription =
-  "Check whether Foot+ visits your Bristol postcode and what travel costs. Free travel within 2 miles of our BS2 base, £5 across most of Bristol.";
+  "Home foot and nail care visits across Bristol, from Clifton and Bishopston to Bedminster, Easton and Westbury-on-Trym. Check your postcode in seconds.";
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -101,24 +99,36 @@ const places = [...pagePlaces, ...extraPlaces].map((place) => ({
   ...estimateTravel(place.lat, place.lng),
 }));
 
-const bandOrder: TravelBand[] = ["free", "standard", "extended"];
 const directionOrder: Direction[] = ["Central", "North", "East", "South", "West"];
 
-const bands = bandOrder.map((band) => {
-  const inBand = places
-    .filter((place) => place.band === band)
-    .sort((a, b) => a.roadMiles - b.roadMiles);
-  return {
-    band,
-    ...travelBands[band],
-    groups: directionOrder
-      .map((direction) => ({
-        direction,
-        places: inBand.filter((place) => place.direction === direction),
-      }))
-      .filter((group) => group.places.length),
-  };
-});
+const areaTitles: Record<Direction, string> = {
+  Central: "Central Bristol",
+  North: "North Bristol",
+  East: "East Bristol",
+  South: "South Bristol",
+  West: "West Bristol",
+};
+
+const byDistance = (a: { roadMiles: number }, b: { roadMiles: number }) =>
+  a.roadMiles - b.roadMiles;
+
+// Areas lead the page. Travel stays in the checker and FAQ, not in the structure.
+const areaGroups = [
+  ...directionOrder.map((direction) => ({
+    id: direction.toLowerCase(),
+    title: areaTitles[direction],
+    note: undefined as string | undefined,
+    places: places
+      .filter((place) => place.direction === direction && place.band !== "extended")
+      .sort(byDistance),
+  })),
+  {
+    id: "nearby-towns",
+    title: "Nearby towns",
+    note: "By arrangement",
+    places: places.filter((place) => place.band === "extended").sort(byDistance),
+  },
+].filter((group) => group.places.length);
 
 const pageByArea = new Map(
   locationPages.map((page) => [page.area, `/${page.slug}`])
@@ -216,7 +226,7 @@ export default function AreasWeCoverPage() {
           </h1>
           <p className="mt-3 max-w-lg text-base leading-relaxed text-brand-charcoal/75">
             Foot+ comes to you for routine foot and nail care. Check your
-            postcode to see if we visit and what travel costs.
+            postcode, or find your area below.
           </p>
           <p className="mt-4 inline-flex items-center text-sm font-semibold text-brand-sageDark">
             <MapPin aria-hidden="true" className="mr-1.5 h-4 w-4" />
@@ -224,13 +234,13 @@ export default function AreasWeCoverPage() {
           </p>
           <nav aria-label="Jump to an area" className="mt-6 hidden border-t border-brand-line pt-5 lg:block">
             <ul className="flex flex-wrap gap-2">
-              {bands.map((band) => (
-                <li key={band.band}>
+              {areaGroups.map((group) => (
+                <li key={group.id}>
                   <a
-                    href={`#${band.band}`}
+                    href={`#${group.id}`}
                     className="inline-flex min-h-9 items-center rounded-full bg-white px-3.5 text-sm font-semibold text-brand-sageDark ring-1 ring-brand-line transition hover:ring-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
                   >
-                    {band.label}
+                    {group.title}
                   </a>
                 </li>
               ))}
@@ -250,14 +260,14 @@ export default function AreasWeCoverPage() {
             Where we visit
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-brand-charcoal/70">
-            Travel is charged by road distance from our BS2 base. Areas are
-            grouped by their centre, so check your postcode for your exact fee.
+            The list is a guide, not a limit. Travel is free close to our BS2
+            base and £5 across most of Bristol.
           </p>
         </div>
 
         <div className="mt-6 divide-y divide-brand-line overflow-hidden rounded-3xl border border-brand-sageLight/30 bg-white shadow-sm">
-          {bands.map((band) => (
-            <BandRow key={band.band} band={band} />
+          {areaGroups.map((group) => (
+            <AreaRow key={group.id} group={group} />
           ))}
         </div>
       </section>
@@ -325,67 +335,45 @@ export default function AreasWeCoverPage() {
   );
 }
 
-type Band = (typeof bands)[number];
+type AreaGroup = (typeof areaGroups)[number];
 
-function BandRow({ band }: { band: Band }) {
-  const free = band.band === "free";
-  const StatusIcon = free ? Check : Info;
-
+function AreaRow({ group }: { group: AreaGroup }) {
   return (
     <article
-      id={band.band}
-      className={`grid scroll-mt-24 gap-4 p-5 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-8 md:p-6 ${
-        free ? "bg-brand-wash/60" : ""
-      }`}
+      id={group.id}
+      className="grid scroll-mt-24 gap-3 p-5 md:grid-cols-[11rem_minmax(0,1fr)] md:items-start md:gap-8 md:p-6"
     >
-      <div>
-        <h3 className="flex items-baseline gap-2 font-heading text-lg font-semibold text-brand-sageDark">
-          {band.label}
+      <div className="md:pt-1.5">
+        <h3 className="font-heading text-lg font-semibold text-brand-sageDark">
+          {group.title}
         </h3>
-        <p
-          className={`mt-1 inline-flex items-center gap-1.5 text-sm ${
-            free ? "font-semibold text-brand-sageDeep" : "text-brand-charcoal/70"
-          }`}
-        >
-          <StatusIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
-          {band.range}
-        </p>
+        {group.note ? (
+          <p className="mt-0.5 text-sm text-brand-charcoal/65">{group.note}</p>
+        ) : null}
       </div>
-      <div className="space-y-3">
-        {band.groups.map((group) => (
-          <div
-            key={group.direction}
-            className="grid gap-2 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:items-start"
-          >
-            <p className="pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand-charcoal/50">
-              {group.direction}
-            </p>
-            <ul className="flex flex-wrap gap-2" aria-label={`${band.label}: ${group.direction}`}>
-              {group.places.map((place) => {
-                const href = pageByArea.get(place.name);
-                const chip =
-                  "inline-flex min-h-9 items-center rounded-full border bg-white px-3 text-sm";
-                return (
-                  <li key={place.name}>
-                    {href ? (
-                      <Link
-                        href={href}
-                        className={`${chip} border-brand-sageLight/60 font-semibold text-brand-sageDark transition hover:border-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight`}
-                      >
-                        {place.name}
-                      </Link>
-                    ) : (
-                      <span className={`${chip} border-brand-line text-brand-charcoal/75`}>
-                        {place.name}
-                      </span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <ul className="flex flex-wrap gap-2" aria-label={`${group.title} areas`}>
+        {group.places.map((place) => {
+          const href = pageByArea.get(place.name);
+          const chip =
+            "inline-flex min-h-9 items-center rounded-full border bg-white px-3 text-sm";
+          return (
+            <li key={place.name}>
+              {href ? (
+                <Link
+                  href={href}
+                  className={`${chip} border-brand-sageLight/60 font-semibold text-brand-sageDark transition hover:border-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight`}
+                >
+                  {place.name}
+                </Link>
+              ) : (
+                <span className={`${chip} border-brand-line text-brand-charcoal/75`}>
+                  {place.name}
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </article>
   );
 }

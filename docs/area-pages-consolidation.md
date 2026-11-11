@@ -39,26 +39,26 @@ Fill in the table:
 
 ## Step 2: redirect map
 
-Each page redirects to its travel-band section on the hub (`#free` under 2 road miles, `#standard` for £5):
+Each page redirects to its area section on the hub:
 
 | From | To |
 |---|---|
-| /foot-health-practitioner-clifton | /locations/bristol/areas-we-cover#standard |
-| /foot-health-practitioner-redland | /locations/bristol/areas-we-cover#standard |
-| /foot-health-practitioner-cotham | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-st-philips | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-old-market | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-redcliffe | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-bishopston | /locations/bristol/areas-we-cover#standard |
-| /foot-health-practitioner-henleaze | /locations/bristol/areas-we-cover#standard |
-| /foot-health-practitioner-westbury-on-trym | /locations/bristol/areas-we-cover#standard |
-| /foot-health-practitioner-stoke-bishop | /locations/bristol/areas-we-cover#standard |
-| /foot-health-practitioner-sneyd-park | /locations/bristol/areas-we-cover#standard |
-| /foot-health-practitioner-easton | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-barton-hill | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-totterdown | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-southville | /locations/bristol/areas-we-cover#free |
-| /foot-health-practitioner-bedminster | /locations/bristol/areas-we-cover#free |
+| /foot-health-practitioner-clifton | /locations/bristol/areas-we-cover#west |
+| /foot-health-practitioner-redland | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-cotham | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-st-philips | /locations/bristol/areas-we-cover#central |
+| /foot-health-practitioner-old-market | /locations/bristol/areas-we-cover#central |
+| /foot-health-practitioner-redcliffe | /locations/bristol/areas-we-cover#central |
+| /foot-health-practitioner-bishopston | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-henleaze | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-westbury-on-trym | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-stoke-bishop | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-sneyd-park | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-easton | /locations/bristol/areas-we-cover#east |
+| /foot-health-practitioner-barton-hill | /locations/bristol/areas-we-cover#east |
+| /foot-health-practitioner-totterdown | /locations/bristol/areas-we-cover#south |
+| /foot-health-practitioner-southville | /locations/bristol/areas-we-cover#south |
+| /foot-health-practitioner-bedminster | /locations/bristol/areas-we-cover#south |
 
 Note: Google drops the `#anchor` when indexing, so every redirect consolidates into the hub URL. The anchor only scrolls visitors to the right section.
 
@@ -69,7 +69,7 @@ Note: Google drops the `#anchor` when indexing, so every redirect consolidates i
    ```ts
    {
      source: "/foot-health-practitioner-clifton",
-     destination: "/locations/bristol/areas-we-cover#standard",
+     destination: "/locations/bristol/areas-we-cover#west",
      permanent: true,
    },
    ```
