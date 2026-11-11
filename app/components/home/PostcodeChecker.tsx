@@ -1,11 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { ArrowRight, Check, Info, MapPin } from "lucide-react";
 
 import { checkServiceArea, type ServiceAreaCheck } from "../../lib/postcodes";
 import { emailHref, phoneDisplay, phoneHref } from "../../lib/site";
+import {
+  estimateTravel,
+  lookupPostcode,
+  travelBands,
+  type TravelEstimate,
+} from "../../lib/travel";
 import { trackAdviceEvent } from "../advice/AdviceTracker";
 
 type PostcodeCheckerProps = {
@@ -22,18 +28,39 @@ export default function PostcodeChecker({
   const resultId = useId();
   const [value, setValue] = useState("");
   const [result, setResult] = useState<ServiceAreaCheck | null>(null);
+  // undefined = not looked up, "loading", null = lookup failed
+  const [travel, setTravel] = useState<TravelEstimate | "loading" | null | undefined>();
+  const lookup = useRef<AbortController | null>(null);
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    lookup.current?.abort();
     const check = checkServiceArea(value);
     setResult(check);
-    if (check.status !== "invalid") {
-      setValue(check.postcode);
+    setTravel(undefined);
+    if (check.status === "invalid") return;
+
+    setValue(check.postcode);
+    if (check.status !== "bristol") {
       trackAdviceEvent(`${source}_postcode_check`, {
         result: check.status,
         outward_code: check.postcode.split(" ")[0],
       });
+      return;
     }
+
+    const controller = new AbortController();
+    lookup.current = controller;
+    setTravel("loading");
+    const point = await lookupPostcode(check.postcode, controller.signal);
+    if (controller.signal.aborted) return;
+    const estimate = point ? estimateTravel(point.lat, point.lng) : null;
+    setTravel(estimate);
+    trackAdviceEvent(`${source}_postcode_check`, {
+      result: check.status,
+      outward_code: check.postcode.split(" ")[0],
+      travel_band: estimate?.band ?? "unknown",
+    });
   }
 
   const invalid = result?.status === "invalid";
@@ -57,7 +84,11 @@ export default function PostcodeChecker({
             value={value}
             onChange={(event) => {
               setValue(event.target.value);
-              if (result) setResult(null);
+              if (result) {
+                lookup.current?.abort();
+                setResult(null);
+                setTravel(undefined);
+              }
             }}
             aria-invalid={invalid || undefined}
             aria-describedby={result ? resultId : undefined}
@@ -74,13 +105,21 @@ export default function PostcodeChecker({
       </form>
 
       <div id={resultId} aria-live="polite">
-        {result ? <CheckResult result={result} source={source} /> : null}
+        {result ? <CheckResult result={result} travel={travel} source={source} /> : null}
       </div>
     </div>
   );
 }
 
-function CheckResult({ result, source }: { result: ServiceAreaCheck; source: string }) {
+function CheckResult({
+  result,
+  travel,
+  source,
+}: {
+  result: ServiceAreaCheck;
+  travel: TravelEstimate | "loading" | null | undefined;
+  source: string;
+}) {
   if (result.status === "invalid") {
     return (
       <p className="mt-3 flex items-center gap-2 text-[15px] font-medium text-red-800">
@@ -103,7 +142,7 @@ function CheckResult({ result, source }: { result: ServiceAreaCheck; source: str
           </span>
           <p className="text-[15px] leading-snug text-brand-charcoal">
             <strong className="font-semibold">Good news, {result.postcode} is a Foot+ Bristol postcode.</strong>{" "}
-            We confirm your exact address when you book.
+            <TravelLine travel={travel} />
           </p>
         </div>
         <Link
@@ -155,5 +194,30 @@ function CheckResult({ result, source }: { result: ServiceAreaCheck; source: str
         .
       </p>
     </div>
+  );
+}
+
+function TravelLine({ travel }: { travel: TravelEstimate | "loading" | null | undefined }) {
+  if (travel === "loading") return <span className="text-brand-charcoal/70">Checking travel…</span>;
+  if (!travel) return <>Any travel fee is confirmed when you book.</>;
+
+  const miles = travel.roadMiles < 1 ? "under a mile" : `about ${travel.roadMiles.toFixed(1)} miles`;
+  const band = travelBands[travel.band];
+
+  if (travel.borderline) {
+    return (
+      <>
+        You&rsquo;re {miles} by road from us, right on a travel boundary. We&rsquo;ll confirm the
+        fee when you book.
+      </>
+    );
+  }
+
+  return (
+    <>
+      You&rsquo;re {miles} by road from us, so it&rsquo;s{" "}
+      <strong className="font-semibold">{travel.band === "free" ? "free travel" : band.label}</strong>
+      {travel.band === "extended" ? ", by arrangement" : ""}. Confirmed when you book.
+    </>
   );
 }

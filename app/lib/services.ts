@@ -2,6 +2,7 @@
 // and location pages, summarised for this hub. House style: no em dashes.
 
 import { prices } from "./site";
+import { travelSummary } from "./travel";
 
 export type ServiceIconKey = "nail" | "thick" | "corn" | "callus" | "skin" | "heel" | "check";
 
@@ -182,7 +183,7 @@ export const servicesFaqs = [
   },
   {
     question: "How much does a home visit cost?",
-    answer: `A new patient appointment is ${prices[0].price} and a routine appointment is ${prices[1].price}. Travel within central Bristol is included; any wider-area supplement is confirmed before booking.`,
+    answer: `A new patient appointment is ${prices[0].price} and a routine appointment is ${prices[1].price}. In Bristol, ${travelSummary.charAt(0).toLowerCase() + travelSummary.slice(1)}`,
   },
   {
     question: "Can a carer or relative attend?",

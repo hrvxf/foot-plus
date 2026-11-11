@@ -39,13 +39,13 @@ Fill in the table:
 
 ## Step 2: redirect map
 
-Each page redirects to its zone anchor on the hub:
+Each page redirects to its area section on the hub:
 
 | From | To |
 |---|---|
-| /foot-health-practitioner-clifton | /locations/bristol/areas-we-cover#central |
-| /foot-health-practitioner-redland | /locations/bristol/areas-we-cover#central |
-| /foot-health-practitioner-cotham | /locations/bristol/areas-we-cover#central |
+| /foot-health-practitioner-clifton | /locations/bristol/areas-we-cover#west |
+| /foot-health-practitioner-redland | /locations/bristol/areas-we-cover#north |
+| /foot-health-practitioner-cotham | /locations/bristol/areas-we-cover#north |
 | /foot-health-practitioner-st-philips | /locations/bristol/areas-we-cover#central |
 | /foot-health-practitioner-old-market | /locations/bristol/areas-we-cover#central |
 | /foot-health-practitioner-redcliffe | /locations/bristol/areas-we-cover#central |
@@ -60,7 +60,7 @@ Each page redirects to its zone anchor on the hub:
 | /foot-health-practitioner-southville | /locations/bristol/areas-we-cover#south |
 | /foot-health-practitioner-bedminster | /locations/bristol/areas-we-cover#south |
 
-Note: Google drops the `#anchor` when indexing, so every redirect consolidates into the hub URL. The anchor only scrolls visitors to the right zone.
+Note: Google drops the `#anchor` when indexing, so every redirect consolidates into the hub URL. The anchor only scrolls visitors to the right section.
 
 ## Step 3: switch on (for each page you're redirecting)
 
@@ -69,7 +69,7 @@ Note: Google drops the `#anchor` when indexing, so every redirect consolidates i
    ```ts
    {
      source: "/foot-health-practitioner-clifton",
-     destination: "/locations/bristol/areas-we-cover#central",
+     destination: "/locations/bristol/areas-we-cover#west",
      permanent: true,
    },
    ```

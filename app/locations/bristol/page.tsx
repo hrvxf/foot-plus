@@ -9,6 +9,7 @@ import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
 import { locationPages } from "../../lib/location-pages";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
+import { travelSummary } from "../../lib/travel";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
@@ -133,7 +134,7 @@ export default function BristolLocationPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Bristol coverage</p>
             <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Home visits across Bristol</h2>
             <p className="mt-5 max-w-xl leading-relaxed text-brand-charcoal/72">
-              Central, north, south and east Bristol are covered, with nearby towns considered by request. Travel within central Bristol is included; any wider-area supplement is confirmed before booking.
+              Home visits across Bristol and nearby towns. {travelSummary}
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Button href="/locations/bristol/areas-we-cover" variant="outline">View areas covered</Button>
