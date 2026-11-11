@@ -9,6 +9,7 @@ function typeFor(href: string) {
   if (href.startsWith("mailto:")) return "email_click";
   if (href.startsWith("https://wa.me/")) return "whatsapp_click";
   if (href.startsWith("/book")) return "booking_click";
+  if (href.startsWith("/forms")) return "patient_form_click";
   return undefined;
 }
 

@@ -52,6 +52,18 @@ export default function BookPage() {
             price.
           </p>
 
+          <div className="mt-6 max-w-lg rounded-2xl border border-brand-sageDark/20 bg-white px-5 py-4 text-base leading-relaxed text-brand-charcoal">
+            <strong className="font-semibold text-brand-sageDark">Already spoken to us?</strong>{" "}
+            You don&rsquo;t need to send another request.{" "}
+            <Link
+              href="/forms?location=bristol"
+              className="font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
+              data-analytics-id="book-already-enquired-forms"
+            >
+              Complete your patient form instead
+            </Link>
+          </div>
+
           <ol className="mt-10 max-w-lg border-y border-brand-sageLight/35">
             {bookingSteps.map((step) => (
               <li

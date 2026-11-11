@@ -3,6 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // Short, easy-to-read link for WhatsApp follow-ups after an enquiry.
+      {
+        source: "/form",
+        destination: "/forms?location=bristol",
+        permanent: false,
+      },
       {
         source: "/foot-health-practitioner-bristol",
         destination: "/locations/bristol",
