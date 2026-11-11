@@ -1,12 +1,14 @@
 // Section-level building blocks shared by the home, services and prices pages.
 // They carry the editorial system in ui.ts: rules instead of cards, deep green
 // headings and figures, one dark green band for the postcode check.
+import Image from "next/image";
 import Link from "next/link";
 import { Check, Plus } from "lucide-react";
 
+import type { ServiceLocation } from "../../lib/locations";
 import { phoneDisplay, phoneHref } from "../../lib/site";
 import PostcodeChecker from "../home/PostcodeChecker";
-import { body, btnSolid, displayH3, figure, focusRing, rule, shell, small, supporting, texturedGreen } from "./ui";
+import { body, btnSolid, displayH3, figure, focusRing, linkQuiet, rule, shell, small, supporting, texturedGreen } from "./ui";
 
 export function Breadcrumb({
   current,
@@ -197,5 +199,78 @@ export function ClosingCheck({
         </div>
       </div>
     </section>
+  );
+}
+
+// Optimised portraits; the practitioner records point at the larger files used
+// in the location page hero.
+const portraits: Record<ServiceLocation["slug"], string> = {
+  bristol: "/images/adam-james.webp",
+  southampton: "/images/katie-preston.webp",
+};
+
+/** One location: portrait, practitioner, coverage, availability and its links. */
+export function LocationSummary({
+  location,
+  idPrefix,
+  headingLevel: Heading = "h3",
+  links = [],
+  action,
+}: {
+  location: ServiceLocation;
+  /** Keeps heading ids unique when a page shows the summaries more than once. */
+  idPrefix: string;
+  headingLevel?: "h2" | "h3";
+  links?: { label: string; href: string; analyticsId?: string }[];
+  action?: { label: string; href: string; analyticsId?: string };
+}) {
+  const practitioner = location.practitioner;
+  if (!practitioner) return null;
+  const headingId = `${idPrefix}-${location.slug}`;
+
+  return (
+    <article className="flex items-start gap-5 lg:gap-7" aria-labelledby={headingId}>
+      <Image
+        src={portraits[location.slug]}
+        alt=""
+        width={176}
+        height={208}
+        sizes="(min-width: 1024px) 176px, 112px"
+        className="h-36 w-28 shrink-0 rounded-md object-cover object-[center_15%] lg:h-52 lg:w-44"
+      />
+      <div className="min-w-0">
+        <Heading id={headingId} className="font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
+          <Link href={location.href} className={`inline-flex min-h-11 items-center underline-offset-4 hover:underline ${focusRing}`}>
+            {location.name}
+          </Link>
+        </Heading>
+        <p className={`${body} mt-1`}>
+          {practitioner.name}, {practitioner.role} ({practitioner.credentials.join(", ")})
+        </p>
+        <p className={`${supporting} mt-2`}>{location.coverage}</p>
+        <p className={`${small} mt-3 inline-flex items-center gap-2 font-semibold text-brand-sageDeep`}>
+          <span className="h-2.5 w-2.5 rounded-full bg-brand-sage" aria-hidden="true" />
+          {location.availability}
+        </p>
+        {action ? (
+          <p className="mt-4">
+            <Link href={action.href} className={`${btnSolid} w-full sm:w-auto`} data-analytics-id={action.analyticsId}>
+              {action.label}
+            </Link>
+          </p>
+        ) : null}
+        {links.length ? (
+          <ul className="mt-1 flex flex-wrap gap-x-6">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className={linkQuiet} data-analytics-id={link.analyticsId}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+    </article>
   );
 }
