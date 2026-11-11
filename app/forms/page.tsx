@@ -122,17 +122,10 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
 
   return (
     <section className="bg-brand-offwhite">
-      <div className="mx-auto max-w-3xl px-5 pb-12 pt-8 sm:px-6 md:pb-16 md:pt-12">
-        <h1 className="font-heading text-[clamp(2.2rem,6vw,3.4rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-sageDark">
-          Your patient form
-        </h1>
-        <p className="mt-3 text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-          No need to book again. This takes about 5 minutes, so have your medication details to
-          hand.
-        </p>
-      </div>
+      {/* Visually hidden: the form starts at the top of the page. */}
+      <h1 className="sr-only">Foot+ Bristol patient form</h1>
 
-      <div className="mx-auto max-w-3xl sm:px-6">
+      <div className="mx-auto max-w-3xl sm:px-6 sm:pt-8">
         <SplosePatientForm
           formUrl={splosePatientFormUrl}
           title={splosePatientFormTitle}
