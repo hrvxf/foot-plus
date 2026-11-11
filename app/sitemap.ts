@@ -41,22 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/corn-removal-bristol",
     "/cracked-heels-bristol",
     "/toenail-cutting-bristol",
-    "/foot-health-practitioner-clifton",
-    "/foot-health-practitioner-redland",
-    "/foot-health-practitioner-cotham",
-    "/foot-health-practitioner-bishopston",
-    "/foot-health-practitioner-henleaze",
-    "/foot-health-practitioner-westbury-on-trym",
-    "/foot-health-practitioner-stoke-bishop",
-    "/foot-health-practitioner-sneyd-park",
-    "/foot-health-practitioner-st-philips",
-    "/foot-health-practitioner-old-market",
-    "/foot-health-practitioner-redcliffe",
-    "/foot-health-practitioner-easton",
-    "/foot-health-practitioner-barton-hill",
-    "/foot-health-practitioner-totterdown",
-    "/foot-health-practitioner-southville",
-    "/foot-health-practitioner-bedminster",
     ...publishedAdviceArticles.map((article) => `/advice/${article.slug}`),
   ];
 
@@ -70,9 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         )
       : updatedRoutes.has(route)
         ? LOCATION_UPDATE
-        : route.startsWith("/foot-health-practitioner-")
-          ? new Date("2026-10-05T00:00:00.000Z")
-          : LAST_MODIFIED,
+        : LAST_MODIFIED,
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : 0.7,
   }));

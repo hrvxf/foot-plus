@@ -7,7 +7,6 @@ import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
-import { locationPages } from "../../lib/location-pages";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
 
@@ -160,16 +159,6 @@ export default function BristolLocationPage() {
               ))}
             </ol>
           </div>
-        </div>
-      </section>
-
-      <section className="border-b border-brand-sageLight/30 bg-white" aria-labelledby="bristol-neighbourhoods">
-        <div className="mx-auto max-w-[1360px] px-6 py-12 md:px-10 xl:px-14">
-          <h2 id="bristol-neighbourhoods" className="font-heading text-2xl font-semibold text-brand-sageDark">Local home-visit information</h2>
-          <p className="mt-4 text-brand-charcoal/72">Explore coverage and appointment information for your Bristol neighbourhood.</p>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {locationPages.map((area) => <li key={area.slug}><Link href={`/${area.slug}`} className="text-sm font-semibold text-brand-sageDark underline underline-offset-4">Foot care in {area.area}</Link></li>)}
-          </ul>
         </div>
       </section>
 

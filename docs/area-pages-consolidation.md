@@ -1,6 +1,8 @@
 # Bristol area pages: consolidation plan
 
-**Status:** proposed and not yet enabled. Check the Search Console data before switching anything on.
+**Status:** done (Nov 2026). All 16 pages redirect to the hub.
+
+**Evidence (Search Console via Windsor.ai, last 30 days):** about 200 impressions and 5 clicks across all 16 pages. Easton had 88 impressions and 1 click, Sneyd Park 38 and 1, Bedminster 30 and 0. St Philips, Old Market and Totterdown had none. The only neighbourhood-specific search was "easton podiatry", with 1 impression. Most impressions came from broad searches like "podiatrist bristol", where the area pages were competing with `/locations/bristol`.
 
 ## Why
 
@@ -8,7 +10,7 @@ The 16 `/foot-health-practitioner-*` pages share one template. Services, pricing
 
 The redesigned hub at `/locations/bristol/areas-we-cover` now answers the question these pages target ("do you visit my area?") with a postcode checker, zones, postcode districts and FAQs.
 
-## Step 1: check the evidence (Search Console, last 3 months)
+## Step 1: check the evidence (done, see above)
 
 1. **Performance → Pages**, filter URL contains `foot-health-practitioner-`. Note clicks and impressions for each page.
 2. **Pages (indexing)**: check whether each URL is indexed, "Crawled – currently not indexed" or "Duplicate, Google chose different canonical".
