@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { emailHref, SITE_URL } from "../lib/site";
+import { emailHref, phoneDisplay, phoneHref, SITE_URL } from "../lib/site";
 import SplosePatientForm from "./SplosePatientForm";
 
 const splosePatientFormUrl =
   "https://foot-plus.splose.com/public-form/e373fa16-a7c8-4138-a4fb-c2b9b8a1aa7d";
 const splosePatientFormTitle = "New patient and medical history form";
-
-const preparationPoints = [
-  "Have your medication details available",
-  "A relative, carer or support worker can help",
-  "Contact Foot+ if you would prefer help completing the form",
-];
 
 export const metadata: Metadata = {
   title: "Patient Forms",
@@ -26,25 +20,6 @@ export const metadata: Metadata = {
 type FormsPageProps = {
   searchParams: Promise<{ location?: string | string[] }>;
 };
-
-function CheckIcon() {
-  return (
-    <svg
-      className="mt-0.5 h-4 w-4 shrink-0 text-brand-sageDark"
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M16.25 5.75 8.5 13.5 4.75 9.75"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function LocationChoice() {
   return (
@@ -147,54 +122,44 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
 
   return (
     <section className="bg-brand-offwhite">
-      <div className="mx-auto max-w-6xl px-5 pb-14 pt-8 sm:px-6 md:pb-16 md:pt-10">
-        <div className="max-w-225">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/75">
-              Foot+ Bristol · Patient registration
-            </p>
-            <Link
-              href="/forms"
-              className="text-sm font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
-            >
-              Change location
-            </Link>
-          </div>
-          <h1 className="mt-3 max-w-225 font-heading text-[clamp(2.4rem,5vw,4.2rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
-            Complete your new patient form
-          </h1>
-          <div
-            role="note"
-            className="mt-5 max-w-3xl rounded-2xl border border-brand-sageDark/20 bg-white px-5 py-4 text-base leading-relaxed text-brand-charcoal"
+      <div className="mx-auto max-w-3xl px-5 pb-12 pt-8 sm:px-6 md:pb-16 md:pt-12">
+        <h1 className="font-heading text-[clamp(2.2rem,6vw,3.4rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-sageDark">
+          Your patient form
+        </h1>
+        <p className="mt-3 text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
+          No need to book again. This takes about 5 minutes, so have your medication details to
+          hand.
+        </p>
+      </div>
+
+      <div className="mx-auto max-w-3xl sm:px-6">
+        <SplosePatientForm
+          formUrl={splosePatientFormUrl}
+          title={splosePatientFormTitle}
+          contactHref={emailHref}
+        />
+      </div>
+
+      <div className="mx-auto max-w-3xl px-5 pb-14 pt-6 text-center text-base text-brand-charcoal/75 sm:px-6">
+        <p>
+          Need help? Call{" "}
+          <a
+            href={phoneHref}
+            className="font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
           >
-            <strong className="font-semibold text-brand-sageDark">Already enquired?</strong> No
-            need to book again.
-          </div>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-            Please complete before your first appointment. It helps us understand your medical
-            history and any support you need.
-          </p>
-        </div>
-
-        <ul className="mt-7 grid gap-3 md:grid-cols-3" aria-label="Before you start">
-          {preparationPoints.map((point) => (
-            <li
-              key={point}
-              className="flex gap-3 rounded-2xl border border-brand-sageLight/30 bg-white/80 p-4 text-sm leading-relaxed text-brand-charcoal/75"
-            >
-              <CheckIcon />
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-8">
-          <SplosePatientForm
-            formUrl={splosePatientFormUrl}
-            title={splosePatientFormTitle}
-            contactHref={emailHref}
-          />
-        </div>
+            {phoneDisplay}
+          </a>
+          . A relative or carer can also fill it in for you.
+        </p>
+        <p className="mt-3 text-sm">
+          Not in Bristol?{" "}
+          <Link
+            href="/forms"
+            className="font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
+          >
+            Change location
+          </Link>
+        </p>
       </div>
     </section>
   );
