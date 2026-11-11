@@ -1,8 +1,18 @@
+/* On phones the form fills the screen below the header, so there is only one
+   obvious place to scroll. */
 .formShell {
   width: 100%;
-  min-height: 720px;
-  border-radius: 1.25rem;
+  height: calc(100dvh - 80px);
+  min-height: 560px;
   overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .formShell {
+    height: auto;
+    min-height: 720px;
+    border-radius: 1.25rem;
+  }
 }
 
 @media (min-width: 768px) {

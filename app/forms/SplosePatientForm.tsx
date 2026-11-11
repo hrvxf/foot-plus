@@ -35,7 +35,7 @@ export default function SplosePatientForm({ formUrl, title, contactHref }: Splos
   const showFallbackActions = status === "timeout" || status === "error";
 
   return (
-    <div className="rounded-[28px] border border-brand-sageLight/35 bg-white p-3 shadow-sm sm:p-4">
+    <div className="bg-white sm:rounded-[28px] sm:border sm:border-brand-sageLight/35 sm:p-4 sm:shadow-sm">
       <div className={`${styles.formShell} relative bg-brand-offwhite`}>
         <iframe
           key={retryCount}
@@ -57,19 +57,13 @@ export default function SplosePatientForm({ formUrl, title, contactHref }: Splos
 
         {showOverlay ? (
           <div className="absolute inset-0 z-10 flex flex-col bg-white p-5 text-brand-charcoal sm:p-6 md:p-8">
-            <div className="rounded-2xl border border-brand-sageLight/30 bg-brand-offwhite/80 p-5 sm:p-6">
+            <div>
               <p
-                className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/75"
+                className="text-base font-semibold text-brand-sageDark"
                 role="status"
                 aria-live="polite"
               >
-                The secure patient form is loading.
-              </p>
-              <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-brand-sageDark sm:text-3xl">
-                Loading your secure patient form
-              </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">
-                This may take a few seconds.
+                Loading your form…
               </p>
 
               {showFallbackActions ? (
@@ -78,8 +72,7 @@ export default function SplosePatientForm({ formUrl, title, contactHref }: Splos
                     Still loading?
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/75">
-                    The secure form can occasionally take longer to appear. You can try again, open
-                    the Splose form directly in a new tab, or contact Foot+ for help completing it.
+                    Try again, or open the form in a new tab.
                   </p>
                   <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     <button
@@ -111,22 +104,24 @@ export default function SplosePatientForm({ formUrl, title, contactHref }: Splos
               ) : null}
             </div>
 
-            <div className="mt-6 space-y-5 rounded-2xl border border-brand-sageLight/25 bg-white p-5 shadow-sm sm:p-6" aria-hidden="true">
-              <div className={`${styles.skeletonBlock} h-3 w-2/3 rounded-full sm:w-1/2`} />
-              <div className="space-y-4 pt-2">
-                {[0, 1, 2].map((item) => (
-                  <div key={item} className="space-y-2">
-                    <div className={`${styles.skeletonBlock} h-3 w-36 rounded-full`} />
-                    <div className={`${styles.skeletonBlock} h-12 w-full rounded-xl`} />
+            {showFallbackActions ? null : (
+              <div className="mt-5 space-y-5" aria-hidden="true">
+                <div className={`${styles.skeletonBlock} h-3 w-2/3 rounded-full sm:w-1/2`} />
+                <div className="space-y-4 pt-2">
+                  {[0, 1, 2].map((item) => (
+                    <div key={item} className="space-y-2">
+                      <div className={`${styles.skeletonBlock} h-3 w-36 rounded-full`} />
+                      <div className={`${styles.skeletonBlock} h-12 w-full rounded-xl`} />
+                    </div>
+                  ))}
+                  <div className="space-y-2">
+                    <div className={`${styles.skeletonBlock} h-3 w-44 rounded-full`} />
+                    <div className={`${styles.skeletonBlock} h-28 w-full rounded-xl`} />
                   </div>
-                ))}
-                <div className="space-y-2">
-                  <div className={`${styles.skeletonBlock} h-3 w-44 rounded-full`} />
-                  <div className={`${styles.skeletonBlock} h-28 w-full rounded-xl`} />
+                  <div className={`${styles.skeletonBlock} h-12 w-40 rounded-full`} />
                 </div>
-                <div className={`${styles.skeletonBlock} h-12 w-40 rounded-full`} />
               </div>
-            </div>
+            )}
           </div>
         ) : null}
       </div>
