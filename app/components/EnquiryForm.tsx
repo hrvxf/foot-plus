@@ -32,7 +32,7 @@ type FormState = {
 const fieldClass =
   "w-full rounded-xl border border-brand-sageLight/40 bg-brand-offwhite/35 px-4 py-3 text-sm text-brand-charcoal transition focus:border-brand-sage focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
 
-export default function EnquiryForm() {
+export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void } = {}) {
   const searchParams = useSearchParams();
   const requestedLocation = searchParams.get("location")?.toLowerCase();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -110,6 +110,8 @@ export default function EnquiryForm() {
       }
 
       setIsSubmitted(true);
+      onSubmitted?.();
+      window.scrollTo({ top: 0 });
       trackAdviceEvent("generate_lead", {
         method: "enquiry_form",
         service_location: data.location.toLowerCase(),
@@ -129,45 +131,39 @@ export default function EnquiryForm() {
     const hasOnlinePatientForm = data.location === "Bristol";
     const patientFormHref = `/forms?location=${data.location.toLowerCase()}`;
 
-    if (!hasOnlinePatientForm) {
-      return (
-        <div className="py-4 sm:py-8">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/60">
-            Enquiry received
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-semibold tracking-[-0.025em] text-brand-sageDark">
-            Thank you, {firstName}.
-          </h2>
-          <p className="mt-3 max-w-xl text-base leading-relaxed text-brand-charcoal/70">
-            We&rsquo;ll be in touch within 24–48 hours.
-          </p>
-        </div>
-      );
-    }
-
     return (
-      <div className="py-4 sm:py-8">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/60">
-          Enquiry received
-        </p>
-        <h2 className="mt-3 font-heading text-3xl font-semibold tracking-[-0.025em] text-brand-sageDark">
-          Thank you, {firstName}. One more step.
-        </h2>
-        <p className="mt-3 max-w-xl text-base leading-relaxed text-brand-charcoal/75">
-          New patients only. It takes about 5 minutes.
-        </p>
-
-        <a
-          href={patientFormHref}
-          className="mt-6 flex w-full items-center justify-center rounded-full bg-brand-sageDark px-6 py-4 text-base font-semibold text-white shadow-[0_16px_34px_-22px_rgba(24,55,45,0.9)] transition hover:bg-brand-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark sm:w-auto sm:inline-flex"
-          data-analytics-id="enquiry-success-patient-form"
+      <div className="py-2 text-center sm:py-6">
+        <span
+          className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-sageLight/25 text-brand-sageDark"
+          aria-hidden="true"
         >
-          Complete patient form →
-        </a>
-
-        <p className="mt-5 max-w-xl text-sm leading-relaxed text-brand-charcoal/65">
-          We&rsquo;ve emailed you this link too. Existing patients can skip this step.
+          <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7">
+            <path d="M5 12.5 10 17.5 19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <h2 className="mt-5 font-heading text-3xl font-semibold tracking-[-0.025em] text-brand-sageDark sm:text-4xl">
+          Thank you, {firstName}
+        </h2>
+        <p className="mt-2 text-base leading-relaxed text-brand-charcoal/70">
+          We&rsquo;ll be in touch within 24–48 hours.
         </p>
+
+        {hasOnlinePatientForm ? (
+          <div className="mt-8 border-t border-brand-sageLight/30 pt-8">
+            <p className="font-heading text-xl font-semibold text-brand-sageDark">New patient?</p>
+            <p className="mt-1 text-base leading-relaxed text-brand-charcoal/70">
+              Complete your patient form now. It takes about 5 minutes.
+            </p>
+            <a
+              href={patientFormHref}
+              className="mt-5 flex w-full items-center justify-center rounded-full bg-brand-sageDark px-6 py-4 text-lg font-semibold text-white transition hover:bg-brand-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+              data-analytics-id="enquiry-success-patient-form"
+            >
+              Complete patient form
+            </a>
+            <p className="mt-3 text-sm text-brand-charcoal/60">We&rsquo;ve emailed you this link too.</p>
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -183,14 +179,6 @@ export default function EnquiryForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
-      <div>
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/60">
-          Your request
-        </p>
-        <h2 className="mt-2 font-heading text-2xl font-semibold tracking-[-0.02em] text-brand-sageDark sm:text-3xl">
-          Tell us the essentials
-        </h2>
-      </div>
 
       {error ? (
         <div
@@ -297,70 +285,64 @@ export default function EnquiryForm() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <div>
-          <label htmlFor="appointment-type" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
-            Type of appointment *
-          </label>
-          <select
-            id="appointment-type"
-            className={fieldClass}
-            required
-            value={data.appointmentType}
-            onChange={(event) => update("appointmentType", event.target.value as AppointmentType)}
-          >
-            <option>New Patient Assessment & Treatment</option>
-            <option>Routine Foot Care</option>
-            <option>Nail Care</option>
-            <option>Other / Unsure</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="heard-about" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
-            How did you hear about us?
-          </label>
-          <input
-            id="heard-about"
-            className={fieldClass}
-            value={data.heardAboutUs}
-            onChange={(event) => update("heardAboutUs", event.target.value)}
-          />
-        </div>
+      <div>
+        <label htmlFor="appointment-type" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
+          Type of appointment *
+        </label>
+        <select
+          id="appointment-type"
+          className={fieldClass}
+          required
+          value={data.appointmentType}
+          onChange={(event) => update("appointmentType", event.target.value as AppointmentType)}
+        >
+          <option>New Patient Assessment & Treatment</option>
+          <option>Routine Foot Care</option>
+          <option>Nail Care</option>
+          <option>Other / Unsure</option>
+        </select>
       </div>
-
-      <div className="grid gap-4 md:grid-cols-2">
-        <div>
-          <label htmlFor="appointment-details" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
-            How can we help? *
-          </label>
-          <textarea
-            id="appointment-details"
-            rows={4}
-            className={fieldClass}
-            placeholder="Briefly tell us what you need help with"
-            required
-            value={data.appointmentDetails}
-            onChange={(event) => update("appointmentDetails", event.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="access-notes" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
-            Any mobility or access requirements?
-          </label>
-          <textarea
-            id="access-notes"
-            rows={4}
-            className={fieldClass}
-            placeholder="For example: stairs, parking or help answering the door"
-            value={data.accessNotes}
-            onChange={(event) => update("accessNotes", event.target.value)}
-          />
-        </div>
+      <div>
+        <label htmlFor="appointment-details" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
+          How can we help? *
+        </label>
+        <textarea
+          id="appointment-details"
+          rows={4}
+          className={fieldClass}
+          placeholder="Briefly tell us what you need help with"
+          required
+          value={data.appointmentDetails}
+          onChange={(event) => update("appointmentDetails", event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="access-notes" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
+          Mobility or access needs (optional)
+        </label>
+        <textarea
+          id="access-notes"
+          rows={2}
+          className={fieldClass}
+          placeholder="For example: stairs, parking or help answering the door"
+          value={data.accessNotes}
+          onChange={(event) => update("accessNotes", event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="heard-about" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
+          How did you hear about us? (optional)
+        </label>
+        <input
+          id="heard-about"
+          className={fieldClass}
+          value={data.heardAboutUs}
+          onChange={(event) => update("heardAboutUs", event.target.value)}
+        />
       </div>
 
       <p className="text-xs leading-relaxed text-brand-charcoal/58">
-        By submitting, you agree to be contacted about this enquiry. Appointment times are
-        confirmed directly and remain subject to availability.
+        By submitting, you agree to be contacted about this enquiry.
       </p>
 
       <button

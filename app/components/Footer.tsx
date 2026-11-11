@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { emailDisplay, emailHref } from "../lib/site";
+import HideOnPaths from "./site/HideOnPaths";
 
 const exploreLinks = [
   { href: "/services", label: "Services" },
@@ -93,19 +94,22 @@ export default function Footer() {
             </div>
           </nav>
 
-          <section className="rounded-2xl border border-white/18 bg-white/8 p-4 shadow-[0_20px_55px_-38px_rgba(0,0,0,0.65)] backdrop-blur-sm md:p-5" aria-labelledby="footer-booking-title">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55">Appointments</p>
-            <h2 id="footer-booking-title" className="mt-2 font-heading text-xl font-semibold text-white">
-              Looking to book?
-            </h2>
-            <Link
-              href="/locations"
-              className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-sageDark shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-offwhite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              data-analytics-id="footer-choose-location"
-            >
-              Choose your location
-            </Link>
-          </section>
+          {/* Booking and patient-form pages already are the next step. */}
+          <HideOnPaths paths={["/book", "/forms"]}>
+            <section className="rounded-2xl border border-white/18 bg-white/8 p-4 shadow-[0_20px_55px_-38px_rgba(0,0,0,0.65)] backdrop-blur-sm md:p-5" aria-labelledby="footer-booking-title">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55">Appointments</p>
+              <h2 id="footer-booking-title" className="mt-2 font-heading text-xl font-semibold text-white">
+                Looking to book?
+              </h2>
+              <Link
+                href="/locations"
+                className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-sageDark shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-offwhite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                data-analytics-id="footer-choose-location"
+              >
+                Choose your location
+              </Link>
+            </section>
+          </HideOnPaths>
         </div>
 
         <div className="mt-4 flex flex-col gap-3 border-t border-white/15 pt-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
