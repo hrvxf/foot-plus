@@ -4,6 +4,11 @@ import Link from "next/link";
 import { Suspense, useState } from "react";
 
 import EnquiryForm from "../components/EnquiryForm";
+import RatingBadge from "../components/reviews/RatingBadge";
+import Stars from "../components/reviews/Stars";
+import { formatReviewMonth, getReviews } from "../lib/reviews";
+
+const featuredReview = getReviews("all", 1)[0];
 
 export default function BookFlow() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,6 +23,7 @@ export default function BookFlow() {
           <p className="mt-3 text-base leading-relaxed text-brand-charcoal/70 sm:text-lg">
             Tell us what you need. We&rsquo;ll confirm the time and price.
           </p>
+          <RatingBadge scope="all" className="mt-3" analyticsId="book-header-reviews" />
           <p className="mt-4 text-base text-brand-charcoal/80">
             Already enquired?{" "}
             <Link
@@ -36,6 +42,19 @@ export default function BookFlow() {
           <EnquiryForm onSubmitted={() => setSubmitted(true)} />
         </Suspense>
       </div>
+
+      {submitted || !featuredReview ? null : (
+        <figure className="mt-6 rounded-3xl border border-brand-line bg-white/70 p-5 sm:p-6">
+          <Stars rating={featuredReview.rating} />
+          <blockquote className="mt-3 text-[15.5px] leading-relaxed text-brand-charcoal">
+            &ldquo;{featuredReview.text}&rdquo;
+          </blockquote>
+          <figcaption className="mt-3 text-sm text-brand-muted">
+            <span className="font-semibold text-brand-sageDeep">{featuredReview.name}</span> ·{" "}
+            {formatReviewMonth(featuredReview.month)} · Google
+          </figcaption>
+        </figure>
+      )}
 
       {submitted ? null : (
         <p className="mt-6 text-center text-sm text-brand-charcoal/65">

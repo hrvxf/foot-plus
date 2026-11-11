@@ -24,6 +24,8 @@ import ClosingCta from "./site/ClosingCta";
 import MobileActions from "./site/MobileActions";
 import { btnGhost, btnOutlineWhite, btnPrimary, btnWhite, container, eyebrow, h2, textLink } from "./site/ui";
 import PostcodeChecker from "./home/PostcodeChecker";
+import RatingBadge from "./reviews/RatingBadge";
+import ReviewsSection from "./reviews/ReviewsSection";
 
 const serviceIcons: Record<HomeServiceIcon, LucideIcon> = {
   nail: Scissors,
@@ -69,6 +71,7 @@ export default function HomeContent() {
       <Locations />
       <Services />
       <PricesAndSteps />
+      <ReviewsSection scope="all" analyticsPrefix="home" />
       <Standards />
       <Advice />
       <Faq />
@@ -110,7 +113,9 @@ function Hero() {
             </a>
           </p>
 
-          <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[15px] font-medium text-brand-sageDeep" aria-label="Why choose Foot+">
+          <RatingBadge scope="all" className="mt-5" analyticsId="home-hero-reviews" />
+
+          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[15px] font-medium text-brand-sageDeep" aria-label="Why choose Foot+">
             {["Qualified practitioners", "Fully insured", "DBS checked"].map((item) => (
               <li key={item} className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-brand-sage" aria-hidden="true" />

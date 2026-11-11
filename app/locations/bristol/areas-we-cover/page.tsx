@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Button from "../../../components/Button";
 import PostcodeChecker from "../../../components/home/PostcodeChecker";
+import RatingBadge from "../../../components/reviews/RatingBadge";
 import {
   estimateTravel,
   travelSummary,
@@ -298,6 +299,7 @@ export default function AreasWeCoverPage() {
 
         <aside className="rounded-3xl bg-brand-sageDark p-6 text-white shadow-sm lg:sticky lg:top-24 lg:mt-12">
           <h2 className="font-heading text-xl font-semibold">Ready to book?</h2>
+          <RatingBadge scope="bristol" tone="dark" className="mt-2 text-sm" analyticsId="areas-aside-reviews" />
           <p className="mt-2 text-sm leading-relaxed text-white/80">
             Professional foot and nail care in your own home. Not sure about
             your area? Just ask.
