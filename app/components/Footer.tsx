@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { emailDisplay, emailHref } from "../lib/site";
+import FooterEmail from "./FooterEmail";
 import { rule, shell } from "./site/ui";
 
 const exploreLinks = [
@@ -44,11 +44,7 @@ export default function Footer() {
           </div>
 
           <div className="col-span-2 sm:col-span-1">
-            <h2 className={heading}>General enquiries</h2>
-            <a href={emailHref} className={`${link} font-semibold underline`} data-analytics-id="footer-general-email">
-              {emailDisplay}
-            </a>
-            <p className="text-base text-brand-muted">Shared inbox for Bristol and Southampton</p>
+            <FooterEmail headingClass={heading} linkClass={`${link} font-semibold underline`} />
             <a
               href="https://www.facebook.com/profile.php?id=61586341484139"
               target="_blank"

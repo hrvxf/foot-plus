@@ -11,6 +11,7 @@ import {
 } from "../../../lib/travel";
 import {
   BRISTOL_BUSINESS_ID,
+  locationEmails,
   phoneDisplay,
   SITE_URL,
 } from "../../../lib/site";
@@ -307,7 +308,7 @@ export default function AreasWeCoverPage() {
             <Button href="/book?location=bristol" variant="primary">
               Book an appointment
             </Button>
-            <ContactIcons tone="dark" actions={bristolContactActions({ analyticsPrefix: "areas-aside" })} />
+            <ContactIcons tone="dark" actions={bristolContactActions({ analyticsPrefix: "areas-aside", email: locationEmails.bristol })} />
           </div>
         </aside>
       </section>

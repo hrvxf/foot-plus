@@ -18,6 +18,18 @@ export const phoneDisplay = "07380 301555";
 export const phoneHref = "tel:+447380301555";
 export const emailDisplay = "hello@foot-plus.co.uk";
 export const emailHref = `mailto:${emailDisplay}`;
+
+/** Each location has its own inbox. Pages under /locations/<slug> use it instead of the general one. */
+export const locationEmails = {
+  bristol: { display: "bristol@foot-plus.co.uk", href: "mailto:bristol@foot-plus.co.uk", label: "Email Foot+ Bristol", heading: "Bristol enquiries" },
+  southampton: { display: "southampton@foot-plus.co.uk", href: "mailto:southampton@foot-plus.co.uk", label: "Email Foot+ Southampton", heading: "Southampton enquiries" },
+} as const;
+
+export function emailForPath(pathname: string | null) {
+  if (pathname?.startsWith("/locations/bristol")) return locationEmails.bristol;
+  if (pathname?.startsWith("/locations/southampton")) return locationEmails.southampton;
+  return { display: emailDisplay, href: emailHref, label: "Email Foot+", heading: "General enquiries" };
+}
 export const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
 
 export const serviceAreas = [

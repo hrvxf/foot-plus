@@ -7,7 +7,7 @@ import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, locationEmails } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
@@ -91,7 +91,7 @@ export default function BristolLocationPage() {
         secondaryAction={{ label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" }}
         contactActions={bristolContactActions({
           analyticsPrefix: "bristol-hero",
-          email: { href: "mailto:bristol@foot-plus.co.uk", label: "Email Foot+ Bristol" },
+          email: locationEmails.bristol,
         })}
         practitioner={practitioner}
       />
