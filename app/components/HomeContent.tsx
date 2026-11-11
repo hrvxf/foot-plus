@@ -17,7 +17,21 @@ import { travelSummaryAllLocations } from "../lib/travel";
 import HomeMobileBar from "./home/HomeMobileBar";
 import PostcodeChecker from "./home/PostcodeChecker";
 import Stars from "./reviews/Stars";
-import { body, displayH1, displayH2, displayH3, focusRing, lead, linkQuiet, rule, shell, small } from "./site/ui";
+import {
+  body,
+  displayH1,
+  displayH2,
+  displayH3,
+  figure,
+  focusRing,
+  lead,
+  linkQuiet,
+  rule,
+  shell,
+  small,
+  supporting,
+  texturedGreen,
+} from "./site/ui";
 
 const HERO_CHECKER_ID = "check-postcode";
 
@@ -41,7 +55,7 @@ const visits = [
   { name: "Routine visit", detail: "For returning patients. About 45 minutes.", price: prices[1].price },
 ];
 
-const section = `border-t ${rule} py-10 md:py-14`;
+const section = "py-12 md:py-20";
 
 export default function HomeContent() {
   return (
@@ -75,12 +89,13 @@ function PhoneLine({ analyticsId, className }: { analyticsId: string; className:
 function Hero() {
   return (
     <section aria-labelledby="home-heading">
-      <div className={`${shell} grid items-center gap-7 pb-10 pt-7 md:pb-14 md:pt-12 lg:grid-cols-12 lg:gap-12 lg:py-16`}>
+      <div className={`${shell} grid items-center gap-7 pb-10 pt-7 md:pb-14 md:pt-12 lg:grid-cols-12 lg:gap-12 lg:py-20`}>
         <div className="lg:col-span-7">
-          <h1 id="home-heading" className={`${displayH1} max-w-[20ch]`}>
-            Toenail cutting and routine foot care, in your own home.
+          <h1 id="home-heading" className={`${displayH1} max-w-[18ch]`}>
+            Toenail cutting and routine foot care,{" "}
+            <span className="text-brand-sage">in your own home.</span>
           </h1>
-          <p className={`${lead} mt-4 max-w-[60ch] md:mt-5`}>
+          <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>
             A qualified Foot Health Practitioner visits you in Bristol or Southampton to cut and thin
             difficult nails and treat corns, hard skin and cracked heels. For yourself, or for someone
             you look after.
@@ -109,7 +124,7 @@ function Proof() {
 
   const ratingSummary = rating ? (
     <>
-      <span className="font-heading text-[1.75rem] font-semibold leading-none">{rating.average.toFixed(1)}</span>
+      <span className={`${figure} text-[2.75rem] text-brand-sageDeep md:text-[3.25rem]`}>{rating.average.toFixed(1)}</span>
       <span className="flex flex-col gap-1">
         <Stars rating={rating.average} className="h-5 w-5" />
         <span className={`${small} underline-offset-4 group-hover:underline`}>
@@ -120,8 +135,8 @@ function Proof() {
   ) : null;
 
   return (
-    <section aria-label="Reviews and credentials" className={`border-t ${rule}`}>
-      <div className={`${shell} grid gap-6 py-8 lg:grid-cols-12 lg:items-center lg:gap-10`}>
+    <section aria-label="Reviews and credentials" className="bg-brand-wash">
+      <div className={`${shell} grid gap-6 py-8 md:py-10 lg:grid-cols-12 lg:items-center lg:gap-10`}>
         {ratingSummary ? (
           links.length === 1 ? (
             <a
@@ -141,14 +156,14 @@ function Proof() {
 
         {review ? (
           <figure className={ratingSummary ? "lg:col-span-5" : "lg:col-span-7"}>
-            <blockquote className={`${body} font-medium`}>&ldquo;{review.excerpt ?? review.text}&rdquo;</blockquote>
-            <figcaption className={`${small} mt-1 text-brand-muted`}>
+            <blockquote className="font-heading text-xl font-semibold leading-[1.4] text-brand-sageDeep md:text-[1.375rem]">&ldquo;{review.excerpt ?? review.text}&rdquo;</blockquote>
+            <figcaption className={`${supporting} mt-2`}>
               {review.name}, {formatReviewMonth(review.month)}, on Google
             </figcaption>
           </figure>
         ) : null}
 
-        <p className={`${small} ${review || ratingSummary ? "lg:col-span-4" : "lg:col-span-12"}`}>
+        <p className={`${small} border-brand-sage/50 lg:border-l lg:pl-8 ${review || ratingSummary ? "lg:col-span-4" : "lg:col-span-12"}`}>
           {homeCredentials} {homeMemberships}
         </p>
       </div>
@@ -158,13 +173,13 @@ function Proof() {
 
 function CoversAndCosts() {
   return (
-    <section className={section}>
-      <div className={`${shell} grid gap-12 md:grid-cols-2 md:gap-10 lg:gap-16`}>
+    <section className={`bg-white ${section}`}>
+      <div className={`${shell} grid gap-14 md:grid-cols-2 md:gap-10 lg:gap-20`}>
         <div aria-labelledby="covers-heading" role="group">
           <h2 id="covers-heading" className={displayH2}>
             What a visit covers
           </h2>
-          <ul className={`mt-6 border-b ${rule}`}>
+          <ul className={`mt-7 border-b ${rule}`}>
             {homeServices.map((service) => (
               <li key={service.title} className={`border-t ${rule}`}>
                 <Link
@@ -172,7 +187,7 @@ function CoversAndCosts() {
                   className={`group grid gap-x-6 gap-y-0.5 py-3.5 lg:grid-cols-[13rem_1fr] lg:items-baseline ${focusRing}`}
                 >
                   <span className={`${displayH3} underline-offset-4 group-hover:underline`}>{service.title}</span>
-                  <span className={small}>{service.description}</span>
+                  <span className={supporting}>{service.description}</span>
                 </Link>
               </li>
             ))}
@@ -187,14 +202,14 @@ function CoversAndCosts() {
           <h2 id="prices-heading" className={displayH2}>
             What it costs
           </h2>
-          <ul className={`mt-6 border-b ${rule}`}>
+          <ul className={`mt-7 border-b ${rule}`}>
             {visits.map((visit) => (
-              <li key={visit.name} className={`flex items-baseline justify-between gap-6 border-t ${rule} py-3.5`}>
+              <li key={visit.name} className={`flex items-center justify-between gap-6 border-t ${rule} py-5`}>
                 <span>
                   <span className={`${displayH3} block`}>{visit.name}</span>
-                  <span className={`${small} block`}>{visit.detail}</span>
+                  <span className={`${supporting} block`}>{visit.detail}</span>
                 </span>
-                <span className="font-heading text-[1.75rem] font-semibold leading-none tabular-nums text-brand-charcoal">
+                <span className={`${figure} text-[2.75rem] text-brand-sageDeep md:text-[3.25rem]`}>
                   {visit.price}
                 </span>
               </li>
@@ -224,22 +239,22 @@ function WhoAndHow() {
           Who visits, and how it works
         </h2>
 
-        <div className="mt-8 grid gap-10 md:grid-cols-2 md:gap-10 lg:gap-16">
+        <div className="mt-8 grid gap-10 md:mt-10 md:grid-cols-2 md:gap-10 lg:gap-20">
           {Object.values(serviceLocations).map((location) => {
             const practitioner = location.practitioner;
             if (!practitioner) return null;
             return (
-              <article key={location.slug} className="flex items-start gap-5" aria-labelledby={`who-${location.slug}`}>
+              <article key={location.slug} className="flex items-start gap-5 lg:gap-7" aria-labelledby={`who-${location.slug}`}>
                 <Image
                   src={portraits[location.slug]}
                   alt=""
-                  width={96}
-                  height={96}
-                  sizes="96px"
-                  className="h-24 w-24 shrink-0 rounded-sm object-cover object-[center_15%]"
+                  width={176}
+                  height={208}
+                  sizes="(min-width: 1024px) 176px, 112px"
+                  className="h-36 w-28 shrink-0 rounded-md object-cover object-[center_15%] lg:h-52 lg:w-44"
                 />
                 <div className="min-w-0">
-                  <h3 id={`who-${location.slug}`} className={displayH3}>
+                  <h3 id={`who-${location.slug}`} className="font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
                     <Link href={location.href} className={`inline-flex min-h-11 items-center underline-offset-4 hover:underline ${focusRing}`}>
                       {location.name}
                     </Link>
@@ -247,8 +262,11 @@ function WhoAndHow() {
                   <p className={`${body} mt-1`}>
                     {practitioner.name}, {practitioner.role} ({practitioner.credentials.join(", ")})
                   </p>
-                  <p className={`${small} mt-2`}>{location.coverage}</p>
-                  <p className={`${small} mt-1 font-semibold text-brand-sageDeep`}>{location.availability}</p>
+                  <p className={`${supporting} mt-2`}>{location.coverage}</p>
+                  <p className={`${small} mt-3 inline-flex items-center gap-2 font-semibold text-brand-sageDeep`}>
+                    <span className="h-2.5 w-2.5 rounded-full bg-brand-sage" aria-hidden="true" />
+                    {location.availability}
+                  </p>
                   <ul className="mt-1 flex flex-wrap gap-x-6">
                     {locationLinks[location.slug].map((link) => (
                       <li key={link.href}>
@@ -264,20 +282,20 @@ function WhoAndHow() {
           })}
         </div>
 
-        <ol className={`mt-10 grid gap-8 border-t ${rule} pt-8 md:mt-12 md:grid-cols-3 md:gap-10 md:pt-10`}>
+        <ol className={`mt-10 grid gap-8 border-t ${rule} pt-8 md:mt-14 md:grid-cols-3 md:gap-10 md:pt-12`}>
           {homeSteps.map((step, index) => (
-            <li key={step.title} className="grid grid-cols-[2.25rem_1fr] gap-x-3">
-              <span className="font-heading text-[1.75rem] font-semibold leading-7 text-brand-sage" aria-hidden="true">
+            <li key={step.title} className="grid grid-cols-[3rem_1fr] items-start gap-x-3 md:block">
+              <span className={`${figure} block text-[3.25rem] text-brand-sage md:mb-4 md:text-[4rem]`} aria-hidden="true">
                 {index + 1}
               </span>
               <div>
                 <h3 className={displayH3}>{step.title}</h3>
-                <p className={`${small} mt-1`}>{step.body}</p>
+                <p className={`${supporting} mt-1`}>{step.body}</p>
               </div>
             </li>
           ))}
         </ol>
-        <p className={`${small} mt-8`}>Visits are unhurried, clearly explained and LGBTQ+ friendly.</p>
+        <p className={`${small} mt-10`}>Visits are unhurried, clearly explained and LGBTQ+ friendly.</p>
       </div>
     </section>
   );
@@ -285,7 +303,7 @@ function WhoAndHow() {
 
 function Questions() {
   return (
-    <section className={section} aria-labelledby="faq-heading">
+    <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="faq-heading">
       <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>
         <h2 id="faq-heading" className={`${displayH2} md:col-span-3`}>
           Questions
@@ -313,14 +331,17 @@ function Questions() {
 
 function Start() {
   return (
-    <section className={section} aria-labelledby="start-heading">
+    <section className={`${texturedGreen} py-12 md:py-16`} aria-labelledby="start-heading">
       <div className={`${shell} grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10`}>
-        <h2 id="start-heading" className={`${displayH2} lg:col-span-5`}>
+        <h2
+          id="start-heading"
+          className="font-heading text-[1.625rem] font-semibold leading-[1.2] tracking-[-0.01em] text-white md:text-[2.125rem] md:leading-[1.15] lg:col-span-5"
+        >
           Check your postcode to get started.
         </h2>
         <div className="lg:col-span-7">
-          <PostcodeChecker tone="plain" placement="closing" label="Postcode for the visit" />
-          <PhoneLine analyticsId="home-cta-phone" className={`${small} mt-2`} />
+          <PostcodeChecker tone="band" placement="closing" label="Postcode for the visit" />
+          <PhoneLine analyticsId="home-cta-phone" className="mt-2 text-base leading-6 text-white" />
         </div>
       </div>
     </section>
