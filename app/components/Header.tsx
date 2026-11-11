@@ -59,6 +59,10 @@ export default function Header() {
   const linkTone = "text-brand-charcoal/80 hover:text-brand-sageDark";
   const activeBorder = "border-brand-sageDark";
 
+  // Patients reach /forms after they have already enquired (usually from a WhatsApp
+  // follow-up). Hide "Book a visit" there so they don't submit a second enquiry.
+  const isPatientFormPage = pathname.startsWith("/forms");
+
   const bookButtonClasses =
     "rounded-full bg-brand-sageDark px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDeep";
 
@@ -116,9 +120,20 @@ export default function Header() {
               <Phone className="h-4.5 w-4.5" aria-hidden="true" />
               {phoneDisplay}
             </a>
-            <Link className={bookButtonClasses} href="/book">
-              Book a visit
-            </Link>
+            {isPatientFormPage ? (
+              <a
+                className={`${bookButtonClasses} inline-flex items-center gap-2 lg:hidden`}
+                href={phoneHref}
+                data-analytics-id="header-forms-phone"
+              >
+                <Phone className="h-4.5 w-4.5" aria-hidden="true" />
+                Call for help
+              </a>
+            ) : (
+              <Link className={bookButtonClasses} href="/book">
+                Book a visit
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
@@ -197,9 +212,11 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link className={`${bookButtonClasses} mt-4 text-center`} href="/book" onClick={() => setIsMenuOpen(false)}>
-                Book a visit
-              </Link>
+              {isPatientFormPage ? null : (
+                <Link className={`${bookButtonClasses} mt-4 text-center`} href="/book" onClick={() => setIsMenuOpen(false)}>
+                  Book a visit
+                </Link>
+              )}
               <a className="mt-2 rounded-full border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark" href={phoneHref}>
                 Call {phoneDisplay}
               </a>

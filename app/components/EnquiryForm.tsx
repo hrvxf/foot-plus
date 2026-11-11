@@ -124,32 +124,51 @@ export default function EnquiryForm() {
   }
 
   if (isSubmitted) {
+    const firstName = data.fullName.trim().split(" ")[0];
+    // Southampton patient forms are not online yet, so only Bristol gets the next step.
+    const hasOnlinePatientForm = data.location === "Bristol";
+    const patientFormHref = `/forms?location=${data.location.toLowerCase()}`;
+
+    if (!hasOnlinePatientForm) {
+      return (
+        <div className="py-4 sm:py-8">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/60">
+            Enquiry received
+          </p>
+          <h2 className="mt-3 font-heading text-3xl font-semibold tracking-[-0.025em] text-brand-sageDark">
+            Thank you, {firstName}.
+          </h2>
+          <p className="mt-3 max-w-xl text-base leading-relaxed text-brand-charcoal/70">
+            {`We aim to respond within 24–48 hours to arrange your ${data.location} appointment and any forms needed.`}
+          </p>
+        </div>
+      );
+    }
+
     return (
       <div className="py-4 sm:py-8">
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/60">
-          Enquiry received
+          Step 1 of 2 done · Enquiry received
         </p>
         <h2 className="mt-3 font-heading text-3xl font-semibold tracking-[-0.025em] text-brand-sageDark">
-          Thank you, {data.fullName.split(" ")[0]}.
+          Thank you, {firstName}. One more step.
         </h2>
-        <p className="mt-3 max-w-xl text-base leading-relaxed text-brand-charcoal/70">
-          {`We aim to respond within 24–48 hours to arrange your ${data.location} appointment.`}
+        <p className="mt-3 max-w-xl text-base leading-relaxed text-brand-charcoal/75">
+          New patients: please complete your patient form now. It takes about 5 minutes and means
+          we can arrange your visit without extra phone calls.
         </p>
 
-        <div className="mt-8 border-t border-brand-sageLight/30 pt-7">
-          <h3 className="font-heading text-xl font-semibold text-brand-sageDark">
-            Complete your patient document
-          </h3>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-brand-charcoal/65">
-            New patients can continue to the secure patient-document journey.
-          </p>
-          <a
-            href="/forms"
-            className="mt-5 inline-flex rounded-full bg-brand-sageDark px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
-          >
-            Complete your patient document
-          </a>
-        </div>
+        <a
+          href={patientFormHref}
+          className="mt-6 flex w-full items-center justify-center rounded-full bg-brand-sageDark px-6 py-4 text-base font-semibold text-white shadow-[0_16px_34px_-22px_rgba(24,55,45,0.9)] transition hover:bg-brand-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark sm:w-auto sm:inline-flex"
+          data-analytics-id="enquiry-success-patient-form"
+        >
+          Step 2: complete your patient form →
+        </a>
+
+        <p className="mt-5 max-w-xl text-sm leading-relaxed text-brand-charcoal/65">
+          {`We've also emailed you this link, so you can come back to it later. We aim to respond within 24–48 hours to arrange your ${data.location} appointment. Existing patient? You can skip this step.`}
+        </p>
       </div>
     );
   }

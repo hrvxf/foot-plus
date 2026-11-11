@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-import { emailDisplay } from "../../lib/site";
+import { emailDisplay, phoneDisplay, SITE_URL } from "../../lib/site";
 import { validateServicePostcode, type EnquiryLocation } from "../../lib/postcodes";
 
 export const runtime = "nodejs";
@@ -18,6 +18,91 @@ const escapeHtml = (input: string) =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+
+const patientFormUrls: Partial<Record<EnquiryLocation, string>> = {
+  Bristol: `${SITE_URL}/forms?location=bristol`,
+};
+
+async function sendPatientConfirmation(
+  resend: Resend,
+  {
+    from,
+    to,
+    name,
+    location,
+  }: { from: string; to: string; name: string; location: EnquiryLocation }
+) {
+  const firstName = name.split(" ")[0] || name;
+  const safeFirstName = escapeHtml(firstName);
+  const formUrl = patientFormUrls[location];
+  const font = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif";
+
+  const formBlockHtml = formUrl
+    ? `
+      <p style="margin:0 0 8px;font-size:18px;font-weight:700;color:#18372d;">One more step: your patient form</p>
+      <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
+        If you are a new patient, please complete your patient form. It takes about 5 minutes
+        and helps us arrange your visit.
+      </p>
+      <p style="margin:0 0 24px;">
+        <a href="${formUrl}" style="display:inline-block;background:#18372d;color:#ffffff;text-decoration:none;font-weight:700;font-size:17px;padding:14px 26px;border-radius:999px;">Complete your patient form</a>
+      </p>
+      <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#555555;">
+        If the button doesn't work, copy this link into your browser:<br/>
+        <a href="${formUrl}" style="color:#18372d;">${formUrl}</a>
+      </p>
+      <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
+        You don't need to send another enquiry. A relative or carer is welcome to help you fill it in.
+      </p>`
+    : `
+      <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
+        We'll be in touch about any forms needed for your visit. You don't need to send another enquiry.
+      </p>`;
+
+  const html = `
+    <div style="background:#f6f5f0;padding:28px 16px;font-family:${font};color:#2b2b2b;">
+      <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:18px;padding:28px 24px;">
+        <p style="margin:0 0 16px;font-size:22px;font-weight:700;color:#18372d;">Thank you, ${safeFirstName}</p>
+        <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
+          We've received your Foot+ ${escapeHtml(location)} enquiry and aim to reply within 24–48 hours
+          to arrange your home visit.
+        </p>
+        ${formBlockHtml}
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#555555;">
+          Questions? Call ${phoneDisplay} or reply to this email.
+        </p>
+      </div>
+    </div>
+  `;
+
+  const text = [
+    `Thank you, ${firstName}`,
+    "",
+    `We've received your Foot+ ${location} enquiry and aim to reply within 24-48 hours to arrange your home visit.`,
+    "",
+    ...(formUrl
+      ? [
+          "One more step: if you are a new patient, please complete your patient form (about 5 minutes):",
+          formUrl,
+          "",
+          "You don't need to send another enquiry. A relative or carer is welcome to help.",
+        ]
+      : ["We'll be in touch about any forms needed. You don't need to send another enquiry."]),
+    "",
+    `Questions? Call ${phoneDisplay} or reply to this email.`,
+  ].join("\n");
+
+  await resend.emails.send({
+    from: from.replace("Foot+ Contact", `Foot+ ${location}`),
+    to,
+    replyTo: locationRecipients[location],
+    subject: formUrl
+      ? "We've received your Foot+ enquiry – one more step"
+      : "We've received your Foot+ enquiry",
+    html,
+    text,
+  });
+}
 
 const isEnquiryLocation = (value: unknown): value is EnquiryLocation =>
   value === "Bristol" || value === "Southampton";
@@ -118,6 +203,19 @@ export async function POST(req: Request) {
         status: 502,
         headers: { "Content-Type": "application/json" },
       });
+    }
+
+    // Confirmation to the patient, with the patient-form link where one exists.
+    // Best effort: a failure here must not fail the enquiry, which has already been sent.
+    try {
+      await sendPatientConfirmation(resend, {
+        from,
+        to: replyTo,
+        name: String(name).trim(),
+        location,
+      });
+    } catch {
+      // ignore
     }
 
     return new Response(JSON.stringify({ ok: true }), {

@@ -70,17 +70,17 @@ function LocationChoice() {
           Where do you receive care?
         </h1>
         <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/70">
-          Choose your Foot+ service to continue to the correct patient document.
+          Choose your Foot+ service to continue to the correct patient form.
+        </p>
+        <p className="mx-auto mt-5 max-w-md rounded-2xl bg-white/10 px-5 py-4 text-base leading-relaxed text-white">
+          Already sent us an enquiry? You&rsquo;re in the right place. You don&rsquo;t need to book
+          again &mdash; just complete your patient form.
         </p>
 
         <nav
           aria-label="Choose your patient form location"
-          className="relative mx-auto mt-8 grid h-14 w-full max-w-md grid-cols-2 overflow-hidden rounded-full border border-white/30 bg-white/[0.07] p-1 shadow-[0_18px_60px_-32px_rgba(0,0,0,0.9)] backdrop-blur-xl"
+          className="mx-auto mt-8 grid w-full max-w-md gap-3 sm:grid-cols-2"
         >
-          <span
-            aria-hidden="true"
-            className="absolute bottom-3 left-1/2 top-3 w-px bg-white/20"
-          />
           {[
             { name: "Bristol", href: "/forms?location=bristol" },
             { name: "Southampton", href: "/forms?location=southampton" },
@@ -88,15 +88,10 @@ function LocationChoice() {
             <Link
               key={location.href}
               href={location.href}
-              className="group relative z-10 flex items-center justify-center rounded-full px-4 font-heading text-base font-semibold tracking-[0.015em] text-white transition-[transform,background-color,box-shadow] duration-200 ease-out hover:bg-white/[0.10] active:scale-[0.95] active:bg-white/[0.18] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white"
+              className="flex min-h-16 items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 font-heading text-lg font-semibold text-brand-sageDark shadow-[0_18px_50px_-28px_rgba(0,0,0,0.9)] transition hover:bg-brand-offwhite active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              <span className="relative pb-0.5">
-                {location.name}
-                <span
-                  aria-hidden="true"
-                  className="absolute -bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-white/85 transition-[width,opacity] duration-200 group-hover:w-5"
-                />
-              </span>
+              {location.name}
+              <span aria-hidden="true">→</span>
             </Link>
           ))}
         </nav>
@@ -172,7 +167,16 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
           <h1 className="mt-3 max-w-225 font-heading text-[clamp(2.4rem,5vw,4.2rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
             Complete your new patient form
           </h1>
-          <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
+          <div
+            role="note"
+            className="mt-5 max-w-3xl rounded-2xl border border-brand-sageDark/20 bg-white px-5 py-4 text-base leading-relaxed text-brand-charcoal"
+          >
+            <strong className="font-semibold text-brand-sageDark">
+              Already sent us an enquiry? You don&rsquo;t need to book again.
+            </strong>{" "}
+            Your request has been received &mdash; this form is the only thing left to do.
+          </div>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
             Please complete this form before your first Bristol appointment where possible. Your
             answers help Foot+ understand your medical history, foot-care needs and any support
             required during the visit.
