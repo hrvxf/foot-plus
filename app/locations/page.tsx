@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 import { serviceLocations } from "../lib/locations";
 
@@ -39,7 +38,7 @@ export default function LocationsPage() {
           className="text-center font-heading text-[2rem] font-semibold leading-[1.25] tracking-[-0.015em] md:text-[2.75rem] lg:text-[3.5rem]"
         >
           Choose your local{" "}
-          <Link href="/" className={`inline-block rounded-sm align-baseline ${focus}`}>
+          <Link href="/" className={`mx-[0.14em] inline-block rounded-sm align-baseline ${focus}`}>
             <span
               role="img"
               aria-label="Foot+"
@@ -49,21 +48,16 @@ export default function LocationsPage() {
           service
         </h1>
 
-        <ul className="mt-10 grid border-y border-white/30 sm:grid-cols-2 md:mt-16">
+        <ul className="mx-auto mt-10 grid w-full max-w-2xl gap-4 sm:grid-cols-2 sm:gap-6 md:mt-14">
           {Object.values(serviceLocations).map((location) => (
-            <li key={location.slug} className="border-white/30 not-first:border-t sm:not-first:border-l sm:not-first:border-t-0">
+            <li key={location.slug}>
+              {/* Body typeface and a raised, outlined surface, so these read as buttons and not as more heading. */}
               <Link
                 href={location.href}
-                className={`group flex min-h-28 items-center justify-between gap-6 px-2 font-heading text-[2rem] font-semibold tracking-[-0.01em] transition-colors duration-200 hover:bg-white/[0.07] sm:px-8 md:min-h-44 md:px-10 md:text-[2.75rem] lg:text-[3.25rem] ${focus}`}
+                className={`flex min-h-16 items-center justify-center rounded-lg border border-white/55 bg-white/[0.12] px-6 text-center text-xl font-semibold tracking-[0.01em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_-18px_rgba(0,0,0,0.6)] transition-[background-color,color,transform,box-shadow] duration-200 hover:bg-white hover:text-[#34503F] active:translate-y-px active:scale-[0.99] motion-reduce:transition-none md:min-h-20 md:text-2xl ${focus}`}
                 data-analytics-id={`locations-view-${location.slug}`}
               >
                 {location.name}
-                <span
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/50 transition-[background-color,color,transform] duration-200 group-hover:translate-x-1 group-hover:bg-white group-hover:text-[#34503F] motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 md:h-14 md:w-14"
-                  aria-hidden="true"
-                >
-                  <ArrowRight className="h-6 w-6" />
-                </span>
               </Link>
             </li>
           ))}
