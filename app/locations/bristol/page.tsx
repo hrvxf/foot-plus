@@ -9,6 +9,7 @@ import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
+import ReviewsSection from "../../components/reviews/ReviewsSection";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
@@ -109,6 +110,8 @@ export default function BristolLocationPage() {
           </div>
         </div>
       </section>
+
+      <ReviewsSection id="bristol-reviews" analyticsPrefix="bristol" />
 
       <section id="bristol-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="bristol-services-heading">
         <div className="mx-auto max-w-[1360px] px-6 py-14 md:px-10 xl:px-14">
