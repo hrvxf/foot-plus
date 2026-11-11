@@ -41,22 +41,21 @@ async function sendPatientConfirmation(
     ? `
       <p style="margin:0 0 8px;font-size:18px;font-weight:700;color:#18372d;">One more step: your patient form</p>
       <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
-        If you are a new patient, please complete your patient form. It takes about 5 minutes
-        and helps us arrange your visit.
+        New patients only. It takes about 5 minutes.
       </p>
       <p style="margin:0 0 24px;">
         <a href="${formUrl}" style="display:inline-block;background:#18372d;color:#ffffff;text-decoration:none;font-weight:700;font-size:17px;padding:14px 26px;border-radius:999px;">Complete your patient form</a>
       </p>
       <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#555555;">
-        If the button doesn't work, copy this link into your browser:<br/>
+        Or copy this link:<br/>
         <a href="${formUrl}" style="color:#18372d;">${formUrl}</a>
       </p>
       <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
-        You don't need to send another enquiry. A relative or carer is welcome to help you fill it in.
+        No need to enquire again. A relative or carer can help.
       </p>`
     : `
       <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
-        We'll be in touch about any forms needed for your visit. You don't need to send another enquiry.
+        No need to enquire again.
       </p>`;
 
   const html = `
@@ -64,8 +63,7 @@ async function sendPatientConfirmation(
       <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:18px;padding:28px 24px;">
         <p style="margin:0 0 16px;font-size:22px;font-weight:700;color:#18372d;">Thank you, ${safeFirstName}</p>
         <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
-          We've received your Foot+ ${escapeHtml(location)} enquiry and aim to reply within 24–48 hours
-          to arrange your home visit.
+          We've received your enquiry and will be in touch within 24–48 hours.
         </p>
         ${formBlockHtml}
         <p style="margin:0;font-size:15px;line-height:1.6;color:#555555;">
@@ -78,16 +76,16 @@ async function sendPatientConfirmation(
   const text = [
     `Thank you, ${firstName}`,
     "",
-    `We've received your Foot+ ${location} enquiry and aim to reply within 24-48 hours to arrange your home visit.`,
+    "We've received your enquiry and will be in touch within 24-48 hours.",
     "",
     ...(formUrl
       ? [
-          "One more step: if you are a new patient, please complete your patient form (about 5 minutes):",
+          "One more step for new patients: your patient form (about 5 minutes):",
           formUrl,
           "",
-          "You don't need to send another enquiry. A relative or carer is welcome to help.",
+          "No need to enquire again. A relative or carer can help.",
         ]
-      : ["We'll be in touch about any forms needed. You don't need to send another enquiry."]),
+      : ["No need to enquire again."]),
     "",
     `Questions? Call ${phoneDisplay} or reply to this email.`,
   ].join("\n");

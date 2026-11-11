@@ -69,12 +69,8 @@ function LocationChoice() {
         <h1 className="mt-4 font-heading text-[clamp(2.25rem,6vw,4rem)] font-semibold leading-[1.03] tracking-[-0.035em]">
           Where do you receive care?
         </h1>
-        <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/70">
-          Choose your Foot+ service to continue to the correct patient form.
-        </p>
         <p className="mx-auto mt-5 max-w-md rounded-2xl bg-white/10 px-5 py-4 text-base leading-relaxed text-white">
-          Already sent us an enquiry? You&rsquo;re in the right place. You don&rsquo;t need to book
-          again. Just complete your patient form.
+          Already enquired? No need to book again.
         </p>
 
         <nav
@@ -171,15 +167,12 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
             role="note"
             className="mt-5 max-w-3xl rounded-2xl border border-brand-sageDark/20 bg-white px-5 py-4 text-base leading-relaxed text-brand-charcoal"
           >
-            <strong className="font-semibold text-brand-sageDark">
-              Already sent us an enquiry? You don&rsquo;t need to book again.
-            </strong>{" "}
-            Your request has been received. This form is the only thing left to do.
+            <strong className="font-semibold text-brand-sageDark">Already enquired?</strong> No
+            need to book again.
           </div>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-            Please complete this form before your first Bristol appointment where possible. Your
-            answers help Foot+ understand your medical history, foot-care needs and any support
-            required during the visit.
+            Please complete before your first appointment. It helps us understand your medical
+            history and any support you need.
           </p>
         </div>
 

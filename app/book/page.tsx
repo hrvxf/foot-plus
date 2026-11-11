@@ -48,13 +48,11 @@ export default function BookPage() {
             Request a home visit
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-brand-charcoal/72 sm:text-lg">
-            Choose your area and tell us how we can help. We’ll confirm availability, timing and
-            price.
+            Choose your area and tell us how we can help.
           </p>
 
           <div className="mt-6 max-w-lg rounded-2xl border border-brand-sageDark/20 bg-white px-5 py-4 text-base leading-relaxed text-brand-charcoal">
             <strong className="font-semibold text-brand-sageDark">Already spoken to us?</strong>{" "}
-            You don&rsquo;t need to send another request.{" "}
             <Link
               href="/forms?location=bristol"
               className="font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
