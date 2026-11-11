@@ -5,19 +5,18 @@ import PostcodeChecker from "../components/home/PostcodeChecker";
 import { AppointmentList, Breadcrumb, Steps } from "../components/site/blocks";
 import {
   body,
-  btnSolid,
   displayH1,
   displayH2,
-  displayH3,
   lead,
   linkQuiet,
   rule,
   shell,
-  small,
   supporting,
 } from "../components/site/ui";
-import { bookingHref, paymentMethods, prices, SITE_URL } from "../lib/site";
-import { southamptonTravelSummary, travelSummary } from "../lib/travel";
+import { homeSteps } from "../lib/home";
+import { appointmentTypes } from "../lib/services";
+import { bookingHref, paymentMethods, SITE_URL } from "../lib/site";
+import { travelSummaryAllLocations } from "../lib/travel";
 
 export const metadata: Metadata = {
   title: "Home Visit Nail & Foot Care Prices",
@@ -27,68 +26,13 @@ export const metadata: Metadata = {
     "Home nail and foot care: £60 for a first visit and £55 for a routine appointment. Available in Bristol and Southampton.",
 };
 
-const pricingCards = [
-  {
-    label: "First appointment",
-    title: "New Patient Appointment",
-    price: prices[0].price,
-    summary: "Assessment and treatment",
-    duration: "Approximately 60 minutes",
-    checklist: [
-      "Medical and foot health history",
-      "Neurovascular assessment",
-      "Treatment of nail and skin concerns",
-      "Personalised care and aftercare advice",
-    ],
-    cta: "Request your first appointment",
-    featured: true,
-  },
-  {
-    label: "Returning patients",
-    title: "Routine Appointment",
-    price: prices[1].price,
-    summary: "Ongoing foot care",
-    duration: "Approximately 45 minutes",
-    checklist: [
-      "Routine nail and skin care",
-      "Callus and hard-skin management",
-      "Ongoing foot health review",
-      "Advice between appointments",
-    ],
-    cta: "Request a routine appointment",
-    featured: false,
-  },
-];
-
-const nextSteps = [
-  {
-    title: "Send your request",
-    body: "Tell Foot+ what support you need and where you are based.",
-  },
-  {
-    title: "Confirm the details",
-    body: "Your appointment type, location and availability will be confirmed.",
-  },
-  {
-    title: "Receive care at home",
-    body: "Foot+ brings the necessary equipment and provides treatment in your home.",
-  },
-];
+const ctas = ["Request your first appointment", "Request a routine appointment"];
 
 const section = "py-12 md:py-20";
-const inlineLink = "font-semibold text-brand-sageDeep underline decoration-brand-sage decoration-[1.5px] underline-offset-4 hover:text-brand-charcoal";
 
-const travel = [
-  {
-    name: "Bristol",
-    text: travelSummary,
-    link: { label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" },
-  },
-  {
-    name: "Southampton",
-    text: `Appointments are available now. ${southamptonTravelSummary}`,
-    link: { label: "View Southampton information", href: "/locations/southampton" },
-  },
+const coverageLinks = [
+  { label: "Bristol areas we cover", href: "/locations/bristol/areas-we-cover" },
+  { label: "Foot+ Southampton", href: "/locations/southampton" },
 ];
 
 export default function PricesPage() {
@@ -101,8 +45,7 @@ export default function PricesPage() {
             Home visit nail and foot care <span className="text-brand-sage">prices</span>
           </h1>
           <p className={`${lead} mt-4 max-w-[60ch] md:mt-6`}>
-            The same clear appointment prices apply across Foot+ Bristol and Foot+ Southampton. Check your postcode to
-            see your practitioner and any travel fee.
+            One set of prices for Bristol and Southampton.
           </p>
         </div>
       </section>
@@ -114,39 +57,19 @@ export default function PricesPage() {
               Two appointment types
             </h2>
             <p className={`${body} mt-4 max-w-[52ch]`}>
-              One price per visit. Nail care and suitable routine skin care are included.
+              One price per visit, covering nail care and any suitable skin care. There is no separate nail-only price.
             </p>
             <p className={`${supporting} mt-4`}>
               Pay by {paymentMethods.slice(0, -1).join(", ")} or {paymentMethods.at(-1)}.
             </p>
-
-            <h3 className={`${displayH3} mt-8`}>What does a toenail-cutting visit cost?</h3>
-            <p className={`${small} mt-2 max-w-[52ch]`}>
-              Nail care uses the same appointment prices: {prices[0].price} for your first visit and {prices[1].price}{" "}
-              for returning patients. There is no separate nail-only price. Suitable routine skin care can be included
-              within the appointment.{" "}
-              <Link href="/toenail-cutting-bristol" className={inlineLink}>
-                See what Bristol toenail-cutting visits include
-              </Link>
-              , or explore{" "}
-              <Link href="/services" className={inlineLink}>
-                all services
-              </Link>
-              .
-            </p>
+            <Link href="/services" className={`${linkQuiet} mt-2`}>
+              What each treatment involves
+            </Link>
           </div>
 
           <div className="lg:col-span-7">
             <AppointmentList
-              appointments={pricingCards.map((card) => ({
-                tag: card.label,
-                title: card.title,
-                price: card.price,
-                duration: card.duration,
-                points: card.checklist,
-                href: bookingHref,
-                cta: card.cta,
-              }))}
+              appointments={appointmentTypes.map((type, i) => ({ ...type, href: bookingHref, cta: ctas[i] }))}
             />
           </div>
         </div>
@@ -156,19 +79,20 @@ export default function PricesPage() {
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
           <div className="lg:col-span-7">
             <h2 id="travel-heading" className={displayH2}>
-              Travel and coverage
+              Travel
             </h2>
-            <div className="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-10">
-              {travel.map((place) => (
-                <div key={place.name} className={`border-t ${rule} pt-5`}>
-                  <h3 className={displayH3}>{place.name}</h3>
-                  <p className={`${small} mt-2`}>{place.text}</p>
-                  <Link className={`${linkQuiet} mt-1`} href={place.link.href}>
-                    {place.link.label}
+            <p className={`${body} mt-4 max-w-[52ch]`}>
+              {travelSummaryAllLocations} Any travel fee is confirmed before you book.
+            </p>
+            <ul className="mt-2 flex flex-col gap-x-6 sm:flex-row">
+              {coverageLinks.map((link) => (
+                <li key={link.href}>
+                  <Link className={linkQuiet} href={link.href}>
+                    {link.label}
                   </Link>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
           <div className="lg:col-span-5">
             <PostcodeChecker
@@ -187,22 +111,7 @@ export default function PricesPage() {
           <h2 id="next-heading" className={displayH2}>
             What happens next?
           </h2>
-          <p className={`${body} mt-4 max-w-[52ch]`}>The booking process is simple and confirmed before your visit.</p>
-          <Steps steps={nextSteps} className="mt-8 md:mt-10" />
-
-          <div className={`mt-10 flex flex-col gap-6 border-t ${rule} pt-8 md:mt-14 md:flex-row md:items-center md:justify-between md:gap-10 md:pt-10`}>
-            <div className="max-w-[52ch]">
-              <h2 className="font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
-                Not sure which appointment to choose?
-              </h2>
-              <p className={`${small} mt-2`}>
-                New clients should select the New Patient Appointment. Existing clients can book Routine Foot Care.
-              </p>
-            </div>
-            <Link href={bookingHref} className={`${btnSolid} shrink-0`}>
-              Request an appointment
-            </Link>
-          </div>
+          <Steps steps={homeSteps} className="mt-8 md:mt-10" />
         </div>
       </section>
     </div>
