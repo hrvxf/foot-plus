@@ -182,7 +182,8 @@ export function ClosingCheck({
   heading?: string;
   source: string;
   placement?: string;
-  phoneAnalyticsId: string;
+  /** Leave out to hide the "Or call" line (the home page relies on the header and mobile call bar). */
+  phoneAnalyticsId?: string;
 }) {
   return (
     <section className={`${texturedGreen} py-12 md:py-16`} aria-labelledby={id}>
@@ -195,7 +196,9 @@ export function ClosingCheck({
         </h2>
         <div className="lg:col-span-7">
           <PostcodeChecker tone="band" source={source} placement={placement} label="Postcode for the visit" />
-          <PhoneLine analyticsId={phoneAnalyticsId} className="mt-2 text-base leading-6 text-white" />
+          {phoneAnalyticsId ? (
+            <PhoneLine analyticsId={phoneAnalyticsId} className="mt-2 text-base leading-6 text-white" />
+          ) : null}
         </div>
       </div>
     </section>
