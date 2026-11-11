@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { displayH1, shell } from "../components/site/ui";
+import { texturedGreen } from "../components/site/ui";
 import { serviceLocations } from "../lib/locations";
 
 export const metadata: Metadata = {
@@ -13,42 +12,46 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const portraits = {
-  bristol: "/images/adam-james.webp",
-  southampton: "/images/katie-preston.webp",
-};
+const focus = "focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white";
 
-// Deliberately bare: a heading and the two cities. Everything else lives on
-// each location's own page.
+// A full green screen with one question and two answers. It covers the header
+// and footer on purpose, so the logo doubles as the way back to the home page.
 export default function LocationsPage() {
   return (
-    <section className="py-10 md:py-16 lg:py-20" aria-labelledby="locations-heading">
-      <div className={shell}>
-        <h1 id="locations-heading" className={displayH1}>
-          Choose your local <span className="text-brand-sage">Foot+ service</span>
+    <section
+      aria-labelledby="locations-heading"
+      data-fullscreen-page
+      className={`flex min-h-dvh flex-col px-5 pb-[calc(env(safe-area-inset-bottom)+2rem)] pt-[calc(env(safe-area-inset-top)+1.25rem)] sm:px-8 ${texturedGreen}`}
+    >
+      <Link href="/" aria-label="Foot+ home" className={`inline-flex self-start rounded-sm ${focus}`}>
+        <span
+          role="img"
+          aria-label="Foot+"
+          className="block h-10 w-[128px] bg-white [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_left_center/contain_no-repeat]"
+        />
+      </Link>
+
+      <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center py-10 text-center">
+        <h1
+          id="locations-heading"
+          className="font-heading text-[2.125rem] font-semibold leading-[1.15] tracking-[-0.015em] text-white md:text-[2.75rem] md:leading-[1.1] lg:text-[3.25rem]"
+        >
+          Choose your local Foot+ service
         </h1>
-        <ul className="mt-8 grid gap-6 sm:grid-cols-2 md:mt-10 md:gap-10">
+
+        <ul className="mx-auto mt-8 grid w-full max-w-3xl gap-4 sm:grid-cols-2 sm:gap-6 md:mt-12">
           {Object.values(serviceLocations).map((location) => (
             <li key={location.slug}>
               <Link
                 href={location.href}
-                className="group block rounded-lg focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-brand-sageDark"
+                className={`group flex min-h-24 items-center justify-between gap-4 rounded-lg bg-white px-6 font-heading text-[1.625rem] font-semibold leading-[1.2] text-brand-sageDeep transition-colors duration-150 hover:bg-brand-offwhite md:min-h-28 md:px-8 md:text-[2.125rem] ${focus}`}
                 data-analytics-id={`locations-view-${location.slug}`}
               >
-                <span className="relative block aspect-[4/3] overflow-hidden rounded-lg bg-brand-wash sm:aspect-[4/5] lg:aspect-[4/3]">
-                  <Image
-                    src={portraits[location.slug]}
-                    alt=""
-                    fill
-                    priority
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                  />
-                </span>
-                <span className="mt-4 flex items-center justify-between gap-4 font-heading text-[1.625rem] font-semibold leading-[1.2] text-brand-sageDeep md:text-[2.125rem]">
-                  <span className="underline-offset-4 group-hover:underline">{location.name}</span>
-                  <ArrowRight className="h-7 w-7 shrink-0 text-brand-sage" aria-hidden="true" />
-                </span>
+                {location.name}
+                <ArrowRight
+                  className="h-7 w-7 shrink-0 text-brand-sage transition-transform duration-150 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+                  aria-hidden="true"
+                />
               </Link>
             </li>
           ))}

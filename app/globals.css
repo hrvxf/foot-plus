@@ -59,3 +59,10 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* Full-screen pages (the location chooser) cover the header and footer, so take
+   them out of the page and the tab order instead of leaving them underneath. */
+body:has([data-fullscreen-page]) > header,
+body:has([data-fullscreen-page]) > footer {
+  display: none;
+}
