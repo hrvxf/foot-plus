@@ -43,7 +43,7 @@ const processSteps = [
 
 const faqs = [
   {
-    question: "Are Foot+ Southampton appointments available now?",
+    question: "Is Foot+ Southampton taking new patients?",
     answer: "Yes. Send your postcode and the type of care you are looking for, and Foot+ will confirm coverage and availability.",
   },
   {
@@ -76,7 +76,7 @@ export default function SouthamptonPage() {
 
       <LocationHero
         place="Southampton"
-        status="Foot+ Southampton · Appointments available now"
+        status="Foot+ Southampton · Taking new patients"
         title="Home-visit foot care in Southampton"
         description="Professional foot care in the comfort of your own home, delivered with expertise, dignity and genuine care."
         primaryAction={{ label: "Request a home visit", href: "/book?location=southampton" }}
