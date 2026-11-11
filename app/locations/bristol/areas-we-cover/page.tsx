@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Button from "../../../components/Button";
 import PostcodeChecker from "../../../components/home/PostcodeChecker";
-import { locationPages, type LocationRegion } from "../../../lib/location-pages";
 import {
   estimateTravel,
   travelSummary,
@@ -36,7 +35,23 @@ type Place = { name: string; direction: Direction; lat: number; lng: number };
 
 // Approximate neighbourhood centres. Each place's travel band is worked out with the
 // same estimate the postcode checker uses, so the list and the checker always agree.
-const extraPlaces: Place[] = [
+const placeList: Place[] = [
+  { name: "Clifton", direction: "West", lat: 51.4619, lng: -2.619 },
+  { name: "Redland", direction: "North", lat: 51.4683, lng: -2.6018 },
+  { name: "Cotham", direction: "North", lat: 51.4629, lng: -2.5952 },
+  { name: "Bishopston", direction: "North", lat: 51.475, lng: -2.5896 },
+  { name: "Henleaze", direction: "North", lat: 51.4893, lng: -2.609 },
+  { name: "Westbury-on-Trym", direction: "North", lat: 51.4935, lng: -2.6194 },
+  { name: "Stoke Bishop", direction: "North", lat: 51.4779, lng: -2.6347 },
+  { name: "Sneyd Park", direction: "North", lat: 51.4789, lng: -2.625 },
+  { name: "St Philips", direction: "Central", lat: 51.4524, lng: -2.5701 },
+  { name: "Old Market", direction: "Central", lat: 51.4563, lng: -2.5842 },
+  { name: "Redcliffe", direction: "Central", lat: 51.4477, lng: -2.5902 },
+  { name: "Easton", direction: "East", lat: 51.4613, lng: -2.555 },
+  { name: "Barton Hill", direction: "East", lat: 51.4527, lng: -2.56 },
+  { name: "Totterdown", direction: "South", lat: 51.4386, lng: -2.5787 },
+  { name: "Southville", direction: "South", lat: 51.4446, lng: -2.6063 },
+  { name: "Bedminster", direction: "South", lat: 51.4412, lng: -2.6015 },
   { name: "City Centre", direction: "Central", lat: 51.4545, lng: -2.597 },
   { name: "Harbourside", direction: "Central", lat: 51.449, lng: -2.6 },
   { name: "Lawrence Hill", direction: "East", lat: 51.458, lng: -2.57 },
@@ -75,26 +90,7 @@ const extraPlaces: Place[] = [
   { name: "Yate", direction: "East", lat: 51.54, lng: -2.411 },
 ];
 
-const regionDirection: Record<LocationRegion, Direction> = {
-  "north-west": "North",
-  central: "Central",
-  east: "East",
-  south: "South",
-};
-
-const pagePlaces: Place[] = locationPages.map((page) => ({
-  name: page.area,
-  // Clifton, Redland and Cotham sit north-west of the centre rather than in it.
-  direction: ["Clifton"].includes(page.area)
-    ? "West"
-    : ["Redland", "Cotham"].includes(page.area)
-      ? "North"
-      : regionDirection[page.region],
-  lat: page.mapCoordinates.lat,
-  lng: page.mapCoordinates.lng,
-}));
-
-const places = [...pagePlaces, ...extraPlaces].map((place) => ({
+const places = placeList.map((place) => ({
   ...place,
   ...estimateTravel(place.lat, place.lng),
 }));
@@ -129,10 +125,6 @@ const areaGroups = [
     places: places.filter((place) => place.band === "extended").sort(byDistance),
   },
 ].filter((group) => group.places.length);
-
-const pageByArea = new Map(
-  locationPages.map((page) => [page.area, `/${page.slug}`])
-);
 
 const faqs = [
   {
@@ -353,23 +345,11 @@ function AreaRow({ group }: { group: AreaGroup }) {
       </div>
       <ul className="flex flex-wrap gap-2" aria-label={`${group.title} areas`}>
         {group.places.map((place) => {
-          const href = pageByArea.get(place.name);
-          const chip =
-            "inline-flex min-h-9 items-center rounded-full border bg-white px-3 text-sm";
           return (
             <li key={place.name}>
-              {href ? (
-                <Link
-                  href={href}
-                  className={`${chip} border-brand-sageLight/60 font-semibold text-brand-sageDark transition hover:border-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight`}
-                >
-                  {place.name}
-                </Link>
-              ) : (
-                <span className={`${chip} border-brand-line text-brand-charcoal/75`}>
-                  {place.name}
-                </span>
-              )}
+              <span className="inline-flex min-h-9 items-center rounded-full border border-brand-line bg-white px-3 text-sm text-brand-charcoal/80">
+                {place.name}
+              </span>
             </li>
           );
         })}

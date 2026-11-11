@@ -53,13 +53,14 @@ def verify(url):
     assert not re.search(r'Content-confirmation TODO|Repository service pages|Booking-click measurement',body), path
     assert not re.search(r'Foot\+ \| Foot\+',body), path
     return path,page.links
+area_redirects={'/foot-health-practitioner-clifton':'/locations/bristol/areas-we-cover#west','/foot-health-practitioner-redland':'/locations/bristol/areas-we-cover#north','/foot-health-practitioner-cotham':'/locations/bristol/areas-we-cover#north','/foot-health-practitioner-st-philips':'/locations/bristol/areas-we-cover#central','/foot-health-practitioner-old-market':'/locations/bristol/areas-we-cover#central','/foot-health-practitioner-redcliffe':'/locations/bristol/areas-we-cover#central','/foot-health-practitioner-bishopston':'/locations/bristol/areas-we-cover#north','/foot-health-practitioner-henleaze':'/locations/bristol/areas-we-cover#north','/foot-health-practitioner-westbury-on-trym':'/locations/bristol/areas-we-cover#north','/foot-health-practitioner-stoke-bishop':'/locations/bristol/areas-we-cover#north','/foot-health-practitioner-sneyd-park':'/locations/bristol/areas-we-cover#north','/foot-health-practitioner-easton':'/locations/bristol/areas-we-cover#east','/foot-health-practitioner-barton-hill':'/locations/bristol/areas-we-cover#east','/foot-health-practitioner-totterdown':'/locations/bristol/areas-we-cover#south','/foot-health-practitioner-southville':'/locations/bristol/areas-we-cover#south','/foot-health-practitioner-bedminster':'/locations/bristol/areas-we-cover#south'}
 for path,links in concurrent.futures.ThreadPoolExecutor(max_workers=8).map(verify,urls):
     all_links.update(links)
 for link in all_links:
     target=urlsplit(link).path or '/'
-    if target in ['/bristol','/southampton','/areas-we-cover','/areas','/advice/why-toenails-become-thick']: raise AssertionError(('Redirected internal link',link))
+    if target in ['/bristol','/southampton','/areas-we-cover','/areas','/advice/why-toenails-become-thick',*area_redirects]: raise AssertionError(('Redirected internal link',link))
     assert target in paths or target.startswith('/api/') or target.startswith('/images/'), ('Unknown internal page',link)
-for alias,destination in {'/areas':'/locations/bristol/areas-we-cover','/areas-we-cover':'/locations/bristol/areas-we-cover','/foot-health-practitioner-bristol':'/locations/bristol','/bristol':'/locations/bristol','/southampton':'/locations/southampton','/advice/why-toenails-become-thick':'/advice/thickened-toenails-causes-treatment-and-when-to-worry'}.items():
+for alias,destination in {**area_redirects,'/areas':'/locations/bristol/areas-we-cover','/areas-we-cover':'/locations/bristol/areas-we-cover','/foot-health-practitioner-bristol':'/locations/bristol','/bristol':'/locations/bristol','/southampton':'/locations/southampton','/advice/why-toenails-become-thick':'/advice/thickened-toenails-causes-treatment-and-when-to-worry'}.items():
     status,headers,_=fetch(alias)
     assert status in [301,308], (alias,status)
     assert headers.get('Location')==destination,(alias,headers.get('Location'))
@@ -71,4 +72,4 @@ assert {offer['price'] for offer in service['offers']}=={'55','60'}
 assert 'location=bristol&amp;service=nails' in body
 status,_,body=fetch('/about');page=Page();page.feed(body)
 assert 'id="adam-james"' in body and 'id="katie-preston"' in body
-print(json.dumps({'base':BASE,'sitemapPagesChecked':len(urls),'internalLinksChecked':len(all_links),'redirectsChecked':6,'result':'PASS'},indent=2))
+print(json.dumps({'base':BASE,'sitemapPagesChecked':len(urls),'internalLinksChecked':len(all_links),'redirectsChecked':6+len(area_redirects),'result':'PASS'},indent=2))
