@@ -61,19 +61,19 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
     // being used here, as it mentions her son's disability.
     reviews: [
       {
-        name: "Sara C.",
-        month: "2026-08",
-        rating: 5,
-        text: "Adam has been really helpful and dedicated, sorting my elderly Father in Laws feet out. He is very patient and kind and I would highly recommend him.",
-        excerpt: "… He is very patient and kind and I would highly recommend him.",
-      },
-      {
         name: "Helen R.",
         month: "2026-11",
         rating: 5,
         // Two typos trimmed with "…" ("made me a my neighbour", "Foot+ Bristol annd Adam's").
         text: "Having had difficulties finding a mobile foot care practitioner for my elderly neighbour, I was thrilled to come across Foot+ website. It was incredibly simple to navigate and to find all the information I needed. Having sent a request through the website, I had a message from Foot+ almost immediately to arrange a time and date for an appointment. Adam visited today for the first session and worked wonders on my neighbour’s feet. Adam was professional and friendly, knowledgeable and made … my neighbour feel very comfortable. I would highly recommend Foot+ Bristol …",
         excerpt: "… Adam visited today for the first session and worked wonders on my neighbour’s feet. …",
+      },
+      {
+        name: "Sara C.",
+        month: "2026-08",
+        rating: 5,
+        text: "Adam has been really helpful and dedicated, sorting my elderly Father in Laws feet out. He is very patient and kind and I would highly recommend him.",
+        excerpt: "… He is very patient and kind and I would highly recommend him.",
       },
       {
         name: "Martyn H.",
