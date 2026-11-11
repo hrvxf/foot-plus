@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -17,9 +16,8 @@ import { travelSummaryAllLocations } from "../lib/travel";
 import HomeMobileBar from "./home/HomeMobileBar";
 import PostcodeChecker from "./home/PostcodeChecker";
 import Stars from "./reviews/Stars";
-import { ClosingCheck, FaqList, PhoneLine, Steps } from "./site/blocks";
+import { ClosingCheck, FaqList, LocationSummary, PhoneLine, Steps } from "./site/blocks";
 import {
-  body,
   displayH1,
   displayH2,
   displayH3,
@@ -34,13 +32,6 @@ import {
 } from "./site/ui";
 
 const HERO_CHECKER_ID = "check-postcode";
-
-// Portraits are the optimised photos; the practitioner records point at the
-// larger files used on the location and about pages.
-const portraits: Record<ServiceLocation["slug"], string> = {
-  bristol: "/images/adam-james.webp",
-  southampton: "/images/katie-preston.webp",
-};
 
 const locationLinks: Record<ServiceLocation["slug"], { label: string; href: string; analyticsId?: string }[]> = {
   bristol: [
@@ -225,46 +216,9 @@ function WhoAndHow() {
         </h2>
 
         <div className="mt-8 grid gap-10 md:mt-10 md:grid-cols-2 md:gap-10 lg:gap-20">
-          {Object.values(serviceLocations).map((location) => {
-            const practitioner = location.practitioner;
-            if (!practitioner) return null;
-            return (
-              <article key={location.slug} className="flex items-start gap-5 lg:gap-7" aria-labelledby={`who-${location.slug}`}>
-                <Image
-                  src={portraits[location.slug]}
-                  alt=""
-                  width={176}
-                  height={208}
-                  sizes="(min-width: 1024px) 176px, 112px"
-                  className="h-36 w-28 shrink-0 rounded-md object-cover object-[center_15%] lg:h-52 lg:w-44"
-                />
-                <div className="min-w-0">
-                  <h3 id={`who-${location.slug}`} className="font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
-                    <Link href={location.href} className={`inline-flex min-h-11 items-center underline-offset-4 hover:underline ${focusRing}`}>
-                      {location.name}
-                    </Link>
-                  </h3>
-                  <p className={`${body} mt-1`}>
-                    {practitioner.name}, {practitioner.role} ({practitioner.credentials.join(", ")})
-                  </p>
-                  <p className={`${supporting} mt-2`}>{location.coverage}</p>
-                  <p className={`${small} mt-3 inline-flex items-center gap-2 font-semibold text-brand-sageDeep`}>
-                    <span className="h-2.5 w-2.5 rounded-full bg-brand-sage" aria-hidden="true" />
-                    {location.availability}
-                  </p>
-                  <ul className="mt-1 flex flex-wrap gap-x-6">
-                    {locationLinks[location.slug].map((link) => (
-                      <li key={link.href}>
-                        <Link href={link.href} className={linkQuiet} data-analytics-id={link.analyticsId}>
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            );
-          })}
+          {Object.values(serviceLocations).map((location) => (
+            <LocationSummary key={location.slug} location={location} idPrefix="who" links={locationLinks[location.slug]} />
+          ))}
         </div>
 
         <Steps steps={homeSteps} className={`mt-10 border-t ${rule} pt-8 md:mt-14 md:pt-12`} />
