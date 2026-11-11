@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, Check, TriangleAlert } from "lucide-react";
 
 import MobileActions from "../components/site/MobileActions";
-import { AppointmentList, Breadcrumb, ClosingCheck, Steps } from "../components/site/blocks";
+import { AppointmentList, Breadcrumb, ClosingCheck } from "../components/site/blocks";
 import {
   body,
   btnSolid,
@@ -17,11 +17,9 @@ import {
   supporting,
   texturedGreen,
 } from "../components/site/ui";
-import { homeSteps } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
 import { appointmentTypes, referOnSigns, serviceDetails, whoWeHelp } from "../lib/services";
-import { BUSINESS_ID, phoneDisplay, phoneHref, prices, SITE_URL } from "../lib/site";
-import { travelSummaryAllLocations } from "../lib/travel";
+import { BUSINESS_ID, prices, SITE_URL } from "../lib/site";
 
 const PAGE_URL = `${SITE_URL}/services`;
 const TITLE = "Home-Visit Foot Care Services in Bristol & Southampton | Foot+";
@@ -108,11 +106,10 @@ export default function ServicesPage() {
       <Hero />
       <Treatments />
       <Appointments />
-      <HowItWorks />
       <WhoWeHelp />
       <Scope />
       <Locations />
-      <ClosingCheck id="services-check-heading" source="services" phoneAnalyticsId="services-cta-phone" />
+      <ClosingCheck id="services-check-heading" source="services" />
       <MobileActions analyticsId="services" />
     </div>
   );
@@ -124,45 +121,17 @@ function Hero() {
       <div className={`${shell} pt-4`}>
         <Breadcrumb current="Services" />
       </div>
-      <div className={`${shell} grid gap-10 pb-12 pt-4 md:pb-16 lg:grid-cols-12 lg:items-center lg:gap-12 lg:pb-20 lg:pt-8`}>
-        <div className="lg:col-span-7">
-          <h1 id="services-heading" className={displayH1}>
-            Foot care services, <span className="text-brand-sage">at home.</span>
-          </h1>
-          <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>
-            Routine nail and skin care in your own home, from a qualified Foot Health Practitioner.
-          </p>
-          <div className="mt-7 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-center">
-            <Link href="/book" className={btnSolid} data-analytics-id="services-hero-book">
-              Request a visit
-            </Link>
-            <a href={phoneHref} className={linkQuiet} data-analytics-id="services-hero-phone">
-              Or call {phoneDisplay}
-            </a>
-          </div>
-          <p className={`${supporting} mt-4`}>
-            First visit {prices[0].price} · Routine visits {prices[1].price}
-          </p>
-        </div>
-
-        <nav aria-labelledby="jump-heading" className={`rounded-lg p-6 sm:p-8 lg:col-span-5 ${texturedGreen}`}>
-          <h2 id="jump-heading" className="font-heading text-2xl font-semibold leading-[1.25] text-white">
-            What we treat
-          </h2>
-          <ul className="mt-4 border-b border-white/30">
-            {serviceDetails.map((service) => (
-              <li key={service.id} className="border-t border-white/30">
-                <a
-                  href={`#${service.id}`}
-                  className="group flex min-h-12 items-center justify-between gap-3 text-lg font-medium text-white focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  <span className="underline-offset-4 group-hover:underline">{service.title}</span>
-                  <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <div className={`${shell} pb-12 pt-4 md:pb-16 lg:pb-20 lg:pt-8`}>
+        <h1 id="services-heading" className={displayH1}>
+          Foot care services, <span className="text-brand-sage">at home.</span>
+        </h1>
+        <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>
+          Routine nail and skin care in your own home, from a qualified Foot Health Practitioner.
+        </p>
+        {/* No phone line or prices here: the header has the number and the appointments section has the prices. */}
+        <Link href="/book" className={`${btnSolid} mt-7`} data-analytics-id="services-hero-book">
+          Request a visit
+        </Link>
       </div>
     </section>
   );
@@ -207,35 +176,21 @@ function Appointments() {
           <h2 id="appointments-heading" className={displayH2}>
             Two simple appointment types
           </h2>
-          <p className={`${body} mt-4 max-w-[52ch]`}>
-            Start with a new patient appointment, then book routine visits as often as you need.
-          </p>
-          <p className={`${supporting} mt-4 max-w-[52ch]`}>{travelSummaryAllLocations}</p>
-          <Link href="/prices" className={`${linkQuiet} mt-2`}>
-            Full price details <ArrowRight className="h-5 w-5" aria-hidden="true" />
-          </Link>
+          <p className={`${supporting} mt-4 max-w-[52ch]`}>Any travel fee shows when you check your postcode.</p>
+          <div className="mt-2 flex flex-col items-start">
+            <Link href="/prices" className={linkQuiet}>
+              Full price details <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </Link>
+            <Link href="/advice/what-happens-home-foot-health-appointment" className={linkQuiet}>
+              What happens during a home visit <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
         <div className="lg:col-span-7">
           <AppointmentList
             appointments={appointmentTypes.map((type) => ({ ...type, cta: "Request this appointment" }))}
           />
         </div>
-      </div>
-    </section>
-  );
-}
-
-function HowItWorks() {
-  return (
-    <section className={`border-t ${rule} ${section}`} aria-labelledby="how-heading">
-      <div className={shell}>
-        <h2 id="how-heading" className={displayH2}>
-          From first message to home visit
-        </h2>
-        <Steps steps={homeSteps} className="mt-8 md:mt-10" />
-        <Link href="/advice/what-happens-home-foot-health-appointment" className={`${linkQuiet} mt-6`}>
-          What happens during a home foot-health appointment <ArrowRight className="h-5 w-5" aria-hidden="true" />
-        </Link>
       </div>
     </section>
   );
@@ -265,8 +220,7 @@ function WhoWeHelp() {
         <div className="border-white/40 md:border-l md:pl-10 lg:pl-20">
           <h3 className="font-heading text-2xl font-semibold leading-8 text-white">Visits adapted around you</h3>
           <p className="mt-3 text-[1.0625rem] leading-[1.55] text-white md:text-lg">
-            Need extra time, clear explanations or someone with you? Mention any communication, sensory, mobility or
-            anxiety needs when you get in touch and we&rsquo;ll plan the visit at your pace.
+            Need extra time or someone with you? Just tell us when you get in touch.
           </p>
           <Link
             href="/advice/foot-care-learning-disabilities-bristol"
