@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import Button from "../../components/Button";
 import LocalPartnerCard from "../../components/LocalPartnerCard";
 import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
@@ -9,7 +8,10 @@ import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
+import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
+import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
+import { body, btnSolid, displayH2, displayH3, linkQuiet, rule, shell, small, supporting } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
     siteName: "Foot+",
   },
 };
+
+const section = "py-12 md:py-20";
+const inlineLink = "font-semibold text-brand-sageDeep underline decoration-brand-sage decoration-[1.5px] underline-offset-4 hover:text-brand-charcoal";
 
 const processSteps = [
   {
@@ -74,19 +79,12 @@ export default function BristolLocationPage() {
   };
 
   return (
-    <main className="overflow-hidden">
+    <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Bristol", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
-      <div className="mx-auto max-w-[1360px] px-6 pt-8 md:px-10 md:pt-10 xl:px-14">
-        <nav aria-label="Breadcrumb" className="text-sm text-brand-charcoal/60">
-          <Link className="font-semibold text-brand-sageDark underline underline-offset-4" href="/locations">Locations</Link>
-          <span aria-hidden="true"> / </span>
-          <span aria-current="page">Bristol</span>
-        </nav>
-      </div>
-
       <LocationHero
-        eyebrow="Foot+ Bristol · Appointments available"
+        place="Bristol"
+        status="Foot+ Bristol · Appointments available"
         title="Home foot care in Bristol"
         description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
         primaryAction={{ label: "Request a visit in Bristol", href: "/book?location=bristol" }}
@@ -98,117 +96,144 @@ export default function BristolLocationPage() {
         practitioner={practitioner}
       />
 
-      <section id="meet-adam" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="meet-adam-heading">
-        <div className="mx-auto grid max-w-[1360px] gap-8 px-6 py-12 md:px-10 md:py-14 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20 xl:px-14">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Your Bristol practitioner</p>
-            <h2 id="meet-adam-heading" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Meet Adam</h2>
-          </div>
-          <div className="grid gap-5 text-base leading-relaxed text-brand-charcoal/72 md:grid-cols-2 md:gap-10">
-            <p>{practitioner.bio[0]}</p>
-            <div><p>{practitioner.bio[1]}</p><Link href="/about#adam-james" className="mt-4 inline-block font-semibold text-brand-sageDark underline underline-offset-4">Adam’s qualifications and approach</Link></div>
+      <section id="meet-adam" className={`scroll-mt-24 bg-white ${section}`} aria-labelledby="meet-adam-heading">
+        <div className={`${shell} grid gap-6 lg:grid-cols-12 lg:gap-12`}>
+          <h2 id="meet-adam-heading" className={`${displayH2} lg:col-span-4`}>
+            Meet Adam
+          </h2>
+          <div className="grid gap-5 md:grid-cols-2 md:gap-10 lg:col-span-8">
+            <p className={body}>{practitioner.bio[0]}</p>
+            <div>
+              <p className={body}>{practitioner.bio[1]}</p>
+              <Link href="/about#adam-james" className={`${linkQuiet} mt-2`}>
+                Adam’s qualifications and approach
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       <ReviewsSection scope="bristol" id="bristol-reviews" analyticsPrefix="bristol" />
 
-      <section id="bristol-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="bristol-services-heading">
-        <div className="mx-auto max-w-[1360px] px-6 py-14 md:px-10 xl:px-14">
-          <h2 id="bristol-services-heading" className="font-heading text-3xl font-semibold text-brand-sageDark">Foot care services in Bristol</h2>
-          <p className="mt-5 max-w-3xl leading-relaxed text-brand-charcoal/72">Adam provides routine toenail cutting, care for thickened nails, corns, calluses, hard skin and cracked heels during home visits. Care is assessed for suitability, with preventative checks and aftercare advice where appropriate.</p>
-          <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[...conditionPages].sort((a, b) => Number(b.slug === "toenail-cutting-bristol") - Number(a.slug === "toenail-cutting-bristol")).map((service) => (
-              <li key={service.slug} className="border-t border-brand-sageLight/40 pt-4">
-                <Link href={`/${service.slug}`} className="font-semibold text-brand-sageDark underline underline-offset-4">{service.title}</Link>
-                <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">{service.description}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-7 text-sm text-brand-charcoal/72">See <Link href="/services" className="font-semibold text-brand-sageDark underline underline-offset-4">all Foot+ foot care services</Link> for what each treatment involves. New patient appointments are £60; routine appointments are £55. <Link href="/prices" className="font-semibold text-brand-sageDark underline underline-offset-4">View appointment details and travel charges</Link>.</p>
-          <div className="mt-7"><Button href="/book?location=bristol" variant="solid">Request a Bristol home visit</Button></div>
-        </div>
-      </section>
-
-      <section className="border-b border-brand-sageLight/30 bg-brand-sageLight/10">
-        <div className="mx-auto grid max-w-[1360px] gap-14 px-6 py-14 md:px-10 md:py-18 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:px-14">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Bristol coverage</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Home visits across Bristol</h2>
-            <p className="mt-5 max-w-xl leading-relaxed text-brand-charcoal/72">
-              Home visits across Bristol and nearby towns. {travelSummary}
-            </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Button href="/locations/bristol/areas-we-cover" variant="outline">View areas covered</Button>
-              <Button href="/prices" variant="outline">View prices</Button>
-            </div>
-          </div>
-
-          <div aria-labelledby="bristol-process">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">How it works</p>
-            <h2 id="bristol-process" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">A straightforward home visit</h2>
-            <ol className="relative mt-9 grid gap-7 md:grid-cols-3 md:gap-8">
-              <span className="absolute left-4 top-4 hidden h-px bg-brand-sageLight/70 md:block md:right-4" aria-hidden="true" />
-              {processSteps.map((step, index) => (
-                <li key={step.title} className="relative grid grid-cols-[2rem_1fr] gap-4 md:block md:pt-11">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-brand-sageLight/75 bg-white text-xs font-semibold text-brand-sageDark md:absolute md:left-0 md:top-0">
-                    {index + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold text-brand-sageDark">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/68">{step.text}</p>
-                  </div>
+      <section id="bristol-services" className={`scroll-mt-24 bg-white ${section}`} aria-labelledby="bristol-services-heading">
+        <div className={shell}>
+          <h2 id="bristol-services-heading" className={displayH2}>
+            Foot care services in Bristol
+          </h2>
+          <p className={`${body} mt-4 max-w-[60ch]`}>
+            Adam provides routine toenail cutting, care for thickened nails, corns, calluses, hard skin and cracked heels
+            during home visits. Care is assessed for suitability, with preventative checks and aftercare advice where
+            appropriate.
+          </p>
+          <ul className="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[...conditionPages]
+              .sort((a, b) => Number(b.slug === "toenail-cutting-bristol") - Number(a.slug === "toenail-cutting-bristol"))
+              .map((service) => (
+                <li key={service.slug} className={`border-t ${rule} pt-4`}>
+                  <Link
+                    href={`/${service.slug}`}
+                    className={`${displayH3} inline-flex min-h-11 items-center underline decoration-brand-sage decoration-[1.5px] underline-offset-4`}
+                  >
+                    {service.title}
+                  </Link>
+                  <p className={`${supporting} mt-1`}>{service.description}</p>
                 </li>
               ))}
-            </ol>
+          </ul>
+          <p className={`${small} mt-8 max-w-[65ch]`}>
+            See{" "}
+            <Link href="/services" className={inlineLink}>
+              all Foot+ foot care services
+            </Link>{" "}
+            for what each treatment involves. New patient appointments are £60; routine appointments are £55.{" "}
+            <Link href="/prices" className={inlineLink}>
+              View appointment details and travel charges
+            </Link>
+            .
+          </p>
+          <Link href="/book?location=bristol" className={`${btnSolid} mt-6`}>
+            Request a Bristol home visit
+          </Link>
+        </div>
+      </section>
+
+      <section id="bristol-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="bristol-coverage-heading">
+        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
+          <div className="lg:col-span-7">
+            <h2 id="bristol-coverage-heading" className={displayH2}>
+              Home visits across Bristol
+            </h2>
+            <p className={`${body} mt-4 max-w-[52ch]`}>
+              Home visits across Bristol and nearby towns. {travelSummary}
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-x-6">
+              <li>
+                <Link href="/locations/bristol/areas-we-cover" className={linkQuiet}>
+                  View areas covered
+                </Link>
+              </li>
+              <li>
+                <Link href="/prices" className={linkQuiet}>
+                  View prices
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="lg:col-span-5">
+            <PostcodeChecker
+              tone="panel"
+              source="bristol"
+              title="Do we visit you?"
+              label="Postcode for the visit"
+              helper="We’ll show any travel fee for your postcode."
+            />
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1360px] px-6 md:px-10 xl:px-14">
-        <section className="grid gap-10 border-b border-brand-sageLight/35 py-14 md:py-18 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20" aria-labelledby="bristol-partners">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Local partners</p>
-            <h2 id="bristol-partners" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Connected care in Bristol</h2>
-            <p className="mt-5 max-w-md leading-relaxed text-brand-charcoal/70">
-              Trusted local services Foot+ Bristol may signpost to when wider mobility or rehabilitation support could be helpful.
+      <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="bristol-process">
+        <div className={shell}>
+          <h2 id="bristol-process" className={displayH2}>
+            A straightforward home visit
+          </h2>
+          <Steps steps={processSteps.map((step) => ({ title: step.title, body: step.text }))} className="mt-8 md:mt-10" />
+        </div>
+      </section>
+
+      <section className={section} aria-labelledby="bristol-partners">
+        <div className={`${shell} grid gap-8 lg:grid-cols-12 lg:gap-12`}>
+          <div className="lg:col-span-4">
+            <h2 id="bristol-partners" className={displayH2}>
+              Connected care in Bristol
+            </h2>
+            <p className={`${body} mt-4 max-w-[40ch]`}>
+              Trusted local services Foot+ Bristol may signpost to when wider mobility or rehabilitation support could be
+              helpful.
             </p>
           </div>
-          <div className="divide-y divide-brand-sageLight/35 border-y border-brand-sageLight/35">
+          <div className={`divide-y divide-brand-charcoal/15 border-y ${rule} lg:col-span-8`}>
             {publishedLocalPartners.map((partner) => (
               <LocalPartnerCard key={partner.website} partner={partner} />
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="grid gap-8 py-14 md:grid-cols-[0.7fr_1.3fr] md:gap-16 md:py-18" aria-labelledby="bristol-faqs">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Useful information</p>
-            <h2 id="bristol-faqs" className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark">Questions about Foot+ Bristol</h2>
-          </div>
-          <div className="border-b border-brand-sageLight/40">
-            {faqs.map((faq) => (
-              <details key={faq.question} className="group border-t border-brand-sageLight/40 py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold text-brand-sageDark [&::-webkit-details-marker]:hidden">
-                  <span>{faq.question}</span>
-                  <span className="text-2xl font-light leading-none text-brand-sageDark/60 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
-                </summary>
-                <p className="max-w-3xl pt-3 text-sm leading-relaxed text-brand-charcoal/70">{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
+      <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="bristol-faqs">
+        <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>
+          <h2 id="bristol-faqs" className={`${displayH2} md:col-span-4`}>
+            Questions about Foot+ Bristol
+          </h2>
+          <FaqList faqs={faqs} className="md:col-span-8" />
+        </div>
+      </section>
 
-        <section className="mb-20 border-y border-brand-sageDark bg-brand-sageDark px-7 py-9 text-white md:flex md:items-center md:justify-between md:gap-12 md:px-10 md:py-10">
-          <div>
-            <h2 className="font-heading text-2xl font-semibold">Book a Bristol home visit</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">Share the appointment postcode and the support you need. Foot+ will confirm coverage, suitability and availability.</p>
-          </div>
-          <div className="mt-6 shrink-0 md:mt-0">
-            <Button href="/book?location=bristol" variant="primary">Request a visit in Bristol</Button>
-          </div>
-        </section>
-      </div>
-    </main>
+      <ClosingBand
+        id="bristol-closing"
+        heading="Request a Bristol home visit"
+        text="Share the appointment postcode and the support you need. Foot+ will confirm coverage, suitability and availability."
+        action={{ label: "Request a visit in Bristol", href: "/book?location=bristol" }}
+      />
+    </div>
   );
 }

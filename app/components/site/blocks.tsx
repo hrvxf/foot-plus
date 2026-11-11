@@ -8,16 +8,22 @@ import { phoneDisplay, phoneHref } from "../../lib/site";
 import PostcodeChecker from "../home/PostcodeChecker";
 import { body, btnSolid, displayH3, figure, focusRing, rule, shell, small, supporting, texturedGreen } from "./ui";
 
-export function Breadcrumb({ current }: { current: string }) {
+export function Breadcrumb({
+  current,
+  parent = { label: "Home", href: "/" },
+}: {
+  current: string;
+  parent?: { label: string; href: string };
+}) {
   return (
     <nav aria-label="Breadcrumb" className={supporting}>
       <ol className="flex flex-wrap items-center gap-2">
         <li>
           <Link
-            href="/"
+            href={parent.href}
             className={`inline-flex min-h-11 items-center font-semibold text-brand-sageDeep underline underline-offset-4 ${focusRing}`}
           >
-            Home
+            {parent.label}
           </Link>
         </li>
         <li aria-hidden="true">/</li>
@@ -123,6 +129,42 @@ export function AppointmentList({ appointments }: { appointments: Appointment[] 
         </li>
       ))}
     </ul>
+  );
+}
+
+/** Closing band with one direct action, for pages where the location is already known. */
+export function ClosingBand({
+  id,
+  heading,
+  text,
+  action,
+}: {
+  id: string;
+  heading: string;
+  text: string;
+  action: { label: string; href: string; analyticsId?: string };
+}) {
+  return (
+    <section className={`${texturedGreen} py-12 md:py-16`} aria-labelledby={id}>
+      <div className={`${shell} flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-10`}>
+        <div className="max-w-[52ch]">
+          <h2
+            id={id}
+            className="font-heading text-[1.625rem] font-semibold leading-[1.2] tracking-[-0.01em] text-white md:text-[2.125rem] md:leading-[1.15]"
+          >
+            {heading}
+          </h2>
+          <p className="mt-3 text-[1.0625rem] leading-[1.55] text-white md:text-lg">{text}</p>
+        </div>
+        <Link
+          href={action.href}
+          className="inline-flex min-h-14 shrink-0 items-center justify-center rounded-lg bg-white px-6 text-lg font-semibold text-brand-sageDeep transition-colors duration-150 hover:bg-brand-offwhite focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white"
+          data-analytics-id={action.analyticsId}
+        >
+          {action.label}
+        </Link>
+      </div>
+    </section>
   );
 }
 
