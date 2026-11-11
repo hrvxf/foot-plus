@@ -11,8 +11,8 @@
  * Brislington 1.28, Portishead 1.29), so 1.4 is a fair middle. Anything close to a
  * threshold is shown as borderline and confirmed when booking.
  *
- * The 1.4 factor was measured around Bristol only. Southampton uses it as a starting
- * estimate until routes from SO16 have been checked the same way.
+ * The 1.4 factor was measured around Bristol. Adam confirmed in Nov 2026 that the
+ * resulting Southampton distances from SO16 are correct too.
  */
 
 export type TravelBaseKey = "bristol" | "southampton";
