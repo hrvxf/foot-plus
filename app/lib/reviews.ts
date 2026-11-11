@@ -27,6 +27,11 @@ export type Review = {
   month: string;
   rating: 1 | 2 | 3 | 4 | 5;
   text: string;
+  /**
+   * Optional one-sentence cut of `text` for tight spaces (the home page proof
+   * line). Same rules as `text`: exact wording, "…" where it has been trimmed.
+   */
+  excerpt?: string;
 };
 
 export type ReviewLocation = "bristol" | "southampton";
@@ -60,6 +65,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         month: "2026-08",
         rating: 5,
         text: "Adam has been really helpful and dedicated, sorting my elderly Father in Laws feet out. He is very patient and kind and I would highly recommend him.",
+        excerpt: "… He is very patient and kind and I would highly recommend him.",
       },
       {
         name: "Martyn H.",
@@ -104,7 +110,7 @@ const PROTECTED_TITLES = /chiropod|podiatr/i;
 
 for (const [key, location] of Object.entries(reviewLocations)) {
   for (const review of location.reviews) {
-    if (PROTECTED_TITLES.test(review.text)) {
+    if (PROTECTED_TITLES.test(`${review.text} ${review.excerpt ?? ""}`)) {
       throw new Error(
         `${key} review from ${review.name} mentions a protected title (chiropodist/podiatrist). ` +
           `Leave it out or trim that part with "…" (see app/lib/reviews.ts).`

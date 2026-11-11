@@ -38,7 +38,7 @@ export default function ClosingCta({
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link href={bookingHref} className={btnWhite} data-analytics-id={`${analyticsId}-cta-book`}>
-            Book a visit
+            Request a visit
           </Link>
           <a href={phoneHref} className={btnOutlineWhite} data-analytics-id={`${analyticsId}-cta-phone`}>
             <Phone className="h-5 w-5" aria-hidden="true" />

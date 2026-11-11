@@ -55,3 +55,5 @@ export const prices = [
       "An ongoing treatment appointment focused on maintaining foot health, comfort, and mobility.",
   },
 ];
+
+export const paymentMethods = ["cash", "card", "cheque", "bank transfer"];

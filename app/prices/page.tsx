@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Button from "../components/Button";
 import { bookingHref, prices, SITE_URL } from "../lib/site";
-import { travelSummary } from "../lib/travel";
+import { southamptonTravelSummary, travelSummary } from "../lib/travel";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ const pricingCards = [
       "Treatment of nail and skin concerns",
       "Personalised care and aftercare advice",
     ],
-    cta: "Book your first appointment",
+    cta: "Request your first appointment",
     featured: true,
   },
   {
@@ -40,7 +40,7 @@ const pricingCards = [
       "Ongoing foot health review",
       "Advice between appointments",
     ],
-    cta: "Book a routine appointment",
+    cta: "Request a routine appointment",
     featured: false,
   },
 ];
@@ -195,7 +195,7 @@ export default function PricesPage() {
             </div>
             <div className="border-t border-brand-sageLight/35 pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
               <h3 className="font-heading text-xl font-semibold text-brand-sageDark">Southampton</h3>
-              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">Appointments are available now. Send the appointment postcode and Foot+ will confirm coverage and any travel supplement before your visit.</p>
+              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">Appointments are available now. {southamptonTravelSummary}</p>
               <Link className="mt-5 inline-flex font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4" href="/locations/southampton">View Southampton information →</Link>
             </div>
           </div>

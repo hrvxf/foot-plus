@@ -29,9 +29,9 @@ export default function Header() {
 
   const navLinks = [
     { label: "Services", href: "/services", active: pathname === "/services" },
-    { label: "About", href: "/about", active: pathname === "/about" },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
     { label: "Locations", href: "/locations", active: pathname.startsWith("/locations") },
+    { label: "About", href: "/about", active: pathname === "/about" },
   ];
 
   const headerBase =
@@ -48,9 +48,9 @@ export default function Header() {
     : "bg-white";
 
   const linkBase =
-    "px-4 py-4 text-base font-medium transition border-b-2 border-transparent md:py-2";
+    "px-4 py-4 text-base font-medium transition border-b-2 border-transparent md:px-2 md:py-2 lg:px-4";
   const navTracking = "tracking-normal";
-  const navPadding = "py-4";
+  const navPadding = "py-2";
   const logoWrapper =
     "relative h-[38px] w-[128px] sm:h-[40px] sm:w-[136px] transition-[color,filter] duration-300";
   const shouldAnimateLogo = pathname !== "/";
@@ -60,11 +60,11 @@ export default function Header() {
   const activeBorder = "border-brand-sageDark";
 
   // Patients reach /forms after they have already enquired (usually from a WhatsApp
-  // follow-up). Hide "Book a visit" there so they don't submit a second enquiry.
+  // follow-up). Hide "Request a visit" there so they don't submit a second enquiry.
   const isPatientFormPage = pathname.startsWith("/forms");
 
   const bookButtonClasses =
-    "rounded-full bg-brand-sageDark px-6 py-3 text-base font-semibold text-white hover:bg-brand-sageDeep";
+    "whitespace-nowrap rounded-lg bg-brand-sageDark px-5 py-3 text-base font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
 
   return (
     <>
@@ -100,7 +100,7 @@ export default function Header() {
             </Link>
           </div>
 
-          <div className="hidden items-center gap-7 md:flex lg:gap-9">
+          <div className="hidden items-center gap-4 md:flex lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -131,7 +131,7 @@ export default function Header() {
               </a>
             ) : (
               <Link className={bookButtonClasses} href="/book">
-                Book a visit
+                Request a visit
               </Link>
             )}
           </div>
@@ -139,21 +139,21 @@ export default function Header() {
           <div className="flex items-center gap-2 md:hidden">
           <a
             href={phoneHref}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-sageLight/40 text-brand-sageDark"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border-[1.5px] border-brand-sageDark px-3.5 text-base font-semibold text-brand-sageDeep"
             aria-label={`Call Foot+ on ${phoneDisplay}`}
             data-analytics-id="header-mobile-phone"
           >
             <Phone className="h-5 w-5" aria-hidden="true" />
+            Call
           </a>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-sageLight/40 text-sm font-semibold text-brand-sageDark"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-lg border-[1.5px] border-brand-sageDark text-sm font-semibold text-brand-sageDeep"
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen((open) => !open)}
           >
-            <span className="sr-only">Open navigation</span>
             <svg
               viewBox="0 0 24 24"
               className="h-5 w-5"
@@ -214,10 +214,10 @@ export default function Header() {
               ))}
               {isPatientFormPage ? null : (
                 <Link className={`${bookButtonClasses} mt-4 text-center`} href="/book" onClick={() => setIsMenuOpen(false)}>
-                  Book a visit
+                  Request a visit
                 </Link>
               )}
-              <a className="mt-2 rounded-full border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark" href={phoneHref}>
+              <a className="mt-2 rounded-lg border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark" href={phoneHref}>
                 Call {phoneDisplay}
               </a>
             </div>
