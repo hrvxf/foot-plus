@@ -20,6 +20,17 @@ const updatedRoutes = new Set([
   "/toenail-cutting-bristol",
 ]);
 const LAST_MODIFIED = new Date("2026-07-08T00:00:00.000Z");
+// Pages whose Southampton wording changed when the location opened.
+const SOUTHAMPTON_LAUNCH_UPDATE = new Date("2026-11-07T00:00:00.000Z");
+const southamptonLaunchRoutes = new Set([
+  "",
+  "/about",
+  "/book",
+  "/locations",
+  "/locations/southampton",
+  "/prices",
+  "/services",
+]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -68,7 +79,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
             (article) => route === `/advice/${article.slug}`,
           )!.dateModified,
         )
-      : updatedRoutes.has(route)
+      : southamptonLaunchRoutes.has(route)
+        ? SOUTHAMPTON_LAUNCH_UPDATE
+        : updatedRoutes.has(route)
         ? LOCATION_UPDATE
         : route.startsWith("/foot-health-practitioner-")
           ? new Date("2026-10-05T00:00:00.000Z")
