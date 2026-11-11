@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import {
   homeCredentials,
@@ -12,11 +12,12 @@ import {
 } from "../lib/home";
 import { serviceLocations, type ServiceLocation } from "../lib/locations";
 import { formatReviewMonth, getRating, getReviewLinks, getReviews } from "../lib/reviews";
-import { paymentMethods, phoneDisplay, phoneHref, prices } from "../lib/site";
+import { paymentMethods, prices } from "../lib/site";
 import { travelSummaryAllLocations } from "../lib/travel";
 import HomeMobileBar from "./home/HomeMobileBar";
 import PostcodeChecker from "./home/PostcodeChecker";
 import Stars from "./reviews/Stars";
+import { ClosingCheck, FaqList, PhoneLine, Steps } from "./site/blocks";
 import {
   body,
   displayH1,
@@ -30,7 +31,6 @@ import {
   shell,
   small,
   supporting,
-  texturedGreen,
 } from "./site/ui";
 
 const HERO_CHECKER_ID = "check-postcode";
@@ -68,21 +68,6 @@ export default function HomeContent() {
       <Start />
       <HomeMobileBar checkerId={HERO_CHECKER_ID} />
     </>
-  );
-}
-
-function PhoneLine({ analyticsId, className }: { analyticsId: string; className: string }) {
-  return (
-    <p className={className}>
-      Or call{" "}
-      <a
-        href={phoneHref}
-        className="inline-flex min-h-12 items-center font-semibold underline underline-offset-4"
-        data-analytics-id={analyticsId}
-      >
-        {phoneDisplay}
-      </a>
-    </p>
   );
 }
 
@@ -282,19 +267,7 @@ function WhoAndHow() {
           })}
         </div>
 
-        <ol className={`mt-10 grid gap-8 border-t ${rule} pt-8 md:mt-14 md:grid-cols-3 md:gap-10 md:pt-12`}>
-          {homeSteps.map((step, index) => (
-            <li key={step.title} className="grid grid-cols-[3rem_1fr] items-start gap-x-3 md:block">
-              <span className={`${figure} block text-[3.25rem] text-brand-sage md:mb-4 md:text-[4rem]`} aria-hidden="true">
-                {index + 1}
-              </span>
-              <div>
-                <h3 className={displayH3}>{step.title}</h3>
-                <p className={`${supporting} mt-1`}>{step.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <Steps steps={homeSteps} className={`mt-10 border-t ${rule} pt-8 md:mt-14 md:pt-12`} />
         <p className={`${small} mt-10`}>Visits are unhurried, clearly explained and LGBTQ+ friendly.</p>
       </div>
     </section>
@@ -308,42 +281,12 @@ function Questions() {
         <h2 id="faq-heading" className={`${displayH2} md:col-span-3`}>
           Questions
         </h2>
-        <div className={`border-b ${rule} md:col-span-9`}>
-          {homeFaqs.map((faq, index) => (
-            <details key={faq.question} className={`group border-t ${rule}`} open={index === 0}>
-              <summary
-                className={`flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-3 ${displayH3} ${focusRing} [&::-webkit-details-marker]:hidden`}
-              >
-                {faq.question}
-                <Plus
-                  className="h-6 w-6 shrink-0 text-brand-sageDark transition-transform duration-150 group-open:rotate-45"
-                  aria-hidden="true"
-                />
-              </summary>
-              <p className={`${body} max-w-[65ch] pb-6`}>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
+        <FaqList faqs={homeFaqs} className="md:col-span-9" />
       </div>
     </section>
   );
 }
 
 function Start() {
-  return (
-    <section className={`${texturedGreen} py-12 md:py-16`} aria-labelledby="start-heading">
-      <div className={`${shell} grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10`}>
-        <h2
-          id="start-heading"
-          className="font-heading text-[1.625rem] font-semibold leading-[1.2] tracking-[-0.01em] text-white md:text-[2.125rem] md:leading-[1.15] lg:col-span-5"
-        >
-          Check your postcode to get started.
-        </h2>
-        <div className="lg:col-span-7">
-          <PostcodeChecker tone="band" placement="closing" label="Postcode for the visit" />
-          <PhoneLine analyticsId="home-cta-phone" className="mt-2 text-base leading-6 text-white" />
-        </div>
-      </div>
-    </section>
-  );
+  return <ClosingCheck id="start-heading" source="home" placement="closing" phoneAnalyticsId="home-cta-phone" />;
 }

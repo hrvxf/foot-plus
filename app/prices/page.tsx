@@ -1,8 +1,23 @@
 import Link from "next/link";
-import Button from "../components/Button";
-import { bookingHref, prices, SITE_URL } from "../lib/site";
-import { southamptonTravelSummary, travelSummary } from "../lib/travel";
 import type { Metadata } from "next";
+
+import PostcodeChecker from "../components/home/PostcodeChecker";
+import { AppointmentList, Breadcrumb, Steps } from "../components/site/blocks";
+import {
+  body,
+  btnSolid,
+  displayH1,
+  displayH2,
+  displayH3,
+  lead,
+  linkQuiet,
+  rule,
+  shell,
+  small,
+  supporting,
+} from "../components/site/ui";
+import { bookingHref, paymentMethods, prices, SITE_URL } from "../lib/site";
+import { southamptonTravelSummary, travelSummary } from "../lib/travel";
 
 export const metadata: Metadata = {
   title: "Home Visit Nail & Foot Care Prices",
@@ -60,191 +75,136 @@ const nextSteps = [
   },
 ];
 
-function CheckIcon({ className = "text-brand-sageDark" }: { className?: string }) {
-  return (
-    <svg
-      className={`h-4 w-4 shrink-0 ${className}`}
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M16.25 5.75 8.5 13.5 4.75 9.75"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+const section = "py-12 md:py-20";
+const inlineLink = "font-semibold text-brand-sageDeep underline decoration-brand-sage decoration-[1.5px] underline-offset-4 hover:text-brand-charcoal";
+
+const travel = [
+  {
+    name: "Bristol",
+    text: travelSummary,
+    link: { label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" },
+  },
+  {
+    name: "Southampton",
+    text: `Appointments are available now. ${southamptonTravelSummary}`,
+    link: { label: "View Southampton information", href: "/locations/southampton" },
+  },
+];
 
 export default function PricesPage() {
   return (
-    <main className="bg-brand-offwhite">
-      <section className="mx-auto max-w-6xl px-5 pb-14 pt-8 sm:px-6 md:pb-16 md:pt-10">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-brand-charcoal/65">
-          <ol className="flex flex-wrap gap-2">
-            <li>
-              <Link className="font-semibold text-brand-sageDark underline underline-offset-4" href="/">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page">Prices</li>
-          </ol>
-        </nav>
-
-        <div className="max-w-225">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/75">
-            CLEAR PRICING · BRISTOL &amp; SOUTHAMPTON
-          </p>
-          <h1 className="mt-3 max-w-225 font-heading text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
-            Home visit nail and foot care prices
+    <div>
+      <section aria-labelledby="prices-heading">
+        <div className={`${shell} pb-12 pt-4 md:pb-16 lg:pb-20`}>
+          <Breadcrumb current="Prices" />
+          <h1 id="prices-heading" className={`${displayH1} mt-4 max-w-[18ch] lg:mt-8`}>
+            Home visit nail and foot care <span className="text-brand-sage">prices</span>
           </h1>
-          <p className="mt-3 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-            The same clear appointment prices apply across Foot+ Bristol and Foot+ Southampton. Select your location when enquiring so coverage and any travel charge can be confirmed.
+          <p className={`${lead} mt-4 max-w-[60ch] md:mt-6`}>
+            The same clear appointment prices apply across Foot+ Bristol and Foot+ Southampton. Check your postcode to
+            see your practitioner and any travel fee.
           </p>
-        </div>
-
-        <div className="mt-6 max-w-3xl text-base leading-relaxed text-brand-charcoal/75">
-          <h2 className="font-heading text-xl font-semibold text-brand-sageDark">What does a toenail-cutting visit cost?</h2>
-          <p className="mt-2">Nail care uses the same appointment prices: {prices[0].price} for your first visit and {prices[1].price} for returning patients. There is no separate nail-only price. Suitable routine skin care can be included within the appointment. <Link href="/toenail-cutting-bristol" className="font-semibold text-brand-sageDark underline underline-offset-4">See what Bristol toenail-cutting visits include</Link>, or explore <Link href="/services" className="font-semibold text-brand-sageDark underline underline-offset-4">all services</Link>.</p>
-        </div>
-
-        <div className="mt-7 grid items-stretch gap-5 lg:grid-cols-2">
-          {pricingCards.map((card) => (
-            <article
-              key={card.title}
-              className={`flex h-full flex-col overflow-hidden rounded-[28px] border bg-white ${
-                card.featured
-                  ? "border-brand-sageDark/35 ring-1 ring-brand-sageDark/10"
-                  : "border-brand-sageLight/35"
-              }`}
-            >
-              <div
-                className={`border-b px-5 py-5 sm:px-6 ${
-                  card.featured
-                    ? "border-brand-sageDark/15 bg-brand-sageDark text-white"
-                    : "border-brand-sageLight/30 bg-brand-sageLight/14 text-brand-sageDark"
-                }`}
-              >
-                <span
-                  className={`inline-flex rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] ${
-                    card.featured
-                      ? "border-white/35 bg-white/12 text-white"
-                      : "border-brand-sageDark/20 bg-white/70 text-brand-sageDark"
-                  }`}
-                >
-                  {card.label}
-                </span>
-                <h2 className="mt-4 font-heading text-2xl font-semibold tracking-tight">
-                  {card.title}
-                </h2>
-              </div>
-
-              <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <div>
-                  <p className="font-heading text-5xl font-semibold tracking-tight text-brand-sageDark sm:text-6xl">
-                    {card.price}
-                  </p>
-                  <p className="mt-3 text-base font-semibold text-brand-charcoal">
-                    {card.summary}
-                  </p>
-                  <p className="mt-1 text-sm text-brand-charcoal/70">{card.duration}</p>
-                </div>
-
-                <ul className="mt-6 space-y-3 text-sm leading-relaxed text-brand-charcoal/78">
-                  {card.checklist.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-sageLight/20">
-                        <CheckIcon />
-                      </span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-auto pt-7">
-                  <Button
-                    href={bookingHref}
-                    variant={card.featured ? "solid" : "outline"}
-                    className="w-full rounded-full sm:w-auto"
-                  >
-                    {card.cta}
-                  </Button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-      </section>
-
-      <section className="border-y border-brand-sageLight/30 bg-brand-sageLight/18">
-        <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 md:py-12">
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sageDark/65">Local information</p>
-            <h2 className="mt-2 font-heading text-2xl font-semibold tracking-tight text-brand-sageDark sm:text-3xl">Travel and coverage</h2>
-          </div>
-          <div className="mt-7 grid gap-8 md:grid-cols-2 md:gap-0">
-            <div className="md:pr-10">
-              <h3 className="font-heading text-xl font-semibold text-brand-sageDark">Bristol</h3>
-              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">{travelSummary}</p>
-              <Link className="mt-5 inline-flex font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4" href="/locations/bristol/areas-we-cover">View Bristol coverage →</Link>
-            </div>
-            <div className="border-t border-brand-sageLight/35 pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
-              <h3 className="font-heading text-xl font-semibold text-brand-sageDark">Southampton</h3>
-              <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">Appointments are available now. {southamptonTravelSummary}</p>
-              <Link className="mt-5 inline-flex font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4" href="/locations/southampton">View Southampton information →</Link>
-            </div>
-          </div>
-          <div className="mt-8 border-t border-brand-sageLight/35 pt-6">
-            <Button href={bookingHref} variant="solid" className="w-full rounded-full sm:w-auto">Check your postcode</Button>
-          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-12 sm:px-6 md:py-16">
-        <div className="max-w-2xl">
-          <h2 className="font-heading text-2xl font-semibold tracking-tight text-brand-sageDark sm:text-3xl">
-            What happens next?
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/70 sm:text-base">
-            The booking process is simple and confirmed before your visit.
-          </p>
-        </div>
-
-        <div className="mt-7 grid gap-4 md:grid-cols-3">
-          {nextSteps.map((step, index) => (
-            <article key={step.title} className="rounded-3xl border border-brand-sageLight/35 bg-white p-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-sageDark font-heading text-base font-semibold text-white">
-                {index + 1}
-              </div>
-              <h3 className="mt-5 font-heading text-lg font-semibold text-brand-sageDark">
-                {step.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/72">{step.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <section className="mt-10 rounded-[28px] border border-brand-sageDark/20 bg-white p-6 sm:p-8 md:flex md:items-center md:justify-between md:gap-8">
-          <div className="max-w-2xl">
-            <h2 className="font-heading text-2xl font-semibold tracking-tight text-brand-sageDark sm:text-3xl">
-              Not sure which appointment to choose?
+      <section className={`bg-white ${section}`} aria-labelledby="appointments-heading">
+        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
+          <div className="lg:col-span-5">
+            <h2 id="appointments-heading" className={displayH2}>
+              Two appointment types
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-brand-charcoal/75 sm:text-base">
-              New clients should select the New Patient Appointment. Existing clients can book Routine Foot Care.
+            <p className={`${body} mt-4 max-w-[52ch]`}>
+              One price per visit. Nail care and suitable routine skin care are included.
+            </p>
+            <p className={`${supporting} mt-4`}>
+              Pay by {paymentMethods.slice(0, -1).join(", ")} or {paymentMethods.at(-1)}.
+            </p>
+
+            <h3 className={`${displayH3} mt-8`}>What does a toenail-cutting visit cost?</h3>
+            <p className={`${small} mt-2 max-w-[52ch]`}>
+              Nail care uses the same appointment prices: {prices[0].price} for your first visit and {prices[1].price}{" "}
+              for returning patients. There is no separate nail-only price. Suitable routine skin care can be included
+              within the appointment.{" "}
+              <Link href="/toenail-cutting-bristol" className={inlineLink}>
+                See what Bristol toenail-cutting visits include
+              </Link>
+              , or explore{" "}
+              <Link href="/services" className={inlineLink}>
+                all services
+              </Link>
+              .
             </p>
           </div>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-0 md:shrink-0">
-            <Button href={bookingHref} variant="solid" className="w-full rounded-full sm:w-auto">
-              Request an appointment
-            </Button>
+
+          <div className="lg:col-span-7">
+            <AppointmentList
+              appointments={pricingCards.map((card) => ({
+                tag: card.label,
+                title: card.title,
+                price: card.price,
+                duration: card.duration,
+                points: card.checklist,
+                href: bookingHref,
+                cta: card.cta,
+              }))}
+            />
           </div>
-        </section>
+        </div>
       </section>
-    </main>
+
+      <section className={section} aria-labelledby="travel-heading">
+        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
+          <div className="lg:col-span-7">
+            <h2 id="travel-heading" className={displayH2}>
+              Travel and coverage
+            </h2>
+            <div className="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-10">
+              {travel.map((place) => (
+                <div key={place.name} className={`border-t ${rule} pt-5`}>
+                  <h3 className={displayH3}>{place.name}</h3>
+                  <p className={`${small} mt-2`}>{place.text}</p>
+                  <Link className={`${linkQuiet} mt-1`} href={place.link.href}>
+                    {place.link.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <PostcodeChecker
+              tone="panel"
+              source="prices"
+              title="What will I pay?"
+              label="Postcode for the visit"
+              helper="We’ll show your practitioner and any travel fee."
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="next-heading">
+        <div className={shell}>
+          <h2 id="next-heading" className={displayH2}>
+            What happens next?
+          </h2>
+          <p className={`${body} mt-4 max-w-[52ch]`}>The booking process is simple and confirmed before your visit.</p>
+          <Steps steps={nextSteps} className="mt-8 md:mt-10" />
+
+          <div className={`mt-10 flex flex-col gap-6 border-t ${rule} pt-8 md:mt-14 md:flex-row md:items-center md:justify-between md:gap-10 md:pt-10`}>
+            <div className="max-w-[52ch]">
+              <h2 className="font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
+                Not sure which appointment to choose?
+              </h2>
+              <p className={`${small} mt-2`}>
+                New clients should select the New Patient Appointment. Existing clients can book Routine Foot Care.
+              </p>
+            </div>
+            <Link href={bookingHref} className={`${btnSolid} shrink-0`}>
+              Request an appointment
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
