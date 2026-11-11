@@ -3,10 +3,11 @@ import Link from "next/link";
 
 import LocalPartnerCard from "../../components/LocalPartnerCard";
 import LocationHero from "../../components/LocationHero";
+import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
@@ -88,10 +89,10 @@ export default function BristolLocationPage() {
         description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
         primaryAction={{ label: "Request a visit in Bristol", href: "/book?location=bristol" }}
         secondaryAction={{ label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" }}
-        contactActions={[
-          { label: "WhatsApp Adam", href: bristolWhatsAppHref, icon: "whatsapp", external: true },
-          { label: "Email Foot+ Bristol", href: "mailto:bristol@foot-plus.co.uk", icon: "email" },
-        ]}
+        contactActions={bristolContactActions({
+          analyticsPrefix: "bristol-hero",
+          email: { href: "mailto:bristol@foot-plus.co.uk", label: "Email Foot+ Bristol" },
+        })}
         practitioner={practitioner}
       />
 
