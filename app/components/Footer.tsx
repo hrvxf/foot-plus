@@ -43,20 +43,21 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="col-span-2 sm:col-span-1">
+          {/* Stacked: email on one line, Facebook icon on the next. */}
+          <div className="col-span-2 flex flex-col items-start sm:col-span-1">
             <FooterEmail headingClass={heading} linkClass={`${link} font-semibold underline`} />
             <a
               href="https://www.facebook.com/profile.php?id=61586341484139"
               target="_blank"
               rel="noreferrer"
-              className={`${link} mt-1 gap-2`}
+              className="mt-2 -ml-2.5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
               aria-label="Visit Foot+ on Facebook"
+              title="Foot+ on Facebook"
               data-analytics-id="footer-facebook"
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-brand-sageDark">
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-brand-sageDark">
                 <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
               </svg>
-              Facebook
             </a>
           </div>
 
