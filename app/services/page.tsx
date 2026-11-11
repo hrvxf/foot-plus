@@ -89,14 +89,14 @@ const locations = [
   {
     location: serviceLocations.bristol,
     text: `Home visits with ${serviceLocations.bristol.practitioner?.name} across central, north, south and east Bristol, with nearby towns considered by request.`,
-    book: { label: "Request a visit in Bristol", href: "/book?location=bristol", analyticsId: "services-location-bristol-book" },
+    book: { label: "Request a visit", href: "/book?location=bristol", analyticsId: "services-location-bristol-book" },
     more: { label: "Areas we cover", href: "/locations/bristol/areas-we-cover" },
   },
   {
     location: serviceLocations.southampton,
     text: `Home visits with ${serviceLocations.southampton.practitioner?.name}. ${serviceLocations.southampton.coverage}`,
-    book: { label: "Request a visit in Southampton", href: "/book?location=southampton", analyticsId: "services-location-southampton" },
-    more: { label: "About Foot+ Southampton", href: "/locations/southampton" },
+    book: { label: "Request a visit", href: "/book?location=southampton", analyticsId: "services-location-southampton" },
+    more: { label: "Location details", href: "/locations/southampton" },
   },
 ];
 
@@ -335,7 +335,7 @@ function Locations() {
               </p>
               <p className={`${supporting} mt-3 max-w-[52ch]`}>{text}</p>
               <div className="mt-5 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-center">
-                <Link href={book.href} className={btnSolid} data-analytics-id={book.analyticsId}>
+                <Link href={book.href} className={`${btnSolid} whitespace-nowrap`} data-analytics-id={book.analyticsId}>
                   {book.label}
                 </Link>
                 <Link href={more.href} className={linkQuiet}>
