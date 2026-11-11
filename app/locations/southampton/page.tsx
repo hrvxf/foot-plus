@@ -6,6 +6,8 @@ import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
 import { SITE_URL } from "../../lib/site";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
+import PostcodeChecker from "../../components/home/PostcodeChecker";
+import { southamptonTravelSummary } from "../../lib/travel";
 
 const canonical = `${SITE_URL}/locations/southampton`;
 
@@ -102,10 +104,10 @@ export default function SouthamptonPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-sageDark/70">Southampton coverage</p>
             <h2 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">Check your postcode</h2>
             <p className="mt-5 max-w-xl leading-relaxed text-brand-charcoal/72">
-              Send the appointment postcode and Foot+ will confirm whether it falls within the Southampton home-visit area. Any travel supplement is confirmed before booking.
+              {serviceLocations.southampton.coverage} {southamptonTravelSummary}
             </p>
-            <div className="mt-7">
-              <Button href="/book?location=southampton" variant="outline">Check your postcode</Button>
+            <div className="mt-7 max-w-xl">
+              <PostcodeChecker source="southampton" label="Postcode for the visit" />
             </div>
           </div>
 

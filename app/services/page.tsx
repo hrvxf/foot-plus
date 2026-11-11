@@ -31,7 +31,7 @@ import {
   type ServiceIconKey,
 } from "../lib/services";
 import { BUSINESS_ID, phoneDisplay, phoneHref, prices, SITE_URL } from "../lib/site";
-import { travelSummary } from "../lib/travel";
+import { travelSummaryAllLocations } from "../lib/travel";
 
 const PAGE_URL = `${SITE_URL}/services`;
 const TITLE = "Home-Visit Foot Care Services in Bristol & Southampton | Foot+";
@@ -292,8 +292,8 @@ function Appointments() {
             Two simple appointment types
           </h2>
           <p className="mt-4 leading-relaxed text-brand-muted">
-            Start with a new patient appointment, then book routine visits as often as your feet need them. In Bristol,{" "}
-            {travelSummary.charAt(0).toLowerCase() + travelSummary.slice(1)}
+            Start with a new patient appointment, then book routine visits as often as your feet need them.{" "}
+            {travelSummaryAllLocations} Any travel fee is confirmed before you book.
           </p>
           <Link href="/prices" className={`${textLink} mt-5`}>
             Full price details <ArrowRight className="h-4 w-4" aria-hidden="true" />
