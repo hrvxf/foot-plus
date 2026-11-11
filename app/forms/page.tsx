@@ -74,7 +74,7 @@ function LocationChoice() {
         </p>
         <p className="mx-auto mt-5 max-w-md rounded-2xl bg-white/10 px-5 py-4 text-base leading-relaxed text-white">
           Already sent us an enquiry? You&rsquo;re in the right place. You don&rsquo;t need to book
-          again &mdash; just complete your patient form.
+          again. Just complete your patient form.
         </p>
 
         <nav
@@ -174,7 +174,7 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
             <strong className="font-semibold text-brand-sageDark">
               Already sent us an enquiry? You don&rsquo;t need to book again.
             </strong>{" "}
-            Your request has been received &mdash; this form is the only thing left to do.
+            Your request has been received. This form is the only thing left to do.
           </div>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
             Please complete this form before your first Bristol appointment where possible. Your

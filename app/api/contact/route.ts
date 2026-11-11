@@ -97,7 +97,7 @@ async function sendPatientConfirmation(
     to,
     replyTo: locationRecipients[location],
     subject: formUrl
-      ? "We've received your Foot+ enquiry – one more step"
+      ? "We've received your Foot+ enquiry: one more step"
       : "We've received your Foot+ enquiry",
     html,
     text,
