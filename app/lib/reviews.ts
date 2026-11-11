@@ -28,8 +28,9 @@ export type Review = {
   rating: 1 | 2 | 3 | 4 | 5;
   text: string;
   /**
-   * Optional one-sentence cut of `text` for tight spaces (the home page proof
-   * line). Same rules as `text`: exact wording, "…" where it has been trimmed.
+   * Optional one-sentence cut of `text` for tight spaces (the rotating home page
+   * proof line). Give one to any review longer than a sentence or two. Same
+   * rules as `text`: exact wording, "…" where it has been trimmed.
    */
   excerpt?: string;
 };
@@ -80,6 +81,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         month: "2026-07",
         rating: 5,
         text: "Adam visited me this morning. I found him very polite and considerate. I was impressed by his expertise and the reassuring manner in which he carried out the treatment. I will definitely contact him again for any further treatment I need. Top marks!!!",
+        excerpt: "… I was impressed by his expertise and the reassuring manner in which he carried out the treatment. …",
       },
       {
         name: "Joan K.",
@@ -87,12 +89,14 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         rating: 5,
         // Original sentence mentioning "chiropodist" trimmed (protected title).
         text: "Adam was friendly and professional and delivered an excellent service. … Highly recommended.",
+        excerpt: "Adam was friendly and professional and delivered an excellent service. …",
       },
       {
         name: "Harry B.",
         month: "2026-02",
         rating: 5,
         text: "Requested services for callus remove and general foot care. Great and attentive service. Will book again.",
+        excerpt: "… Great and attentive service. Will book again.",
       },
       {
         name: "Dunnerz",
