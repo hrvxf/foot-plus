@@ -6,7 +6,7 @@ import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
 import { conditionPages } from "../../lib/condition-pages";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
@@ -14,7 +14,6 @@ import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
 import { body, btnSolid, displayH2, displayH3, linkQuiet, rule, shell, small, supporting } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/bristol`;
-const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
 
 export const metadata: Metadata = {
   title: { absolute: "Home Foot Care Bristol | Foot Health Practitioner | Foot+" },

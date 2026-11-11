@@ -25,7 +25,7 @@ const trustItems = [
   { title: "Local service", text: "Coverage confirmed by postcode" },
 ];
 
-function ContactIcon({ icon }: { icon: "whatsapp" | "email" }) {
+export function ContactIcon({ icon }: { icon: "whatsapp" | "email" }) {
   if (icon === "email") {
     return (
       <svg aria-hidden="true" className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none">

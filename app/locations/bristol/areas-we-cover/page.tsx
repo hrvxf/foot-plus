@@ -4,12 +4,14 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Button from "../../../components/Button";
 import PostcodeChecker from "../../../components/home/PostcodeChecker";
 import RatingBadge from "../../../components/reviews/RatingBadge";
+import { ContactIcon } from "../../../components/LocationHero";
 import {
   estimateTravel,
   travelSummary,
 } from "../../../lib/travel";
 import {
   BRISTOL_BUSINESS_ID,
+  bristolWhatsAppHref,
   emailHref,
   phoneDisplay,
   phoneHref,
@@ -308,20 +310,24 @@ export default function AreasWeCoverPage() {
             <Button href="/book?location=bristol" variant="primary">
               Book an appointment
             </Button>
-            <a
-              href={phoneHref}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
-            >
-              <Phone aria-hidden="true" className="h-4 w-4" />
-              {phoneDisplay}
-            </a>
-            <a
-              href={emailHref}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
-            >
-              <Mail aria-hidden="true" className="h-4 w-4" />
-              Email Foot+
-            </a>
+            <div className="flex gap-3">
+              {[
+                { href: phoneHref, label: `Call Foot+ on ${phoneDisplay}`, icon: <Phone aria-hidden="true" className="h-5 w-5" /> },
+                { href: bristolWhatsAppHref, label: "WhatsApp Adam", icon: <ContactIcon icon="whatsapp" />, external: true },
+                { href: emailHref, label: "Email Foot+", icon: <Mail aria-hidden="true" className="h-5 w-5" /> },
+              ].map((action) => (
+                <a
+                  key={action.label}
+                  href={action.href}
+                  aria-label={action.label}
+                  title={action.label}
+                  {...(action.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:bg-white hover:text-brand-sageDark focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  {action.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </aside>
       </section>
