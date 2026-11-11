@@ -3,38 +3,31 @@
 
 export const homeServices: {
   title: string;
-  description: string;
   /** Location-neutral: each row links to its entry on the services page. */
   href: string;
 }[] = [
   {
     title: "Toenail cutting",
-    description: "When nails are hard to reach or manage yourself.",
     href: "/services#toenail-cutting",
   },
   {
     title: "Thickened nails",
-    description: "Reduced so shoes are comfortable again.",
     href: "/services#thickened-nails",
   },
   {
     title: "Corns",
-    description: "Gentle care, with advice on easing the pressure.",
     href: "/services#corns",
   },
   {
     title: "Hard skin and callus",
-    description: "Built-up skin reduced so walking is more comfortable.",
     href: "/services#hard-skin",
   },
   {
     title: "Cracked heels",
-    description: "Care for dry, split heels and a simple routine to follow.",
     href: "/services#cracked-heels",
   },
   {
     title: "Diabetic foot care",
-    description: "Routine nail and skin care, with diabetic foot observations included.",
     href: "/services#foot-health-checks",
   },
 ];
@@ -45,21 +38,21 @@ export const homeScopeNote =
 export const homeSteps = [
   {
     title: "Check the postcode",
-    body: "You\u2019ll see your practitioner and any travel fee.",
+    body: "See your practitioner and any travel fee.",
   },
   {
     title: "Send a short request, or call",
-    body: "We usually reply within 24 hours, by WhatsApp or email, to confirm the day, time and price.",
+    body: "We usually reply within 24 hours to confirm the day, time and price.",
   },
   {
     title: "We come to you",
-    body: "Your practitioner brings sterilised instruments and everything needed.",
+    body: "With sterilised instruments and everything needed.",
   },
 ];
 
 /** One sentence each for the proof line under the home page hero. */
 export const homeCredentials =
-  "Every practitioner is diploma-trained, insured and DBS checked.";
+  "Diploma-trained, insured and DBS checked.";
 export const homeMemberships =
   "Members of the College of Foot Health Practitioners and the Association of Foot Health Practitioners.";
 

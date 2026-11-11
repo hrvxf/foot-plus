@@ -5,19 +5,17 @@ import {
   homeCredentials,
   homeFaqs,
   homeMemberships,
-  homeScopeNote,
   homeServices,
   homeSteps,
 } from "../lib/home";
 import { serviceLocations, type ServiceLocation } from "../lib/locations";
 import { formatReviewMonth, getRating, getReviewLinks, getReviews } from "../lib/reviews";
-import { paymentMethods, prices } from "../lib/site";
-import { travelSummaryAllLocations } from "../lib/travel";
+import { prices } from "../lib/site";
 import HomeMobileBar from "./home/HomeMobileBar";
 import PostcodeChecker from "./home/PostcodeChecker";
 import RotatingReview from "./home/RotatingReview";
 import Stars from "./reviews/Stars";
-import { ClosingCheck, FaqList, LocationSummary, PhoneLine, Steps } from "./site/blocks";
+import { ClosingCheck, FaqList, LocationSummary, Steps } from "./site/blocks";
 import {
   displayH1,
   displayH2,
@@ -73,9 +71,7 @@ function Hero() {
             <span className="text-brand-sage">in your own home.</span>
           </h1>
           <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>
-            A qualified Foot Health Practitioner visits you in Bristol or Southampton to cut and thin
-            difficult nails and treat corns, hard skin and cracked heels. For yourself, or for someone
-            you look after.
+            Qualified Foot Health Practitioners in Bristol and Southampton.
           </p>
         </div>
 
@@ -87,7 +83,6 @@ function Hero() {
             label="Postcode for the visit"
             helper="Booking for a relative or someone you care for? Use their postcode."
           />
-          <PhoneLine analyticsId="home-hero-phone" className={`${small} mt-2 text-brand-sageDeep`} />
         </div>
       </div>
     </section>
@@ -161,16 +156,14 @@ function CoversAndCosts() {
               <li key={service.title} className={`border-t ${rule}`}>
                 <Link
                   href={service.href}
-                  className={`group grid gap-x-6 gap-y-0.5 py-3.5 lg:grid-cols-[13rem_1fr] lg:items-baseline ${focusRing}`}
+                  className={`group block py-3.5 ${focusRing}`}
                 >
                   <span className={`${displayH3} underline-offset-4 group-hover:underline`}>{service.title}</span>
-                  <span className={supporting}>{service.description}</span>
                 </Link>
               </li>
             ))}
           </ul>
-          <p className={`${small} mt-5 max-w-[60ch]`}>{homeScopeNote}</p>
-          <Link href="/services" className={`${linkQuiet} mt-2`}>
+          <Link href="/services" className={`${linkQuiet} mt-5`}>
             All services <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
@@ -194,10 +187,7 @@ function CoversAndCosts() {
           </ul>
           <div className={`${small} mt-5 max-w-[60ch] space-y-3`}>
             <p>One price per visit. Nail care and suitable routine skin care are included.</p>
-            <p>{travelSummaryAllLocations} The postcode checker shows your fee.</p>
-            <p>
-              Pay by {paymentMethods.slice(0, -1).join(", ")} or {paymentMethods.at(-1)}.
-            </p>
+            <p>Any travel fee shows when you check your postcode.</p>
           </div>
           <Link href="/prices" className={`${linkQuiet} mt-2`}>
             See full prices <ArrowRight className="h-5 w-5" aria-hidden="true" />
@@ -243,5 +233,6 @@ function Questions() {
 }
 
 function Start() {
-  return <ClosingCheck id="start-heading" source="home" placement="closing" phoneAnalyticsId="home-cta-phone" />;
+  // No phone line here: the header and the mobile call bar already offer it.
+  return <ClosingCheck id="start-heading" source="home" placement="closing" />;
 }
