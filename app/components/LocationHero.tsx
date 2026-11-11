@@ -60,7 +60,7 @@ export default function LocationHero({
             </Link>
           </div>
           {contactActions?.length ? (
-            <ContactIcons actions={contactActions} className="mt-4" />
+            <ContactIcons actions={contactActions} className="mt-4 sm:justify-start" />
           ) : null}
         </div>
 
