@@ -6,10 +6,15 @@ import {
   getReviews,
   type ReviewScope,
 } from "../../lib/reviews";
+import ReviewsCarousel from "./ReviewsCarousel";
 import Stars from "./Stars";
 
+/** Slide widths: most of the screen on phones (the next one peeks in), two on tablets, three on desktop. */
+const reviewSlide =
+  "flex shrink-0 basis-[85%] snap-start flex-col border-t border-brand-charcoal/15 pt-5 sm:basis-[calc((100%-2rem)/2)] md:basis-[calc((100%-5rem)/3)]";
+
 /**
- * Rating summary above up to three reviews in ruled columns. Use scope "all" on shared pages and a location on
+ * Rating summary above a slideshow of every review in scope, three at a time on desktop. Use scope "all" on shared pages and a location on
  * that location's page. Renders nothing until the scope has reviews switched on.
  */
 export default function ReviewsSection({
@@ -22,7 +27,7 @@ export default function ReviewsSection({
   analyticsPrefix: string;
 }) {
   const rating = getRating(scope);
-  const shown = getReviews(scope, 3);
+  const shown = getReviews(scope, Infinity);
   const links = getReviewLinks(scope);
   if (!rating || !shown.length) return null;
 
@@ -52,9 +57,9 @@ export default function ReviewsSection({
         </div>
 
         {/* Ruled columns rather than cards, in line with the rest of the site. */}
-        <ul className="mt-8 grid gap-8 md:mt-10 md:grid-cols-3 md:gap-10" aria-label="Recent Google reviews">
+        <ReviewsCarousel id={`${id}-list`} label="Recent Google reviews">
           {shown.map((review) => (
-            <li key={review.name + review.month} className="flex flex-col border-t border-brand-charcoal/15 pt-5">
+            <li key={review.name + review.month} className={reviewSlide}>
               <Stars rating={review.rating} />
               <blockquote className="mt-3 flex-1 text-[1.0625rem] leading-[1.55] text-brand-charcoal md:text-lg md:leading-7">
                 &ldquo;{review.text}&rdquo;
@@ -65,7 +70,7 @@ export default function ReviewsSection({
               </p>
             </li>
           ))}
-        </ul>
+        </ReviewsCarousel>
       </div>
     </section>
   );
