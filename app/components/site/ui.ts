@@ -12,16 +12,24 @@ export const btnOutlineWhite = `${btnBase} border-[1.5px] border-white/60 text-w
 export const textLink = "inline-flex items-center gap-2 font-semibold text-brand-sageDeep underline-offset-4 hover:underline";
 
 // Editorial system used by the home page, header and footer (Nov 2026 redesign):
-// type, hairline rules and one 8px-radius button. Six text sizes, 16px minimum.
+// type, hairline rules and one 8px-radius button. 16px minimum text size.
+// Three text levels: deep green for headings and figures, charcoal for body,
+// muted for supporting detail.
 export const shell = "mx-auto w-full max-w-[1200px] px-5 sm:px-8";
 export const rule = "border-brand-charcoal/15";
 export const focusRing =
   "focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
 export const displayH1 =
-  "font-heading text-[1.875rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-charcoal md:text-[2.5rem] md:leading-[1.15]";
+  "font-heading text-[2.125rem] font-semibold leading-[1.15] tracking-[-0.015em] text-brand-sageDeep md:text-[2.75rem] md:leading-[1.1] lg:text-[3.25rem]";
 export const displayH2 =
-  "font-heading text-2xl font-semibold leading-[1.25] text-brand-charcoal md:text-[1.75rem] md:leading-[1.2]";
-export const displayH3 = "font-heading text-xl font-semibold leading-7 text-brand-charcoal";
+  "font-heading text-[1.625rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-sageDeep md:text-[2.125rem] md:leading-[1.15]";
+export const displayH3 = "font-heading text-xl font-semibold leading-7 text-brand-sageDeep";
+/** Large numerals: prices, the rating, step numbers. */
+export const figure = "font-heading font-semibold leading-none tracking-[-0.02em] tabular-nums";
+export const supporting = "text-base leading-6 text-brand-muted";
+/** Dark green surface with a hint of the brand paper grain. White text stays above 4.5:1. */
+export const texturedGreen =
+  "relative isolate overflow-hidden bg-[url('/images/footplus-texture.png')] bg-size-[600px_600px] text-white before:absolute before:inset-0 before:-z-10 before:bg-brand-sageDark/85";
 export const lead = "text-lg leading-7 text-brand-charcoal md:text-xl md:leading-[1.5]";
 export const body = "text-[1.0625rem] leading-[1.55] text-brand-charcoal md:text-lg md:leading-7";
 export const small = "text-base leading-6 text-brand-charcoal";

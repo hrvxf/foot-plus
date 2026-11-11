@@ -9,8 +9,9 @@ import { checkServiceArea, type ServiceAreaCheck } from "../../lib/postcodes";
 import { emailHref, phoneDisplay, phoneHref } from "../../lib/site";
 import { estimateTravel, lookupPostcode, type TravelEstimate } from "../../lib/travel";
 import { trackAdviceEvent } from "../advice/AdviceTracker";
+import { texturedGreen } from "../site/ui";
 
-type Tone = "card" | "panel" | "plain";
+type Tone = "card" | "panel" | "plain" | "band";
 
 type PostcodeCheckerProps = {
   /** Analytics prefix, so checks from different pages can be told apart. */
@@ -28,6 +29,7 @@ type PostcodeCheckerProps = {
   /**
    * card: white card (inner pages). panel: the dark green block in the home hero.
    * plain: no surround, field and button in one row, for the page background.
+   * band: as plain, for use on a dark green surface.
    */
   tone?: Tone;
   /** Anchor id for "Check postcode" links elsewhere on the page. */
@@ -70,7 +72,7 @@ const tones: Record<
       "rounded-full bg-brand-sageDark px-5 text-white hover:bg-brand-sageDeep focus-visible:outline-brand-sageDark",
   },
   panel: {
-    wrap: "rounded-lg bg-brand-sageDark p-6 text-white sm:p-8",
+    wrap: `rounded-lg p-6 shadow-[0_30px_60px_-36px_rgba(36,48,40,0.55)] sm:p-8 ${texturedGreen}`,
     title: "font-heading text-2xl font-semibold leading-[1.25] text-white",
     label: "block text-base font-medium text-white",
     row: "mt-2 flex flex-col gap-3",
@@ -79,6 +81,22 @@ const tones: Record<
     button:
       "rounded-lg bg-white px-6 text-brand-sageDeep hover:bg-brand-offwhite focus-visible:outline-white",
     helper: "mt-4 text-base leading-6 text-white",
+    result: "mt-5 border-t border-white/40 pt-5 text-white",
+    error: "text-white",
+    link: "font-semibold text-white underline underline-offset-4",
+    action:
+      "rounded-lg bg-white px-6 text-brand-sageDeep hover:bg-brand-offwhite focus-visible:outline-white",
+  },
+  band: {
+    wrap: "text-white",
+    title: "font-heading text-xl font-semibold text-white",
+    label: "block text-base font-medium text-white",
+    row: "mt-2 flex flex-col gap-3 sm:flex-row",
+    input:
+      "sm:flex-1 rounded-md border-[1.5px] border-white bg-white focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white",
+    button:
+      "rounded-lg bg-white px-6 text-brand-sageDeep hover:bg-brand-offwhite focus-visible:outline-white",
+    helper: "mt-3 text-base leading-6 text-white",
     result: "mt-5 border-t border-white/40 pt-5 text-white",
     error: "text-white",
     link: "font-semibold text-white underline underline-offset-4",

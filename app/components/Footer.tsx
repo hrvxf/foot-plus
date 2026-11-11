@@ -29,7 +29,7 @@ const link =
 
 export default function Footer() {
   return (
-    <footer id="site-footer" className={`relative z-10 w-full flex-none border-t ${rule} bg-brand-offwhite text-brand-charcoal`}>
+    <footer id="site-footer" className={`relative z-10 w-full flex-none bg-brand-offwhite text-brand-charcoal`}>
       <div className={`${shell} py-10`}>
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-[1.1fr_1.4fr_1fr_1fr] lg:gap-10">
           <div className="col-span-2 sm:col-span-1">
