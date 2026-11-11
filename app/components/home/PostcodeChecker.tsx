@@ -80,7 +80,7 @@ export default function PostcodeChecker({
             autoComplete="postal-code"
             autoCapitalize="characters"
             spellCheck={false}
-            placeholder="Your postcode, e.g. BS6 7QN"
+            placeholder="e.g. BS6 7QN"
             value={value}
             onChange={(event) => {
               setValue(event.target.value);
