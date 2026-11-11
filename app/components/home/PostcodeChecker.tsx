@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useId, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Info } from "lucide-react";
 
 import { serviceLocations } from "../../lib/locations";
 import { checkServiceArea, type ServiceAreaCheck } from "../../lib/postcodes";
-import { emailHref, phoneDisplay, phoneHref } from "../../lib/site";
+import { emailForPath, phoneDisplay, phoneHref } from "../../lib/site";
 import { estimateTravel, lookupPostcode, type TravelEstimate } from "../../lib/travel";
 import { trackAdviceEvent } from "../advice/AdviceTracker";
 import { texturedGreen } from "../site/ui";
@@ -244,6 +245,7 @@ function CheckResult({
   tone: Tone;
 }) {
   const style = tones[tone];
+  const pathname = usePathname();
 
   if (result.status === "invalid") {
     return (
@@ -263,7 +265,7 @@ function CheckResult({
           {phoneDisplay}
         </a>{" "}
         or{" "}
-        <a href={emailHref} className={style.link}>
+        <a href={emailForPath(pathname).href} className={style.link}>
           email us
         </a>
         .
