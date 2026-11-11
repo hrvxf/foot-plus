@@ -89,7 +89,7 @@ export default function BristolLocationPage() {
         eyebrow="Foot+ Bristol · Appointments available"
         title="Home foot care in Bristol"
         description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
-        primaryAction={{ label: "Book in Bristol", href: "/book?location=bristol" }}
+        primaryAction={{ label: "Request a visit in Bristol", href: "/book?location=bristol" }}
         secondaryAction={{ label: "View Bristol coverage", href: "/locations/bristol/areas-we-cover" }}
         contactActions={[
           { label: "WhatsApp Adam", href: bristolWhatsAppHref, icon: "whatsapp", external: true },
@@ -205,7 +205,7 @@ export default function BristolLocationPage() {
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">Share the appointment postcode and the support you need. Foot+ will confirm coverage, suitability and availability.</p>
           </div>
           <div className="mt-6 shrink-0 md:mt-0">
-            <Button href="/book?location=bristol" variant="primary">Book in Bristol</Button>
+            <Button href="/book?location=bristol" variant="primary">Request a visit in Bristol</Button>
           </div>
         </section>
       </div>

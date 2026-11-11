@@ -466,7 +466,7 @@ function Locations() {
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Link href="/book?location=bristol" className={btnPrimary} data-analytics-id="services-location-bristol-book">
-                Book in Bristol
+                Request a visit in Bristol
               </Link>
               <Link href="/locations/bristol/areas-we-cover" className={btnGhost}>
                 Areas we cover
@@ -483,7 +483,7 @@ function Locations() {
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Link href="/book?location=southampton" className={btnPrimary} data-analytics-id="services-location-southampton">
-                Book in Southampton
+                Request a visit in Southampton
               </Link>
               <Link href="/locations/southampton" className={btnGhost}>
                 About Foot+ Southampton

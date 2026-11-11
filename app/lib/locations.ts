@@ -13,6 +13,11 @@ export type ServiceLocation = {
   displayName: string;
   status: "open" | "launching";
   launchDate?: string;
+  /** Short availability line, as shown beside the practitioner. */
+  availability: string;
+  /** One-sentence summary of the area visited. Exact coverage comes from the postcode. */
+  coverage: string;
+  href: string;
   practitioner?: Practitioner;
 };
 
@@ -22,6 +27,9 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
     name: "Bristol",
     displayName: "Foot+ Bristol",
     status: "open",
+    availability: "Taking new patients",
+    coverage: "Central, north, south and east Bristol.",
+    href: "/locations/bristol",
     practitioner: {
       name: "Adam James",
       role: "Foot Health Practitioner",
@@ -40,6 +48,10 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
     name: "Southampton",
     displayName: "Foot+ Southampton",
     status: "open",
+    availability: "Appointments available now",
+    // From the Foot+ Southampton Google Business Profile service area.
+    coverage: "Southampton and nearby, including Romsey, Chandler's Ford, North Baddesley and Totton.",
+    href: "/locations/southampton",
     practitioner: {
       name: "Katie Preston",
       role: "Foot Health Practitioner",

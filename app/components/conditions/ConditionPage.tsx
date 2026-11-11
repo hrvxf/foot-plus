@@ -29,7 +29,7 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
         <h1 className="mt-3 font-heading text-3xl font-semibold text-brand-sageDark md:text-4xl">{page.title}</h1>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">{page.intro}</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href="/book?location=bristol" variant="solid">Book an appointment</Button>
+          <Button href="/book?location=bristol" variant="solid">Request a visit</Button>
           <Button href="/locations/bristol#bristol-services" variant="outline">Back to services</Button>
         </div>
       </section>
@@ -137,7 +137,7 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
         <h2 className="font-heading text-2xl font-semibold">Book a home foot care appointment</h2>
         <p className="mt-2 text-sm text-white/85 md:text-base">Appointments take place in your home. Book online or contact Foot+ if you would like to ask a question first.</p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href="/book?location=bristol" variant="primary">Book an appointment</Button>
+          <Button href="/book?location=bristol" variant="primary">Request a visit</Button>
           <a className="inline-flex items-center justify-center rounded-xl border border-white/70 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10" href={phoneHref}>Call {phoneDisplay}</a>
           <a className="inline-flex items-center justify-center rounded-xl border border-white/70 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10" href={emailHref}>Email Foot+</a>
         </div>
