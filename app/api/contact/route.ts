@@ -144,7 +144,7 @@ export async function POST(req: Request) {
     const to = locationRecipients[location];
     const from = `Foot+ Contact <${emailDisplay}>`;
     const enquiryType = "appointment enquiry";
-    const subject = `New Foot+ ${location} ${enquiryType} — ${String(name).trim()}`;
+    const subject = `New Foot+ ${location} ${enquiryType}: ${String(name).trim()}`;
 
     const html = `
       <div style="background:#0f1a16;padding:28px 16px;">
