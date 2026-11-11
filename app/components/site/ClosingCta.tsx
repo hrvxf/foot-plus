@@ -1,9 +1,8 @@
 import Image from "next/image";
+import ContactIcons, { bristolContactActions } from "./ContactIcons";
 import Link from "next/link";
-import { Phone } from "lucide-react";
 
-import { phoneDisplay, phoneHref } from "../../lib/site";
-import { btnOutlineWhite, btnWhite, container } from "./ui";
+import { btnWhite, container } from "./ui";
 
 type Props = {
   title?: string;
@@ -36,14 +35,11 @@ export default function ClosingCta({
           </h2>
           <p className="mt-2 text-white/85">{text}</p>
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <Link href={bookingHref} className={btnWhite} data-analytics-id={`${analyticsId}-cta-book`}>
             Request a visit
           </Link>
-          <a href={phoneHref} className={btnOutlineWhite} data-analytics-id={`${analyticsId}-cta-phone`}>
-            <Phone className="h-5 w-5" aria-hidden="true" />
-            {phoneDisplay}
-          </a>
+          <ContactIcons tone="dark" actions={bristolContactActions({ analyticsPrefix: `${analyticsId}-cta` })} />
         </div>
       </div>
     </section>

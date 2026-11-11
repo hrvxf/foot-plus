@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import ContactIcons, { bristolContactActions } from "../components/site/ContactIcons";
 import Link from "next/link";
-import { Check, Phone, Scissors } from "lucide-react";
+import { Check, Scissors } from "lucide-react";
 import {
-  btnGhost,
   btnPrimary,
   container,
   eyebrow,
@@ -16,8 +16,6 @@ import { serviceLocations } from "../lib/locations";
 import {
   ADAM_ID,
   BRISTOL_BUSINESS_ID,
-  phoneDisplay,
-  phoneHref,
   prices,
   SITE_URL,
 } from "../lib/site";
@@ -209,7 +207,7 @@ export default function ToenailCuttingPage() {
                 Adam James provides careful nail trimming, filing and suitable
                 thickened-nail care during a professional home visit.
               </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
                 <Link
                   href="/book?location=bristol&service=nails"
                   className={btnPrimary}
@@ -217,14 +215,7 @@ export default function ToenailCuttingPage() {
                 >
                   Request a nail-care visit
                 </Link>
-                <a
-                  href={phoneHref}
-                  className={btnGhost}
-                  data-analytics-id="nails-hero-phone"
-                >
-                  <Phone className="h-5 w-5" aria-hidden="true" />
-                  {phoneDisplay}
-                </a>
+                <ContactIcons actions={bristolContactActions({ analyticsPrefix: "nails-hero" })} />
               </div>
               <p className="mt-5 text-sm text-brand-muted">
                 Bristol appointments available.{" "}

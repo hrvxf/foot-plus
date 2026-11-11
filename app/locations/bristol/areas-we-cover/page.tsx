@@ -1,18 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin } from "lucide-react";
 import Button from "../../../components/Button";
 import PostcodeChecker from "../../../components/home/PostcodeChecker";
 import RatingBadge from "../../../components/reviews/RatingBadge";
+import ContactIcons, { bristolContactActions } from "../../../components/site/ContactIcons";
 import {
   estimateTravel,
   travelSummary,
 } from "../../../lib/travel";
 import {
   BRISTOL_BUSINESS_ID,
-  emailHref,
   phoneDisplay,
-  phoneHref,
   SITE_URL,
 } from "../../../lib/site";
 
@@ -308,20 +307,7 @@ export default function AreasWeCoverPage() {
             <Button href="/book?location=bristol" variant="primary">
               Book an appointment
             </Button>
-            <a
-              href={phoneHref}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
-            >
-              <Phone aria-hidden="true" className="h-4 w-4" />
-              {phoneDisplay}
-            </a>
-            <a
-              href={emailHref}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
-            >
-              <Mail aria-hidden="true" className="h-4 w-4" />
-              Email Foot+
-            </a>
+            <ContactIcons tone="dark" actions={bristolContactActions({ analyticsPrefix: "areas-aside" })} />
           </div>
         </aside>
       </section>

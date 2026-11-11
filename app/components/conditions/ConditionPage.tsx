@@ -1,9 +1,10 @@
 import Link from "next/link";
+import ContactIcons, { bristolContactActions } from "../site/ContactIcons";
 import Button from "../Button";
 import AuthorCard from "../AuthorCard";
 import type { ConditionPage as ConditionPageData } from "../../lib/condition-pages";
 import { isPublishedAdviceHref } from "../../lib/advice";
-import { emailHref, phoneDisplay, phoneHref, prices, serviceAreas } from "../../lib/site";
+import { prices, serviceAreas } from "../../lib/site";
 
 const safetyItems = [
   "open wounds or bleeding",
@@ -136,10 +137,9 @@ export default function ConditionPage({ page }: { page: ConditionPageData }) {
       <section className="mt-8 rounded-2xl border border-brand-sageLight/30 bg-brand-sageDark p-6 text-white shadow-sm md:p-7">
         <h2 className="font-heading text-2xl font-semibold">Book a home foot care appointment</h2>
         <p className="mt-2 text-sm text-white/85 md:text-base">Appointments take place in your home. Book online or contact Foot+ if you would like to ask a question first.</p>
-        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center">
           <Button href="/book?location=bristol" variant="primary">Request a visit</Button>
-          <a className="inline-flex items-center justify-center rounded-xl border border-white/70 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10" href={phoneHref}>Call {phoneDisplay}</a>
-          <a className="inline-flex items-center justify-center rounded-xl border border-white/70 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10" href={emailHref}>Email Foot+</a>
+          <ContactIcons tone="dark" actions={bristolContactActions({ analyticsPrefix: "condition-cta" })} />
         </div>
       </section>
     </main>

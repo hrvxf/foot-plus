@@ -18,6 +18,7 @@ export const phoneDisplay = "07380 301555";
 export const phoneHref = "tel:+447380301555";
 export const emailDisplay = "hello@foot-plus.co.uk";
 export const emailHref = `mailto:${emailDisplay}`;
+export const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
 
 export const serviceAreas = [
   {
