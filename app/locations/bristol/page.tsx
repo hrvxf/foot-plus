@@ -111,7 +111,7 @@ export default function BristolLocationPage() {
         </div>
       </section>
 
-      <ReviewsSection id="bristol-reviews" analyticsPrefix="bristol" />
+      <ReviewsSection scope="bristol" id="bristol-reviews" analyticsPrefix="bristol" />
 
       <section id="bristol-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="bristol-services-heading">
         <div className="mx-auto max-w-[1360px] px-6 py-14 md:px-10 xl:px-14">

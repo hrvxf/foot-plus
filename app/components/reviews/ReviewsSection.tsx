@@ -1,26 +1,31 @@
 import { ArrowUpRight, Quote } from "lucide-react";
 import {
   formatReviewMonth,
-  googleRating,
-  googleReviewsUrl,
-  googleWriteReviewUrl,
-  reviews,
+  getRating,
+  getReviewLinks,
+  getReviews,
+  type ReviewScope,
 } from "../../lib/reviews";
 import Stars from "./Stars";
 
 /**
- * Rating summary beside up to three review cards. On mobile the cards become a
- * swipeable row (no autoplay). Reviews are Foot+ Bristol only, so keep this off
- * Southampton pages.
+ * Rating summary above up to three review cards. On mobile the cards become a
+ * swipeable row (no autoplay). Use scope "all" on shared pages and a location on
+ * that location's page. Renders nothing until the scope has reviews switched on.
  */
 export default function ReviewsSection({
+  scope,
   id = "reviews",
   analyticsPrefix,
 }: {
+  scope: ReviewScope;
   id?: string;
   analyticsPrefix: string;
 }) {
-  const shown = reviews.slice(0, 3);
+  const rating = getRating(scope);
+  const shown = getReviews(scope, 3);
+  const links = getReviewLinks(scope);
+  if (!rating || !shown.length) return null;
 
   return (
     <section className="py-14 md:py-20" aria-labelledby={`${id}-heading`}>
@@ -41,37 +46,16 @@ export default function ReviewsSection({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-10">
             <div className="flex items-center gap-3">
               <p className="font-heading text-5xl font-semibold leading-none text-brand-sageDeep">
-                {googleRating.average.toFixed(1)}
+                {rating.average.toFixed(1)}
               </p>
               <div>
-                <Stars rating={googleRating.average} className="h-5 w-5" />
+                <Stars rating={rating.average} className="h-5 w-5" />
                 <p className="mt-1 text-sm text-brand-muted">
-                  from {googleRating.count} Google reviews of Foot+ Bristol
+                  from {rating.count} Google reviews
                 </p>
               </div>
             </div>
-            <div className="flex flex-col items-start gap-1.5 text-[15px]">
-              <a
-                href={googleReviewsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics-id={`${analyticsPrefix}-reviews-read-all`}
-                className="inline-flex items-center gap-1.5 font-semibold text-brand-sageDeep underline-offset-4 hover:underline"
-              >
-                Read all reviews on Google
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <a
-                href={googleWriteReviewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics-id={`${analyticsPrefix}-reviews-write`}
-                className="inline-flex items-center gap-1.5 text-brand-muted underline-offset-4 hover:text-brand-sageDeep hover:underline"
-              >
-                Had a visit? Leave a review
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
+            <ReviewLinks links={links} analyticsPrefix={analyticsPrefix} />
           </div>
         </div>
 
@@ -100,5 +84,64 @@ export default function ReviewsSection({
         </ul>
       </div>
     </section>
+  );
+}
+
+const linkStrong =
+  "inline-flex items-center gap-1.5 font-semibold text-brand-sageDeep underline-offset-4 hover:underline";
+const linkQuiet =
+  "inline-flex items-center gap-1.5 text-brand-muted underline-offset-4 hover:text-brand-sageDeep hover:underline";
+
+function ReviewLinks({
+  links,
+  analyticsPrefix,
+}: {
+  links: ReturnType<typeof getReviewLinks>;
+  analyticsPrefix: string;
+}) {
+  if (!links.length) return null;
+
+  // One Google profile: simple links. Several: one link per location.
+  if (links.length === 1) {
+    const [link] = links;
+    return (
+      <div className="flex flex-col items-start gap-1.5 text-[15px]">
+        <a href={link.readUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-read-all`} className={linkStrong}>
+          Read all reviews on Google
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        </a>
+        <a href={link.writeUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-write`} className={linkQuiet}>
+          Had a visit? Leave a review
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col items-start gap-1.5 text-[15px]">
+      <p className="font-semibold text-brand-sageDeep">
+        Read reviews on Google:{" "}
+        {links.map((link, index) => (
+          <span key={link.key}>
+            {index ? " · " : null}
+            <a href={link.readUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-read-${link.key}`} className="underline underline-offset-4">
+              {link.label}
+            </a>
+          </span>
+        ))}
+      </p>
+      <p className="text-brand-muted">
+        Had a visit? Leave a review:{" "}
+        {links.map((link, index) => (
+          <span key={link.key}>
+            {index ? " · " : null}
+            <a href={link.writeUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-write-${link.key}`} className="underline underline-offset-4 hover:text-brand-sageDeep">
+              {link.label}
+            </a>
+          </span>
+        ))}
+      </p>
+    </div>
   );
 }

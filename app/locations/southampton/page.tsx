@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
 import { SITE_URL } from "../../lib/site";
+import ReviewsSection from "../../components/reviews/ReviewsSection";
 
 const canonical = `${SITE_URL}/locations/southampton`;
 
@@ -84,6 +85,8 @@ export default function SouthamptonPage() {
         secondaryAction={{ label: "View coverage", href: "#southampton-coverage" }}
         practitioner={practitioner}
       />
+
+      <ReviewsSection scope="southampton" id="southampton-reviews" analyticsPrefix="southampton" />
 
       <section id="southampton-services" className="scroll-mt-24 border-b border-brand-sageLight/30 bg-white" aria-labelledby="southampton-services-heading">
         <div className="mx-auto max-w-[1360px] px-6 py-12 md:px-10 xl:px-14">

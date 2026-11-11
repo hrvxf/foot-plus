@@ -71,7 +71,7 @@ export default function HomeContent() {
       <Locations />
       <Services />
       <PricesAndSteps />
-      <ReviewsSection analyticsPrefix="home" />
+      <ReviewsSection scope="all" analyticsPrefix="home" />
       <Standards />
       <Advice />
       <Faq />
@@ -113,7 +113,7 @@ function Hero() {
             </a>
           </p>
 
-          <RatingBadge className="mt-5" analyticsId="home-hero-reviews" showBusiness />
+          <RatingBadge scope="all" className="mt-5" analyticsId="home-hero-reviews" />
 
           <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[15px] font-medium text-brand-sageDeep" aria-label="Why choose Foot+">
             {["Qualified practitioners", "Fully insured", "DBS checked"].map((item) => (
