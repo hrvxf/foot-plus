@@ -15,6 +15,7 @@ import { paymentMethods, prices } from "../lib/site";
 import { travelSummaryAllLocations } from "../lib/travel";
 import HomeMobileBar from "./home/HomeMobileBar";
 import PostcodeChecker from "./home/PostcodeChecker";
+import RotatingReview from "./home/RotatingReview";
 import Stars from "./reviews/Stars";
 import { ClosingCheck, FaqList, LocationSummary, PhoneLine, Steps } from "./site/blocks";
 import {
@@ -95,7 +96,12 @@ function Hero() {
 
 function Proof() {
   const rating = getRating("all");
-  const review = getReviews("all", 1)[0];
+  const reviews = getReviews("all", Infinity).map((item) => ({
+    quote: item.excerpt ?? item.text,
+    name: item.name,
+    month: formatReviewMonth(item.month),
+  }));
+  const review = reviews.length > 0;
   const links = getReviewLinks("all");
 
   const ratingSummary = rating ? (
@@ -131,12 +137,7 @@ function Proof() {
         ) : null}
 
         {review ? (
-          <figure className={ratingSummary ? "lg:col-span-5" : "lg:col-span-7"}>
-            <blockquote className="font-heading text-xl font-semibold leading-[1.4] text-brand-sageDeep md:text-[1.375rem]">&ldquo;{review.excerpt ?? review.text}&rdquo;</blockquote>
-            <figcaption className={`${supporting} mt-2`}>
-              {review.name}, {formatReviewMonth(review.month)}, on Google
-            </figcaption>
-          </figure>
+          <RotatingReview items={reviews} className={ratingSummary ? "lg:col-span-5" : "lg:col-span-7"} />
         ) : null}
 
         <p className={`${small} border-brand-sage/50 lg:border-l lg:pl-8 ${review || ratingSummary ? "lg:col-span-4" : "lg:col-span-12"}`}>
