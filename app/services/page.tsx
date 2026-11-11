@@ -3,13 +3,12 @@ import type { Metadata } from "next";
 import { ArrowRight, Check, TriangleAlert } from "lucide-react";
 
 import MobileActions from "../components/site/MobileActions";
-import { AppointmentList, Breadcrumb, ClosingCheck, FaqList, Steps } from "../components/site/blocks";
+import { AppointmentList, Breadcrumb, ClosingCheck, Steps } from "../components/site/blocks";
 import {
   body,
   btnSolid,
   displayH1,
   displayH2,
-  focusRing,
   lead,
   linkQuiet,
   rule,
@@ -20,7 +19,7 @@ import {
 } from "../components/site/ui";
 import { homeSteps } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
-import { adaptedCare, appointmentTypes, referOnSigns, serviceDetails, servicesFaqs, whoWeHelp } from "../lib/services";
+import { appointmentTypes, referOnSigns, serviceDetails, whoWeHelp } from "../lib/services";
 import { BUSINESS_ID, phoneDisplay, phoneHref, prices, SITE_URL } from "../lib/site";
 import { travelSummaryAllLocations } from "../lib/travel";
 
@@ -81,15 +80,6 @@ const structuredData = {
         url: `${SITE_URL}/prices`,
       },
     })),
-    {
-      "@type": "FAQPage",
-      "@id": `${PAGE_URL}#faq`,
-      mainEntity: servicesFaqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    },
   ],
 };
 
@@ -122,7 +112,6 @@ export default function ServicesPage() {
       <WhoWeHelp />
       <Scope />
       <Locations />
-      <Faq />
       <ClosingCheck id="services-check-heading" source="services" phoneAnalyticsId="services-cta-phone" />
       <MobileActions analyticsId="services" />
     </div>
@@ -141,8 +130,7 @@ function Hero() {
             Foot care services, <span className="text-brand-sage">at home.</span>
           </h1>
           <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>
-            Toenail cutting, thickened nails, corns, callus, hard skin and cracked heels, treated in your own home by a
-            qualified Foot Health Practitioner.
+            Routine nail and skin care in your own home, from a qualified Foot Health Practitioner.
           </p>
           <div className="mt-7 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-center">
             <Link href="/book" className={btnSolid} data-analytics-id="services-hero-book">
@@ -184,65 +172,25 @@ function Treatments() {
   return (
     <section className={`bg-white ${section}`} aria-labelledby="treatments-heading">
       <div className={shell}>
-        <div className="max-w-[60ch]">
-          <h2 id="treatments-heading" className={displayH2}>
-            What we can help with
-          </h2>
-          <p className={`${body} mt-4`}>
-            Every visit starts with an assessment, so your practitioner can confirm what is suitable and explain when
-            another clinical service may be more appropriate.
-          </p>
-        </div>
+        <h2 id="treatments-heading" className={displayH2}>
+          What we can help with
+        </h2>
 
-        <div className={`mt-10 border-b ${rule}`}>
+        <div className="mt-8 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 md:mt-10">
           {serviceDetails.map((service) => (
             <article
               key={service.id}
               id={service.id}
-              className={`grid scroll-mt-24 gap-x-10 gap-y-5 border-t ${rule} py-8 lg:grid-cols-12 lg:py-10`}
+              className={`scroll-mt-24 border-t ${rule} py-6`}
               aria-labelledby={`${service.id}-title`}
             >
-              <div className="lg:col-span-4">
-                <h3 id={`${service.id}-title`} className="font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
-                  {service.title}
-                </h3>
-                <p className={`${small} mt-3`}>{service.summary}</p>
-              </div>
-
-              <div className="lg:col-span-4">
-                <p className="text-base font-semibold text-brand-sageDeep">During your visit</p>
-                <ul className="mt-2 grid gap-2">
-                  {service.helps.map((item) => (
-                    <li key={item} className={`${supporting} flex gap-2.5`}>
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-sage" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="lg:col-span-4">
-                <p className="text-base font-semibold text-brand-sageDeep">Good to know</p>
-                <p className={`${supporting} mt-2`}>{service.goodToKnow}</p>
-                {service.guide || service.advice ? (
-                  <ul className="mt-2">
-                    {service.guide ? (
-                      <li>
-                        <Link href={service.guide.href} className={linkQuiet}>
-                          {service.guide.label}
-                        </Link>
-                      </li>
-                    ) : null}
-                    {service.advice ? (
-                      <li>
-                        <Link href={service.advice.href} className={linkQuiet}>
-                          Read: {service.advice.label}
-                        </Link>
-                      </li>
-                    ) : null}
-                  </ul>
-                ) : null}
-              </div>
+              <h3 id={`${service.id}-title`} className="font-heading text-xl font-semibold leading-7 text-brand-sageDeep">
+                {service.title}
+              </h3>
+              <p className={`${supporting} mt-2`}>{service.summary}</p>
+              <Link href={service.link.href} className={`${linkQuiet} mt-1`}>
+                {service.link.label} <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
+              </Link>
             </article>
           ))}
         </div>
@@ -260,11 +208,9 @@ function Appointments() {
             Two simple appointment types
           </h2>
           <p className={`${body} mt-4 max-w-[52ch]`}>
-            Start with a new patient appointment, then book routine visits as often as your feet need them.
+            Start with a new patient appointment, then book routine visits as often as you need.
           </p>
-          <p className={`${supporting} mt-4 max-w-[52ch]`}>
-            {travelSummaryAllLocations} Any travel fee is confirmed before you book.
-          </p>
+          <p className={`${supporting} mt-4 max-w-[52ch]`}>{travelSummaryAllLocations}</p>
           <Link href="/prices" className={`${linkQuiet} mt-2`}>
             Full price details <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </Link>
@@ -317,19 +263,11 @@ function WhoWeHelp() {
           </ul>
         </div>
         <div className="border-white/40 md:border-l md:pl-10 lg:pl-20">
-          <h3 className="font-heading text-2xl font-semibold leading-8 text-white">Visits adapted around the person</h3>
+          <h3 className="font-heading text-2xl font-semibold leading-8 text-white">Visits adapted around you</h3>
           <p className="mt-3 text-[1.0625rem] leading-[1.55] text-white md:text-lg">
-            Visits can be planned for adults who need additional time, reassurance or communication support, while
-            preserving dignity, consent and personal choice.
+            Need extra time, clear explanations or someone with you? Mention any communication, sensory, mobility or
+            anxiety needs when you get in touch and we&rsquo;ll plan the visit at your pace.
           </p>
-          <ul className="mt-5 grid gap-3">
-            {adaptedCare.map((entry) => (
-              <li key={entry} className={item}>
-                <Check className="mt-1 h-5 w-5 shrink-0" aria-hidden="true" />
-                {entry}
-              </li>
-            ))}
-          </ul>
           <Link
             href="/advice/foot-care-learning-disabilities-bristol"
             className="mt-4 inline-flex min-h-12 items-center gap-2 font-semibold text-white underline underline-offset-4 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -351,8 +289,8 @@ function Scope() {
             When we&rsquo;ll point you elsewhere
           </h2>
           <p className={`${body} mt-4 max-w-[52ch]`}>
-            Foot+ provides routine foot care. We do not diagnose medical conditions or provide emergency care, and we
-            will always explain when a podiatrist, GP, urgent or emergency service is the right next step.
+            Foot+ provides routine foot care. Our Foot Health Practitioners are not podiatrists, and we do not diagnose
+            conditions or provide emergency care. If you need a podiatrist, GP or urgent care, we&rsquo;ll tell you.
           </p>
           <Link href="/advice/foot-health-practitioner-podiatrist-or-chiropodist" className={`${linkQuiet} mt-2`}>
             Foot Health Practitioner, podiatrist or chiropodist? <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
@@ -407,31 +345,6 @@ function Locations() {
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Faq() {
-  return (
-    <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="faq-heading">
-      <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>
-        <div className="md:col-span-3">
-          <h2 id="faq-heading" className={displayH2}>
-            Before you book
-          </h2>
-          <p className={`${supporting} mt-3`}>
-            Can&rsquo;t see your question? Call{" "}
-            <a
-              href={phoneHref}
-              className={`inline-flex min-h-11 items-center font-semibold text-brand-sageDeep underline underline-offset-4 ${focusRing}`}
-            >
-              {phoneDisplay}
-            </a>
-            .
-          </p>
-        </div>
-        <FaqList faqs={servicesFaqs} className="md:col-span-9" />
       </div>
     </section>
   );
