@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import {
   homeCredentials,
   homeFaqs,
-  homeMemberships,
   homeServices,
   homeSteps,
 } from "../lib/home";
@@ -136,7 +135,7 @@ function Proof() {
         ) : null}
 
         <p className={`${small} border-brand-sage/50 lg:border-l lg:pl-8 ${review || ratingSummary ? "lg:col-span-4" : "lg:col-span-12"}`}>
-          {homeCredentials} {homeMemberships}
+          {homeCredentials}
         </p>
       </div>
     </section>

@@ -50,11 +50,10 @@ export const homeSteps = [
   },
 ];
 
-/** One sentence each for the proof line under the home page hero. */
+/** Proof line under the home page hero. Memberships are in the practitioner
+ * profiles, the site-wide schema and the location and About pages. */
 export const homeCredentials =
   "Diploma-trained, insured and DBS checked.";
-export const homeMemberships =
-  "Members of the College of Foot Health Practitioners and the Association of Foot Health Practitioners.";
 
 export const homeStandards = [
   {
