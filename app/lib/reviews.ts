@@ -53,7 +53,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
   bristol: {
     label: "Bristol",
     enabled: true,
-    rating: { average: 5.0, count: 6 },
+    rating: { average: 5.0, count: 7 },
     checked: "2026-11-11",
     readUrl: "https://maps.google.com/maps?cid=6111773793229409736",
     writeUrl: "https://search.google.com/local/writereview?placeid=ChIJocFh7_g3GqERyA37JOJh0VQ",
@@ -66,6 +66,14 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         rating: 5,
         text: "Adam has been really helpful and dedicated, sorting my elderly Father in Laws feet out. He is very patient and kind and I would highly recommend him.",
         excerpt: "… He is very patient and kind and I would highly recommend him.",
+      },
+      {
+        name: "Helen R.",
+        month: "2026-11",
+        rating: 5,
+        // Two typos trimmed with "…" ("made me a my neighbour", "Foot+ Bristol annd Adam's").
+        text: "Having had difficulties finding a mobile foot care practitioner for my elderly neighbour, I was thrilled to come across Foot+ website. It was incredibly simple to navigate and to find all the information I needed. Having sent a request through the website, I had a message from Foot+ almost immediately to arrange a time and date for an appointment. Adam visited today for the first session and worked wonders on my neighbour’s feet. Adam was professional and friendly, knowledgeable and made … my neighbour feel very comfortable. I would highly recommend Foot+ Bristol …",
+        excerpt: "… Adam visited today for the first session and worked wonders on my neighbour’s feet. …",
       },
       {
         name: "Martyn H.",
