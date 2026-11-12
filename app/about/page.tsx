@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { serviceLocations } from "../lib/locations";
+import { ArrowRight, Check, HandHeart, Info, ShieldCheck, Sparkles, Users, type LucideIcon } from "lucide-react";
+
+import LgbtqFriendly from "../components/site/LgbtqFriendly";
+import { Breadcrumb, ClosingBand, portraits } from "../components/site/blocks";
+import { body, displayH1, displayH2, displayH3, lead, linkQuiet, rule, shell, supporting } from "../components/site/ui";
+import { founderStory, outsideScope, qualificationTerms, withinScope } from "../lib/about";
 import { homeStandards } from "../lib/home";
+import { serviceLocations } from "../lib/locations";
 import { ADAM_ID, BUSINESS_ID, SITE_URL } from "../lib/site";
-import {
-  btnPrimary,
-  container,
-  eyebrow,
-  h2,
-  textLink,
-} from "../components/site/ui";
 const canonical = `${SITE_URL}/about`;
 const title = "About Foot+ | Our Foot Health Practitioners";
 const description =
@@ -58,171 +58,221 @@ const schema = {
     },
   ],
 };
+const section = "py-12 md:py-20";
+
+// Anchor ids are linked from elsewhere (e.g. "/about#adam-james"), so keep them stable.
+const practitionerAnchors = { bristol: "adam-james", southampton: "katie-preston" } as const;
+
+const practitionerLinks = {
+  bristol: [
+    { label: "Bristol home visits", href: "/locations/bristol" },
+    { label: "Toenail cutting in Bristol", href: "/toenail-cutting-bristol" },
+  ],
+  southampton: [
+    { label: "Southampton home visits", href: "/locations/southampton" },
+    { label: "Toenail cutting in Southampton", href: "/toenail-cutting-southampton" },
+  ],
+} as const;
+
+// Used for a practitioner with no bio yet in app/lib/locations.ts.
+const fallbackBio = {
+  bristol: "Adam James is the practitioner for Foot+ Bristol.",
+  southampton: "Katie Preston is the practitioner for Foot+ Southampton.",
+} as const;
+
+const standardIcons: Record<string, LucideIcon> = {
+  "Qualified practitioners": ShieldCheck,
+  "Sterile instruments": Sparkles,
+  "Insured and DBS checked": Check,
+  "Inclusive by default": Users,
+};
+
 export default function AboutPage() {
   return (
     <div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
-      <section className="border-b border-brand-line bg-brand-wash">
-        <div className={`${container} py-10 md:py-16`}>
-          <nav aria-label="Breadcrumb" className="text-sm text-brand-muted">
-            <Link href="/" className={textLink}>
-              Home
-            </Link>
-            <span aria-hidden="true"> / </span>
-            <span aria-current="page">About Foot+</span>
-          </nav>
-          <p className={`${eyebrow} mt-9`}>
-            Your practitioners · Our standards
-          </p>
-          <h1 className="mt-3 max-w-3xl font-heading text-4xl font-semibold leading-tight text-brand-sageDeep md:text-5xl">
-            Professional nail and foot care, with a person you know.
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+
+      <section aria-labelledby="about-heading">
+        <div className={`${shell} pb-12 pt-4 md:pb-16 lg:pb-20`}>
+          <Breadcrumb current="About Foot+" />
+          <h1 id="about-heading" className={`${displayH1} mt-4 max-w-[20ch] lg:mt-8`}>
+            Professional nail and foot care, with a person you know
           </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-brand-muted">
-            Foot+ brings routine nail and skin care to your home. Each location
-            has a local, qualified Foot Health Practitioner, with clear
-            information about who will visit and what care they provide.
+          <p className={`${lead} mt-4 max-w-[60ch] md:mt-6`}>
+            Foot+ brings routine nail and skin care to your home. Each location has its own local, qualified Foot
+            Health Practitioner, so you know who will visit.
           </p>
         </div>
       </section>
-      <section
-        className={`${container} py-12 md:py-16`}
-        aria-labelledby="practitioners-heading"
-      >
-        <h2 id="practitioners-heading" className={h2}>
-          Meet your Foot Health Practitioners
-        </h2>
-        <div className="mt-8 grid gap-8 md:grid-cols-2">
-          {Object.values(serviceLocations).map((location) => {
-            const practitioner = location.practitioner!;
-            return (
-              <article
-                id={
-                  location.slug === "bristol" ? "adam-james" : "katie-preston"
-                }
-                key={location.slug}
-                className="scroll-mt-28 rounded-3xl border border-brand-line p-6 md:p-8"
-              >
-                <p className={eyebrow}>{location.displayName}</p>
-                <h3 className="mt-3 font-heading text-2xl font-semibold text-brand-sageDeep">
-                  {practitioner.name}
-                </h3>
-                <p className="mt-2 font-medium text-brand-muted">
-                  {practitioner.role}
-                </p>
-                <p className="mt-3 text-sm font-semibold text-brand-sageDeep">
-                  {practitioner.credentials
-                    .filter(
-                      (credential) =>
-                        credential !== "BA (Hons)" && credential !== "BSc",
-                    )
-                    .join(" · ")}
-                </p>
-                <div className="mt-5 space-y-4 leading-relaxed text-brand-muted">
-                  {location.slug === "bristol" ? (
-                    practitioner.bio.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))
-                  ) : (
-                    <p>
-                      Katie Preston is the practitioner for Foot+ Southampton.
-                      Share your postcode to arrange the routine nail and skin
-                      care you need.
-                    </p>
-                  )}
-                </div>
-                <Link
-                  href={`/locations/${location.slug}`}
-                  className={`${textLink} mt-5 inline-block`}
+
+      <section className={`bg-white ${section}`} aria-labelledby="practitioners-heading">
+        <div className={shell}>
+          <h2 id="practitioners-heading" className={displayH2}>
+            Meet your practitioners
+          </h2>
+          <div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-2">
+            {Object.values(serviceLocations).map((location) => {
+              const practitioner = location.practitioner;
+              if (!practitioner) return null;
+              const bio = practitioner.bio.length ? practitioner.bio : [fallbackBio[location.slug]];
+              return (
+                <article
+                  key={location.slug}
+                  id={practitionerAnchors[location.slug]}
+                  className="flex scroll-mt-28 flex-col rounded-2xl border border-brand-line bg-white p-6 md:p-8"
+                  aria-labelledby={`${practitionerAnchors[location.slug]}-name`}
                 >
-                  {location.slug === "bristol"
-                    ? "Bristol home visits and availability"
-                    : "Southampton home visits and availability"}
-                </Link>
-                {location.slug === "bristol" ? (
-                  <p className="mt-4">
-                    <Link href="/toenail-cutting-bristol" className={textLink}>
-                      Toenail-cutting home visits with Adam
-                    </Link>
-                  </p>
-                ) : null}
-              </article>
-            );
-          })}
-        </div>
-      </section>
-      <section className="border-y border-brand-line bg-brand-wash">
-        <div className={`${container} py-12 md:py-16`}>
-          <h2 className={h2}>What the qualifications mean</h2>
-          <div className="mt-6 max-w-3xl space-y-4 leading-relaxed text-brand-muted">
-            <p>
-              Dip FH indicates a Diploma in Foot Health. MCFHP and MAFHP
-              indicate membership of the College of Foot Health Practitioners
-              and the Association of Foot Health Practitioners.
-            </p>
-            <p>
-              Foot Health Practitioners provide routine nail and skin care
-              within their training and scope. Foot+ services include toenail
-              cutting, suitable thickened-nail reduction, hard skin and callus
-              care, corn care and cracked-heel maintenance.
-            </p>
-            <p>
-              A Foot Health Practitioner is different from an HCPC-registered
-              podiatrist or chiropodist. Foot+ does not use those titles.
-              Concerns needing diagnosis, complex treatment, nail surgery or
-              urgent medical care should be assessed by the appropriate service.
-            </p>
-            <Link href="/services" className={textLink}>
-              Explore the full service offering and scope
-            </Link>
+                  <div className="flex items-center gap-5">
+                    <Image
+                      src={portraits[location.slug]}
+                      alt={practitioner.imageAlt}
+                      width={176}
+                      height={208}
+                      sizes="(min-width: 768px) 128px, 96px"
+                      className="h-28 w-24 shrink-0 rounded-xl object-cover object-[center_15%] md:h-36 md:w-32"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-brand-sageDark">{location.displayName}</p>
+                      <h3
+                        id={`${practitionerAnchors[location.slug]}-name`}
+                        className="mt-1 font-heading text-2xl font-semibold leading-tight text-brand-sageDeep"
+                      >
+                        {practitioner.name}
+                      </h3>
+                      <p className={`${supporting} mt-1`}>{practitioner.role}</p>
+                      <p className="mt-1 text-[0.9375rem] italic leading-6 tracking-[0.01em] text-brand-sageDark">
+                        {practitioner.credentials.join(" · ")}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={`${body} mt-6 space-y-4 border-t ${rule} pt-6`}>
+                    {bio.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <ul className="mt-auto flex flex-wrap gap-x-6 pt-4">
+                    {practitionerLinks[location.slug].map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className={linkQuiet}>
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
-      <section className={`${container} py-12 md:py-16`}>
-        <h2 className={h2}>The Foot+ standard</h2>
-        <div className="mt-7 grid gap-6 md:grid-cols-2">
-          {homeStandards.map((standard) => (
-            <div
-              key={standard.title}
-              className="border-t border-brand-line pt-5"
-            >
-              <h3 className="font-heading text-xl font-semibold text-brand-sageDeep">
-                {standard.title}
-              </h3>
-              <p className="mt-3 leading-relaxed text-brand-muted">
-                {standard.body}
+
+      {founderStory.length ? (
+        <section className={section} aria-labelledby="story-heading">
+          <div className={`${shell} grid gap-6 lg:grid-cols-12 lg:gap-12`}>
+            <h2 id="story-heading" className={`${displayH2} lg:col-span-4`}>
+              Why Foot+
+            </h2>
+            <div className={`${body} space-y-4 lg:col-span-8`}>
+              {founderStory.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              <p className="font-semibold text-brand-sageDeep">Adam James, founder</p>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className={`border-t ${rule} ${founderStory.length ? "bg-white" : ""} ${section}`} aria-labelledby="qualifications-heading">
+        <div className={shell}>
+          <h2 id="qualifications-heading" className={displayH2}>
+            What the qualifications mean
+          </h2>
+          <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+            {qualificationTerms.map((item) => (
+              <div key={item.term} className="rounded-xl bg-brand-wash p-5">
+                <dt className="font-heading text-2xl font-semibold text-brand-sageDeep">{item.term}</dt>
+                <dd className={`${supporting} mt-1`}>{item.meaning}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-12">
+            <div>
+              <h3 className={displayH3}>What we can help with</h3>
+              <ul className="mt-4 grid gap-2.5">
+                {withinScope.map((item) => (
+                  <li key={item} className={`${body} flex items-start gap-3`}>
+                    <Check className="mt-1 h-5 w-5 shrink-0 text-brand-sageDark" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className={displayH3}>When we will point you elsewhere</h3>
+              <ul className="mt-4 grid gap-2.5">
+                {outsideScope.map((item) => (
+                  <li key={item} className={`${body} flex items-start gap-3`}>
+                    <Info className="mt-1 h-5 w-5 shrink-0 text-brand-sageDark" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className={`${supporting} mt-4`}>
+                Foot Health Practitioners are not HCPC-registered podiatrists or chiropodists, and Foot+ does not use
+                those titles. If something needs a podiatrist or your GP, we will tell you.
               </p>
             </div>
-          ))}
-        </div>
-        <p className="mt-7 max-w-3xl leading-relaxed text-brand-muted">
-          Tell us about any mobility, communication, sensory or anxiety-related
-          needs when enquiring. A relative, carer or support worker can help
-          with arrangements or be present, with appropriate consent from the
-          person receiving care.
-        </p>
-      </section>
-      <section className="border-t border-brand-line bg-brand-wash">
-        <div className={`${container} py-12 md:py-16`}>
-          <h2 className={h2}>Choose your local home-visit service</h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-brand-muted">
-            Appointments are available now in Bristol and Southampton. Check{" "}
-            <Link href="/prices" className={textLink}>
-              appointment prices
-            </Link>{" "}
-            and{" "}
-            <Link href="/locations/bristol/areas-we-cover" className={textLink}>
-              Bristol coverage
-            </Link>{" "}
-            before requesting a visit.
-          </p>
-          <Link href="/locations" className={`${btnPrimary} mt-6`}>
-            Choose your location
+          </div>
+          <Link href="/services" className={`${linkQuiet} mt-6`}>
+            All services <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
       </section>
+
+      <section className={`border-t ${rule} ${founderStory.length ? "" : "bg-white"} ${section}`} aria-labelledby="standards-heading">
+        <div className={shell}>
+          <h2 id="standards-heading" className={displayH2}>
+            The Foot+ standard
+          </h2>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {homeStandards.map((standard) => {
+              const Icon = standardIcons[standard.title] ?? Check;
+              return (
+                <li key={standard.title} className="rounded-xl border border-brand-line bg-white p-5">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-wash text-brand-sageDeep" aria-hidden="true">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className={`${displayH3} mt-4`}>{standard.title}</h3>
+                  <p className={`${supporting} mt-1`}>{standard.body}</p>
+                  {standard.title === "Inclusive by default" ? <LgbtqFriendly className="mt-3" /> : null}
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="mt-10 flex flex-col gap-4 rounded-2xl bg-brand-wash p-6 sm:flex-row sm:items-start md:p-8">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-brand-sageDeep" aria-hidden="true">
+              <HandHeart className="h-5 w-5" />
+            </span>
+            <div>
+              <h3 className={displayH3}>Help with your visit</h3>
+              <p className={`${body} mt-2 max-w-[65ch]`}>
+                Tell us about any mobility, communication, sensory or anxiety-related needs when you enquire. A
+                relative, carer or support worker can help with arrangements or be there during the visit, with
+                consent from the person receiving care.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ClosingBand
+        id="about-closing"
+        heading="Book a home visit"
+        text="Choose Bristol or Southampton to check your postcode and request a visit."
+        action={{ label: "Choose your location", href: "/locations" }}
+      />
     </div>
   );
 }

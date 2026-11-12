@@ -207,7 +207,7 @@ export function ClosingCheck({
 
 // Optimised portraits; the practitioner records point at the larger files used
 // in the location page hero.
-const portraits: Record<ServiceLocation["slug"], string> = {
+export const portraits: Record<ServiceLocation["slug"], string> = {
   bristol: "/images/adam-james.webp",
   southampton: "/images/katie-preston.webp",
 };
