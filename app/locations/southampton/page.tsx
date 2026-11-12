@@ -77,6 +77,8 @@ export default function SouthamptonLocationPage() {
     email: locationEmails.southampton.display,
     employee: { "@type": "Person", "@id": KATIE_ID, name: practitioner.name, jobTitle: practitioner.role },
     priceRange: "££",
+    // Same as the LGBTQ+ flag in the footer, for search engines.
+    amenityFeature: { "@type": "LocationFeatureSpecification", name: "LGBTQ+ friendly", value: true },
   };
 
   return (

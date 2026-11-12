@@ -89,7 +89,7 @@ export default function Footer() {
                   <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
                 </svg>
               </a>
-              <LgbtqFriendly />
+              <LgbtqFriendly flagOnly />
             </div>
           </div>
 
