@@ -1,24 +1,30 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import LocationHero from "../../components/LocationHero";
+import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { SITE_URL } from "../../lib/site";
+import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, locationEmails } from "../../lib/site";
 import { southamptonTravelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
+import MeetPractitioner from "../../components/site/MeetPractitioner";
 import ServicesTiles from "../../components/site/ServicesTiles";
 import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
-import { body, displayH2, rule, shell } from "../../components/site/ui";
+import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
+
+// Mirrors app/locations/bristol/page.tsx section for section. Keep the two in step:
+// only location details (names, coverage, contacts, partners) should differ.
 
 const canonical = `${SITE_URL}/locations/southampton`;
 
 export const metadata: Metadata = {
-  title: { absolute: "Mobile Foot Health Practitioner Southampton | Foot+" },
-  description: "Professional home-visit nail and foot care in Southampton with Katie Preston, Foot Health Practitioner. Check your postcode and request an appointment.",
+  title: { absolute: "Home Foot Care Southampton | Foot Health Practitioner | Foot+" },
+  description: "Foot+ Southampton provides professional home-visit foot care across Southampton, with toenail cutting, corn care, hard skin and preventative foot-health support.",
   alternates: { canonical },
   openGraph: {
-    title: "Foot+ Southampton | Home-visit foot care",
-    description: "Professional home-visit nail and foot care in Southampton.",
+    title: "Foot+ Southampton | Mobile Foot Health Practitioner",
+    description: "Professional home-visit foot care across Southampton.",
     url: canonical,
     siteName: "Foot+",
   },
@@ -28,61 +34,67 @@ const section = "py-12 md:py-20";
 
 const processSteps = [
   {
-    title: "Send your enquiry",
-    text: "Share your postcode, contact details and the support you are looking for.",
+    title: "Request a visit",
+    text: "Tell us what support you need and provide the appointment postcode.",
   },
   {
-    title: "Confirm suitability",
-    text: "Foot+ confirms coverage, availability and whether the service is appropriate.",
+    title: "Confirm the details",
+    text: "Foot+ confirms coverage, suitability, availability and the expected cost.",
   },
   {
-    title: "Arrange your visit",
-    text: "Katie visits you at home at an agreed time.",
+    title: "Care at home",
+    text: "Your practitioner visits at the arranged time and provides clear aftercare guidance.",
   },
 ];
 
 const faqs = [
   {
-    question: "Is Foot+ Southampton taking new patients?",
-    answer: "Yes. Send your postcode and the type of care you are looking for, and Foot+ will confirm coverage and availability.",
+    question: "Which parts of Southampton does Foot+ cover?",
+    answer: "Foot+ covers Southampton and nearby, including Romsey, Chandler's Ford, North Baddesley and Totton, with exact coverage confirmed from the appointment postcode.",
   },
   {
-    question: "Who will visit me?",
-    answer: "Southampton home visits are provided by Katie Preston, a Foot Health Practitioner.",
+    question: "Can a relative or carer arrange the appointment?",
+    answer: "Yes. A relative, carer or support worker can enquire or help coordinate the visit, with appropriate consent from the person receiving care.",
   },
   {
-    question: "Will appointments take place at home?",
-    answer: "Yes. Foot+ Southampton is a home-visit foot-care service.",
+    question: "What if my concern needs podiatry or medical care?",
+    answer: "Foot+ will explain when a concern appears outside routine foot-health scope and advise seeking an appropriate podiatry, GP, urgent or emergency service.",
   },
 ];
 
-export default function SouthamptonPage() {
+export default function SouthamptonLocationPage() {
   const location = serviceLocations.southampton;
   const practitioner = location.practitioner!;
-  const serviceSchema = {
+  const schema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${canonical}#service`,
-    name: "Foot+ Southampton home-visit foot care",
-    description: "Professional home-visit nail and foot care in Southampton.",
-    provider: { "@id": `${canonical}#medicalbusiness` },
-    areaServed: { "@type": "City", name: "Southampton" },
+    "@type": "MedicalBusiness",
+    "@id": SOUTHAMPTON_BUSINESS_ID,
+    name: "Foot+ Southampton",
     url: canonical,
+    areaServed: { "@type": "City", name: "Southampton" },
+    parentOrganization: { "@id": `${SITE_URL}/#organization` },
+    telephone: "+447380301555",
+    email: locationEmails.southampton.display,
+    employee: { "@type": "Person", "@id": KATIE_ID, name: practitioner.name, jobTitle: practitioner.role },
+    priceRange: "££",
   };
 
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [serviceSchema, { "@type": "MedicalBusiness", "@id": `${canonical}#medicalbusiness`, name: "Foot+ Southampton", description: "Home-visit nail and foot care in Southampton.", url: canonical, areaServed: { "@type": "City", name: "Southampton" }, parentOrganization: { "@id": `${SITE_URL}/#organization` }, employee: { "@id": `${SITE_URL}/about#katie-preston` } }, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <LocationHero
         place="Southampton"
         status="Foot+ Southampton · Taking new patients"
-        title="Home-visit foot care in Southampton"
-        description="Professional foot care in the comfort of your own home, delivered with expertise, dignity and genuine care."
-        primaryAction={{ label: "Request a home visit", href: "/book?location=southampton" }}
-        secondaryAction={{ label: "View coverage", href: "#southampton-coverage" }}
+        title="Home foot care in Southampton"
+        description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
+        primaryAction={{ label: "Request a visit in Southampton", href: "/book?location=southampton" }}
+        secondaryAction={{ label: "View Southampton coverage", href: "#southampton-coverage" }}
+        contactActions={southamptonContactActions({ analyticsPrefix: "southampton-hero" })}
         practitioner={practitioner}
       />
+
+      <MeetPractitioner practitioner={practitioner} aboutHref="/about#katie-preston" className={`bg-white ${section}`} />
 
       <ReviewsSection scope="southampton" id="southampton-reviews" analyticsPrefix="southampton" />
 
@@ -92,7 +104,7 @@ export default function SouthamptonPage() {
         practitioner="Katie"
         nailCuttingHref="/toenail-cutting-southampton"
         bookHref="/book?location=southampton"
-        bookLabel="Request a home visit"
+        bookLabel="Request a Southampton home visit"
         className={`bg-white ${section}`}
       />
 
@@ -100,11 +112,18 @@ export default function SouthamptonPage() {
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
           <div className="lg:col-span-7">
             <h2 id="southampton-coverage-heading" className={displayH2}>
-              Check your postcode
+              Home visits across Southampton
             </h2>
             <p className={`${body} mt-4 max-w-[52ch]`}>
-              {serviceLocations.southampton.coverage} {southamptonTravelSummary}
+              {location.coverage} {southamptonTravelSummary}
             </p>
+            <ul className="mt-2 flex flex-wrap gap-x-6">
+              <li>
+                <Link href="/prices" className={linkQuiet}>
+                  View prices
+                </Link>
+              </li>
+            </ul>
           </div>
           <div className="lg:col-span-5">
             <PostcodeChecker
@@ -127,6 +146,9 @@ export default function SouthamptonPage() {
         </div>
       </section>
 
+      {/* Bristol has a "Connected care" partners section here. Add the same block once
+          Southampton has published local partners. */}
+
       <section className={section} aria-labelledby="southampton-faqs">
         <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>
           <h2 id="southampton-faqs" className={`${displayH2} md:col-span-4`}>
@@ -138,9 +160,9 @@ export default function SouthamptonPage() {
 
       <ClosingBand
         id="southampton-closing"
-        heading="Request a home visit in Southampton"
-        text="Tell us your postcode and the support you are looking for. We will confirm coverage, suitability and availability."
-        action={{ label: "Request a home visit", href: "/book?location=southampton" }}
+        heading="Request a Southampton home visit"
+        text="Share the appointment postcode and the support you need. Foot+ will confirm coverage, suitability and availability."
+        action={{ label: "Request a visit in Southampton", href: "/book?location=southampton" }}
       />
     </div>
   );

@@ -27,6 +27,18 @@ export function bristolContactActions({
   ];
 }
 
+/**
+ * Default Southampton contact set: call Foot+ and email southampton@. No WhatsApp
+ * until Southampton has its own number (matches /toenail-cutting-southampton).
+ */
+export function southamptonContactActions({ analyticsPrefix }: { analyticsPrefix?: string } = {}): ContactAction[] {
+  const id = (name: string) => (analyticsPrefix ? `${analyticsPrefix}-${name}` : undefined);
+  return [
+    { kind: "phone", href: phoneHref, label: `Call Foot+ on ${phoneDisplay}`, analyticsId: id("phone") },
+    { kind: "email", href: locationEmails.southampton.href, label: locationEmails.southampton.label, analyticsId: id("email") },
+  ];
+}
+
 const tones = {
   /** On green or dark panels. */
   dark: "text-white hover:bg-white/15 focus-visible:outline-white",
