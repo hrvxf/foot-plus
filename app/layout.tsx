@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import AnalyticsClickTracker from "./components/AnalyticsClickTracker";
 import EntryAnimation from "./components/EntryAnimation";
 import RouteViewTransition from "./components/RouteViewTransition";
-import PortraitWarmup from "./components/PortraitWarmup";
 import { entryAnimationScript } from "./lib/entryAnimation";
 
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "./lib/site";
@@ -96,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: "Adam James",
     jobTitle: "Foot Health Practitioner",
     url: `${SITE_URL}/about#adam-james`,
-    image: `${SITE_URL}/images/adam-james-hero.webp`,
+    image: `${SITE_URL}/images/Adam-James.svg`,
     worksFor: { "@id": BRISTOL_BUSINESS_ID },
     hasCredential: { "@type": "EducationalOccupationalCredential", name: "Diploma in Foot Health" },
     memberOf: [
@@ -193,7 +192,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AnalyticsClickTracker />
         <EntryAnimation />
         <RouteViewTransition />
-        <PortraitWarmup />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
