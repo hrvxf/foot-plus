@@ -211,7 +211,9 @@ function WhoAndHow() {
           Who visits, and how it works
         </h2>
 
-        <div className="mt-8 grid gap-10 md:mt-10 md:grid-cols-2 md:gap-10 lg:gap-20">
+        {/* No row gap from md up: the two cards share these rows through subgrid, so a
+            row gap here would open up between every line inside them. */}
+        <div className="mt-8 grid gap-10 md:mt-10 md:grid-cols-2 md:gap-x-10 md:gap-y-0 lg:gap-x-20">
           {Object.values(serviceLocations).map((location) => (
             <LocationSummary key={location.slug} location={location} idPrefix="who" links={locationLinks[location.slug]} />
           ))}
