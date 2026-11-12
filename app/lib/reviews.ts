@@ -124,7 +124,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
     checked: "2026-11-11",
     // Add Foot+ Southampton's Google profile and review links when it has a listing.
     readUrl: "",
-    writeUrl: "",
+    writeUrl: "https://g.page/r/CSxFOLYdDyIoEBM/review",
     reviews: [],
   },
 };
