@@ -79,6 +79,15 @@ body {
   }
 }
 
+/* Page change cross-fade where the browser supports view transitions
+   (app/components/RouteViewTransition.tsx). Old and new screens blend, so the jump
+   to the top of the new page happens inside the fade rather than as a visible snap. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+}
+
 /* Pages with the sticky mobile Request / Call bar: make room for it under the
    footer (the last thing on the page) rather than under the page content,
    which left a large empty gap above the footer. */

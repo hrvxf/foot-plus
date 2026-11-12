@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AnalyticsClickTracker from "./components/AnalyticsClickTracker";
 import EntryAnimation from "./components/EntryAnimation";
+import RouteViewTransition from "./components/RouteViewTransition";
 import { entryAnimationScript } from "./lib/entryAnimation";
 
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "./lib/site";
@@ -190,6 +191,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </noscript>
         <AnalyticsClickTracker />
         <EntryAnimation />
+        <RouteViewTransition />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
