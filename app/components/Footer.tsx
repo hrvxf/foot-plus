@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FooterEmail from "./FooterEmail";
+import LgbtqFriendly from "./site/LgbtqFriendly";
 import { rule, shell } from "./site/ui";
 
 const exploreLinks = [
@@ -71,19 +72,22 @@ export default function Footer() {
                 headingClass={label}
                 linkClass="inline-flex min-h-9 items-center text-base font-semibold text-brand-charcoal underline underline-offset-4 hover:text-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
               />
-              <a
-                href="https://www.facebook.com/profile.php?id=61586341484139"
-                target="_blank"
-                rel="noreferrer"
-                className="-ml-2.5 mt-2 inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
-                aria-label="Visit Foot+ on Facebook"
-                title="Foot+ on Facebook"
-                data-analytics-id="footer-facebook"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[22px] w-[22px] fill-brand-sageDark">
-                  <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
-                </svg>
-              </a>
+              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61586341484139"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="-ml-2.5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+                  aria-label="Visit Foot+ on Facebook"
+                  title="Foot+ on Facebook"
+                  data-analytics-id="footer-facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[22px] w-[22px] fill-brand-sageDark">
+                    <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
+                  </svg>
+                </a>
+                <LgbtqFriendly />
+              </div>
             </div>
           </div>
 
