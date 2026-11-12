@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, Check, TriangleAlert } from "lucide-react";
 
 import MobileActions from "../components/site/MobileActions";
-import { AppointmentList, Breadcrumb, ClosingCheck } from "../components/site/blocks";
+import { Breadcrumb, ClosingCheck } from "../components/site/blocks";
 import {
   body,
   btnSolid,
@@ -18,7 +18,7 @@ import {
   texturedGreen,
 } from "../components/site/ui";
 import { serviceLocations } from "../lib/locations";
-import { appointmentTypes, referOnSigns, serviceDetails, whoWeHelp } from "../lib/services";
+import { referOnSigns, serviceDetails, whoWeHelp } from "../lib/services";
 import { BUSINESS_ID, prices, SITE_URL } from "../lib/site";
 
 const PAGE_URL = `${SITE_URL}/services`;
@@ -169,28 +169,17 @@ function Treatments() {
 }
 
 function Appointments() {
+  // Prices live on /prices and the home page; one line here avoids repeating them.
   return (
-    <section className={section} aria-labelledby="appointments-heading">
-      <div className={`${shell} grid gap-8 lg:grid-cols-12 lg:gap-12`}>
-        <div className="lg:col-span-5">
-          <h2 id="appointments-heading" className={displayH2}>
-            Two simple appointment types
-          </h2>
-          <p className={`${supporting} mt-4 max-w-[52ch]`}>Any travel fee shows when you check your postcode.</p>
-          <div className="mt-2 flex flex-col items-start">
-            <Link href="/prices" className={linkQuiet}>
-              Full price details <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </Link>
-            <Link href="/advice/what-happens-home-foot-health-appointment" className={linkQuiet}>
-              What happens during a home visit <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-        <div className="lg:col-span-7">
-          <AppointmentList
-            appointments={appointmentTypes.map((type) => ({ ...type, cta: "Request this appointment" }))}
-          />
-        </div>
+    <section className={`border-t ${rule} py-8 md:py-10`} aria-label="Prices">
+      <div className={`${shell} flex flex-col gap-x-8 gap-y-2 sm:flex-row sm:flex-wrap sm:items-center`}>
+        <p className={`${body} font-semibold text-brand-sageDeep`}>Visits from {prices[1].price}.</p>
+        <Link href="/prices" className={linkQuiet}>
+          See prices <ArrowRight className="h-5 w-5" aria-hidden="true" />
+        </Link>
+        <Link href="/advice/what-happens-home-foot-health-appointment" className={linkQuiet}>
+          What happens during a home visit <ArrowRight className="h-5 w-5" aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );
