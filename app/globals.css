@@ -11,6 +11,9 @@
   --color-brand-wash: #E8EFE9;
   --color-brand-line: #DCE5DE;
   --color-brand-muted: #55625A;
+  /* Review stars only. The lighter one is for dark green backgrounds. */
+  --color-brand-gold: #E3AA33;
+  --color-brand-goldLight: #EDBE4F;
   --font-heading: "Poppins", "Montserrat", sans-serif;
   --font-body: "Inter", "Montserrat", sans-serif;
 }

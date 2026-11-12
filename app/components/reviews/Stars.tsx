@@ -1,5 +1,5 @@
-// Solid, sharp-pointed stars in the brand sage (rather than gold), so ratings sit
-// quietly within the site palette. Use tone="dark" on dark sage backgrounds.
+// Solid, sharp-pointed gold stars, matching the printed appointment cards. They are
+// the only gold on the site. Use tone="dark" on dark sage backgrounds.
 const STAR_PATH =
   "M12 1.5l3.09 6.86 7.41.78-5.54 5.03 1.57 7.33L12 17.77 5.47 21.5l1.57-7.33L1.5 9.14l7.41-.78z";
 
@@ -12,7 +12,7 @@ export default function Stars({
   className?: string;
   tone?: "light" | "dark";
 }) {
-  const filled = tone === "dark" ? "text-white" : "text-brand-sageDark";
+  const filled = tone === "dark" ? "text-brand-goldLight" : "text-brand-gold";
   const empty = tone === "dark" ? "text-white/30" : "text-brand-line";
 
   return (
