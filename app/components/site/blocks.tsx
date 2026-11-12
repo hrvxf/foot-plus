@@ -255,7 +255,11 @@ export function LocationSummary({
       <p className={`${body} col-start-2 mt-1`}>
         {practitioner.name}, {practitioner.role}
       </p>
-      <p className={`${supporting} col-start-2`}>{practitioner.credentials.join(", ")}</p>
+      {/* Qualifications read as a subtitle under the name. sageDark, not the lighter
+          sage, so the smaller italic text still meets contrast on off-white. */}
+      <p className="col-start-2 text-[0.9375rem] italic leading-6 tracking-[0.01em] text-brand-sageDark">
+        {practitioner.credentials.join(" · ")}
+      </p>
       <p className={`${supporting} col-start-2 mt-2`}>{location.coverage}</p>
       <p className={`${small} col-start-2 mt-3 inline-flex items-center gap-2 self-start font-semibold text-brand-sageDeep`}>
         <span className="h-2.5 w-2.5 rounded-full bg-brand-sage" aria-hidden="true" />
