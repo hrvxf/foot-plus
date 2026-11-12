@@ -99,6 +99,9 @@ export default function SouthamptonPage() {
             <Link href="/book?location=southampton" className={btnSolid}>
               Request a home visit
             </Link>
+            <Link href="/toenail-cutting-southampton" className={linkQuiet}>
+              Toenail cutting in Southampton
+            </Link>
             <Link href="/services" className={linkQuiet}>
               Explore home-visit care
             </Link>
