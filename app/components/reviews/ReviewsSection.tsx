@@ -7,6 +7,7 @@ import {
   type ReviewScope,
 } from "../../lib/reviews";
 import Stars from "./Stars";
+import ReviewQuote from "./ReviewQuote";
 
 /**
  * Rating summary above up to three reviews in ruled columns. Use scope "all" on shared pages and a location on
@@ -56,9 +57,7 @@ export default function ReviewsSection({
           {shown.map((review) => (
             <li key={review.name + review.month} className="flex flex-col border-t border-brand-charcoal/15 pt-5">
               <Stars rating={review.rating} />
-              <blockquote className="mt-3 flex-1 text-[1.0625rem] leading-[1.55] text-brand-charcoal md:text-lg md:leading-7">
-                &ldquo;{review.text}&rdquo;
-              </blockquote>
+              <ReviewQuote text={review.text} />
               <p className="mt-4 text-base">
                 <span className="font-semibold text-brand-sageDeep">{review.name}</span>
                 <span className="text-brand-muted">, {formatReviewMonth(review.month)}, on Google</span>
