@@ -18,6 +18,8 @@ const updatedRoutes = new Set([
   "/corn-removal-bristol",
   "/cracked-heels-bristol",
   "/toenail-cutting-bristol",
+  "/toenail-cutting-southampton",
+  "/toenail-cutting",
 ]);
 const LAST_MODIFIED = new Date("2026-07-08T00:00:00.000Z");
 
@@ -41,6 +43,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/corn-removal-bristol",
     "/cracked-heels-bristol",
     "/toenail-cutting-bristol",
+    "/toenail-cutting-southampton",
+    "/toenail-cutting",
     ...publishedAdviceArticles.map((article) => `/advice/${article.slug}`),
   ];
 

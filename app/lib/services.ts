@@ -22,7 +22,7 @@ export const serviceDetails: ServiceDetail[] = [
     icon: "nail",
     title: "Toenail cutting and routine nail care",
     summary: "Nails trimmed and filed to a comfortable length, for anyone who finds reaching or cutting them difficult.",
-    link: { label: "Toenail cutting", href: "/toenail-cutting-bristol" },
+    link: { label: "Toenail cutting", href: "/toenail-cutting" },
   },
   {
     id: "thickened-nails",

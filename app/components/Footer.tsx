@@ -7,7 +7,7 @@ const exploreLinks = [
   { href: "/prices", label: "Prices" },
   { href: "/advice", label: "Advice" },
   { href: "/about", label: "About Foot+" },
-  { href: "/toenail-cutting-bristol", label: "Bristol nail care" },
+  { href: "/toenail-cutting", label: "Nail cutting" },
 ];
 
 const locationLinks = [
