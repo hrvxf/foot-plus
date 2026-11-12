@@ -53,8 +53,10 @@ export default function Header() {
   const navPadding = "py-2";
   const logoWrapper =
     "relative h-[38px] w-[128px] sm:h-[40px] sm:w-[136px] transition-[color,filter] duration-300";
-  const shouldAnimateLogo = pathname !== "/";
-  const logoKey = shouldAnimateLogo ? pathname : "static-logo";
+  // Draw the logo once, on the page the visitor lands on (still static when landing
+  // on the home page, as before). The header persists across navigations,
+  // so freezing this at first render stops the logo redrawing on every click.
+  const [shouldAnimateLogo] = useState(() => pathname !== "/");
 
   const linkTone = "text-brand-charcoal/80 hover:text-brand-sageDark";
   const activeBorder = "border-brand-sageDark";
@@ -92,7 +94,6 @@ export default function Header() {
                 className={`${logoWrapper} text-brand-sageDark`}
               >
                 <AnimatedFootPlusLogo
-                  key={logoKey}
                   className="h-full w-full"
                   animate={shouldAnimateLogo}
                 />
