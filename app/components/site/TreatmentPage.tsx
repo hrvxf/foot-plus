@@ -91,7 +91,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
             <span aria-hidden="true"> / </span>
             <span aria-current="page">{treatment.name}</span>
           </nav>
-          <div className="mt-8 grid gap-8 md:mt-10 md:grid-cols-[1.2fr_0.8fr] md:items-center md:gap-14">
+          <div className="mt-8 md:mt-10">
             <div>
               <h1 className="font-heading text-4xl font-semibold leading-[1.1] text-brand-sageDeep sm:text-5xl">
                 {treatment.title}
@@ -109,23 +109,13 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
                   ]}
                 />
               </div>
+              <p className="mt-5 text-base text-brand-muted">
+                Visits from {prices[1].price}.{" "}
+                <Link href="/prices" className={textLink}>
+                  See prices
+                </Link>
+              </p>
             </div>
-            <dl className="rounded-3xl border border-brand-line bg-white p-6">
-              {[
-                { name: "First visit", detail: "About 60 minutes", price: prices[0].price },
-                { name: "Returning visits", detail: "About 45 minutes", price: prices[1].price },
-              ].map((row, index) => (
-                <div
-                  key={row.name}
-                  className={`flex items-center justify-between gap-4 ${index ? "mt-4 border-t border-brand-line pt-4" : ""}`}
-                >
-                  <dt>
-                    {row.name} <span className="block text-sm text-brand-muted">{row.detail}</span>
-                  </dt>
-                  <dd className="font-heading text-2xl font-semibold text-brand-sageDeep">{row.price}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </div>
       </section>

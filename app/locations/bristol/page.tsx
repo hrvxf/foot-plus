@@ -146,11 +146,7 @@ export default function BristolLocationPage() {
             <Link href="/services" className={inlineLink}>
               all Foot+ foot care services
             </Link>{" "}
-            for what each treatment involves. New patient appointments are £60; routine appointments are £55.{" "}
-            <Link href="/prices" className={inlineLink}>
-              View appointment details and travel charges
-            </Link>
-            .
+            for what each treatment involves.
           </p>
           <Link href="/book?location=bristol" className={`${btnSolid} mt-6`}>
             Request a Bristol home visit
