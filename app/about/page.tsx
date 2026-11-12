@@ -5,7 +5,7 @@ import { ArrowRight, Check, HandHeart, Info, ShieldCheck, Sparkles, Users, type 
 
 import LgbtqFriendly from "../components/site/LgbtqFriendly";
 import { Breadcrumb, ClosingBand, portraits } from "../components/site/blocks";
-import { body, displayH1, displayH2, displayH3, lead, linkQuiet, rule, shell, supporting } from "../components/site/ui";
+import { body, displayH1, displayH2, displayH3, linkQuiet, rule, shell, supporting } from "../components/site/ui";
 import { founderStory, outsideScope, qualificationTerms, withinScope } from "../lib/about";
 import { homeStandards } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
@@ -98,10 +98,6 @@ export default function AboutPage() {
           <h1 id="about-heading" className={`${displayH1} mt-4 max-w-[20ch] lg:mt-8`}>
             Professional nail and foot care, with a person you know
           </h1>
-          <p className={`${lead} mt-4 max-w-[60ch] md:mt-6`}>
-            Foot+ brings routine nail and skin care to your home. Each location has its own local, qualified Foot
-            Health Practitioner, so you know who will visit.
-          </p>
         </div>
       </section>
 
