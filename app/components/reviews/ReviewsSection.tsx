@@ -57,7 +57,7 @@ export default function ReviewsSection({
           {shown.map((review) => (
             <li key={review.name + review.month} className="flex flex-col border-t border-brand-charcoal/15 pt-5">
               <Stars rating={review.rating} />
-              <ReviewQuote text={review.text} />
+              <ReviewQuote text={review.text} excerpt={review.excerpt} highlight={review.highlight} />
               <p className="mt-4 text-base">
                 <span className="font-semibold text-brand-sageDeep">{review.name}</span>
                 <span className="text-brand-muted">, {formatReviewMonth(review.month)}, on Google</span>

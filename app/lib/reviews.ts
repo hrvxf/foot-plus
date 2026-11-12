@@ -33,6 +33,11 @@ export type Review = {
    * rules as `text`: exact wording, "…" where it has been trimmed.
    */
   excerpt?: string;
+  /**
+   * Optional short phrase to pick out in the review (sage highlight). Must appear
+   * word for word in `text` (and in `excerpt`, if it has one); the build fails if not.
+   */
+  highlight?: string;
 };
 
 export type ReviewLocation = "bristol" | "southampton";
@@ -67,6 +72,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         rating: 5,
         text: "Adam has been really helpful and dedicated, sorting my elderly Father in Laws feet out. He is very patient and kind and I would highly recommend him.",
         excerpt: "… He is very patient and kind and I would highly recommend him.",
+        highlight: "very patient and kind",
       },
       {
         name: "Helen R.",
@@ -75,6 +81,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         // Two typos trimmed with "…" ("made me a my neighbour", "Foot+ Bristol annd Adam's").
         text: "Having had difficulties finding a mobile foot care practitioner for my elderly neighbour, I was thrilled to come across Foot+ website. It was incredibly simple to navigate and to find all the information I needed. Having sent a request through the website, I had a message from Foot+ almost immediately to arrange a time and date for an appointment. Adam visited today for the first session and worked wonders on my neighbour’s feet. Adam was professional and friendly, knowledgeable and made … my neighbour feel very comfortable. I would highly recommend Foot+ Bristol …",
         excerpt: "… Adam visited today for the first session and worked wonders on my neighbour’s feet. …",
+        highlight: "worked wonders on my neighbour’s feet",
       },
       {
         name: "Martyn H.",
@@ -82,6 +89,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         rating: 5,
         text: "Adam visited me this morning. I found him very polite and considerate. I was impressed by his expertise and the reassuring manner in which he carried out the treatment. I will definitely contact him again for any further treatment I need. Top marks!!!",
         excerpt: "… I was impressed by his expertise and the reassuring manner in which he carried out the treatment. …",
+        highlight: "the reassuring manner",
       },
       {
         name: "Joan K.",
@@ -90,6 +98,7 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         // Original sentence mentioning "chiropodist" trimmed (protected title).
         text: "Adam was friendly and professional and delivered an excellent service. … Highly recommended.",
         excerpt: "Adam was friendly and professional and delivered an excellent service. …",
+        highlight: "an excellent service",
       },
       {
         name: "Harry B.",
@@ -97,12 +106,14 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         rating: 5,
         text: "Requested services for callus remove and general foot care. Great and attentive service. Will book again.",
         excerpt: "… Great and attentive service. Will book again.",
+        highlight: "Great and attentive service",
       },
       {
         name: "Dunnerz",
         month: "2026-08",
         rating: 5,
         text: "Adam was great and very happy with the finished product! Thanks!",
+        highlight: "Adam was great",
       },
     ],
   },
@@ -126,6 +137,15 @@ for (const [key, location] of Object.entries(reviewLocations)) {
       throw new Error(
         `${key} review from ${review.name} mentions a protected title (chiropodist/podiatrist). ` +
           `Leave it out or trim that part with "…" (see app/lib/reviews.ts).`
+      );
+    }
+    if (
+      review.highlight &&
+      (!review.text.includes(review.highlight) ||
+        (review.excerpt && !review.excerpt.includes(review.highlight)))
+    ) {
+      throw new Error(
+        `${key} review from ${review.name}: highlight "${review.highlight}" must appear word for word in its text and excerpt.`
       );
     }
   }
