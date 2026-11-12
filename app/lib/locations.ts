@@ -34,7 +34,7 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
       name: "Adam James",
       role: "Foot Health Practitioner",
       credentials: ["BA (Hons)", "Dip FH", "MCFHP", "MAFHP"],
-      imageSrc: "/images/Adam-James.svg",
+      imageSrc: "/images/adam-james-hero.webp",
       imageAlt: "Portrait of Adam James, Foot+ Bristol foot health practitioner.",
       bio: [
         "Adam has over six years’ experience working in healthcare and rehabilitation, supporting people to regain confidence, mobility and independence.",
