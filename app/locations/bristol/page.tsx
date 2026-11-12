@@ -6,13 +6,13 @@ import LocationHero from "../../components/LocationHero";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
-import { treatments } from "../../lib/treatments";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, locationEmails } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
+import ServicesTiles from "../../components/site/ServicesTiles";
 import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
-import { body, btnSolid, displayH2, displayH3, linkQuiet, rule, shell, small, supporting } from "../../components/site/ui";
+import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 
@@ -29,7 +29,6 @@ export const metadata: Metadata = {
 };
 
 const section = "py-12 md:py-20";
-const inlineLink = "font-semibold text-brand-sageDeep underline decoration-brand-sage decoration-[1.5px] underline-offset-4 hover:text-brand-charcoal";
 
 const processSteps = [
   {
@@ -115,44 +114,15 @@ export default function BristolLocationPage() {
 
       <ReviewsSection scope="bristol" id="bristol-reviews" analyticsPrefix="bristol" />
 
-      <section id="bristol-services" className={`scroll-mt-24 bg-white ${section}`} aria-labelledby="bristol-services-heading">
-        <div className={shell}>
-          <h2 id="bristol-services-heading" className={displayH2}>
-            Foot care services in Bristol
-          </h2>
-          <p className={`${body} mt-4 max-w-[60ch]`}>
-            Adam provides routine toenail cutting, care for thickened nails, corns, calluses, hard skin and cracked heels
-            during home visits. Care is assessed for suitability, with preventative checks and aftercare advice where
-            appropriate.
-          </p>
-          <ul className="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { href: "/toenail-cutting-bristol", title: "Toenail cutting in Bristol", description: "Nails cut, filed and thinned at home by Adam." },
-              ...treatments.map((treatment) => ({ href: `/${treatment.slug}`, title: treatment.name, description: treatment.intro })),
-            ].map((service) => (
-                <li key={service.href} className={`border-t ${rule} pt-4`}>
-                  <Link
-                    href={service.href}
-                    className={`${displayH3} inline-flex min-h-11 items-center underline decoration-brand-sage decoration-[1.5px] underline-offset-4`}
-                  >
-                    {service.title}
-                  </Link>
-                  <p className={`${supporting} mt-1`}>{service.description}</p>
-                </li>
-              ))}
-          </ul>
-          <p className={`${small} mt-8 max-w-[65ch]`}>
-            See{" "}
-            <Link href="/services" className={inlineLink}>
-              all Foot+ foot care services
-            </Link>{" "}
-            for what each treatment involves.
-          </p>
-          <Link href="/book?location=bristol" className={`${btnSolid} mt-6`}>
-            Request a Bristol home visit
-          </Link>
-        </div>
-      </section>
+      <ServicesTiles
+        id="bristol-services"
+        place="Bristol"
+        practitioner="Adam"
+        nailCuttingHref="/toenail-cutting-bristol"
+        bookHref="/book?location=bristol"
+        bookLabel="Request a Bristol home visit"
+        className={`bg-white ${section}`}
+      />
 
       <section id="bristol-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="bristol-coverage-heading">
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
