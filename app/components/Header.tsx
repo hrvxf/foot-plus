@@ -91,11 +91,13 @@ export default function Header() {
           <div className="flex h-full items-center">
             <Link href="/" className="flex items-center gap-3" aria-label="Foot+ home">
               <div
+                data-header-logo
                 className={`${logoWrapper} text-brand-sageDark`}
               >
                 <AnimatedFootPlusLogo
                   className="h-full w-full"
                   animate={shouldAnimateLogo}
+                  yieldToIntro
                 />
               </div>
             </Link>

@@ -112,3 +112,40 @@ body:has([data-fullscreen-page]) > footer {
     animation: none;
   }
 }
+
+/* Site entry animation (app/components/EntryAnimation.tsx). The overlay only shows,
+   and the header logo only hides, while <html data-intro> is set by the inline
+   script in <head>, so nothing changes for visitors without JavaScript. The delayed
+   animations are a last-resort failsafe if the page's scripts never finish loading:
+   the overlay clears itself and the header logo comes back after 8 seconds. */
+.entry-animation {
+  display: none;
+}
+
+html[data-intro] .entry-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: entry-failsafe-hide 1ms linear 8s forwards;
+}
+
+html[data-intro] [data-header-logo] {
+  visibility: hidden;
+  animation: entry-failsafe-show 1ms linear 8s forwards;
+}
+
+@keyframes entry-failsafe-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes entry-failsafe-show {
+  to {
+    visibility: visible;
+  }
+}
