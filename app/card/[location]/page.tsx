@@ -2,21 +2,22 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Mail, MessageCircle, Phone, Star, type LucideIcon } from "lucide-react";
 
 import {
+  ContactGlyph,
   bristolContactActions,
   southamptonContactActions,
   type ContactAction,
 } from "../../components/site/ContactIcons";
-import { body, btnSolid, displayH2, focusRing, linkQuiet, rule, shell, supporting } from "../../components/site/ui";
+import { portraits } from "../../components/site/blocks";
 import { serviceLocations, type ServiceLocation } from "../../lib/locations";
 import { getWriteReviewUrl } from "../../lib/reviews";
-import { locationEmails, phoneDisplay } from "../../lib/site";
 
-// Second step of the appointment card QR code (see ../page.tsx): one location's
-// contact details and its Google review link. The contact details are the same
-// ones the location page uses, so a change there shows up here too.
+// Second step of the appointment card QR code (see ../page.tsx). It carries on
+// from the full-screen green chooser: the review comes first, as the one solid
+// button, and the location's contact details sit below as labelled icon buttons.
+// The contact details are the same ones the location page uses, so a change
+// there shows up here too.
 
 type Slug = ServiceLocation["slug"];
 
@@ -25,14 +26,14 @@ const contactActions: Record<Slug, (options: { analyticsPrefix: string }) => Con
   southampton: southamptonContactActions,
 };
 
-const icons: Record<ContactAction["kind"], LucideIcon> = { phone: Phone, whatsapp: MessageCircle, email: Mail };
+/** One word under each icon: icons alone are easy to misread. */
+const shortLabel: Record<ContactAction["kind"], string> = { phone: "Call", whatsapp: "WhatsApp", email: "Email" };
 
-/** Written-out button text; the shared contact actions only carry screen-reader labels. */
-function buttonText(action: ContactAction, slug: Slug) {
-  if (action.kind === "phone") return `Call ${phoneDisplay}`;
-  if (action.kind === "email") return locationEmails[slug].label;
-  return action.label;
-}
+const STAR_PATH =
+  "M12 1.5l3.09 6.86 7.41.78-5.54 5.03 1.57 7.33L12 17.77 5.47 21.5l1.57-7.33L1.5 9.14l7.41-.78z";
+
+const focus = "focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white";
+const quietLink = `inline-flex min-h-12 items-center text-base font-medium text-white/85 underline decoration-white/40 underline-offset-4 transition-colors hover:text-white ${focus}`;
 
 export function generateStaticParams() {
   return Object.keys(serviceLocations).map((location) => ({ location }));
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ location:
   const found = serviceLocations[location as Slug];
   return {
     title: { absolute: found ? `Your ${found.displayName} visit` : "Your Foot+ visit" },
-    description: "Contact your Foot+ practitioner or leave a review.",
+    description: "Leave a review or contact your Foot+ practitioner.",
     alternates: { canonical: `/card/${location}` },
     robots: { index: false, follow: false },
   };
@@ -62,83 +63,101 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
   const firstName = practitioner?.name.split(" ")[0];
 
   return (
-    <div className={`${shell} max-w-[640px] pb-16 pt-8 md:pb-24 md:pt-14`}>
-      <section aria-labelledby="card-heading">
-        <div className="flex items-center gap-4">
-          {practitioner ? (
-            <Image
-              src={practitioner.imageSrc}
-              alt=""
-              width={72}
-              height={72}
-              className="h-[72px] w-[72px] shrink-0 rounded-full object-cover object-top"
-            />
-          ) : null}
-          <div>
-            <h1 id="card-heading" className="font-heading text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.015em] text-brand-sageDeep md:text-[2.25rem]">
-              {location.displayName}
-            </h1>
-            {practitioner ? (
-              <p className={supporting}>
-                {practitioner.name}, {practitioner.role}
-              </p>
-            ) : null}
-          </div>
+    <section
+      aria-labelledby="card-heading"
+      data-fullscreen-page
+      className="relative isolate flex min-h-dvh flex-col overflow-hidden bg-[#34503F] px-5 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] pt-[calc(env(safe-area-inset-top)+1.5rem)] text-white sm:px-8"
+    >
+      {/* Same depth as the location chooser: soft light from the top left, a darker foot, and the brand paper grain. */}
+      <div
+        className="absolute inset-0 -z-10 bg-[radial-gradient(120%_90%_at_15%_0%,rgba(143,179,156,0.38),transparent_60%),linear-gradient(180deg,transparent_45%,rgba(20,34,27,0.45))]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 -z-10 bg-[url('/images/footplus-texture.png')] bg-size-[600px_600px] opacity-[0.12] mix-blend-overlay"
+        aria-hidden="true"
+      />
+
+      <Link href="/" className={`mx-auto block rounded-sm ${focus}`}>
+        <span
+          role="img"
+          aria-label="Foot+ home"
+          className="block h-8 w-[6.4rem] bg-white [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_center/contain_no-repeat]"
+        />
+      </Link>
+
+      <div className="locations-enter mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-8 text-center">
+        {practitioner ? (
+          <Image
+            src={portraits[location.slug]}
+            alt=""
+            width={192}
+            height={192}
+            priority
+            className="mx-auto h-24 w-24 rounded-full object-cover object-top shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] ring-2 ring-white/80"
+          />
+        ) : null}
+
+        <p className="mt-5 text-base font-medium tracking-[0.01em] text-white/85">{location.displayName}</p>
+        <h1
+          id="card-heading"
+          className="mt-1 font-heading text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] text-balance md:text-[2.5rem]"
+        >
+          {firstName ? `How was your visit with ${firstName}?` : "How was your visit?"}
+        </h1>
+
+        <div className="mt-5 flex justify-center gap-2" aria-hidden="true">
+          {Array.from({ length: 5 }, (_, index) => (
+            <svg key={index} viewBox="0 0 24 24" className="h-8 w-8 text-brand-goldLight">
+              <path d={STAR_PATH} fill="currentColor" />
+            </svg>
+          ))}
         </div>
 
-        <h2 className={`${displayH2} mt-10`}>Change or ask about a visit</h2>
-        <p className={`${body} mt-3`}>
-          Please give at least 24 hours&rsquo; notice if you need to move or cancel.
-        </p>
-
-        <ul className="mt-6 grid gap-3">
-          {actions.map((action, index) => {
-            const Icon = icons[action.kind];
-            return (
-              <li key={action.kind}>
-                <a
-                  href={action.href}
-                  target={action.external ? "_blank" : undefined}
-                  rel={action.external ? "noopener noreferrer" : undefined}
-                  data-analytics-id={action.analyticsId}
-                  className={
-                    index === 0
-                      ? `${btnSolid} w-full`
-                      : `inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg border-[1.5px] border-brand-sageLight bg-white px-6 text-lg font-semibold text-brand-sageDeep transition-colors duration-150 hover:bg-brand-offwhite ${focusRing}`
-                  }
-                >
-                  <Icon aria-hidden="true" className="h-5 w-5 shrink-0" />
-                  {buttonText(action, location.slug)}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      <section aria-labelledby="card-review-heading" className={`mt-12 border-t ${rule} pt-10`}>
-        <h2 id="card-review-heading" className={displayH2}>
-          Happy with your visit?
-        </h2>
-        <p className={`${body} mt-3`}>
-          A short Google review helps other people find {firstName ?? "Foot+"}.
-        </p>
         <a
           href={getWriteReviewUrl(location.slug, location.displayName)}
           rel="noopener"
           data-analytics-id={`${analyticsPrefix}-review`}
-          className={`mt-6 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg border-[1.5px] border-brand-sageLight bg-white px-6 text-lg font-semibold text-brand-sageDeep transition-colors duration-150 hover:bg-brand-offwhite ${focusRing}`}
+          className={`mt-6 flex min-h-16 items-center justify-center rounded-lg bg-white px-6 text-xl font-semibold text-[#34503F] shadow-[0_14px_30px_-16px_rgba(0,0,0,0.6)] transition-[background-color,transform] duration-200 hover:bg-brand-offwhite active:translate-y-px active:scale-[0.99] motion-reduce:transition-none ${focus}`}
         >
-          <Star aria-hidden="true" className="h-5 w-5 shrink-0" />
           Leave a Google review
         </a>
-      </section>
+        <p className="mt-3 text-base text-white/80">Takes about a minute.</p>
 
-      <p className="mt-10">
-        <Link href={location.href} className={linkQuiet}>
-          More about {location.displayName}
+        <div className="mt-9 border-t border-white/25 pt-8">
+          <h2 className="font-heading text-xl font-semibold leading-7">Need to change a visit?</h2>
+          <p className="mt-1 text-base text-white/85">24 hours&rsquo; notice, please.</p>
+
+          <ul className="mt-5 flex justify-center gap-7">
+            {actions.map((action) => (
+              <li key={action.kind}>
+                <a
+                  href={action.href}
+                  aria-label={action.label}
+                  target={action.external ? "_blank" : undefined}
+                  rel={action.external ? "noopener noreferrer" : undefined}
+                  data-analytics-id={action.analyticsId}
+                  className={`group flex w-[4.5rem] flex-col items-center gap-2 rounded-lg text-base font-medium text-white ${focus}`}
+                >
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/55 bg-white/[0.12] shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_-18px_rgba(0,0,0,0.6)] transition-[background-color,color,transform] duration-200 group-hover:bg-white group-hover:text-[#34503F] group-active:scale-[0.97] motion-reduce:transition-none">
+                    <ContactGlyph kind={action.kind} className="h-7 w-7" />
+                  </span>
+                  <span aria-hidden="true">{shortLabel[action.kind]}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <nav aria-label="More" className="mx-auto flex flex-wrap justify-center gap-x-6">
+        <Link href={location.href} className={quietLink}>
+          {location.displayName} page
         </Link>
-      </p>
-    </div>
+        <Link href="/card" className={quietLink}>
+          Change location
+        </Link>
+      </nav>
+    </section>
   );
 }

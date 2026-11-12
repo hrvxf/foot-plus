@@ -89,7 +89,7 @@ export default function ContactIcons({
   );
 }
 
-function ContactGlyph({ kind, className }: { kind: ContactAction["kind"]; className: string }) {
+export function ContactGlyph({ kind, className }: { kind: ContactAction["kind"]; className: string }) {
   if (kind === "phone") return <Phone aria-hidden="true" className={className} />;
   if (kind === "email") return <Mail aria-hidden="true" className={className} />;
   return (
