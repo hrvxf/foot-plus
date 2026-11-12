@@ -8,7 +8,7 @@ import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 /**
  * Site entry animation: on the first page of a visit the Foot+ logo draws itself in
  * the middle of an off-white screen, then drops into the header logo's place with a
- * small bounce while the page fades in behind it.
+ * small bounce, and only then does the page fade in around it.
  *
  * How it is switched on: a tiny inline script (app/lib/entryAnimation.ts, placed in
  * <head> by app/layout.tsx) sets `data-intro` on
@@ -77,11 +77,13 @@ export default function EntryAnimation() {
 
     landingRef.current = gsap
       .timeline({ delay: 0.15, onComplete: finish })
+      // The screen stays blank while the logo travels and lands, so the snap into the
+      // header reads on its own; the page only fades in once the bounce has settled.
       .to(logo, { x, y, scale, duration: 0.5, ease: "power3.in" }, 0)
-      .to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.out" }, 0.1)
       // Squash on impact, then spring back to shape (echoes the toes popping up).
       .to(logo, { scaleX: scale * 1.16, scaleY: scale * 0.82, duration: 0.09, ease: "power2.out" }, 0.5)
-      .to(logo, { scaleX: scale, scaleY: scale, duration: 0.6, ease: "elastic.out(1.1, 0.4)" }, 0.59);
+      .to(logo, { scaleX: scale, scaleY: scale, duration: 0.6, ease: "elastic.out(1.1, 0.4)" }, 0.59)
+      .to(backdrop, { autoAlpha: 0, duration: 0.5, ease: "power1.out" }, 0.95);
   }, [finish]);
 
   if (done) return null;
