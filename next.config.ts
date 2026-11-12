@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
         destination: "/locations/bristol",
         permanent: true,
       },
+      // Bristol-only treatment pages replaced by general pages (Nov 2026).
+      // Nail cutting keeps its own town pages; these services are location-neutral.
+      { source: "/corn-removal-bristol", destination: "/corn-treatment", permanent: true },
+      { source: "/callus-removal-bristol", destination: "/hard-skin-and-callus", permanent: true },
+      { source: "/hard-skin-treatment-bristol", destination: "/hard-skin-and-callus", permanent: true },
+      { source: "/cracked-heels-bristol", destination: "/cracked-heels", permanent: true },
       {
         source: "/advice/why-toenails-become-thick",
         destination: "/advice/thickened-toenails-causes-treatment-and-when-to-worry",

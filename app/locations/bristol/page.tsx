@@ -6,7 +6,7 @@ import LocationHero from "../../components/LocationHero";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
-import { conditionPages } from "../../lib/condition-pages";
+import { treatments } from "../../lib/treatments";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, locationEmails } from "../../lib/site";
 import { travelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
@@ -126,12 +126,13 @@ export default function BristolLocationPage() {
             appropriate.
           </p>
           <ul className="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[...conditionPages]
-              .sort((a, b) => Number(b.slug === "toenail-cutting-bristol") - Number(a.slug === "toenail-cutting-bristol"))
-              .map((service) => (
-                <li key={service.slug} className={`border-t ${rule} pt-4`}>
+            {[
+              { href: "/toenail-cutting-bristol", title: "Toenail cutting in Bristol", description: "Nails cut, filed and thinned at home by Adam." },
+              ...treatments.map((treatment) => ({ href: `/${treatment.slug}`, title: treatment.name, description: treatment.intro })),
+            ].map((service) => (
+                <li key={service.href} className={`border-t ${rule} pt-4`}>
                   <Link
-                    href={`/${service.slug}`}
+                    href={service.href}
                     className={`${displayH3} inline-flex min-h-11 items-center underline decoration-brand-sage decoration-[1.5px] underline-offset-4`}
                   >
                     {service.title}
