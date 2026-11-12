@@ -10,6 +10,7 @@ import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, locationEmails } from "../../li
 import { travelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
+import MeetPractitioner from "../../components/site/MeetPractitioner";
 import ServicesTiles from "../../components/site/ServicesTiles";
 import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
 import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
@@ -95,22 +96,7 @@ export default function BristolLocationPage() {
         practitioner={practitioner}
       />
 
-      <section id="meet-adam" className={`scroll-mt-24 bg-white ${section}`} aria-labelledby="meet-adam-heading">
-        <div className={`${shell} grid gap-6 lg:grid-cols-12 lg:gap-12`}>
-          <h2 id="meet-adam-heading" className={`${displayH2} lg:col-span-4`}>
-            Meet Adam
-          </h2>
-          <div className="grid gap-5 md:grid-cols-2 md:gap-10 lg:col-span-8">
-            <p className={body}>{practitioner.bio[0]}</p>
-            <div>
-              <p className={body}>{practitioner.bio[1]}</p>
-              <Link href="/about#adam-james" className={`${linkQuiet} mt-2`}>
-                Adam’s qualifications and approach
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MeetPractitioner practitioner={practitioner} aboutHref="/about#adam-james" className={`bg-white ${section}`} />
 
       <ReviewsSection scope="bristol" id="bristol-reviews" analyticsPrefix="bristol" />
 
