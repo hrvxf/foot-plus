@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { MessageCircle, PencilLine } from "lucide-react";
 import {
   formatReviewMonth,
   getRating,
@@ -71,10 +71,12 @@ export default function ReviewsSection({
   );
 }
 
-const linkStrong =
-  "inline-flex min-h-11 items-center gap-1.5 font-semibold text-brand-sageDeep underline underline-offset-4";
-const linkQuiet =
-  "inline-flex min-h-11 items-center gap-1.5 text-brand-muted underline underline-offset-4 hover:text-brand-sageDeep";
+// Matches the header "Request a visit" button: filled for the action most visitors
+// want, outlined for the one aimed at existing patients.
+const buttonBase =
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-5 text-base font-semibold transition-colors duration-150 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
+const buttonPrimary = `${buttonBase} bg-brand-sageDark text-white hover:bg-brand-sageDeep`;
+const buttonSecondary = `${buttonBase} border border-brand-sageLight bg-white text-brand-sageDeep hover:bg-brand-wash`;
 
 function ReviewLinks({
   links,
@@ -89,14 +91,16 @@ function ReviewLinks({
   if (links.length === 1) {
     const [link] = links;
     return (
-      <div className="flex flex-col items-start text-base">
-        <a href={link.readUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-read-all`} className={linkStrong}>
-          Read all reviews on Google
-          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+      <div className="flex flex-wrap items-center gap-3">
+        <a href={link.readUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-read-all`} className={buttonPrimary}>
+          <MessageCircle className="h-5 w-5" aria-hidden="true" />
+          Read reviews
+          <span className="sr-only"> on Google (opens in a new tab)</span>
         </a>
-        <a href={link.writeUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-write`} className={linkQuiet}>
-          Had a visit? Leave a review
-          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        <a href={link.writeUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-write`} className={buttonSecondary}>
+          <PencilLine className="h-5 w-5" aria-hidden="true" />
+          Write a review
+          <span className="sr-only"> on Google (opens in a new tab)</span>
         </a>
       </div>
     );
