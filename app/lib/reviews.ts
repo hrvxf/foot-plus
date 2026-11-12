@@ -188,6 +188,16 @@ export function getReviewLinks(scope: ReviewScope) {
     .map(({ key, label, readUrl, writeUrl }) => ({ key, label, readUrl, writeUrl }));
 }
 
+/**
+ * Where "leave a review" goes for a location: its Google review form, or a Google
+ * Maps search for the listing until its `writeUrl` is filled in.
+ */
+export function getWriteReviewUrl(location: ReviewLocation, displayName: string) {
+  const { writeUrl } = reviewLocations[location];
+  if (writeUrl) return writeUrl;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(displayName)}`;
+}
+
 export function formatReviewMonth(month: string) {
   const [year, m] = month.split("-").map(Number);
   return new Date(Date.UTC(year, m - 1, 1)).toLocaleDateString("en-GB", {
