@@ -9,6 +9,9 @@ import { useEffect, useLayoutEffect } from "react";
  * cross-fade on the GPU (the View Transitions API). Without this, phones showed the
  * old page frozen, then a snap to the top of a blank page, then a fade-in.
  *
+ * The fade also waits briefly for pictures on the new screen (practitioner portraits)
+ * so they appear with the page instead of popping in a moment later.
+ *
  * Browsers without the API (older iOS) keep the CSS fade in PageTransition.tsx.
  * Skipped for reduced-motion visitors, new tabs, downloads, hash links and anything
  * off-site. If the new page is slow to arrive the transition is abandoned so the
@@ -22,6 +25,9 @@ type ViewTransitionDocument = Document & {
 /** Never hold the old screen longer than this while waiting for the new page. */
 const MAX_WAIT_MS = 1200;
 
+/** How long to hold the fade for pictures on the new screen to finish loading. */
+const MAX_IMAGE_WAIT_MS = 500;
+
 let pending: { resolve: () => void; timer: number } | null = null;
 
 function settle() {
@@ -29,6 +35,30 @@ function settle() {
   window.clearTimeout(pending.timer);
   pending.resolve();
   pending = null;
+}
+
+/** Images on screen that have not loaded yet (lazy ones further down are left alone). */
+function unloadedImagesInView() {
+  const height = window.innerHeight;
+  return Array.from(document.querySelectorAll("main img")).filter((img): img is HTMLImageElement => {
+    if (!(img instanceof HTMLImageElement) || img.complete) return false;
+    const rect = img.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < height && rect.width > 0;
+  });
+}
+
+/** New page is in place: fade to it once its visible pictures are ready (or soon anyway). */
+function settleWhenImagesReady() {
+  if (!pending) return;
+  const images = unloadedImagesInView();
+  if (!images.length) return settle();
+  const waiting = pending;
+  Promise.race([
+    Promise.all(images.map((img) => img.decode().catch(() => undefined))),
+    new Promise((resolve) => window.setTimeout(resolve, MAX_IMAGE_WAIT_MS)),
+  ]).then(() => {
+    if (pending === waiting) settle();
+  });
 }
 
 export function viewTransitionsSupported() {
@@ -41,9 +71,10 @@ export default function RouteViewTransition() {
   const pathname = usePathname();
 
   // The new page has been committed (and Next has scrolled to the top): let the
-  // browser take its "after" picture and run the cross-fade.
+  // browser take its "after" picture and run the cross-fade, once the pictures
+  // on screen have arrived so they don't pop in after the fade.
   useLayoutEffect(() => {
-    settle();
+    settleWhenImagesReady();
   }, [pathname]);
 
   useEffect(() => {

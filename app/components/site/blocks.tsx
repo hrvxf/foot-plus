@@ -245,7 +245,10 @@ export function LocationSummary({
         width={176}
         height={208}
         sizes="(min-width: 1024px) 176px, 112px"
-        className="row-span-6 h-36 w-28 shrink-0 self-start rounded-md object-cover object-[center_15%] lg:h-52 lg:w-44"
+        // Small and only two of them: fetch straight away rather than waiting until
+        // scrolled near, so the portraits are there when the cards come into view.
+        loading="eager"
+        className="row-span-6 bg-brand-sageDark/10 h-36 w-28 shrink-0 self-start rounded-md object-cover object-[center_15%] lg:h-52 lg:w-44"
       />
       <Heading id={headingId} className="col-start-2 font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
         <Link href={location.href} className={`inline-flex min-h-11 items-center underline-offset-4 hover:underline ${focusRing}`}>

@@ -125,7 +125,8 @@ export default function AboutPage() {
                       width={176}
                       height={208}
                       sizes="(min-width: 768px) 128px, 96px"
-                      className="h-28 w-24 shrink-0 rounded-xl object-cover object-[center_15%] md:h-36 md:w-32"
+                      loading="eager"
+                      className="bg-brand-sageDark/10 h-28 w-24 shrink-0 rounded-xl object-cover object-[center_15%] md:h-36 md:w-32"
                     />
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-brand-sageDark">{location.displayName}</p>
