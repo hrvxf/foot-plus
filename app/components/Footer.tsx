@@ -11,7 +11,6 @@ const exploreLinks = [
 ];
 
 const locationLinks = [
-  { href: "/locations", label: "All locations" },
   { href: "/locations/bristol", label: "Bristol" },
   { href: "/locations/southampton", label: "Southampton" },
 ];
@@ -22,80 +21,88 @@ const legalLinks = [
   { href: "/terms", label: "Terms" },
 ];
 
-const heading = "font-heading text-base font-semibold text-brand-charcoal";
-// 44px-tall rows so every footer link is an easy target on a phone.
+// Small grey labels above each group, so the links carry the weight.
+const label = "text-sm text-brand-muted";
+// 36px rows: comfortably tappable without the tall gaps of a full 44px row.
 const link =
-  "inline-flex min-h-11 items-center text-base md:min-h-9 text-brand-charcoal underline-offset-4 transition-colors duration-150 hover:text-brand-sageDeep hover:underline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
+  "inline-flex min-h-9 items-center text-[0.9375rem] text-brand-charcoal underline-offset-4 transition-colors duration-150 hover:text-brand-sageDeep hover:underline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
+
+const legalLink = link.replace("text-[0.9375rem]", "text-sm");
+
+function LinkGroup({ title, links }: { title: string; links: { href: string; label: string }[] }) {
+  return (
+    <div>
+      <h2 className={`${label} mb-1`}>{title}</h2>
+      <ul>
+        {links.map((item) => (
+          <li key={item.href}>
+            <Link className={link} href={item.href}>
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer id="site-footer" className={`relative z-10 w-full flex-none bg-brand-offwhite text-brand-charcoal`}>
-      <div className={`${shell} py-10`}>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-[1.1fr_1.4fr_1fr_1fr] lg:gap-10">
-          <div className="col-span-2 sm:col-span-1">
-            <Link href="/" aria-label="Foot+ home" className="inline-flex focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-brand-sageDark">
-              {/* The generic logo file is white, so it is used as a mask and coloured here. */}
-              <span
-                role="img"
-                aria-label="Foot+"
-                className="block h-11 w-[140px] bg-brand-sageDark [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_left_center/contain_no-repeat]"
+    <footer id="site-footer" className="relative z-10 w-full flex-none bg-brand-offwhite text-brand-charcoal">
+      <div className={`${shell} pb-6 pt-8 md:pt-10`}>
+        <div className="grid gap-y-5 md:grid-cols-[1.4fr_1fr_1fr] md:gap-x-10">
+          <div>
+            <div className="flex items-center justify-between md:justify-start md:gap-3">
+              <Link
+                href="/"
+                aria-label="Foot+ home"
+                className="inline-flex focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-brand-sageDark"
+              >
+                {/* The generic logo file is white, so it is used as a mask and coloured here. */}
+                <span
+                  role="img"
+                  aria-label="Foot+"
+                  className="block h-9 w-[115px] bg-brand-sageDark [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_left_center/contain_no-repeat]"
+                />
+              </Link>
+              <a
+                href="https://www.facebook.com/profile.php?id=61586341484139"
+                target="_blank"
+                rel="noreferrer"
+                className="-mr-2.5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark md:mr-0"
+                aria-label="Visit Foot+ on Facebook"
+                title="Foot+ on Facebook"
+                data-analytics-id="footer-facebook"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[22px] w-[22px] fill-brand-sageDark">
+                  <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
+                </svg>
+              </a>
+            </div>
+            <div className="mt-4 flex flex-col items-start">
+              <FooterEmail
+                headingClass={label}
+                linkClass="inline-flex min-h-9 items-center text-base font-semibold text-brand-charcoal underline underline-offset-4 hover:text-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
               />
-            </Link>
+            </div>
           </div>
 
-          {/* Stacked: email on one line, Facebook icon on the next. */}
-          <div className="col-span-2 flex flex-col items-start sm:col-span-1">
-            <FooterEmail headingClass={heading} linkClass={`${link} font-semibold underline`} />
-            <a
-              href="https://www.facebook.com/profile.php?id=61586341484139"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 -ml-2.5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
-              aria-label="Visit Foot+ on Facebook"
-              title="Foot+ on Facebook"
-              data-analytics-id="footer-facebook"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-brand-sageDark">
-                <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
-              </svg>
-            </a>
-          </div>
-
-          <nav aria-label="Footer navigation" className="contents">
-            <div>
-              <h2 className={heading}>Explore</h2>
-              <ul>
-                {exploreLinks.map((item) => (
-                  <li key={item.href}>
-                    <Link className={link} href={item.href}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className={heading}>Locations</h2>
-              <ul>
-                {locationLinks.map((item) => (
-                  <li key={item.href}>
-                    <Link className={link} href={item.href}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <nav
+            aria-label="Footer navigation"
+            className={`grid grid-cols-2 gap-x-4 border-t ${rule} pt-5 md:contents`}
+          >
+            <LinkGroup title="Explore" links={exploreLinks} />
+            <LinkGroup title="Locations" links={locationLinks} />
           </nav>
         </div>
 
-        <div className={`mt-8 flex flex-col gap-2 border-t ${rule} pt-4 sm:flex-row sm:items-center sm:justify-between`}>
-          <p className="text-base text-brand-muted">&copy; {new Date().getFullYear()} Foot+</p>
+        <div className={`mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-t ${rule} pt-3 md:mt-8`}>
+          <p className="text-sm text-brand-muted">&copy; {new Date().getFullYear()} Foot+</p>
           <nav aria-label="Legal links">
-            <ul className="flex flex-wrap gap-x-6">
+            <ul className="flex gap-x-4">
               {legalLinks.map((item) => (
                 <li key={item.href}>
-                  <Link className={link} href={item.href}>
+                  <Link className={legalLink} href={item.href}>
                     {item.label}
                   </Link>
                 </li>
