@@ -3,6 +3,8 @@ import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AnalyticsClickTracker from "./components/AnalyticsClickTracker";
+import EntryAnimation from "./components/EntryAnimation";
+import { entryAnimationScript } from "./lib/entryAnimation";
 
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "./lib/site";
 
@@ -103,8 +105,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="en" className="bg-lightbg" data-scroll-behavior="smooth">
+    // suppressHydrationWarning: the entry animation script adds data-intro to <html>
+    // before React hydrates.
+    <html lang="en" className="bg-lightbg" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
+        {/* Entry animation switch: must run before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: entryAnimationScript }} />
+
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
@@ -182,6 +189,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </noscript>
         <AnalyticsClickTracker />
+        <EntryAnimation />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

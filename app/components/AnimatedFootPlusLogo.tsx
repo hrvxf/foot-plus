@@ -1,15 +1,40 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 type Props = {
   className?: string;
   animate?: boolean;
+  /** Element id for the svg. Give each instance its own when two are on the page. */
+  id?: string;
+  /** Playback speed of the draw-in (1 = normal, 1.5 = 50% faster). */
+  speed?: number;
+  /** Keep the toes gently wiggling after the draw-in. */
+  idle?: boolean;
+  /** Called once the draw-in has finished. */
+  onComplete?: () => void;
+  /**
+   * Stay still while the site entry animation is playing (the header logo: the
+   * entry animation's own logo lands on top of it).
+   */
+  yieldToIntro?: boolean;
 };
 
-export default function AnimatedFootPlusLogo({ className, animate = true }: Props) {
+export default function AnimatedFootPlusLogo({
+  className,
+  animate = true,
+  id = "footplus-logo",
+  speed = 1,
+  idle = true,
+  onComplete,
+  yieldToIntro = false,
+}: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const idleTweenRef = useRef<gsap.core.Tween | null>(null);
 
@@ -21,6 +46,10 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
     }
 
     if (!animate) {
+      return;
+    }
+
+    if (yieldToIntro && document.documentElement.hasAttribute("data-intro")) {
       return;
     }
 
@@ -189,7 +218,7 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
       }
 
       const startIdle = () => {
-        if (!allToes.length) {
+        if (!idle || !allToes.length) {
           return;
         }
 
@@ -209,8 +238,12 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
 
       const timeline = gsap.timeline({
         defaults: { ease: "power2.out" },
-        onComplete: startIdle,
+        onComplete: () => {
+          startIdle();
+          onCompleteRef.current?.();
+        },
       });
+      timeline.timeScale(speed);
 
       timeline
         .to(drawTargets, {
@@ -322,14 +355,14 @@ export default function AnimatedFootPlusLogo({ className, animate = true }: Prop
       timelineRef.current?.kill();
       ctx.revert();
     };
-  }, [animate]);
+  }, [animate, speed, idle, yieldToIntro]);
 
   const baseClasses = "block w-auto max-w-full shrink-0";
   const svgClasses = className ? `${baseClasses} ${className}` : baseClasses;
 
   return (
     <svg
-      id="footplus-logo"
+      id={id}
       ref={svgRef}
       className={svgClasses}
       viewBox="0 0 248.4347 77.966766"
