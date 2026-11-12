@@ -37,7 +37,12 @@ const locationLinks: Record<ServiceLocation["slug"], { label: string; href: stri
     { label: "Areas we cover", href: "/locations/bristol/areas-we-cover", analyticsId: "home-location-bristol-areas" },
     { label: "Toenail cutting in Bristol", href: "/toenail-cutting-bristol" },
   ],
-  southampton: [{ label: "About Foot+ Southampton", href: "/locations/southampton" }],
+  // Same two links as Bristol. Southampton has no areas page yet, so "Areas we cover"
+  // goes to the coverage section on its location page.
+  southampton: [
+    { label: "Areas we cover", href: "/locations/southampton#southampton-coverage", analyticsId: "home-location-southampton-areas" },
+    { label: "Toenail cutting in Southampton", href: "/toenail-cutting-southampton" },
+  ],
 };
 
 const visits = [

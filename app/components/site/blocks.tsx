@@ -232,29 +232,40 @@ export function LocationSummary({
   const headingId = `${idPrefix}-${location.slug}`;
 
   return (
-    <article className="flex items-start gap-5 lg:gap-7" aria-labelledby={headingId}>
+    // Six rows (place, name, qualifications, coverage, availability, links). Side by side,
+    // the cards share their parent's rows through subgrid, so each line sits level with
+    // the same line in the other card however long the text above it runs.
+    <article
+      className="grid grid-cols-[auto_minmax(0,1fr)] content-start gap-x-5 md:row-span-6 md:grid-rows-subgrid md:gap-y-0 lg:gap-x-7"
+      aria-labelledby={headingId}
+    >
       <Image
         src={portraits[location.slug]}
         alt=""
         width={176}
         height={208}
         sizes="(min-width: 1024px) 176px, 112px"
-        className="h-36 w-28 shrink-0 rounded-md object-cover object-[center_15%] lg:h-52 lg:w-44"
+        className="row-span-6 h-36 w-28 shrink-0 self-start rounded-md object-cover object-[center_15%] lg:h-52 lg:w-44"
       />
-      <div className="min-w-0">
-        <Heading id={headingId} className="font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
-          <Link href={location.href} className={`inline-flex min-h-11 items-center underline-offset-4 hover:underline ${focusRing}`}>
-            {location.name}
-          </Link>
-        </Heading>
-        <p className={`${body} mt-1`}>
-          {practitioner.name}, {practitioner.role} ({practitioner.credentials.join(", ")})
-        </p>
-        <p className={`${supporting} mt-2`}>{location.coverage}</p>
-        <p className={`${small} mt-3 inline-flex items-center gap-2 font-semibold text-brand-sageDeep`}>
-          <span className="h-2.5 w-2.5 rounded-full bg-brand-sage" aria-hidden="true" />
-          {location.availability}
-        </p>
+      <Heading id={headingId} className="col-start-2 font-heading text-2xl font-semibold leading-8 text-brand-sageDeep">
+        <Link href={location.href} className={`inline-flex min-h-11 items-center underline-offset-4 hover:underline ${focusRing}`}>
+          {location.name}
+        </Link>
+      </Heading>
+      <p className={`${body} col-start-2 mt-1`}>
+        {practitioner.name}, {practitioner.role}
+      </p>
+      {/* Qualifications read as a subtitle under the name. sageDark, not the lighter
+          sage, so the smaller italic text still meets contrast on off-white. */}
+      <p className="col-start-2 text-[0.9375rem] italic leading-6 tracking-[0.01em] text-brand-sageDark">
+        {practitioner.credentials.join(" · ")}
+      </p>
+      <p className={`${supporting} col-start-2 mt-2`}>{location.coverage}</p>
+      <p className={`${small} col-start-2 mt-3 inline-flex items-center gap-2 self-start font-semibold text-brand-sageDeep`}>
+        <span className="h-2.5 w-2.5 rounded-full bg-brand-sage" aria-hidden="true" />
+        {location.availability}
+      </p>
+      <div className="col-start-2">
         {action ? (
           <p className="mt-4">
             <Link href={action.href} className={`${btnSolid} w-full sm:w-auto`} data-analytics-id={action.analyticsId}>
