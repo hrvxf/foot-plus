@@ -11,6 +11,8 @@ import {
   displayTime,
   formatPrice,
   screeningQuestions,
+  sessionSlots,
+  type ClinicSession,
   type ScreeningAnswer,
   type ScreeningQuestion,
 } from "../lib/clinic";
@@ -24,7 +26,8 @@ type Step =
   | { kind: "agree" }
   | { kind: "time" }
   | { kind: "details" }
-  | { kind: "stop"; reason: Reason };
+  | { kind: "stop"; reason: Reason }
+  | { kind: "demoPaid" };
 
 type SlotSession = { id: string; label: string; slots: { id: string; time: string; available: boolean }[] };
 
@@ -33,6 +36,21 @@ const field =
 const label = "block text-lg font-semibold text-brand-charcoal";
 const choice = `flex min-h-16 w-full items-center justify-center rounded-lg border-[1.5px] border-brand-sageDark bg-white px-4 text-xl font-semibold text-brand-sageDeep transition-colors duration-150 hover:bg-brand-wash ${focusRing}`;
 const selected = "!bg-brand-sageDark !text-white";
+
+// Demo mode: until a real clinic date and price are set, the page runs end to end
+// with an example date and stops where Stripe would open. Adding a date turns it off.
+const demo = !bookingOpen();
+const demoSession: ClinicSession = {
+  id: "demo",
+  label: "Wednesday 13 January",
+  date: "2027-01-13",
+  start: "10:00",
+  end: "15:00",
+  breaks: [["12:20", "13:00"]],
+};
+const demoTaken = new Set(["10:20", "11:40", "13:40"]);
+const sessionsShown = demo ? [demoSession] : clinic.sessions;
+const canBook = bookingOpen() || demo;
 
 const price = clinic.pricePence !== null ? formatPrice(clinic.pricePence) : null;
 
@@ -81,6 +99,16 @@ export default function ClinicFlow() {
 
   const loadSlots = async () => {
     setSlotsError(false);
+    if (demo) {
+      setSlots([
+        {
+          id: demoSession.id,
+          label: demoSession.label,
+          slots: sessionSlots(demoSession).map((s) => ({ id: s.id, time: s.time, available: !demoTaken.has(s.time) })),
+        },
+      ]);
+      return;
+    }
     try {
       const res = await fetch("/api/clinic-booking/slots", { cache: "no-store" });
       if (!res.ok) throw new Error();
@@ -113,6 +141,7 @@ export default function ClinicFlow() {
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
+    if (demo) return go({ kind: "demoPaid" });
     const data = Object.fromEntries(new FormData(e.currentTarget));
     setSending(true);
     try {
@@ -162,7 +191,12 @@ export default function ClinicFlow() {
 
   return (
     <div className="mx-auto w-full max-w-2xl px-5 pb-20 pt-8 sm:px-6 md:pt-14">
-      {history.length > 0 && (
+      {demo && (
+        <p className="mb-6 rounded-lg bg-brand-wash p-3 text-base text-brand-charcoal">
+          Demonstration: the clinic date is an example and no payment is taken.
+        </p>
+      )}
+      {history.length > 0 && step.kind !== "demoPaid" && (
         <button type="button" onClick={back} className={`${linkQuiet} mb-4 no-underline`}>
           <ArrowLeft className="h-5 w-5" aria-hidden="true" /> Back
         </button>
@@ -187,7 +221,7 @@ export default function ClinicFlow() {
 
           <dl className="mt-8 grid gap-4 border-y border-brand-charcoal/15 py-6 text-lg">
             {clinic.venue && <Row term="Where" detail={clinic.venue} />}
-            {clinic.sessions.length > 0 && <Row term="When" detail={clinic.sessions.map((s) => s.label).join(" · ")} />}
+            {sessionsShown.length > 0 && <Row term="When" detail={sessionsShown.map((s) => s.label).join(" · ")} />}
             <Row term="How long" detail={`${clinic.slotMinutes} minutes`} />
             {price && <Row term="Cost" detail={`${price}, paid by card when you book. Non-refundable.`} />}
             <Row term="Included" detail="Cutting and filing your toenails." />
@@ -197,7 +231,7 @@ export default function ClinicFlow() {
             />
           </dl>
 
-          {bookingOpen() ? (
+          {canBook ? (
             <>
               <h2 className="mt-8 font-heading text-xl font-semibold text-brand-sageDeep">How to book</h2>
               <p className={`${body} mt-2`}>
@@ -398,6 +432,27 @@ export default function ClinicFlow() {
               You&rsquo;ll pay securely with Stripe. Your time is held for 30 minutes while you pay.
             </p>
           </form>
+        </>
+      )}
+
+      {step.kind === "demoPaid" && (
+        <>
+          {heading("This is where payment opens")}
+          <p className={`${lead} mt-4`}>
+            In the live version, the patient now goes to a secure Stripe card payment page for {price ?? "the fee"}.
+          </p>
+          <p className={`${body} mt-4`}>
+            Once they&rsquo;ve paid, they see a &ldquo;You&rsquo;re booked&rdquo; page with their time, both of you get a
+            confirmation email, and the time is removed from the list for everyone else.
+          </p>
+          {slotLabel && (
+            <p className={`${body} mt-6 rounded-lg bg-white p-4`}>
+              Time chosen: <span className="font-semibold text-brand-sageDeep">{slotLabel}</span>
+            </p>
+          )}
+          <button type="button" onClick={() => window.location.assign("/ageuk")} className={`${btnSolid} mt-8 w-full`}>
+            Start again
+          </button>
         </>
       )}
 
