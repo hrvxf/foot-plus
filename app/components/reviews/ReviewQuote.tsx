@@ -14,7 +14,7 @@ function withHighlight(text: string, highlight?: string): ReactNode {
   return (
     <>
       {text.slice(0, at)}
-      <mark className="rounded-[3px] bg-brand-wash px-1 font-semibold text-brand-sageDeep [box-decoration-break:clone]">
+      <mark className="-mx-[3px] rounded-[3px] bg-brand-wash px-[3px] font-semibold text-brand-sageDeep [box-decoration-break:clone]">
         {highlight}
       </mark>
       {text.slice(at + highlight.length)}
@@ -38,14 +38,15 @@ export default function ReviewQuote({
   const quoteClass = "text-[1.0625rem] leading-[1.55] text-brand-charcoal md:text-lg md:leading-7";
 
   return (
-    <div className="mt-2">
-      <span
-        aria-hidden="true"
-        className="block h-8 font-heading text-[4rem] font-semibold leading-[0.9] text-brand-sageLight"
-      >
-        &ldquo;
-      </span>
-      <div id={id}>
+    <div>
+      {/* Drawn as a shape: the Poppins quote glyph reads as two slashes. */}
+      <svg aria-hidden="true" viewBox="0 0 32 24" className="h-6 w-8 text-brand-sageLight">
+        <path
+          fill="currentColor"
+          d="M0 24V14.4C0 6.6 4.2 1.6 11.6 0l1.5 3.3C9 4.6 7 7.4 6.8 11H13v13H0zm18.9 0V14.4C18.9 6.6 23.1 1.6 30.5 0L32 3.3c-4.1 1.3-6.1 4.1-6.3 7.7h6.2v13h-13z"
+        />
+      </svg>
+      <div id={id} className="mt-3">
         {useExcerpt ? (
           <blockquote className={quoteClass} hidden={expanded}>
             {withHighlight(excerpt!, highlight)}
