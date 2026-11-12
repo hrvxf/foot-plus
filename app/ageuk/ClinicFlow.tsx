@@ -37,9 +37,9 @@ const label = "block text-lg font-semibold text-brand-charcoal";
 const choice = `flex min-h-16 w-full items-center justify-center rounded-lg border-[1.5px] border-brand-sageDark bg-white px-4 text-xl font-semibold text-brand-sageDeep transition-colors duration-150 hover:bg-brand-wash ${focusRing}`;
 const selected = "!bg-brand-sageDark !text-white";
 
-// Demo mode: on preview deployments, while no real clinic date is set, the page runs
-// end to end with an example date and stops where Stripe would open. Never on the live site.
-const demo = !bookingOpen() && process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
+// Demo mode: until a real clinic date and price are set, the page runs end to end
+// with an example date and stops where Stripe would open. Adding a date turns it off.
+const demo = !bookingOpen();
 const demoSession: ClinicSession = {
   id: "demo",
   label: "Wednesday 13 January",
