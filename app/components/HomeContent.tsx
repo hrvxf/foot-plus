@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight, CircleDot, Droplets, Footprints, HeartPulse, Layers, Scissors, type LucideIcon } from "lucide-react";
 
 import {
   homeCredentials,
@@ -148,53 +148,66 @@ function Proof() {
   );
 }
 
+// Icons for the service tiles, keyed by the service's link.
+const serviceIcons: Record<string, LucideIcon> = {
+  "/services#toenail-cutting": Scissors,
+  "/services#thickened-nails": Layers,
+  "/services#corns": CircleDot,
+  "/services#hard-skin": Footprints,
+  "/services#cracked-heels": Droplets,
+  "/services#foot-health-checks": HeartPulse,
+};
+
 function CoversAndCosts() {
   return (
     <section className={`bg-white ${section}`}>
-      <div className={`${shell} grid gap-14 md:grid-cols-2 md:gap-10 lg:gap-20`}>
+      <div className={`${shell} grid gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-14`}>
         <div aria-labelledby="covers-heading" role="group">
           <h2 id="covers-heading" className={displayH2}>
             What a visit covers
           </h2>
-          <ul className={`mt-7 border-b ${rule}`}>
-            {homeServices.map((service) => (
-              <li key={service.title} className={`border-t ${rule}`}>
-                <Link
-                  href={service.href}
-                  className={`group block py-3.5 ${focusRing}`}
-                >
-                  <span className={`${displayH3} underline-offset-4 group-hover:underline`}>{service.title}</span>
-                </Link>
-              </li>
-            ))}
+          {/* Whole tile is the link, matching the service tiles on the location pages. */}
+          <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+            {homeServices.map((service) => {
+              const Icon = serviceIcons[service.href] ?? CircleDot;
+              return (
+                <li key={service.title}>
+                  <Link
+                    href={service.href}
+                    className={`group flex h-full min-h-16 items-center gap-3 rounded-xl border border-brand-line bg-white px-4 py-3 transition-colors duration-150 hover:border-brand-sageLight hover:bg-brand-wash/50 ${focusRing}`}
+                  >
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-wash text-brand-sageDeep" aria-hidden="true">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0 flex-1 font-heading text-lg font-semibold leading-6 text-brand-sageDeep">{service.title}</span>
+                    <ChevronRight className="h-5 w-5 shrink-0 text-brand-sage transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <Link href="/services" className={`${linkQuiet} mt-5`}>
             All services <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
 
-        <div aria-labelledby="prices-heading" role="group">
+        {/* One quiet card: the two visit prices and a link to the Prices page, nothing else. */}
+        <div aria-labelledby="prices-heading" role="group" className="self-start rounded-2xl bg-brand-wash p-6 md:p-8">
           <h2 id="prices-heading" className={displayH2}>
             What it costs
           </h2>
-          <ul className={`mt-7 border-b ${rule}`}>
+          <ul className="mt-5">
             {visits.map((visit) => (
-              <li key={visit.name} className={`flex items-center justify-between gap-6 border-t ${rule} py-5`}>
+              <li key={visit.name} className="flex items-center justify-between gap-6 border-t border-brand-sage/30 py-4">
                 <span>
                   <span className={`${displayH3} block`}>{visit.name}</span>
                   <span className={`${supporting} block`}>{visit.detail}</span>
                 </span>
-                <span className={`${figure} text-[2.75rem] text-brand-sageDeep md:text-[3.25rem]`}>
-                  {visit.price}
-                </span>
+                <span className={`${figure} text-3xl text-brand-sageDeep`}>{visit.price}</span>
               </li>
             ))}
           </ul>
-          <div className={`${small} mt-5 max-w-[60ch] space-y-3`}>
-            <p>One price per visit. Nail care and suitable routine skin care are included.</p>
-            <p>Any travel fee shows when you check your postcode.</p>
-          </div>
-          <Link href="/prices" className={`${linkQuiet} mt-2`}>
+          <Link href="/prices" className={`${linkQuiet} border-t border-brand-sage/30 pt-2 w-full`}>
             See full prices <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
