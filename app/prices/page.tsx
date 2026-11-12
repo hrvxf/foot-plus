@@ -1,13 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ArrowRight, CreditCard } from "lucide-react";
 
 import PostcodeChecker from "../components/home/PostcodeChecker";
-import { AppointmentList, Breadcrumb, Steps } from "../components/site/blocks";
+import AppointmentCards from "../components/site/AppointmentCards";
+import { Breadcrumb, Steps } from "../components/site/blocks";
 import {
   body,
   displayH1,
   displayH2,
-  lead,
   linkQuiet,
   rule,
   shell,
@@ -44,33 +45,32 @@ export default function PricesPage() {
           <h1 id="prices-heading" className={`${displayH1} mt-4 max-w-[18ch] lg:mt-8`}>
             Home visit nail and foot care <span className="text-brand-sage">prices</span>
           </h1>
-          <p className={`${lead} mt-4 max-w-[60ch] md:mt-6`}>
-            One set of prices for Bristol and Southampton.
-          </p>
         </div>
       </section>
 
       <section className={`bg-white ${section}`} aria-labelledby="appointments-heading">
-        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
-          <div className="lg:col-span-5">
-            <h2 id="appointments-heading" className={displayH2}>
-              Two appointment types
-            </h2>
-            <p className={`${body} mt-4 max-w-[52ch]`}>
-              One price per visit, covering nail care and any suitable skin care. There is no separate nail-only price.
-            </p>
-            <p className={`${supporting} mt-4`}>
-              Pay by {paymentMethods.slice(0, -1).join(", ")} or {paymentMethods.at(-1)}.
-            </p>
-            <Link href="/services" className={`${linkQuiet} mt-2`}>
-              What each treatment involves
-            </Link>
-          </div>
+        <div className={shell}>
+          <h2 id="appointments-heading" className={displayH2}>
+            Two appointment types
+          </h2>
+          <p className={`${body} mt-3 max-w-[60ch] text-brand-muted`}>
+            One price per visit, covering nail care and any suitable skin care.
+          </p>
 
-          <div className="lg:col-span-7">
-            <AppointmentList
+          <div className="mt-8 md:mt-10">
+            <AppointmentCards
               appointments={appointmentTypes.map((type, i) => ({ ...type, href: bookingHref, cta: ctas[i] }))}
             />
+          </div>
+
+          <div className="mt-6 flex flex-col gap-x-8 gap-y-1 sm:flex-row sm:items-center sm:justify-between">
+            <p className={`${supporting} inline-flex items-center gap-2`}>
+              <CreditCard className="h-5 w-5 shrink-0 text-brand-sageDark" aria-hidden="true" />
+              Pay by {paymentMethods.slice(0, -1).join(", ")} or {paymentMethods.at(-1)}.
+            </p>
+            <Link href="/services" className={linkQuiet}>
+              What each treatment involves <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
