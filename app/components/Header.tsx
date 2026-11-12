@@ -139,7 +139,7 @@ export default function Header() {
           <div className="flex items-center gap-2 md:hidden">
           <a
             href={phoneHref}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border-[1.5px] border-brand-sageDark px-3.5 text-base font-semibold text-brand-sageDeep"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-3 text-base font-semibold text-brand-sageDeep transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
             aria-label={`Call Foot+ on ${phoneDisplay}`}
             data-analytics-id="header-mobile-phone"
           >
@@ -148,7 +148,7 @@ export default function Header() {
           </a>
           <button
             type="button"
-            className="inline-flex h-12 w-12 items-center justify-center rounded-lg border-[1.5px] border-brand-sageDark text-sm font-semibold text-brand-sageDeep"
+            className="-mr-2 inline-flex h-12 w-12 items-center justify-center rounded-lg text-sm font-semibold text-brand-sageDeep transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -156,7 +156,7 @@ export default function Header() {
           >
             <svg
               viewBox="0 0 24 24"
-              className="h-5 w-5"
+              className="h-6 w-6"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
