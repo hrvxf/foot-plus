@@ -15,6 +15,7 @@ import HomeMobileBar from "./home/HomeMobileBar";
 import PostcodeChecker from "./home/PostcodeChecker";
 import RotatingReview from "./home/RotatingReview";
 import Stars from "./reviews/Stars";
+import LgbtqFriendly from "./site/LgbtqFriendly";
 import { ClosingCheck, FaqList, LocationSummary, Steps } from "./site/blocks";
 import {
   displayH1,
@@ -140,9 +141,12 @@ function Proof() {
           <RotatingReview items={reviews} className={ratingSummary ? "lg:col-span-5" : "lg:col-span-7"} />
         ) : null}
 
-        <p className={`${small} border-brand-sage/50 lg:border-l lg:pl-8 ${review || ratingSummary ? "lg:col-span-4" : "lg:col-span-12"}`}>
-          {homeCredentials} {homeMemberships}
-        </p>
+        <div className={`border-brand-sage/50 lg:border-l lg:pl-8 ${review || ratingSummary ? "lg:col-span-4" : "lg:col-span-12"}`}>
+          <p className={small}>
+            {homeCredentials} {homeMemberships}
+          </p>
+          <LgbtqFriendly className="mt-2" />
+        </div>
       </div>
     </section>
   );
@@ -233,7 +237,6 @@ function WhoAndHow() {
         </div>
 
         <Steps steps={homeSteps} className={`mt-10 border-t ${rule} pt-8 md:mt-14 md:pt-12`} />
-        <p className={`${small} mt-10`}>Visits are unhurried, clearly explained and LGBTQ+ friendly.</p>
       </div>
     </section>
   );
