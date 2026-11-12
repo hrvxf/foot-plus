@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="en" className="bg-lightbg">
+    <html lang="en" className="bg-lightbg" data-scroll-behavior="smooth">
       <head>
         <meta
           name="viewport"

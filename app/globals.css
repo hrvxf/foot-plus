@@ -50,13 +50,32 @@ body {
   font-family: var(--font-body);
 }
 
-* {
-  scroll-behavior: smooth;
+/* Smooth scrolling for in-page anchor links (e.g. /locations/bristol/areas-we-cover#north).
+   The data-scroll-behavior="smooth" attribute on <html> tells Next.js to switch this
+   off during page navigations, so a new page starts at the top instead of gliding
+   up from wherever the last page was scrolled to. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Page change: the new page fades in under the header (soft navigations only,
+   see app/components/PageTransition.tsx). Opacity only: a transform here would
+   break the position: fixed mobile action bars inside the page. */
+.page-enter {
+  animation: page-enter 220ms ease-out backwards;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto;
+  .page-enter {
+    animation: none;
   }
 }
 
