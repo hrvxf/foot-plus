@@ -1,6 +1,6 @@
 import { Mail, Phone } from "lucide-react";
 
-import { bristolWhatsAppHref, emailHref, phoneDisplay, phoneHref } from "../../lib/site";
+import { bristolWhatsAppHref, locationEmails, phoneDisplay, phoneHref } from "../../lib/site";
 
 export type ContactAction = {
   kind: "phone" | "whatsapp" | "email";
@@ -11,10 +11,10 @@ export type ContactAction = {
   analyticsId?: string;
 };
 
-/** Default Bristol contact set: call, WhatsApp Adam, email. */
+/** Default Bristol contact set: call, WhatsApp Adam, email to bristol@. */
 export function bristolContactActions({
   analyticsPrefix,
-  email = { href: emailHref, label: "Email Foot+" },
+  email = locationEmails.bristol,
 }: {
   analyticsPrefix?: string;
   email?: { href: string; label: string };
