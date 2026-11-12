@@ -57,8 +57,10 @@ export default function ReviewsSection({
           {shown.map((review) => (
             <li key={review.name + review.month} className="flex flex-col border-t border-brand-charcoal/15 pt-5">
               <ReviewQuote text={review.text} excerpt={review.excerpt} highlight={review.highlight} />
-              {/* Reviewer, then their rating and date: the quote mark leads the column. */}
-              <div className="mt-4 text-base">
+              {/* Reviewer, then their rating and date: the quote mark leads the column.
+                  mt-auto lines the names up across columns; long reviews start
+                  collapsed, so the gap above a shorter review stays small. */}
+              <div className="mt-auto pt-4 text-base">
                 <p className="font-semibold text-brand-sageDeep">{review.name}</p>
                 <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-brand-muted">
                   <Stars rating={review.rating} />
