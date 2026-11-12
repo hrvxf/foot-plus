@@ -60,6 +60,15 @@ body {
   }
 }
 
+/* Pages with the sticky mobile Request / Call bar: make room for it under the
+   footer (the last thing on the page) rather than under the page content,
+   which left a large empty gap above the footer. */
+@media (max-width: 767px) {
+  body:has([data-mobile-actions]) > footer {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 76px);
+  }
+}
+
 /* Full-screen pages (the location chooser) cover the header and footer, so take
    them out of the page and the tab order instead of leaving them underneath. */
 body:has([data-fullscreen-page]) > header,

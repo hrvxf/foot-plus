@@ -54,7 +54,7 @@ export default function NailCuttingPage({
 }: NailCuttingPageProps) {
   const practitioner = location.practitioner!;
   return (
-    <div className="pb-[calc(env(safe-area-inset-bottom)+88px)] md:pb-0">
+    <div>
       <section className="border-b border-brand-line bg-brand-wash">
         <div className={`${container} py-8 md:py-14`}>
           <nav aria-label="Breadcrumb" className="text-sm text-brand-muted">

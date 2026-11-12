@@ -100,7 +100,7 @@ const locations = [
 
 export default function ServicesPage() {
   return (
-    <div className="pb-[calc(env(safe-area-inset-bottom)+88px)] md:pb-0">
+    <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
       <Hero />
