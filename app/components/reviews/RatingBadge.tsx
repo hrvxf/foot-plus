@@ -25,7 +25,7 @@ export default function RatingBadge({
   const muted = tone === "dark" ? "text-white/75" : "text-brand-muted";
   const content = (
     <>
-      <Stars rating={rating.average} />
+      <Stars rating={rating.average} tone={tone} />
       <span className="font-semibold">{rating.average.toFixed(1)}</span>
       <span className={muted}>
         · <span className="underline-offset-4 group-hover:underline">{rating.count} Google reviews</span>
