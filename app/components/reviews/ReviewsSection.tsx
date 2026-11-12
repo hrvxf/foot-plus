@@ -56,12 +56,17 @@ export default function ReviewsSection({
         <ul className="mt-8 grid gap-8 md:mt-10 md:grid-cols-3 md:gap-10" aria-label="Recent Google reviews">
           {shown.map((review) => (
             <li key={review.name + review.month} className="flex flex-col border-t border-brand-charcoal/15 pt-5">
-              <Stars rating={review.rating} />
               <ReviewQuote text={review.text} excerpt={review.excerpt} highlight={review.highlight} />
-              <p className="mt-4 text-base">
-                <span className="font-semibold text-brand-sageDeep">{review.name}</span>
-                <span className="text-brand-muted">, {formatReviewMonth(review.month)}, on Google</span>
-              </p>
+              {/* Reviewer, then their rating and date: the quote mark leads the column. */}
+              <div className="mt-4 text-base">
+                <p className="font-semibold text-brand-sageDeep">{review.name}</p>
+                <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-brand-muted">
+                  <Stars rating={review.rating} />
+                  <span>
+                    {formatReviewMonth(review.month)}, on Google
+                  </span>
+                </p>
+              </div>
             </li>
           ))}
         </ul>
