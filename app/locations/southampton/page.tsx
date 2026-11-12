@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import LocationHero from "../../components/LocationHero";
 import { serviceLocations } from "../../lib/locations";
@@ -7,8 +6,9 @@ import { SITE_URL } from "../../lib/site";
 import { southamptonTravelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
+import ServicesTiles from "../../components/site/ServicesTiles";
 import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
-import { body, btnSolid, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
+import { body, displayH2, rule, shell } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/southampton`;
 
@@ -86,28 +86,15 @@ export default function SouthamptonPage() {
 
       <ReviewsSection scope="southampton" id="southampton-reviews" analyticsPrefix="southampton" />
 
-      <section id="southampton-services" className={`scroll-mt-24 bg-white ${section}`} aria-labelledby="southampton-services-heading">
-        <div className={shell}>
-          <h2 id="southampton-services-heading" className={displayH2}>
-            Foot care services in Southampton
-          </h2>
-          <p className={`${body} mt-4 max-w-[60ch]`}>
-            Foot+ Southampton offers routine nail and skin care at home with Katie Preston. Share the care you need and
-            your postcode so we can confirm suitability and availability.
-          </p>
-          <div className="mt-6 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-center">
-            <Link href="/book?location=southampton" className={btnSolid}>
-              Request a home visit
-            </Link>
-            <Link href="/toenail-cutting-southampton" className={linkQuiet}>
-              Toenail cutting in Southampton
-            </Link>
-            <Link href="/services" className={linkQuiet}>
-              Explore home-visit care
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ServicesTiles
+        id="southampton-services"
+        place="Southampton"
+        practitioner="Katie"
+        nailCuttingHref="/toenail-cutting-southampton"
+        bookHref="/book?location=southampton"
+        bookLabel="Request a home visit"
+        className={`bg-white ${section}`}
+      />
 
       <section id="southampton-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="southampton-coverage-heading">
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>

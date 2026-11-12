@@ -14,6 +14,8 @@ export type Treatment = {
   description: string;
   /** One line under the heading. */
   intro: string;
+  /** A few words for compact service tiles (location pages). */
+  short: string;
   /** "What it is": two or three sentences, signs and causes included. */
   about: string[];
   /** "What we do": short points, aftercare included. */
@@ -28,6 +30,7 @@ export type Treatment = {
 export const treatments: Treatment[] = [
   {
     slug: "corn-treatment",
+    short: "Painful corns carefully reduced",
     name: "Corn treatment",
     title: "Corn treatment at home",
     metaTitle: "Corn Treatment at Home in Bristol and Southampton | Foot+",
@@ -65,6 +68,7 @@ export const treatments: Treatment[] = [
   },
   {
     slug: "hard-skin-and-callus",
+    short: "Thick, rough skin safely smoothed",
     name: "Hard skin and callus",
     title: "Hard skin and callus removal at home",
     metaTitle: "Hard Skin and Callus Removal at Home in Bristol and Southampton | Foot+",
@@ -102,6 +106,7 @@ export const treatments: Treatment[] = [
   },
   {
     slug: "cracked-heels",
+    short: "Dry, split heels cared for",
     name: "Cracked heels",
     title: "Cracked heel treatment at home",
     metaTitle: "Cracked Heel Treatment at Home in Bristol and Southampton | Foot+",
