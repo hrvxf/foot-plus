@@ -43,25 +43,32 @@ export default function LocationHero({
       </div>
       <div className={`${shell} grid gap-10 pb-12 pt-4 md:pb-16 lg:grid-cols-12 lg:items-center lg:gap-12 lg:pb-20 lg:pt-8`}>
         <div className="lg:col-span-7">
-          <p className={`${small} inline-flex items-center gap-2 font-semibold text-brand-sageDeep`}>
-            <span className="h-2.5 w-2.5 rounded-full bg-brand-sage" aria-hidden="true" />
+          {/* Solid pill with a softly pulsing "live" dot, so availability catches the eye. */}
+          <p className={`${small} inline-flex items-center gap-2.5 rounded-full bg-brand-sageDark py-1.5 pl-3 pr-4 font-semibold text-white`}>
+            <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A8E6B8] opacity-75 motion-reduce:hidden" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#A8E6B8]" />
+            </span>
             {status}
           </p>
           <h1 id="location-heading" className={`${displayH1} mt-3 max-w-[16ch]`}>
             {title}
           </h1>
           <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>{description}</p>
-          <div className="mt-7 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-center">
-            <Link href={primaryAction.href} className={btnSolid}>
-              {primaryAction.label}
-            </Link>
-            <Link href={secondaryAction.href} className={linkQuiet}>
+          <div className="mt-7 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-start">
+            {/* Call / WhatsApp / email sit centred under the main button they back up. */}
+            <div className="flex flex-col sm:items-center">
+              <Link href={primaryAction.href} className={btnSolid}>
+                {primaryAction.label}
+              </Link>
+              {contactActions?.length ? (
+                <ContactIcons actions={contactActions} size="lg" className="mt-3" />
+              ) : null}
+            </div>
+            <Link href={secondaryAction.href} className={`${linkQuiet} sm:min-h-14`}>
               {secondaryAction.label}
             </Link>
           </div>
-          {contactActions?.length ? (
-            <ContactIcons actions={contactActions} className="mt-4 sm:justify-start" />
-          ) : null}
         </div>
 
         <div className="lg:col-span-5">
