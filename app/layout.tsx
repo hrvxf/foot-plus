@@ -37,10 +37,10 @@ export const metadata = {
       "Nail and foot care at home in Bristol and Southampton.",
     images: [
       {
-        url: "/images/social-card.png",
+        url: "/images/social-card-v2.jpg",
         width: 1200,
         height: 630,
-        alt: "Foot+ professional home-visit foot care",
+        alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
       },
     ],
   },
@@ -50,7 +50,7 @@ export const metadata = {
     title: "Foot+ | Professional Nail & Foot Care at Home",
     description:
       "Nail and foot care at home in Bristol and Southampton.",
-    images: ["/images/social-card.png"],
+    images: ["/images/social-card-v2.jpg"],
   },
 
   icons: {
