@@ -11,10 +11,10 @@ const description = `Professional toenail cutting at home across Bristol by a qu
 // Route-level openGraph/twitter objects replace the layout's, so restate the
 // site-wide social image, site name and card type here.
 const socialImage = {
-  url: "/images/social-card.png",
+  url: "/images/social-card-v2.jpg",
   width: 1200,
   height: 630,
-  alt: "Foot+ professional home-visit foot care",
+  alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
 };
 export const metadata: Metadata = {
   title: { absolute: title },

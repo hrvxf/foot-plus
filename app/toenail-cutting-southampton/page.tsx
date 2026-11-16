@@ -15,10 +15,10 @@ const description = `Toenail cutting at home in Southampton, Romsey, Chandler's 
 const bookingHref = "/book?location=southampton&service=nails";
 
 const socialImage = {
-  url: "/images/social-card.png",
+  url: "/images/social-card-v2.jpg",
   width: 1200,
   height: 630,
-  alt: "Foot+ professional home-visit foot care",
+  alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
 };
 
 export const metadata: Metadata = {

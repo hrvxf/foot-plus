@@ -14,7 +14,7 @@ import { treatments, treatmentUrl, type Treatment } from "../../lib/treatments";
 // Location-neutral treatment page (corns, hard skin and callus, cracked
 // heels). Same structure as the toenail cutting pages, without a town.
 
-const socialImage = { url: "/images/social-card.png", width: 1200, height: 630, alt: "Foot+ professional home-visit foot care" };
+const socialImage = { url: "/images/social-card-v2.jpg", width: 1200, height: 630, alt: "Foot+: foot care that comes to you, in Bristol and Southampton" };
 
 export function treatmentMetadata(treatment: Treatment): Metadata {
   const url = treatmentUrl(treatment.slug);
