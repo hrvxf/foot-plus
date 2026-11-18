@@ -6,7 +6,7 @@
 
 import { prices } from "./site";
 
-export type ServiceIconKey = "nail" | "thick" | "corn" | "callus" | "skin" | "heel" | "check";
+export type ServiceIconKey = "nail" | "thick" | "ingrown" | "fungal" | "corn" | "callus" | "skin" | "heel" | "verruca" | "athlete" | "check";
 
 export type ServiceDetail = {
   id: string;
@@ -32,6 +32,20 @@ export const serviceDetails: ServiceDetail[] = [
     link: { label: "Thickened nail care", href: "/toenail-cutting" },
   },
   {
+    id: "ingrown-toenails",
+    icon: "ingrown",
+    title: "Ingrown toenails",
+    summary: "Nail edges pressing into the skin carefully cut back to ease the pain, without surgery. If a toe looks infected, we will point you to your GP.",
+    link: { label: "Toenail cutting", href: "/toenail-cutting" },
+  },
+  {
+    id: "fungal-nails",
+    icon: "fungal",
+    title: "Fungal nails",
+    summary: "Thick, discoloured nails reduced and kept comfortable, with advice on treatments to use between visits.",
+    link: { label: "Thickened toenails guide", href: "/advice/thickened-toenails-causes-treatment-and-when-to-worry" },
+  },
+  {
     id: "corns",
     icon: "corn",
     title: "Corns",
@@ -51,6 +65,20 @@ export const serviceDetails: ServiceDetail[] = [
     title: "Cracked heels",
     summary: "Dry, split heel skin treated, plus an easy moisturising routine to keep heels comfortable.",
     link: { label: "Cracked heel care", href: "/cracked-heels" },
+  },
+  {
+    id: "verrucas",
+    icon: "verruca",
+    title: "Verrucas",
+    summary: "Verrucas on the foot looked at and treated, with advice on stopping them spreading.",
+    link: { label: "Corn, callus or verruca?", href: "/advice/corn-callus-or-verruca" },
+  },
+  {
+    id: "athletes-foot",
+    icon: "athlete",
+    title: "Athlete’s foot",
+    summary: "Itchy, peeling skin between the toes checked, with advice on treating it and keeping it from coming back.",
+    link: { label: "Keeping feet healthy", href: "/advice/maintain-good-foot-health" },
   },
   {
     id: "foot-health-checks",

@@ -15,6 +15,14 @@ export const homeServices: {
     href: "/services#thickened-nails",
   },
   {
+    title: "Ingrown toenails",
+    href: "/services#ingrown-toenails",
+  },
+  {
+    title: "Fungal nails",
+    href: "/services#fungal-nails",
+  },
+  {
     title: "Corns",
     href: "/services#corns",
   },
@@ -25,6 +33,14 @@ export const homeServices: {
   {
     title: "Cracked heels",
     href: "/services#cracked-heels",
+  },
+  {
+    title: "Verrucas",
+    href: "/services#verrucas",
+  },
+  {
+    title: "Athlete’s foot",
+    href: "/services#athletes-foot",
   },
   {
     title: "Diabetic foot care",

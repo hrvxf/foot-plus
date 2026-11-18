@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       { "@type": "Organization", name: "College of Foot Health Practitioners" },
       { "@type": "Organization", name: "Association of Foot Health Practitioners" },
     ],
-    knowsAbout: ["Routine foot care", "Toenail cutting", "Hard skin and callus care", "Corn care", "Cracked heel care"],
+    knowsAbout: ["Routine foot care", "Toenail cutting", "Hard skin and callus care", "Corn care", "Cracked heel care", "Ingrown toenail care", "Fungal nail care", "Verruca care", "Athlete’s foot care"],
   };
 
   return (
