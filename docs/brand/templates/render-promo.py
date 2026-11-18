@@ -32,18 +32,21 @@ ap.add_argument("--offer")
 ap.add_argument("--sub")
 ap.add_argument("--tagline")
 ap.add_argument("--theme", choices=["light", "dark"])
+ap.add_argument("--size", choices=["google", "facebook", "square"], default="google")
 ap.add_argument("--no-video", action="store_true")
 args = vars(ap.parse_args())
 
 name = args.pop("name")
 no_video = args.pop("no_video")
+SIZES = {"google": (1200, 900), "facebook": (1080, 1350), "square": (1080, 1080)}
+W, H = SIZES[args["size"]]
 query = urllib.parse.urlencode({k: v for k, v in args.items() if v is not None})
 url = (HERE / "promo-graphic.html").as_uri() + ("?" + query if query else "")
 OUT.mkdir(exist_ok=True)
 
 with sync_playwright() as p:
     browser = p.chromium.launch()
-    page = browser.new_page(viewport={"width": 1200, "height": 900})
+    page = browser.new_page(viewport={"width": W, "height": H})
     page.goto(url)
     page.wait_for_load_state("networkidle")
     page.evaluate("document.fonts.ready")

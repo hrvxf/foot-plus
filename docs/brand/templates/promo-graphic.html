@@ -10,7 +10,7 @@
 <style>
 :root{--sageDeep:#3E5A4C;--sage:#6C917B;--sageDark:#4F6F5F;--sageLight:#8FB39C;--offwhite:#F7F6F2;--charcoal:#243028}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1200px;height:900px;overflow:hidden}
+html,body{width:var(--w,1200px);height:var(--h,900px);overflow:hidden}
 body{background:var(--offwhite);font-family:Inter,sans-serif;color:var(--charcoal);position:relative}
 .plus{position:absolute;font-family:Poppins;font-weight:600;color:var(--sage);line-height:1}
 .wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:40px}
@@ -48,6 +48,13 @@ body.dark .brand small{color:#fff;opacity:.7}
 <script>
 const q=new URLSearchParams(location.search);
 const v=(k,d)=>q.get(k)??d;
+// Sizes: google 1200x900 (4:3), facebook 1080x1350 (4:5), square 1080x1080.
+const SIZES={google:[1200,900],facebook:[1080,1350],square:[1080,1080]};
+const [W,H]=SIZES[v('size','google')]||SIZES.google;
+document.documentElement.style.setProperty('--w',W+'px');
+// Taller formats get larger type so the content fills the frame.
+const Z={google:1,facebook:1.2,square:1.05}[v('size','google')]||1;
+document.querySelector('.wrap').style.zoom=Z;document.querySelector('.brand').style.zoom=Z;document.documentElement.style.setProperty('--h',H+'px');
 if(v('theme','light')==='dark'){document.body.classList.add('dark');document.querySelector('.logo').src='logo-white.svg'}
 document.getElementById('e1').textContent=v('eyebrow','January offer');
 document.getElementById('l1').textContent=v('line1','New Year,');
@@ -60,7 +67,7 @@ document.getElementById('tag').textContent=v('tagline','Home visit foot care');
 // Scattered "+" marks: the brand's signature motif. [x, y, size, opacity]
 const P=[[90,110,70,.9],[210,70,34,.5],[1040,120,80,.9],[1110,250,36,.5],[130,300,30,.35],[980,330,28,.35],[70,700,56,.6],[200,800,26,.35],[1090,720,60,.6],[1000,820,28,.35],[300,180,22,.3],[900,190,24,.3]];
 const box=document.getElementById('pluses');
-P.forEach((p,i)=>{const d=document.createElement('div');d.className='plus';d.id='p'+i;d.textContent='+';d.style.left=p[0]+'px';d.style.top=p[1]+'px';d.style.fontSize=p[2]+'px';d.style.opacity=p[3];box.appendChild(d)});
+P.forEach((p,i)=>{const d=document.createElement('div');d.className='plus';d.id='p'+i;d.textContent='+';d.style.left=p[0]/1200*W+'px';d.style.top=p[1]/900*H+'px';d.style.fontSize=p[2]+'px';d.style.opacity=p[3];box.appendChild(d)});
 
 // Animation for the video: render-promo.py calls setT(seconds) for each frame.
 window.setT=function(t){

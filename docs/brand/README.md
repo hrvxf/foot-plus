@@ -92,7 +92,8 @@ Centred and stacked, with plenty of space around it:
                  TAGLINE (uppercase)
 ```
 
-- Canvas 1200×900 (4:3), which Google Business Profile recommends. Keep the important content in the centre, because Google crops thumbnails.
+- Sizes: **Google** 1200×900 (4:3), **Facebook** 1080×1350 (4:5, takes up the most of the feed), **square** 1080×1080. Type scales up slightly on the taller sizes.
+- Google recommends 1200×900. Keep the important content in the centre, because Google crops thumbnails.
 - **Two themes.** *Light* (default): Off-white background, Charcoal and Sage headline, Sage Dark pill. *Dark*: Sage Deep background, white and Sage Light headline, Off-white pill with Sage Deep text, white logo. Use dark for seasonal or festive campaigns so they stand apart from the standard light posts.
 - One offer per graphic, in the pill, with the value in bold ("**£5 off**").
 - Don't show prices other than the offer value. Prices are on the website.
@@ -128,7 +129,15 @@ The video versions use the same layout, built up in about 3 seconds and then hel
 
 The enquiry form has an optional promo code field. Codes appear in the enquiry email subject as `[Promo: CODE]`, so each campaign can be counted.
 
-## 10. Making a new promo graphic
+## 10. Facebook posts
+
+- Use the 1080×1350 image or MP4 (`--size facebook`).
+- Facebook cuts the caption off at "See more" after about 125 characters, so put the hook and the offer first.
+- Caption order: hook and offer → why a home visit → ✓ trust list → how to claim, with the `?promo=` link → short terms.
+- No title field, so the graphic carries the headline. Two or three local hashtags at most (#Bristol).
+- Links in captions aren't tappable on every surface, so also say "Message us" or "link in the comments".
+
+## 11. Making a new promo graphic
 
 The template is `docs/brand/templates/promo-graphic.html`, and every text element is set from the command line:
 
@@ -139,9 +148,9 @@ python docs/brand/templates/render-promo.py spring-feet \
   --offer-bold "£5 off" --offer "your first home visit"
 ```
 
-This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--theme dark` for the dark version and `--no-video` for the image only. Needs ffmpeg for the video.
+This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--size facebook` (or `square`) for social posts, `--theme dark` for the dark version and `--no-video` for the image only. Needs ffmpeg for the video.
 
 ## Examples
 
 - `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, light theme, £5 off the first home visit, code NEWTOES.
-- `examples/step-into-christmas.png` / `.mp4`: December 2026 Google event, dark theme, £5 off the first home visit, code STEPINTO.
+- `examples/step-into-christmas.png` / `.mp4`: December 2026 Google event, dark theme, £5 off the first home visit, code STEPINTO. Facebook version: `step-into-christmas-facebook.png` / `.mp4`.
