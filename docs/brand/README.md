@@ -93,6 +93,7 @@ Centred and stacked, with plenty of space around it:
 ```
 
 - Canvas 1200×900 (4:3), which Google Business Profile recommends. Keep the important content in the centre, because Google crops thumbnails.
+- **Two themes.** *Light* (default): Off-white background, Charcoal and Sage headline, Sage Dark pill. *Dark*: Sage Deep background, white and Sage Light headline, Off-white pill with Sage Deep text, white logo. Use dark for seasonal or festive campaigns so they stand apart from the standard light posts.
 - One offer per graphic, in the pill, with the value in bold ("**£5 off**").
 - Don't show prices other than the offer value. Prices are on the website.
 
@@ -138,8 +139,9 @@ python docs/brand/templates/render-promo.py spring-feet \
   --offer-bold "£5 off" --offer "your first home visit"
 ```
 
-This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--no-video` for the image only. Needs ffmpeg for the video.
+This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--theme dark` for the dark version and `--no-video` for the image only. Needs ffmpeg for the video.
 
 ## Examples
 
-- `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, £5 off the first home visit, code NEWTOES.
+- `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, light theme, £5 off the first home visit, code NEWTOES.
+- `examples/step-into-christmas.png` / `.mp4`: December 2026 Google event, dark theme, £5 off the first home visit, code STEPINTO.

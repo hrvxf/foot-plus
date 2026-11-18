@@ -31,6 +31,7 @@ ap.add_argument("--offer-bold", dest="offerBold")
 ap.add_argument("--offer")
 ap.add_argument("--sub")
 ap.add_argument("--tagline")
+ap.add_argument("--theme", choices=["light", "dark"])
 ap.add_argument("--no-video", action="store_true")
 args = vars(ap.parse_args())
 
