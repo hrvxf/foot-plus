@@ -12,6 +12,7 @@ Working brand guide for Foot+. It starts from the January 2027 "New Year, New To
 |---|---|
 | `public/images/footplus-generic-logo_MASTER_FINAL.svg` | **Master logo, no location.** Use for anything shared across Bristol and Southampton. White fill, so put it on a dark background or recolour it. |
 | `docs/brand/templates/logo-sagedark.svg` | The master logo recoloured to Sage Dark `#4F6F5F`, for light backgrounds. |
+| **Icon (foot mark on its own):** `Documents\Foot+\Brand\Logo\Favicon\footplus-favicon_GREEN.svg` on Adam's computer | **The real hand-drawn icon.** Use it for profile photos and app icons. Not in the repo yet. Note that `public/favicon.svg` in the repo is a perfect-circles approximation, not the real icon. |
 | `public/images/footplus-logo-green.svg` | Logo with BRISTOL lockup, in green. Bristol-only materials. |
 | `public/images/footplus-logo-white.svg` | Logo with BRISTOL lockup, in white. Bristol-only, on dark green. |
 
