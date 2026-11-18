@@ -96,7 +96,7 @@ Centred and stacked, with plenty of space around it:
 - Google recommends 1200×900. Keep the important content in the centre, because Google crops thumbnails.
 - **Two themes.** *Light* (default): Off-white background, Charcoal and Sage headline, Sage Dark pill. *Dark*: Sage Deep background, white and Sage Light headline, Off-white pill with Sage Deep text, white logo. Use dark for seasonal or festive campaigns so they stand apart from the standard light posts.
 - **Coupon code** (`--code`): a dashed "ticket" under the pill, reading "Use code **CODE**". Show the code whenever the offer has one, so people can claim it from the image alone. On the 4:3 Google size the code replaces the supporting line.
-- **Festive extras** (`--festive`): Santa hats on the two big toes of the logo (one per foot; hats on every toe looked too busy), a larger logo so the hats read, and snow that falls in the video. The still image keeps the snow at the edges, clear of the text. The hat red `#C4473A` is a seasonal exception to the palette. Use it for Christmas only.
+- **Festive extras** (`--festive`): a slanted Santa hat on the first letter of the headline (the S of "Step"), and snow that falls in the video. The still image keeps the snow at the edges, clear of the text. The hat red `#C4473A` is a seasonal exception to the palette. Use it for Christmas only. Don't put hats on the logo's toes. It was tried and didn't look good; the logo stays as it is.
 - One offer per graphic, in the pill, with the value in bold ("**£5 off**").
 - Don't show prices other than the offer value. Prices are on the website.
 

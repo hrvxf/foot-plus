@@ -31,10 +31,9 @@ body.dark .code b{color:#fff}
 .brand{position:absolute;left:0;right:0;bottom:44px;display:flex;flex-direction:column;align-items:center}
 .logo{width:100%;height:auto;display:block}
 .logoWrap{position:relative;width:150px}
-/* Festive: bigger logo so the hats read, plus snow. */
-body.festive .logoWrap{width:230px}
-#hats{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;display:none}
-body.festive #hats{display:block}
+/* Festive: Santa hat on the first letter of the headline, plus snow. */
+.hatS{position:relative;display:inline-block}
+.hatS svg{position:absolute;width:.66em;left:-.06em;top:-.3em;transform:rotate(-18deg);transform-origin:50% 100%;overflow:visible}
 #snow{position:absolute;inset:0;pointer-events:none;display:none}
 body.festive #snow{display:block}
 .flake{position:absolute;border-radius:50%;background:#fff}
@@ -62,7 +61,7 @@ body.dark .brand small{color:#fff;opacity:.7}
   <div class="code a" id="e7">Use code <b id="codeval"></b></div>
   <div class="sub a" id="e5"></div>
 </div>
-<div class="brand a" id="e6"><div class="logoWrap"><img class="logo" src="logo-sagedark.svg" alt="Foot+"><svg id="hats" viewBox="0 0 1000 314" aria-hidden="true"></svg></div><small id="tag"></small></div>
+<div class="brand a" id="e6"><div class="logoWrap"><img class="logo" src="logo-sagedark.svg" alt="Foot+"></div><small id="tag"></small></div>
 <script>
 const q=new URLSearchParams(location.search);
 const v=(k,d)=>q.get(k)??d;
@@ -101,24 +100,18 @@ window.setT=function(t){
     el.style.transform=`translateY(${Math.sin(t*1.6+i)*6*k}px) scale(${0.4+0.6*k}) rotate(${(1-k)*90}deg)`});
 };
 
-// Festive extras (festive=1): Santa hats on the two big toes, and falling snow.
-// Toe boxes as fractions of the logo: [x, y, width, height], measured from the master SVG.
-const TOES=[[.1817,.1984,.0438,.1244],[.2255,.1362,.0429,.1257],[.2744,.0867,.0439,.1453],[.3251,.1008,.0447,.1441],[.3754,.1418,.0562,.1618],
-            [.4739,.2569,.0512,.1511],[.5258,.2063,.0436,.1288],[.5738,.1926,.0381,.1224],[.6181,.2171,.0354,.1056],[.6561,.2712,.0326,.0935]];
+// Festive extras (festive=1): a Santa hat on the first letter of the headline, and falling snow.
 const FLAKES=[];
 if(v('festive','0')==='1'){
   document.body.classList.add('festive');
-  const NS='http://www.w3.org/2000/svg',hats=document.getElementById('hats');
-  const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);hats.appendChild(e);return e};
-  // Only the big toe of each foot gets a hat. More than two looks busy.
-  const HAT_TOES=[4,5];
-  HAT_TOES.map(i=>TOES[i]).forEach(([x,y,w,h])=>{
-    const X=x*1000,Y=y*314,Wd=w*1000,Ht=h*314,cx=X+Wd/2,band=Y+Ht*0.22;
-    // Red cone flopping to the right, white fur band, white pom-pom.
-    el('path',{d:`M${X-Wd*0.05},${band} Q${cx-Wd*0.15},${Y-Ht*1.25} ${cx+Wd*0.8},${Y-Ht*0.85} Q${cx+Wd*0.3},${Y-Ht*0.35} ${X+Wd*1.05},${band} Z`,fill:'#C4473A'});
-    el('rect',{x:X-Wd*0.12,y:band-Ht*0.12,width:Wd*1.24,height:Ht*0.26,rx:Ht*0.13,fill:'#FFFFFF',stroke:'#3E5A4C','stroke-width':Wd*0.05});
-    el('circle',{cx:cx+Wd*0.8,cy:Y-Ht*0.85,r:Wd*0.2,fill:'#FFFFFF',stroke:'#3E5A4C','stroke-width':Wd*0.04});
-  });
+  const l1=document.getElementById('l1'),t=l1.textContent;
+  l1.innerHTML='';
+  const first=document.createElement('span');first.className='hatS';first.textContent=t[0];
+  first.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 100 80" aria-hidden="true">
+    <path d="M6,62 Q22,4 90,10 Q58,24 80,62 Z" fill="#C4473A"/>
+    <rect x="0" y="56" width="88" height="18" rx="9" fill="#FFFFFF" stroke="#3E5A4C" stroke-width="3"/>
+    <circle cx="90" cy="10" r="9" fill="#FFFFFF" stroke="#3E5A4C" stroke-width="2"/></svg>`);
+  l1.append(first,t.slice(1));
   // Seeded random so every render places the snow the same way.
   let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
   const snow=document.getElementById('snow');
