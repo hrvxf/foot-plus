@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+  Foot+ promo graphic template (1200 x 900, 4:3 — Google Business Profile posts).
+  Text comes from the URL query string, so the same file makes every promo:
+    promo-graphic.html?eyebrow=January%20offer&line1=New%20Year,&line2=New%20Toes.&offer=...
+  Render a PNG + MP4 with render-promo.py (see ../README.md).
+-->
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#6C917B;--sageDark:#4F6F5F;--sageLight:#8FB39C;--offwhite:#F7F6F2;--charcoal:#243028}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:900px;overflow:hidden}
+body{background:var(--offwhite);font-family:Inter,sans-serif;color:var(--charcoal);position:relative}
+.plus{position:absolute;font-family:Poppins;font-weight:600;color:var(--sage);line-height:1}
+.wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:40px}
+.eyebrow{font-weight:600;letter-spacing:.32em;font-size:22px;color:var(--sageDark);text-transform:uppercase;margin-bottom:34px}
+h1{font-family:Poppins;font-weight:700;font-size:118px;line-height:1.02;letter-spacing:-.02em}
+h1 .g{color:var(--sage)}
+.rule{width:90px;height:4px;background:var(--sage);margin:44px auto 40px;border-radius:2px}
+.offer{background:var(--sageDark);color:var(--offwhite);font-family:Poppins;font-weight:600;font-size:44px;padding:22px 52px;border-radius:999px}
+.offer b{font-weight:700;color:#fff}
+.sub{margin-top:30px;font-size:24px;color:var(--charcoal);opacity:.75}
+.brand{position:absolute;left:0;right:0;bottom:44px;display:flex;flex-direction:column;align-items:center}
+.logo{width:150px;height:auto;display:block}
+.brand small{display:block;font-weight:500;font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--charcoal);opacity:.6;margin-top:10px}
+.a{opacity:var(--o,1);transform:translateY(var(--y,0px))}
+</style></head><body>
+<div id="pluses"></div>
+<div class="wrap">
+  <div class="eyebrow a" id="e1"></div>
+  <h1 class="a" id="e2"><span id="l1"></span><br><span class="g" id="l2"></span></h1>
+  <div class="rule a" id="e3"></div>
+  <div class="offer a" id="e4"><b id="ob"></b> <span id="or"></span></div>
+  <div class="sub a" id="e5"></div>
+</div>
+<div class="brand a" id="e6"><img class="logo" src="logo-sagedark.svg" alt="Foot+"><small id="tag"></small></div>
+<script>
+const q=new URLSearchParams(location.search);
+const v=(k,d)=>q.get(k)??d;
+document.getElementById('e1').textContent=v('eyebrow','January offer');
+document.getElementById('l1').textContent=v('line1','New Year,');
+document.getElementById('l2').textContent=v('line2','New Toes.');
+document.getElementById('ob').textContent=v('offerBold','£5 off');
+document.getElementById('or').textContent=v('offer','your first home visit');
+document.getElementById('e5').textContent=v('sub','Professional toenail cutting & foot care in your home');
+document.getElementById('tag').textContent=v('tagline','Home visit foot care');
+
+// Scattered "+" marks: the brand's signature motif. [x, y, size, opacity]
+const P=[[90,110,70,.9],[210,70,34,.5],[1040,120,80,.9],[1110,250,36,.5],[130,300,30,.35],[980,330,28,.35],[70,700,56,.6],[200,800,26,.35],[1090,720,60,.6],[1000,820,28,.35],[300,180,22,.3],[900,190,24,.3]];
+const box=document.getElementById('pluses');
+P.forEach((p,i)=>{const d=document.createElement('div');d.className='plus';d.id='p'+i;d.textContent='+';d.style.left=p[0]+'px';d.style.top=p[1]+'px';d.style.fontSize=p[2]+'px';d.style.opacity=p[3];box.appendChild(d)});
+
+// Animation for the video: render-promo.py calls setT(seconds) for each frame.
+window.setT=function(t){
+  const ease=x=>1-Math.pow(1-Math.min(Math.max(x,0),1),3);
+  [[0.2,'e1'],[0.6,'e2'],[1.3,'e3'],[1.7,'e4'],[2.3,'e5'],[2.6,'e6']].forEach(([s,id])=>{
+    const k=ease((t-s)/0.7),el=document.getElementById(id);
+    el.style.setProperty('--o',k);el.style.setProperty('--y',(1-k)*30+'px')});
+  P.forEach((p,i)=>{const k=ease((t-(0.1+i*0.12))/0.6),el=document.getElementById('p'+i);
+    el.style.opacity=p[3]*k;
+    el.style.transform=`translateY(${Math.sin(t*1.6+i)*6*k}px) scale(${0.4+0.6*k}) rotate(${(1-k)*90}deg)`});
+};
+</script></body></html>
