@@ -20,9 +20,25 @@ h1 .g{color:var(--sage)}
 .rule{width:90px;height:4px;background:var(--sage);margin:44px auto 40px;border-radius:2px}
 .offer{background:var(--sageDark);color:var(--offwhite);font-family:Poppins;font-weight:600;font-size:44px;padding:22px 52px;border-radius:999px}
 .offer b{font-weight:700;color:#fff}
+.code{margin-top:22px;display:none;align-items:center;gap:14px;border:2.5px dashed var(--sage);border-radius:14px;padding:10px 24px;font-size:22px;color:var(--charcoal)}
+.code b{font-family:Poppins;font-weight:700;font-size:30px;letter-spacing:.12em;color:var(--sageDark)}
+body.hascode .code{display:inline-flex}
+body.hascode .rule{margin:34px auto 32px}
+body.hascode .sub{margin-top:22px}
+body.dark .code{border-color:var(--sageLight);color:#fff}
+body.dark .code b{color:#fff}
 .sub{margin-top:30px;font-size:24px;color:var(--charcoal);opacity:.75}
 .brand{position:absolute;left:0;right:0;bottom:44px;display:flex;flex-direction:column;align-items:center}
-.logo{width:150px;height:auto;display:block}
+.logo{width:100%;height:auto;display:block}
+.logoWrap{position:relative;width:150px}
+/* Festive: bigger logo so the hats read, plus snow. */
+body.festive .logoWrap{width:230px}
+#hats{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;display:none}
+body.festive #hats{display:block}
+#snow{position:absolute;inset:0;pointer-events:none;display:none}
+body.festive #snow{display:block}
+.flake{position:absolute;border-radius:50%;background:#fff}
+body:not(.dark) .flake{background:var(--sageLight)}
 .brand small{display:block;font-weight:500;font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--charcoal);opacity:.6;margin-top:10px}
 .a{opacity:var(--o,1);transform:translateY(var(--y,0px))}
 /* Dark theme: Sage Deep background, white type, Sage Light accents. */
@@ -37,14 +53,16 @@ body.dark .sub{color:#fff;opacity:.8}
 body.dark .brand small{color:#fff;opacity:.7}
 </style></head><body>
 <div id="pluses"></div>
+<div id="snow"></div>
 <div class="wrap">
   <div class="eyebrow a" id="e1"></div>
   <h1 class="a" id="e2"><span id="l1"></span><br><span class="g" id="l2"></span></h1>
   <div class="rule a" id="e3"></div>
   <div class="offer a" id="e4"><b id="ob"></b> <span id="or"></span></div>
+  <div class="code a" id="e7">Use code <b id="codeval"></b></div>
   <div class="sub a" id="e5"></div>
 </div>
-<div class="brand a" id="e6"><img class="logo" src="logo-sagedark.svg" alt="Foot+"><small id="tag"></small></div>
+<div class="brand a" id="e6"><div class="logoWrap"><img class="logo" src="logo-sagedark.svg" alt="Foot+"><svg id="hats" viewBox="0 0 1000 314" aria-hidden="true"></svg></div><small id="tag"></small></div>
 <script>
 const q=new URLSearchParams(location.search);
 const v=(k,d)=>q.get(k)??d;
@@ -62,6 +80,9 @@ document.getElementById('l2').textContent=v('line2','New Toes.');
 document.getElementById('ob').textContent=v('offerBold','£5 off');
 document.getElementById('or').textContent=v('offer','your first home visit');
 document.getElementById('e5').textContent=v('sub','Professional toenail cutting & foot care in your home');
+if(q.get('code')){document.body.classList.add('hascode');
+  // On the 4:3 Google size there isn't room for both, so the code replaces the supporting line.
+  if(v('size','google')==='google')document.getElementById('e5').style.display='none';document.getElementById('codeval').textContent=q.get('code').toUpperCase()}
 document.getElementById('tag').textContent=v('tagline','Home visit foot care');
 
 // Scattered "+" marks: the brand's signature motif. [x, y, size, opacity]
@@ -72,11 +93,40 @@ P.forEach((p,i)=>{const d=document.createElement('div');d.className='plus';d.id=
 // Animation for the video: render-promo.py calls setT(seconds) for each frame.
 window.setT=function(t){
   const ease=x=>1-Math.pow(1-Math.min(Math.max(x,0),1),3);
-  [[0.2,'e1'],[0.6,'e2'],[1.3,'e3'],[1.7,'e4'],[2.3,'e5'],[2.6,'e6']].forEach(([s,id])=>{
+  [[0.2,'e1'],[0.6,'e2'],[1.3,'e3'],[1.7,'e4'],[2.1,'e7'],[2.4,'e5'],[2.7,'e6']].forEach(([s,id])=>{
     const k=ease((t-s)/0.7),el=document.getElementById(id);
     el.style.setProperty('--o',k);el.style.setProperty('--y',(1-k)*30+'px')});
   P.forEach((p,i)=>{const k=ease((t-(0.1+i*0.12))/0.6),el=document.getElementById('p'+i);
     el.style.opacity=p[3]*k;
     el.style.transform=`translateY(${Math.sin(t*1.6+i)*6*k}px) scale(${0.4+0.6*k}) rotate(${(1-k)*90}deg)`});
 };
+
+// Festive extras (festive=1): Santa hats on the ten toes, and falling snow.
+// Toe boxes as fractions of the logo: [x, y, width, height], measured from the master SVG.
+const TOES=[[.1817,.1984,.0438,.1244],[.2255,.1362,.0429,.1257],[.2744,.0867,.0439,.1453],[.3251,.1008,.0447,.1441],[.3754,.1418,.0562,.1618],
+            [.4739,.2569,.0512,.1511],[.5258,.2063,.0436,.1288],[.5738,.1926,.0381,.1224],[.6181,.2171,.0354,.1056],[.6561,.2712,.0326,.0935]];
+const FLAKES=[];
+if(v('festive','0')==='1'){
+  document.body.classList.add('festive');
+  const NS='http://www.w3.org/2000/svg',hats=document.getElementById('hats');
+  const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);hats.appendChild(e);return e};
+  TOES.forEach(([x,y,w,h])=>{
+    const X=x*1000,Y=y*314,Wd=w*1000,Ht=h*314,cx=X+Wd/2,band=Y+Ht*0.22;
+    // Red cone flopping to the right, white fur band, white pom-pom.
+    el('path',{d:`M${X-Wd*0.05},${band} Q${cx-Wd*0.15},${Y-Ht*1.25} ${cx+Wd*0.8},${Y-Ht*0.85} Q${cx+Wd*0.3},${Y-Ht*0.35} ${X+Wd*1.05},${band} Z`,fill:'#C4473A'});
+    el('rect',{x:X-Wd*0.12,y:band-Ht*0.12,width:Wd*1.24,height:Ht*0.26,rx:Ht*0.13,fill:'#FFFFFF',stroke:'#3E5A4C','stroke-width':Wd*0.05});
+    el('circle',{cx:cx+Wd*0.8,cy:Y-Ht*0.85,r:Wd*0.2,fill:'#FFFFFF',stroke:'#3E5A4C','stroke-width':Wd*0.04});
+  });
+  // Seeded random so every render places the snow the same way.
+  let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const snow=document.getElementById('snow');
+  for(let i=0;i<46;i++){const d=document.createElement('div');d.className='flake';const sz=3+rnd()*7;
+    // Start flakes outside the text block so the still image stays clean.
+    let fx,fy;do{fx=rnd()*W;fy=rnd()*H}while(fx>W*.12&&fx<W*.88&&fy>H*.1&&fy<H*.97);
+    Object.assign(d.style,{width:sz+'px',height:sz+'px',left:fx+'px',top:fy+'px',opacity:.3+rnd()*.6});
+    snow.appendChild(d);FLAKES.push({d,x:parseFloat(d.style.left),y:parseFloat(d.style.top),sp:25+sz*9,ph:rnd()*6})}
+  const base=window.setT;
+  window.setT=function(t){base(t);FLAKES.forEach(f=>{const y=(f.y+t*f.sp)%(H+20)-10;
+    f.d.style.transform=`translate(${Math.sin(t*1.2+f.ph)*10}px,${y-f.y}px)`})};
+}
 </script></body></html>

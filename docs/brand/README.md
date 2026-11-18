@@ -95,6 +95,8 @@ Centred and stacked, with plenty of space around it:
 - Sizes: **Google** 1200×900 (4:3), **Facebook** 1080×1350 (4:5, takes up the most of the feed), **square** 1080×1080. Type scales up slightly on the taller sizes.
 - Google recommends 1200×900. Keep the important content in the centre, because Google crops thumbnails.
 - **Two themes.** *Light* (default): Off-white background, Charcoal and Sage headline, Sage Dark pill. *Dark*: Sage Deep background, white and Sage Light headline, Off-white pill with Sage Deep text, white logo. Use dark for seasonal or festive campaigns so they stand apart from the standard light posts.
+- **Coupon code** (`--code`): a dashed "ticket" under the pill, reading "Use code **CODE**". Show the code whenever the offer has one, so people can claim it from the image alone. On the 4:3 Google size the code replaces the supporting line.
+- **Festive extras** (`--festive`): Santa hats on the ten toes of the logo, a larger logo so the hats read, and snow that falls in the video. The still image keeps the snow at the edges, clear of the text. The hat red `#C4473A` is a seasonal exception to the palette. Use it for Christmas only.
 - One offer per graphic, in the pill, with the value in bold ("**£5 off**").
 - Don't show prices other than the offer value. Prices are on the website.
 
@@ -145,7 +147,7 @@ The template is `docs/brand/templates/promo-graphic.html`, and every text elemen
 pip install playwright && playwright install chromium   # once
 python docs/brand/templates/render-promo.py spring-feet \
   --eyebrow "Spring offer" --line1 "Spring into" --line2 "Happy Feet." \
-  --offer-bold "£5 off" --offer "your first home visit"
+  --offer-bold "£5 off" --offer "your first home visit" --code SPRING5
 ```
 
 This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--size facebook` (or `square`) for social posts, `--theme dark` for the dark version and `--no-video` for the image only. Needs ffmpeg for the video.
@@ -153,4 +155,4 @@ This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--size facebook` (
 ## Examples
 
 - `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, light theme, £5 off the first home visit, code NEWTOES.
-- `examples/step-into-christmas.png` / `.mp4`: December 2026 Google event, dark theme, £5 off the first home visit, code STEPINTO. Facebook version: `step-into-christmas-facebook.png` / `.mp4`.
+- `examples/step-into-christmas.png` / `.mp4`: December 2026 Google event, dark theme, £5 off the first home visit, code STEPINTO, festive. Facebook version: `step-into-christmas-facebook.png` / `.mp4`.
