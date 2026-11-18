@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight, CircleDot, Droplets, Footprints, HeartPulse, Layers, Scissors, type LucideIcon } from "lucide-react";
+import { ArrowRight, ChevronRight, CircleDashed, CircleDot, Droplets, Footprints, HeartPulse, Layers, Scissors, ShowerHead, Shrink, Target, type LucideIcon } from "lucide-react";
 
 import {
   homeCredentials,
@@ -156,9 +156,13 @@ function Proof() {
 const serviceIcons: Record<string, LucideIcon> = {
   "/services#toenail-cutting": Scissors,
   "/services#thickened-nails": Layers,
+  "/services#ingrown-toenails": Shrink,
+  "/services#fungal-nails": CircleDashed,
   "/services#corns": CircleDot,
   "/services#hard-skin": Footprints,
   "/services#cracked-heels": Droplets,
+  "/services#verrucas": Target,
+  "/services#athletes-foot": ShowerHead,
   "/services#foot-health-checks": HeartPulse,
 };
 

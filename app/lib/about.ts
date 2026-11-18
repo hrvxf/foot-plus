@@ -18,9 +18,13 @@ export const qualificationTerms = [
 export const withinScope = [
   "Toenail cutting",
   "Reducing thickened nails, where suitable",
+  "Ingrown toenail care, without surgery",
+  "Fungal nail care",
   "Hard skin and callus care",
   "Corn care",
   "Cracked heel care",
+  "Verruca care",
+  "Athlete’s foot care",
 ];
 
 /** Concerns that need another service. */
