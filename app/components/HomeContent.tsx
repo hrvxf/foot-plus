@@ -14,6 +14,8 @@ import { prices } from "../lib/site";
 import HomeMobileBar from "./home/HomeMobileBar";
 import PostcodeChecker from "./home/PostcodeChecker";
 import RotatingReview from "./home/RotatingReview";
+import Snowfall from "./home/Snowfall";
+import { ChristmasAvailability, SeasonalHelper } from "./home/ChristmasNotes";
 import Stars from "./reviews/Stars";
 import LgbtqFriendly from "./site/LgbtqFriendly";
 import { ClosingCheck, FaqList, LocationSummary, Steps } from "./site/blocks";
@@ -69,8 +71,9 @@ export default function HomeContent() {
 
 function Hero() {
   return (
-    <section aria-labelledby="home-heading">
-      <div className={`${shell} grid items-center gap-7 pb-10 pt-7 md:pb-14 md:pt-12 lg:grid-cols-12 lg:gap-12 lg:py-20`}>
+    <section aria-labelledby="home-heading" className="relative overflow-hidden">
+      <Snowfall />
+      <div className={`${shell} relative z-10 grid items-center gap-7 pb-10 pt-7 md:pb-14 md:pt-12 lg:grid-cols-12 lg:gap-12 lg:py-20`}>
         <div className="lg:col-span-7">
           <h1 id="home-heading" className={`${displayH1} max-w-[18ch]`}>
             Toenail cutting and routine foot care,{" "}
@@ -79,6 +82,7 @@ function Hero() {
           <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>
             Qualified Foot Health Practitioners in Bristol and Southampton.
           </p>
+          <ChristmasAvailability />
         </div>
 
         <div className="lg:col-span-5">
@@ -87,7 +91,9 @@ function Hero() {
             anchorId={HERO_CHECKER_ID}
             title="Do we visit you?"
             label="Postcode for the visit"
-            helper="Booking for a relative or someone you care for? Use their postcode."
+            helper={
+              <SeasonalHelper>Booking for a relative or someone you care for? Use their postcode.</SeasonalHelper>
+            }
           />
         </div>
       </div>
