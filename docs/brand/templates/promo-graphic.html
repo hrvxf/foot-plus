@@ -101,7 +101,7 @@ window.setT=function(t){
     el.style.transform=`translateY(${Math.sin(t*1.6+i)*6*k}px) scale(${0.4+0.6*k}) rotate(${(1-k)*90}deg)`});
 };
 
-// Festive extras (festive=1): Santa hats on the ten toes, and falling snow.
+// Festive extras (festive=1): Santa hats on the two big toes, and falling snow.
 // Toe boxes as fractions of the logo: [x, y, width, height], measured from the master SVG.
 const TOES=[[.1817,.1984,.0438,.1244],[.2255,.1362,.0429,.1257],[.2744,.0867,.0439,.1453],[.3251,.1008,.0447,.1441],[.3754,.1418,.0562,.1618],
             [.4739,.2569,.0512,.1511],[.5258,.2063,.0436,.1288],[.5738,.1926,.0381,.1224],[.6181,.2171,.0354,.1056],[.6561,.2712,.0326,.0935]];
@@ -110,7 +110,9 @@ if(v('festive','0')==='1'){
   document.body.classList.add('festive');
   const NS='http://www.w3.org/2000/svg',hats=document.getElementById('hats');
   const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);hats.appendChild(e);return e};
-  TOES.forEach(([x,y,w,h])=>{
+  // Only the big toe of each foot gets a hat. More than two looks busy.
+  const HAT_TOES=[4,5];
+  HAT_TOES.map(i=>TOES[i]).forEach(([x,y,w,h])=>{
     const X=x*1000,Y=y*314,Wd=w*1000,Ht=h*314,cx=X+Wd/2,band=Y+Ht*0.22;
     // Red cone flopping to the right, white fur band, white pom-pom.
     el('path',{d:`M${X-Wd*0.05},${band} Q${cx-Wd*0.15},${Y-Ht*1.25} ${cx+Wd*0.8},${Y-Ht*0.85} Q${cx+Wd*0.3},${Y-Ht*0.35} ${X+Wd*1.05},${band} Z`,fill:'#C4473A'});
