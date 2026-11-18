@@ -13,7 +13,7 @@ export const christmas = {
   snow: { from: "2026-12-01", to: "2027-01-06" },
   /** "Last visits / back from" note in the home hero. Ends the day before visits resume. */
   availability: { from: "2026-12-01", to: "2026-12-28" },
-  availabilityText: "Christmas: last visits Wednesday 23 December, back Tuesday 29 December.",,
+  availabilityText: "Christmas: last visits Wednesday 23 December, back Tuesday 29 December.",
   /** Seasonal version of the hero checker's helper line. */
   helper: { from: "2026-12-01", to: "2026-12-23" },
   helperText: "Visiting family this Christmas? Book a visit for Mum or Dad using their postcode.",
