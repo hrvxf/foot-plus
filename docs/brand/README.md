@@ -155,5 +155,5 @@ This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--size facebook` (
 
 ## Examples
 
-- `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, light theme, £5 off the first home visit, code NEWTOES.
+- `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, light theme, £5 off the first home visit, code NEWTOES shown on the graphic. Facebook version: `new-year-new-toes-facebook.png` / `.mp4`.
 - `examples/step-into-christmas.png` / `.mp4`: December 2026 Google event, dark theme, £5 off the first home visit, code STEPINTO, festive. Facebook version: `step-into-christmas-facebook.png` / `.mp4`.
