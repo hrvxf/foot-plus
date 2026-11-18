@@ -27,7 +27,10 @@ type FormState = {
   appointmentDetails: string;
   accessNotes: string;
   heardAboutUs: string;
+  promoCode: string;
 };
+
+const normalisePromoCode = (value: string) => value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 30);
 
 const fieldClass =
   "w-full rounded-xl border border-brand-sageLight/40 bg-brand-offwhite/35 px-4 py-3 text-sm text-brand-charcoal transition focus:border-brand-sage focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
@@ -49,6 +52,8 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
     appointmentDetails: "",
     accessNotes: "",
     heardAboutUs: "",
+    // A link such as /book?promo=NEWTOES fills the code in for the patient.
+    promoCode: normalisePromoCode(searchParams.get("promo") ?? ""),
   });
 
   const missingRequired = useMemo(
@@ -83,6 +88,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
     setIsSubmitting(true);
 
     try {
+      const promoCode = normalisePromoCode(data.promoCode);
       const messageLines = [
         `Service location: ${data.location}`,
         `Postcode: ${postcodeValidation.postcode}`,
@@ -91,6 +97,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
         `Appointment details: ${data.appointmentDetails}`,
         `Mobility or access requirements: ${data.accessNotes || "None provided"}`,
         `Heard about us: ${data.heardAboutUs || "Not provided"}`,
+        `Promo code: ${promoCode || "None"}`,
       ];
 
       const response = await fetch("/api/contact", {
@@ -101,6 +108,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
           email: data.email,
           location: data.location,
           postcode: postcodeValidation.postcode,
+          promoCode,
           message: messageLines.join("\n"),
         }),
       });
@@ -117,6 +125,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
         service_location: data.location.toLowerCase(),
         service_interest: data.appointmentType === "Nail Care" ? "nail_care" : "routine_foot_care",
         lead_type: "appointment_enquiry",
+        promo_code: promoCode || "none",
       });
     } catch {
       setError("Something went wrong. Please try again or contact us directly.");
@@ -338,6 +347,23 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
           className={fieldClass}
           value={data.heardAboutUs}
           onChange={(event) => update("heardAboutUs", event.target.value)}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="promo-code" className="mb-1.5 block text-sm font-medium text-brand-charcoal">
+          Promo code (optional)
+        </label>
+        <input
+          id="promo-code"
+          className={`${fieldClass} uppercase`}
+          autoComplete="off"
+          autoCapitalize="characters"
+          spellCheck={false}
+          maxLength={30}
+          value={data.promoCode}
+          onChange={(event) => update("promoCode", event.target.value)}
+          onBlur={() => update("promoCode", normalisePromoCode(data.promoCode))}
         />
       </div>
 

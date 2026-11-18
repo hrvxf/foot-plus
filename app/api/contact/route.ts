@@ -116,7 +116,8 @@ export async function POST(req: Request) {
     }
 
     const resend = new Resend(apiKey);
-    const { name, email, message, location, postcode } = await req.json();
+    const { name, email, message, location, postcode, promoCode } = await req.json();
+    const promo = String(promoCode ?? "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 30);
 
     if (!name || !email || !message || !postcode || !isEnquiryLocation(location)) {
       return new Response(JSON.stringify({ error: "Missing or invalid fields" }), {
@@ -142,7 +143,7 @@ export async function POST(req: Request) {
     const to = locationRecipients[location];
     const from = `Foot+ Contact <${emailDisplay}>`;
     const enquiryType = "appointment enquiry";
-    const subject = `New Foot+ ${location} ${enquiryType}: ${String(name).trim()}`;
+    const subject = `New Foot+ ${location} ${enquiryType}: ${String(name).trim()}${promo ? ` [Promo: ${promo}]` : ""}`;
 
     const html = `
       <div style="background:#0f1a16;padding:28px 16px;">
@@ -170,6 +171,15 @@ export async function POST(req: Request) {
               </div>
             </div>
 
+            ${
+              promo
+                ? `<div style="background:#6C917B;border-radius:14px;padding:12px 14px;margin-bottom:14px;">
+              <div style="font-size:12px;opacity:0.85;margin-bottom:4px;">Promo code</div>
+              <div style="font-size:18px;font-weight:700;letter-spacing:0.06em;">${promo}</div>
+            </div>`
+                : ""
+            }
+
             <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:14px;">
               <div style="font-size:12px;opacity:0.75;margin-bottom:6px;">Message</div>
               <div style="font-size:15px;line-height:1.55;">${safeMessage}</div>
@@ -193,7 +203,7 @@ export async function POST(req: Request) {
       replyTo,
       subject,
       html,
-      text: `Location: ${location}\nPostcode: ${postcodeValidation.postcode}\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
+      text: `Location: ${location}\n${promo ? `Promo code: ${promo}\n` : ""}Postcode: ${postcodeValidation.postcode}\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
     });
 
     if (error) {
