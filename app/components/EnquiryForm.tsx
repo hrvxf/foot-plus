@@ -170,7 +170,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
             >
               Complete patient form
             </a>
-            <p className="mt-3 text-sm text-brand-charcoal/60">We&rsquo;ve emailed you this link too.</p>
+            <p className="mt-3 text-sm text-brand-charcoal/60">Once it&rsquo;s done, you&rsquo;re all set. Our email includes the link in case you&rsquo;d rather do it later.</p>
           </div>
         ) : null}
       </div>

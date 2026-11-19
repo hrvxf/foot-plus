@@ -39,7 +39,10 @@ async function sendPatientConfirmation(
 
   const formBlockHtml = formUrl
     ? `
-      <p style="margin:0 0 8px;font-size:18px;font-weight:700;color:#18372d;">One more step: your patient form</p>
+      <p style="margin:0 0 20px;font-size:17px;line-height:1.6;background:#eef3ef;border-radius:12px;padding:14px 16px;">
+        <strong>Already filled in your patient form on our website?</strong> You're all set. We have it, so there's no need to do it again.
+      </p>
+      <p style="margin:0 0 8px;font-size:18px;font-weight:700;color:#18372d;">Haven't done it yet?</p>
       <p style="margin:0 0 20px;font-size:17px;line-height:1.6;">
         New patients only. It takes about 5 minutes.
       </p>
@@ -80,7 +83,9 @@ async function sendPatientConfirmation(
     "",
     ...(formUrl
       ? [
-          "One more step for new patients: your patient form (about 5 minutes):",
+          "Already filled in your patient form on our website? You're all set. We have it, so there's no need to do it again.",
+          "",
+          "Haven't done it yet? New patients only, about 5 minutes:",
           formUrl,
           "",
           "No need to enquire again. A relative or carer can help.",
@@ -94,9 +99,7 @@ async function sendPatientConfirmation(
     from: from.replace("Foot+ Contact", `Foot+ ${location}`),
     to,
     replyTo: locationRecipients[location],
-    subject: formUrl
-      ? "We've received your Foot+ enquiry: one more step"
-      : "We've received your Foot+ enquiry",
+    subject: "We've received your Foot+ enquiry",
     html,
     text,
   });

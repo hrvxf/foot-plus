@@ -144,6 +144,9 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
           </a>
           . A relative or carer can also fill it in for you.
         </p>
+        <p className="mt-3">
+          Already submitted this form? You&rsquo;re all set. There&rsquo;s no need to do it again.
+        </p>
         <p className="mt-3 text-sm">
           Not in Bristol?{" "}
           <Link
