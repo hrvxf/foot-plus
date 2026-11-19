@@ -59,13 +59,22 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
   bristol: {
     label: "Bristol",
     enabled: true,
-    rating: { average: 5.0, count: 8 },
+    rating: { average: 5.0, count: 9 },
     checked: "2026-11-19",
     readUrl: "https://maps.google.com/maps?cid=6111773793229409736",
     writeUrl: "https://search.google.com/local/writereview?placeid=ChIJocFh7_g3GqERyA37JOJh0VQ",
     // Sheena B. (Jul 2026) is deliberately left out until she has agreed to it
     // being used here, as it mentions her son's disability.
     reviews: [
+      {
+        // Posted by Jay on behalf of their mum.
+        name: "Jay T.",
+        month: "2026-11",
+        rating: 5,
+        text: "We cannot recommend Adam highly enough! He provides a wonderful home foot care service for my mum, and from the very first visit, his friendly, caring and professional approach has really stood out. Adam is incredibly kind, patient and attentive, always taking the time to make sure Mum feels comfortable, listened to and well looked after. It is clear that her wellbeing is genuinely at the heart of everything he does, and he goes above and beyond to provide a service that is not only professional but also personal and reassuring. Having someone you can trust to care for a loved one is so important, and Adam certainly provides that peace of mind. His warm nature and genuine compassion makes all the difference. We are so grateful for the care he provides and would wholeheartedly recommend his services to anyone looking for friendly, reliable and compassionate foot care in the comfort of their own home. Thank you, Adam, for the wonderful work you do!",
+        excerpt: "… Having someone you can trust to care for a loved one is so important, and Adam certainly provides that peace of mind. …",
+        highlight: "peace of mind",
+      },
       {
         name: "Sara C.",
         month: "2026-08",
