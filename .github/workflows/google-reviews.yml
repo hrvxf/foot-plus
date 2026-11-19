@@ -1,0 +1,108 @@
+# Daily Google reviews sync. See the notes at the top of app/lib/reviews.ts.
+#
+# 1. Rating (count and average): committed straight to main, so the live site updates.
+# 2. New review text: drafted into a pull request on `bot/new-google-reviews` to approve.
+# 3. Count went up but Google's feed of 5 doesn't include the new review: opens an issue.
+#
+# Needs the repository secret GOOGLE_PLACES_API_KEY, and Settings → Actions → General →
+# "Allow GitHub Actions to create and approve pull requests" switched on.
+
+name: Google reviews sync
+
+on:
+  schedule:
+    - cron: "17 7 * * *" # daily, 07:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: google-reviews
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
+      SYNC_SUMMARY: ${{ runner.temp }}/summary.md
+      BRANCH: bot/new-google-reviews
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update rating
+        id: rating
+        run: node scripts/sync-google-reviews.mjs rating
+
+      - name: Publish rating
+        if: steps.rating.outputs.changed == 'true'
+        run: |
+          git add app/lib/reviews.ts
+          git commit -m "Update Google rating" -m "$(cat "$SYNC_SUMMARY")"
+          git push origin main
+
+      - name: Flag a review missing from Google's feed
+        if: steps.rating.outputs.missing == 'true'
+        run: |
+          title="New Google review to add by hand"
+          if [ -z "$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[].number')" ]; then
+            {
+              echo "The rating on the site has been updated, but Google only shares 5 reviews per place and the new one isn't among them."
+              echo
+              cat "$SYNC_SUMMARY"
+              echo
+              echo "Copy the review from Google and add it to \`app/lib/reviews.ts\`, then close this issue."
+            } > "$RUNNER_TEMP/issue.md"
+            gh issue create --title "$title" --body-file "$RUNNER_TEMP/issue.md"
+          fi
+
+      - name: Draft new reviews
+        id: reviews
+        run: node scripts/sync-google-reviews.mjs reviews
+
+      - name: Open or update the pull request
+        if: steps.reviews.outputs.changed == 'true'
+        run: |
+          git checkout -B "$BRANCH"
+          git add app/lib/reviews.ts
+          git commit -m "Add new Google reviews" -m "$(cat "$SYNC_SUMMARY")"
+
+          # Skip the push if the open branch already has exactly these changes.
+          if git fetch origin "$BRANCH" 2>/dev/null && git diff --quiet "origin/$BRANCH" HEAD; then
+            echo "Pull request is already up to date."
+            exit 0
+          fi
+          git push --force origin "$BRANCH"
+
+          {
+            echo "New Google reviews, copied word for word. Merge to put them on the site."
+            echo
+            cat "$SYNC_SUMMARY"
+            echo
+            echo "Before merging:"
+            echo "- Anything marked ⚠️ mentions a protected title: trim that part with \"…\" (the build fails until you do)."
+            echo "- Leave out anything sharing someone's health details without their agreement: close this, and add the name to \`notShown\` in \`app/lib/reviews.ts\`."
+            echo "- Optional: add an \`excerpt\` and \`highlight\`, or move the review up or down the list."
+          } > "$RUNNER_TEMP/pr.md"
+
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create --base main --head "$BRANCH" --title "New Google reviews" --body-file "$RUNNER_TEMP/pr.md"
+          else
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/pr.md"
+          fi

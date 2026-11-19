@@ -20,6 +20,12 @@
 //
 // Switching a location on: set `enabled: true`. Wait until it has about three
 // reviews; "1 Google review" can look weaker than no rating at all.
+//
+// Automatic sync (.github/workflows/google-reviews.yml, runs daily):
+// - The rating (count and average) is updated straight on the live site.
+// - New Google reviews are drafted into a pull request for approval; nothing is
+//   quoted on the site until that is merged.
+// - To stop a review being suggested again, add the name to `notShown`.
 
 export type Review = {
   name: string;
@@ -46,6 +52,10 @@ export type ReviewScope = ReviewLocation | "all";
 type LocationReviews = {
   label: string;
   enabled: boolean;
+  /** Google place ID, used by the daily sync. Empty skips this location. */
+  placeId: string;
+  /** Google reviews deliberately not quoted here (name as shown), so the sync skips them. */
+  notShown: string[];
   rating: { average: number; count: number };
   /** When the count and average were last checked against Google. */
   checked: string;
@@ -59,6 +69,8 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
   bristol: {
     label: "Bristol",
     enabled: true,
+    placeId: "ChIJocFh7_g3GqERyA37JOJh0VQ",
+    notShown: ["Sheena B."],
     rating: { average: 5.0, count: 9 },
     checked: "2026-11-19",
     readUrl: "https://maps.google.com/maps?cid=6111773793229409736",
@@ -138,6 +150,9 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
   southampton: {
     label: "Southampton",
     enabled: false,
+    // Add Foot+ Southampton's place ID to include it in the daily sync.
+    placeId: "",
+    notShown: [],
     rating: { average: 0, count: 0 },
     checked: "2026-11-11",
     // Add Foot+ Southampton's Google profile and review links when it has a listing.
