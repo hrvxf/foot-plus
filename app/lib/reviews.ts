@@ -59,8 +59,8 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
   bristol: {
     label: "Bristol",
     enabled: true,
-    rating: { average: 5.0, count: 7 },
-    checked: "2026-11-11",
+    rating: { average: 5.0, count: 8 },
+    checked: "2026-11-19",
     readUrl: "https://maps.google.com/maps?cid=6111773793229409736",
     writeUrl: "https://search.google.com/local/writereview?placeid=ChIJocFh7_g3GqERyA37JOJh0VQ",
     // Sheena B. (Jul 2026) is deliberately left out until she has agreed to it
@@ -73,6 +73,15 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
         text: "Adam has been really helpful and dedicated, sorting my elderly Father in Laws feet out. He is very patient and kind and I would highly recommend him.",
         excerpt: "… He is very patient and kind and I would highly recommend him.",
         highlight: "very patient and kind",
+      },
+      {
+        // Posted by Donna on behalf of her dad, a client without a Google account.
+        name: "Donna W.",
+        month: "2026-11",
+        rating: 5,
+        text: "This is on behalf of my dad Roger Willcox who is a client of Adam's. (My dad doesn't have a Google account). My dad would like to say he has found Adam to be friendly, helpful, courteous & always up for a chat. He is always on time. He knows his job. Nothing is too much trouble for him. My dad is very happy with the service Adam provides & would highly recommend him to anyone. His feet have never looked so good!",
+        excerpt: "… My dad is very happy with the service Adam provides & would highly recommend him to anyone. His feet have never looked so good!",
+        highlight: "His feet have never looked so good!",
       },
       {
         name: "Helen R.",
