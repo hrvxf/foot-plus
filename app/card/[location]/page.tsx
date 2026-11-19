@@ -11,7 +11,8 @@ import {
 } from "../../components/site/ContactIcons";
 import { portraits } from "../../components/site/blocks";
 import { serviceLocations, type ServiceLocation } from "../../lib/locations";
-import { getWriteReviewUrl } from "../../lib/reviews";
+import RotatingReview from "../../components/home/RotatingReview";
+import { formatReviewMonth, getReviews, getWriteReviewUrl } from "../../lib/reviews";
 
 // Second step of the appointment card QR code (see ../page.tsx). It carries on
 // from the full-screen green chooser: the review comes first, as the one solid
@@ -61,6 +62,13 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
   const actions = contactActions[location.slug]({ analyticsPrefix });
   const practitioner = location.practitioner;
   const firstName = practitioner?.name.split(" ")[0];
+  // This location's own reviews only, cycling like the home page. Shows nothing
+  // until the location's reviews are switched on in lib/reviews.ts.
+  const reviews = getReviews(location.slug, Infinity).map((item) => ({
+    quote: item.excerpt ?? item.text,
+    name: item.name,
+    month: formatReviewMonth(item.month),
+  }));
 
   return (
     <section
@@ -148,6 +156,13 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
             ))}
           </ul>
         </div>
+
+        {reviews.length ? (
+          <div className="mt-9 border-t border-white/25 pt-8">
+            <h2 className="sr-only">What people say</h2>
+            <RotatingReview items={reviews} tone="dark" />
+          </div>
+        ) : null}
       </div>
 
       <nav aria-label="More" className="mx-auto flex flex-wrap justify-center gap-x-6">
