@@ -16,17 +16,7 @@ const INTERVAL_MS = 7000;
  * has a pause button (needed for anything that moves on its own for more than
  * five seconds), and stays on the first quote for people who prefer reduced motion.
  */
-export default function RotatingReview({
-  items,
-  className,
-  tone = "light",
-}: {
-  items: RotatingReviewItem[];
-  className?: string;
-  /** "dark" for white text on the green full-screen pages (e.g. /card). */
-  tone?: "light" | "dark";
-}) {
-  const dark = tone === "dark";
+export default function RotatingReview({ items, className }: { items: RotatingReviewItem[]; className?: string }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [held, setHeld] = useState(false);
@@ -69,14 +59,10 @@ export default function RotatingReview({
                 shown ? "opacity-100" : "invisible opacity-0"
               }`}
             >
-              <blockquote
-                className={`font-heading font-semibold leading-[1.4] ${
-                  dark ? "text-lg text-white md:text-xl" : "text-xl text-brand-sageDeep md:text-[1.375rem]"
-                }`}
-              >
+              <blockquote className="font-heading text-xl font-semibold leading-[1.4] text-brand-sageDeep md:text-[1.375rem]">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
-              <figcaption className={`${dark ? "text-base leading-6 text-white/75" : supporting} mt-2`}>
+              <figcaption className={`${supporting} mt-2`}>
                 {item.name}, {item.month}, on Google
               </figcaption>
             </figure>
@@ -85,16 +71,12 @@ export default function RotatingReview({
       </div>
 
       {rotating ? (
-        <div className={`mt-3 flex items-center gap-3 ${dark ? "justify-center" : ""}`}>
+        <div className="mt-3 flex items-center gap-3">
           <button
             type="button"
             onClick={() => setPaused((value) => !value)}
             aria-label={paused ? "Play reviews" : "Pause reviews"}
-            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${
-              dark
-                ? "border-white/45 text-white hover:border-white focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white"
-                : `border-brand-charcoal/20 text-brand-sageDeep hover:border-brand-sageDeep ${focusRing}`
-            }`}
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-charcoal/20 text-brand-sageDeep hover:border-brand-sageDeep ${focusRing}`}
           >
             {paused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
           </button>
@@ -103,9 +85,7 @@ export default function RotatingReview({
               <span
                 key={item.name + item.month}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  index === active
-                    ? `w-5 ${dark ? "bg-white" : "bg-brand-sageDeep"}`
-                    : `w-1.5 ${dark ? "bg-white/35" : "bg-brand-charcoal/25"}`
+                  index === active ? "w-5 bg-brand-sageDeep" : "w-1.5 bg-brand-charcoal/25"
                 }`}
               />
             ))}
