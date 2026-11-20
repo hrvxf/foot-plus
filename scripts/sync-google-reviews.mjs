@@ -2,8 +2,10 @@
 //
 // Updates each location's `rating` (count and average) and `checked` date from
 // Google, for every location with a `placeId`. A location with no `placeId` but a
-// `placeName` is looked up by that exact name first, and its ID saved. Review
-// text is still added by hand.
+// `placeName` is looked up by name first, and its ID saved. If its `writeUrl` is a
+// g.page review link, only the listing that link points to is accepted (the link
+// and the place ID both contain the listing's number), so a similar name can't
+// be picked by mistake. Review text is still added by hand.
 //
 // Needs GOOGLE_PLACES_API_KEY. Sets `changed=true|false` in $GITHUB_OUTPUT.
 
@@ -41,8 +43,25 @@ async function fetchRating(placeId) {
 
 const normalise = (s) => s.toLowerCase().replace(/\s+/g, " ").trim();
 
-/** The place ID of the one listing named exactly `name`, or null. */
-async function findPlaceId(name) {
+/** The listing number in a g.page/r/<code>/review link, or null. */
+function listingFromReviewLink(url) {
+  const code = url.match(/g\.page\/r\/([\w-]+)/)?.[1];
+  if (!code) return null;
+  const bytes = Buffer.from(code, "base64url");
+  return bytes[0] === 0x09 && bytes.length >= 9 ? bytes.readBigUInt64LE(1) : null;
+}
+
+/** The listing number in a "ChIJ…" place ID, or null. */
+function listingFromPlaceId(id) {
+  const bytes = Buffer.from(id, "base64url");
+  return bytes[0] === 0x0a && bytes[11] === 0x11 && bytes.length >= 20 ? bytes.readBigUInt64LE(12) : null;
+}
+
+/**
+ * The place ID for `name`: the result matching `listing` if given, otherwise the
+ * one result named exactly `name`. Null if there isn't one.
+ */
+async function findPlaceId(name, listing) {
   const res = await fetch("https://places.googleapis.com/v1/places:searchText", {
     method: "POST",
     headers: {
@@ -53,8 +72,10 @@ async function findPlaceId(name) {
     body: JSON.stringify({ textQuery: name, regionCode: "GB" }),
   });
   if (!res.ok) throw new Error(`Places search ${res.status} for "${name}": ${await res.text()}`);
-  const matches = ((await res.json()).places ?? []).filter(
-    (place) => normalise(place.displayName?.text ?? "") === normalise(name)
+  const matches = ((await res.json()).places ?? []).filter((place) =>
+    listing
+      ? listingFromPlaceId(place.id) === listing
+      : normalise(place.displayName?.text ?? "") === normalise(name)
   );
   return matches.length === 1 ? matches[0].id : null;
 }
@@ -71,9 +92,14 @@ for (const block of locationBlocks(source).reverse()) {
   if (!placeId) {
     const name = text.match(/placeName: "([^"]*)"/)?.[1];
     if (!name) continue;
-    placeId = await findPlaceId(name);
+    const listing = listingFromReviewLink(text.match(/writeUrl: "([^"]*)"/)?.[1] ?? "");
+    placeId = await findPlaceId(name, listing);
     if (!placeId) {
-      console.log(`${label}: no single Google listing named "${name}" yet.`);
+      console.log(
+        listing
+          ? `${label}: the listing in its review link isn't in Google's search results for "${name}" yet.`
+          : `${label}: no single Google listing named "${name}" yet.`
+      );
       continue;
     }
     text = text.replace(/placeId: ""/, `placeId: "${placeId}"`);
