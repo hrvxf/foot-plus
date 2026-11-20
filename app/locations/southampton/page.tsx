@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import MeetIntro from "../../components/location/MeetIntro";
+import FaqFlipDeck from "../../components/location/FaqFlipDeck";
+import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
@@ -9,8 +11,7 @@ import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
 import VisitChat from "../../components/location/VisitChat";
-import { ClosingBand, FaqList, portraits } from "../../components/site/blocks";
-import { displayH2, shell } from "../../components/site/ui";
+import { ClosingBand, portraits } from "../../components/site/blocks";
 
 // Mirrors app/locations/bristol/page.tsx section for section. Keep the two in step:
 // only location details (names, coverage, contacts, partners) should differ.
@@ -29,22 +30,6 @@ export const metadata: Metadata = {
   },
 };
 
-const section = "py-12 md:py-20";
-
-const faqs = [
-  {
-    question: "Which parts of Southampton does Foot+ cover?",
-    answer: "Foot+ covers Southampton and nearby, including Romsey, Chandler's Ford, North Baddesley and Totton, with exact coverage confirmed from the appointment postcode.",
-  },
-  {
-    question: "Can a relative or carer arrange the appointment?",
-    answer: "Yes. A relative, carer or support worker can enquire or help coordinate the visit, with appropriate consent from the person receiving care.",
-  },
-  {
-    question: "What if my concern needs podiatry or medical care?",
-    answer: "Foot+ will explain when a concern appears outside routine foot-health scope and advise seeking an appropriate podiatry, GP, urgent or emergency service.",
-  },
-];
 
 export default function SouthamptonLocationPage() {
   const location = serviceLocations.southampton;
@@ -67,7 +52,7 @@ export default function SouthamptonLocationPage() {
 
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: locationFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <MeetIntro
         status="Appointments available"
@@ -91,14 +76,7 @@ export default function SouthamptonLocationPage() {
 
       <PartnersStrip id="southampton-partners" location="southampton" />
 
-      <section className={section} aria-labelledby="southampton-faqs">
-        <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>
-          <h2 id="southampton-faqs" className={`${displayH2} md:col-span-4`}>
-            Questions about Foot+ Southampton
-          </h2>
-          <FaqList faqs={faqs} className="md:col-span-8" />
-        </div>
-      </section>
+      <FaqFlipDeck id="southampton-faqs" />
 
       <ClosingBand
         id="southampton-closing"
