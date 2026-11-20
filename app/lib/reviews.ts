@@ -52,6 +52,11 @@ type LocationReviews = {
   enabled: boolean;
   /** Google place ID, used by the daily sync. Empty skips this location. */
   placeId: string;
+  /**
+   * Exact Google listing name. If `placeId` is empty, the daily sync looks the
+   * listing up by this name and fills `placeId` in.
+   */
+  placeName?: string;
   rating: { average: number; count: number };
   /** When the count and average were last checked against Google. */
   checked: string;
@@ -145,8 +150,9 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
   southampton: {
     label: "Southampton",
     enabled: false,
-    // Add Foot+ Southampton's place ID to include it in the daily sync.
+    // Filled in by the daily sync from `placeName`.
     placeId: "",
+    placeName: "Foot+ Southampton",
     rating: { average: 0, count: 0 },
     checked: "2026-11-11",
     // Add Foot+ Southampton's Google profile and review links when it has a listing.
