@@ -8,7 +8,8 @@ import Snowfall from "./Snowfall";
 
 const lines = ["No waiting rooms.", "No travelling.", "No rushing."];
 const last = "Just good foot care, at home.";
-const HEADER = 64;
+// Height of the floating pill header on phones (12px + 60px pill + 12px).
+const HEADER = 84;
 const SCREENS = 3;
 
 /**
@@ -71,13 +72,13 @@ export default function StatementHero() {
   const line = "block font-heading text-[2.875rem] font-semibold leading-[1.04] tracking-[-0.03em] transition-colors duration-500 md:text-7xl";
 
   return (
-    <section aria-labelledby="home-heading" className="relative">
+    <section aria-labelledby="home-heading" className="relative" data-page-hero>
       <h1 id="home-heading" className="sr-only">
         Toenail cutting and routine foot care, in your own home, in Bristol and Southampton.
       </h1>
       <div ref={track} style={pinned && height ? { height: SCREENS * (height - HEADER) } : undefined}>
         <div
-          className={`relative overflow-hidden ${pinned ? "sticky top-16 flex flex-col justify-center" : "py-20 md:py-28"}`}
+          className={`relative overflow-hidden ${pinned ? "sticky top-[84px] flex flex-col justify-center" : "py-20 md:py-28"}`}
           style={pinned && height ? { height: height - HEADER } : undefined}
         >
           <Snowfall />

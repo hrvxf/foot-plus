@@ -28,15 +28,28 @@ export default function Header() {
   // The patient forms page keeps one direct number for help. Every other call
   // button goes through CallButton, which asks Bristol or Southampton on shared pages.
   const { href: phoneHref } = phoneForPath(pathname);
-  const [scrollY, setScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
+    const onScroll = () => {
+      // Small threshold stops iOS "bounce at 0px" flicker.
+      setIsScrolled(window.scrollY > 8);
+      // Shrink only once the page's hero (the home statement, the location intro)
+      // has fully scrolled away under the header. Other pages: after a short scroll.
+      const hero = document.querySelector("[data-page-hero]");
+      const headerBottom = document.querySelector("header")?.getBoundingClientRect().bottom ?? 84;
+      setIsPastHero(hero ? hero.getBoundingClientRect().bottom <= headerBottom : window.scrollY > 40);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -68,9 +81,8 @@ export default function Header() {
   const isPatientFormPage = pathname.startsWith("/forms");
 
   const close = () => setIsMenuOpen(false);
-  // Small thresholds stop iOS "bounce at 0px" flicker.
-  const isGlass = scrollY > 8 && !isMenuOpen;
-  const isSmall = scrollY > 40;
+  const isGlass = isScrolled && !isMenuOpen;
+  const isSmall = isPastHero;
 
   const round = `inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${focusRing}`;
   const pillButton = `inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-brand-sageDark px-5 text-base font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep ${focusRing}`;
