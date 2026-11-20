@@ -36,11 +36,14 @@ export default function Header() {
     const onScroll = () => {
       // Small threshold stops iOS "bounce at 0px" flicker.
       setIsScrolled(window.scrollY > 8);
-      // Shrink only once the page's hero (the home statement, the location intro)
-      // has fully scrolled away under the header. Other pages: after a short scroll.
-      const hero = document.querySelector("[data-page-hero]");
+      // Shrink once the page's hero has finished: its pinned stage (the home
+      // statement, the location intro) is released and starts to scroll up.
+      // Pages without one shrink after a short scroll.
+      const stage = document.querySelector("[data-page-hero] [data-hero-stage]");
       const headerBottom = document.querySelector("header")?.getBoundingClientRect().bottom ?? 84;
-      setIsPastHero(hero ? hero.getBoundingClientRect().bottom <= headerBottom : window.scrollY > 40);
+      setIsPastHero(
+        window.scrollY > 40 && (stage ? stage.getBoundingClientRect().top < headerBottom - 1 : true),
+      );
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
