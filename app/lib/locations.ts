@@ -7,6 +7,8 @@ export type Practitioner = {
   bio: string[];
   /** First-person introduction for the location page's "meet" card. Leave out until written. */
   intro?: string;
+  /** Adds "Fully insured" to the qualifications line on the location page. */
+  insured?: boolean;
 };
 
 export type ServiceLocation = {
@@ -38,6 +40,7 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
       credentials: ["BA (Hons)", "Dip FH", "MCFHP", "MAFHP"],
       imageSrc: "/images/adam-james-hero.webp",
       imageAlt: "Portrait of Adam James, Foot+ Bristol foot health practitioner.",
+      insured: true,
       intro:
         "I’ve spent over six years in healthcare and rehabilitation. My visits are unhurried, friendly and in the comfort of your own home.",
       bio: [
@@ -62,6 +65,9 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
       credentials: ["BSc", "Dip FH", "MCFHP", "MAFHP"],
       imageSrc: "/images/katie.jpeg",
       imageAlt: "Portrait of Katie Preston, Foot+ Southampton foot health practitioner.",
+      // Draft from what the site already says about Southampton; confirm the wording with Katie.
+      intro:
+        "I visit homes across Southampton and nearby, including Romsey, Chandler’s Ford and Totton. My visits are unhurried, friendly and in the comfort of your own home.",
       bio: [],
     },
   },
