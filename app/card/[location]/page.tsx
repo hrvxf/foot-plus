@@ -115,7 +115,11 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
           data-analytics-id={`${analyticsPrefix}-location-page`}
           className={`mx-auto block rounded-sm ${focus}`}
         >
+          {/* The entry animation lands its logo on the wordmark part of this lockup
+              (see EntryAnimation): the box is the wordmark's place in the SVG's viewBox. */}
           <Image
+            data-intro-target
+            data-logo-box="0.1342 0.04304 0.78247 0.70665"
             src={lockups[location.slug]}
             alt=""
             width={147}

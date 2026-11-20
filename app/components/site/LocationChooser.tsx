@@ -47,6 +47,7 @@ export default function LocationChooser({
             <span
               role="img"
               aria-label="Foot+"
+              data-intro-target
               className="inline-block h-[1em] w-[3.19em] translate-y-[0.14em] bg-white [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_center/contain_no-repeat]"
             />
           </Link>

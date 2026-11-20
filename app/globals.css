@@ -145,9 +145,19 @@ html[data-intro] .entry-animation {
   animation: entry-failsafe-hide 1ms linear 8s forwards;
 }
 
-html[data-intro] [data-header-logo] {
+html[data-intro] [data-header-logo],
+html[data-intro] [data-intro-target] {
   visibility: hidden;
   animation: entry-failsafe-show 1ms linear 8s forwards;
+}
+
+/* On the full-screen green pages the intro plays white on green, to match them. */
+body:has([data-fullscreen-page]) .entry-animation-backdrop {
+  background-color: #34503f;
+}
+
+body:has([data-fullscreen-page]) .entry-animation-logo {
+  color: #ffffff;
 }
 
 @keyframes entry-failsafe-hide {
