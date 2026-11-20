@@ -8,7 +8,13 @@ import {
 
 export type AdviceLink = { href: string; label: string; kind?: "service" | "article" | "book" | "pricing" | "areas" | "about" | "forms" };
 export type AdviceSubsection = { heading: string; body?: string[]; list?: string[]; afterList?: string[] };
-export type AdviceSection = { heading: string; body: string[]; list?: string[]; subsections?: AdviceSubsection[]; links?: AdviceLink[] };
+export type AdviceSection = {
+  heading: string; body: string[]; list?: string[]; subsections?: AdviceSubsection[]; links?: AdviceLink[];
+  /** Short label for the article's "jump to" bar. Defaults to the heading. */
+  navLabel?: string;
+  /** "warning" marks safety sections (who shouldn't, when to get help) in amber. */
+  tone?: "warning";
+};
 export type AdviceArticle = {
   slug: string; title: string; shortTitle: string; seoTitle?: string; description: string; category: string; authorId: "adam-james";
   datePublished: string; dateModified: string; isPublished: boolean; approvalStatus: "approved" | "awaiting_adam_confirmation"; readingTime: string; wordCount: number;
@@ -309,60 +315,61 @@ export const adviceArticles: AdviceArticle[] = [
   "category": "Nail care",
   "authorId": "adam-james",
   "datePublished": "2026-10-07",
-  "dateModified": "2026-10-21",
+  "dateModified": "2026-11-20",
   "isPublished": true,
   "approvalStatus": "approved",
-  "readingTime": "4 min read",
-  "wordCount": 632,
-  "intro": "Difficulty cutting your toenails is not always about the nail itself. Reaching your feet, seeing clearly and holding clippers comfortably all matter. Understanding what makes the task difficult can help you choose suitable support.",
-  "inBrief": [
-    "Mobility, flexibility, eyesight and hand strength can make routine toenail cutting harder.",
-    "Thickened or changed nails may need professional care; appearance alone does not identify the cause.",
-    "Do not force clippers through a nail or keep cutting if it hurts or damages the skin."
-  ],
+  "readingTime": "2 min read",
+  "wordCount": 318,
+  "intro": "It's often not the nail itself. Reaching your feet, seeing clearly and holding clippers all matter, and thick nails make it harder still.",
+  "inBrief": [],
   "sections": [
     {
-      "heading": "Reaching and seeing your feet",
-      "body": [
-        "Cutting nails means sitting securely, reaching your feet and seeing the edges clearly. If bending is uncomfortable or your vision makes precise trimming difficult, the task may become awkward even when the nails themselves have not changed.",
-        "A relative may help with arrangements, or you can ask a qualified practitioner about routine care. Home visits can be useful when travelling to a clinic is difficult."
-      ]
-    },
-    {
-      "heading": "Grip and control of the clippers",
-      "body": [
-        "A tool that feels difficult to hold can make it harder to remove small amounts of nail accurately. Avoid continuing when you cannot control the clippers comfortably.",
-        "Professional support can help with maintenance when holding or positioning clippers is the main difficulty."
-      ]
-    },
-    {
-      "heading": "Thickened or awkward nails",
-      "body": [
-        "Nail changes can make ordinary trimming harder. Thickness, shape, pressure from footwear or previous injury may all affect how manageable the nail feels. Not every thick or discoloured nail is fungal.",
-        "Where suitable, a Foot Health Practitioner can trim and conservatively reduce thickened nails. Routine reduction manages the nail rather than diagnosing or curing every underlying cause."
+      "heading": "Why toenails get hard to cut",
+      "navLabel": "Why it’s hard",
+      "body": [],
+      "subsections": [
+        {
+          "heading": "Reaching and seeing your feet",
+          "body": [
+            "You need to sit securely, reach your feet and see the nail edges clearly. If bending is uncomfortable or your eyesight makes it tricky, get help rather than guess."
+          ]
+        },
+        {
+          "heading": "Grip and control",
+          "body": [
+            "If you can't hold the clippers steadily, you can't take small, accurate cuts. Stop rather than force it."
+          ]
+        },
+        {
+          "heading": "Thick or awkward nails",
+          "body": [
+            "Thickness, shape, tight shoes or an old injury can all make a nail harder to cut. Not every thick or discoloured nail is fungal. Where suitable, a Foot Health Practitioner can trim and gently reduce it."
+          ]
+        }
       ],
       "links": [
         {
           "href": "/advice/thickened-toenails-causes-treatment-and-when-to-worry",
-          "label": "Thickened toenails: causes and treatment",
+          "label": "Thick toenails: why they thicken",
           "kind": "article"
         }
       ]
     },
     {
       "heading": "How to cut your toenails safely at home",
+      "navLabel": "Cutting safely",
       "body": [
-        "If you can see and reach your nails comfortably, these steps help keep home trimming safe:"
+        "If you can see and reach your nails comfortably:"
       ],
       "list": [
-        "Sit securely in good light, with your foot supported",
-        "Use clean nail clippers or nail scissors that you can hold and control",
-        "Trim after bathing, when nails may be slightly softer",
-        "Remove small amounts at a time and cut generally across the nail",
-        "Do not cut very short, cut deeply down the sides or cut a V-shape into the nail",
-        "Gently file rough or sharp edges rather than tearing or picking at them",
-        "Do not force clippers through a hard nail, and do not use blades or household tools",
-        "Stop if cutting causes pain, bleeding or damage to the skin"
+        "Sit in good light with your foot supported",
+        "Use clean clippers you can hold steadily",
+        "Trim after a bath, when nails are softer",
+        "Cut small amounts, generally across the nail",
+        "Don't cut very short, deep down the sides or in a V",
+        "File rough edges instead of tearing them",
+        "Don't force clippers, or use blades or household tools",
+        "Stop if it causes pain, bleeding or broken skin"
       ],
       "links": [
         {
@@ -374,39 +381,42 @@ export const adviceArticles: AdviceArticle[] = [
     },
     {
       "heading": "Who should not cut their own toenails",
+      "navLabel": "Who shouldn’t",
+      "tone": "warning",
       "body": [
-        "Ask for professional nail care, or individual advice, rather than cutting your own nails if you:"
+        "Ask for professional help instead if you:"
       ],
       "list": [
-        "Have diabetes, poor circulation or reduced sensation in your feet",
-        "Take medication that increases bleeding risk",
+        "Have diabetes, poor circulation or reduced feeling in your feet",
+        "Take medication that makes you bleed more easily",
         "Have a weakened immune system",
-        "Cannot safely reach or see your feet",
-        "Have injured yourself while cutting your nails before",
+        "Can't safely reach or see your feet",
+        "Have hurt yourself cutting your nails before",
         "Have redness, swelling, broken skin or signs of infection around a nail"
       ]
     },
     {
-      "heading": "When to seek further help",
+      "heading": "When to get help",
+      "navLabel": "Getting help",
+      "tone": "warning",
       "body": [
-        "Unexplained nail changes, significant pain, broken skin or signs of infection need appropriate assessment. Spreading redness, pus, fever or rapidly worsening symptoms warrant prompt medical advice.",
-        "For routine maintenance in Bristol, Foot+ offers nail cutting at home with Adam James. First visits are £60 and routine appointments for returning patients are £55; any travel charge is confirmed before booking."
+        "Unexplained nail changes, significant pain, broken skin or signs of infection need checking. Spreading redness, pus, fever or quickly worsening symptoms need prompt medical advice."
       ],
       "links": [
         {
           "href": "/toenail-cutting-bristol",
-          "label": "Bristol toenail-cutting home visits",
+          "label": "Toenail cutting at home in Bristol",
           "kind": "service"
         },
         {
           "href": "/prices",
-          "label": "Full appointment prices",
+          "label": "Prices",
           "kind": "pricing"
         }
       ]
     }
   ],
-  "practitionerView": "The practical question is whether you can manage your nails comfortably and safely. If routine cutting is becoming a struggle, asking for support is a reasonable next step.",
+  "practitionerView": "If cutting your nails has become a struggle, asking for help is a sensible next step.",
   "relatedServiceRoutes": [
     {
       "href": "/toenail-cutting-bristol",
@@ -436,16 +446,8 @@ export const adviceArticles: AdviceArticle[] = [
   ],
   "faqs": [
     {
-      "question": "Does difficulty cutting my nails mean I have a nail disease?",
-      "answer": "No. Reach, eyesight, mobility and hand strength can make cutting difficult even without a nail condition. Unexplained changes should still be assessed."
-    },
-    {
-      "question": "Should I force clippers through a thick nail?",
-      "answer": "No. Ask for suitable professional support if the nail is too hard to cut comfortably or safely."
-    },
-    {
-      "question": "Should I cut my toenails straight across?",
-      "answer": "Cut generally across the nail in small amounts, without cutting very short or deeply down the sides, then gently file any sharp edges."
+      "question": "Does it mean I have a nail disease?",
+      "answer": "No. Reach, eyesight, mobility and grip can make cutting hard on their own. Unexplained changes should still be checked."
     }
   ]
 },
