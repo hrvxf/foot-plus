@@ -8,8 +8,12 @@ import { prices } from "./site";
 
 export type ServiceIconKey = "nail" | "thick" | "ingrown" | "fungal" | "corn" | "callus" | "skin" | "heel" | "verruca" | "athlete" | "check";
 
+export type ServiceGroup = "nails" | "skin" | "check";
+
 export type ServiceDetail = {
   id: string;
+  /** /services shows nails and skin as two swipeable sets; checks get their own card. */
+  group: ServiceGroup;
   icon: ServiceIconKey;
   title: string;
   summary: string;
@@ -19,6 +23,7 @@ export type ServiceDetail = {
 export const serviceDetails: ServiceDetail[] = [
   {
     id: "toenail-cutting",
+    group: "nails",
     icon: "nail",
     title: "Toenail cutting and routine nail care",
     summary: "Nails trimmed and filed to a comfortable length, for anyone who finds reaching or cutting them difficult.",
@@ -26,6 +31,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "thickened-nails",
+    group: "nails",
     icon: "thick",
     title: "Thickened or difficult nails",
     summary: "Thick or ridged nails carefully reduced so they are easier to manage and more comfortable in shoes.",
@@ -33,6 +39,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "ingrown-toenails",
+    group: "nails",
     icon: "ingrown",
     title: "Ingrown toenails",
     summary: "Nail edges pressing into the skin carefully cut back to ease the pain, without surgery. If a toe looks infected, we will point you to your GP.",
@@ -40,6 +47,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "fungal-nails",
+    group: "nails",
     icon: "fungal",
     title: "Fungal nails",
     summary: "Thick, discoloured nails reduced and kept comfortable, with advice on treatments to use between visits.",
@@ -47,6 +55,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "corns",
+    group: "skin",
     icon: "corn",
     title: "Corns",
     summary: "Sharp, tender spots of hard skin assessed and reduced, with advice on easing the pressure behind them.",
@@ -54,6 +63,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "hard-skin",
+    group: "skin",
     icon: "skin",
     title: "Hard skin and callus",
     summary: "Rough skin and callus on heels and pressure points safely reduced, with simple tips to slow it coming back.",
@@ -61,6 +71,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "cracked-heels",
+    group: "skin",
     icon: "heel",
     title: "Cracked heels",
     summary: "Dry, split heel skin treated, plus an easy moisturising routine to keep heels comfortable.",
@@ -68,6 +79,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "verrucas",
+    group: "skin",
     icon: "verruca",
     title: "Verrucas",
     summary: "Verrucas on the foot looked at and treated, with advice on stopping them spreading.",
@@ -75,6 +87,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "athletes-foot",
+    group: "skin",
     icon: "athlete",
     title: "Athlete’s foot",
     summary: "Itchy, peeling skin between the toes checked, with advice on treating it and keeping it from coming back.",
@@ -82,6 +95,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     id: "foot-health-checks",
+    group: "check",
     icon: "check",
     title: "Foot-health checks",
     summary: "Skin, nails, circulation and sensation checked at every visit, including diabetic foot observations.",
