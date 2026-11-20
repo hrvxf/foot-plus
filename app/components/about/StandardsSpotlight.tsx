@@ -7,8 +7,15 @@ import { useEffect, useRef, useState } from "react";
  * middle of the screen lit and its line shown. Server render and reduced motion
  * show them all lit.
  */
-export default function StandardsSpotlight({ standards }: { standards: { title: string; body: string }[] }) {
-  const list = useRef<HTMLUListElement>(null);
+export default function StandardsSpotlight({
+  standards,
+  ordered = false,
+}: {
+  /** body is optional: without it, each line is just the title (e.g. "What's included" on the nail pages). */
+  standards: { title: string; body?: string }[];
+  ordered?: boolean;
+}) {
+  const list = useRef<HTMLOListElement & HTMLUListElement>(null);
   // -1 = all lit; -2 = none (list off screen); otherwise the lit index.
   const [active, setActive] = useState(-1);
 
@@ -45,30 +52,35 @@ export default function StandardsSpotlight({ standards }: { standards: { title: 
     };
   }, []);
 
+  const List = ordered ? "ol" : "ul";
   return (
-    <ul ref={list} className="mt-5">
+    <List ref={list} className="mt-5">
       {standards.map((standard, index) => {
         const lit = active === -1 || active === index;
+        // Lines with a body are headings (the standards); plain lines are list text.
+        const Title = standard.body ? "h3" : "span";
         return (
           <li key={standard.title} className="py-2.5">
-            <h3
-              className={`font-heading text-[1.625rem] font-semibold leading-[1.15] tracking-[-0.015em] transition-colors duration-400 md:text-4xl ${
+            <Title
+              className={`block font-heading text-[1.625rem] font-semibold leading-[1.15] tracking-[-0.015em] transition-colors duration-400 md:text-4xl ${
                 lit ? "text-brand-charcoal" : "text-brand-line"
               }`}
             >
               {standard.title}
-            </h3>
+            </Title>
             {/* Always in the layout (fixed height) so lighting a line never moves the others. */}
-            <p
-              className={`mx-auto mt-1 min-h-[2.9em] max-w-[34ch] text-[0.9375rem] leading-[1.45] text-brand-muted transition-opacity duration-400 ${
-                lit ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              {standard.body}
-            </p>
+            {standard.body ? (
+              <p
+                className={`mx-auto mt-1 min-h-[2.9em] max-w-[34ch] text-[0.9375rem] leading-[1.45] text-brand-muted transition-opacity duration-400 ${
+                  lit ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                {standard.body}
+              </p>
+            ) : null}
           </li>
         );
       })}
-    </ul>
+    </List>
   );
 }
