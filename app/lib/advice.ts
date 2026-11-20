@@ -290,22 +290,190 @@ export const adviceArticles: AdviceArticle[] = [
   { slug:"hard-skin-on-feet", title:"Hard Skin on Feet: Causes, Prevention and Professional Treatment", shortTitle:"Hard skin on feet", description:"A practical guide to hard skin on feet, including causes, prevention, safe home care and professional reduction without permanent-removal claims.", category:"Skin and hard skin", authorId:"adam-james", datePublished:d, dateModified:"2026-10-21", isPublished:true, approvalStatus:"approved", readingTime:"3 min read", wordCount:544, intro:"Hard skin is common on feet because they carry body weight and deal with repeated pressure. It can often be managed, but it may return if the underlying pressure remains.", inBrief:["Hard skin often develops in response to pressure, friction or shear.","Professional reduction can improve comfort where suitable, but hard skin may return.","Avoid blades, aggressive filing and strong chemicals, especially if you have diabetes or reduced sensation."], sections:[{heading:"What hard skin is",body:["Hard skin is thickened skin that forms as a protective response. On the feet it commonly appears on heels, the balls of the feet and areas that rub against footwear.","Callus is a common form of hard skin. It is not always painful, but it can become uncomfortable, split or build up around pressure points.","A small, focused painful spot may be a corn rather than general hard skin, and a verruca can look similar. If you are unsure which you have, see the guide to telling them apart."],links:[{href:"/advice/corn-callus-or-verruca",label:"corn, callus or verruca: how to tell the difference",kind:"article"}]},{heading:"Why hard skin develops",body:["Pressure, friction and shear are common reasons. Footwear, walking pattern, activity, dry skin and foot shape can all contribute.","Because the cause often continues, hard skin may gradually return after reduction." ]},{heading:"Footwear and walking patterns",body:["Shoes that are tight, loose, worn down or unsupportive can increase rubbing. Changes in mobility or gait can shift pressure to one area.","This guide does not diagnose gait problems, but it explains why the same patch may keep coming back." ]},{heading:"Safe home-care measures",body:["Moisturising regularly can help dry skin stay more comfortable. Gentle filing may be suitable for some people if the skin is intact and sensation is normal.","Stop if skin becomes sore. Do not file aggressively or try to remove all hard skin at once." ]},{heading:"What not to do",body:["Do not use razor blades, scalpels or corn knives on yourself. Avoid strong chemical products unless a pharmacist or clinician says they are suitable for you.","People with diabetes, reduced sensation, poor circulation, wounds or fragile skin should seek individual advice before self-treatment." ]},{heading:"Professional reduction and routine care",body:["Where suitable, Foot+ can provide professional hard-skin and callus reduction during a home appointment. The aim is comfort and safer maintenance, not a promise that hard skin will never return.","Adam may also discuss moisturising, footwear considerations and when further assessment is sensible."],links:[{href:"/hard-skin-and-callus",label:"professional hard-skin treatment",kind:"service"},{href:"/cracked-heels",label:"cracked heel maintenance",kind:"service"},{href:"/book",label:"book routine foot care",kind:"book"}]},{heading:"When hard skin requires further assessment",body:["Seek appropriate advice if hard skin is linked with a wound, bleeding, spreading redness, swelling, discharge, sudden severe pain or diabetic foot concerns.","A podiatrist or GP may be more appropriate if the issue needs diagnosis, wound care or regulated clinical assessment." ]},{heading:"Prevention and maintenance",body:["Prevention usually means reducing pressure where possible, keeping skin supple and arranging care before build-up becomes painful.","Maintenance plans should be realistic and individual rather than based on permanent-removal claims." ]}], practitionerView:"Adam’s practical view: hard skin often tells you where pressure is building. Routine care can make feet more comfortable, but prevention depends on understanding why that pressure keeps happening.", relatedServiceRoutes:[{href:"/hard-skin-and-callus",label:"Hard-skin treatment",kind:"service"},{href:"/cracked-heels",label:"Cracked heel care",kind:"service"},{href:"/services",label:"Services",kind:"service"},{href:"/book",label:"Book",kind:"book"}], relatedArticleSlugs:["corn-callus-or-verruca","what-happens-home-foot-health-appointment"], references:[{label:"NHS: Corns and calluses",url:"https://www.nhs.uk/conditions/corns-and-calluses/"},{label:"Diabetes UK: Checking your feet",url:"https://www.diabetes.org.uk/guide-to-diabetes/complications/feet/checking-your-feet"}], faqs:[{question:"Can hard skin be permanently removed?",answer:"Hard skin can often be reduced, but it may return if pressure or friction continues."},{question:"Is it safe to use a blade at home?",answer:"No. Cutting hard skin yourself can cause injury and is especially risky for people with diabetes, reduced sensation or circulation concerns."}]},
   { slug:"foot-health-practitioner-podiatrist-or-chiropodist", title:"Foot Health Practitioner, Podiatrist or Chiropodist: Who Should You See?", shortTitle:"FHP, podiatrist or chiropodist", description:"Understand the difference between a Foot Health Practitioner, podiatrist and chiropodist in the UK, including protected titles and routine-care boundaries.", category:"Choosing the right professional", authorId:"adam-james", datePublished:d, dateModified:d, isPublished:true, approvalStatus:"approved", readingTime:"9 min read", wordCount:1320, intro:"Choosing the right foot-care professional can be confusing. This guide explains the terms carefully so you can match routine care needs with the appropriate level of assessment.", inBrief:["Adam James is a Foot Health Practitioner, not a podiatrist or chiropodist.","Podiatrist and chiropodist are protected titles in the UK and require HCPC registration.","Routine foot care and regulated clinical assessment are not the same thing."], sections:[{heading:"What a Foot Health Practitioner does",body:["A Foot Health Practitioner commonly supports routine foot care such as nail cutting, thickened nail care, non-surgical ingrown toenail care, fungal nail care, hard-skin and callus reduction, corn care where suitable, cracked heel maintenance, verruca and athlete’s foot care, and practical foot-health advice.","Scope varies by training and individual competence. Foot+ pages describe Adam as a Foot Health Practitioner, MCFHP, MAFHP."],links:[{href:"/",label:"Foot Health Practitioner appointments in Bristol",kind:"service"}]},{heading:"What a podiatrist does",body:["A podiatrist is a regulated healthcare professional. In the UK, podiatrists must be registered with the Health and Care Professions Council to use the protected title.","Podiatrists may assess, diagnose and manage a wider range of foot and lower-limb conditions depending on their qualifications, setting and scope." ]},{heading:"What the term chiropodist means",body:["Chiropodist is also a protected title in the UK. The term is often used historically or interchangeably with podiatrist, but title use is regulated.","Foot+ does not describe Adam as a chiropodist." ]},{heading:"Protected professional titles",body:["The HCPC protects titles including podiatrist and chiropodist. This means people using those titles must meet regulatory requirements and be registered.","Foot Health Practitioner is not the same protected title. This distinction should be clear in marketing and patient information." ]},{heading:"Routine care versus clinical assessment",body:["Routine foot care focuses on practical maintenance and comfort where concerns are within scope. Clinical assessment may involve diagnosis, management of complex conditions, wound care, prescribing pathways or specialist services depending on the professional and setting.","Boundaries are not always absolute because individual qualifications vary, but protected-title and registration differences are important." ]},{heading:"Examples Foot+ may assist with",body:["Foot+ may assist with routine toenail cutting, thickened nail reduction, ingrown and fungal toenails, hard-skin and callus care, corn care where suitable, cracked heel maintenance, verrucas, athlete’s foot and home-visit support for adults who find travel difficult.","Use the services and pricing pages to decide whether the routine appointment offer matches your needs."],links:[{href:"/services",label:"view Foot+ services",kind:"service"},{href:"/prices",label:"view Foot+ pricing",kind:"pricing"},{href:"/about",label:"read about Adam James",kind:"about"}]},{heading:"When a podiatrist or GP may be more suitable",body:["A podiatrist or GP may be more suitable for diagnosis of complex or persistent pain, suspected infection, wounds, diabetic foot complications, sudden changes, significant circulation or sensation concerns, or problems needing regulated clinical assessment.","A pharmacist may also be suitable for some skin and nail concerns such as suspected fungal infection or verruca advice." ]},{heading:"Urgent warning signs",body:["Seek urgent medical support for spreading infection signs, an open wound, sudden severe pain, sudden colour change, significant bleeding, new loss of sensation or acute diabetes-related foot concerns.","Do not wait for a routine home foot-care appointment if symptoms appear urgent." ]},{heading:"How to choose the right service",body:["Choose routine Foot Health Practitioner care for straightforward maintenance needs that match the published Foot+ service scope. Choose podiatry, GP, pharmacy or urgent NHS support when assessment, diagnosis or treatment outside routine care may be needed.","If you are unsure, describe the concern clearly when enquiring so Adam can advise whether Foot+ is likely to be appropriate."],links:[{href:"/book",label:"contact Foot+ about suitability",kind:"book"}]}], practitionerView:"Adam’s practical view: clear professional boundaries protect patients. Foot+ is most useful when the need is routine foot care at home; where symptoms suggest a clinical problem, the right outcome may be signposting to another professional.", relatedServiceRoutes:[{href:"/about",label:"About Adam",kind:"about"},{href:"/services",label:"Services",kind:"service"},{href:"/",label:"Foot Health Practitioner Bristol",kind:"service"},{href:"/prices",label:"Pricing",kind:"pricing"},{href:"/book",label:"Book",kind:"book"}], relatedArticleSlugs:["what-happens-home-foot-health-appointment","corn-callus-or-verruca"], references:[{label:"HCPC: Check the Register",url:"https://www.hcpc-uk.org/check-the-register/"},{label:"HCPC: Protected titles",url:"https://www.hcpc-uk.org/about-us/who-we-regulate/the-professions/"},{label:"Royal College of Podiatry: What is a podiatrist?",url:"https://rcpod.org.uk/"}], faqs:[{question:"Is Adam James a podiatrist?",answer:"No. Adam James is described by Foot+ as a Foot Health Practitioner, MCFHP, MAFHP."},{question:"Are podiatrist and chiropodist protected titles?",answer:"Yes. In the UK, podiatrist and chiropodist are protected titles regulated through HCPC registration."}]},
 
-  { slug:"foot-care-learning-disabilities-bristol", title:"Accessible Foot Care for Adults with Learning Disabilities and Additional Support Needs", shortTitle:"Accessible foot care", seoTitle:"Foot Care for Adults with Learning Disabilities Bristol | Foot+", description:"A practical Bristol guide to accessible home-visit foot care for adults with learning disabilities, sensory, mobility, communication or anxiety-related support needs.", category:"Accessible home visits", authorId:"adam-james", datePublished:d, dateModified:"2026-11-09", isPublished:true, approvalStatus:"approved", readingTime:"13 min read", wordCount:1960, intro:"Routine foot care can be more difficult to access when someone has mobility, communication, sensory or anxiety-related support needs. This guide explains what adults, families, carers and support workers can look out for, how a home visit can be adapted and what to expect from an accessible Foot+ appointment in Bristol.", inBrief:["The appointment takes place at home, so routine foot care can happen in familiar surroundings.","You can have someone you trust with you, and support needs can be discussed before the visit.","Everything should be explained before it happens, treatment can move slowly, and you can ask to pause or stop.","Treatment only continues with appropriate consent and should not continue simply because someone else requests it."], sections:[
-    {heading:"Introduction", body:["Adults may need additional support during routine foot care for many different reasons. This can include learning disabilities, reduced mobility, autism or sensory differences, anxiety around treatment, communication differences, physical disabilities, difficulty travelling to a clinic or previous distressing healthcare experiences.","Autism and learning disability are not the same thing, although they can occur together. Two people with the same diagnosis may want very different support. The starting point should be the individual person: what helps them feel informed, respected, comfortable and able to make choices about their own care.","This guide is about routine Foot Health Practitioner care at home. It is not a replacement for podiatry, GP, NHS diabetic foot services or urgent medical assessment when symptoms suggest a higher-risk problem." ]},
-    {heading:"What an accessible visit means", body:["An accessible visit means the appointment is planned around the person as far as reasonably possible. The appointment takes place at home. The person can have someone they trust with them. Explanations are given before anything happens. The appointment can move slowly. The person can ask to pause or stop. Treatment only continues with appropriate consent. Communication, mobility, sensory and anxiety-related needs can be discussed before the visit.","This is a plain-language summary, not a formally tested Easy Read resource. If you use pictures, a hospital passport, a support plan or familiar words to explain healthcare appointments, those can be shared before the visit where relevant." ]},
-    {heading:"Why foot care can be harder to access", body:["Foot care is not always difficult because of the person. Barriers often arise from how services are organised. Travelling to a clinic may involve transport, parking, stairs, busy waiting rooms, unfamiliar buildings or treatment chairs that do not suit someone’s mobility or transfer needs.","Unfamiliar people, equipment, sounds or touch can cause anxiety for some adults. Others may need more time to process information, use gestures or communication aids, or rely on a relative, carer or support worker to notice changes in comfort and behaviour.","Short appointment times can make it harder to explain what will happen, check understanding, offer pauses and respond to sensory sensitivities. Previous experiences of not being listened to can also make new appointments feel unsafe. Accessible care tries to reduce these barriers rather than blaming the person for needing a different approach." ]},
-    {heading:"Why routine foot health matters", body:["Routine nail and skin problems can affect daily comfort. Toenails that become long, thick or curved may press into footwear, catch on socks or make walking uncomfortable. Hard skin, corns where suitable for routine care, cracked heels and rubbing from shoes can also affect how confidently someone stands or moves.","Foot discomfort may influence footwear choices, walking, transfers, standing tolerance, participation in activities and independence. For some people, small changes in comfort can affect confidence or willingness to go out.","Routine Foot Health Practitioner care should not be presented as preventing serious disease. Its role is practical maintenance and comfort where the concern is within scope, with clear signposting when another service is more appropriate."], links:[{href:"/toenail-cutting-bristol",label:"toenail cutting home visits",kind:"service"},{href:"/hard-skin-and-callus",label:"hard-skin treatment",kind:"service"}]},
-    {heading:"Foot changes carers and support workers can look for", body:["You do not need to diagnose foot problems. It can help to notice practical changes and seek advice when something appears new, painful or difficult to manage.","Look for toenails becoming very long or thick; nails pressing into neighbouring toes; redness or pressure marks around nails; corns or areas of concentrated hard skin; cracked heels; blisters or rubbing from footwear; changes in walking or reluctance to stand; pulling away when a foot is touched; new agitation when shoes or socks are put on; swelling; changes in skin colour or temperature; broken skin, wounds, discharge or an unpleasant odour.","Behavioural, communication or mobility changes can have many causes. Do not automatically assume they come from the feet. Treat observations as clues to explore respectfully, and seek medical advice where symptoms could be urgent or outside routine foot care." ]},
-    {heading:"How a Foot+ home visit can be adapted", body:["Foot+ already offers home visits, which can make routine care easier for adults who find travel or unfamiliar clinics difficult. Familiar surroundings may reduce some anxiety and make it easier for a trusted person to be present.","Support can include clear explanations at a comfortable pace, additional time where arranged, carers, relatives and support workers being welcome, discussing communication preferences before the visit, considering sensory needs, and showing or explaining equipment before use where helpful.","Treatment can be broken into smaller stages, with pauses offered as needed. The person should remain involved in decisions as much as possible. A request to stop must be respected. If everything cannot comfortably be completed in one visit, follow-up care may need to be planned gradually.","Not every requested adjustment will always be clinically or operationally possible. Support needs should be discussed before booking so an appropriate plan can be agreed."], links:[{href:"/services",label:"Foot+ services",kind:"service"},{href:"/book",label:"discuss support needs",kind:"book"}]},
-    {heading:"Consent, capacity and personal choice", body:["A learning disability does not automatically mean someone lacks capacity. Adults should be presumed able to make their own decisions unless there is evidence otherwise. Information should be explained in a way that supports the person to understand, weigh up and communicate a decision about the care being offered.","Capacity is specific to the decision and the time at which it is being made. Someone may be able to decide about routine nail care on one day but need more support, more time or a different explanation on another day.","Carers and relatives can support communication and provide helpful background information, but a carer or relative does not automatically have legal authority to consent for another adult. That authority only exists where someone holds a registered Lasting Power of Attorney for health and welfare that covers the decision, or has been appointed as a deputy by the Court of Protection. Even then, decisions must be made in the person's best interests and take their wishes into account. Treatment should not continue simply because a carer requests it when the person is showing refusal or distress.","This section is general information, not legal advice. Any complex capacity or best-interest issue must be handled in accordance with the Mental Capacity Act and the practitioner’s professional procedures. Foot+ does not claim to undertake formal capacity assessments beyond its competence or professional scope." ]},
-    {heading:"Preparing for the appointment", body:["Before booking, share only relevant information that helps the appointment be safer and more comfortable. Useful details may include the person’s preferred name, preferred communication style, words, pictures, demonstrations or gestures that help, sensory sensitivities or known triggers, and signs that indicate discomfort, agreement or refusal.","It can also help to explain the best time of day, mobility and transfer requirements, relevant medical conditions, diabetes status, allergies, current medication where relevant, previous foot-care experiences, whether a trusted person will be present, and any relevant support plan, hospital passport or reasonable-adjustment information.","The aim is not to collect unnecessary personal or diagnostic information. It is to understand what practical adjustments may help and whether routine Foot+ care is likely to be suitable." ]},
-    {heading:"What may happen during the visit", body:["A typical visit may begin with an introduction and discussion, followed by a visual foot assessment. Proposed care should be explained before treatment starts, and agreement to proceed should be checked.","Routine treatment may then continue at an appropriate pace. Pauses can be offered, and the appointment can stop if needed. Afterwards, the visit may include aftercare discussion, practical advice and referral advice where the concern appears outside Foot+ scope.","Treatment cannot be guaranteed to be completed during the first appointment. For some people, a successful first visit may be meeting Adam, looking at the feet, agreeing a plan and completing only what feels manageable."], links:[{href:"/advice/what-happens-home-foot-health-appointment",label:"what happens during a home foot-health appointment",kind:"article"}]},
-    {heading:"When another service may be more appropriate", body:["Routine Foot Health Practitioner care is not the right route for every concern. A podiatrist, GP, NHS diabetic foot service or urgent medical service may be needed for open wounds or ulceration, suspected infection, spreading redness, heat or swelling, pus or discharge, sudden significant changes in skin colour or temperature, new loss of sensation, severe or unexplained pain, acute injury, significant circulation concerns or high-risk diabetic foot concerns.","A podiatrist may also be more appropriate for problems requiring biomechanical assessment, prescription devices, surgery or protected-title podiatry services. In the UK, podiatrist and chiropodist are protected titles; Foot+ describes Adam as a Foot Health Practitioner, not a podiatrist or chiropodist.","This guide provides general information only. It does not diagnose your foot concern, and individual circumstances vary. Seek appropriate medical support for urgent symptoms, wounds, infection signs, sudden severe pain or diabetic foot concerns."], links:[{href:"/advice/foot-health-practitioner-podiatrist-or-chiropodist",label:"FHP, podiatrist or chiropodist?",kind:"article"}]},
-    {heading:"Why accessible foot care matters in Bristol", body:["The Bristol JSNA Health and Wellbeing Profile 2025/26 for Learning Disabilities and Autism states that around 9,970 adults aged 18 and over were predicted to have some level of learning disability in Bristol in 2025. It also estimated that approximately 2,155 adults had a moderate or severe learning disability.","The same Bristol profile reported that approximately 766 adults with a learning disability received a community support service during 2024/25, and that the number of adults receiving community support had increased over the preceding ten years.","These figures do not mean that all 9,970 adults need professional foot treatment. They do show why community services in Bristol should be designed with varied communication, mobility, sensory and support needs in mind." ]},
-    {heading:"What research says about foot-care access", body:["Foot-specific evidence for adults with intellectual or learning disabilities remains limited. A 2015 review, Foot health and mobility in people with intellectual disabilities, discussed limited access to foot-care services and the effect foot problems may have on mobility.","The review cited an older community survey, published in 2003 and not conducted specifically in Bristol, in which foot or mobility problems were reported among approximately half of participants. It also reported that 72% of people with known foot disorders in that survey had not been assessed by a podiatrist.","That 72% figure should be read as historical evidence that access barriers have been recognised for some time. It should not be presented as a current prevalence figure for Bristol or for everyone with a learning disability." ]},
-    {heading:"Discuss support needs before booking", body:["Tell Foot+ about any communication, mobility, sensory or appointment needs when making an enquiry. This allows time to consider how the visit can be made as comfortable and accessible as reasonably possible.","The discussion may show that a routine home visit is suitable, that extra planning is needed, or that another service would be safer. The aim is respectful, person-centred care rather than pressure to book."], links:[{href:"/book",label:"Discuss support needs",kind:"book"},{href:"/advice/what-happens-home-foot-health-appointment",label:"See how home visits work",kind:"article"}]},
-    {heading:"Sources and further reading", body:["The sources below were used to support this guide and are listed again as references: Bristol City Council JSNA Health and Wellbeing Profile 2025/26 – Learning Disabilities and Autism; NHS England Reasonable adjustments; GOV.UK Learning disability – applying All Our Health; Mental Capacity Act 2005; NHS Assessing capacity – consent to treatment; and Courtenay K and Murray A, Foot health and mobility in people with intellectual disabilities." ]}
-  ], practitionerView:"Adam’s practical view: accessible routine foot care starts with listening. A home visit can often be adapted with time, clear explanation, pauses and trusted support, but comfort, consent and professional boundaries must come before completing treatment quickly.", relatedServiceRoutes:[{href:"/book",label:"Discuss support needs",kind:"book"},{href:"/services",label:"Inclusive home visits",kind:"service"},{href:"/",label:"professional foot care at home",kind:"service"},{href:"/toenail-cutting-bristol",label:"Toenail cutting",kind:"service"},{href:"/hard-skin-and-callus",label:"Hard-skin treatment",kind:"service"}], relatedArticleSlugs:["what-happens-home-foot-health-appointment","foot-health-practitioner-podiatrist-or-chiropodist","how-often-older-adults-should-cut-toenails"], references:[{label:"Bristol City Council: JSNA Health and Wellbeing Profile 2025/26 – Learning Disabilities and Autism",url:"https://www.bristol.gov.uk/files/documents/1543-jsna-2020-21-learning-disabilities-and-autism"},{label:"NHS England: Reasonable adjustments",url:"https://www.england.nhs.uk/learning-disabilities/improving-health/reasonable-adjustments/"},{label:"GOV.UK: Learning disability – applying All Our Health",url:"https://www.gov.uk/government/publications/learning-disability-applying-all-our-health/learning-disabilities-applying-all-our-health"},{label:"Mental Capacity Act 2005",url:"https://www.legislation.gov.uk/ukpga/2005/9/contents"},{label:"NHS: Assessing capacity – consent to treatment",url:"https://www.nhs.uk/tests-and-treatments/consent-to-treatment/capacity/"},{label:"GOV.UK: Lasting power of attorney",url:"https://www.gov.uk/power-of-attorney"},{label:"Courtenay K and Murray A: Foot health and mobility in people with intellectual disabilities",url:"https://discovery.ucl.ac.uk/id/eprint/1464114/1/Foot_health_and_mobility_in_people_with_ID_%28K_Courtenay_and_A_Murray%29.pdf"}], faqs:[{question:"Can a carer or support worker attend the appointment?",answer:"Yes. A trusted person can be present where the adult receiving care wants or benefits from that support. They can help with communication and background information, while personal choice and consent still matter."},{question:"What happens if the person becomes anxious?",answer:"The appointment can slow down, explanations can be repeated, equipment can be shown before use where helpful, and a pause can be offered. If continuing is not appropriate, treatment should stop and a gradual plan or another service may be discussed."},{question:"Can treatment be paused or stopped?",answer:"Yes. The person can ask to pause or stop, and signs of refusal or distress should be respected. Routine care should not be completed through pressure, restraint or coercion."},{question:"Can Foot+ visit supported-living accommodation or a care setting?",answer:"Foot+ provides home visits in Bristol and can discuss supported-living accommodation or care settings when you enquire. Please share access details, consent considerations and whether staff or relatives will be present."},{question:"What foot problems can a Foot Health Practitioner help with?",answer:"Where suitable, Foot+ can help with routine toenail cutting, thickened nail reduction, hard skin and callus care, corn care within scope, cracked heel maintenance and practical foot-care advice."},{question:"When should we contact a podiatrist, GP or urgent medical service instead?",answer:"Seek another service for wounds, suspected infection, spreading redness, pus, sudden colour or temperature change, new loss of sensation, severe pain, acute injury, significant circulation concerns, high-risk diabetic foot concerns or problems needing podiatry assessment."}]},
+  {
+  "slug": "foot-care-learning-disabilities-bristol",
+  "title": "Accessible Foot Care for Adults with Learning Disabilities and Additional Support Needs",
+  "shortTitle": "Accessible foot care",
+  "seoTitle": "Foot Care for Adults with Learning Disabilities Bristol | Foot+",
+  "description": "A practical Bristol guide to accessible home-visit foot care for adults with learning disabilities, sensory, mobility, communication or anxiety-related support needs.",
+  "category": "Accessible home visits",
+  "authorId": "adam-james",
+  "datePublished": "2026-07-13",
+  "dateModified": "2026-11-20",
+  "isPublished": true,
+  "approvalStatus": "approved",
+  "readingTime": "3 min read",
+  "wordCount": 668,
+  "intro": "In Bristol, Foot+ home visits can be adapted for adults with learning disabilities, autism, or sensory, mobility, communication or anxiety-related needs: at home, at their pace, with someone they trust, and only with their consent.",
+  "inBrief": [],
+  "sections": [
+    {
+      "heading": "What an accessible visit means",
+      "navLabel": "The visit",
+      "body": [
+        "The visit is planned around the person, as far as reasonably possible:"
+      ],
+      "list": [
+        "Care happens at home, in familiar surroundings",
+        "Someone they trust can be there",
+        "Everything is explained before it happens",
+        "The visit can go slowly, with pauses",
+        "They can ask to pause or stop at any time",
+        "Treatment only continues with appropriate consent"
+      ]
+    },
+    {
+      "heading": "How a home visit can be adapted",
+      "navLabel": "Adapting it",
+      "body": [
+        "Talk to us before booking so we can agree a plan. Not every adjustment is always possible, but visits can include:"
+      ],
+      "list": [
+        "Clear explanations, at a comfortable pace",
+        "Extra time, where arranged",
+        "Carers, relatives and support workers",
+        "Communication and sensory needs discussed beforehand",
+        "Equipment shown or explained before it's used",
+        "Care in smaller stages, over more than one visit if needed"
+      ],
+      "links": [
+        {
+          "href": "/toenail-cutting-bristol",
+          "label": "Toenail cutting at home",
+          "kind": "service"
+        },
+        {
+          "href": "/hard-skin-and-callus",
+          "label": "Hard skin care",
+          "kind": "service"
+        }
+      ]
+    },
+    {
+      "heading": "Consent, capacity and personal choice",
+      "navLabel": "Consent",
+      "body": [
+        "A learning disability doesn't automatically mean someone lacks capacity. Adults are presumed able to make their own decisions unless there is evidence otherwise, and information should be explained in a way that helps them decide. Capacity is about a specific decision at a specific time, so it can change.",
+        "A carer or relative can help with communication, but doesn't automatically have legal authority to consent for another adult. That only applies with a registered Lasting Power of Attorney for health and welfare that covers the decision, or a deputy appointed by the Court of Protection, and even then decisions must be in the person's best interests and take their wishes into account. Treatment won't continue just because a carer asks if the person is showing refusal or distress.",
+        "This is general information, not legal advice. Complex capacity questions are handled under the Mental Capacity Act, and Foot+ does not carry out formal capacity assessments beyond its scope."
+      ]
+    },
+    {
+      "heading": "Preparing for the appointment",
+      "navLabel": "Preparing",
+      "body": [
+        "Share only what helps the visit go well, such as:"
+      ],
+      "list": [
+        "Their preferred name and how they like to communicate (words, pictures, gestures)",
+        "Sensory sensitivities, triggers and signs of discomfort, agreement or refusal",
+        "The best time of day, and any mobility or transfer needs",
+        "Relevant conditions, diabetes, allergies and medication",
+        "Who will be there, and any support plan or hospital passport"
+      ]
+    },
+    {
+      "heading": "Foot changes carers and support workers can look for",
+      "navLabel": "Signs to notice",
+      "body": [
+        "You don't need to diagnose anything, and changes in behaviour can have many causes. Ask for advice if you notice:"
+      ],
+      "list": [
+        "Very long or thick nails, or nails pressing into other toes",
+        "Redness or pressure marks, corns, hard skin or cracked heels",
+        "Blisters or rubbing from shoes",
+        "Changes in walking, or reluctance to stand",
+        "Pulling away when a foot is touched, or new upset when shoes or socks go on",
+        "Swelling, colour or temperature changes, broken skin, discharge or a bad smell"
+      ]
+    },
+    {
+      "heading": "When another service may be more appropriate",
+      "navLabel": "Getting help",
+      "tone": "warning",
+      "body": [
+        "A podiatrist, GP, NHS diabetic foot service or urgent medical service may be needed for open wounds or ulcers, suspected infection, spreading redness, heat or swelling, pus or discharge, sudden changes in skin colour or temperature, new loss of feeling, severe or unexplained pain, an acute injury, significant circulation concerns or high-risk diabetic foot concerns.",
+        "A podiatrist may also be needed for biomechanical assessment, prescription devices or surgery. Adam is a Foot Health Practitioner, not a podiatrist or chiropodist."
+      ],
+      "links": [
+        {
+          "href": "/advice/foot-health-practitioner-podiatrist-or-chiropodist",
+          "label": "FHP, podiatrist or chiropodist?",
+          "kind": "article"
+        }
+      ]
+    }
+  ],
+  "practitionerView": "Accessible foot care starts with listening. Comfort and consent come before finishing quickly.",
+  "relatedServiceRoutes": [
+    {
+      "href": "/book",
+      "label": "Discuss support needs",
+      "kind": "book"
+    },
+    {
+      "href": "/services",
+      "label": "Inclusive home visits",
+      "kind": "service"
+    },
+    {
+      "href": "/",
+      "label": "professional foot care at home",
+      "kind": "service"
+    },
+    {
+      "href": "/toenail-cutting-bristol",
+      "label": "Toenail cutting",
+      "kind": "service"
+    },
+    {
+      "href": "/hard-skin-and-callus",
+      "label": "Hard-skin treatment",
+      "kind": "service"
+    }
+  ],
+  "relatedArticleSlugs": [
+    "what-happens-home-foot-health-appointment",
+    "foot-health-practitioner-podiatrist-or-chiropodist",
+    "how-often-older-adults-should-cut-toenails"
+  ],
+  "references": [
+    {
+      "label": "NHS England: Reasonable adjustments",
+      "url": "https://www.england.nhs.uk/learning-disabilities/improving-health/reasonable-adjustments/"
+    },
+    {
+      "label": "Mental Capacity Act 2005",
+      "url": "https://www.legislation.gov.uk/ukpga/2005/9/contents"
+    },
+    {
+      "label": "NHS: Assessing capacity – consent to treatment",
+      "url": "https://www.nhs.uk/tests-and-treatments/consent-to-treatment/capacity/"
+    },
+    {
+      "label": "GOV.UK: Lasting power of attorney",
+      "url": "https://www.gov.uk/power-of-attorney"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can a carer or support worker be there?",
+      "answer": "Yes, if the person wants or benefits from it. They can help with communication, but the person's own choice and consent still come first."
+    },
+    {
+      "question": "What if the person becomes anxious?",
+      "answer": "We slow down, explain again, show equipment first and offer a pause. If carrying on isn't right, we stop and talk about a gentler plan or another service."
+    },
+    {
+      "question": "What happens at a first visit?",
+      "answer": "An introduction, a look at the feet and only the care that feels manageable. For some people, a good first visit is meeting Adam and agreeing a plan."
+    },
+    {
+      "question": "Can you visit supported living or a care setting?",
+      "answer": "We can discuss it when you enquire. Please share access details, consent considerations and who will be there."
+    }
+  ]
+},
   {
   "slug": "why-toenails-are-difficult-to-cut",
   "title": "Why Are Toenails Difficult to Cut?",
