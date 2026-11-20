@@ -1,5 +1,7 @@
+import Link from "next/link";
+
 import PostcodeChecker from "../home/PostcodeChecker";
-import { shell } from "../site/ui";
+import { focusRing, shell } from "../site/ui";
 
 /**
  * Location page coverage: the postcode checker on a white card, set over a faint wall of the place names
@@ -11,6 +13,8 @@ export default function CoverageWall({
   source,
   summary,
   places,
+  areasHref,
+  areasLabel,
 }: {
   id: string;
   /** Analytics source for the checker, e.g. "bristol". */
@@ -18,6 +22,9 @@ export default function CoverageWall({
   /** One short line under the heading, e.g. "Central, north, south and east Bristol." */
   summary: string;
   places: string[];
+  /** Optional page listing every area covered (Bristol has one), linked under the card. */
+  areasHref?: string;
+  areasLabel?: string;
 }) {
   // Repeat the names so the wall fills the space around the card.
   const wall = [...places, ...places, ...places];
@@ -46,6 +53,16 @@ export default function CoverageWall({
             helper={summary}
           />
         </div>
+        {areasHref ? (
+          <p className="mt-5 text-center">
+            <Link
+              href={areasHref}
+              className={`inline-flex min-h-11 items-center gap-1.5 rounded-full bg-white/80 px-5 font-semibold text-brand-sageDeep shadow-[0_0_0_1px_var(--color-brand-line)] backdrop-blur-sm transition-colors hover:bg-white ${focusRing}`}
+            >
+              {areasLabel ?? "See every area we cover"} <span aria-hidden="true">→</span>
+            </Link>
+          </p>
+        ) : null}
       </div>
     </section>
   );
