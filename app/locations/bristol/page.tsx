@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import MeetIntro from "../../components/location/MeetIntro";
+import FaqFlipDeck from "../../components/location/FaqFlipDeck";
+import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
@@ -9,8 +11,7 @@ import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
 import VisitChat from "../../components/location/VisitChat";
-import { ClosingBand, FaqList, portraits } from "../../components/site/blocks";
-import { displayH2, rule, shell } from "../../components/site/ui";
+import { ClosingBand, portraits } from "../../components/site/blocks";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 
@@ -26,22 +27,6 @@ export const metadata: Metadata = {
   },
 };
 
-const section = "py-12 md:py-20";
-
-const faqs = [
-  {
-    question: "Which parts of Bristol does Foot+ cover?",
-    answer: "Foot+ covers central, north, south and east Bristol. Nearby towns may be considered by request, with exact coverage confirmed from the appointment postcode.",
-  },
-  {
-    question: "Can a relative or carer arrange the appointment?",
-    answer: "Yes. A relative, carer or support worker can enquire or help coordinate the visit, with appropriate consent from the person receiving care.",
-  },
-  {
-    question: "What if my concern needs podiatry or medical care?",
-    answer: "Foot+ will explain when a concern appears outside routine foot-health scope and advise seeking an appropriate podiatry, GP, urgent or emergency service.",
-  },
-];
 
 export default function BristolLocationPage() {
   const location = serviceLocations.bristol;
@@ -64,7 +49,7 @@ export default function BristolLocationPage() {
 
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Bristol", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Bristol", item: canonical } ] }, { "@type": "FAQPage", mainEntity: locationFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <MeetIntro
         status="Appointments available"
@@ -88,14 +73,7 @@ export default function BristolLocationPage() {
 
       <PartnersStrip id="bristol-partners" location="bristol" />
 
-      <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="bristol-faqs">
-        <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>
-          <h2 id="bristol-faqs" className={`${displayH2} md:col-span-4`}>
-            Questions about Foot+ Bristol
-          </h2>
-          <FaqList faqs={faqs} className="md:col-span-8" />
-        </div>
-      </section>
+      <FaqFlipDeck id="bristol-faqs" />
 
       <ClosingBand
         id="bristol-closing"
