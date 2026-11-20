@@ -36,9 +36,9 @@ type PostcodeCheckerProps = {
   tone?: Tone;
   /**
    * Compact tone only: the location whose booking form the always-visible "Request a visit" button
-   * opens before a postcode is checked.
+   * opens before a postcode is checked. null (home page) opens the form without a location chosen.
    */
-  bookLocation?: "bristol" | "southampton";
+  bookLocation?: "bristol" | "southampton" | null;
   /** Anchor id for "Check postcode" links elsewhere on the page. */
   anchorId?: string;
 };
@@ -359,19 +359,21 @@ function CompactRequest({
   source,
 }: {
   result: ServiceAreaCheck | null;
-  bookLocation: "bristol" | "southampton";
+  bookLocation: "bristol" | "southampton" | null;
   source: string;
 }) {
   const covered = result && (result.status === "bristol" || result.status === "southampton") ? result : null;
   const slug = covered ? covered.status : bookLocation;
   const href = covered
     ? `/book?location=${slug}&postcode=${encodeURIComponent(covered.postcode)}`
-    : `/book?location=${slug}`;
+    : slug
+      ? `/book?location=${slug}`
+      : "/book";
   return (
     <Link
       href={href}
       className="mt-3 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-brand-sageDark text-lg font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
-      data-analytics-id={`${source}-postcode-book-${slug}`}
+      data-analytics-id={`${source}-postcode-book-${slug ?? "any"}`}
     >
       Request a visit
       <ArrowRight className="h-5 w-5" aria-hidden="true" />
@@ -387,7 +389,7 @@ function CompactAnswer({
 }: {
   result: ServiceAreaCheck;
   travel: TravelState;
-  bookLocation: "bristol" | "southampton";
+  bookLocation: "bristol" | "southampton" | null;
 }) {
   const pathname = usePathname();
   const line = "mt-3 flex items-center justify-center gap-2 text-center text-base font-semibold leading-6 text-brand-sageDeep";
