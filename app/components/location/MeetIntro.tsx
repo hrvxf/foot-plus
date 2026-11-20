@@ -73,9 +73,12 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
       const startH = H - 70, startW = Math.min(W, startH * 0.82), startX = (W - startW) / 2;
       const inset = 16;
       const w = lerp(startW, DOCKED, t), h = lerp(startH, DOCKED, t);
+      // The settled card is only as tall as its text; centre it in the space above the buttons.
+      const cardH = (cardText.current?.offsetHeight ?? 0) + 40;
+      const shift = t * Math.max(0, (H - cardH) / 2);
       Object.assign(p.style, {
         left: `${lerp(startX, inset, t)}px`,
-        top: `${lerp(0, inset, t)}px`,
+        top: `${lerp(0, inset, t) + shift}px`,
         width: `${w}px`,
         height: `${h}px`,
         borderRadius: `${lerp(14, DOCKED / 2, t)}px`,
@@ -85,11 +88,16 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
         nameStart.current.style.transform = `translate(${lerp(startX, inset, t)}px, ${h + 10}px)`;
         nameStart.current.style.opacity = String(clamp(1 - t / 0.3));
       }
-      if (card.current) card.current.style.opacity = String(clamp((t - 0.55) / 0.45));
+      if (card.current) {
+        card.current.style.opacity = String(clamp((t - 0.55) / 0.45));
+        // Only as tall as the intro inside it (16px inset top and bottom), not the whole stage.
+        card.current.style.height = `${cardH}px`;
+        card.current.style.top = `${shift}px`;
+      }
       if (cardText.current) {
         const b = clamp((progress - 0.45) / 0.35);
         cardText.current.style.opacity = String(b);
-        cardText.current.style.transform = `translateY(${(1 - b) * 20}px)`;
+        cardText.current.style.transform = `translateY(${shift + (1 - b) * 20}px)`;
       }
       if (hint.current) hint.current.style.opacity = progress < 0.05 ? "1" : "0";
     }
@@ -173,7 +181,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
           {pill}
           <div ref={media} className={`relative mt-4 ${intro ? "min-h-0 flex-1" : ""}`}>
             {intro ? (
-              <div ref={card} className={`absolute inset-0 rounded-2xl opacity-0 ${textured}`} aria-hidden="true" />
+              <div ref={card} className={`absolute inset-x-0 top-0 rounded-2xl opacity-0 ${textured}`} aria-hidden="true" />
             ) : null}
             <div
               ref={portrait}
