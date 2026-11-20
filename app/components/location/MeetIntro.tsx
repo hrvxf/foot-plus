@@ -181,7 +181,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
   ) : null;
 
   return (
-    <section aria-labelledby="location-heading">
+    <section aria-labelledby="location-heading" data-page-hero>
       <h1 id="location-heading" className="sr-only">
         {title}
       </h1>
