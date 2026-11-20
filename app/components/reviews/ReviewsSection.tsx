@@ -114,13 +114,13 @@ export default function ReviewsSection({
   );
 }
 
-// Matches the header "Request a visit" button: filled for the action most visitors
-// want, outlined for the one aimed at existing patients.
+// Matches the location hero: a rounded Sage Dark button for the action most visitors want, and a white
+// one with a hairline border (like the hero's contact circles) for the one aimed at existing patients.
 // Tighter padding and text on phones so the two buttons share one line.
 const buttonBase =
-  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 text-[0.9375rem] font-semibold sm:px-5 sm:text-base transition-colors duration-150 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
-const buttonPrimary = `${buttonBase} bg-brand-sageDark text-white hover:bg-brand-sageDeep`;
-const buttonSecondary = `${buttonBase} border border-brand-sageLight bg-white text-brand-sageDeep hover:bg-brand-wash`;
+  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 font-heading text-[0.9375rem] font-semibold sm:px-5 sm:text-base transition-colors duration-150 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
+const buttonPrimary = `${buttonBase} bg-brand-sageDark text-white shadow-[0_16px_30px_-18px_rgba(36,48,40,0.6)] hover:bg-brand-sageDeep`;
+const buttonSecondary = `${buttonBase} border border-brand-line bg-white text-brand-sageDark hover:bg-brand-wash`;
 
 function ReviewLinks({
   links,
