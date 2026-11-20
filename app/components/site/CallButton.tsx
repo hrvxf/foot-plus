@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef, type CSSProperties, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { Phone, X } from "lucide-react";
 
@@ -20,11 +20,13 @@ const choices: { slug: PhoneLocation; name: string }[] = [
  */
 export default function CallButton({
   className,
+  style,
   children,
   analyticsId,
   label,
 }: {
   className: string;
+  style?: CSSProperties;
   /** Button content. Receives the number when one location applies, else null. */
   children: (number: string | null) => ReactNode;
   analyticsId: string;
@@ -38,7 +40,7 @@ export default function CallButton({
   if (location) {
     const phone = locationPhones[location];
     return (
-      <a href={phone.href} className={className} data-analytics-id={analyticsId} aria-label={label ? `${label} on ${phone.display}` : undefined}>
+      <a href={phone.href} className={className} style={style} data-analytics-id={analyticsId} aria-label={label ? `${label} on ${phone.display}` : undefined}>
         {children(phone.display)}
       </a>
     );
@@ -49,6 +51,7 @@ export default function CallButton({
       <button
         type="button"
         className={className}
+        style={style}
         data-analytics-id={analyticsId}
         aria-haspopup="dialog"
         aria-label={label}
