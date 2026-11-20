@@ -8,7 +8,7 @@ import {
   homeServices,
   homeSteps,
 } from "../lib/home";
-import { serviceLocations, type ServiceLocation } from "../lib/locations";
+import { serviceLocations } from "../lib/locations";
 import { formatReviewMonth, getRating, getReviewLinks, getReviews } from "../lib/reviews";
 import { prices } from "../lib/site";
 import HomeMobileBar from "./home/HomeMobileBar";
@@ -34,19 +34,6 @@ import {
 } from "./site/ui";
 
 const HERO_CHECKER_ID = "check-postcode";
-
-const locationLinks: Record<ServiceLocation["slug"], { label: string; href: string; analyticsId?: string }[]> = {
-  bristol: [
-    { label: "Areas we cover", href: "/locations/bristol/areas-we-cover", analyticsId: "home-location-bristol-areas" },
-    { label: "Toenail cutting in Bristol", href: "/toenail-cutting-bristol" },
-  ],
-  // Same two links as Bristol. Southampton has no areas page yet, so "Areas we cover"
-  // goes to the coverage section on its location page.
-  southampton: [
-    { label: "Areas we cover", href: "/locations/southampton#southampton-coverage", analyticsId: "home-location-southampton-areas" },
-    { label: "Toenail cutting in Southampton", href: "/toenail-cutting-southampton" },
-  ],
-};
 
 const visits = [
   { name: "First visit", detail: "Assessment and treatment. About 60 minutes.", price: prices[0].price },
@@ -242,7 +229,7 @@ function WhoAndHow() {
             row gap here would open up between every line inside them. */}
         <div className="mt-8 grid gap-10 md:mt-10 md:grid-cols-2 md:gap-x-10 md:gap-y-0 lg:gap-x-20">
           {Object.values(serviceLocations).map((location) => (
-            <LocationSummary key={location.slug} location={location} idPrefix="who" links={locationLinks[location.slug]} />
+            <LocationSummary key={location.slug} location={location} idPrefix="who" />
           ))}
         </div>
 
