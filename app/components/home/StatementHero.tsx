@@ -78,6 +78,7 @@ export default function StatementHero() {
       </h1>
       <div ref={track} style={pinned && height ? { height: SCREENS * (height - HEADER) } : undefined}>
         <div
+          data-hero-stage
           className={`relative overflow-hidden ${pinned ? "sticky top-[84px] flex flex-col justify-center" : "py-20 md:py-28"}`}
           style={pinned && height ? { height: height - HEADER } : undefined}
         >

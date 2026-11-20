@@ -188,7 +188,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
 
       {/* Phones and tablets: the scroll-led introduction. */}
       <div ref={track} className={`lg:hidden ${intro ? "h-[230vh]" : ""}`}>
-        <div ref={stage} className={`${shell} flex flex-col pb-4 pt-4 ${intro ? "sticky top-16 h-[calc(100svh-4rem)]" : ""}`}>
+        <div ref={stage} data-hero-stage className={`${shell} flex flex-col pb-4 pt-4 ${intro ? "sticky top-16 h-[calc(100svh-4rem)]" : ""}`}>
           {pill}
           <div ref={media} className={`relative mt-4 ${intro ? "min-h-0 flex-1" : ""}`}>
             {intro ? (
