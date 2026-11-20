@@ -422,3 +422,49 @@ body:has([data-fullscreen-page]) .entry-animation-logo {
     max-width: 72rem;
   }
 }
+
+/* Prices page travel slider: a soft track filled up to the thumb (--p). */
+.travel-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 30px;
+  background: transparent;
+  cursor: pointer;
+}
+.travel-range::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 8px;
+  background: linear-gradient(to right, var(--color-brand-sageLight) var(--p, 0%), rgb(255 255 255 / 0.15) var(--p, 0%));
+}
+.travel-range::-moz-range-track {
+  height: 8px;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.15);
+}
+.travel-range::-moz-range-progress {
+  height: 8px;
+  border-radius: 8px;
+  background: var(--color-brand-sageLight);
+}
+.travel-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  margin-top: -11px;
+  border-radius: 50%;
+  background: var(--color-brand-offwhite);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.25);
+}
+.travel-range::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-brand-offwhite);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.25);
+}
+.travel-range:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
