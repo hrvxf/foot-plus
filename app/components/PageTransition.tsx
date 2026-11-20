@@ -11,11 +11,16 @@ import { viewTransitionsSupported } from "./RouteViewTransition";
 let hasMountedOnce = false;
 
 export default function PageTransition({ children }: { children: ReactNode }) {
-  const [animate] = useState(() => hasMountedOnce && !viewTransitionsSupported());
+  // "page-enter": CSS fade for browsers without view transitions. "soft-nav": a view
+  // transition is handling the change, so in-page entrance animations (the location
+  // chooser's rise) are switched off and don't play again once it has finished.
+  const [className] = useState(() =>
+    !hasMountedOnce ? undefined : viewTransitionsSupported() ? "soft-nav" : "page-enter",
+  );
 
   useEffect(() => {
     hasMountedOnce = true;
   }, []);
 
-  return <div className={animate ? "page-enter" : undefined}>{children}</div>;
+  return <div className={className}>{children}</div>;
 }

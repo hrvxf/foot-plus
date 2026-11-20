@@ -91,6 +91,52 @@ body {
   animation-timing-function: ease-out;
 }
 
+/* Between the full-screen green pages (location chooser, review card) the green is
+   the same on both sides, so only the content changes: the old content fades out
+   quickly, then the new content fades in with a small rise. The green underneath (part
+   of the root cross-fade, identical on both pages) never visibly moves. */
+.fullscreen-content {
+  view-transition-name: fullscreen-content;
+}
+
+::view-transition-group(fullscreen-content) {
+  animation-duration: 0s;
+}
+
+::view-transition-old(fullscreen-content) {
+  animation: fullscreen-content-out 140ms ease-in both;
+}
+
+::view-transition-new(fullscreen-content) {
+  animation: fullscreen-content-in 320ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+}
+
+@keyframes fullscreen-content-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fullscreen-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* The view transition above already brings the content in, so the chooser's own
+   rise (made for a first page load) would play a second time after it: off. */
+.soft-nav .locations-enter {
+  animation: none;
+}
+
+/* Browsers without view transitions: fading the whole page would fade the green in
+   from the off-white page colour, a visible flash. Keep the green and let the
+   content's own rise (.locations-enter) carry the change instead. */
+.page-enter:has([data-fullscreen-page]) {
+  animation: none;
+}
+
 /* Pages with the sticky mobile Request / Call bar: make room for it under the
    footer (the last thing on the page) rather than under the page content,
    which left a large empty gap above the footer. */
@@ -145,9 +191,19 @@ html[data-intro] .entry-animation {
   animation: entry-failsafe-hide 1ms linear 8s forwards;
 }
 
-html[data-intro] [data-header-logo] {
+html[data-intro] [data-header-logo],
+html[data-intro] [data-intro-target] {
   visibility: hidden;
   animation: entry-failsafe-show 1ms linear 8s forwards;
+}
+
+/* On the full-screen green pages the intro plays white on green, to match them. */
+body:has([data-fullscreen-page]) .entry-animation-backdrop {
+  background-color: #34503f;
+}
+
+body:has([data-fullscreen-page]) .entry-animation-logo {
+  color: #ffffff;
 }
 
 @keyframes entry-failsafe-hide {

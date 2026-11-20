@@ -17,10 +17,32 @@ import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
  * globals.css shows this overlay and hides the header logo only while that attribute
  * is present, so visitors without JavaScript never see it. This component plays the
  * animation and removes the attribute when it lands.
+ *
+ * Full-screen green pages (marked data-fullscreen-page: the location chooser and the
+ * review card) hide the header, so they mark their own logo with data-intro-target
+ * instead, and the intro plays white on green to match them (colours in globals.css,
+ * so they're right from the first frame). A target whose logo
+ * sits inside a bigger image (the town lockups, with the town under the wordmark)
+ * gives the wordmark's place in it as data-logo-box="left top width height", each a
+ * fraction of the image.
  */
 
 /** Safety net: never leave the overlay up longer than this, whatever goes wrong. */
 const MAX_INTRO_MS = 6000;
+
+/** Where the logo sits in the target: the whole box, or the part data-logo-box names. */
+function logoRect(target: HTMLElement) {
+  const rect = target.getBoundingClientRect();
+  const box = target.dataset.logoBox?.split(" ").map(Number);
+  if (!box || box.length !== 4 || box.some((n) => !Number.isFinite(n))) return rect;
+  const [left, top, width, height] = box;
+  return new DOMRect(
+    rect.left + rect.width * left,
+    rect.top + rect.height * top,
+    rect.width * width,
+    rect.height * height,
+  );
+}
 
 export default function EntryAnimation() {
   const [active, setActive] = useState(false);
@@ -58,9 +80,11 @@ export default function EntryAnimation() {
   const land = useCallback(() => {
     const logo = logoRef.current;
     const backdrop = backdropRef.current;
-    const target = document.querySelector<HTMLElement>("[data-header-logo]");
+    const target =
+      document.querySelector<HTMLElement>("[data-intro-target]") ??
+      document.querySelector<HTMLElement>("[data-header-logo]");
     const from = logo?.getBoundingClientRect();
-    const to = target?.getBoundingClientRect();
+    const to = target ? logoRect(target) : undefined;
 
     if (!logo || !backdrop || !from || !to || !from.width || !to.width) {
       // No header logo to land on: fade the whole overlay away.
@@ -91,10 +115,10 @@ export default function EntryAnimation() {
   return (
     // Click or tap anywhere (or press any key) to skip straight to the page.
     <div className="entry-animation" aria-hidden="true" onClick={finish}>
-      <div ref={backdropRef} className="absolute inset-0 bg-brand-offwhite" />
+      <div ref={backdropRef} className="entry-animation-backdrop absolute inset-0 bg-brand-offwhite" />
       <div
         ref={logoRef}
-        className="relative aspect-[248.4347/77.966766] w-[min(60vw,300px)] text-brand-sageDark"
+        className="entry-animation-logo relative aspect-[248.4347/77.966766] w-[min(60vw,300px)] text-brand-sageDark"
         // Hidden until the draw-in takes over, so the finished logo never flashes first.
         style={{ opacity: active ? 1 : 0 }}
       >
