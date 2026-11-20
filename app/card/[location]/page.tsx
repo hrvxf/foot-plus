@@ -15,7 +15,7 @@ import { getWriteReviewUrl } from "../../lib/reviews";
 
 // Second step of the appointment card QR code (see ../page.tsx). It carries on
 // from the full-screen green chooser: the review comes first, as the one solid
-// button, and the location's contact details sit below as labelled icon buttons.
+// pill, and the location's contact details sit below as labelled icon buttons.
 // The contact details are the same ones the location page uses, so a change
 // there shows up here too.
 
@@ -28,6 +28,12 @@ const contactActions: Record<Slug, (options: { analyticsPrefix: string }) => Con
 
 /** One word under each icon: icons alone are easy to misread. */
 const shortLabel: Record<ContactAction["kind"], string> = { phone: "Call", whatsapp: "WhatsApp", email: "Email" };
+
+/** White logo lockups with the town set under the wordmark, for the green background. */
+const lockups: Record<Slug, string> = {
+  bristol: "/images/footplus-logo-white.svg",
+  southampton: "/images/footplus-logo-southampton-white.svg",
+};
 
 const STAR_PATH =
   "M12 1.5l3.09 6.86 7.41.78-5.54 5.03 1.57 7.33L12 17.77 5.47 21.5l1.57-7.33L1.5 9.14l7.41-.78z";
@@ -78,11 +84,17 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
         aria-hidden="true"
       />
 
-      <Link href="/" className={`mx-auto block rounded-sm ${focus}`}>
-        <span
-          role="img"
-          aria-label="Foot+ home"
-          className="block h-8 w-[6.4rem] bg-white [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_center/contain_no-repeat]"
+      {/* The location lockup (Foot+ with the town under it) says whose card this is,
+          so the town isn't repeated as text under the portrait. */}
+      <Link href="/" aria-label={`${location.displayName} home`} className={`mx-auto block rounded-sm ${focus}`}>
+        <Image
+          src={lockups[location.slug]}
+          alt=""
+          width={144}
+          height={48}
+          priority
+          unoptimized
+          className="block h-12 w-36"
         />
       </Link>
 
@@ -98,10 +110,9 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
           />
         ) : null}
 
-        <p className="mt-5 text-base font-medium tracking-[0.01em] text-white/85">{location.displayName}</p>
         <h1
           id="card-heading"
-          className="mt-1 font-heading text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] text-balance md:text-[2.5rem]"
+          className="mt-5 font-heading text-[2rem] font-semibold leading-[1.15] tracking-[-0.015em] text-balance md:text-[2.5rem]"
         >
           {firstName ? `How was your visit with ${firstName}?` : "How was your visit?"}
         </h1>
@@ -118,9 +129,27 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
           href={getWriteReviewUrl(location.slug, location.displayName)}
           rel="noopener"
           data-analytics-id={`${analyticsPrefix}-review`}
-          className={`mt-6 flex min-h-16 items-center justify-center rounded-lg bg-white px-6 text-xl font-semibold text-[#34503F] shadow-[0_14px_30px_-16px_rgba(0,0,0,0.6)] transition-[background-color,transform] duration-200 hover:bg-brand-offwhite active:translate-y-px active:scale-[0.99] motion-reduce:transition-none ${focus}`}
+          className={`group mt-6 flex min-h-16 items-center justify-between gap-3 rounded-full bg-brand-offwhite py-2 pl-7 pr-2 text-left font-heading text-[1.1875rem] font-semibold text-[#34503F] shadow-[0_14px_30px_-16px_rgba(0,0,0,0.55)] transition-[background-color,transform] duration-200 hover:bg-white active:translate-y-px active:scale-[0.99] motion-reduce:transition-none ${focus}`}
         >
-          Leave a Google review
+          <span>Leave a Google review</span>
+          <span
+            className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#34503F] text-brand-offwhite transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+            aria-hidden="true"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
+          </span>
         </a>
         <p className="mt-3 text-base text-white/80">Takes about a minute.</p>
 
@@ -139,7 +168,7 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
                   data-analytics-id={action.analyticsId}
                   className={`group flex w-[4.5rem] flex-col items-center gap-2 rounded-lg text-base font-medium text-white ${focus}`}
                 >
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/55 bg-white/[0.12] shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_-18px_rgba(0,0,0,0.6)] transition-[background-color,color,transform] duration-200 group-hover:bg-white group-hover:text-[#34503F] group-active:scale-[0.97] motion-reduce:transition-none">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/[0.14] backdrop-blur-md transition-[background-color,color,transform] duration-200 group-hover:bg-white group-hover:text-[#34503F] group-active:scale-[0.97] motion-reduce:transition-none">
                     <ContactGlyph kind={action.kind} className="h-7 w-7" />
                   </span>
                   <span aria-hidden="true">{shortLabel[action.kind]}</span>
