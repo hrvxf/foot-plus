@@ -61,6 +61,24 @@ body {
   html {
     scroll-behavior: smooth;
   }
+
+  /* Location page coverage wall: each place name glows briefly in turn. */
+  .place-glow {
+    animation: place-glow linear infinite;
+  }
+}
+
+@keyframes place-glow {
+  0%,
+  100% {
+    color: inherit;
+  }
+  2% {
+    color: rgb(79 111 95 / 0.55);
+  }
+  5% {
+    color: inherit;
+  }
 }
 
 /* Page change: the new page fades in under the header (soft navigations only,

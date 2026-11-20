@@ -59,6 +59,20 @@ export function emailForPath(pathname: string | null) {
 }
 export const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
 
+/** Place names shown on the location pages' coverage wall. */
+export const coveragePlaces = {
+  bristol: [
+    "City Centre", "Harbourside", "Clifton", "Hotwells", "Redland", "Cotham", "Stokes Croft", "Bishopston", "Horfield",
+    "Ashley Down", "Filton", "Henleaze", "Westbury-on-Trym", "Bedminster", "Southville", "Knowle", "Brislington",
+    "Totterdown", "Fishponds", "Stoke Gifford", "Kingswood", "Keynsham",
+  ],
+  // From the Foot+ Southampton Google Business Profile service area.
+  southampton: [
+    "Bassett", "Shirley", "Bitterne", "Lordshill", "Lordswood", "Maybush", "Millbrook", "Portswood", "Swaythling",
+    "Nursling", "Rownhams", "Chilworth", "North Baddesley", "Romsey", "Chandler’s Ford", "Totton", "Eling",
+  ],
+};
+
 export const serviceAreas = [
   {
     region: "Central Bristol",

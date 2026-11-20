@@ -12,7 +12,7 @@ import { estimateTravel, lookupPostcode, type TravelEstimate } from "../../lib/t
 import { trackAdviceEvent } from "../advice/AdviceTracker";
 import { texturedGreen } from "../site/ui";
 
-type Tone = "card" | "panel" | "plain" | "band";
+type Tone = "card" | "panel" | "plain" | "band" | "compact";
 
 type PostcodeCheckerProps = {
   /** Analytics prefix, so checks from different pages can be told apart. */
@@ -31,6 +31,7 @@ type PostcodeCheckerProps = {
    * card: white card (inner pages). panel: the dark green block in the home hero.
    * plain: no surround, field and button in one row, for the page background.
    * band: as plain, for use on a dark green surface.
+   * compact: field and a square arrow button in one row, label for screen readers only (location pages).
    */
   tone?: Tone;
   /** Anchor id for "Check postcode" links elsewhere on the page. */
@@ -103,6 +104,22 @@ const tones: Record<
     link: "font-semibold text-white underline underline-offset-4",
     action:
       "rounded-lg bg-white px-6 text-brand-sageDeep hover:bg-brand-offwhite focus-visible:outline-white",
+  },
+  compact: {
+    wrap: "",
+    title: "font-heading text-[1.875rem] font-semibold leading-tight tracking-[-0.015em] text-brand-sageDeep",
+    label: "sr-only",
+    row: "flex flex-row gap-2",
+    input:
+      "flex-1 rounded-2xl border-[1.5px] border-brand-line bg-white focus:border-brand-sageDark focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark",
+    button:
+      "w-14 rounded-2xl bg-brand-sageDark text-white hover:bg-brand-sageDeep focus-visible:outline-brand-sageDark",
+    helper: "mt-3 text-base leading-6 text-brand-muted",
+    result: "mt-4 rounded-2xl bg-brand-wash p-4 text-brand-charcoal",
+    error: "text-red-800",
+    link: "font-semibold text-brand-sageDeep underline underline-offset-2",
+    action:
+      "rounded-lg bg-brand-sageDark px-5 text-white hover:bg-brand-sageDeep focus-visible:outline-brand-sageDark",
   },
   plain: {
     wrap: "",
@@ -191,7 +208,7 @@ export default function PostcodeChecker({
             autoComplete="postal-code"
             autoCapitalize="characters"
             spellCheck={false}
-            placeholder="e.g. BS6 7QN"
+            placeholder={tone === "compact" ? "Enter your postcode" : "e.g. BS6 7QN"}
             value={value}
             onChange={(event) => {
               setValue(event.target.value);
@@ -209,8 +226,8 @@ export default function PostcodeChecker({
             type="submit"
             className={`inline-flex h-14 shrink-0 items-center justify-center gap-2 text-lg font-semibold transition-colors duration-150 focus-visible:outline-[3px] focus-visible:outline-offset-2 ${style.button}`}
           >
-            Check postcode
-            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            {tone === "compact" ? <span className="sr-only">Check postcode</span> : "Check postcode"}
+            <ArrowRight className={tone === "compact" ? "h-6 w-6" : "h-5 w-5"} aria-hidden="true" />
           </button>
         </div>
       </form>

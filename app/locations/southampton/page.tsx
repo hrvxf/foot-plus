@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import MeetIntro from "../../components/location/MeetIntro";
 import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, locationEmails, locationPhones } from "../../lib/site";
-import { southamptonTravelSummary } from "../../lib/travel";
-import PostcodeChecker from "../../components/home/PostcodeChecker";
+import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, coveragePlaces, locationEmails, locationPhones } from "../../lib/site";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
+import CoverageWall from "../../components/location/CoverageWall";
 import { ClosingBand, FaqList, Steps, portraits } from "../../components/site/blocks";
-import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
+import { displayH2, rule, shell } from "../../components/site/ui";
 
 // Mirrors app/locations/bristol/page.tsx section for section. Keep the two in step:
 // only location details (names, coverage, contacts, partners) should differ.
@@ -97,34 +95,7 @@ export default function SouthamptonLocationPage() {
 
       <TreatmentsMarquee id="southampton-services" place="Southampton" />
 
-      <section id="southampton-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="southampton-coverage-heading">
-        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
-          <div className="lg:col-span-7">
-            <h2 id="southampton-coverage-heading" className={displayH2}>
-              Home visits across Southampton
-            </h2>
-            <p className={`${body} mt-4 max-w-[52ch]`}>
-              {location.coverage} {southamptonTravelSummary}
-            </p>
-            <ul className="mt-2 flex flex-wrap gap-x-6">
-              <li>
-                <Link href="/prices" className={linkQuiet}>
-                  View prices
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="lg:col-span-5">
-            <PostcodeChecker
-              tone="panel"
-              source="southampton"
-              title="Do we visit you?"
-              label="Postcode for the visit"
-              helper="We’ll show any travel fee for your postcode."
-            />
-          </div>
-        </div>
-      </section>
+      <CoverageWall id="southampton-coverage" source="southampton" summary="Southampton and nearby, including Romsey, Chandler’s Ford and Totton." places={coveragePlaces.southampton} />
 
       <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="southampton-process">
         <div className={shell}>
