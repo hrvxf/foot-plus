@@ -5,12 +5,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
+import CallButton from "./site/CallButton";
 import { phoneForPath } from "../lib/site";
 
 export default function Header() {
   const pathname = usePathname();
-  // Southampton pages show Katie's number; everywhere else the general one.
-  const { display: phoneDisplay, href: phoneHref } = phoneForPath(pathname);
+  // The patient forms page keeps one direct number for help. Every other call
+  // button goes through CallButton, which asks Bristol or Southampton on shared pages.
+  const { href: phoneHref } = phoneForPath(pathname);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -117,14 +119,17 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <a
+            <CallButton
               className="hidden items-center gap-2 text-base font-semibold text-brand-sageDark hover:text-brand-sageDeep lg:inline-flex"
-              href={phoneHref}
-              data-analytics-id="header-phone"
+              analyticsId="header-phone"
             >
-              <Phone className="h-4.5 w-4.5" aria-hidden="true" />
-              {phoneDisplay}
-            </a>
+              {(number) => (
+                <>
+                  <Phone className="h-4.5 w-4.5" aria-hidden="true" />
+                  {number ?? "Call us"}
+                </>
+              )}
+            </CallButton>
             {isPatientFormPage ? (
               <a
                 className={`${bookButtonClasses} inline-flex items-center gap-2 lg:hidden`}
@@ -142,15 +147,18 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
-          <a
-            href={phoneHref}
+          <CallButton
             className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-3 text-base font-semibold text-brand-sageDeep transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
-            aria-label={`Call Foot+ on ${phoneDisplay}`}
-            data-analytics-id="header-mobile-phone"
+            label="Call Foot+"
+            analyticsId="header-mobile-phone"
           >
-            <Phone className="h-5 w-5" aria-hidden="true" />
-            Call
-          </a>
+            {() => (
+              <>
+                <Phone className="h-5 w-5" aria-hidden="true" />
+                Call
+              </>
+            )}
+          </CallButton>
           <button
             type="button"
             className="-mr-2 inline-flex h-12 w-12 items-center justify-center rounded-lg text-sm font-semibold text-brand-sageDeep transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
@@ -222,9 +230,12 @@ export default function Header() {
                   Request a visit
                 </Link>
               )}
-              <a className="mt-2 rounded-lg border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark" href={phoneHref}>
-                Call {phoneDisplay}
-              </a>
+              <CallButton
+                className="mt-2 rounded-lg border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark"
+                analyticsId="header-menu-phone"
+              >
+                {(number) => (number ? `Call ${number}` : "Call us")}
+              </CallButton>
             </div>
           </div>
         </div>

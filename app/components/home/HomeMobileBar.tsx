@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 
-import { phoneHref } from "../../lib/site";
+import CallButton from "../site/CallButton";
 import { focusRing } from "../site/ui";
 
 /**
@@ -52,14 +52,18 @@ export default function HomeMobileBar({ checkerId }: { checkerId: string }) {
         >
           Check postcode
         </a>
-        <a
-          href={phoneHref}
+        <CallButton
           className={`${action} border-[1.5px] border-brand-sageDark bg-white text-brand-sageDeep hover:bg-brand-offwhite`}
-          data-analytics-id="home-mobile-phone"
+          label="Call Foot+"
+          analyticsId="home-mobile-phone"
         >
-          <Phone className="h-5 w-5" aria-hidden="true" />
-          Call
-        </a>
+          {() => (
+            <>
+              <Phone className="h-5 w-5" aria-hidden="true" />
+              Call
+            </>
+          )}
+        </CallButton>
       </div>
     </div>
   );
