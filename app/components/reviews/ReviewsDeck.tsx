@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+import { stableViewportHeight } from "../../lib/stableViewport";
 import Stars from "./Stars";
 
 export type DeckReview = { name: string; when: string; rating: number; text: string; highlight?: string };
@@ -96,9 +97,11 @@ export default function ReviewsDeck({
       if (!t0 || !s || !d) return;
       const header = document.querySelector("header");
       const top = header ? header.getBoundingClientRect().height : 64;
+      const vh = stableViewportHeight();
       s.style.top = `${top}px`;
-      s.style.height = `calc(100svh - ${top}px)`;
-      const travel = t0.offsetHeight - (window.innerHeight - top);
+      s.style.height = `${vh - top}px`;
+      t0.style.height = `${vh * (1 + steps * 0.6)}px`;
+      const travel = t0.offsetHeight - (vh - top);
       const progress = clamp((top - t0.getBoundingClientRect().top) / travel) * steps;
       const index = Math.min(steps, Math.floor(progress));
       const position = index + settle(progress - index);

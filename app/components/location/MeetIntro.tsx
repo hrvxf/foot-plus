@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 import type { Practitioner } from "../../lib/locations";
+import { stableViewportHeight } from "../../lib/stableViewport";
 import { ContactGlyph, type ContactAction } from "../site/ContactIcons";
 import { btnSolid, focusRing, shell } from "../site/ui";
 
@@ -60,11 +61,13 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
       if (!t0 || !m || !p || !s || wide.matches) return;
       const header = document.querySelector("header");
       const top = header ? header.getBoundingClientRect().height : 64;
+      const vh = stableViewportHeight();
       s.style.top = `${top}px`;
-      s.style.height = `calc(100svh - ${top}px)`;
+      s.style.height = `${vh - top}px`;
+      t0.style.height = `${vh * 2.3}px`;
 
       const rect = t0.getBoundingClientRect();
-      const travel = t0.offsetHeight - window.innerHeight * 0.75;
+      const travel = t0.offsetHeight - vh * 0.75;
       let progress = clamp((top - rect.top) / travel);
       if (reduce.matches) progress = progress > 0.1 ? 1 : 0;
       const t = ease(clamp(progress / 0.6));
