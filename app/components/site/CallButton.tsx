@@ -59,7 +59,7 @@ export default function CallButton({
       <dialog
         ref={dialogRef}
         aria-labelledby={`${analyticsId}-title`}
-        className="fixed inset-x-0 bottom-0 top-auto m-0 w-full max-w-none rounded-t-2xl bg-white p-0 text-brand-charcoal shadow-2xl backdrop:bg-brand-charcoal/45 sm:inset-0 sm:m-auto sm:max-w-sm sm:rounded-2xl"
+        className="call-sheet fixed inset-x-0 bottom-0 top-auto m-0 w-full max-w-none rounded-t-2xl bg-white p-0 text-brand-charcoal shadow-2xl sm:inset-0 sm:m-auto sm:max-w-sm sm:rounded-2xl"
         onClick={(event) => {
           // A click on the backdrop lands on the dialog element itself.
           if (event.target === event.currentTarget) event.currentTarget.close();
@@ -67,12 +67,9 @@ export default function CallButton({
       >
         <div className="px-5 pb-[calc(env(safe-area-inset-bottom)+1.25rem)] pt-5 sm:pb-5">
           <div className="flex items-start justify-between gap-4">
-            <div>
-              <h2 id={`${analyticsId}-title`} className="font-heading text-xl font-semibold leading-7 text-brand-sageDeep">
-                Which area are you in?
-              </h2>
-              <p className="mt-1 text-base leading-6 text-brand-muted">Each area has its own practitioner.</p>
-            </div>
+            <h2 id={`${analyticsId}-title`} className="pt-1.5 font-heading text-xl font-semibold leading-7 text-brand-sageDeep">
+              Which area are you in?
+            </h2>
             <button
               type="button"
               aria-label="Close"
