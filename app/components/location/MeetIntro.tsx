@@ -36,7 +36,7 @@ export const MEET_PORTRAIT_SIZES = "(min-width: 640px) 520px, 90vw";
  */
 export default function MeetIntro({ title, status, practitioner, portraitSrc, primaryAction, contactActions }: Props) {
   const firstName = practitioner.name.split(" ")[0];
-  const credentials = [...practitioner.credentials, "Fully insured"].join(" · ");
+  const credentials = [...practitioner.credentials, ...(practitioner.insured ? ["Fully insured"] : [])].join(" · ");
   const intro = practitioner.intro;
 
   const track = useRef<HTMLDivElement>(null);
