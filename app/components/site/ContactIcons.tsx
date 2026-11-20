@@ -1,6 +1,6 @@
 import { Mail, Phone } from "lucide-react";
 
-import { bristolWhatsAppHref, locationEmails, phoneDisplay, phoneHref } from "../../lib/site";
+import { bristolWhatsAppHref, locationEmails, locationPhones, phoneDisplay, phoneHref } from "../../lib/site";
 
 export type ContactAction = {
   kind: "phone" | "whatsapp" | "email";
@@ -27,14 +27,11 @@ export function bristolContactActions({
   ];
 }
 
-/**
- * Default Southampton contact set: call Foot+ and email southampton@. No WhatsApp
- * until Southampton has its own number (matches /toenail-cutting-southampton).
- */
+/** Default Southampton contact set: call Katie on the Southampton number and email southampton@. */
 export function southamptonContactActions({ analyticsPrefix }: { analyticsPrefix?: string } = {}): ContactAction[] {
   const id = (name: string) => (analyticsPrefix ? `${analyticsPrefix}-${name}` : undefined);
   return [
-    { kind: "phone", href: phoneHref, label: `Call Foot+ on ${phoneDisplay}`, analyticsId: id("phone") },
+    { kind: "phone", href: locationPhones.southampton.href, label: `Call Foot+ Southampton on ${locationPhones.southampton.display}`, analyticsId: id("phone") },
     { kind: "email", href: locationEmails.southampton.href, label: locationEmails.southampton.label, analyticsId: id("email") },
   ];
 }

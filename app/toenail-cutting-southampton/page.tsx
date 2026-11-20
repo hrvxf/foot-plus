@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import NailCuttingPage from "../components/site/NailCuttingPage";
 import { serviceLocations } from "../lib/locations";
-import { locationEmails, phoneDisplay, phoneHref, prices, SITE_URL } from "../lib/site";
+import { locationEmails, locationPhones, prices, SITE_URL } from "../lib/site";
 
 // Southampton counterpart of /toenail-cutting-bristol. Keep it specific to
 // Southampton (practitioner, coverage, travel base) rather than a copy of the
@@ -112,7 +112,7 @@ export default function ToenailCuttingSouthamptonPage() {
         aboutHref="/about#katie-preston"
         bookingHref={bookingHref}
         contactActions={[
-          { kind: "phone", href: phoneHref, label: `Call Foot+ on ${phoneDisplay}`, analyticsId: "nails-soton-hero-phone" },
+          { kind: "phone", href: locationPhones.southampton.href, label: `Call Foot+ Southampton on ${locationPhones.southampton.display}`, analyticsId: "nails-soton-hero-phone" },
           { kind: "email", href: locationEmails.southampton.href, label: locationEmails.southampton.label, analyticsId: "nails-soton-hero-email" },
         ]}
         faqs={faqs}

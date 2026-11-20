@@ -18,6 +18,20 @@ export const ADVICE_SOCIAL_IMAGE_METADATA = {
 export const bookingHref = "/book";
 export const phoneDisplay = "07380 301555";
 export const phoneHref = "tel:+447380301555";
+
+/** Each location has its own number. Bristol's is also the general Foot+ number above. */
+export const locationPhones = {
+  bristol: { display: phoneDisplay, href: phoneHref, e164: "+447380301555" },
+  southampton: { display: "07564 614967", href: "tel:+447564614967", e164: "+447564614967" },
+} as const;
+
+/** Southampton pages (location pages and town-specific service pages) get Katie's number; everything else gets the general one. */
+export function phoneForPath(pathname: string | null) {
+  if (pathname?.startsWith("/locations/southampton") || pathname?.endsWith("-southampton") || pathname === "/card/southampton") {
+    return locationPhones.southampton;
+  }
+  return locationPhones.bristol;
+}
 export const emailDisplay = "hello@foot-plus.co.uk";
 export const emailHref = `mailto:${emailDisplay}`;
 
