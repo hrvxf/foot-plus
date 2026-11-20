@@ -1,7 +1,20 @@
+export type PartnerLocation = "bristol" | "southampton";
+
+/** The kind of help a partner offers. The partners page groups and filters by these, in this order. */
+export const partnerGroups = ["Mobility & physio", "Home care", "Community", "Wellbeing"] as const;
+export type PartnerGroup = (typeof partnerGroups)[number];
+
 export type LocalPartner = {
+  /** URL-safe id, used as the card's anchor on /partners. */
+  slug: string;
   name: string;
-  category: string;
-  description: string;
+  /** Which location page and filter the partner appears under. */
+  location: PartnerLocation;
+  group: PartnerGroup;
+  /** One short line for the card. */
+  summary: string;
+  /** Shown under the name, e.g. "Bristol and surrounding areas". */
+  area: string;
   website: string;
   phone?: string;
   email?: string;
@@ -9,17 +22,18 @@ export type LocalPartner = {
     src: string;
     alt: string;
   };
-  areasCovered?: string[];
   relationship: "referral-partner" | "recommended-service" | "community-partner";
   isPublished: boolean;
 };
 
 export const localPartners: LocalPartner[] = [
   {
+    slug: "severn-physiotherapy",
     name: "Severn Physiotherapy",
-    category: "Home physiotherapy and occupational therapy",
-    description:
-      "Home-visit physiotherapy and occupational therapy for older adults, focused on mobility, falls prevention, rehabilitation, and practical support at home.",
+    location: "bristol",
+    group: "Mobility & physio",
+    summary: "Home physio and OT for mobility, falls prevention and rehab.",
+    area: "Bristol and surrounding areas",
     website: "https://www.severnphysiotherapy.co.uk/",
     phone: "01275 400466",
     email: "hello@severnphysiotherapy.co.uk",
@@ -27,10 +41,13 @@ export const localPartners: LocalPartner[] = [
       src: "/images/SevernPhysiotherapy.png",
       alt: "Severn Physiotherapy logo",
     },
-    areasCovered: ["Bristol", "surrounding areas"],
     relationship: "referral-partner",
     isPublished: true,
   },
 ];
 
 export const publishedLocalPartners = localPartners.filter((partner) => partner.isPublished);
+
+export function partnersFor(location: PartnerLocation) {
+  return publishedLocalPartners.filter((partner) => partner.location === location);
+}
