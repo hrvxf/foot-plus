@@ -1,20 +1,15 @@
 import Link from "next/link";
-import FooterEmail from "./FooterEmail";
+
+import Doormat from "./site/Doormat";
 import LgbtqFriendly from "./site/LgbtqFriendly";
-import { rule, shell } from "./site/ui";
+import { shell } from "./site/ui";
 
 const exploreLinks = [
   { href: "/services", label: "Services" },
   { href: "/prices", label: "Prices" },
   { href: "/advice", label: "Advice" },
-  { href: "/about", label: "About Foot+" },
   { href: "/partners", label: "Partners" },
-  { href: "/toenail-cutting", label: "Nail cutting" },
-];
-
-const locationLinks = [
-  { href: "/locations/bristol", label: "Bristol" },
-  { href: "/locations/southampton", label: "Southampton" },
+  { href: "/about", label: "About" },
 ];
 
 const legalLinks = [
@@ -23,93 +18,65 @@ const legalLinks = [
   { href: "/terms", label: "Terms" },
 ];
 
-// Small grey labels above each group, so the links carry the weight.
-const label = "text-sm text-brand-muted";
-// 36px rows: comfortably tappable without the tall gaps of a full 44px row.
-const link =
-  "inline-flex min-h-9 items-center text-[0.9375rem] text-brand-charcoal underline-offset-4 transition-colors duration-150 hover:text-brand-sageDeep hover:underline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
+const focus = "focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
 
-const legalLink = link.replace("text-[0.9375rem]", "text-sm");
-
-function LinkGroup({ title, links }: { title: string; links: { href: string; label: string }[] }) {
-  return (
-    <div>
-      <h2 className={`${label} mb-1`}>{title}</h2>
-      <ul>
-        {links.map((item) => (
-          <li key={item.href}>
-            <Link className={link} href={item.href}>
-              {item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
+/**
+ * Site footer: the Foot+ doormat on the doorstep, then one row of links, the trust line and the small print.
+ * Contact details live in each page's own sections, so the footer stays a calm sign-off.
+ */
 export default function Footer() {
   return (
-    <footer id="site-footer" className="relative z-10 w-full flex-none bg-brand-offwhite text-brand-charcoal">
-      <div className={`${shell} pb-6 pt-8 md:pt-10`}>
-        <div className="grid gap-y-5 md:grid-cols-[1.4fr_1fr_1fr] md:gap-x-10">
-          {/* Mobile: logo and email on the left, Facebook + LGBTQ+ on the right of the logo row.
-              Desktop (md+): a single column with the socials under the email. */}
-          <div className="grid grid-cols-[auto_1fr] items-center gap-x-4 md:block">
-            <div className="flex items-center">
-              <Link
-                href="/"
-                aria-label="Foot+ home"
-                className="inline-flex focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-brand-sageDark"
-              >
-                {/* The generic logo file is white, so it is used as a mask and coloured here. */}
-                <span
-                  role="img"
-                  aria-label="Foot+"
-                  className="block h-9 w-[115px] bg-brand-sageDark [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_left_center/contain_no-repeat]"
-                />
-              </Link>
-            </div>
-            <div className="col-span-2 row-start-2 mt-4 flex flex-col items-start">
-              <FooterEmail
-                headingClass={label}
-                linkClass="inline-flex min-h-9 items-center text-base font-semibold text-brand-charcoal underline underline-offset-4 hover:text-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
-              />
-            </div>
-            <div className="col-start-2 row-start-1 flex flex-wrap items-center justify-end gap-x-2 gap-y-1 md:mt-2 md:justify-start md:gap-x-3">
-              <a
-                href="https://www.facebook.com/profile.php?id=61586341484139"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark md:-ml-2.5"
-                aria-label="Visit Foot+ on Facebook"
-                title="Foot+ on Facebook"
-                data-analytics-id="footer-facebook"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[22px] w-[22px] fill-brand-sageDark">
-                  <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
-                </svg>
-              </a>
-              <LgbtqFriendly flagOnly />
-            </div>
+    <footer id="site-footer" className="relative z-10 w-full flex-none overflow-hidden bg-brand-offwhite text-center text-brand-charcoal">
+      <Doormat />
+
+      <div className={`${shell} max-w-xl pb-6`}>
+        <nav aria-label="Footer navigation">
+          <ul className="flex flex-wrap justify-center">
+            {exploreLinks.map((item, index) => (
+              <li key={item.href} className="relative">
+                {index > 0 && (
+                  <span aria-hidden="true" className="absolute -left-0.5 top-1/2 -translate-y-1/2 text-brand-sageLight">
+                    ·
+                  </span>
+                )}
+                <Link
+                  href={item.href}
+                  className={`inline-flex min-h-9 items-center px-[7px] text-[0.90625rem] font-medium text-brand-sageDark transition-colors hover:text-brand-sageDeep ${focus}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <p className="mt-3 text-[0.65625rem] font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
+          Qualified · Insured · DBS-checked
+        </p>
+
+        <div className="mt-6 flex items-center justify-between gap-4 border-t border-brand-line pt-3.5 text-[0.78125rem] text-brand-muted">
+          <div className="flex items-center gap-2">
+            <a
+              href="https://www.facebook.com/profile.php?id=61586341484139"
+              target="_blank"
+              rel="noreferrer"
+              className={`-ml-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 ${focus}`}
+              aria-label="Visit Foot+ on Facebook"
+              title="Foot+ on Facebook"
+              data-analytics-id="footer-facebook"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-brand-sageDark">
+                <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
+              </svg>
+            </a>
+            <LgbtqFriendly flagOnly />
+            <p className="ml-1">&copy; {new Date().getFullYear()} Foot+</p>
           </div>
-
-          <nav
-            aria-label="Footer navigation"
-            className={`grid grid-cols-2 gap-x-4 border-t ${rule} pt-5 md:contents`}
-          >
-            <LinkGroup title="Explore" links={exploreLinks} />
-            <LinkGroup title="Locations" links={locationLinks} />
-          </nav>
-        </div>
-
-        <div className={`mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-t ${rule} pt-3 md:mt-8`}>
-          <p className="text-sm text-brand-muted">&copy; {new Date().getFullYear()} Foot+</p>
           <nav aria-label="Legal links">
-            <ul className="flex gap-x-4">
+            <ul className="flex gap-x-3">
               {legalLinks.map((item) => (
                 <li key={item.href}>
-                  <Link className={legalLink} href={item.href}>
+                  <Link className={`inline-flex min-h-9 items-center text-brand-sageDark hover:text-brand-sageDeep ${focus}`} href={item.href}>
                     {item.label}
                   </Link>
                 </li>
