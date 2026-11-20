@@ -68,7 +68,10 @@ export default function BristolLocationPage() {
 
       <TreatmentsMarquee id="bristol-services" place="Bristol" />
 
-      <CoverageWall id="bristol-coverage" source="bristol" summary="Central, north, south and east Bristol." places={coveragePlaces.bristol} />
+      <CoverageWall id="bristol-coverage" source="bristol" summary="Central, north, south and east Bristol." places={coveragePlaces.bristol}
+        areasHref="/locations/bristol/areas-we-cover"
+        areasLabel="Every area we cover in Bristol"
+      />
 
       <VisitChat id="bristol-process" practitioner="Adam" place="BS6" replies="Replies within 24 hours by WhatsApp or email." />
 

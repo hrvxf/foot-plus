@@ -129,6 +129,7 @@ export default function ToenailCuttingPage() {
         intro="Adam James visits you at home to cut, file and thin difficult toenails."
         coverage="Central, north, south and east Bristol, including Clifton, Redland, Bishopston, Henleaze, Bedminster, Southville and Easton. Nearby towns by request."
         aboutHref="/about#adam-james"
+        areasHref="/locations/bristol/areas-we-cover"
         bookingHref="/book?location=bristol&service=nails"
         contactActions={bristolContactActions({ analyticsPrefix: "nails-hero" })}
         faqs={faqs}

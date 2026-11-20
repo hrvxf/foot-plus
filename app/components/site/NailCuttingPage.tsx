@@ -35,6 +35,8 @@ export type NailCuttingPageProps = {
   intro: string;
   /** Areas covered, shown beside the postcode checker. */
   coverage: string;
+  /** Optional page listing every area covered, linked from the coverage line. */
+  areasHref?: string;
   aboutHref: string;
   bookingHref: string;
   contactActions: ContactAction[];
@@ -46,6 +48,7 @@ export default function NailCuttingPage({
   location,
   intro,
   coverage,
+  areasHref,
   aboutHref,
   bookingHref,
   contactActions,
@@ -129,6 +132,11 @@ export default function NailCuttingPage({
           <div>
             <h2 className={h2}>Do we visit you?</h2>
             <p className="mt-4 leading-relaxed text-brand-muted">{coverage}</p>
+            {areasHref ? (
+              <Link href={areasHref} className={`${textLink} mt-2 inline-block`}>
+                See every area we cover in {location.name}
+              </Link>
+            ) : null}
             <div className="mt-5">
               <PostcodeChecker tone="panel" source={analyticsPrefix} label="Postcode for the visit" />
             </div>
