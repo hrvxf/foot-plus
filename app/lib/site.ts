@@ -26,6 +26,16 @@ export const locationPhones = {
 } as const;
 
 /** Southampton pages (location pages and town-specific service pages) get Katie's number; everything else gets the general one. */
+export type PhoneLocation = keyof typeof locationPhones;
+
+/** Which location a page belongs to, or null for shared pages (home, services, prices…) that serve both. */
+export function phoneLocationForPath(pathname: string | null): PhoneLocation | null {
+  for (const slug of ["bristol", "southampton"] as const) {
+    if (pathname?.startsWith(`/locations/${slug}`) || pathname?.endsWith(`-${slug}`) || pathname === `/card/${slug}`) return slug;
+  }
+  return null;
+}
+
 export function phoneForPath(pathname: string | null) {
   if (pathname?.startsWith("/locations/southampton") || pathname?.endsWith("-southampton") || pathname === "/card/southampton") {
     return locationPhones.southampton;
