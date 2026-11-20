@@ -37,56 +37,60 @@ export default function LocationChooser({
         aria-hidden="true"
       />
 
-      <div className="locations-enter mx-auto w-full max-w-5xl">
-        <h1
-          id="locations-heading"
-          className="text-center font-heading text-[2rem] font-semibold leading-[1.25] tracking-[-0.015em] md:text-[2.75rem] lg:text-[3.5rem]"
-        >
-          {before}{" "}
-          <Link href="/" className={`mx-[0.14em] inline-block rounded-sm align-baseline ${focus}`}>
-            <span
-              role="img"
-              aria-label="Foot+"
-              data-intro-target
-              className="inline-block h-[1em] w-[3.19em] translate-y-[0.14em] bg-white [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_center/contain_no-repeat]"
-            />
-          </Link>
-          {after ? ` ${after}` : null}
-        </h1>
+      {/* Everything but the green: page changes between the full-screen pages fade this
+          layer while the green stays still (see .fullscreen-content in globals.css). */}
+      <div className="fullscreen-content flex flex-1 flex-col justify-center">
+        <div className="locations-enter mx-auto w-full max-w-5xl">
+          <h1
+            id="locations-heading"
+            className="text-center font-heading text-[2rem] font-semibold leading-[1.25] tracking-[-0.015em] md:text-[2.75rem] lg:text-[3.5rem]"
+          >
+            {before}{" "}
+            <Link href="/" className={`mx-[0.14em] inline-block rounded-sm align-baseline ${focus}`}>
+              <span
+                role="img"
+                aria-label="Foot+"
+                data-intro-target
+                className="inline-block h-[1em] w-[3.19em] translate-y-[0.14em] bg-white [mask:url('/images/footplus-generic-logo_MASTER_FINAL.svg')_center/contain_no-repeat]"
+              />
+            </Link>
+            {after ? ` ${after}` : null}
+          </h1>
 
-        <ul className="mx-auto mt-10 grid w-full max-w-2xl gap-4 sm:grid-cols-2 sm:gap-6 md:mt-14">
-          {Object.values(serviceLocations).map((location) => (
-            <li key={location.slug}>
-              {/* A soft frosted pill, no outline: the town in quiet tracked capitals and an off-white
-                  arrow disc, so it reads as a button without competing with the heading. */}
-              <Link
-                href={hrefFor(location)}
-                className={`group flex min-h-16 items-center justify-between gap-4 rounded-full bg-white/[0.14] py-2 pl-7 pr-2 text-[0.9375rem] font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md transition-[background-color,transform] duration-200 hover:bg-white/[0.24] active:translate-y-px active:scale-[0.99] motion-reduce:transition-none md:min-h-[4.5rem] md:pl-8 md:text-base ${focus}`}
-                data-analytics-id={`${analyticsPrefix}-${location.slug}`}
-              >
-                <span>{location.name}</span>
-                <span
-                  className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#F7F6F2] text-[#34503F] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none md:size-14"
-                  aria-hidden="true"
+          <ul className="mx-auto mt-10 grid w-full max-w-2xl gap-4 sm:grid-cols-2 sm:gap-6 md:mt-14">
+            {Object.values(serviceLocations).map((location) => (
+              <li key={location.slug}>
+                {/* A soft frosted pill, no outline: the town in quiet tracked capitals and an off-white
+                    arrow disc, so it reads as a button without competing with the heading. */}
+                <Link
+                  href={hrefFor(location)}
+                  className={`group flex min-h-16 items-center justify-between gap-4 rounded-full bg-white/[0.14] py-2 pl-7 pr-2 text-[0.9375rem] font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md transition-[background-color,transform] duration-200 hover:bg-white/[0.24] active:translate-y-px active:scale-[0.99] motion-reduce:transition-none md:min-h-[4.5rem] md:pl-8 md:text-base ${focus}`}
+                  data-analytics-id={`${analyticsPrefix}-${location.slug}`}
                 >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <span>{location.name}</span>
+                  <span
+                    className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#F7F6F2] text-[#34503F] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none md:size-14"
+                    aria-hidden="true"
                   >
-                    <path d="M5 12h14" />
-                    <path d="M13 6l6 6-6 6" />
-                  </svg>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="M13 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

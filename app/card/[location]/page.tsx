@@ -85,91 +85,21 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
         aria-hidden="true"
       />
 
-      {/* Top bar: a back button to the town chooser on the left, and the location
-          lockup (Foot+ with the town under it) in the middle. The lockup links to
-          the location page, so no text links are needed at the foot of the page. */}
-      <div className="grid grid-cols-[2.75rem_1fr_2.75rem] items-center">
-        <Link
-          href="/card"
-          aria-label="Change location"
-          data-analytics-id={`${analyticsPrefix}-change-location`}
-          className={`flex size-11 items-center justify-center rounded-full bg-white/[0.14] text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.24] motion-reduce:transition-none ${focus}`}
-        >
-          <svg
-            aria-hidden="true"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </Link>
-        <Link
-          href={location.href}
-          aria-label={`${location.displayName} page`}
-          data-analytics-id={`${analyticsPrefix}-location-page`}
-          className={`mx-auto block rounded-sm ${focus}`}
-        >
-          {/* The entry animation lands its logo on the wordmark part of this lockup
-              (see EntryAnimation): the box is the wordmark's place in the SVG's viewBox. */}
-          <Image
-            data-intro-target
-            data-logo-box="0.1342 0.04304 0.78247 0.70665"
-            src={lockups[location.slug]}
-            alt=""
-            width={147}
-            height={51}
-            priority
-            unoptimized
-            className="block h-[51px] w-[147px] md:h-[58px] md:w-[166px]"
-          />
-        </Link>
-      </div>
-
-      <div className="locations-enter mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-3 text-center md:py-8">
-        {practitioner ? (
-          <Image
-            src={portraits[location.slug]}
-            alt=""
-            width={230}
-            height={230}
-            priority
-            className="mx-auto h-[86px] w-[86px] rounded-full [@media(max-height:600px)]:hidden md:h-[115px] md:w-[115px] object-cover object-top shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] ring-2 ring-white/80"
-          />
-        ) : null}
-
-        <h1
-          id="card-heading"
-          className="mt-4 font-heading text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.015em] text-balance md:text-[2.5rem]"
-        >
-          {firstName ? `How was your visit with ${firstName}?` : "How was your visit?"}
-        </h1>
-
-        <div className="mt-4 flex justify-center gap-1.5 md:mt-5 md:gap-2" aria-hidden="true">
-          {Array.from({ length: 5 }, (_, index) => (
-            <svg key={index} viewBox="0 0 24 24" className="h-6 w-6 text-brand-goldLight md:h-8 md:w-8">
-              <path d={STAR_PATH} fill="currentColor" />
-            </svg>
-          ))}
-        </div>
-
-        <a
-          href={getWriteReviewUrl(location.slug, location.displayName)}
-          rel="noopener"
-          data-analytics-id={`${analyticsPrefix}-review`}
-          className={`group mt-5 flex min-h-[3.75rem] md:mt-6 md:min-h-16 items-center justify-between gap-3 rounded-full bg-brand-offwhite py-2 pl-7 pr-2 text-left font-heading text-[1.1875rem] font-semibold text-[#34503F] shadow-[0_14px_30px_-16px_rgba(0,0,0,0.55)] transition-[background-color,transform] duration-200 hover:bg-white active:translate-y-px active:scale-[0.99] motion-reduce:transition-none ${focus}`}
-        >
-          <span>Leave a Google review</span>
-          <span
-            className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#34503F] text-brand-offwhite transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
-            aria-hidden="true"
+      {/* Everything but the green: page changes between the full-screen pages fade this
+          layer while the green stays still (see .fullscreen-content in globals.css). */}
+      <div className="fullscreen-content flex flex-1 flex-col">
+        {/* Top bar: a back button to the town chooser on the left, and the location
+            lockup (Foot+ with the town under it) in the middle. The lockup links to
+            the location page, so no text links are needed at the foot of the page. */}
+        <div className="grid grid-cols-[2.75rem_1fr_2.75rem] items-center">
+          <Link
+            href="/card"
+            aria-label="Change location"
+            data-analytics-id={`${analyticsPrefix}-change-location`}
+            className={`flex size-11 items-center justify-center rounded-full bg-white/[0.14] text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.24] motion-reduce:transition-none ${focus}`}
           >
             <svg
+              aria-hidden="true"
               width="20"
               height="20"
               viewBox="0 0 24 24"
@@ -179,36 +109,110 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M5 12h14" />
-              <path d="M13 6l6 6-6 6" />
+              <path d="M15 18l-6-6 6-6" />
             </svg>
-          </span>
-        </a>
-        <p className="mt-2 text-sm text-white/80 md:mt-3 md:text-base">Takes about a minute.</p>
+          </Link>
+          <Link
+            href={location.href}
+            aria-label={`${location.displayName} page`}
+            data-analytics-id={`${analyticsPrefix}-location-page`}
+            className={`mx-auto block rounded-sm ${focus}`}
+          >
+            {/* The entry animation lands its logo on the wordmark part of this lockup
+                (see EntryAnimation): the box is the wordmark's place in the SVG's viewBox. */}
+            <Image
+              data-intro-target
+              data-logo-box="0.1342 0.04304 0.78247 0.70665"
+              src={lockups[location.slug]}
+              alt=""
+              width={147}
+              height={51}
+              priority
+              unoptimized
+              className="block h-[51px] w-[147px] md:h-[58px] md:w-[166px]"
+            />
+          </Link>
+        </div>
 
-        <div className="mt-5 border-t border-white/25 pt-5 md:mt-9 md:pt-8">
-          <h2 className="font-heading text-lg font-semibold leading-6 md:text-xl md:leading-7">Need to change a visit?</h2>
-          <p className="mt-0.5 text-sm text-white/85 md:mt-1 md:text-base">24 hours&rsquo; notice, please.</p>
+        <div className="locations-enter mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-3 text-center md:py-8">
+          {practitioner ? (
+            <Image
+              src={portraits[location.slug]}
+              alt=""
+              width={230}
+              height={230}
+              priority
+              className="mx-auto h-[86px] w-[86px] rounded-full [@media(max-height:600px)]:hidden md:h-[115px] md:w-[115px] object-cover object-top shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] ring-2 ring-white/80"
+            />
+          ) : null}
 
-          <ul className="mt-4 flex justify-center gap-7 md:mt-5">
-            {actions.map((action) => (
-              <li key={action.kind}>
-                <a
-                  href={action.href}
-                  aria-label={action.label}
-                  target={action.external ? "_blank" : undefined}
-                  rel={action.external ? "noopener noreferrer" : undefined}
-                  data-analytics-id={action.analyticsId}
-                  className={`group flex w-[4.5rem] flex-col items-center gap-1.5 rounded-lg text-sm font-medium md:gap-2 md:text-base text-white ${focus}`}
-                >
-                  <span className="flex h-14 w-14 items-center md:h-16 md:w-16 justify-center rounded-full bg-white/[0.14] backdrop-blur-md transition-[background-color,color,transform] duration-200 group-hover:bg-white group-hover:text-[#34503F] group-active:scale-[0.97] motion-reduce:transition-none">
-                    <ContactGlyph kind={action.kind} className="h-6 w-6 md:h-7 md:w-7" />
-                  </span>
-                  <span aria-hidden="true">{shortLabel[action.kind]}</span>
-                </a>
-              </li>
+          <h1
+            id="card-heading"
+            className="mt-4 font-heading text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.015em] text-balance md:text-[2.5rem]"
+          >
+            {firstName ? `How was your visit with ${firstName}?` : "How was your visit?"}
+          </h1>
+
+          <div className="mt-4 flex justify-center gap-1.5 md:mt-5 md:gap-2" aria-hidden="true">
+            {Array.from({ length: 5 }, (_, index) => (
+              <svg key={index} viewBox="0 0 24 24" className="h-6 w-6 text-brand-goldLight md:h-8 md:w-8">
+                <path d={STAR_PATH} fill="currentColor" />
+              </svg>
             ))}
-          </ul>
+          </div>
+
+          <a
+            href={getWriteReviewUrl(location.slug, location.displayName)}
+            rel="noopener"
+            data-analytics-id={`${analyticsPrefix}-review`}
+            className={`group mt-5 flex min-h-[3.75rem] md:mt-6 md:min-h-16 items-center justify-between gap-3 rounded-full bg-brand-offwhite py-2 pl-7 pr-2 text-left font-heading text-[1.1875rem] font-semibold text-[#34503F] shadow-[0_14px_30px_-16px_rgba(0,0,0,0.55)] transition-[background-color,transform] duration-200 hover:bg-white active:translate-y-px active:scale-[0.99] motion-reduce:transition-none ${focus}`}
+          >
+            <span>Leave a Google review</span>
+            <span
+              className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#34503F] text-brand-offwhite transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+              aria-hidden="true"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="M13 6l6 6-6 6" />
+              </svg>
+            </span>
+          </a>
+          <p className="mt-2 text-sm text-white/80 md:mt-3 md:text-base">Takes about a minute.</p>
+
+          <div className="mt-5 border-t border-white/25 pt-5 md:mt-9 md:pt-8">
+            <h2 className="font-heading text-lg font-semibold leading-6 md:text-xl md:leading-7">Need to change a visit?</h2>
+            <p className="mt-0.5 text-sm text-white/85 md:mt-1 md:text-base">24 hours&rsquo; notice, please.</p>
+
+            <ul className="mt-4 flex justify-center gap-7 md:mt-5">
+              {actions.map((action) => (
+                <li key={action.kind}>
+                  <a
+                    href={action.href}
+                    aria-label={action.label}
+                    target={action.external ? "_blank" : undefined}
+                    rel={action.external ? "noopener noreferrer" : undefined}
+                    data-analytics-id={action.analyticsId}
+                    className={`group flex w-[4.5rem] flex-col items-center gap-1.5 rounded-lg text-sm font-medium md:gap-2 md:text-base text-white ${focus}`}
+                  >
+                    <span className="flex h-14 w-14 items-center md:h-16 md:w-16 justify-center rounded-full bg-white/[0.14] backdrop-blur-md transition-[background-color,color,transform] duration-200 group-hover:bg-white group-hover:text-[#34503F] group-active:scale-[0.97] motion-reduce:transition-none">
+                      <ContactGlyph kind={action.kind} className="h-6 w-6 md:h-7 md:w-7" />
+                    </span>
+                    <span aria-hidden="true">{shortLabel[action.kind]}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
