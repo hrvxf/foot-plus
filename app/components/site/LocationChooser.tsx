@@ -56,13 +56,32 @@ export default function LocationChooser({
         <ul className="mx-auto mt-10 grid w-full max-w-2xl gap-4 sm:grid-cols-2 sm:gap-6 md:mt-14">
           {Object.values(serviceLocations).map((location) => (
             <li key={location.slug}>
-              {/* Body typeface and a raised, outlined surface, so these read as buttons and not as more heading. */}
+              {/* A soft frosted pill, no outline: the town in quiet tracked capitals and an off-white
+                  arrow disc, so it reads as a button without competing with the heading. */}
               <Link
                 href={hrefFor(location)}
-                className={`flex min-h-16 items-center justify-center rounded-lg border border-white/55 bg-white/[0.12] px-6 text-center text-xl font-semibold tracking-[0.01em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_-18px_rgba(0,0,0,0.6)] transition-[background-color,color,transform,box-shadow] duration-200 hover:bg-white hover:text-[#34503F] active:translate-y-px active:scale-[0.99] motion-reduce:transition-none md:min-h-20 md:text-2xl ${focus}`}
+                className={`group flex min-h-16 items-center justify-between gap-4 rounded-full bg-white/[0.14] py-2 pl-7 pr-2 text-[0.9375rem] font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md transition-[background-color,transform] duration-200 hover:bg-white/[0.24] active:translate-y-px active:scale-[0.99] motion-reduce:transition-none md:min-h-[4.5rem] md:pl-8 md:text-base ${focus}`}
                 data-analytics-id={`${analyticsPrefix}-${location.slug}`}
               >
-                {location.name}
+                <span>{location.name}</span>
+                <span
+                  className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#F7F6F2] text-[#34503F] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none md:size-14"
+                  aria-hidden="true"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="M13 6l6 6-6 6" />
+                  </svg>
+                </span>
               </Link>
             </li>
           ))}
