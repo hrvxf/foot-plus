@@ -30,6 +30,9 @@ const DOCKED = 76;
 /** Shared with PortraitWarmup so the pre-fetched file is the one this picks. */
 export const MEET_PORTRAIT_SIZES = "(min-width: 640px) 520px, 90vw";
 
+/** Space kept between the settled intro card and the Request a visit button. */
+const CARD_GAP = 16;
+
 /**
  * Location page opening: the practitioner's portrait, name and one clear action. On phones, scrolling
  * settles the portrait into a green card with their own introduction, so arriving on the page feels like
@@ -62,9 +65,16 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
       const header = document.querySelector("header");
       const top = header ? header.getBoundingClientRect().height : 64;
       const vh = stableViewportHeight();
+      // The settled card is only as tall as its text and sits straight under the pill.
+      const cardH = (cardText.current?.offsetHeight ?? 0) + 40;
+      // Fill the screen under the header, but never squeeze the settled card into the
+      // buttons below it: on short screens (browser bars showing) grow just enough to
+      // keep a gap, and lengthen the scroll track by the same amount.
       s.style.top = `${top}px`;
       s.style.height = `${vh - top}px`;
-      t0.style.height = `${vh * 2.3}px`;
+      const extra = Math.max(0, cardH + CARD_GAP - m.clientHeight);
+      if (extra) s.style.height = `${vh - top + extra}px`;
+      t0.style.height = `${vh * 2.3 + extra}px`;
 
       const rect = t0.getBoundingClientRect();
       const travel = t0.offsetHeight - vh * 0.75;
@@ -73,11 +83,10 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
       const t = ease(clamp(progress / 0.6));
 
       const W = m.clientWidth, H = m.clientHeight;
-      const startH = H - 70, startW = Math.min(W, startH * 0.82), startX = (W - startW) / 2;
+      // Leave room under the portrait for the name, role and the scroll hint.
+      const startH = H - 90, startW = Math.min(W, startH * 0.82), startX = (W - startW) / 2;
       const inset = 16;
       const w = lerp(startW, DOCKED, t), h = lerp(startH, DOCKED, t);
-      // The settled card is only as tall as its text and sits straight under the pill.
-      const cardH = (cardText.current?.offsetHeight ?? 0) + 40;
       const shift = 0;
       Object.assign(p.style, {
         left: `${lerp(startX, inset, t)}px`,
@@ -211,14 +220,17 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
               </div>
             ) : null}
           </div>
-          {intro ? (
-            <div ref={hint} className="flex h-5 justify-center text-brand-muted transition-opacity" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </div>
-          ) : null}
-          <div className="pt-2">{actions}</div>
+          <div className="relative pt-3">
+            {intro ? (
+              // Out of the flow, so it never takes space from the card once it has faded.
+              <div ref={hint} className="pointer-events-none absolute inset-x-0 -top-5 flex h-5 justify-center text-brand-muted transition-opacity" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            ) : null}
+            {actions}
+          </div>
         </div>
       </div>
 
