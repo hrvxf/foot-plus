@@ -58,7 +58,7 @@ export default function Doormat() {
   const rolled = state === "rolled";
 
   return (
-    <div ref={scene} className="relative h-[228px] overflow-hidden">
+    <div ref={scene} className="relative h-[200px] overflow-hidden">
       {/* Threshold strip with the foot of the door */}
       <div
         className="h-4 border-b border-[#cfc6b3] bg-[linear-gradient(#e9e3d6,#ddd5c5)]"

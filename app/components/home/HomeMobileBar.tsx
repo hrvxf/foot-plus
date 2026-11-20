@@ -35,7 +35,8 @@ export default function HomeMobileBar({ checkerId }: { checkerId: string }) {
 
   return (
     <div
-      data-mobile-actions
+      // Not data-mobile-actions: that reserves room under the footer, and this bar hides itself there anyway.
+      data-home-actions
       aria-hidden={!visible}
       inert={!visible}
       // Slides and fades in and out rather than popping, so it eases away as the checker or footer arrives.
