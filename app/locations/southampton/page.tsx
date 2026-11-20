@@ -59,7 +59,7 @@ export default function SouthamptonLocationPage() {
         status="Appointments available"
         title="Home foot care in Southampton"
         portraitSrc={portraits.southampton}
-        primaryAction={{ label: "Request a visit in Southampton", href: "/book?location=southampton" }}
+        primaryAction={{ label: "Request a visit", href: "/book?location=southampton" }}
         contactActions={southamptonContactActions({ analyticsPrefix: "southampton-hero" })}
         practitioner={practitioner}
       />

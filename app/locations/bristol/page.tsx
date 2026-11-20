@@ -56,7 +56,7 @@ export default function BristolLocationPage() {
         status="Appointments available"
         title="Home foot care in Bristol"
         portraitSrc={portraits.bristol}
-        primaryAction={{ label: "Request a visit in Bristol", href: "/book?location=bristol" }}
+        primaryAction={{ label: "Request a visit", href: "/book?location=bristol" }}
         contactActions={bristolContactActions({
           analyticsPrefix: "bristol-hero",
           email: locationEmails.bristol,
