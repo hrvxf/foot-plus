@@ -5,6 +5,8 @@ export type Practitioner = {
   imageSrc: string;
   imageAlt: string;
   bio: string[];
+  /** First-person introduction for the location page's "meet" card. Leave out until written. */
+  intro?: string;
 };
 
 export type ServiceLocation = {
@@ -36,6 +38,8 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
       credentials: ["BA (Hons)", "Dip FH", "MCFHP", "MAFHP"],
       imageSrc: "/images/adam-james-hero.webp",
       imageAlt: "Portrait of Adam James, Foot+ Bristol foot health practitioner.",
+      intro:
+        "I’ve spent over six years in healthcare and rehabilitation. My visits are unhurried, friendly and in the comfort of your own home.",
       bio: [
         "Adam has over six years’ experience working in healthcare and rehabilitation, supporting people to regain confidence, mobility and independence.",
         "As a fully trained Foot Health Practitioner, Adam offers a friendly, relaxed service built on trust, clear communication and achievable outcomes.",

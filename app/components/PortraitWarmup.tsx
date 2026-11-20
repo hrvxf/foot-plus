@@ -3,13 +3,14 @@
 import { getImageProps } from "next/image";
 import { useEffect } from "react";
 import { serviceLocations } from "../lib/locations";
-import { PRACTITIONER_HERO_SIZES } from "./PractitionerProfile";
+import { MEET_PORTRAIT_SIZES } from "./location/MeetIntro";
+import { portraits } from "./site/blocks";
 
 /**
  * Once the current page has finished loading and the phone is idle, quietly fetch the
  * practitioner hero portraits into the browser cache, so moving to a location page
  * shows the photo with the page rather than a moment after it. Uses the same srcset
- * and sizes as PractitionerProfile, so the browser picks the exact file it will need.
+ * and sizes as MeetIntro, so the browser picks the exact file it will need.
  * Skipped when the visitor has asked to save data.
  */
 export default function PortraitWarmup() {
@@ -24,7 +25,7 @@ export default function PortraitWarmup() {
       for (const location of Object.values(serviceLocations)) {
         const practitioner = location.practitioner;
         if (!practitioner) continue;
-        const { props } = getImageProps({ src: practitioner.imageSrc, alt: "", fill: true, sizes: PRACTITIONER_HERO_SIZES });
+        const { props } = getImageProps({ src: portraits[location.slug], alt: "", fill: true, sizes: MEET_PORTRAIT_SIZES });
         const img = new Image();
         img.fetchPriority = "low";
         if (props.sizes) img.sizes = props.sizes;
