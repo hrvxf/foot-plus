@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useId, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, Info } from "lucide-react";
+import { ArrowRight, Check, Info, X } from "lucide-react";
 
 import { serviceLocations } from "../../lib/locations";
 import { checkServiceArea, type ServiceAreaCheck } from "../../lib/postcodes";
@@ -34,6 +34,11 @@ type PostcodeCheckerProps = {
    * compact: field and a square arrow button in one row, label for screen readers only (location pages).
    */
   tone?: Tone;
+  /**
+   * Compact tone only: the location whose booking form the always-visible "Request a visit" button
+   * opens before a postcode is checked.
+   */
+  bookLocation?: "bristol" | "southampton";
   /** Anchor id for "Check postcode" links elsewhere on the page. */
   anchorId?: string;
 };
@@ -114,7 +119,7 @@ const tones: Record<
       "flex-1 rounded-2xl border-[1.5px] border-brand-line bg-white focus:border-brand-sageDark focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark",
     button:
       "w-14 rounded-2xl bg-brand-sageDark text-white hover:bg-brand-sageDeep focus-visible:outline-brand-sageDark",
-    helper: "mt-3 text-base leading-6 text-brand-muted",
+    helper: "mt-3 text-center text-base leading-6 text-brand-muted",
     result: "mt-4 rounded-2xl bg-brand-wash p-4 text-brand-charcoal",
     error: "text-red-800",
     link: "font-semibold text-brand-sageDeep underline underline-offset-2",
@@ -146,6 +151,7 @@ export default function PostcodeChecker({
   title,
   helper,
   tone = "card",
+  bookLocation = "bristol",
   anchorId,
 }: PostcodeCheckerProps = {}) {
   const inputId = useId();
@@ -233,6 +239,10 @@ export default function PostcodeChecker({
       </form>
 
       {/* The result takes the helper's place, so the block keeps one message at a time. */}
+      {tone === "compact" ? (
+        <CompactRequest result={result} bookLocation={bookLocation} source={source} />
+      ) : null}
+
       {helper && !result ? (
         <p id={helperId} className={style.helper}>
           {helper}
@@ -240,7 +250,8 @@ export default function PostcodeChecker({
       ) : null}
 
       <div id={resultId} aria-live="polite">
-        {result ? (
+        {result && tone === "compact" ? <CompactAnswer result={result} travel={travel} bookLocation={bookLocation} /> : null}
+        {result && tone !== "compact" ? (
           <CheckResult result={result} travel={travel} source={source} placement={placement} tone={tone} />
         ) : null}
       </div>
@@ -338,6 +349,103 @@ function CheckResult({
         <ArrowRight className="h-5 w-5" aria-hidden="true" />
       </Link>
     </div>
+  );
+}
+
+/** Compact tone: the request button sits under the field from the start, so an answer never moves it. */
+function CompactRequest({
+  result,
+  bookLocation,
+  source,
+}: {
+  result: ServiceAreaCheck | null;
+  bookLocation: "bristol" | "southampton";
+  source: string;
+}) {
+  const covered = result && (result.status === "bristol" || result.status === "southampton") ? result : null;
+  const slug = covered ? covered.status : bookLocation;
+  const href = covered
+    ? `/book?location=${slug}&postcode=${encodeURIComponent(covered.postcode)}`
+    : `/book?location=${slug}`;
+  return (
+    <Link
+      href={href}
+      className="mt-3 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-brand-sageDark text-lg font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+      data-analytics-id={`${source}-postcode-book-${slug}`}
+    >
+      Request a visit
+      <ArrowRight className="h-5 w-5" aria-hidden="true" />
+    </Link>
+  );
+}
+
+/** Compact tone: one short line under the button, "Yes, we cover BS6 7QN · £5 travel". */
+function CompactAnswer({
+  result,
+  travel,
+  bookLocation,
+}: {
+  result: ServiceAreaCheck;
+  travel: TravelState;
+  bookLocation: "bristol" | "southampton";
+}) {
+  const pathname = usePathname();
+  const line = "mt-3 flex items-center justify-center gap-2 text-center text-base font-semibold leading-6 text-brand-sageDeep";
+  const yes = (
+    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#A8E6B8]" aria-hidden="true">
+      <Check className="h-3.5 w-3.5" strokeWidth={3.5} />
+    </span>
+  );
+
+  if (result.status === "invalid") {
+    return (
+      <p className={`${line} font-medium text-red-800`}>
+        <Info className="h-5 w-5 shrink-0" aria-hidden="true" />
+        Enter a full postcode, like {bookLocation === "southampton" ? "SO16 5LF" : "BS6 7QN"}.
+      </p>
+    );
+  }
+
+  if (result.status === "outside") {
+    const phone = phoneForPath(pathname);
+    return (
+      <p className={line}>
+        <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#F1E4DC] text-[#8A4A2A]" aria-hidden="true">
+          <X className="h-3.5 w-3.5" strokeWidth={3.5} />
+        </span>
+        <span>
+          Not in our area yet ·{" "}
+          <a href={phone.href} className="underline underline-offset-2">
+            Call to ask
+          </a>
+        </span>
+      </p>
+    );
+  }
+
+  if (travel === "loading" || travel === undefined) {
+    return <p className={`${line} font-medium text-brand-muted`}>Checking {result.postcode}…</p>;
+  }
+
+  // A postcode for the other location: say whose area it is (the button already points there).
+  const who = result.status === bookLocation ? "we cover" : `${serviceLocations[result.status].displayName} covers`;
+  const fee =
+    travel === null || travel.borderline
+      ? "travel confirmed when we reply"
+      : travel.band === "free"
+        ? "Free travel"
+        : travel.band === "standard"
+          ? "£5 travel"
+          : "£10+ travel";
+  const opening = travel !== null && travel.band === "extended" && !travel.borderline ? "We may cover" : `Yes, ${who}`;
+
+  return (
+    <p className={line}>
+      {yes}
+      <span>
+        {opening} {result.postcode} · {fee}
+      </span>
+    </p>
   );
 }
 
