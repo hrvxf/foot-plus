@@ -1,17 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { MapPin } from "lucide-react";
-import Button from "../../../components/Button";
 import PostcodeChecker from "../../../components/home/PostcodeChecker";
-import RatingBadge from "../../../components/reviews/RatingBadge";
-import ContactIcons, { bristolContactActions } from "../../../components/site/ContactIcons";
+import AreaDeck, { type AreaGroup } from "../../../components/areas/AreaDeck";
+import { bristolContactActions, ContactGlyph } from "../../../components/site/ContactIcons";
+import { focusRing, texturedGreen } from "../../../components/site/ui";
 import {
   estimateTravel,
   travelSummary,
 } from "../../../lib/travel";
 import {
   BRISTOL_BUSINESS_ID,
-  locationEmails,
   phoneDisplay,
   SITE_URL,
 } from "../../../lib/site";
@@ -127,6 +125,15 @@ const areaGroups = [
   },
 ].filter((group) => group.places.length);
 
+// What the cards need: two-line headings ("North / Bristol.") and plain place names.
+const deckGroups: AreaGroup[] = areaGroups.map((group) => ({
+  id: group.id,
+  short: group.id === "nearby-towns" ? "Nearby towns" : group.title.replace(" Bristol", ""),
+  lines: group.id === "nearby-towns" ? ["Nearby", "towns."] : [group.title.replace(" Bristol", ""), "Bristol."],
+  note: group.note ? `${group.note}. Just ask.` : undefined,
+  places: group.places.map((place) => place.name),
+}));
+
 const faqs = [
   {
     question: "How do I know if you visit my address?",
@@ -189,160 +196,117 @@ const structuredData = {
   ],
 };
 
+const contactLabels = { phone: "Call", whatsapp: "WhatsApp", email: "Email" } as const;
+
 export default function AreasWeCoverPage() {
   return (
-    <main className="mx-auto max-w-6xl px-6 pb-16 pt-8 md:pt-12">
+    <main className="pb-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <nav aria-label="Breadcrumb" className="mb-5 text-sm text-brand-charcoal/65">
-        <ol className="flex flex-wrap gap-2">
-          <li>
-            <Link
-              className="font-semibold text-brand-sageDark underline underline-offset-4"
-              href="/locations/bristol"
-            >
-              Foot+ Bristol
-            </Link>
-          </li>
-          <li aria-hidden="true">/</li>
-          <li aria-current="page">Areas We Cover</li>
-        </ol>
-      </nav>
 
-      {/* Hero: the question people arrive with, answered straight away */}
-      <section className="grid gap-8 rounded-3xl border border-brand-sageLight/35 bg-linear-to-br from-white via-white to-brand-sageLight/20 p-6 shadow-sm md:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,27rem)] lg:items-center lg:gap-12">
-        <div>
-          <h1 className="font-heading text-3xl font-semibold text-brand-sageDark md:text-[2.6rem] md:leading-tight">
-            Home visits across Bristol
-          </h1>
-          <p className="mt-3 max-w-lg text-base leading-relaxed text-brand-charcoal/75">
-            Foot+ comes to you for routine foot and nail care. Check your
-            postcode, or find your area below.
-          </p>
-          <p className="mt-4 inline-flex items-center text-sm font-semibold text-brand-sageDark">
-            <MapPin aria-hidden="true" className="mr-1.5 h-4 w-4" />
-            Based in central Bristol, BS2
-          </p>
-          <nav aria-label="Jump to an area" className="mt-6 hidden border-t border-brand-line pt-5 lg:block">
-            <ul className="flex flex-wrap gap-2">
-              {areaGroups.map((group) => (
-                <li key={group.id}>
-                  <a
-                    href={`#${group.id}`}
-                    className="inline-flex min-h-9 items-center rounded-full bg-white px-3.5 text-sm font-semibold text-brand-sageDark ring-1 ring-brand-line transition hover:ring-brand-sageDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageLight"
-                  >
-                    {group.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-        <PostcodeChecker source="areas" label="Check your postcode" />
+      <section className="px-6 pb-6 pt-8 text-center md:pt-14" aria-labelledby="areas-page-heading">
+        <nav aria-label="Breadcrumb" className="mb-3.5 text-[0.8125rem] text-brand-muted">
+          <ol className="flex justify-center gap-1.5">
+            <li>
+              <Link href="/locations/bristol" className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
+                Foot+ Bristol
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page">Areas we cover</li>
+          </ol>
+        </nav>
+        <h1
+          id="areas-page-heading"
+          className="font-heading text-[2.625rem] font-bold leading-[1.04] tracking-[-0.03em] text-brand-charcoal md:text-7xl"
+        >
+          Home visits
+          <br />
+          <span className="text-brand-sage">across Bristol.</span>
+        </h1>
       </section>
 
-      {/* Zones: one scannable list, so sparse zones don't leave empty cards */}
-      <section className="mt-14" aria-labelledby="zones-heading">
-        <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between md:gap-8">
-          <h2
-            id="zones-heading"
-            className="font-heading text-2xl font-semibold text-brand-sageDark"
-          >
-            Where we visit
-          </h2>
-          <p className="max-w-md text-sm leading-relaxed text-brand-charcoal/70">
-            The list is a guide, not a limit. Travel is free close to our BS2
-            base and £5 across most of Bristol.
-          </p>
-        </div>
+      <div className="mx-3.5 max-w-md rounded-3xl bg-white p-5 shadow-[0_18px_40px_-26px_rgba(36,48,40,0.45),0_0_0_1px_var(--color-brand-line)] sm:mx-auto">
+        <PostcodeChecker
+          tone="compact"
+          source="areas"
+          bookLocation="bristol"
+          title="Do we visit you?"
+          label="Postcode for the visit"
+          helper="Or find your area below."
+        />
+      </div>
 
-        <div className="mt-6 divide-y divide-brand-line overflow-hidden rounded-3xl border border-brand-sageLight/30 bg-white shadow-sm">
-          {areaGroups.map((group) => (
-            <AreaRow key={group.id} group={group} />
+      <AreaDeck groups={deckGroups} />
+
+      <section className="mx-auto max-w-2xl px-4 pt-10 md:pt-16" aria-labelledby="faq-heading">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">Good to know</p>
+        <h2
+          id="faq-heading"
+          className="mt-2.5 text-center font-heading text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] text-brand-charcoal md:text-5xl"
+        >
+          Coverage <span className="text-brand-sage">questions.</span>
+        </h2>
+        <div className="mt-6 flex flex-col gap-2.5">
+          {faqs.map((faq) => (
+            <details
+              key={faq.question}
+              className="group rounded-[22px] bg-white shadow-[0_0_0_1px_var(--color-brand-line)] [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary className={`flex cursor-pointer list-none items-center justify-between gap-3.5 rounded-[22px] px-5 py-[18px] font-semibold text-brand-charcoal ${focusRing}`}>
+                {faq.question}
+                <span
+                  aria-hidden="true"
+                  className="relative h-[30px] w-[30px] shrink-0 rounded-full bg-brand-wash transition-[transform,background-color] duration-500 before:absolute before:left-1/2 before:top-1/2 before:h-0.5 before:w-[11px] before:-translate-x-1/2 before:-translate-y-1/2 before:rounded before:bg-brand-sageDeep after:absolute after:left-1/2 after:top-1/2 after:h-0.5 after:w-[11px] after:-translate-x-1/2 after:-translate-y-1/2 after:rotate-90 after:rounded after:bg-brand-sageDeep group-open:rotate-45 group-open:bg-brand-sageDark group-open:before:bg-white group-open:after:bg-white"
+                />
+              </summary>
+              <p className="px-5 pb-[18px] text-[0.9375rem] leading-[1.55] text-brand-muted">{faq.answer}</p>
+            </details>
           ))}
         </div>
       </section>
 
-      {/* Questions beside a persistent contact card, rather than two stacked full-width blocks */}
       <section
-        className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start"
-        aria-labelledby="faq-heading"
+        className={`${texturedGreen} mx-3.5 mt-10 rounded-[28px] px-[22px] pb-8 pt-11 text-center md:mx-auto md:max-w-2xl md:py-14`}
+        aria-labelledby="ask-heading"
       >
-        <div>
-          <h2
-            id="faq-heading"
-            className="font-heading text-2xl font-semibold text-brand-sageDark"
-          >
-            Coverage questions
-          </h2>
-          <div className="mt-5 divide-y divide-brand-line overflow-hidden rounded-3xl border border-brand-sageLight/30 bg-white shadow-sm">
-            {faqs.map((faq) => (
-              <details key={faq.question} className="group p-5 md:p-6">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-brand-sageDark">
-                  {faq.question}
-                  <span
-                    aria-hidden="true"
-                    className="text-xl leading-none transition group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-brand-charcoal/75 md:text-base">
-                  {faq.answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-
-        <aside className="rounded-3xl bg-brand-sageDark p-6 text-white shadow-sm lg:sticky lg:top-24 lg:mt-12">
-          <h2 className="font-heading text-xl font-semibold">Ready to book?</h2>
-          <RatingBadge scope="bristol" tone="dark" className="mt-2 text-sm" analyticsId="areas-aside-reviews" />
-          <p className="mt-2 text-sm leading-relaxed text-white/80">
-            Professional foot and nail care in your own home. Not sure about
-            your area? Just ask.
-          </p>
-          <div className="mt-5 flex flex-col gap-3">
-            <Button href="/book?location=bristol" variant="primary">
-              Book an appointment
-            </Button>
-            <ContactIcons tone="dark" actions={bristolContactActions({ analyticsPrefix: "areas-aside", email: locationEmails.bristol })} />
-          </div>
-        </aside>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageLight">Not sure?</p>
+        <h2 id="ask-heading" className="mt-3 font-heading text-[2rem] font-bold leading-[1.06] tracking-[-0.02em] md:text-5xl">
+          Just ask
+          <br />
+          <span className="text-brand-sageLight">Adam.</span>
+        </h2>
+        <Link
+          href="/book?location=bristol"
+          className={`mx-auto mt-6 flex h-[52px] max-w-sm items-center justify-center rounded-full bg-brand-offwhite px-7 font-semibold text-brand-sageDeep transition-colors hover:bg-white ${focusRing}`}
+          data-analytics-id="areas-close-book"
+        >
+          Request a visit
+        </Link>
+        <ul className="mt-4 flex justify-center gap-5">
+          {bristolContactActions({ analyticsPrefix: "areas-close" }).map((action) => (
+            <li key={action.kind}>
+              <a
+                href={action.href}
+                aria-label={action.label}
+                target={action.external ? "_blank" : undefined}
+                rel={action.external ? "noopener noreferrer" : undefined}
+                data-analytics-id={action.analyticsId}
+                className="group flex flex-col items-center gap-1.5 rounded-xl focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <span className="flex h-[46px] w-[46px] items-center justify-center rounded-full bg-white/12 transition-colors group-hover:bg-white/20">
+                  <ContactGlyph kind={action.kind} className="h-[19px] w-[19px]" />
+                </span>
+                <span aria-hidden="true" className="text-[0.71875rem] text-white/75">
+                  {contactLabels[action.kind]}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
-  );
-}
-
-type AreaGroup = (typeof areaGroups)[number];
-
-function AreaRow({ group }: { group: AreaGroup }) {
-  return (
-    <article
-      id={group.id}
-      className="grid scroll-mt-24 gap-3 p-5 md:grid-cols-[11rem_minmax(0,1fr)] md:items-start md:gap-8 md:p-6"
-    >
-      <div className="md:pt-1.5">
-        <h3 className="font-heading text-lg font-semibold text-brand-sageDark">
-          {group.title}
-        </h3>
-        {group.note ? (
-          <p className="mt-0.5 text-sm text-brand-charcoal/65">{group.note}</p>
-        ) : null}
-      </div>
-      <ul className="flex flex-wrap gap-2" aria-label={`${group.title} areas`}>
-        {group.places.map((place) => {
-          return (
-            <li key={place.name}>
-              <span className="inline-flex min-h-9 items-center rounded-full border border-brand-line bg-white px-3 text-sm text-brand-charcoal/80">
-                {place.name}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-    </article>
   );
 }
