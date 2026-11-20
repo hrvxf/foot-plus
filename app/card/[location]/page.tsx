@@ -41,7 +41,6 @@ const STAR_PATH =
   "M12 1.5l3.09 6.86 7.41.78-5.54 5.03 1.57 7.33L12 17.77 5.47 21.5l1.57-7.33L1.5 9.14l7.41-.78z";
 
 const focus = "focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white";
-const quietLink = `inline-flex min-h-11 items-center text-sm md:min-h-12 md:text-base font-medium text-white/85 underline decoration-white/40 underline-offset-4 transition-colors hover:text-white ${focus}`;
 
 export function generateStaticParams() {
   return Object.keys(serviceLocations).map((location) => ({ location }));
@@ -86,19 +85,47 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
         aria-hidden="true"
       />
 
-      {/* The location lockup (Foot+ with the town under it) says whose card this is,
-          so the town isn't repeated as text under the portrait. */}
-      <Link href="/" aria-label={`${location.displayName} home`} className={`mx-auto block rounded-sm ${focus}`}>
-        <Image
-          src={lockups[location.slug]}
-          alt=""
-          width={128}
-          height={44}
-          priority
-          unoptimized
-          className="block h-11 w-32 md:h-[3.125rem] md:w-36"
-        />
-      </Link>
+      {/* Top bar: a back button to the town chooser on the left, and the location
+          lockup (Foot+ with the town under it) in the middle. The lockup links to
+          the location page, so no text links are needed at the foot of the page. */}
+      <div className="grid grid-cols-[2.75rem_1fr_2.75rem] items-center">
+        <Link
+          href="/card"
+          aria-label="Change location"
+          data-analytics-id={`${analyticsPrefix}-change-location`}
+          className={`flex size-11 items-center justify-center rounded-full bg-white/[0.14] text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.24] motion-reduce:transition-none ${focus}`}
+        >
+          <svg
+            aria-hidden="true"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </Link>
+        <Link
+          href={location.href}
+          aria-label={`${location.displayName} page`}
+          data-analytics-id={`${analyticsPrefix}-location-page`}
+          className={`mx-auto block rounded-sm ${focus}`}
+        >
+          <Image
+            src={lockups[location.slug]}
+            alt=""
+            width={128}
+            height={44}
+            priority
+            unoptimized
+            className="block h-11 w-32 md:h-[3.125rem] md:w-36"
+          />
+        </Link>
+      </div>
 
       <div className="locations-enter mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-3 text-center md:py-8">
         {practitioner ? (
@@ -180,15 +207,6 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
           </ul>
         </div>
       </div>
-
-      <nav aria-label="More" className="mx-auto flex flex-wrap justify-center gap-x-6">
-        <Link href={location.href} className={quietLink}>
-          {location.displayName} page
-        </Link>
-        <Link href="/card" className={quietLink}>
-          Change location
-        </Link>
-      </nav>
     </section>
   );
 }
