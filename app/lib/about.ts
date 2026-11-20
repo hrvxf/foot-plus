@@ -33,3 +33,10 @@ export const outsideScope = [
   "Complex treatment or nail surgery",
   "Wounds, infection or urgent problems",
 ];
+
+/** Every set of letters after a practitioner's name, for the tap-to-explain chips on /about. */
+export const credentialMeanings: Record<string, string> = {
+  "BA (Hons)": "Bachelor of Arts degree, with honours",
+  BSc: "Bachelor of Science degree",
+  ...Object.fromEntries(qualificationTerms.map((item) => [item.term, item.meaning])),
+};

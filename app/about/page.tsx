@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, HandHeart, Info, ShieldCheck, Sparkles, Users, type LucideIcon } from "lucide-react";
 
-import LgbtqFriendly from "../components/site/LgbtqFriendly";
-import { Breadcrumb, ClosingBand, portraits } from "../components/site/blocks";
-import { body, displayH1, displayH2, displayH3, linkQuiet, rule, shell, supporting } from "../components/site/ui";
-import { founderStory, outsideScope, qualificationTerms, withinScope } from "../lib/about";
+import CredentialChips from "../components/about/CredentialChips";
+import StandardsSpotlight from "../components/about/StandardsSpotlight";
+import { portraits } from "../components/site/blocks";
+import { focusRing, texturedGreen } from "../components/site/ui";
+import { founderStory } from "../lib/about";
 import { homeStandards } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
 import { ADAM_ID, BUSINESS_ID, SITE_URL } from "../lib/site";
+
 const canonical = `${SITE_URL}/about`;
 const title = "About Foot+ | Our Foot Health Practitioners";
 const description =
@@ -58,218 +59,145 @@ const schema = {
     },
   ],
 };
-const section = "py-12 md:py-20";
-
 // Anchor ids are linked from elsewhere (e.g. "/about#adam-james"), so keep them stable.
 const practitionerAnchors = { bristol: "adam-james", southampton: "katie-preston" } as const;
 
-const practitionerLinks = {
-  bristol: [
-    { label: "Bristol home visits", href: "/locations/bristol" },
-    { label: "Toenail cutting in Bristol", href: "/toenail-cutting-bristol" },
-  ],
-  southampton: [
-    { label: "Southampton home visits", href: "/locations/southampton" },
-    { label: "Toenail cutting in Southampton", href: "/toenail-cutting-southampton" },
-  ],
-} as const;
-
-// Used for a practitioner with no bio yet in app/lib/locations.ts.
-const fallbackBio = {
-  bristol: "Adam James is the practitioner for Foot+ Bristol.",
-  southampton: "Katie Preston is the practitioner for Foot+ Southampton.",
-} as const;
-
-const standardIcons: Record<string, LucideIcon> = {
-  "Qualified practitioners": ShieldCheck,
-  "Sterile instruments": Sparkles,
-  "Insured and DBS checked": Check,
-  "Inclusive by default": Users,
-};
+const eyebrow = "text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark";
+const headline = "font-heading font-bold tracking-[-0.025em] text-brand-charcoal";
+const arrowLink = `inline-flex min-h-11 items-center gap-1.5 rounded-lg font-semibold text-brand-sageDeep ${focusRing}`;
 
 export default function AboutPage() {
+  const locations = Object.values(serviceLocations);
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      <section aria-labelledby="about-heading">
-        <div className={`${shell} pb-12 pt-4 md:pb-16 lg:pb-20`}>
-          <Breadcrumb current="About Foot+" />
-          <h1 id="about-heading" className={`${displayH1} mt-4 max-w-[20ch] lg:mt-8`}>
-            Professional nail and foot care, with a person you know
-          </h1>
-        </div>
-      </section>
+      <section aria-labelledby="about-heading" className="pt-10 md:pt-16">
+        <h1 id="about-heading" className={`${headline} px-6 pb-8 text-center text-[2.75rem] leading-[1.04] md:pb-12 md:text-7xl`}>
+          <span className="sr-only">About Foot+. </span>
+          Two practitioners.
+          <br />
+          <span className="text-brand-sage">One standard.</span>
+        </h1>
 
-      <section className={`bg-white ${section}`} aria-labelledby="practitioners-heading">
-        <div className={shell}>
-          <h2 id="practitioners-heading" className={displayH2}>
-            Meet your practitioners
-          </h2>
-          <div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-2">
-            {Object.values(serviceLocations).map((location) => {
-              const practitioner = location.practitioner;
-              if (!practitioner) return null;
-              const bio = practitioner.bio.length ? practitioner.bio : [fallbackBio[location.slug]];
-              return (
-                <article
-                  key={location.slug}
-                  id={practitionerAnchors[location.slug]}
-                  className="flex scroll-mt-28 flex-col rounded-2xl border border-brand-line bg-white p-6 md:p-8"
-                  aria-labelledby={`${practitionerAnchors[location.slug]}-name`}
-                >
-                  <div className="flex items-center gap-5">
-                    <Image
-                      src={portraits[location.slug]}
-                      alt={practitioner.imageAlt}
-                      width={176}
-                      height={208}
-                      sizes="(min-width: 768px) 128px, 96px"
-                      loading="eager"
-                      className="bg-brand-sageDark/10 h-28 w-24 shrink-0 rounded-xl object-cover object-[center_15%] md:h-36 md:w-32"
-                    />
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-brand-sageDark">{location.displayName}</p>
-                      <h3
-                        id={`${practitionerAnchors[location.slug]}-name`}
-                        className="mt-1 font-heading text-2xl font-semibold leading-tight text-brand-sageDeep"
-                      >
-                        {practitioner.name}
-                      </h3>
-                      <p className={`${supporting} mt-1`}>{practitioner.role}</p>
-                      <p className="mt-1 text-[0.9375rem] italic leading-6 tracking-[0.01em] text-brand-sageDark">
-                        {practitioner.credentials.join(" · ")}
-                      </p>
-                    </div>
-                  </div>
-                  <div className={`${body} mt-6 space-y-4 border-t ${rule} pt-6`}>
-                    {bio.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </div>
-                  <ul className="mt-auto flex flex-wrap gap-x-6 pt-4">
-                    {practitionerLinks[location.slug].map((link) => (
-                      <li key={link.href}>
-                        <Link href={link.href} className={linkQuiet}>
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              );
-            })}
-          </div>
+        <div className="mx-auto flex max-w-md flex-col gap-3.5 px-3.5 md:max-w-5xl md:flex-row md:items-stretch md:gap-6 md:px-8">
+          {locations.map((location) => {
+            const practitioner = location.practitioner;
+            if (!practitioner) return null;
+            const anchor = practitionerAnchors[location.slug];
+            return (
+              <article
+                key={location.slug}
+                id={anchor}
+                aria-labelledby={`${anchor}-name`}
+                className="flex flex-1 scroll-mt-28 flex-col overflow-hidden rounded-[30px] bg-white text-center shadow-[0_0_0_1px_var(--color-brand-line)]"
+              >
+                <div className="h-[300px] overflow-hidden bg-white md:h-[340px]">
+                  <Image
+                    src={portraits[location.slug]}
+                    alt={practitioner.imageAlt}
+                    width={440}
+                    height={540}
+                    sizes="(min-width: 768px) 290px, 250px"
+                    className="h-full w-full object-cover object-[center_15%]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col px-[22px] pb-6 pt-[22px]">
+                  <p className={eyebrow}>{location.name}</p>
+                  <h2 id={`${anchor}-name`} className="mt-1.5 font-heading text-[1.75rem] font-bold tracking-[-0.02em] text-brand-charcoal">
+                    {practitioner.name}
+                  </h2>
+                  <p className="text-[0.9375rem] text-brand-muted">{practitioner.role}</p>
+                  <CredentialChips credentials={practitioner.credentials} />
+                  <p className="mt-2.5 flex-1 leading-[1.55] text-brand-muted">{practitioner.intro}</p>
+                  <Link href={location.href} className={`${arrowLink} mt-3 self-center`}>
+                    {location.name} home visits <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
       {founderStory.length ? (
-        <section className={section} aria-labelledby="story-heading">
-          <div className={`${shell} grid gap-6 lg:grid-cols-12 lg:gap-12`}>
-            <h2 id="story-heading" className={`${displayH2} lg:col-span-4`}>
-              Why Foot+
-            </h2>
-            <div className={`${body} space-y-4 lg:col-span-8`}>
-              {founderStory.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-              <p className="font-semibold text-brand-sageDeep">Adam James, founder</p>
-            </div>
+        <section className="mx-auto max-w-xl px-6 pt-14 text-center md:pt-20" aria-labelledby="story-heading">
+          <h2 id="story-heading" className={eyebrow}>
+            Why Foot+
+          </h2>
+          <div className="mt-4 space-y-4 text-lg leading-[1.6] text-brand-charcoal">
+            {founderStory.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
+          <p className="mt-4 font-semibold text-brand-sageDeep">Adam James, founder</p>
         </section>
       ) : null}
 
-      <section className={`border-t ${rule} ${founderStory.length ? "bg-white" : ""} ${section}`} aria-labelledby="qualifications-heading">
-        <div className={shell}>
-          <h2 id="qualifications-heading" className={displayH2}>
-            What the qualifications mean
-          </h2>
-          <dl className="mt-8 grid gap-3 sm:grid-cols-3">
-            {qualificationTerms.map((item) => (
-              <div key={item.term} className="rounded-xl bg-brand-wash p-5">
-                <dt className="font-heading text-2xl font-semibold text-brand-sageDeep">{item.term}</dt>
-                <dd className={`${supporting} mt-1`}>{item.meaning}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-12">
-            <div>
-              <h3 className={displayH3}>What we can help with</h3>
-              <ul className="mt-4 grid gap-2.5">
-                {withinScope.map((item) => (
-                  <li key={item} className={`${body} flex items-start gap-3`}>
-                    <Check className="mt-1 h-5 w-5 shrink-0 text-brand-sageDark" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className={displayH3}>When we will point you elsewhere</h3>
-              <ul className="mt-4 grid gap-2.5">
-                {outsideScope.map((item) => (
-                  <li key={item} className={`${body} flex items-start gap-3`}>
-                    <Info className="mt-1 h-5 w-5 shrink-0 text-brand-sageDark" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className={`${supporting} mt-4`}>
-                Foot Health Practitioners are not HCPC-registered podiatrists or chiropodists, and Foot+ does not use
-                those titles. If something needs a podiatrist or your GP, we will tell you.
-              </p>
-            </div>
-          </div>
-          <Link href="/services" className={`${linkQuiet} mt-6`}>
-            All services <ArrowRight className="h-5 w-5" aria-hidden="true" />
-          </Link>
-        </div>
+      <section className="mx-auto max-w-2xl px-[22px] pb-10 pt-14 text-center md:pt-20" aria-labelledby="standard-heading">
+        <h2 id="standard-heading" className={eyebrow}>
+          The Foot+ standard
+        </h2>
+        <StandardsSpotlight standards={homeStandards} />
       </section>
 
-      <section className={`border-t ${rule} ${founderStory.length ? "" : "bg-white"} ${section}`} aria-labelledby="standards-heading">
-        <div className={shell}>
-          <h2 id="standards-heading" className={displayH2}>
-            The Foot+ standard
-          </h2>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {homeStandards.map((standard) => {
-              const Icon = standardIcons[standard.title] ?? Check;
-              return (
-                <li key={standard.title} className="rounded-xl border border-brand-line bg-white p-5">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-wash text-brand-sageDeep" aria-hidden="true">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <h3 className={`${displayH3} mt-4`}>{standard.title}</h3>
-                  <p className={`${supporting} mt-1`}>{standard.body}</p>
-                  {standard.title === "Inclusive by default" ? <LgbtqFriendly className="mt-3" /> : null}
-                </li>
-              );
-            })}
-          </ul>
-
-          <div className="mt-10 flex flex-col gap-4 rounded-2xl bg-brand-wash p-6 sm:flex-row sm:items-start md:p-8">
-            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-brand-sageDeep" aria-hidden="true">
-              <HandHeart className="h-5 w-5" />
-            </span>
-            <div>
-              <h3 className={displayH3}>Help with your visit</h3>
-              <p className={`${body} mt-2 max-w-[65ch]`}>
-                Tell us about any mobility, communication, sensory or anxiety-related needs when you enquire. A
-                relative, carer or support worker can help with arrangements or be there during the visit, with
-                consent from the person receiving care.
-              </p>
-            </div>
-          </div>
-        </div>
+      <section
+        className={`${texturedGreen} mx-3.5 rounded-[28px] px-6 py-11 text-center md:mx-auto md:max-w-3xl md:px-14 md:py-16`}
+        aria-labelledby="help-heading"
+      >
+        <span className="pointer-events-none absolute left-4 top-3.5 font-heading text-3xl font-semibold text-brand-sageLight/50" aria-hidden="true">+</span>
+        <span className="pointer-events-none absolute bottom-4 right-[18px] font-heading text-[2.75rem] font-semibold leading-none text-brand-sageLight/60" aria-hidden="true">+</span>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageLight">Help with your visit</p>
+        <h2 id="help-heading" className="mt-3 font-heading text-[1.875rem] font-bold leading-[1.08] tracking-[-0.02em] md:text-5xl">
+          Tell us what
+          <br />
+          <span className="text-brand-sageLight">would help.</span>
+        </h2>
+        <p className="mx-auto mt-3.5 max-w-[46ch] leading-[1.55] text-white/85">
+          Tell us about any mobility, communication, sensory or anxiety-related needs when you enquire. A relative, carer or
+          support worker can help with arrangements or be there during the visit, with consent from the person receiving care.
+        </p>
       </section>
 
-      <ClosingBand
-        id="about-closing"
-        heading="Book a home visit"
-        text="Choose Bristol or Southampton to check your postcode and request a visit."
-        action={{ label: "Choose your location", href: "/locations" }}
-      />
+      <section className="mx-auto max-w-xl px-6 pt-14 text-center md:pt-20" aria-labelledby="scope-heading">
+        <p className={eyebrow}>Good to know</p>
+        <h2 id="scope-heading" className={`${headline} mt-2.5 text-[1.875rem] leading-[1.08] md:text-5xl`}>
+          Not a podiatrist, <span className="text-brand-sage">and we&rsquo;ll say so.</span>
+        </h2>
+        <p className="mt-3 leading-[1.55] text-brand-muted">
+          Foot Health Practitioners are not HCPC-registered podiatrists or chiropodists, and Foot+ does not use those titles.
+          If something needs a podiatrist or your GP, we will tell you.
+        </p>
+        <Link href="/advice/foot-health-practitioner-podiatrist-or-chiropodist" className={`${arrowLink} mt-2`}>
+          Practitioner, podiatrist or chiropodist? <span aria-hidden="true">→</span>
+        </Link>
+      </section>
+
+      <section className="mx-auto max-w-xl px-[18px] pb-16 pt-12 text-center md:pb-24" aria-labelledby="area-heading">
+        <p className={eyebrow}>Book a home visit</p>
+        <h2 id="area-heading" className={`${headline} mt-2.5 text-[2.125rem] leading-[1.06] md:text-5xl`}>
+          Choose your <span className="text-brand-sage">area.</span>
+        </h2>
+        <div className="mt-6 flex gap-2">
+          {locations.map((location) => (
+            <Link
+              key={location.slug}
+              href={location.href}
+              className={`flex-1 rounded-3xl bg-white px-2.5 py-[18px] shadow-[0_0_0_1px_var(--color-brand-line)] transition-shadow hover:shadow-[0_0_0_1.5px_var(--color-brand-sage)] ${focusRing}`}
+            >
+              <span className="block font-heading text-xl font-semibold text-brand-charcoal">{location.name}</span>
+              <span className="text-[0.8125rem] text-brand-muted">with {location.practitioner?.name.split(" ")[0]}</span>
+            </Link>
+          ))}
+        </div>
+        <Link
+          href="/book"
+          className={`mt-2.5 flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep ${focusRing}`}
+          data-analytics-id="about-close-book"
+        >
+          Request a visit
+        </Link>
+      </section>
     </div>
   );
 }
