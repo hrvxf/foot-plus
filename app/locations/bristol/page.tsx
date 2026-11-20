@@ -9,7 +9,8 @@ import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, coveragePlaces, locationEmails 
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
-import { ClosingBand, FaqList, Steps, portraits } from "../../components/site/blocks";
+import VisitChat from "../../components/location/VisitChat";
+import { ClosingBand, FaqList, portraits } from "../../components/site/blocks";
 import { body, displayH2, rule, shell } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/bristol`;
@@ -27,21 +28,6 @@ export const metadata: Metadata = {
 };
 
 const section = "py-12 md:py-20";
-
-const processSteps = [
-  {
-    title: "Request a visit",
-    text: "Tell us what support you need and provide the appointment postcode.",
-  },
-  {
-    title: "Confirm the details",
-    text: "Foot+ confirms coverage, suitability, availability and the expected cost.",
-  },
-  {
-    title: "Care at home",
-    text: "Your practitioner visits at the arranged time and provides clear aftercare guidance.",
-  },
-];
 
 const faqs = [
   {
@@ -99,14 +85,7 @@ export default function BristolLocationPage() {
 
       <CoverageWall id="bristol-coverage" source="bristol" summary="Central, north, south and east Bristol." places={coveragePlaces.bristol} />
 
-      <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="bristol-process">
-        <div className={shell}>
-          <h2 id="bristol-process" className={displayH2}>
-            A straightforward home visit
-          </h2>
-          <Steps steps={processSteps.map((step) => ({ title: step.title, body: step.text }))} className="mt-8 md:mt-10" />
-        </div>
-      </section>
+      <VisitChat id="bristol-process" practitioner="Adam" place="BS6" replies="Replies within 24 hours by WhatsApp or email." />
 
       <section className={section} aria-labelledby="bristol-partners">
         <div className={`${shell} grid gap-8 lg:grid-cols-12 lg:gap-12`}>

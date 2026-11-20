@@ -7,8 +7,9 @@ import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, coveragePlaces, locationEm
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
-import { ClosingBand, FaqList, Steps, portraits } from "../../components/site/blocks";
-import { displayH2, rule, shell } from "../../components/site/ui";
+import VisitChat from "../../components/location/VisitChat";
+import { ClosingBand, FaqList, portraits } from "../../components/site/blocks";
+import { displayH2, shell } from "../../components/site/ui";
 
 // Mirrors app/locations/bristol/page.tsx section for section. Keep the two in step:
 // only location details (names, coverage, contacts, partners) should differ.
@@ -28,21 +29,6 @@ export const metadata: Metadata = {
 };
 
 const section = "py-12 md:py-20";
-
-const processSteps = [
-  {
-    title: "Request a visit",
-    text: "Tell us what support you need and provide the appointment postcode.",
-  },
-  {
-    title: "Confirm the details",
-    text: "Foot+ confirms coverage, suitability, availability and the expected cost.",
-  },
-  {
-    title: "Care at home",
-    text: "Your practitioner visits at the arranged time and provides clear aftercare guidance.",
-  },
-];
 
 const faqs = [
   {
@@ -97,14 +83,7 @@ export default function SouthamptonLocationPage() {
 
       <CoverageWall id="southampton-coverage" source="southampton" summary="Southampton and nearby, including Romsey, Chandler’s Ford and Totton." places={coveragePlaces.southampton} />
 
-      <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="southampton-process">
-        <div className={shell}>
-          <h2 id="southampton-process" className={displayH2}>
-            A straightforward home visit
-          </h2>
-          <Steps steps={processSteps.map((step) => ({ title: step.title, body: step.text }))} className="mt-8 md:mt-10" />
-        </div>
-      </section>
+      <VisitChat id="southampton-process" practitioner="Katie" place="Romsey" replies="Replies within 24 hours by phone or email." />
 
       {/* Bristol has a "Connected care" partners section here. Add the same block once
           Southampton has published local partners. */}
