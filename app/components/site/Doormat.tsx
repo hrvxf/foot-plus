@@ -16,30 +16,41 @@ const ease = "cubic-bezier(.2,.8,.2,1)";
  */
 export default function Doormat() {
   const scene = useRef<HTMLDivElement>(null);
-  // "flat" on the server and for reduced motion; "rolled" until seen, then "flat" with the unroll.
+  // "flat" on the server and for reduced motion. Otherwise it rolls up while the footer is out of view and
+  // unrolls as it comes in; scrolling back up rolls it up again.
   const [state, setState] = useState<"flat" | "rolled">("flat");
 
   useEffect(() => {
     const el = scene.current;
     if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
       return;
-    // Already on screen (short page): leave it flat rather than flash it rolled.
-    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const set = (next: "flat" | "rolled", delay: number) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => setState(next), delay);
+    };
+    // Unroll once half the scene is showing; roll up when it drops below a third on the way back up
+    // (top still on screen). The gap between the two stops it flickering at the edge.
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        setTimeout(() => setState("flat"), 150);
+        if (entry.intersectionRatio >= 0.5) set("flat", 120);
+        else if (
+          entry.intersectionRatio < 0.3 &&
+          entry.boundingClientRect.top > 0
+        )
+          set("rolled", 0);
       },
-      { threshold: 0.45 },
+      { threshold: [0, 0.3, 0.5] },
     );
-    // Roll it up once the browser has painted, then wait for it to come into view.
+    // Start rolled only if it's off screen, so a short page never flashes a rolled mat.
     const frame = requestAnimationFrame(() => {
-      setState("rolled");
+      if (el.getBoundingClientRect().top >= window.innerHeight)
+        setState("rolled");
       observer.observe(el);
     });
     return () => {
       cancelAnimationFrame(frame);
+      clearTimeout(timer);
       observer.disconnect();
     };
   }, []);
@@ -74,7 +85,7 @@ export default function Doormat() {
               clipPath: rolled
                 ? "inset(0 0 100% 0 round 12px)"
                 : "inset(0 0 0 0 round 12px)",
-              transition: rolled ? "none" : `clip-path 1.1s ${ease}`,
+              transition: `clip-path ${rolled ? "0.9s" : "1.1s"} ${ease}`,
             }}
           >
             {/* The generic logo file is white, so it is used as a mask and coloured here. */}
@@ -95,8 +106,9 @@ export default function Doormat() {
               top: rolled ? -14 : "calc(100% - 3px)",
               height: rolled ? 28 : 3,
               opacity: rolled ? 1 : 0,
+              // Unrolling: fade out as it reaches the edge. Rolling up: appear at once and grow back.
               transition: rolled
-                ? "none"
+                ? `top .9s ${ease}, height .9s ${ease}, opacity .15s`
                 : `top 1.1s ${ease}, height 1.1s ${ease}, opacity .25s .85s`,
             }}
           />

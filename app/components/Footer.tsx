@@ -41,7 +41,7 @@ export default function Footer() {
                 )}
                 <Link
                   href={item.href}
-                  className={`inline-flex min-h-9 items-center px-[7px] text-[0.90625rem] font-medium text-brand-charcoal transition-colors hover:text-brand-sageDeep ${focus}`}
+                  className={`inline-flex min-h-9 items-center px-[7px] text-[0.90625rem] font-medium text-brand-sageDark transition-colors hover:text-brand-sageDeep ${focus}`}
                 >
                   {item.label}
                 </Link>
@@ -76,7 +76,7 @@ export default function Footer() {
             <ul className="flex gap-x-3">
               {legalLinks.map((item) => (
                 <li key={item.href}>
-                  <Link className={`inline-flex min-h-9 items-center hover:text-brand-sageDeep ${focus}`} href={item.href}>
+                  <Link className={`inline-flex min-h-9 items-center text-brand-sageDark hover:text-brand-sageDeep ${focus}`} href={item.href}>
                     {item.label}
                   </Link>
                 </li>
