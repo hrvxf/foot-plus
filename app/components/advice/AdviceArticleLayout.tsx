@@ -89,7 +89,7 @@ function Section({ section, slug }: { section: AdviceSection; slug: string }) {
         {section.heading}
       </h2>
       {section.body.length ? (
-        hasCards ? (
+        warning && section.list?.length ? null : hasCards ? (
           // A short lead-in ("If you can see and reach your nails comfortably:") sits under the heading.
           section.body.map((paragraph) => (
             <p key={paragraph} className="mt-2 text-center text-[0.9375rem] leading-[1.55] text-brand-muted">
@@ -113,6 +113,14 @@ function Section({ section, slug }: { section: AdviceSection; slug: string }) {
       ) : null}
       {section.list?.length ? (
         <div className={`mt-3.5 rounded-[22px] bg-white px-5 py-1.5 ${warning ? amberEdge : "shadow-[0_0_0_1px_var(--color-brand-line)]"}`}>
+          {/* Safety sections keep their lead-in inside the amber card, so a warning can't be skimmed past. */}
+          {warning
+            ? section.body.map((paragraph) => (
+                <p key={paragraph} className="border-b border-brand-line pb-3 pt-3.5 text-[0.96875rem] font-medium leading-[1.55] text-brand-charcoal">
+                  {paragraph}
+                </p>
+              ))
+            : null}
           <PlusList items={section.list} />
         </div>
       ) : null}
