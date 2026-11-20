@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 
 import MeetIntro from "../../components/location/MeetIntro";
+import MessageClose from "../../components/location/MessageClose";
 import FaqFlipDeck from "../../components/location/FaqFlipDeck";
 import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, coveragePlaces, locationEmails } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, coveragePlaces, locationEmails, locationPhones } from "../../lib/site";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
 import VisitChat from "../../components/location/VisitChat";
-import { ClosingBand, portraits } from "../../components/site/blocks";
+import { portraits } from "../../components/site/blocks";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 
@@ -75,11 +76,15 @@ export default function BristolLocationPage() {
 
       <FaqFlipDeck id="bristol-faqs" />
 
-      <ClosingBand
+      <MessageClose
         id="bristol-closing"
-        heading="Request a Bristol home visit"
-        text="Share the appointment postcode and the support you need. Foot+ will confirm coverage, suitability and availability."
-        action={{ label: "Request a visit in Bristol", href: "/book?location=bristol" }}
+        name="Adam"
+        place="Foot+ Bristol"
+        portraitSrc={portraits.bristol}
+        messageHref={bristolWhatsAppHref}
+        messageLabel="Message Adam on WhatsApp"
+        requestHref="/book?location=bristol"
+        phone={locationPhones.bristol}
       />
     </div>
   );

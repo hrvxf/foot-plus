@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import MeetIntro from "../../components/location/MeetIntro";
+import MessageClose from "../../components/location/MessageClose";
 import FaqFlipDeck from "../../components/location/FaqFlipDeck";
 import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
@@ -11,7 +12,7 @@ import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
 import VisitChat from "../../components/location/VisitChat";
-import { ClosingBand, portraits } from "../../components/site/blocks";
+import { portraits } from "../../components/site/blocks";
 
 // Mirrors app/locations/bristol/page.tsx section for section. Keep the two in step:
 // only location details (names, coverage, contacts, partners) should differ.
@@ -78,11 +79,15 @@ export default function SouthamptonLocationPage() {
 
       <FaqFlipDeck id="southampton-faqs" />
 
-      <ClosingBand
+      <MessageClose
         id="southampton-closing"
-        heading="Request a Southampton home visit"
-        text="Share the appointment postcode and the support you need. Foot+ will confirm coverage, suitability and availability."
-        action={{ label: "Request a visit in Southampton", href: "/book?location=southampton" }}
+        name="Katie"
+        place="Foot+ Southampton"
+        portraitSrc={portraits.southampton}
+        messageHref={locationEmails.southampton.href}
+        messageLabel="Email Katie"
+        requestHref="/book?location=southampton"
+        phone={locationPhones.southampton}
       />
     </div>
   );
