@@ -3,8 +3,8 @@
 
 <svg
    width="1200"
-   height="400"
-   viewBox="0 0 317.49999 105.83333"
+   height="417"
+   viewBox="0 0 317.49999 110.33333"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
@@ -255,6 +255,7 @@
        clip-path="none"
        mask="none" /></g><g
      inkscape:groupmode="layer"
+     transform="translate(0,4.5)"
      id="layer8"
      inkscape:label="location"><path
        style="font-weight:900;font-size:19.7556px;font-family:Montserrat;-inkscape-font-specification:'Montserrat Heavy';letter-spacing:0.820208px;fill:#6c917b;stroke-width:0.264583;fill-opacity:1"

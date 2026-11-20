@@ -91,10 +91,10 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
           src={lockups[location.slug]}
           alt=""
           width={144}
-          height={48}
+          height={50}
           priority
           unoptimized
-          className="block h-12 w-36"
+          className="block h-[3.125rem] w-36"
         />
       </Link>
 
