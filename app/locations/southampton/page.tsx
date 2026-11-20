@@ -4,7 +4,7 @@ import Link from "next/link";
 import LocationHero from "../../components/LocationHero";
 import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, locationEmails } from "../../lib/site";
+import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, locationEmails, locationPhones } from "../../lib/site";
 import { southamptonTravelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
@@ -73,7 +73,7 @@ export default function SouthamptonLocationPage() {
     url: canonical,
     areaServed: { "@type": "City", name: "Southampton" },
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
-    telephone: "+447380301555",
+    telephone: locationPhones.southampton.e164,
     email: locationEmails.southampton.display,
     employee: { "@type": "Person", "@id": KATIE_ID, name: practitioner.name, jobTitle: practitioner.role },
     priceRange: "££",

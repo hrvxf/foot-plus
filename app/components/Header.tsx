@@ -5,10 +5,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
-import { phoneDisplay, phoneHref } from "../lib/site";
+import { phoneForPath } from "../lib/site";
 
 export default function Header() {
   const pathname = usePathname();
+  // Southampton pages show Katie's number; everywhere else the general one.
+  const { display: phoneDisplay, href: phoneHref } = phoneForPath(pathname);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

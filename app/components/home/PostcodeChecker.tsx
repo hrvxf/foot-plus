@@ -7,7 +7,7 @@ import { ArrowRight, Info } from "lucide-react";
 
 import { serviceLocations } from "../../lib/locations";
 import { checkServiceArea, type ServiceAreaCheck } from "../../lib/postcodes";
-import { emailForPath, phoneDisplay, phoneHref } from "../../lib/site";
+import { emailForPath, phoneForPath } from "../../lib/site";
 import { estimateTravel, lookupPostcode, type TravelEstimate } from "../../lib/travel";
 import { trackAdviceEvent } from "../advice/AdviceTracker";
 import { texturedGreen } from "../site/ui";
@@ -261,8 +261,8 @@ function CheckResult({
       <p className={`text-base leading-6 ${style.result}`}>
         <strong className="font-semibold">We don&rsquo;t visit {result.postcode} yet.</strong>{" "}
         Nearby towns may be possible by request, so call{" "}
-        <a href={phoneHref} className={style.link}>
-          {phoneDisplay}
+        <a href={phoneForPath(pathname).href} className={style.link}>
+          {phoneForPath(pathname).display}
         </a>{" "}
         or{" "}
         <a href={emailForPath(pathname).href} className={style.link}>

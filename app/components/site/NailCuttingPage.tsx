@@ -8,7 +8,7 @@ import MobileActions from "./MobileActions";
 import { btnPrimary, container, h2, textLink } from "./ui";
 import { getAdviceArticle } from "../../lib/advice";
 import type { ServiceLocation } from "../../lib/locations";
-import { prices } from "../../lib/site";
+import { locationPhones, prices } from "../../lib/site";
 
 // Shared layout for the town toenail cutting pages. Each page keeps its own
 // metadata, schema and wording (practitioner, areas, FAQs); this only fixes
@@ -156,7 +156,7 @@ export default function NailCuttingPage({
         ) : null}
       </section>
 
-      <MobileActions bookingHref={bookingHref} analyticsId={analyticsPrefix} />
+      <MobileActions bookingHref={bookingHref} callHref={locationPhones[location.slug].href} analyticsId={analyticsPrefix} />
     </div>
   );
 }
