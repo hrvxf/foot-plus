@@ -35,14 +35,15 @@ export default function HomeMobileBar({ checkerId }: { checkerId: string }) {
 
   if (!visible) return null;
 
-  const action = `inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg px-4 text-base font-semibold transition-colors duration-150 ${focusRing}`;
-
   return (
-    <div data-mobile-actions className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-charcoal/15 bg-white px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-3 md:hidden">
-      <div className="mx-auto flex max-w-md items-center gap-3">
+    <div
+      data-mobile-actions
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3.5 pb-[calc(env(safe-area-inset-bottom)+14px)] pt-10 [background:linear-gradient(transparent,rgba(247,246,242,0.95)_55%)] md:hidden"
+    >
+      <div className="pointer-events-auto mx-auto flex max-w-md items-center gap-2.5">
         <a
           href={`#${checkerId}`}
-          className={`${action} bg-brand-sageDark text-white hover:bg-brand-sageDeep`}
+          className={`flex h-[54px] flex-1 items-center justify-center rounded-full bg-brand-sageDark font-heading text-base font-semibold text-white shadow-[0_16px_30px_-16px_rgba(36,48,40,0.6)] transition-colors hover:bg-brand-sageDeep ${focusRing}`}
           data-analytics-id="home-mobile-check-postcode"
           onClick={() => {
             // Follow the anchor, then put the cursor in the field.
@@ -50,19 +51,14 @@ export default function HomeMobileBar({ checkerId }: { checkerId: string }) {
             window.setTimeout(() => input?.focus({ preventScroll: true }), 400);
           }}
         >
-          Check postcode
+          Check your postcode
         </a>
         <CallButton
-          className={`${action} border-[1.5px] border-brand-sageDark bg-white text-brand-sageDeep hover:bg-brand-offwhite`}
+          className={`flex h-[54px] w-[54px] flex-none items-center justify-center rounded-full border border-brand-line bg-white text-brand-sageDark shadow-[0_10px_24px_-14px_rgba(36,48,40,0.5)] transition-colors hover:bg-brand-wash ${focusRing}`}
           label="Call Foot+"
           analyticsId="home-mobile-phone"
         >
-          {() => (
-            <>
-              <Phone className="h-5 w-5" aria-hidden="true" />
-              Call
-            </>
-          )}
+          {() => <Phone className="h-5 w-5" aria-hidden="true" />}
         </CallButton>
       </div>
     </div>
