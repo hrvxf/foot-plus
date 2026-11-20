@@ -79,8 +79,9 @@ export default function ReviewsSection({
 
 // Matches the header "Request a visit" button: filled for the action most visitors
 // want, outlined for the one aimed at existing patients.
+// Tighter padding and text on phones so the two buttons share one line.
 const buttonBase =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-5 text-base font-semibold transition-colors duration-150 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
+  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 text-[0.9375rem] font-semibold sm:px-5 sm:text-base transition-colors duration-150 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark";
 const buttonPrimary = `${buttonBase} bg-brand-sageDark text-white hover:bg-brand-sageDeep`;
 const buttonSecondary = `${buttonBase} border border-brand-sageLight bg-white text-brand-sageDeep hover:bg-brand-wash`;
 
@@ -97,7 +98,7 @@ function ReviewLinks({
   if (links.length === 1) {
     const [link] = links;
     return (
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:flex sm:items-center">
         <a href={link.readUrl} target="_blank" rel="noopener noreferrer" data-analytics-id={`${analyticsPrefix}-reviews-read-all`} className={buttonPrimary}>
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
           Read reviews
