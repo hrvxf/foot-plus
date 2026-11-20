@@ -311,57 +311,114 @@ body:has([data-fullscreen-page]) .entry-animation-logo {
 }
 
 /*
- * Mobile burger menu (Header). Eases in instead of snapping: the backdrop fades
- * up, the panel drifts down into place and the links settle one after another.
- * Closing is quicker and all at once. Hidden menus stay out of tab order via
- * the inert attribute; visibility waits for the fade so nothing flashes.
+ * Header: a floating pill (Nov 2026). On phones it shrinks to a small centred
+ * pill (logo + menu) once you scroll, and the menu grows out of it as a white
+ * card. Only width, colour and opacity animate; the header's own height never
+ * changes, so nothing on the page moves.
  */
-.mobile-menu {
-  --menu-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  visibility: hidden;
-  transition: visibility 0s linear 200ms;
+.site-pill {
+  --pill-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: 100%;
+  transition:
+    max-width 550ms var(--pill-ease),
+    background-color 450ms var(--pill-ease),
+    box-shadow 450ms var(--pill-ease);
 }
-.mobile-menu[data-open="true"] {
-  visibility: visible;
-  transition-delay: 0s;
+.site-pill[data-glass="true"] {
+  background-color: rgb(255 255 255 / 0.82);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
 }
-.mobile-menu-backdrop {
+@media (max-width: 767px) {
+  .site-pill[data-small="true"]:not([data-open="true"]) {
+    max-width: 196px;
+  }
+  .site-pill[data-small="true"]:not([data-open="true"]) .site-pill-call {
+    opacity: 0;
+    width: 0;
+    margin-left: -6px;
+    pointer-events: none;
+  }
+}
+.site-pill[data-open="true"] {
+  background-color: #fff;
+  box-shadow:
+    0 30px 60px -20px rgb(36 48 40 / 0.45),
+    0 0 0 1px var(--color-brand-line);
+}
+.site-pill-call {
+  transition:
+    opacity 300ms ease,
+    width 500ms var(--pill-ease),
+    margin 500ms var(--pill-ease),
+    background-color 150ms ease;
+}
+.site-pill-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 550ms var(--pill-ease);
+}
+.site-pill[data-open="true"] .site-pill-panel {
+  grid-template-rows: 1fr;
+}
+.site-pill-item {
   opacity: 0;
-  transition: opacity 200ms ease-in;
+  transform: translateY(10px);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
 }
-.mobile-menu[data-open="true"] .mobile-menu-backdrop {
-  opacity: 1;
-  transition: opacity 280ms ease-out;
-}
-.mobile-menu-panel {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 160ms ease-in, transform 200ms ease-in;
-}
-.mobile-menu[data-open="true"] .mobile-menu-panel {
-  opacity: 1;
-  transform: none;
-  transition: opacity 260ms ease-out, transform 420ms var(--menu-ease);
-}
-.mobile-menu-item {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 140ms ease-in, transform 140ms ease-in;
-}
-.mobile-menu[data-open="true"] .mobile-menu-item {
+.site-pill[data-open="true"] .site-pill-item {
   opacity: 1;
   transform: none;
   transition:
-    opacity 320ms ease-out calc(70ms + var(--i, 0) * 35ms),
-    transform 460ms var(--menu-ease) calc(70ms + var(--i, 0) * 35ms);
+    opacity 400ms ease-out calc(120ms + var(--i, 0) * 50ms),
+    transform 600ms var(--pill-ease) calc(120ms + var(--i, 0) * 50ms);
+}
+.site-pill-plus {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.site-pill[data-open="true"] .site-pill-plus {
+  opacity: var(--o, 0.5);
+  transition: opacity 800ms ease-out 300ms;
+}
+.site-pill-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 450ms var(--pill-ease), top 450ms var(--pill-ease);
+}
+.site-pill[data-open="true"] .site-pill-bar {
+  top: 5px !important;
+}
+.site-pill[data-open="true"] .site-pill-bar:first-child {
+  transform: rotate(45deg);
+}
+.site-pill[data-open="true"] .site-pill-bar:last-child {
+  transform: rotate(-45deg);
+}
+.site-pill-scrim {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+.site-pill-scrim[data-open="true"] {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mobile-menu,
-  .mobile-menu-backdrop,
-  .mobile-menu-panel,
-  .mobile-menu-item {
+  .site-pill,
+  .site-pill *,
+  .site-pill-scrim {
     transition-duration: 1ms !important;
     transition-delay: 0s !important;
+  }
+}
+@media (min-width: 768px) {
+  .site-pill {
+    max-width: 72rem;
   }
 }
