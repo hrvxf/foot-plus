@@ -73,9 +73,9 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
       const startH = H - 70, startW = Math.min(W, startH * 0.82), startX = (W - startW) / 2;
       const inset = 16;
       const w = lerp(startW, DOCKED, t), h = lerp(startH, DOCKED, t);
-      // The settled card is only as tall as its text; centre it in the space above the buttons.
+      // The settled card is only as tall as its text and sits straight under the pill.
       const cardH = (cardText.current?.offsetHeight ?? 0) + 40;
-      const shift = t * Math.max(0, (H - cardH) / 2);
+      const shift = 0;
       Object.assign(p.style, {
         left: `${lerp(startX, inset, t)}px`,
         top: `${lerp(0, inset, t) + shift}px`,
