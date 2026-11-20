@@ -280,3 +280,59 @@ body:has([data-fullscreen-page]) .entry-animation-logo {
     transition-duration: 1ms !important;
   }
 }
+
+/*
+ * Mobile burger menu (Header). Eases in instead of snapping: the backdrop fades
+ * up, the panel drifts down into place and the links settle one after another.
+ * Closing is quicker and all at once. Hidden menus stay out of tab order via
+ * the inert attribute; visibility waits for the fade so nothing flashes.
+ */
+.mobile-menu {
+  --menu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  visibility: hidden;
+  transition: visibility 0s linear 200ms;
+}
+.mobile-menu[data-open="true"] {
+  visibility: visible;
+  transition-delay: 0s;
+}
+.mobile-menu-backdrop {
+  opacity: 0;
+  transition: opacity 200ms ease-in;
+}
+.mobile-menu[data-open="true"] .mobile-menu-backdrop {
+  opacity: 1;
+  transition: opacity 280ms ease-out;
+}
+.mobile-menu-panel {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 160ms ease-in, transform 200ms ease-in;
+}
+.mobile-menu[data-open="true"] .mobile-menu-panel {
+  opacity: 1;
+  transform: none;
+  transition: opacity 260ms ease-out, transform 420ms var(--menu-ease);
+}
+.mobile-menu-item {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 140ms ease-in, transform 140ms ease-in;
+}
+.mobile-menu[data-open="true"] .mobile-menu-item {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 320ms ease-out calc(70ms + var(--i, 0) * 35ms),
+    transform 460ms var(--menu-ease) calc(70ms + var(--i, 0) * 35ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .mobile-menu-backdrop,
+  .mobile-menu-panel,
+  .mobile-menu-item {
+    transition-duration: 1ms !important;
+    transition-delay: 0s !important;
+  }
+}

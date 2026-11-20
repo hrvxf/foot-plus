@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { Phone } from "lucide-react";
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 import CallButton from "./site/CallButton";
@@ -190,56 +190,62 @@ export default function Header() {
         </nav>
       </header>
 
-      {isMenuOpen ? (
-        <div id="mobile-menu" className="fixed inset-0 z-50 md:hidden">
-          <button
-            type="button"
-            className="absolute inset-0 bg-brand-offwhite/95"
-            aria-label="Close navigation menu"
-            onClick={() => setIsMenuOpen(false)}
-          />
-          <div className="relative flex h-full flex-col overflow-y-auto px-6 pb-6 pt-20 text-brand-charcoal">
-            <div className="flex items-center justify-between pb-6">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
-                Menu
-              </span>
-              <button
-                type="button"
-                className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark"
-                aria-label="Close navigation menu"
+      {/* Always mounted so it can ease in and out (see .mobile-menu in globals.css); inert while closed. */}
+      <div id="mobile-menu" className="mobile-menu fixed inset-0 z-50 md:hidden" data-open={isMenuOpen} inert={!isMenuOpen}>
+        <button
+          type="button"
+          className="mobile-menu-backdrop absolute inset-0 bg-brand-offwhite/95"
+          aria-label="Close navigation menu"
+          onClick={() => setIsMenuOpen(false)}
+        />
+        <div className="mobile-menu-panel relative flex h-full flex-col overflow-y-auto px-6 pb-6 pt-20 text-brand-charcoal">
+          <div className="flex items-center justify-between pb-6">
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
+              Menu
+            </span>
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-full border border-brand-sageLight/40 px-3 py-2 text-sm font-semibold text-brand-sageDark"
+              aria-label="Close navigation menu"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+          <div className="flex flex-col gap-2">
+            {navLinks.map((link, index) => (
+              <Link
+                key={link.label}
+                style={{ "--i": index } as CSSProperties}
+                className={`mobile-menu-item ${linkBase} ${navTracking} ${linkTone} ${
+                  link.active ? activeBorder : ""
+                }`}
+                href={link.href}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Close
-              </button>
-            </div>
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  className={`${linkBase} ${navTracking} ${linkTone} ${
-                    link.active ? activeBorder : ""
-                  }`}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              {isPatientFormPage ? null : (
-                <Link className={`${bookButtonClasses} mt-4 text-center`} href="/book" onClick={() => setIsMenuOpen(false)}>
-                  Request a visit
-                </Link>
-              )}
-              <CallButton
-                className="mt-2 rounded-lg border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark"
-                analyticsId="header-menu-phone"
+                {link.label}
+              </Link>
+            ))}
+            {isPatientFormPage ? null : (
+              <Link
+                style={{ "--i": navLinks.length } as CSSProperties}
+                className={`mobile-menu-item ${bookButtonClasses} mt-4 text-center`}
+                href="/book"
+                onClick={() => setIsMenuOpen(false)}
               >
-                {(number) => (number ? `Call ${number}` : "Call us")}
-              </CallButton>
-            </div>
+                Request a visit
+              </Link>
+            )}
+            <CallButton
+              style={{ "--i": navLinks.length + 1 } as CSSProperties}
+              className="mobile-menu-item mt-2 block rounded-lg border border-brand-sageLight/60 px-6 py-3 text-center text-base font-semibold text-brand-sageDark"
+              analyticsId="header-menu-phone"
+            >
+              {(number) => (number ? `Call ${number}` : "Call us")}
+            </CallButton>
           </div>
         </div>
-      ) : null}
+      </div>
     </>
   );
 }
