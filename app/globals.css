@@ -66,6 +66,17 @@ body {
   .place-glow {
     animation: place-glow linear infinite;
   }
+
+  /* Location page partner logos drift sideways (two copies, so the loop is seamless). */
+  .partner-drift {
+    animation: partner-drift linear infinite;
+  }
+}
+
+@keyframes partner-drift {
+  to {
+    transform: translateX(calc(-50% - 0.375rem));
+  }
 }
 
 @keyframes place-glow {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import MeetIntro from "../../components/location/MeetIntro";
+import PartnersStrip from "../../components/partners/PartnersStrip";
 import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, coveragePlaces, locationEmails, locationPhones } from "../../lib/site";
@@ -87,6 +88,8 @@ export default function SouthamptonLocationPage() {
 
       {/* Bristol has a "Connected care" partners section here. Add the same block once
           Southampton has published local partners. */}
+
+      <PartnersStrip id="southampton-partners" location="southampton" />
 
       <section className={section} aria-labelledby="southampton-faqs">
         <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>

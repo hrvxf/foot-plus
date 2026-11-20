@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 
-import LocalPartnerCard from "../../components/LocalPartnerCard";
 import MeetIntro from "../../components/location/MeetIntro";
+import PartnersStrip from "../../components/partners/PartnersStrip";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { publishedLocalPartners } from "../../lib/partners";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, coveragePlaces, locationEmails } from "../../lib/site";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
 import VisitChat from "../../components/location/VisitChat";
 import { ClosingBand, FaqList, portraits } from "../../components/site/blocks";
-import { body, displayH2, rule, shell } from "../../components/site/ui";
+import { displayH2, rule, shell } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 
@@ -87,24 +86,7 @@ export default function BristolLocationPage() {
 
       <VisitChat id="bristol-process" practitioner="Adam" place="BS6" replies="Replies within 24 hours by WhatsApp or email." />
 
-      <section className={section} aria-labelledby="bristol-partners">
-        <div className={`${shell} grid gap-8 lg:grid-cols-12 lg:gap-12`}>
-          <div className="lg:col-span-4">
-            <h2 id="bristol-partners" className={displayH2}>
-              Connected care in Bristol
-            </h2>
-            <p className={`${body} mt-4 max-w-[40ch]`}>
-              Trusted local services Foot+ Bristol may signpost to when wider mobility or rehabilitation support could be
-              helpful.
-            </p>
-          </div>
-          <div className={`divide-y divide-brand-charcoal/15 border-y ${rule} lg:col-span-8`}>
-            {publishedLocalPartners.map((partner) => (
-              <LocalPartnerCard key={partner.website} partner={partner} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <PartnersStrip id="bristol-partners" location="bristol" />
 
       <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="bristol-faqs">
         <div className={`${shell} grid gap-6 md:grid-cols-12 md:gap-10`}>

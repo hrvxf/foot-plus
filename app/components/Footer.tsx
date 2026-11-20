@@ -8,6 +8,7 @@ const exploreLinks = [
   { href: "/prices", label: "Prices" },
   { href: "/advice", label: "Advice" },
   { href: "/about", label: "About Foot+" },
+  { href: "/partners", label: "Partners" },
   { href: "/toenail-cutting", label: "Nail cutting" },
 ];
 
