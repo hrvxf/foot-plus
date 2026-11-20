@@ -36,7 +36,7 @@ export const MEET_PORTRAIT_SIZES = "(min-width: 640px) 520px, 90vw";
  */
 export default function MeetIntro({ title, status, practitioner, portraitSrc, primaryAction, contactActions }: Props) {
   const firstName = practitioner.name.split(" ")[0];
-  const credentials = [...practitioner.credentials, ...(practitioner.insured ? ["Fully insured"] : [])].join(" · ");
+  const credentials = practitioner.credentials.join(" · ");
   const intro = practitioner.intro;
 
   const track = useRef<HTMLDivElement>(null);
@@ -73,9 +73,9 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
       const startH = H - 70, startW = Math.min(W, startH * 0.82), startX = (W - startW) / 2;
       const inset = 16;
       const w = lerp(startW, DOCKED, t), h = lerp(startH, DOCKED, t);
-      // The settled card is only as tall as its text; centre it in the space above the buttons.
+      // The settled card is only as tall as its text and sits straight under the pill.
       const cardH = (cardText.current?.offsetHeight ?? 0) + 40;
-      const shift = t * Math.max(0, (H - cardH) / 2);
+      const shift = 0;
       Object.assign(p.style, {
         left: `${lerp(startX, inset, t)}px`,
         top: `${lerp(0, inset, t) + shift}px`,
@@ -85,7 +85,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
         boxShadow: `0 0 0 ${3 * t}px rgba(255,255,255,0.7)`,
       });
       if (nameStart.current) {
-        nameStart.current.style.transform = `translate(${lerp(startX, inset, t)}px, ${h + 10}px)`;
+        nameStart.current.style.transform = `translateY(${h + 10}px)`;
         nameStart.current.style.opacity = String(clamp(1 - t / 0.3));
       }
       if (card.current) {
@@ -118,7 +118,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
   }, [intro]);
 
   const pill = (
-    <p className="inline-flex self-start items-center gap-2.5 rounded-full bg-brand-sageDark py-1.5 pl-3 pr-4 text-[0.9375rem] font-semibold text-white">
+    <p className="inline-flex self-center items-center gap-2.5 rounded-full bg-brand-sageDark py-1.5 pl-3 pr-4 text-[0.9375rem] font-semibold text-white">
       <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A8E6B8] opacity-75 motion-reduce:hidden" />
         <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#A8E6B8]" />
@@ -189,7 +189,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
             >
               <Image src={portraitSrc} alt={practitioner.imageAlt} fill priority sizes={MEET_PORTRAIT_SIZES} className="object-cover object-[center_18%]" />
             </div>
-            <div ref={nameStart} className={intro ? "absolute left-0 top-0 z-[2]" : "mt-3"}>
+            <div ref={nameStart} className={`text-center ${intro ? "absolute inset-x-0 top-0 z-[2]" : "mt-3"}`}>
               <p className="font-heading text-[1.875rem] font-semibold leading-tight text-brand-sageDeep">{practitioner.name}</p>
               <p className="text-[0.9375rem] text-brand-muted">{practitioner.role}</p>
             </div>
