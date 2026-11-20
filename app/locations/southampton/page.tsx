@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import LocationHero from "../../components/LocationHero";
+import MeetIntro from "../../components/location/MeetIntro";
 import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, locationEmails, locationPhones } from "../../lib/site";
 import { southamptonTravelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
-import MeetPractitioner from "../../components/site/MeetPractitioner";
 import ServicesTiles from "../../components/site/ServicesTiles";
-import { ClosingBand, FaqList, Steps } from "../../components/site/blocks";
+import { ClosingBand, FaqList, Steps, portraits } from "../../components/site/blocks";
 import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
 
 // Mirrors app/locations/bristol/page.tsx section for section. Keep the two in step:
@@ -85,18 +84,14 @@ export default function SouthamptonLocationPage() {
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
-      <LocationHero
-        place="Southampton"
+      <MeetIntro
         status="Appointments available"
         title="Home foot care in Southampton"
-        description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
+        portraitSrc={portraits.southampton}
         primaryAction={{ label: "Request a visit in Southampton", href: "/book?location=southampton" }}
-        secondaryAction={{ label: "View Southampton coverage", href: "#southampton-coverage" }}
         contactActions={southamptonContactActions({ analyticsPrefix: "southampton-hero" })}
         practitioner={practitioner}
       />
-
-      <MeetPractitioner practitioner={practitioner} aboutHref="/about#katie-preston" className={`bg-white ${section}`} />
 
       <ReviewsSection scope="southampton" id="southampton-reviews" analyticsPrefix="southampton" />
 
