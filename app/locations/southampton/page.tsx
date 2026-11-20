@@ -8,7 +8,7 @@ import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, locationEmails, locationPh
 import { southamptonTravelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
-import ServicesTiles from "../../components/site/ServicesTiles";
+import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import { ClosingBand, FaqList, Steps, portraits } from "../../components/site/blocks";
 import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
 
@@ -95,15 +95,7 @@ export default function SouthamptonLocationPage() {
 
       <ReviewsSection scope="southampton" id="southampton-reviews" analyticsPrefix="southampton" />
 
-      <ServicesTiles
-        id="southampton-services"
-        place="Southampton"
-        practitioner="Katie"
-        nailCuttingHref="/toenail-cutting-southampton"
-        bookHref="/book?location=southampton"
-        bookLabel="Request a Southampton home visit"
-        className={`bg-white ${section}`}
-      />
+      <TreatmentsMarquee id="southampton-services" place="Southampton" />
 
       <section id="southampton-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="southampton-coverage-heading">
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>

@@ -10,7 +10,7 @@ import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, locationEmails } from "../../li
 import { travelSummary } from "../../lib/travel";
 import PostcodeChecker from "../../components/home/PostcodeChecker";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
-import ServicesTiles from "../../components/site/ServicesTiles";
+import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import { ClosingBand, FaqList, Steps, portraits } from "../../components/site/blocks";
 import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
 
@@ -97,15 +97,7 @@ export default function BristolLocationPage() {
 
       <ReviewsSection scope="bristol" id="bristol-reviews" analyticsPrefix="bristol" />
 
-      <ServicesTiles
-        id="bristol-services"
-        place="Bristol"
-        practitioner="Adam"
-        nailCuttingHref="/toenail-cutting-bristol"
-        bookHref="/book?location=bristol"
-        bookLabel="Request a Bristol home visit"
-        className={`bg-white ${section}`}
-      />
+      <TreatmentsMarquee id="bristol-services" place="Bristol" />
 
       <section id="bristol-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="bristol-coverage-heading">
         <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
