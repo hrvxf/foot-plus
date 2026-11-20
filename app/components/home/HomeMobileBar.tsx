@@ -33,14 +33,17 @@ export default function HomeMobileBar({ checkerId }: { checkerId: string }) {
     return () => observer.disconnect();
   }, []);
 
-  if (!visible) return null;
-
   return (
     <div
       data-mobile-actions
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3.5 pb-[calc(env(safe-area-inset-bottom)+14px)] pt-10 [background:linear-gradient(transparent,rgba(247,246,242,0.95)_55%)] md:hidden"
+      aria-hidden={!visible}
+      inert={!visible}
+      // Slides and fades in and out rather than popping, so it eases away as the checker or footer arrives.
+      className={`pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3.5 pb-[calc(env(safe-area-inset-bottom)+14px)] pt-10 [background:linear-gradient(transparent,rgba(247,246,242,0.95)_55%)] transition-[opacity,transform] duration-500 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:transition-none md:hidden ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      }`}
     >
-      <div className="pointer-events-auto mx-auto flex max-w-md items-center gap-2.5">
+      <div className={`mx-auto flex max-w-md items-center gap-2.5 ${visible ? "pointer-events-auto" : ""}`}>
         <a
           href={`#${checkerId}`}
           className={`flex h-[54px] flex-1 items-center justify-center rounded-full bg-brand-sageDark font-heading text-base font-semibold text-white shadow-[0_16px_30px_-16px_rgba(36,48,40,0.6)] transition-colors hover:bg-brand-sageDeep ${focusRing}`}
