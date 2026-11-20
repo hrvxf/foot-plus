@@ -3,7 +3,7 @@ import ContactIcons, { type ContactAction } from "./site/ContactIcons";
 
 import PractitionerProfile from "./PractitionerProfile";
 import { Breadcrumb } from "./site/blocks";
-import { btnSolid, displayH1, lead, linkQuiet, shell, small, supporting } from "./site/ui";
+import { btnSolid, displayH1, lead, shell, small, supporting } from "./site/ui";
 import type { Practitioner } from "../lib/locations";
 
 type LocationHeroProps = {
@@ -14,7 +14,6 @@ type LocationHeroProps = {
   title: string;
   description: string;
   primaryAction: { label: string; href: string };
-  secondaryAction: { label: string; href: string };
   contactActions?: ContactAction[];
   practitioner: Practitioner;
 };
@@ -32,7 +31,6 @@ export default function LocationHero({
   title,
   description,
   primaryAction,
-  secondaryAction,
   contactActions,
   practitioner,
 }: LocationHeroProps) {
@@ -65,9 +63,6 @@ export default function LocationHero({
                 <ContactIcons actions={contactActions} size="lg" className="mt-3" />
               ) : null}
             </div>
-            <Link href={secondaryAction.href} className={`${linkQuiet} sm:min-h-14`}>
-              {secondaryAction.label}
-            </Link>
           </div>
         </div>
 
