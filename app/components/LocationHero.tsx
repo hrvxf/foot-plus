@@ -3,7 +3,7 @@ import ContactIcons, { type ContactAction } from "./site/ContactIcons";
 
 import PractitionerProfile from "./PractitionerProfile";
 import { Breadcrumb } from "./site/blocks";
-import { btnSolid, displayH1, lead, shell, small, supporting } from "./site/ui";
+import { btnSolid, displayH1, shell, small, supporting } from "./site/ui";
 import type { Practitioner } from "../lib/locations";
 
 type LocationHeroProps = {
@@ -12,7 +12,6 @@ type LocationHeroProps = {
   /** Availability line shown above the heading. */
   status: string;
   title: string;
-  description: string;
   primaryAction: { label: string; href: string };
   contactActions?: ContactAction[];
   practitioner: Practitioner;
@@ -29,7 +28,6 @@ export default function LocationHero({
   place,
   status,
   title,
-  description,
   primaryAction,
   contactActions,
   practitioner,
@@ -52,8 +50,7 @@ export default function LocationHero({
           <h1 id="location-heading" className={`${displayH1} mt-3 max-w-[16ch]`}>
             {title}
           </h1>
-          <p className={`${lead} mt-4 max-w-[52ch] md:mt-6`}>{description}</p>
-          <div className="mt-7 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-start">
+          <div className="mt-6 md:mt-8 flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-start">
             {/* Call / WhatsApp / email sit centred under the main button they back up. */}
             <div className="flex flex-col sm:items-center">
               <Link href={primaryAction.href} className={btnSolid}>

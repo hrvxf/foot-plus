@@ -89,7 +89,6 @@ export default function SouthamptonLocationPage() {
         place="Southampton"
         status="Appointments available"
         title="Home foot care in Southampton"
-        description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
         primaryAction={{ label: "Request a visit in Southampton", href: "/book?location=southampton" }}
         contactActions={southamptonContactActions({ analyticsPrefix: "southampton-hero" })}
         practitioner={practitioner}

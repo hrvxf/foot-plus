@@ -88,7 +88,6 @@ export default function BristolLocationPage() {
         place="Bristol"
         status="Appointments available"
         title="Home foot care in Bristol"
-        description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
         primaryAction={{ label: "Request a visit in Bristol", href: "/book?location=bristol" }}
         contactActions={bristolContactActions({
           analyticsPrefix: "bristol-hero",
