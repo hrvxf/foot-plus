@@ -8,6 +8,7 @@ import {
 } from "../../lib/reviews";
 import Stars from "./Stars";
 import ReviewQuote from "./ReviewQuote";
+import ReviewsDeck from "./ReviewsDeck";
 
 /**
  * Rating summary above up to three reviews in ruled columns. Use scope "all" on shared pages and a location on
@@ -24,11 +25,46 @@ export default function ReviewsSection({
 }) {
   const rating = getRating(scope);
   const shown = getReviews(scope, 3);
+  const deck = getReviews(scope, 5).map((review) => ({
+    name: review.name,
+    when: formatReviewMonth(review.month),
+    rating: review.rating,
+    // Long reviews show their one-line excerpt; "Read reviews" leads to the full text on Google.
+    text: review.text.length > 200 && review.excerpt ? review.excerpt : review.text,
+    highlight: review.highlight,
+  }));
   const links = getReviewLinks(scope);
   if (!rating || !shown.length) return null;
 
   return (
-    <section className="py-12 md:py-20" aria-labelledby={`${id}-heading`}>
+    <>
+    {/* Phones and tablets: a pinned deck of reviews, dealt one at a time as you scroll. */}
+    <section className="lg:hidden" aria-labelledby={`${id}-deck-heading`}>
+      <ReviewsDeck
+        reviews={deck}
+        header={
+          <div className="flex items-end justify-between gap-3">
+            <h2
+              id={`${id}-deck-heading`}
+              className="font-heading text-[1.625rem] font-semibold leading-[1.1] tracking-[-0.01em] text-brand-sageDeep"
+            >
+              What patients say
+            </h2>
+            <div className="flex shrink-0 items-center gap-2">
+              <p className="font-heading text-[2rem] font-semibold leading-none text-brand-sageDeep">{rating.average.toFixed(1)}</p>
+              <div>
+                <Stars rating={rating.average} className="h-3.5 w-3.5" />
+                <p className="mt-0.5 text-[0.8125rem] text-brand-muted">{rating.count} Google reviews</p>
+              </div>
+            </div>
+          </div>
+        }
+        footer={<ReviewLinks links={links} analyticsPrefix={analyticsPrefix} />}
+      />
+    </section>
+
+    {/* Large screens: rating summary and three reviews in ruled columns. */}
+    <section className="hidden py-12 md:py-20 lg:block" aria-labelledby={`${id}-heading`}>
       <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
           <h2
@@ -74,6 +110,7 @@ export default function ReviewsSection({
         </ul>
       </div>
     </section>
+    </>
   );
 }
 
