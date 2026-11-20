@@ -1,11 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
 
+import StandardsSpotlight from "../about/StandardsSpotlight";
 import PostcodeChecker from "../home/PostcodeChecker";
-import ContactIcons, { type ContactAction } from "./ContactIcons";
-import { FaqList } from "./blocks";
+import { ContactGlyph, type ContactAction } from "./ContactIcons";
+import { portraits } from "./blocks";
 import MobileActions from "./MobileActions";
-import { btnPrimary, container, h2, textLink } from "./ui";
+import { focusRing } from "./ui";
 import { getAdviceArticle } from "../../lib/advice";
 import type { ServiceLocation } from "../../lib/locations";
 import { locationPhones, prices } from "../../lib/site";
@@ -28,6 +29,8 @@ const guides = [
 ]
   .map(getAdviceArticle)
   .filter((article) => article !== undefined);
+
+const contactLabels = { phone: "Call", whatsapp: "WhatsApp", email: "Email" } as const;
 
 export type NailCuttingPageProps = {
   location: ServiceLocation;
@@ -56,113 +59,193 @@ export default function NailCuttingPage({
   analyticsPrefix,
 }: NailCuttingPageProps) {
   const practitioner = location.practitioner!;
+  const firstName = practitioner.name.split(" ")[0];
+  const tickets = [
+    { tag: "First visit", price: prices[0].price, detail: "About 60 minutes", tilt: "-rotate-2" },
+    { tag: "Returning", price: prices[1].price, detail: "About 45 minutes", tilt: "rotate-[1.6deg]" },
+  ];
   return (
     <div>
-      <section className="border-b border-brand-line bg-brand-wash">
-        <div className={`${container} py-8 md:py-14`}>
-          <nav aria-label="Breadcrumb" className="text-sm text-brand-muted">
-            <Link href={location.href} className={textLink}>
-              {location.displayName}
-            </Link>
-            <span aria-hidden="true"> / </span>
-            <span aria-current="page">Toenail cutting</span>
-          </nav>
-          <div className="mt-8 grid gap-8 md:mt-10 md:grid-cols-[1.2fr_0.8fr] md:items-center md:gap-14">
-            <div>
-              <h1 className="font-heading text-4xl font-semibold leading-[1.1] text-brand-sageDeep sm:text-5xl">
-                Toenail cutting in {location.name}, in your own home.
-              </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-brand-muted">{intro}</p>
-              <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-                <Link href={bookingHref} className={btnPrimary} data-analytics-id={`${analyticsPrefix}-hero-book`}>
-                  Request a visit
-                </Link>
-                <ContactIcons actions={contactActions} />
-              </div>
-            </div>
-            <dl className="rounded-3xl border border-brand-line bg-white p-6">
-              {[
-                { name: "First visit", detail: "About 60 minutes", price: prices[0].price },
-                { name: "Returning visits", detail: "About 45 minutes", price: prices[1].price },
-              ].map((row, index) => (
-                <div
-                  key={row.name}
-                  className={`flex items-center justify-between gap-4 ${index ? "mt-4 border-t border-brand-line pt-4" : ""}`}
+      <section className="px-6 pb-7 pt-8 text-center md:pt-14" aria-labelledby="nail-heading">
+        <nav aria-label="Breadcrumb" className="mb-3.5 text-[0.8125rem] text-brand-muted">
+          <ol className="flex justify-center gap-1.5">
+            <li>
+              <Link href={location.href} className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
+                {location.displayName}
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page">Toenail cutting</li>
+          </ol>
+        </nav>
+        <h1
+          id="nail-heading"
+          className="font-heading text-[2.5rem] font-bold leading-[1.05] tracking-[-0.03em] text-brand-charcoal md:text-7xl"
+        >
+          Toenail cutting in {location.name},
+          <br />
+          <span className="text-brand-sage">in your own home.</span>
+        </h1>
+        <p className="mx-auto mt-3 max-w-[36ch] text-[1.0625rem] leading-[1.55] text-brand-muted md:text-lg">{intro}</p>
+        <div className="mx-auto mt-6 max-w-sm">
+          <Link
+            href={bookingHref}
+            className={`flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+            data-analytics-id={`${analyticsPrefix}-hero-book`}
+          >
+            Request a visit
+          </Link>
+          <ul className="mt-3 flex justify-center gap-4">
+            {contactActions.map((action) => (
+              <li key={action.kind}>
+                <a
+                  href={action.href}
+                  aria-label={action.label}
+                  target={action.external ? "_blank" : undefined}
+                  rel={action.external ? "noopener noreferrer" : undefined}
+                  data-analytics-id={action.analyticsId}
+                  className={`group flex flex-col items-center gap-1 rounded-xl ${focusRing}`}
                 >
-                  <dt>
-                    {row.name} <span className="block text-sm text-brand-muted">{row.detail}</span>
-                  </dt>
-                  <dd className="font-heading text-2xl font-semibold text-brand-sageDeep">{row.price}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+                  <span className="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-white text-brand-sageDark shadow-[0_0_0_1px_var(--color-brand-line)] transition-colors group-hover:bg-brand-wash">
+                    <ContactGlyph kind={action.kind} className="h-5 w-5" />
+                  </span>
+                  <span aria-hidden="true" className="text-[0.71875rem] font-medium text-brand-muted">
+                    {contactLabels[action.kind]}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className={`${container} py-12 md:py-16`} aria-labelledby="included-heading">
-        <h2 id="included-heading" className={h2}>
+      <section className="mx-auto max-w-2xl px-[22px] pb-8 pt-10 text-center md:pt-16" aria-labelledby="included-heading">
+        <h2 id="included-heading" className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
           What&rsquo;s included
         </h2>
-        <ul className="mt-6 grid gap-x-10 gap-y-3 md:grid-cols-2">
-          {included.map((item) => (
-            <li key={item} className="flex gap-3 leading-relaxed text-brand-muted">
-              <Check className="mt-1 h-5 w-5 shrink-0 text-brand-sage" aria-hidden="true" />
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 text-sm leading-relaxed text-brand-muted">
+        <StandardsSpotlight standards={included.map((title) => ({ title }))} />
+        <p className="mx-auto mt-3 max-w-[40ch] text-[0.84375rem] leading-[1.5] text-brand-muted">
           Painful, infected or suddenly changing nails need your GP or a podiatrist first.
         </p>
       </section>
 
-      <section className="border-y border-brand-line bg-brand-wash">
-        <div className={`${container} grid gap-10 py-12 md:grid-cols-2 md:py-16`}>
-          <div>
-            <h2 className={h2}>With {practitioner.name}</h2>
-            <p className="mt-4 leading-relaxed text-brand-muted">
-              {practitioner.role} ({practitioner.credentials.join(", ")}). Insured, DBS checked and using sterilised
-              instruments.
-            </p>
-            <Link href={aboutHref} className={`${textLink} mt-4 inline-block`}>
-              About {practitioner.name.split(" ")[0]}
-            </Link>
+      <div className="mx-auto flex max-w-md justify-center gap-2.5 px-[18px]" aria-label="Prices" role="group">
+        {tickets.map((ticket) => (
+          <div
+            key={ticket.tag}
+            className={`flex-1 rounded-[18px] bg-white px-3 py-4 text-center shadow-[0_12px_28px_-18px_rgba(36,48,40,0.35),0_0_0_1px_var(--color-brand-line)] ${ticket.tilt}`}
+          >
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-brand-sageDark">{ticket.tag}</p>
+            <p className="mt-0.5 font-heading text-[2.125rem] font-bold tracking-[-0.03em] text-brand-charcoal">{ticket.price}</p>
+            <p className="text-xs text-brand-muted">{ticket.detail}</p>
           </div>
-          <div>
-            <h2 className={h2}>Do we visit you?</h2>
-            <p className="mt-4 leading-relaxed text-brand-muted">{coverage}</p>
-            {areasHref ? (
-              <Link href={areasHref} className={`${textLink} mt-2 inline-block`}>
-                See every area we cover in {location.name}
-              </Link>
-            ) : null}
-            <div className="mt-5">
-              <PostcodeChecker tone="panel" source={analyticsPrefix} label="Postcode for the visit" />
-            </div>
-          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-center">
+        <Link href="/prices" className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-brand-sageDeep ${focusRing}`}>
+          Travel and prices <span aria-hidden="true">→</span>
+        </Link>
+      </p>
+
+      <section
+        className="mx-[18px] mt-5 flex items-center gap-3.5 rounded-3xl bg-white p-3.5 shadow-[0_0_0_1px_var(--color-brand-line)] sm:mx-auto sm:max-w-md"
+        aria-labelledby="practitioner-heading"
+      >
+        <div className="relative h-[74px] w-[74px] shrink-0 overflow-hidden rounded-full bg-brand-wash">
+          <Image
+            src={portraits[location.slug]}
+            alt={practitioner.imageAlt}
+            fill
+            sizes="74px"
+            className="object-cover object-[center_15%]"
+          />
+        </div>
+        <div>
+          <h2 id="practitioner-heading" className="font-heading text-lg font-semibold tracking-[-0.01em] text-brand-charcoal">
+            With {practitioner.name}
+          </h2>
+          <p className="mt-0.5 text-[0.8125rem] leading-[1.45] text-brand-muted">
+            {practitioner.role} ({practitioner.credentials.join(", ")}). Insured, DBS checked and using sterilised instruments.
+          </p>
+          <Link href={aboutHref} className={`mt-1 inline-flex min-h-8 items-center rounded text-[0.8125rem] font-semibold text-brand-sageDeep ${focusRing}`}>
+            About {firstName} <span aria-hidden="true">&nbsp;→</span>
+          </Link>
         </div>
       </section>
 
-      <section className={`${container} py-12 md:py-16`} aria-labelledby="nail-faq-heading">
-        <h2 id="nail-faq-heading" className={h2}>
-          Questions
-        </h2>
-        <FaqList faqs={faqs} className="mt-6" />
-        {guides.length ? (
-          <p className="mt-8 text-sm leading-relaxed text-brand-muted">
-            Guides:{" "}
-            {guides.map((article, index) => (
-              <span key={article.slug}>
-                {index ? " · " : null}
-                <Link href={`/advice/${article.slug}`} className={textLink}>
-                  {article.shortTitle}
-                </Link>
-              </span>
-            ))}
-          </p>
+      <section
+        className="mx-3.5 mt-6 rounded-3xl bg-white p-5 text-center shadow-[0_18px_40px_-26px_rgba(36,48,40,0.45),0_0_0_1px_var(--color-brand-line)] sm:mx-auto sm:max-w-md"
+        aria-label="Do we visit you?"
+      >
+        <PostcodeChecker
+          tone="compact"
+          source={analyticsPrefix}
+          bookLocation={location.slug}
+          title="Do we visit you?"
+          label="Postcode for the visit"
+          helper={coverage}
+        />
+        {areasHref ? (
+          <Link href={areasHref} className={`mt-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg font-semibold text-brand-sageDeep ${focusRing}`}>
+            See every area we cover in {location.name} <span aria-hidden="true">→</span>
+          </Link>
         ) : null}
       </section>
+
+      <section className="mx-auto max-w-2xl px-4 pt-12 md:pt-16" aria-labelledby="nail-faq-heading">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">Questions</p>
+        <h2
+          id="nail-faq-heading"
+          className="mt-2.5 text-center font-heading text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] text-brand-charcoal md:text-5xl"
+        >
+          Before you <span className="text-brand-sage">book.</span>
+        </h2>
+        <div className="mt-6 flex flex-col gap-2.5">
+          {faqs.map((faq) => (
+            <details
+              key={faq.question}
+              className="group rounded-[22px] bg-white shadow-[0_0_0_1px_var(--color-brand-line)] [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary className={`flex cursor-pointer list-none items-center justify-between gap-3.5 rounded-[22px] px-5 py-[18px] font-semibold text-brand-charcoal ${focusRing}`}>
+                {faq.question}
+                <span
+                  aria-hidden="true"
+                  className="relative h-[30px] w-[30px] shrink-0 rounded-full bg-brand-wash transition-[transform,background-color] duration-500 before:absolute before:left-1/2 before:top-1/2 before:h-0.5 before:w-[11px] before:-translate-x-1/2 before:-translate-y-1/2 before:rounded before:bg-brand-sageDeep after:absolute after:left-1/2 after:top-1/2 after:h-0.5 after:w-[11px] after:-translate-x-1/2 after:-translate-y-1/2 after:rotate-90 after:rounded after:bg-brand-sageDeep group-open:rotate-45 group-open:bg-brand-sageDark group-open:before:bg-white group-open:after:bg-white"
+                />
+              </summary>
+              <p className="px-5 pb-[18px] text-[0.9375rem] leading-[1.55] text-brand-muted">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {guides.length ? (
+        <section className="pb-16 pt-10 md:pb-24" aria-labelledby="guides-heading">
+          <h2 id="guides-heading" className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
+            Guides
+          </h2>
+          <ul className="flex gap-2.5 overflow-x-auto px-[18px] pb-1.5 pt-3.5 [scrollbar-width:none] md:justify-center [&::-webkit-scrollbar]:hidden">
+            {guides.map((article) => (
+              <li key={article.slug} className="w-[72%] max-w-[300px] shrink-0 md:w-[280px]">
+                <Link
+                  href={`/advice/${article.slug}`}
+                  className={`flex h-full flex-col rounded-[22px] bg-brand-wash px-5 pb-[18px] pt-5 transition-colors hover:bg-brand-line ${focusRing}`}
+                >
+                  <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-brand-sage">Guide</span>
+                  <span className="mt-2 flex-1 font-heading text-[1.1875rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-charcoal">
+                    {article.shortTitle}
+                  </span>
+                  <span className="mt-2.5 text-[0.84375rem] font-semibold text-brand-sageDeep">
+                    Read <span aria-hidden="true">→</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : (
+        <div className="pb-16" />
+      )}
 
       <MobileActions bookingHref={bookingHref} callHref={locationPhones[location.slug].href} analyticsId={analyticsPrefix} />
     </div>
