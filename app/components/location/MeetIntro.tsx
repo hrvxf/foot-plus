@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 import type { Practitioner } from "../../lib/locations";
 import { stableViewportHeight } from "../../lib/stableViewport";
 import { ContactGlyph, type ContactAction } from "../site/ContactIcons";
-import { btnSolid, focusRing, shell } from "../site/ui";
+import { focusRing, shell } from "../site/ui";
 
 type Props = {
   /** Visually hidden page heading, kept for search, e.g. "Home foot care in Bristol". */
@@ -132,10 +132,14 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
 
   const actions = (
     <div>
-      <Link href={primaryAction.href} className={`${btnSolid} w-full`} data-analytics-id={primaryAction.analyticsId}>
+      <Link
+        href={primaryAction.href}
+        className={`flex h-14 w-full items-center justify-center rounded-full bg-brand-sageDark font-heading text-[1.0625rem] font-semibold text-white shadow-[0_16px_30px_-18px_rgba(36,48,40,0.6)] transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+        data-analytics-id={primaryAction.analyticsId}
+      >
         {primaryAction.label}
       </Link>
-      <ul className={`mt-2 grid gap-2 ${contactActions.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+      <ul className="mt-3 flex justify-center gap-3.5">
         {contactActions.map((action) => (
           <li key={action.kind}>
             <a
@@ -144,10 +148,14 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
               target={action.external ? "_blank" : undefined}
               rel={action.external ? "noopener noreferrer" : undefined}
               data-analytics-id={action.analyticsId}
-              className={`flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl bg-brand-sage/15 text-sm font-semibold text-brand-sageDeep transition-colors hover:bg-brand-sage/25 ${focusRing}`}
+              className={`group flex flex-col items-center gap-1 rounded-xl ${focusRing}`}
             >
-              <ContactGlyph kind={action.kind} className="h-5 w-5" />
-              <span aria-hidden="true">{shortLabel[action.kind]}</span>
+              <span className="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-brand-line bg-white text-brand-sageDark transition-colors group-hover:bg-brand-wash">
+                <ContactGlyph kind={action.kind} className="h-5 w-5" />
+              </span>
+              <span aria-hidden="true" className="text-[0.71875rem] font-medium text-brand-muted">
+                {shortLabel[action.kind]}
+              </span>
             </a>
           </li>
         ))}
