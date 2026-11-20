@@ -118,11 +118,11 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
           <Image
             src={lockups[location.slug]}
             alt=""
-            width={128}
-            height={44}
+            width={147}
+            height={51}
             priority
             unoptimized
-            className="block h-11 w-32 md:h-[3.125rem] md:w-36"
+            className="block h-[51px] w-[147px] md:h-[58px] md:w-[166px]"
           />
         </Link>
       </div>
@@ -132,10 +132,10 @@ export default async function CardLocationPage({ params }: { params: Promise<{ l
           <Image
             src={portraits[location.slug]}
             alt=""
-            width={192}
-            height={192}
+            width={230}
+            height={230}
             priority
-            className="mx-auto h-[4.5rem] w-[4.5rem] rounded-full [@media(max-height:600px)]:hidden md:h-24 md:w-24 object-cover object-top shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] ring-2 ring-white/80"
+            className="mx-auto h-[86px] w-[86px] rounded-full [@media(max-height:600px)]:hidden md:h-[115px] md:w-[115px] object-cover object-top shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] ring-2 ring-white/80"
           />
         ) : null}
 
