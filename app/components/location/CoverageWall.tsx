@@ -14,7 +14,7 @@ export default function CoverageWall({
 }: {
   id: string;
   /** Analytics source for the checker, e.g. "bristol". */
-  source: string;
+  source: "bristol" | "southampton";
   /** One short line under the heading, e.g. "Central, north, south and east Bristol." */
   summary: string;
   places: string[];
@@ -37,7 +37,14 @@ export default function CoverageWall({
       </div>
       <div className={`${shell} relative`}>
         <div className="mx-auto max-w-md rounded-[22px] bg-white p-6 shadow-[0_30px_60px_-30px_rgba(36,48,40,0.5)]">
-          <PostcodeChecker tone="compact" source={source} title="Do we visit you?" label="Postcode for the visit" helper={summary} />
+          <PostcodeChecker
+            tone="compact"
+            source={source}
+            bookLocation={source}
+            title="Do we visit you?"
+            label="Postcode for the visit"
+            helper={summary}
+          />
         </div>
       </div>
     </section>
