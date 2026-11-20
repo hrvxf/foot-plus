@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import LocalPartnerCard from "../../components/LocalPartnerCard";
 import MeetIntro from "../../components/location/MeetIntro";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { publishedLocalPartners } from "../../lib/partners";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, locationEmails } from "../../lib/site";
-import { travelSummary } from "../../lib/travel";
-import PostcodeChecker from "../../components/home/PostcodeChecker";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, coveragePlaces, locationEmails } from "../../lib/site";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
+import CoverageWall from "../../components/location/CoverageWall";
 import { ClosingBand, FaqList, Steps, portraits } from "../../components/site/blocks";
-import { body, displayH2, linkQuiet, rule, shell } from "../../components/site/ui";
+import { body, displayH2, rule, shell } from "../../components/site/ui";
 
 const canonical = `${SITE_URL}/locations/bristol`;
 
@@ -99,39 +97,7 @@ export default function BristolLocationPage() {
 
       <TreatmentsMarquee id="bristol-services" place="Bristol" />
 
-      <section id="bristol-coverage" className={`scroll-mt-24 ${section}`} aria-labelledby="bristol-coverage-heading">
-        <div className={`${shell} grid gap-10 lg:grid-cols-12 lg:gap-12`}>
-          <div className="lg:col-span-7">
-            <h2 id="bristol-coverage-heading" className={displayH2}>
-              Home visits across Bristol
-            </h2>
-            <p className={`${body} mt-4 max-w-[52ch]`}>
-              Home visits across Bristol and nearby towns. {travelSummary}
-            </p>
-            <ul className="mt-2 flex flex-wrap gap-x-6">
-              <li>
-                <Link href="/locations/bristol/areas-we-cover" className={linkQuiet}>
-                  View areas covered
-                </Link>
-              </li>
-              <li>
-                <Link href="/prices" className={linkQuiet}>
-                  View prices
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="lg:col-span-5">
-            <PostcodeChecker
-              tone="panel"
-              source="bristol"
-              title="Do we visit you?"
-              label="Postcode for the visit"
-              helper="We’ll show any travel fee for your postcode."
-            />
-          </div>
-        </div>
-      </section>
+      <CoverageWall id="bristol-coverage" source="bristol" summary="Central, north, south and east Bristol." places={coveragePlaces.bristol} />
 
       <section className={`border-t ${rule} bg-white ${section}`} aria-labelledby="bristol-process">
         <div className={shell}>
