@@ -87,7 +87,7 @@ export default function SouthamptonLocationPage() {
 
       <LocationHero
         place="Southampton"
-        status="Foot+ Southampton · Taking new patients"
+        status="Appointments available"
         title="Home foot care in Southampton"
         description="Professional, respectful foot care in the comfort of your own home, delivered by your local Foot+ practitioner."
         primaryAction={{ label: "Request a visit in Southampton", href: "/book?location=southampton" }}
