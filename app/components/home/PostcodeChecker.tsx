@@ -116,9 +116,9 @@ const tones: Record<
     label: "sr-only",
     row: "flex flex-row gap-2",
     input:
-      "flex-1 rounded-2xl border-[1.5px] border-brand-line bg-white focus:border-brand-sageDark focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark",
+      "flex-1 rounded-full border-[1.5px] border-brand-line bg-white focus:border-brand-sageDark focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark",
     button:
-      "w-14 rounded-2xl bg-brand-sageDark text-white hover:bg-brand-sageDeep focus-visible:outline-brand-sageDark",
+      "w-14 rounded-full bg-brand-sageDark text-white hover:bg-brand-sageDeep focus-visible:outline-brand-sageDark",
     helper: "mt-3 text-center text-base leading-6 text-brand-muted",
     result: "mt-4 rounded-2xl bg-brand-wash p-4 text-brand-charcoal",
     error: "text-red-800",
@@ -226,7 +226,7 @@ export default function PostcodeChecker({
             }}
             aria-invalid={invalid || undefined}
             aria-describedby={describedBy}
-            className={`h-14 w-full min-w-0 shrink-0 px-4 text-lg font-medium tracking-wide text-brand-charcoal placeholder:font-normal placeholder:tracking-normal placeholder:text-brand-muted ${style.input}`}
+            className={`h-14 w-full min-w-0 shrink-0 ${tone === "compact" ? "px-6" : "px-4"} text-lg font-medium tracking-wide text-brand-charcoal placeholder:font-normal placeholder:tracking-normal placeholder:text-brand-muted ${style.input}`}
           />
           <button
             type="submit"
@@ -372,7 +372,7 @@ function CompactRequest({
   return (
     <Link
       href={href}
-      className="mt-3 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-brand-sageDark text-lg font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+      className="mt-3 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-brand-sageDark text-lg font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
       data-analytics-id={`${source}-postcode-book-${slug ?? "any"}`}
     >
       Request a visit
