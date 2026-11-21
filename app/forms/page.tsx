@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { emailHref, phoneDisplay, phoneHref, SITE_URL } from "../lib/site";
+import { emailHref, phoneDisplay, phoneHref, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 import SplosePatientForm from "./SplosePatientForm";
 
 const splosePatientFormUrl =
@@ -11,7 +11,8 @@ const splosePatientFormTitle = "New patient and medical history form";
 export const metadata: Metadata = {
   title: "Patient Forms",
   alternates: { canonical: `${SITE_URL}/forms` },
-  openGraph: { url: `${SITE_URL}/forms` },
+  openGraph: {
+    images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/forms` },
   description:
     "Choose your local Foot+ service and complete the correct new-patient documentation.",
   robots: { index: true, follow: true },

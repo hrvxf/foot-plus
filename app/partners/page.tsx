@@ -3,12 +3,13 @@ import { Suspense } from "react";
 
 import PartnersDirectory, { PartnersList } from "../components/partners/PartnersDirectory";
 import { focusRing, shell } from "../components/site/ui";
-import { emailDisplay, emailHref, SITE_URL } from "../lib/site";
+import { emailDisplay, emailHref, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Partners | Connected Care",
   alternates: { canonical: `${SITE_URL}/partners` },
-  openGraph: { url: `${SITE_URL}/partners` },
+  openGraph: {
+    images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/partners` },
   description: "Trusted local services Foot+ points people to in Bristol and Southampton when they need more than foot care.",
 };
 

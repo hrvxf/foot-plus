@@ -9,7 +9,7 @@ import { focusRing, texturedGreen } from "../components/site/ui";
 import { founderStory } from "../lib/about";
 import { homeStandards } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
-import { ADAM_ID, BUSINESS_ID, SITE_URL } from "../lib/site";
+import { ADAM_ID, BUSINESS_ID, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 
 const canonical = `${SITE_URL}/about`;
 const title = "About Foot+ | Our Foot Health Practitioners";
@@ -19,7 +19,8 @@ export const metadata: Metadata = {
   title: { absolute: title },
   description,
   alternates: { canonical },
-  openGraph: { title, description, url: canonical },
+  openGraph: {
+    images: [DEFAULT_SOCIAL_IMAGE], title, description, url: canonical },
 };
 const schema = {
   "@context": "https://schema.org",

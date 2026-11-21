@@ -5,7 +5,7 @@ import ServiceDeck from "../components/services/ServiceDeck";
 import { focusRing, texturedGreen } from "../components/site/ui";
 import { serviceLocations } from "../lib/locations";
 import { referOnSigns, serviceDetails, whoWeHelp } from "../lib/services";
-import { BUSINESS_ID, prices, SITE_URL } from "../lib/site";
+import { BUSINESS_ID, prices, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 
 const PAGE_URL = `${SITE_URL}/services`;
 const TITLE = "Home-Visit Foot Care Services in Bristol & Southampton | Foot+";
@@ -16,8 +16,10 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
-  openGraph: { url: PAGE_URL, title: TITLE, description: DESCRIPTION },
-  twitter: { title: TITLE, description: DESCRIPTION },
+  openGraph: {
+    images: [DEFAULT_SOCIAL_IMAGE], url: PAGE_URL, title: TITLE, description: DESCRIPTION },
+  twitter: {
+    images: [DEFAULT_SOCIAL_IMAGE.url], title: TITLE, description: DESCRIPTION },
   robots: { index: true, follow: true },
 };
 
