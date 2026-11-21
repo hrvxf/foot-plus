@@ -12,7 +12,7 @@ import {
   BRISTOL_BUSINESS_ID,
   phoneDisplay,
   SITE_URL,
-} from "../../../lib/site";
+ DEFAULT_SOCIAL_IMAGE } from "../../../lib/site";
 
 const canonical = `${SITE_URL}/locations/bristol/areas-we-cover`;
 const metaTitle = "Areas We Cover in Bristol | Home Visits";
@@ -23,8 +23,10 @@ export const metadata: Metadata = {
   title: metaTitle,
   description: metaDescription,
   alternates: { canonical },
-  openGraph: { url: canonical, title: metaTitle, description: metaDescription },
-  twitter: { title: metaTitle, description: metaDescription },
+  openGraph: {
+    images: [DEFAULT_SOCIAL_IMAGE], url: canonical, title: metaTitle, description: metaDescription },
+  twitter: {
+    images: [DEFAULT_SOCIAL_IMAGE.url], title: metaTitle, description: metaDescription },
   robots: { index: true, follow: true },
 };
 

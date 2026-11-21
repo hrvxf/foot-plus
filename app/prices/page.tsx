@@ -7,13 +7,14 @@ import TravelSlider from "../components/prices/TravelSlider";
 import { focusRing, texturedGreen } from "../components/site/ui";
 import { homeSteps } from "../lib/home";
 import { appointmentTypes } from "../lib/services";
-import { bookingHref, paymentMethods, SITE_URL } from "../lib/site";
+import { bookingHref, paymentMethods, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 import { travelBases } from "../lib/travel";
 
 export const metadata: Metadata = {
   title: "Home Visit Nail & Foot Care Prices",
   alternates: { canonical: `${SITE_URL}/prices` },
-  openGraph: { url: `${SITE_URL}/prices` },
+  openGraph: {
+    images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/prices` },
   description:
     "Home nail and foot care: £60 for a first visit and £55 for a routine appointment. Available in Bristol and Southampton.",
 };

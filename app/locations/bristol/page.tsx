@@ -7,7 +7,7 @@ import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, coveragePlaces, locationEmails, locationPhones } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, coveragePlaces, locationEmails, locationPhones, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description: "Foot+ Bristol provides professional home-visit foot care across Bristol, with toenail cutting, corn care, hard skin and preventative foot-health support.",
   alternates: { canonical },
   openGraph: {
+    images: [DEFAULT_SOCIAL_IMAGE],
     title: "Foot+ Bristol | Mobile Foot Health Practitioner",
     description: "Professional home-visit foot care across Bristol.",
     url: canonical,

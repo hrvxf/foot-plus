@@ -5,6 +5,17 @@ export const ADAM_ID = `${SITE_URL}/about#adam-james`;
 export const SOUTHAMPTON_BUSINESS_ID = `${SITE_URL}/locations/southampton#medicalbusiness`;
 export const KATIE_ID = `${SITE_URL}/about#katie-preston`;
 
+/**
+ * The default link-preview image. Next.js replaces the whole openGraph object when a page sets its own,
+ * so every page that sets openGraph must include this, or Facebook picks a random photo from the page.
+ */
+export const DEFAULT_SOCIAL_IMAGE = {
+  url: `${SITE_URL}/images/social-card-v2.jpg`,
+  width: 1200,
+  height: 630,
+  alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
+};
+
 // Advice pages share one stable, absolute social image so link unfurls are consistent.
 export const ADVICE_SOCIAL_IMAGE = `${SITE_URL}/foot-plus-advice-social-preview.png`;
 export const ADVICE_SOCIAL_IMAGE_ALT = "Foot+ Bristol Advice";
