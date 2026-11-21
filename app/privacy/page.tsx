@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { locationEmails, locationPhones, SITE_URL } from "../lib/site";
+import { DEFAULT_SOCIAL_IMAGE, locationEmails, locationPhones, SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/privacy` },
-  openGraph: { url: `${SITE_URL}/privacy` },
+  openGraph: { images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/privacy` },
   title: "Privacy Notice",
   description:
     "How Foot+ Bristol and Foot+ Southampton collect, use, share and protect patient information, and your rights.",
