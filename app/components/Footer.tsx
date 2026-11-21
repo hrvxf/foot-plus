@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import CookieSettingsButton from "./CookieSettingsButton";
 import Doormat from "./site/Doormat";
 import LgbtqFriendly from "./site/LgbtqFriendly";
 import { shell } from "./site/ui";
@@ -81,6 +82,9 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <CookieSettingsButton className={`inline-flex min-h-9 items-center text-brand-sageDark hover:text-brand-sageDeep ${focus}`} />
+              </li>
             </ul>
           </nav>
         </div>
