@@ -4,10 +4,11 @@ import { bristolContactActions } from "../components/site/ContactIcons";
 import NailCuttingPage from "../components/site/NailCuttingPage";
 import { serviceLocations } from "../lib/locations";
 import { ADAM_ID, BRISTOL_BUSINESS_ID, prices, SITE_URL } from "../lib/site";
+import { googleRatingLine } from "../lib/reviews";
 
 const canonical = `${SITE_URL}/toenail-cutting-bristol`;
 const title = "Toenail Cutting at Home in Bristol | Foot+";
-const description = `Professional toenail cutting at home across Bristol by a qualified Foot Health Practitioner. First visit ${prices[0].price}; returning visits from ${prices[1].price}. Request a visit.`;
+const description = `We come to you. Toenail cutting in your own home across Bristol, by a qualified Foot Health Practitioner. ${googleRatingLine("bristol")}Check your postcode and request a visit.`;
 // Route-level openGraph/twitter objects replace the layout's, so restate the
 // site-wide social image, site name and card type here.
 const socialImage = {

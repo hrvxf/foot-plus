@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/prices` },
   description:
-    "Home nail and foot care: £60 for a first visit and £55 for a routine appointment. Available in Bristol and Southampton.",
+    "Simple, upfront prices for toenail cutting and foot care in your own home, with any travel fee confirmed before you book. Bristol and Southampton.",
 };
 
 // Short names for the tickets; prices, lengths and inclusions come from appointmentTypes.

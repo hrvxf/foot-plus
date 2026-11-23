@@ -8,6 +8,7 @@ import PartnersStrip from "../../components/partners/PartnersStrip";
 import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
 import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, coveragePlaces, locationEmails, locationPhones, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
+import { googleRatingLine } from "../../lib/reviews";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
 import CoverageWall from "../../components/location/CoverageWall";
@@ -17,16 +18,19 @@ import { portraits } from "../../components/site/blocks";
 // Mirrors app/locations/bristol/page.tsx section for section. Keep the two in step:
 // only location details (names, coverage, contacts, partners) should differ.
 
+const TITLE = "Foot Care at Home in Southampton | Foot+";
+const DESCRIPTION = `We come to you. Toenail cutting and routine foot care in your own home across Southampton, Romsey, Chandler's Ford and Totton. ${googleRatingLine("southampton")}Check your postcode and request a visit.`;
+
 const canonical = `${SITE_URL}/locations/southampton`;
 
 export const metadata: Metadata = {
-  title: { absolute: "Home Foot Care Southampton | Foot Health Practitioner | Foot+" },
-  description: "Foot+ Southampton provides professional home-visit foot care across Southampton, with toenail cutting, corn care, hard skin and preventative foot-health support.",
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   alternates: { canonical },
   openGraph: {
     images: [DEFAULT_SOCIAL_IMAGE],
-    title: "Foot+ Southampton | Mobile Foot Health Practitioner",
-    description: "Professional home-visit foot care across Southampton.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: canonical,
     siteName: "Foot+",
   },
