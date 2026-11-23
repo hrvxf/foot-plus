@@ -22,7 +22,6 @@ export type AdviceArticle = {
   relatedArticleSlugs: string[]; callToAction?: string; references: { label: string; url: string }[]; faqs: { question: string; answer: string }[];
 };
 
-const d = "2026-07-13";
 export const adviceArticles: AdviceArticle[] = [
   {
   "slug": "thickened-toenails-causes-treatment-and-when-to-worry",
@@ -237,201 +236,993 @@ export const adviceArticles: AdviceArticle[] = [
   ]
 },
   {
-    slug: "why-does-my-heel-hurt-when-i-get-out-of-bed",
-    title: "Why Does My Heel Hurt When I Get Out of Bed?",
-    shortTitle: "Why does my heel hurt in the morning?",
-    seoTitle: "Why Does My Heel Hurt When I Get Out of Bed? | Foot Plus",
-    description: "Sharp heel pain with your first steps in the morning? Learn the common causes, home treatments and when to seek professional advice from Foot Plus.",
-    category: "Heel pain",
-    authorId: "adam-james",
-    datePublished: "2026-07-30",
-    dateModified: "2026-11-09",
-    isPublished: true,
-    approvalStatus: "approved",
-    readingTime: "6 min read",
-    wordCount: 970,
-    intro: "One of the most common questions we hear is: “Why is the pain so bad when I take my first few steps in the morning?”",
-    introAdditional: ["If you have ever stepped out of bed and felt a sharp pain underneath your heel, you are not alone. This pattern is commonly associated with plantar fasciitis, one of the most frequent causes of heel pain."],
-    inBrief: [
-      "Morning heel pain is commonly associated with plantar fasciitis, although heel pain can have other causes.",
-      "Supportive footwear, activity adjustments and gentle stretching can help in many cases.",
-      "Seek an assessment when pain is severe, persistent or affecting normal walking, or when warning signs are present."
+    "slug": "why-does-my-heel-hurt-when-i-get-out-of-bed",
+    "title": "Why Does My Heel Hurt When I Get Out of Bed?",
+    "shortTitle": "Why does my heel hurt in the morning?",
+    "seoTitle": "Why Does My Heel Hurt When I Get Out of Bed? | Foot Plus",
+    "description": "Sharp heel pain with your first steps in the morning? Learn the common causes, home treatments and when to seek professional advice from Foot Plus.",
+    "category": "Heel pain",
+    "authorId": "adam-james",
+    "datePublished": "2026-07-30",
+    "dateModified": "2026-11-23",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "3 min read",
+    "wordCount": 513,
+    "intro": "That sharp pain with your first steps is often linked to plantar fasciitis. It usually eases as you walk, then comes back after rest.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Why it hurts first thing",
+        "navLabel": "Why mornings",
+        "body": [
+          "The plantar fascia is a strong band of tissue under your foot, running from the heel towards the toes. Overnight it isn't being stretched, so your first steps suddenly pull on it.",
+          "When it's irritated or overloaded, that pull can feel sharp or tight under the heel. It often eases after a few minutes, then returns after sitting or a long day on your feet."
+        ],
+        "subsections": [
+          {
+            "heading": "It isn't always plantar fasciitis",
+            "body": [
+              "Achilles tendon problems, bursitis, nerve irritation, heel-pad pain and, less often, a stress fracture can all cause heel pain too."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "What makes it more likely",
+        "navLabel": "Causes",
+        "body": [
+          "Often more than one of these is involved:"
+        ],
+        "list": [
+          "More walking, running or exercise than usual",
+          "Long periods of standing",
+          "Worn or unsupportive shoes",
+          "Walking barefoot on hard floors",
+          "Tight calves or stiff ankles",
+          "Changes in body weight",
+          "Flat feet or high arches"
+        ]
+      },
+      {
+        "heading": "What helps at home",
+        "navLabel": "At home",
+        "body": [
+          "Many cases improve with small changes, though it can take time:"
+        ],
+        "list": [
+          "Wear cushioned, supportive shoes that fasten securely",
+          "Avoid going barefoot on hard floors",
+          "Stretch your calves gently, and stop if it hurts sharply",
+          "Ease off whatever makes it worse, then build back up gradually",
+          "Hold an ice pack wrapped in a towel on the heel for up to 20 minutes every 2 to 3 hours, never directly on the skin"
+        ],
+        "subsections": [
+          {
+            "heading": "Check before using ice",
+            "body": [
+              "If you have reduced feeling, poor circulation or another medical condition, ask for advice before using cold therapy."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "When to get it checked",
+        "navLabel": "Getting help",
+        "tone": "warning",
+        "body": [
+          "See your GP or arrange an assessment if:"
+        ],
+        "list": [
+          "The pain is severe or getting worse",
+          "It hasn't improved after 2 weeks of self-care",
+          "You're struggling to walk normally, or it's affecting your sleep or daily life",
+          "It started after an injury",
+          "There's swelling, redness or warmth",
+          "You have numbness, tingling or burning",
+          "You have diabetes, poor circulation or reduced feeling in your feet"
+        ],
+        "subsections": [
+          {
+            "heading": "Get seen promptly",
+            "body": [
+              "If you can't put weight on the foot, or there's marked swelling after an injury."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "How a Foot Health Practitioner can help",
+        "navLabel": "How we help",
+        "body": [
+          "A Foot Health Practitioner can look at your feet, talk through what may be adding to the pain, and help with footwear, pressure, padding or insoles where appropriate, stretches and any painful callus.",
+          "If it needs further investigation, they'll suggest seeing your GP, a podiatrist or another professional."
+        ]
+      }
     ],
-    sections: [
-      { heading: "What is plantar fasciitis?", body: ["The plantar fascia is a strong band of tissue that runs from the heel towards the toes. It supports the arch of the foot and helps absorb force when you stand and walk.", "Plantar fasciitis develops when this tissue becomes irritated or overloaded. The symptoms may appear gradually, particularly following a change in activity, footwear or the amount of time spent standing."] },
-      { heading: "Why is the pain worse in the morning?", body: ["While you are resting or sleeping, the plantar fascia is not being stretched in the same way as it is during walking.", "When you stand up and take your first few steps, the tissue is suddenly placed under tension again. This can produce a sharp or pulling pain underneath the heel.", "The discomfort may ease after walking for a few minutes, but it can return following another period of rest or after prolonged activity."] },
-      { heading: "Common symptoms", body: ["Symptoms can include:"], list: ["Sharp or aching pain underneath the heel", "Pain during the first few steps after getting out of bed", "Pain after sitting for a prolonged period", "Discomfort that eases with movement but returns later", "Tenderness around the underside or inner edge of the heel", "Increased pain after prolonged standing, walking or exercise",], subsections: [{ heading: "Other possible causes", body: ["Not every case of heel pain is plantar fasciitis. Other possible causes include Achilles tendon problems, bursitis, nerve irritation, heel-pad pain and, less commonly, a stress fracture."] }] },
-      { heading: "What can contribute to plantar fasciitis?", body: ["Several factors can increase strain through the plantar fascia:"], list: ["A recent increase in walking, running or exercise", "Spending long periods standing", "Unsupportive or worn footwear", "Walking barefoot on hard floors", "Tight calf muscles", "Changes in body weight", "Flat feet or particularly high arches", "Reduced ankle flexibility"], subsections: [{ heading: "Several factors may be involved", body: ["Often, more than one factor is involved."] }] },
-      { heading: "What can you do at home?", body: ["Many cases improve with sensible changes, although recovery can take time."], subsections: [
-        { heading: "Wear supportive footwear", body: ["Choose footwear with:"], list: ["Cushioning beneath the heel", "A stable sole", "Secure fastening", "Suitable arch support", "Enough width for the foot"], afterList: ["Worn trainers, very flat shoes and loose backless footwear may aggravate symptoms for some people."] },
-        { heading: "Avoid walking barefoot on hard floors", body: ["Walking barefoot on hard kitchen or bathroom floors can increase pressure through the heel. Supportive indoor footwear may be more comfortable while symptoms settle."] },
-        { heading: "Stretch the calves gently", body: ["Tight calf muscles can increase tension through the heel and plantar fascia.", "Gentle calf stretches may help, but they should not cause sharp pain. Stop if a stretch significantly increases your symptoms."] },
-        { heading: "Adjust aggravating activities", body: ["Temporarily reduce activities that repeatedly worsen the pain. This does not necessarily mean complete rest, but the foot may benefit from a more gradual return to longer walks, running or prolonged standing."] },
-        { heading: "Use a cold compress", body: ["NHS guidance suggests an ice pack, or a bag of frozen peas wrapped in a towel, on the painful area for up to 20 minutes every 2 to 3 hours. Do not apply ice directly to the skin.", "People with reduced sensation, poor circulation or certain medical conditions should seek professional advice before using cold therapy."] }
-      ] },
-      { heading: "When should you seek professional advice?", body: ["Arrange an assessment if:"], list: ["The pain is severe or getting worse", "You are struggling to walk normally", "Symptoms have not improved after 2 weeks of self-care", "The pain began after an injury", "There is significant swelling, redness or warmth", "You experience numbness, tingling or burning", "You have diabetes, poor circulation or reduced sensation", "The pain is affecting sleep or normal daily activities"], subsections: [{ heading: "When to seek prompt assessment", body: ["Sudden severe pain, an inability to bear weight or marked swelling following an injury should be assessed promptly."] }] },
-      { heading: "How can a Foot Health Practitioner help?", body: ["A Foot Health Practitioner can discuss your symptoms, examine the foot and identify factors that may be contributing to the discomfort.", "Depending on the findings, support may include:"], list: ["Footwear advice", "Advice on pressure reduction", "Padding or insoles where appropriate", "Guidance on foot and calf stretches", "Management of painful callus or other contributing foot problems", "Referral to a GP, podiatrist or another healthcare professional when required"], subsections: [{ heading: "When referral may be needed", body: ["A Foot Health Practitioner cannot confirm every possible cause of heel pain, so referral may be recommended if the symptoms require further investigation."] }] },
-      { heading: "Final thoughts", body: ["Most morning heel pain settles with patience and small changes to footwear, activity and stretching, but pain that lingers deserves a proper look.", "If it is severe, has not eased after 2 weeks of self-care, or is changing the way you walk, arrange an assessment rather than waiting for it to resolve on its own."] }
+    "practitionerView": "Morning heel pain usually has more than one cause. A look at your feet and footwear can show what's worth changing.",
+    "disclaimer": "This article provides general information and is not a substitute for individual medical advice, diagnosis or treatment.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/services",
+        "label": "Foot+ services",
+        "kind": "service"
+      },
+      {
+        "href": "/",
+        "label": "Foot Health Practitioner Bristol",
+        "kind": "service"
+      },
+      {
+        "href": "/book",
+        "label": "Book an appointment",
+        "kind": "book"
+      }
     ],
-    practitionerView: "Morning heel pain often reflects a combination of factors rather than one isolated issue. An assessment can help identify practical changes and whether referral for further investigation is appropriate.",
-    disclaimer: "This article provides general information and is not a substitute for individual medical advice, diagnosis or treatment.",
-    relatedServiceRoutes: [{ href: "/services", label: "Foot+ services", kind: "service" }, { href: "/", label: "Foot Health Practitioner Bristol", kind: "service" }, { href: "/book", label: "Book an appointment", kind: "book" }],
-    relatedArticleSlugs: ["maintain-good-foot-health", "foot-health-practitioner-podiatrist-or-chiropodist"],
-    references: [
-      { label: "NHS: Heel pain", url: "https://www.nhs.uk/conditions/heel-pain/" },
-      { label: "NHS: Plantar fasciitis", url: "https://www.nhs.uk/conditions/plantar-fasciitis/" }
+    "relatedArticleSlugs": [
+      "maintain-good-foot-health",
+      "foot-health-practitioner-podiatrist-or-chiropodist"
     ],
-    faqs: [
-      { question: "Why does my heel hurt with my first steps in the morning?", answer: "After rest, the plantar fascia is suddenly placed under tension when you stand. This pattern is commonly associated with plantar fasciitis, but heel pain can have other causes." },
-      { question: "When should morning heel pain be assessed?", answer: "See a GP if pain is severe or worsening, has not improved after 2 weeks of self-care, causes tingling or numbness, or if you have diabetes. Seek prompt assessment after an injury if you cannot bear weight or have marked swelling." }
+    "references": [
+      {
+        "label": "NHS: Heel pain",
+        "url": "https://www.nhs.uk/conditions/heel-pain/"
+      },
+      {
+        "label": "NHS: Plantar fasciitis",
+        "url": "https://www.nhs.uk/conditions/plantar-fasciitis/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Why does my heel hurt with my first steps in the morning?",
+        "answer": "After rest, the plantar fascia is suddenly placed under tension when you stand. This pattern is commonly associated with plantar fasciitis, but heel pain can have other causes."
+      },
+      {
+        "question": "When should morning heel pain be assessed?",
+        "answer": "See a GP if pain is severe or worsening, has not improved after 2 weeks of self-care, causes tingling or numbness, or if you have diabetes. Seek prompt assessment after an injury if you cannot bear weight or have marked swelling."
+      }
     ]
   },
-  { slug:"maintain-good-foot-health", title:"How to Maintain Good Foot Health", shortTitle:"Maintain good foot health", seoTitle:"How to Maintain Good Foot Health | Foot+ Bristol", description:"Simple everyday foot-care habits for checking, washing, moisturising, nail cutting, hard skin and knowing when to ask for professional advice.", category:"Everyday foot care", authorId:"adam-james", datePublished:"2026-07-17", dateModified:"2026-11-09", isPublished:true, approvalStatus:"approved", readingTime:"4 min read", wordCount:800, intro:"Good foot health is built from small, regular habits: checking your skin, keeping feet clean and dry, moisturising safely, trimming nails carefully and acting early when something changes. This guide adapts NHS patient information into practical advice for routine home foot care.", inBrief:["Check the tops, soles and between toes regularly for cuts, blisters, wounds, bruising, pain or changes.","Wash feet daily, dry carefully between the toes, and avoid long soaking that can soften the skin too much.","Use moisturiser on the tops and bottoms of feet, but avoid putting cream between toes; seek medical advice for infection signs, wounds or diabetic foot concerns."], sections:[
-    {heading:"Check your feet regularly", body:["Look at the tops and bottoms of both feet and between the toes. Notice cuts, scratches, bruises, blisters, wounds, painful areas, colour change, swelling or anything that is new for you.","If bending is difficult, use a mirror, place your feet safely on a chair, or ask someone you trust to help. Regular checks are especially important if eyesight, sensation, circulation, mobility or diabetes makes small problems harder to spot." ]},
-    {heading:"Wash and dry carefully", body:["Wash your feet every day with soap and water. A shower, bath or clean bowl can all work as long as you can do it safely and avoid slips.","Clean around the toenails gently rather than digging under them. Avoid soaking feet for long periods; prolonged soaking can soften skin and make it more vulnerable. Dry thoroughly with a clean towel, including between every toe." ]},
-    {heading:"Manage moisture between toes", body:["Damp skin between toes can become white, fragile and more prone to soreness or smell. After washing, take time to dry between the toes rather than quickly pulling socks back on.","If sweaty feet are a regular problem, breathable socks, alternating shoes and allowing footwear to dry between wears may help. If skin is cracked, itchy, weeping or sore, ask a pharmacist, GP or podiatrist for advice rather than self-treating repeatedly." ]},
-    {heading:"Moisturise the right areas", body:["Dry skin and heel callus often improve with consistent moisturising. A urea-based foot cream may be useful for some people, but the right strength depends on your skin and health needs, so ask a pharmacist or clinician if you are unsure.","Apply cream to the tops and bottoms of the feet, then wait for it to absorb before walking because feet may be slippery. Avoid putting moisturiser between the toes, where extra moisture can encourage maceration."], links:[{href:"/hard-skin-and-callus",label:"hard-skin treatment at home",kind:"service"},{href:"/cracked-heels",label:"cracked heel care",kind:"service"}]},
-    {heading:"Cut toenails safely", body:["Trim toenails in good light when you can see and reach comfortably, take small amounts at a time and smooth sharp edges with a file. Do not cut nails very short, tear them or cut down the sides.","How often nails need cutting varies from person to person. If reaching, seeing or cutting your nails has become difficult, or a nail is thick, routine professional nail care may be safer than forcing it."], links:[{href:"/advice/why-toenails-are-difficult-to-cut",label:"safe toenail cutting at home",kind:"article"},{href:"/advice/how-often-older-adults-should-cut-toenails",label:"how often toenails need cutting",kind:"article"},{href:"/toenail-cutting-bristol",label:"toenail-cutting home visits",kind:"service"}]},
-    {heading:"Look after hard skin without cutting it", body:["Small areas of hard skin can sometimes be gently filed when the skin is dry. Keep the pressure light, stop if the skin becomes sore, and do not use blades or corn knives at home.","If you have diabetes, poor circulation or reduced feeling in your feet, do not file or treat hard skin yourself. Small injuries can be harder to notice and slower to heal, so ask your GP practice, diabetes team or a podiatrist for advice first.","Hard skin usually returns while pressure or friction continues, so footwear and regular moisturising matter as much as occasional filing."], links:[{href:"/advice/hard-skin-on-feet",label:"hard skin: causes, prevention and treatment",kind:"article"},{href:"/hard-skin-and-callus",label:"callus reduction",kind:"service"}]},
-    {heading:"Choose supportive footwear", body:["Shoes should support the foot, leave enough room for the toes and avoid rubbing. Check inside shoes for seams, stones, rough patches or worn areas that could irritate skin.","Socks should be clean, dry and comfortable. If a particular pair of shoes repeatedly causes blisters, pressure marks, corns or nail pain, changing footwear may be part of maintaining foot health." ]},
-    {heading:"When to ask for help", body:["Seek appropriate medical or podiatry advice for wounds, spreading redness, heat, swelling, discharge, increasing pain, sudden colour or temperature change, new numbness, severe pain or diabetic foot concerns.","A routine Foot Health Practitioner appointment may help with nail care, hard skin, callus, suitable corn care, cracked heel maintenance and practical advice. If your concern appears outside routine scope, Foot+ will advise you to contact the right professional service."], links:[{href:"/services",label:"view Foot+ services",kind:"service"},{href:"/book",label:"book routine foot care",kind:"book"}]}
-  ], practitionerView:"Adam’s practical view: the best foot-care routine is simple enough to keep doing. Regular checks, clean dry skin, safe moisturising, sensible nail care and prompt help for warning signs can prevent small concerns becoming harder to manage.", relatedServiceRoutes:[{href:"/services",label:"All Foot+ services",kind:"service"},{href:"/toenail-cutting-bristol",label:"Toenail cutting",kind:"service"},{href:"/hard-skin-and-callus",label:"Hard-skin treatment",kind:"service"},{href:"/cracked-heels",label:"Cracked heel care",kind:"service"},{href:"/book",label:"Book an appointment",kind:"book"}], relatedArticleSlugs:["why-toenails-are-difficult-to-cut","hard-skin-on-feet","what-happens-home-foot-health-appointment"], references:[{label:"Guy's and St Thomas' NHS Foundation Trust: Caring for your feet and toenails",url:"https://www.guysandstthomas.nhs.uk/health-information/caring-your-feet-and-toenails"},{label:"NHS: Foot problems and the podiatrist",url:"https://www.nhs.uk/conditions/foot-problems-and-the-podiatrist/"},{label:"Diabetes UK: Checking your feet",url:"https://www.diabetes.org.uk/guide-to-diabetes/complications/feet/checking-your-feet"}], faqs:[{question:"How often should I check my feet?",answer:"Check regularly, and more often if you have diabetes, reduced sensation, circulation concerns or a history of wounds. Look at the tops, soles and between toes. If you have diabetes, check your feet every day and make sure you have the annual foot check offered through your GP practice or diabetes team."},{question:"Should I put cream between my toes?",answer:"No. Moisturise the tops and bottoms of feet, but avoid cream between toes because extra moisture can make skin fragile."},{question:"Can Foot+ help me maintain my feet?",answer:"Where suitable, Foot+ can provide routine nail care, hard-skin and callus care, cracked heel maintenance and practical advice during home visits."}]},
-  { slug:"corn-callus-or-verruca", title:"Corn, Callus or Verruca: How Can You Tell the Difference?", shortTitle:"Corn, callus or verruca", description:"Learn the broad differences between corns, callus and verrucae, why online self-diagnosis can be unreliable, and when routine foot care may help.", category:"Skin and hard skin", authorId:"adam-james", datePublished:d, dateModified:"2026-11-09", isPublished:true, approvalStatus:"approved", readingTime:"4 min read", wordCount:700, intro:"Corns, callus and verrucae can all appear as small areas of hard or changed skin on the foot, but they are not the same thing. This guide explains common differences in plain language without attempting to diagnose your foot online.", inBrief:["Corns and callus are usually linked with pressure or friction.","A verruca is a type of wart caused by a virus. It needs different care from a corn or hard skin, and Foot+ can treat it at a home visit where suitable.","Do not cut uncertain lesions yourself, especially if you have diabetes, reduced sensation, poor circulation, broken skin or pain."], sections:[
-    {heading:"What is a corn?", body:["A corn is a small, concentrated area of thickened skin that forms over a pressure point. Hard corns usually appear on the top or tip of a toe or under the ball of the foot, and may feel like a small plug or pebble when you walk.","Soft corns usually form between the toes, where sweat keeps the skin moist. They are whitish and rubbery rather than hard, and can be mistaken for athlete's foot or simply sore skin.","Corns are commonly linked with pressure from footwear, toe shape, joint position or repeated rubbing. Routine corn care may help reduce discomfort where the concern is suitable for a Foot Health Practitioner appointment."], links:[{href:"/corn-treatment",label:"corn care appointments",kind:"service"}]},
-    {heading:"What is a callus?", body:["Callus is a broader, flatter patch of hard skin, often on the heels or the balls of the feet, where the skin is protecting itself from repeated pressure, rubbing or shear. Why it forms, how to manage it and how to stop it building up again are covered in the hard-skin guide."], links:[{href:"/advice/hard-skin-on-feet",label:"hard skin and callus: causes, prevention and treatment",kind:"article"},{href:"/hard-skin-and-callus",label:"callus reduction during home visits",kind:"service"}]},
-    {heading:"What is a verruca?", body:["A verruca is a wart on the foot. Verrucae are associated with human papillomavirus infection and can sometimes have tiny dark dots, interrupted skin lines or tenderness when squeezed from side to side.","This guide cannot tell you whether an area is a verruca. If you think it may be, Foot+ can look at it during a home visit and treat it where suitable. A pharmacist can also advise on over-the-counter options." ]},
-    {heading:"Key differences", body:["Corns tend to be more focal and pressure-related. Callus is usually broader and linked with repeated friction or load. Verrucae may disrupt normal skin lines and can look different from ordinary hard skin.","These signs overlap. A painful area under the foot is not automatically a corn, and an area with hard skin is not automatically callus." ]},
-    {heading:"Why self-diagnosis can be difficult", body:["Lighting, skin thickness, footwear history and exact pain pattern all affect interpretation. Online photographs and descriptions cannot replace looking at the foot in context.","This is particularly important if you have diabetes, reduced sensation, circulation concerns, immune suppression, a wound or unexplained changes." ]},
-    {heading:"What not to cut or treat yourself", body:["Do not use blades, scalpels, corn knives or strong acids on uncertain areas. Avoid digging into painful hard skin or cutting anything that bleeds, changes quickly or has broken skin around it.","Over-the-counter products may not be suitable for everyone. Ask a pharmacist or clinician if you are unsure." ]},
-    {heading:"When a Foot Health Practitioner may help", body:["A Foot Health Practitioner may help with routine pressure-related corns, hard skin and callus where the concern is within scope. The appointment can include conservative reduction and practical advice about footwear, moisturising and maintenance.","If the area looks outside routine foot-care scope, Adam will advise you to seek the appropriate professional support."], links:[{href:"/services",label:"view Foot+ routine foot-care services",kind:"service"},{href:"/book",label:"book a Foot+ home appointment",kind:"book"}]},
-    {heading:"When another professional may be more appropriate", body:["A podiatrist, pharmacist or GP may be more appropriate for wounds, infection, sudden severe pain, spreading redness, unexplained bleeding, or symptoms linked with diabetes or circulation concerns.","Urgent symptoms should be assessed through the appropriate NHS route rather than waiting for routine foot care." ]}
-  ], practitionerView:"Adam’s practical view: pressure-related hard skin is often part of a wider pattern involving footwear, mobility and how weight moves through the foot. The aim of routine care is comfort, safer reduction where appropriate, and clear advice about when another professional is needed.", relatedServiceRoutes:[{href:"/corn-treatment",label:"Corn removal and care",kind:"service"},{href:"/hard-skin-and-callus",label:"Callus reduction",kind:"service"},{href:"/services",label:"All Foot+ services",kind:"service"},{href:"/book",label:"Book an appointment",kind:"book"}], relatedArticleSlugs:["hard-skin-on-feet","foot-health-practitioner-podiatrist-or-chiropodist"], references:[{label:"NHS: Warts and verrucas",url:"https://www.nhs.uk/conditions/warts-and-verrucas/"},{label:"NHS: Corns and calluses",url:"https://www.nhs.uk/conditions/corns-and-calluses/"}], faqs:[{question:"Can Foot+ diagnose a verruca from a photo?",answer:"No. This guide is general information and does not diagnose from photographs or descriptions."},{question:"Should I cut a corn out myself?",answer:"No. Cutting into painful or uncertain skin can cause injury, especially for people with diabetes, reduced sensation or circulation concerns."}]},
-  { slug:"how-often-older-adults-should-cut-toenails", title:"How Often Should Older Adults Have Their Toenails Cut?", shortTitle:"Toenail cutting for older adults", seoTitle:"Toenail Cutting for the Elderly: How Often? | Foot+", description:"How often elderly people need their toenails cut, why it varies and the signs care is needed sooner. Practical advice for families and carers.", category:"Foot care for older adults", authorId:"adam-james", datePublished:d, dateModified:"2026-11-09", isPublished:true, approvalStatus:"approved", readingTime:"3 min read", wordCount:482, intro:"There is no single toenail-cutting schedule that suits every older adult. Nail growth, comfort, mobility, eyesight, dexterity and health needs all affect timing.", inBrief:["Many people arrange routine care at intervals that reflect their nail growth, comfort, mobility and individual foot-health needs.","Care may be needed sooner if nails press into shoes, snag, curve into skin or become painful.","Home visits can help when travelling to a clinic is difficult."], sections:[{heading:"Why nail-care needs vary",body:["Two people of the same age may need very different nail-care routines. Some nails grow quickly and stay easy to cut; others become thick, curved or hard to reach.","A fixed schedule should not replace individual judgement about comfort and safety." ]},{heading:"Factors affecting nail growth",body:["Nail growth can be influenced by age, circulation, footwear, activity levels, previous injury and general health. Seasonal footwear changes can also affect comfort.","The goal is not to cut as often as possible, but to keep nails at a safe, comfortable length." ]},{heading:"When cutting your own nails gets harder",body:["Reach, eyesight and hand strength often change before the nails themselves do. When home cutting starts to feel awkward or unsafe, nails tend to be left longer between trims, so arranging routine support at a regular interval may be more sensible than waiting until they become uncomfortable."],links:[{href:"/advice/why-toenails-are-difficult-to-cut",label:"why toenails become difficult to cut",kind:"article"}]},{heading:"Thick or curved nails",body:["Thickened, curved or involuted nails often need attention more regularly, because they press on footwear or neighbouring skin sooner. They may need professional equipment and a careful approach rather than home cutting.","Routine appointments can help manage length and pressure, while concerns outside routine care may need podiatry or GP input."],links:[{href:"/advice/thickened-toenails-causes-treatment-and-when-to-worry",label:"thickened toenails: causes and treatment",kind:"article"},{href:"/toenail-cutting-bristol",label:"routine toenail-cutting home visits",kind:"service"}]},{heading:"General appointment intervals",body:["Many people arrange routine care at intervals that reflect their nail growth, comfort, mobility and individual foot-health needs. For some this is several weeks; for others it may be longer.","Adam can discuss a sensible maintenance pattern after seeing how your nails grow between appointments." ]},{heading:"Signs care may be needed sooner",body:["Consider arranging care sooner if nails catch on socks, press into footwear, cause soreness, curve into neighbouring skin, or become too difficult to cut safely.","Seek appropriate medical advice for redness, swelling, discharge, wounds, sudden severe pain or diabetic foot concerns." ]},{heading:"When a family member may arrange an appointment",body:["A family member can help with an enquiry or practical arrangements, but the person receiving care should be involved and consent must be respected.","Home visits can be useful when transport, stairs, parking or clinic access would make routine care harder."],links:[{href:"/locations/bristol/areas-we-cover",label:"areas covered by Foot+ Bristol",kind:"areas"},{href:"/prices",label:"view appointment prices",kind:"pricing"},{href:"/book",label:"request a home appointment",kind:"book"}]}], practitionerView:"Adam’s practical view: the right interval is the one that keeps nails comfortable without letting them become a problem. Routine care should feel planned, not rushed by avoidable discomfort.", relatedServiceRoutes:[{href:"/toenail-cutting-bristol",label:"Toenail cutting",kind:"service"},{href:"/services",label:"Services",kind:"service"},{href:"/prices",label:"Pricing",kind:"pricing"},{href:"/locations/bristol/areas-we-cover",label:"Areas covered",kind:"areas"},{href:"/book",label:"Book",kind:"book"}], relatedArticleSlugs:["why-toenails-are-difficult-to-cut","thickened-toenails-causes-treatment-and-when-to-worry","what-happens-home-foot-health-appointment"], references:[{label:"Age UK: Looking after your feet",url:"https://www.ageuk.org.uk/information-advice/health-wellbeing/conditions-illnesses/foot-care/"},{label:"NHS: Foot problems and the podiatrist",url:"https://www.nhs.uk/conditions/foot-problems-and-the-podiatrist/"}], faqs:[{question:"Is every six weeks right for everyone?",answer:"Not necessarily. Six weeks is a commonly quoted interval, but some people's nails need attention sooner and others can comfortably go longer. The right interval depends on how quickly your nails grow, how thick or curved they are, and whether you can manage them safely between visits."},{question:"Can a relative book for a parent?",answer:"A relative can help enquire, but appropriate consent and practical details are still needed."}]},
   {
-  "slug": "what-happens-home-foot-health-appointment",
-  "title": "What Happens During a Home Foot Health Appointment?",
-  "shortTitle": "Your home nail and foot-care appointment",
-  "description": "What to expect from a Foot+ Bristol home visit: arranging your appointment, nail and skin care, prices and aftercare.",
-  "category": "Home foot-care appointments",
-  "authorId": "adam-james",
-  "datePublished": "2026-07-13",
-  "dateModified": "2026-10-07",
-  "isPublished": true,
-  "approvalStatus": "approved",
-  "readingTime": "3 min read",
-  "wordCount": 440,
-  "intro": "A home foot-health appointment brings routine nail and skin care to a familiar setting. Here is what to expect when requesting a visit from Foot+ Bristol.",
-  "inBrief": [
-    "First appointments cost £60 and take approximately 60 minutes; routine visits for returning patients cost £55 and take approximately 45 minutes.",
-    "Nail cutting can be your main reason for booking, with other suitable routine skin care included within the appointment.",
-    "Coverage, suitability, availability and any travel supplement are confirmed before your visit."
-  ],
-  "sections": [
-    {
-      "heading": "Arranging your home visit",
-      "body": [
-        "Use the appointment enquiry page to share your postcode and the support you need. A relative or carer can help coordinate the visit, with appropriate consent from the person receiving care.",
-        "Foot+ confirms coverage, suitability, availability and cost. Appointments are available in Bristol and Southampton."
-      ],
-      "links": [
-        {
-          "href": "/locations/bristol/areas-we-cover",
-          "label": "Bristol areas covered",
-          "kind": "areas"
-        }
-      ]
-    },
-    {
-      "heading": "Preparing for your appointment",
-      "body": [
-        "Choose a comfortable place to sit where the practitioner can work around your feet. Tell Foot+ about stairs, parking, mobility needs or communication requirements when enquiring.",
-        "Have relevant health and medication information available, and bring any questions about your nails or skin. The patient forms page explains the Bristol documentation."
-      ],
-      "links": [
-        {
-          "href": "/forms?location=bristol",
-          "label": "Bristol patient information",
-          "kind": "forms"
-        }
-      ]
-    },
-    {
-      "heading": "Discussion and foot-health observations",
-      "body": [
-        "Adam discusses your needs and relevant health information before suitable care is provided. Care is explained and consent matters throughout; you can ask questions or request a pause.",
-        "A first appointment allows time for assessment and treatment. Routine appointments focus on ongoing nail and skin care."
-      ]
-    },
-    {
-      "heading": "Nail and skin care at home",
-      "body": [
-        "Suitable care may include toenail trimming and filing, conservative reduction of thickened nails, hard-skin and callus reduction, corn care or cracked-heel maintenance. The exact care depends on your needs and suitability.",
-        "Toenail cutting can be the main reason for a visit. You do not need to have another skin concern to request routine nail care. Adam uses sterile instruments and is insured and DBS checked."
-      ],
-      "links": [
-        {
-          "href": "/toenail-cutting-bristol",
-          "label": "Toenail-cutting home visits in Bristol",
-          "kind": "service"
-        },
-        {
-          "href": "/services",
-          "label": "All Foot+ services",
-          "kind": "service"
-        }
-      ]
-    },
-    {
-      "heading": "Aftercare and next steps",
-      "body": [
-        "Aftercare can include practical guidance on nail maintenance, footwear and moisturising. Follow-up timing reflects nail growth, comfort and your individual needs.",
-        "Foot+ provides routine care rather than emergency treatment or diagnosis of complex conditions. If a concern falls outside scope, Adam will explain when podiatry or medical assessment is appropriate."
-      ],
-      "links": [
-        {
-          "href": "/prices",
-          "label": "Appointment prices",
-          "kind": "pricing"
-        }
-      ]
-    }
-  ],
-  "practitionerView": "A routine home visit should be clear, calm and respectful. Tell Foot+ what matters to you so the appointment can be planned around your needs.",
-  "relatedServiceRoutes": [
-    {
-      "href": "/toenail-cutting-bristol",
-      "label": "Bristol toenail cutting",
-      "kind": "service"
-    },
-    {
-      "href": "/prices",
-      "label": "Prices",
-      "kind": "pricing"
-    },
-    {
-      "href": "/about",
-      "label": "Meet your practitioner",
-      "kind": "about"
-    }
-  ],
-  "relatedArticleSlugs": [
-    "how-often-older-adults-should-cut-toenails",
-    "foot-care-learning-disabilities-bristol"
-  ],
-  "references": [],
-  "faqs": [
-    {
-      "question": "Can I book mainly for nail cutting?",
-      "answer": "Yes. Toenail cutting can be the main reason for a routine Foot+ visit. The practitioner checks suitability before care."
-    },
-    {
-      "question": "Do I need to travel to a clinic?",
-      "answer": "No. Foot+ provides home visits. Share your postcode so coverage can be confirmed."
-    }
-  ]
-},
-  { slug:"hard-skin-on-feet", title:"Hard Skin on Feet: Causes, Prevention and Professional Treatment", shortTitle:"Hard skin on feet", description:"A practical guide to hard skin on feet, including causes, prevention, safe home care and professional reduction without permanent-removal claims.", category:"Skin and hard skin", authorId:"adam-james", datePublished:d, dateModified:"2026-10-21", isPublished:true, approvalStatus:"approved", readingTime:"3 min read", wordCount:544, intro:"Hard skin is common on feet because they carry body weight and deal with repeated pressure. It can often be managed, but it may return if the underlying pressure remains.", inBrief:["Hard skin often develops in response to pressure, friction or shear.","Professional reduction can improve comfort where suitable, but hard skin may return.","Avoid blades, aggressive filing and strong chemicals, especially if you have diabetes or reduced sensation."], sections:[{heading:"What hard skin is",body:["Hard skin is thickened skin that forms as a protective response. On the feet it commonly appears on heels, the balls of the feet and areas that rub against footwear.","Callus is a common form of hard skin. It is not always painful, but it can become uncomfortable, split or build up around pressure points.","A small, focused painful spot may be a corn rather than general hard skin, and a verruca can look similar. If you are unsure which you have, see the guide to telling them apart."],links:[{href:"/advice/corn-callus-or-verruca",label:"corn, callus or verruca: how to tell the difference",kind:"article"}]},{heading:"Why hard skin develops",body:["Pressure, friction and shear are common reasons. Footwear, walking pattern, activity, dry skin and foot shape can all contribute.","Because the cause often continues, hard skin may gradually return after reduction." ]},{heading:"Footwear and walking patterns",body:["Shoes that are tight, loose, worn down or unsupportive can increase rubbing. Changes in mobility or gait can shift pressure to one area.","This guide does not diagnose gait problems, but it explains why the same patch may keep coming back." ]},{heading:"Safe home-care measures",body:["Moisturising regularly can help dry skin stay more comfortable. Gentle filing may be suitable for some people if the skin is intact and sensation is normal.","Stop if skin becomes sore. Do not file aggressively or try to remove all hard skin at once." ]},{heading:"What not to do",body:["Do not use razor blades, scalpels or corn knives on yourself. Avoid strong chemical products unless a pharmacist or clinician says they are suitable for you.","People with diabetes, reduced sensation, poor circulation, wounds or fragile skin should seek individual advice before self-treatment." ]},{heading:"Professional reduction and routine care",body:["Where suitable, Foot+ can provide professional hard-skin and callus reduction during a home appointment. The aim is comfort and safer maintenance, not a promise that hard skin will never return.","Adam may also discuss moisturising, footwear considerations and when further assessment is sensible."],links:[{href:"/hard-skin-and-callus",label:"professional hard-skin treatment",kind:"service"},{href:"/cracked-heels",label:"cracked heel maintenance",kind:"service"},{href:"/book",label:"book routine foot care",kind:"book"}]},{heading:"When hard skin requires further assessment",body:["Seek appropriate advice if hard skin is linked with a wound, bleeding, spreading redness, swelling, discharge, sudden severe pain or diabetic foot concerns.","A podiatrist or GP may be more appropriate if the issue needs diagnosis, wound care or regulated clinical assessment." ]},{heading:"Prevention and maintenance",body:["Prevention usually means reducing pressure where possible, keeping skin supple and arranging care before build-up becomes painful.","Maintenance plans should be realistic and individual rather than based on permanent-removal claims." ]}], practitionerView:"Adam’s practical view: hard skin often tells you where pressure is building. Routine care can make feet more comfortable, but prevention depends on understanding why that pressure keeps happening.", relatedServiceRoutes:[{href:"/hard-skin-and-callus",label:"Hard-skin treatment",kind:"service"},{href:"/cracked-heels",label:"Cracked heel care",kind:"service"},{href:"/services",label:"Services",kind:"service"},{href:"/book",label:"Book",kind:"book"}], relatedArticleSlugs:["corn-callus-or-verruca","what-happens-home-foot-health-appointment"], references:[{label:"NHS: Corns and calluses",url:"https://www.nhs.uk/conditions/corns-and-calluses/"},{label:"Diabetes UK: Checking your feet",url:"https://www.diabetes.org.uk/guide-to-diabetes/complications/feet/checking-your-feet"}], faqs:[{question:"Can hard skin be permanently removed?",answer:"Hard skin can often be reduced, but it may return if pressure or friction continues."},{question:"Is it safe to use a blade at home?",answer:"No. Cutting hard skin yourself can cause injury and is especially risky for people with diabetes, reduced sensation or circulation concerns."}]},
-  { slug:"foot-health-practitioner-podiatrist-or-chiropodist", title:"Foot Health Practitioner, Podiatrist or Chiropodist: Who Should You See?", shortTitle:"FHP, podiatrist or chiropodist", description:"Understand the difference between a Foot Health Practitioner, podiatrist and chiropodist in the UK, including protected titles and routine-care boundaries.", category:"Choosing the right professional", authorId:"adam-james", datePublished:d, dateModified:d, isPublished:true, approvalStatus:"approved", readingTime:"9 min read", wordCount:1320, intro:"Choosing the right foot-care professional can be confusing. This guide explains the terms carefully so you can match routine care needs with the appropriate level of assessment.", inBrief:["Adam James is a Foot Health Practitioner, not a podiatrist or chiropodist.","Podiatrist and chiropodist are protected titles in the UK and require HCPC registration.","Routine foot care and regulated clinical assessment are not the same thing."], sections:[{heading:"What a Foot Health Practitioner does",body:["A Foot Health Practitioner commonly supports routine foot care such as nail cutting, thickened nail care, non-surgical ingrown toenail care, fungal nail care, hard-skin and callus reduction, corn care where suitable, cracked heel maintenance, verruca and athlete’s foot care, and practical foot-health advice.","Scope varies by training and individual competence. Foot+ pages describe Adam as a Foot Health Practitioner, MCFHP, MAFHP."],links:[{href:"/",label:"Foot Health Practitioner appointments in Bristol",kind:"service"}]},{heading:"What a podiatrist does",body:["A podiatrist is a regulated healthcare professional. In the UK, podiatrists must be registered with the Health and Care Professions Council to use the protected title.","Podiatrists may assess, diagnose and manage a wider range of foot and lower-limb conditions depending on their qualifications, setting and scope." ]},{heading:"What the term chiropodist means",body:["Chiropodist is also a protected title in the UK. The term is often used historically or interchangeably with podiatrist, but title use is regulated.","Foot+ does not describe Adam as a chiropodist." ]},{heading:"Protected professional titles",body:["The HCPC protects titles including podiatrist and chiropodist. This means people using those titles must meet regulatory requirements and be registered.","Foot Health Practitioner is not the same protected title. This distinction should be clear in marketing and patient information." ]},{heading:"Routine care versus clinical assessment",body:["Routine foot care focuses on practical maintenance and comfort where concerns are within scope. Clinical assessment may involve diagnosis, management of complex conditions, wound care, prescribing pathways or specialist services depending on the professional and setting.","Boundaries are not always absolute because individual qualifications vary, but protected-title and registration differences are important." ]},{heading:"Examples Foot+ may assist with",body:["Foot+ may assist with routine toenail cutting, thickened nail reduction, ingrown and fungal toenails, hard-skin and callus care, corn care where suitable, cracked heel maintenance, verrucas, athlete’s foot and home-visit support for adults who find travel difficult.","Use the services and pricing pages to decide whether the routine appointment offer matches your needs."],links:[{href:"/services",label:"view Foot+ services",kind:"service"},{href:"/prices",label:"view Foot+ pricing",kind:"pricing"},{href:"/about",label:"read about Adam James",kind:"about"}]},{heading:"When a podiatrist or GP may be more suitable",body:["A podiatrist or GP may be more suitable for diagnosis of complex or persistent pain, suspected infection, wounds, diabetic foot complications, sudden changes, significant circulation or sensation concerns, or problems needing regulated clinical assessment.","A pharmacist may also be suitable for some skin and nail concerns such as suspected fungal infection or verruca advice." ]},{heading:"Urgent warning signs",body:["Seek urgent medical support for spreading infection signs, an open wound, sudden severe pain, sudden colour change, significant bleeding, new loss of sensation or acute diabetes-related foot concerns.","Do not wait for a routine home foot-care appointment if symptoms appear urgent." ]},{heading:"How to choose the right service",body:["Choose routine Foot Health Practitioner care for straightforward maintenance needs that match the published Foot+ service scope. Choose podiatry, GP, pharmacy or urgent NHS support when assessment, diagnosis or treatment outside routine care may be needed.","If you are unsure, describe the concern clearly when enquiring so Adam can advise whether Foot+ is likely to be appropriate."],links:[{href:"/book",label:"contact Foot+ about suitability",kind:"book"}]}], practitionerView:"Adam’s practical view: clear professional boundaries protect patients. Foot+ is most useful when the need is routine foot care at home; where symptoms suggest a clinical problem, the right outcome may be signposting to another professional.", relatedServiceRoutes:[{href:"/about",label:"About Adam",kind:"about"},{href:"/services",label:"Services",kind:"service"},{href:"/",label:"Foot Health Practitioner Bristol",kind:"service"},{href:"/prices",label:"Pricing",kind:"pricing"},{href:"/book",label:"Book",kind:"book"}], relatedArticleSlugs:["what-happens-home-foot-health-appointment","corn-callus-or-verruca"], references:[{label:"HCPC: Check the Register",url:"https://www.hcpc-uk.org/check-the-register/"},{label:"HCPC: Protected titles",url:"https://www.hcpc-uk.org/about-us/who-we-regulate/the-professions/"},{label:"Royal College of Podiatry: What is a podiatrist?",url:"https://rcpod.org.uk/"}], faqs:[{question:"Is Adam James a podiatrist?",answer:"No. Adam James is described by Foot+ as a Foot Health Practitioner, MCFHP, MAFHP."},{question:"Are podiatrist and chiropodist protected titles?",answer:"Yes. In the UK, podiatrist and chiropodist are protected titles regulated through HCPC registration."}]},
+    "slug": "maintain-good-foot-health",
+    "title": "How to Maintain Good Foot Health",
+    "shortTitle": "Maintain good foot health",
+    "seoTitle": "How to Maintain Good Foot Health | Foot+",
+    "description": "Simple everyday foot-care habits for checking, washing, moisturising, nail cutting, hard skin and knowing when to ask for professional advice.",
+    "category": "Everyday foot care",
+    "authorId": "adam-james",
+    "datePublished": "2026-07-17",
+    "dateModified": "2026-11-23",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "3 min read",
+    "wordCount": 580,
+    "intro": "Healthy feet come from a few small habits: checking them, keeping them clean and dry, moisturising, trimming nails carefully and getting help early. This guide is based on NHS advice.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Check your feet",
+        "navLabel": "Checking",
+        "body": [
+          "Look at the tops, the soles and between your toes for cuts, blisters, bruising, sore spots, colour change, swelling or anything new.",
+          "If bending is hard, use a mirror, rest your foot on a chair or ask someone to help. Checks matter most if you have diabetes, or if eyesight, feeling or circulation make small problems easy to miss."
+        ]
+      },
+      {
+        "heading": "Wash, dry and moisturise",
+        "navLabel": "Skin care",
+        "body": [],
+        "subsections": [
+          {
+            "heading": "Wash every day",
+            "body": [
+              "Use soap and water, and clean gently around the nails rather than digging under them. Don't soak your feet for long, as it softens the skin."
+            ]
+          },
+          {
+            "heading": "Dry between every toe",
+            "body": [
+              "Damp skin between the toes can turn white, fragile and sore. If your feet sweat a lot, breathable socks and letting shoes dry out between wears can help. Skin that's cracked, itchy, weeping or sore needs a pharmacist, GP or podiatrist."
+            ]
+          },
+          {
+            "heading": "Moisturise the tops and soles, not between toes",
+            "body": [
+              "Regular moisturiser helps dry skin and heel callus. A urea-based cream suits some people; ask a pharmacist if you're unsure which. Let it soak in before walking, as feet can be slippery."
+            ]
+          }
+        ],
+        "links": [
+          {
+            "href": "/hard-skin-and-callus",
+            "label": "Hard-skin treatment at home",
+            "kind": "service"
+          },
+          {
+            "href": "/cracked-heels",
+            "label": "Cracked heel care",
+            "kind": "service"
+          }
+        ]
+      },
+      {
+        "heading": "Nails and hard skin",
+        "navLabel": "Nails and skin",
+        "body": [
+          "Trim nails in good light, a little at a time, and file sharp edges. Don't cut them very short, tear them or cut down the sides. If reaching or seeing your nails has become hard, or a nail is thick, professional nail care is safer than forcing it.",
+          "Small areas of hard skin can be filed gently when dry. Stop if it gets sore, and never use blades or corn knives. Hard skin tends to return while the pressure continues, so footwear and moisturising matter too."
+        ],
+        "links": [
+          {
+            "href": "/advice/why-toenails-are-difficult-to-cut",
+            "label": "Safe toenail cutting at home",
+            "kind": "article"
+          },
+          {
+            "href": "/advice/hard-skin-on-feet",
+            "label": "Hard skin: causes and treatment",
+            "kind": "article"
+          },
+          {
+            "href": "/toenail-cutting-bristol",
+            "label": "Toenail cutting at home",
+            "kind": "service"
+          }
+        ]
+      },
+      {
+        "heading": "Shoes and socks",
+        "navLabel": "Footwear",
+        "body": [
+          "Shoes should support your foot, leave room for your toes and not rub. Check inside for seams, stones or worn patches. If one pair keeps causing blisters, corns or nail pain, it may be time to change them. Socks should be clean, dry and comfortable."
+        ]
+      },
+      {
+        "heading": "If you have diabetes or reduced feeling",
+        "navLabel": "Diabetes",
+        "tone": "warning",
+        "body": [
+          "Check your feet every day, and don't file or treat hard skin yourself. Small injuries are easier to miss and slower to heal, so ask your GP practice, diabetes team or a podiatrist first. If you have diabetes, make sure you have your annual foot check."
+        ]
+      },
+      {
+        "heading": "When to ask for help",
+        "navLabel": "Getting help",
+        "tone": "warning",
+        "body": [
+          "Get medical or podiatry advice for a wound, spreading redness, heat, swelling, discharge, increasing or severe pain, sudden colour or temperature change, or new numbness.",
+          "For routine nail care, hard skin, callus, corns and cracked heels, a Foot Health Practitioner can help at home. If something is outside routine care, Foot+ will tell you who to see."
+        ],
+        "links": [
+          {
+            "href": "/services",
+            "label": "Foot+ services",
+            "kind": "service"
+          },
+          {
+            "href": "/book",
+            "label": "Request a home visit",
+            "kind": "book"
+          }
+        ]
+      }
+    ],
+    "practitionerView": "The best routine is one simple enough to keep doing, with help sought early when something changes.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/services",
+        "label": "All Foot+ services",
+        "kind": "service"
+      },
+      {
+        "href": "/toenail-cutting-bristol",
+        "label": "Toenail cutting",
+        "kind": "service"
+      },
+      {
+        "href": "/hard-skin-and-callus",
+        "label": "Hard-skin treatment",
+        "kind": "service"
+      },
+      {
+        "href": "/cracked-heels",
+        "label": "Cracked heel care",
+        "kind": "service"
+      },
+      {
+        "href": "/book",
+        "label": "Book an appointment",
+        "kind": "book"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "why-toenails-are-difficult-to-cut",
+      "hard-skin-on-feet",
+      "what-happens-home-foot-health-appointment"
+    ],
+    "references": [
+      {
+        "label": "Guy's and St Thomas' NHS Foundation Trust: Caring for your feet and toenails",
+        "url": "https://www.guysandstthomas.nhs.uk/health-information/caring-your-feet-and-toenails"
+      },
+      {
+        "label": "NHS: Foot problems and the podiatrist",
+        "url": "https://www.nhs.uk/conditions/foot-problems-and-the-podiatrist/"
+      },
+      {
+        "label": "Diabetes UK: Checking your feet",
+        "url": "https://www.diabetes.org.uk/guide-to-diabetes/complications/feet/checking-your-feet"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How often should I check my feet?",
+        "answer": "Regularly, and every day if you have diabetes, reduced feeling or circulation problems. Look at the tops, soles and between your toes. If you have diabetes, make sure you have the annual foot check from your GP practice or diabetes team."
+      },
+      {
+        "question": "Should I put cream between my toes?",
+        "answer": "No. Moisturise the tops and soles, but not between the toes, where extra moisture makes skin fragile."
+      },
+      {
+        "question": "Can Foot+ help me look after my feet?",
+        "answer": "Yes. Where suitable, Foot+ provides routine nail care, hard-skin and callus care, cracked heel care and practical advice at home."
+      }
+    ]
+  },
+  {
+    "slug": "corn-callus-or-verruca",
+    "title": "Corn, Callus or Verruca: How Can You Tell the Difference?",
+    "shortTitle": "Corn, callus or verruca",
+    "description": "Learn the broad differences between corns, callus and verrucae, why online self-diagnosis can be unreliable, and when routine foot care may help.",
+    "category": "Skin and hard skin",
+    "authorId": "adam-james",
+    "datePublished": "2026-07-13",
+    "dateModified": "2026-11-23",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "2 min read",
+    "wordCount": 357,
+    "intro": "All three can look like small patches of hard or changed skin, but they're different things and need different care. This guide explains the usual differences. It can't diagnose your foot.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Telling them apart",
+        "navLabel": "Differences",
+        "body": [],
+        "subsections": [
+          {
+            "heading": "Corn",
+            "body": [
+              "A small, concentrated patch of hard skin over a pressure point, often on a toe or under the ball of the foot. It can feel like a pebble when you walk. Soft corns form between the toes and look whitish and rubbery."
+            ]
+          },
+          {
+            "heading": "Callus",
+            "body": [
+              "A broader, flatter patch of hard skin, often on the heel or the ball of the foot, where it takes repeated pressure or rubbing."
+            ]
+          },
+          {
+            "heading": "Verruca",
+            "body": [
+              "A wart on the foot, caused by a virus. It may have tiny dark dots, break up the normal skin lines, or hurt when squeezed from side to side."
+            ]
+          }
+        ],
+        "links": [
+          {
+            "href": "/corn-treatment",
+            "label": "Corn treatment at home",
+            "kind": "service"
+          },
+          {
+            "href": "/advice/hard-skin-on-feet",
+            "label": "Hard skin and callus: causes and treatment",
+            "kind": "article"
+          }
+        ]
+      },
+      {
+        "heading": "Why it's hard to tell",
+        "navLabel": "Self-diagnosis",
+        "body": [
+          "The signs overlap, so a sore patch under the foot isn't automatically a corn. Photos and descriptions online can't replace someone looking at your foot, especially if you have diabetes, reduced feeling, circulation problems, a weakened immune system or a wound."
+        ]
+      },
+      {
+        "heading": "What not to do",
+        "navLabel": "What not to do",
+        "tone": "warning",
+        "body": [
+          "Don't cut, dig into or put strong acids on a patch you're unsure about, and don't use blades, scalpels or corn knives. Leave anything that bleeds, changes quickly or has broken skin around it. Over-the-counter products don't suit everyone, so check with a pharmacist first."
+        ]
+      },
+      {
+        "heading": "Who can help",
+        "navLabel": "Getting help",
+        "body": [
+          "Foot+ can treat corns, callus and verrucas at home where suitable, with advice on footwear and moisturising. A pharmacist can also advise on verruca products.",
+          "See a podiatrist, pharmacist or GP for wounds, infection, sudden severe pain, spreading redness, unexplained bleeding, or concerns linked to diabetes or circulation. Urgent symptoms shouldn't wait for routine care."
+        ],
+        "links": [
+          {
+            "href": "/hard-skin-and-callus",
+            "label": "Callus removal at home",
+            "kind": "service"
+          },
+          {
+            "href": "/book",
+            "label": "Request a home visit",
+            "kind": "book"
+          }
+        ]
+      }
+    ],
+    "practitionerView": "Hard skin often shows where pressure is building. Routine care eases it, and the right advice helps stop it coming back.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/corn-treatment",
+        "label": "Corn removal and care",
+        "kind": "service"
+      },
+      {
+        "href": "/hard-skin-and-callus",
+        "label": "Callus reduction",
+        "kind": "service"
+      },
+      {
+        "href": "/services",
+        "label": "All Foot+ services",
+        "kind": "service"
+      },
+      {
+        "href": "/book",
+        "label": "Book an appointment",
+        "kind": "book"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "hard-skin-on-feet",
+      "foot-health-practitioner-podiatrist-or-chiropodist"
+    ],
+    "references": [
+      {
+        "label": "NHS: Warts and verrucas",
+        "url": "https://www.nhs.uk/conditions/warts-and-verrucas/"
+      },
+      {
+        "label": "NHS: Corns and calluses",
+        "url": "https://www.nhs.uk/conditions/corns-and-calluses/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can Foot+ diagnose a verruca from a photo?",
+        "answer": "No. Your practitioner can look at it during a home visit and treat it where suitable."
+      },
+      {
+        "question": "Should I cut a corn out myself?",
+        "answer": "No. Cutting into painful or uncertain skin can cause injury, especially if you have diabetes, reduced feeling or circulation problems."
+      }
+    ]
+  },
+  {
+    "slug": "how-often-older-adults-should-cut-toenails",
+    "title": "How Often Should Older Adults Have Their Toenails Cut?",
+    "shortTitle": "Toenail cutting for older adults",
+    "seoTitle": "Toenail Cutting for the Elderly: How Often? | Foot+",
+    "description": "How often elderly people need their toenails cut, why it varies and the signs care is needed sooner. Practical advice for families and carers.",
+    "category": "Foot care for older adults",
+    "authorId": "adam-james",
+    "datePublished": "2026-07-13",
+    "dateModified": "2026-11-23",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "2 min read",
+    "wordCount": 303,
+    "intro": "There's no single schedule. It depends on how fast your nails grow, how thick or curved they are, and how easily you can manage them yourself.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Why it varies",
+        "navLabel": "Why it varies",
+        "body": [
+          "Two people of the same age can need very different routines. Nail growth is affected by circulation, footwear, activity, past injury and general health.",
+          "Reach, eyesight and hand strength often change before the nails do. When cutting gets awkward, nails tend to be left longer, so a regular routine is often better than waiting until they hurt."
+        ],
+        "links": [
+          {
+            "href": "/advice/why-toenails-are-difficult-to-cut",
+            "label": "Why toenails become difficult to cut",
+            "kind": "article"
+          }
+        ]
+      },
+      {
+        "heading": "How often",
+        "navLabel": "How often",
+        "body": [
+          "Six weeks is often quoted, but some people need care sooner and others can go longer. Thick, curved or ingrowing nails usually need attention more often, because they press on shoes and skin sooner.",
+          "After a visit or two, your practitioner can suggest a routine that suits how your nails grow."
+        ],
+        "links": [
+          {
+            "href": "/advice/thickened-toenails-causes-treatment-and-when-to-worry",
+            "label": "Thickened toenails: causes and treatment",
+            "kind": "article"
+          },
+          {
+            "href": "/toenail-cutting-bristol",
+            "label": "Toenail cutting at home",
+            "kind": "service"
+          }
+        ]
+      },
+      {
+        "heading": "Signs care is needed sooner",
+        "navLabel": "Sooner",
+        "tone": "warning",
+        "body": [
+          "Arrange care sooner if nails catch on socks, press into shoes, feel sore, curve into the skin or are too hard to cut safely.",
+          "Get medical advice for redness, swelling, discharge, a wound, sudden severe pain or a diabetic foot concern."
+        ]
+      },
+      {
+        "heading": "Arranging care for a relative",
+        "navLabel": "For a relative",
+        "body": [
+          "A family member can enquire and help with arrangements, but the person having care should be involved and agree to it. Home visits help when travel, stairs or parking make a clinic hard."
+        ],
+        "links": [
+          {
+            "href": "/prices",
+            "label": "Prices",
+            "kind": "pricing"
+          },
+          {
+            "href": "/book",
+            "label": "Request a home visit",
+            "kind": "book"
+          }
+        ]
+      }
+    ],
+    "practitionerView": "The right interval keeps nails comfortable without letting them become a problem.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/toenail-cutting-bristol",
+        "label": "Toenail cutting",
+        "kind": "service"
+      },
+      {
+        "href": "/services",
+        "label": "Services",
+        "kind": "service"
+      },
+      {
+        "href": "/prices",
+        "label": "Pricing",
+        "kind": "pricing"
+      },
+      {
+        "href": "/locations/bristol/areas-we-cover",
+        "label": "Areas covered",
+        "kind": "areas"
+      },
+      {
+        "href": "/book",
+        "label": "Book",
+        "kind": "book"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "why-toenails-are-difficult-to-cut",
+      "thickened-toenails-causes-treatment-and-when-to-worry",
+      "what-happens-home-foot-health-appointment"
+    ],
+    "references": [
+      {
+        "label": "Age UK: Looking after your feet",
+        "url": "https://www.ageuk.org.uk/information-advice/health-wellbeing/conditions-illnesses/foot-care/"
+      },
+      {
+        "label": "NHS: Foot problems and the podiatrist",
+        "url": "https://www.nhs.uk/conditions/foot-problems-and-the-podiatrist/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is every six weeks right for everyone?",
+        "answer": "Not necessarily. Some people's nails need attention sooner and others can go longer. It depends on how quickly they grow, how thick or curved they are, and whether you can manage them safely between visits."
+      },
+      {
+        "question": "Can a relative book for a parent?",
+        "answer": "Yes, a relative can enquire and help arrange it. The person having care still needs to agree to it."
+      }
+    ]
+  },
+  {
+    "slug": "what-happens-home-foot-health-appointment",
+    "title": "What Happens During a Home Foot Health Appointment?",
+    "shortTitle": "Your home nail and foot-care appointment",
+    "description": "What to expect from a Foot+ Bristol home visit: arranging your appointment, nail and skin care, prices and aftercare.",
+    "category": "Home foot-care appointments",
+    "authorId": "adam-james",
+    "datePublished": "2026-07-13",
+    "dateModified": "2026-11-23",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "2 min read",
+    "wordCount": 310,
+    "intro": "A home visit brings routine nail and skin care to you. Here's what to expect, from arranging it to aftercare.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Arranging your visit",
+        "navLabel": "Arranging",
+        "body": [
+          "Send an enquiry with your postcode and what you need help with. A relative or carer can arrange it, with the agreement of the person having care. We confirm the area, any travel fee, suitability and a time.",
+          "Let us know about stairs, parking, mobility or communication needs."
+        ],
+        "links": [
+          {
+            "href": "/book",
+            "label": "Request a home visit",
+            "kind": "book"
+          }
+        ]
+      },
+      {
+        "heading": "Before the visit",
+        "navLabel": "Before",
+        "body": [
+          "Fill in the patient form if you can, and have your health and medication details to hand. Choose a comfortable chair with a little space around your feet."
+        ],
+        "links": [
+          {
+            "href": "/forms?location=bristol",
+            "label": "Bristol patient form",
+            "kind": "forms"
+          }
+        ]
+      },
+      {
+        "heading": "During the visit",
+        "navLabel": "During",
+        "body": [
+          "Your practitioner talks through your needs and health first, and explains the care as they go. You can ask questions or pause at any time.",
+          "Care may include toenail cutting and filing, reducing thick nails, hard skin and callus, corns and cracked heels, depending on what's suitable. Nail cutting alone is a perfectly good reason to book. Instruments are sterile, and practitioners are insured and DBS checked."
+        ],
+        "links": [
+          {
+            "href": "/toenail-cutting-bristol",
+            "label": "Toenail cutting at home in Bristol",
+            "kind": "service"
+          },
+          {
+            "href": "/services",
+            "label": "All Foot+ services",
+            "kind": "service"
+          }
+        ]
+      },
+      {
+        "heading": "Prices and timing",
+        "navLabel": "Prices",
+        "body": [
+          "A first visit is £60 and takes about 60 minutes. Routine visits for returning patients are £55 and take about 45 minutes. Any travel fee is confirmed before you book."
+        ],
+        "links": [
+          {
+            "href": "/prices",
+            "label": "Prices",
+            "kind": "pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Afterwards",
+        "navLabel": "Afterwards",
+        "body": [
+          "You'll get practical advice on nails, footwear and moisturising, and a suggested time for your next visit.",
+          "Foot+ provides routine care, not emergency treatment or diagnosis. If something needs a podiatrist or doctor, your practitioner will tell you."
+        ]
+      }
+    ],
+    "practitionerView": "A home visit should feel calm and unhurried. Tell us what matters to you and we'll plan around it.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/toenail-cutting-bristol",
+        "label": "Bristol toenail cutting",
+        "kind": "service"
+      },
+      {
+        "href": "/prices",
+        "label": "Prices",
+        "kind": "pricing"
+      },
+      {
+        "href": "/about",
+        "label": "Meet your practitioner",
+        "kind": "about"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "how-often-older-adults-should-cut-toenails",
+      "foot-care-learning-disabilities-bristol"
+    ],
+    "references": [],
+    "faqs": [
+      {
+        "question": "Can I book mainly for nail cutting?",
+        "answer": "Yes. Toenail cutting can be the main reason for a routine Foot+ visit. The practitioner checks suitability before care."
+      },
+      {
+        "question": "Do I need to travel to a clinic?",
+        "answer": "No. Foot+ provides home visits. Share your postcode so coverage can be confirmed."
+      }
+    ]
+  },
+  {
+    "slug": "hard-skin-on-feet",
+    "title": "Hard Skin on Feet: Causes, Prevention and Professional Treatment",
+    "shortTitle": "Hard skin on feet",
+    "description": "A practical guide to hard skin on feet, including causes, prevention, safe home care and professional reduction without permanent-removal claims.",
+    "category": "Skin and hard skin",
+    "authorId": "adam-james",
+    "datePublished": "2026-07-13",
+    "dateModified": "2026-11-23",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "2 min read",
+    "wordCount": 324,
+    "intro": "Hard skin builds up where your feet take pressure. It can usually be reduced and kept comfortable, but it often comes back while the pressure continues.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Why it forms",
+        "navLabel": "Why it forms",
+        "body": [
+          "Hard skin is the skin protecting itself. It forms on heels, the balls of the feet and anywhere shoes rub. A callus is a defined patch of it.",
+          "Pressure, rubbing, worn or ill-fitting shoes, the way you walk, activity and dry skin can all play a part. A small, sharp spot may be a corn instead, and a verruca can look similar."
+        ],
+        "links": [
+          {
+            "href": "/advice/corn-callus-or-verruca",
+            "label": "Corn, callus or verruca: telling them apart",
+            "kind": "article"
+          }
+        ]
+      },
+      {
+        "heading": "Looking after it at home",
+        "navLabel": "At home",
+        "body": [
+          "Moisturise regularly to keep skin supple. If your skin is unbroken and the feeling in your feet is normal, gentle filing may help. Stop if it gets sore, and don't try to remove it all at once."
+        ]
+      },
+      {
+        "heading": "What not to do",
+        "navLabel": "What not to do",
+        "tone": "warning",
+        "body": [
+          "Don't use razor blades, scalpels or corn knives, or strong chemical products unless a pharmacist or clinician says they suit you.",
+          "If you have diabetes, reduced feeling, poor circulation, a wound or fragile skin, get advice before treating it yourself."
+        ]
+      },
+      {
+        "heading": "Professional care",
+        "navLabel": "Professional care",
+        "body": [
+          "Where suitable, Foot+ reduces hard skin and callus at a home visit, and talks through moisturising and footwear. The aim is comfort and easier upkeep, not a promise that it won't return."
+        ],
+        "links": [
+          {
+            "href": "/hard-skin-and-callus",
+            "label": "Hard skin and callus removal at home",
+            "kind": "service"
+          },
+          {
+            "href": "/cracked-heels",
+            "label": "Cracked heel care",
+            "kind": "service"
+          },
+          {
+            "href": "/book",
+            "label": "Request a home visit",
+            "kind": "book"
+          }
+        ]
+      },
+      {
+        "heading": "When to get it checked",
+        "navLabel": "Getting help",
+        "tone": "warning",
+        "body": [
+          "Get advice if hard skin comes with a wound, bleeding, spreading redness, swelling, discharge, sudden severe pain or a diabetic foot concern. A podiatrist or GP may be the right person if it needs diagnosis or wound care."
+        ]
+      }
+    ],
+    "practitionerView": "Hard skin shows where pressure is building. Care makes feet comfortable; easing the pressure helps keep them that way.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/hard-skin-and-callus",
+        "label": "Hard-skin treatment",
+        "kind": "service"
+      },
+      {
+        "href": "/cracked-heels",
+        "label": "Cracked heel care",
+        "kind": "service"
+      },
+      {
+        "href": "/services",
+        "label": "Services",
+        "kind": "service"
+      },
+      {
+        "href": "/book",
+        "label": "Book",
+        "kind": "book"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "corn-callus-or-verruca",
+      "what-happens-home-foot-health-appointment"
+    ],
+    "references": [
+      {
+        "label": "NHS: Corns and calluses",
+        "url": "https://www.nhs.uk/conditions/corns-and-calluses/"
+      },
+      {
+        "label": "Diabetes UK: Checking your feet",
+        "url": "https://www.diabetes.org.uk/guide-to-diabetes/complications/feet/checking-your-feet"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can hard skin be permanently removed?",
+        "answer": "Hard skin can often be reduced, but it may return if pressure or friction continues."
+      },
+      {
+        "question": "Is it safe to use a blade at home?",
+        "answer": "No. Cutting hard skin yourself can cause injury and is especially risky for people with diabetes, reduced sensation or circulation concerns."
+      }
+    ]
+  },
+  {
+    "slug": "foot-health-practitioner-podiatrist-or-chiropodist",
+    "title": "Foot Health Practitioner, Podiatrist or Chiropodist: Who Should You See?",
+    "shortTitle": "FHP, podiatrist or chiropodist",
+    "description": "Understand the difference between a Foot Health Practitioner, podiatrist and chiropodist in the UK, including protected titles and routine-care boundaries.",
+    "category": "Choosing the right professional",
+    "authorId": "adam-james",
+    "datePublished": "2026-07-13",
+    "dateModified": "2026-11-23",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "1 min read",
+    "wordCount": 299,
+    "intro": "The titles sound alike but mean different things. Here's who does what, so you can choose the right person.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Foot Health Practitioner",
+        "navLabel": "FHP",
+        "body": [
+          "A Foot Health Practitioner provides routine foot care: nail cutting, thick nails, non-surgical ingrown and fungal nail care, hard skin and callus, corns, cracked heels, verrucas, athlete's foot and practical advice. Scope depends on training.",
+          "Foot+ practitioners are Foot Health Practitioners (MCFHP, MAFHP), not podiatrists or chiropodists."
+        ],
+        "links": [
+          {
+            "href": "/services",
+            "label": "Foot+ services",
+            "kind": "service"
+          },
+          {
+            "href": "/about",
+            "label": "About our practitioners",
+            "kind": "about"
+          }
+        ]
+      },
+      {
+        "heading": "Podiatrist and chiropodist",
+        "navLabel": "Podiatrist",
+        "body": [
+          "The two words are often used to mean the same thing. Both are protected titles in the UK: anyone using them must be registered with the Health and Care Professions Council (HCPC), and you can check the register online.",
+          "Podiatrists can assess, diagnose and manage a wider range of foot and lower-leg conditions."
+        ]
+      },
+      {
+        "heading": "Which do you need?",
+        "navLabel": "Which one",
+        "body": [
+          "For straightforward upkeep, like nail cutting, hard skin or corns, a Foot Health Practitioner is a good fit.",
+          "See a podiatrist or GP for persistent or complex pain, suspected infection, wounds, diabetic foot complications, sudden changes, or circulation or sensation concerns. A pharmacist can help with some skin and nail problems, such as suspected fungal infection or verrucas.",
+          "Not sure? Describe it when you enquire and we'll tell you whether Foot+ is right for you."
+        ],
+        "links": [
+          {
+            "href": "/prices",
+            "label": "Prices",
+            "kind": "pricing"
+          },
+          {
+            "href": "/book",
+            "label": "Ask about a home visit",
+            "kind": "book"
+          }
+        ]
+      },
+      {
+        "heading": "Urgent warning signs",
+        "navLabel": "Urgent",
+        "tone": "warning",
+        "body": [
+          "Get urgent medical help for spreading infection, an open wound, sudden severe pain, sudden colour change, heavy bleeding, new loss of feeling or an acute diabetic foot problem. Don't wait for a routine visit."
+        ]
+      }
+    ],
+    "practitionerView": "Clear boundaries protect patients. Foot+ is for routine care at home; if something needs a clinician, we'll say so.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/about",
+        "label": "About Adam",
+        "kind": "about"
+      },
+      {
+        "href": "/services",
+        "label": "Services",
+        "kind": "service"
+      },
+      {
+        "href": "/",
+        "label": "Foot Health Practitioner Bristol",
+        "kind": "service"
+      },
+      {
+        "href": "/prices",
+        "label": "Pricing",
+        "kind": "pricing"
+      },
+      {
+        "href": "/book",
+        "label": "Book",
+        "kind": "book"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "what-happens-home-foot-health-appointment",
+      "corn-callus-or-verruca"
+    ],
+    "references": [
+      {
+        "label": "HCPC: Check the Register",
+        "url": "https://www.hcpc-uk.org/check-the-register/"
+      },
+      {
+        "label": "HCPC: Protected titles",
+        "url": "https://www.hcpc-uk.org/about-us/who-we-regulate/the-professions/"
+      },
+      {
+        "label": "Royal College of Podiatry: What is a podiatrist?",
+        "url": "https://rcpod.org.uk/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is Adam James a podiatrist?",
+        "answer": "No. Adam James is a Foot Health Practitioner (MCFHP, MAFHP)."
+      },
+      {
+        "question": "Are podiatrist and chiropodist protected titles?",
+        "answer": "Yes. In the UK, both are protected titles, and anyone using them must be registered with the HCPC."
+      }
+    ]
+  },
 
   {
   "slug": "foot-care-learning-disabilities-bristol",
