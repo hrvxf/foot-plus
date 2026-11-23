@@ -32,7 +32,7 @@ Content comes from these files, never typed straight into a page. Change the fac
 | `/toenail-cutting-bristol`, `/toenail-cutting-southampton` | Main search-intent pages for nail cutting (`app/components/site/NailCuttingPage.tsx`) |
 | `/corn-treatment`, `/hard-skin-and-callus`, `/cracked-heels` | Shared treatment pages (`app/components/site/TreatmentPage.tsx`) |
 | `/services`, `/prices`, `/about`, `/advice`, `/advice/[slug]`, `/partners` | Shared pages |
-| `/book` | Enquiry form (`app/components/EnquiryForm.tsx`, sends via `app/api/contact/`). `?promo=CODE` pre-fills a promo code |
+| `/book` | Enquiry as five short steps (`app/book/StepsEnquiry.tsx`, sends via `app/api/contact/`). `?postcode=` checks the postcode on arrival, `?service=nails` preselects toenail cutting. `?promo=CODE` pre-fills a promo code |
 | `/forms` | Splose patient form, sent to patients after an enquiry |
 | `/locations`, `/toenail-cutting`, `/card`, `/review` | Location choosers (`app/components/site/LocationChooser.tsx`); not indexed. `/card` is the appointment-card QR target, `/review` the post-visit review link |
 | `/ageuk`, `/ageuk/booked` | Age UK clinic screening and booking. Hidden (link only, noindex). Paused |
