@@ -169,8 +169,8 @@ function Scope() {
         When we&rsquo;ll point you <span className="text-brand-sage">elsewhere.</span>
       </h2>
       <p className="mt-3.5 leading-[1.55] text-brand-muted">
-        We provide routine foot care. Our Foot Health Practitioners are not podiatrists, and we don&rsquo;t diagnose
-        conditions or give emergency care. If you need a podiatrist, GP or urgent care, we&rsquo;ll tell you.
+        We provide routine foot care at home. We don&rsquo;t diagnose conditions or give emergency care, and if
+        something needs your GP or urgent care, we&rsquo;ll tell you.
       </p>
       {/* A safety notice: kept in full, with its own amber marker so it doesn't read like the rest. */}
       <div className="mt-6 rounded-3xl bg-white p-[22px] pb-4 text-left shadow-[0_0_0_1px_var(--color-brand-line)]">
@@ -186,9 +186,6 @@ function Scope() {
           ))}
         </ul>
       </div>
-      <Link href="/advice/foot-health-practitioner-podiatrist-or-chiropodist" className={`${arrowLink} mt-4`}>
-        Practitioner, podiatrist or chiropodist? <span aria-hidden="true">→</span>
-      </Link>
     </section>
   );
 }

@@ -45,7 +45,7 @@ const faqs = [
   {
     question: "Is this a pedicure or a podiatry appointment?",
     answer:
-      "Neither. It is routine nail and foot care from a qualified Foot Health Practitioner, not a cosmetic pedicure or an appointment with an HCPC-registered podiatrist. Katie will tell you if something needs a podiatrist or your GP.",
+      "Neither. It's routine nail and foot care from a qualified Foot Health Practitioner.",
   },
   {
     question: "Can I book for a parent or someone I care for?",
