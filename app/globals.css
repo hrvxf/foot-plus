@@ -200,51 +200,99 @@ body:has([data-fullscreen-page]) > footer {
   }
 }
 
-/* Site entry animation (app/components/EntryAnimation.tsx). The overlay only shows,
-   and the header logo only hides, while <html data-intro> is set by the inline
-   script in <head>, so nothing changes for visitors without JavaScript. The delayed
-   animations are a last-resort failsafe if the page's scripts never finish loading:
-   the overlay clears itself and the header logo comes back after 8 seconds. */
-.entry-animation {
-  display: none;
-}
+/* Site entry animation, "Footsteps" (Nov 2026). On the first page of a visit the
+   header logo's toes hop in from the right one by one and land on the logo, the
+   "Foot" wordmark stamps down, the + pops in gold and settles to sage, and the
+   header pill and its buttons fade in around it.
 
-html[data-intro] .entry-animation {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  animation: entry-failsafe-hide 1ms linear 8s forwards;
+   Switched on by <html data-intro>, which the inline script in <head>
+   (app/lib/entryAnimation.ts) sets before first paint: once per browser session,
+   never for reduced-motion visitors, never on /forms or the full-screen green pages.
+   It is all CSS, so it starts on the first frame and every animation ends in the
+   normal resting state; the header removes the attribute once it has finished. */
+html[data-intro] .site-pill {
+  animation: intro-pill 600ms ease 1.5s both;
 }
-
-html[data-intro] [data-header-logo],
-html[data-intro] [data-intro-target] {
-  visibility: hidden;
-  animation: entry-failsafe-show 1ms linear 8s forwards;
+html[data-intro] [data-intro-fade] {
+  animation: intro-fade 500ms cubic-bezier(0.22, 1, 0.36, 1) 1.6s both;
 }
-
-/* On the full-screen green pages the intro plays white on green, to match them. */
-body:has([data-fullscreen-page]) .entry-animation-backdrop {
-  background-color: #34503f;
+html[data-intro] [data-header-logo] svg {
+  overflow: visible;
 }
-
-body:has([data-fullscreen-page]) .entry-animation-logo {
-  color: #ffffff;
+html[data-intro] [data-header-logo] [data-logo] {
+  transform-box: fill-box;
 }
-
-@keyframes entry-failsafe-hide {
-  to {
-    visibility: hidden;
+html[data-intro] [data-header-logo] [data-logo="toe"] {
+  animation: intro-hop 1.05s linear both;
+}
+html[data-intro] [data-header-logo] [data-side="right"][data-toe="4"] { animation-delay: 50ms; }
+html[data-intro] [data-header-logo] [data-side="right"][data-toe="3"] { animation-delay: 100ms; }
+html[data-intro] [data-header-logo] [data-side="right"][data-toe="2"] { animation-delay: 150ms; }
+html[data-intro] [data-header-logo] [data-side="right"][data-toe="1"] { animation-delay: 200ms; }
+html[data-intro] [data-header-logo] [data-side="left"][data-toe="5"] { animation-delay: 250ms; }
+html[data-intro] [data-header-logo] [data-side="left"][data-toe="4"] { animation-delay: 300ms; }
+html[data-intro] [data-header-logo] [data-side="left"][data-toe="3"] { animation-delay: 350ms; }
+html[data-intro] [data-header-logo] [data-side="left"][data-toe="2"] { animation-delay: 400ms; }
+html[data-intro] [data-header-logo] [data-side="left"][data-toe="1"] { animation-delay: 450ms; }
+html[data-intro] [data-header-logo] [data-logo="wordmark"] {
+  transform-origin: 50% 100%;
+  animation: intro-stamp 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 1.05s both;
+}
+html[data-intro] [data-header-logo] [data-logo="plus"] {
+  transform-origin: 50% 50%;
+  animation:
+    intro-pop 450ms cubic-bezier(0.34, 1.8, 0.5, 1) 1.3s both,
+    intro-gold 900ms ease 1.3s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-intro] .site-pill,
+  html[data-intro] [data-intro-fade],
+  html[data-intro] [data-header-logo] [data-logo] {
+    animation: none;
   }
 }
 
-@keyframes entry-failsafe-show {
-  to {
-    visibility: visible;
+@keyframes intro-pill {
+  from {
+    background-color: rgb(255 255 255 / 0);
+    box-shadow: 0 0 0 1px rgb(220 229 222 / 0);
   }
+  to {
+    background-color: rgb(255 255 255 / 0.95);
+    box-shadow:
+      0 10px 30px -18px rgb(36 48 40 / 0.35),
+      0 0 0 1px rgb(220 229 222 / 0.8);
+  }
+}
+@keyframes intro-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Distances are in the logo's own SVG units (the logo is ~0.45px per unit). */
+@keyframes intro-hop {
+  0% { opacity: 0; transform: translate(820px, 0); }
+  6% { opacity: 1; }
+  15% { transform: translate(680px, -28px); animation-timing-function: ease-in; }
+  25% { transform: translate(545px, 0); animation-timing-function: ease-out; }
+  37% { transform: translate(410px, -28px); animation-timing-function: ease-in; }
+  49% { transform: translate(275px, 0); animation-timing-function: ease-out; }
+  61% { transform: translate(140px, -24px); animation-timing-function: ease-in; }
+  76% { transform: translate(0, 0) scaleY(0.75); }
+  88% { transform: translate(0, -5px) scaleY(1.08); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes intro-stamp {
+  0% { opacity: 0; transform: translateY(-30px) scale(1.12); }
+  55% { opacity: 1; transform: translateY(0) scale(1.04, 0.92); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes intro-pop {
+  from { opacity: 0; transform: scale(0) rotate(90deg); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes intro-gold {
+  0%, 50% { fill: var(--color-brand-gold); }
+  100% { fill: var(--color-brand-sageDark); }
 }
 
 /*

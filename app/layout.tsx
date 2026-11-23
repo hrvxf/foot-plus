@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import AnalyticsClickTracker from "./components/AnalyticsClickTracker";
-import EntryAnimation from "./components/EntryAnimation";
 import RouteViewTransition from "./components/RouteViewTransition";
 import PortraitWarmup from "./components/PortraitWarmup";
 import { entryAnimationScript } from "./lib/entryAnimation";
@@ -157,7 +156,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-lightbg text-ink flex flex-col">
         <CookieConsent />
         <AnalyticsClickTracker />
-        <EntryAnimation />
         <RouteViewTransition />
         <PortraitWarmup />
         <Header />

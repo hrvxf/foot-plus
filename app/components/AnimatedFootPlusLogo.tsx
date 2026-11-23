@@ -14,11 +14,6 @@ type Props = {
   idle?: boolean;
   /** Called once the draw-in has finished. */
   onComplete?: () => void;
-  /**
-   * Stay still while the site entry animation is playing (the header logo: the
-   * entry animation's own logo lands on top of it).
-   */
-  yieldToIntro?: boolean;
 };
 
 export default function AnimatedFootPlusLogo({
@@ -28,7 +23,6 @@ export default function AnimatedFootPlusLogo({
   speed = 1,
   idle = true,
   onComplete,
-  yieldToIntro = false,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const onCompleteRef = useRef(onComplete);
@@ -46,10 +40,6 @@ export default function AnimatedFootPlusLogo({
     }
 
     if (!animate) {
-      return;
-    }
-
-    if (yieldToIntro && document.documentElement.hasAttribute("data-intro")) {
       return;
     }
 
@@ -355,7 +345,7 @@ export default function AnimatedFootPlusLogo({
       timelineRef.current?.kill();
       ctx.revert();
     };
-  }, [animate, speed, idle, yieldToIntro]);
+  }, [animate, speed, idle]);
 
   const baseClasses = "block w-auto max-w-full shrink-0";
   const svgClasses = className ? `${baseClasses} ${className}` : baseClasses;
