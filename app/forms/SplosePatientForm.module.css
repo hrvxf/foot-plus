@@ -1,8 +1,8 @@
-/* On phones the form fills the screen below the header, so there is only one
-   obvious place to scroll. */
+/* On phones the form fills the screen below the header once scrolled to, so
+   there is only one obvious place to scroll. */
 .formShell {
   width: 100%;
-  height: calc(100dvh - 80px);
+  height: calc(100dvh - 96px);
   min-height: 560px;
   overflow: hidden;
 }

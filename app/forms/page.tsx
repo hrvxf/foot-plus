@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { Check } from "lucide-react";
 
-import { emailHref, phoneDisplay, phoneHref, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
+import { portraits } from "../components/site/blocks";
+import { focusRing } from "../components/site/ui";
+import { serviceLocations } from "../lib/locations";
+import { emailHref, locationEmails, locationPhones, phoneDisplay, phoneHref, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 import SplosePatientForm from "./SplosePatientForm";
 
 const splosePatientFormUrl =
@@ -18,93 +23,144 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const eyebrow = "text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark";
+const heading = "font-heading text-[2.4rem] font-bold leading-[1.03] tracking-[-0.03em] text-brand-charcoal md:text-6xl";
+const portraitRing = "rounded-full bg-white object-cover object-[center_15%]";
+
 type FormsPageProps = {
   searchParams: Promise<{ location?: string | string[] }>;
 };
 
 function LocationChoice() {
   return (
-    <section className="relative isolate flex min-h-[68dvh] items-center overflow-hidden bg-brand-sageDark px-5 py-16 text-white">
-      <div
-        className="absolute -inset-4 scale-[1.03] bg-[url('/images/footplus-texture.png')] bg-repeat bg-size-[600px_600px] opacity-20 blur-[3px]"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -left-24 top-1/4 h-80 w-80 rounded-full bg-white/15 blur-[110px]"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -right-24 bottom-1/4 h-80 w-80 rounded-full bg-brand-sageLight/30 blur-[120px]"
-        aria-hidden="true"
-      />
+    <section className="px-[22px] pb-16 pt-10 text-center md:pt-16">
+      <p className={eyebrow}>Patient form</p>
+      <h1 className={`mt-2.5 ${heading}`}>
+        Who&rsquo;s visiting
+        <br />
+        <span className="text-brand-sage">you?</span>
+      </h1>
 
-      <div className="relative mx-auto w-full max-w-xl text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.24em] text-white/65">
-          Patient documentation
-        </p>
-        <h1 className="mt-4 font-heading text-[clamp(2.25rem,6vw,4rem)] font-semibold leading-[1.03] tracking-[-0.035em]">
-          Where do you receive care?
-        </h1>
-        <p className="mx-auto mt-5 max-w-md rounded-2xl bg-white/10 px-5 py-4 text-base leading-relaxed text-white">
-          Already enquired? No need to book again.
-        </p>
+      <nav aria-label="Choose your patient form location" className="mx-auto mt-7 max-w-md">
+        <ul className="flex gap-2.5">
+          {(["bristol", "southampton"] as const).map((slug) => {
+            const location = serviceLocations[slug];
+            return (
+              <li key={slug} className="flex-1">
+                <Link
+                  href={`/forms?location=${slug}`}
+                  className={`flex h-full flex-col items-center rounded-[26px] bg-white px-3 pb-[18px] pt-5 shadow-[0_0_0_1.5px_var(--color-brand-line)] transition-[background-color,transform] duration-200 hover:bg-brand-wash active:scale-[0.98] ${focusRing}`}
+                >
+                  <Image
+                    src={portraits[slug]}
+                    alt=""
+                    width={184}
+                    height={184}
+                    className={`h-[92px] w-[92px] shadow-[0_0_0_3px_#fff,0_0_0_4.5px_var(--color-brand-line)] ${portraitRing}`}
+                  />
+                  <span className="mt-3 font-heading text-lg font-semibold tracking-[-0.02em] text-brand-charcoal">
+                    {location.practitioner?.name.split(" ")[0]}
+                  </span>
+                  <span className="text-[0.8125rem] text-brand-muted">{location.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
 
-        <nav
-          aria-label="Choose your patient form location"
-          className="mx-auto mt-8 grid w-full max-w-md gap-3 sm:grid-cols-2"
-        >
-          {[
-            { name: "Bristol", href: "/forms?location=bristol" },
-            { name: "Southampton", href: "/forms?location=southampton" },
-          ].map((location) => (
-            <Link
-              key={location.href}
-              href={location.href}
-              className="flex min-h-16 items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 font-heading text-lg font-semibold text-brand-sageDark shadow-[0_18px_50px_-28px_rgba(0,0,0,0.9)] transition hover:bg-brand-offwhite active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              {location.name}
-              <span aria-hidden="true">→</span>
-            </Link>
-          ))}
-        </nav>
-      </div>
+      <p className="mt-5 inline-block rounded-full bg-brand-wash px-4 py-2 text-sm font-medium text-brand-sageDeep">
+        Already enquired? No need to book again.
+      </p>
     </section>
   );
 }
 
 function SouthamptonNotice() {
+  const phone = locationPhones.southampton;
+  const email = locationEmails.southampton;
+  const button = `flex min-h-[52px] flex-1 items-center justify-center rounded-full px-4 text-[0.9375rem] font-semibold transition-colors ${focusRing}`;
   return (
-    <section className="bg-brand-offwhite">
-      <div className="mx-auto flex min-h-[62dvh] max-w-3xl items-center px-5 py-16 sm:px-6">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sageDark/70">
-            Foot+ Southampton
-          </p>
-          <h1 className="mt-4 font-heading text-[clamp(2.4rem,6vw,4.2rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-sageDark">
-            Southampton patient forms are not online yet
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-brand-charcoal/75 sm:text-lg">
-            Foot+ Southampton is taking appointments. If you have already sent an enquiry, it
-            has been received and the Southampton team will contact you to arrange your visit
-            and any forms needed.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-5">
-            <Link
-              href="/forms"
-              className="inline-flex rounded-full bg-brand-sageDark px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
-            >
-              Choose another location
-            </Link>
-            <a
-              href={emailHref}
-              className="text-sm font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
-            >
-              Contact Foot+
-            </a>
-          </div>
+    <section className="px-[22px] pb-16 pt-10 text-center md:pt-16">
+      <Image
+        src={portraits.southampton}
+        alt=""
+        width={240}
+        height={240}
+        className={`mx-auto h-[120px] w-[120px] shadow-[0_0_0_4px_#fff,0_16px_40px_-20px_rgba(24,55,45,0.6)] ${portraitRing}`}
+      />
+      <p className={`mt-5 ${eyebrow}`}>Foot+ Southampton</p>
+      <h1 className={`mt-2.5 ${heading}`}>
+        Katie will send
+        <br />
+        <span className="text-brand-sage">your forms.</span>
+      </h1>
+      <div className="mx-auto mt-6 max-w-md rounded-3xl bg-white p-5 text-left shadow-[0_0_0_1.5px_var(--color-brand-line)]">
+        <p className="text-[0.9375rem] leading-[1.55] text-brand-muted">
+          Southampton forms aren&rsquo;t online yet. If you&rsquo;ve already enquired, it&rsquo;s been received.
+        </p>
+        <p className="mt-2 text-[0.9375rem] leading-[1.55] text-brand-muted">
+          Katie will be in touch to arrange your visit and anything she needs.
+        </p>
+        <div className="mt-4 flex gap-2.5">
+          <a href={phone.href} className={`${button} bg-brand-sageDark text-white hover:bg-brand-sageDeep`}>
+            Call Katie
+          </a>
+          <a
+            href={email.href}
+            className={`${button} bg-white text-brand-sageDeep shadow-[0_0_0_1.5px_var(--color-brand-line)] hover:bg-brand-wash`}
+          >
+            Email
+          </a>
         </div>
       </div>
+      <Link href="/forms" className={`mt-5 inline-flex min-h-11 items-center rounded-lg text-sm font-semibold text-brand-sageDeep ${focusRing}`}>
+        <span aria-hidden="true">←&nbsp;</span>Not in Southampton?
+      </Link>
     </section>
+  );
+}
+
+/** Where the patient is: enquiry done, this form now, then Adam confirms the visit. */
+function Journey() {
+  const steps = [
+    { label: "Enquiry sent", state: "done" },
+    { label: "Patient form", state: "now" },
+    { label: "Adam confirms your visit", state: "next" },
+  ] as const;
+  return (
+    <ol className="relative mx-auto mt-6 flex max-w-sm items-start" aria-label="Your progress">
+      {/* The track: grey all the way, green up to the current step. */}
+      <span aria-hidden="true" className="absolute left-[16.7%] right-[16.7%] top-[17px] h-0.5 bg-brand-line" />
+      <span aria-hidden="true" className="absolute left-[16.7%] top-[17px] h-0.5 w-[33.3%] bg-brand-sage" />
+      {steps.map((step, index) => (
+        <li
+          key={step.label}
+          className="relative flex flex-1 flex-col items-center"
+          aria-current={step.state === "now" ? "step" : undefined}
+        >
+          <span
+            className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold ${
+              step.state === "done"
+                ? "bg-brand-sage text-white"
+                : step.state === "now"
+                  ? "bg-brand-sageDark text-white shadow-[0_0_0_5px_var(--color-brand-wash)]"
+                  : "bg-white text-brand-muted shadow-[0_0_0_1.5px_var(--color-brand-line)]"
+            }`}
+          >
+            {step.state === "done" ? <Check className="h-4 w-4" strokeWidth={3} aria-hidden="true" /> : index + 1}
+          </span>
+          <span
+            className={`mt-2 max-w-[7rem] text-[0.8125rem] leading-[1.3] ${
+              step.state === "now" ? "font-semibold text-brand-charcoal" : "text-brand-muted"
+            }`}
+          >
+            {step.label}
+            {step.state === "done" ? <span className="sr-only"> (done)</span> : null}
+          </span>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -122,11 +178,19 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
   }
 
   return (
-    <section className="bg-brand-offwhite">
-      {/* Visually hidden: the form starts at the top of the page. */}
-      <h1 className="sr-only">Foot+ Bristol patient form</h1>
+    <section className="pb-14">
+      <div className="px-[22px] pt-8 text-center md:pt-14">
+        <p className={eyebrow}>Foot+ Bristol</p>
+        <h1 className={`mt-2.5 ${heading}`}>
+          Nearly
+          <br />
+          <span className="text-brand-sage">there.</span>
+          <span className="sr-only"> Your Foot+ Bristol patient form.</span>
+        </h1>
+        <Journey />
+      </div>
 
-      <div className="mx-auto max-w-3xl sm:px-6 sm:pt-8">
+      <div className="mx-auto mt-6 max-w-3xl px-3 sm:px-6">
         <SplosePatientForm
           formUrl={splosePatientFormUrl}
           title={splosePatientFormTitle}
@@ -134,30 +198,32 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
         />
       </div>
 
-      <div className="mx-auto max-w-3xl px-5 pb-14 pt-6 text-center text-base text-brand-charcoal/75 sm:px-6">
-        <p>
-          Need help? Call{" "}
+      <div className="mx-3 mt-5 flex items-center gap-3.5 rounded-[26px] bg-brand-sageDark p-5 text-white sm:mx-auto sm:max-w-md">
+        <Image
+          src={portraits.bristol}
+          alt=""
+          width={116}
+          height={116}
+          className={`h-[58px] w-[58px] shrink-0 ${portraitRing}`}
+        />
+        <p className="text-[0.9375rem] leading-[1.45] text-white/90">
+          Stuck, or filling it in for someone else? Call me on{" "}
           <a
             href={phoneHref}
-            className="font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
+            className={`rounded font-semibold text-white underline decoration-white/40 underline-offset-[3px] ${focusRing}`}
           >
             {phoneDisplay}
           </a>
-          . A relative or carer can also fill it in for you.
-        </p>
-        <p className="mt-3">
-          Already submitted this form? You&rsquo;re all set. There&rsquo;s no need to do it again.
-        </p>
-        <p className="mt-3 text-sm">
-          Not in Bristol?{" "}
-          <Link
-            href="/forms"
-            className="font-semibold text-brand-sageDark underline decoration-brand-sageLight underline-offset-4"
-          >
-            Change location
-          </Link>
+          . Already done it? You&rsquo;re all set.
         </p>
       </div>
+
+      <p className="mt-5 text-center text-sm text-brand-muted">
+        Not in Bristol?{" "}
+        <Link href="/forms" className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
+          Change location
+        </Link>
+      </p>
     </section>
   );
 }

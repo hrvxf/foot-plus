@@ -35,7 +35,7 @@ export default function SplosePatientForm({ formUrl, title, contactHref }: Splos
   const showFallbackActions = status === "timeout" || status === "error";
 
   return (
-    <div className="bg-white sm:rounded-[28px] sm:border sm:border-brand-sageLight/35 sm:p-4 sm:shadow-sm">
+    <div className="overflow-hidden rounded-[22px] bg-white shadow-[0_0_0_1px_var(--color-brand-line)] sm:rounded-[28px] sm:p-4">
       <div className={`${styles.formShell} relative bg-brand-offwhite`}>
         <iframe
           key={retryCount}
