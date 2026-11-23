@@ -47,7 +47,7 @@ export const treatments: Treatment[] = [
       "Footwear and pressure advice to help stop it coming back",
     ],
     safety:
-      "Don't cut corns yourself, especially with diabetes or reduced feeling in your feet. Severe pain, broken skin or signs of infection need your GP or a podiatrist.",
+      "Don't cut corns yourself, especially with diabetes or reduced feeling in your feet. Severe pain, broken skin or signs of infection need your GP.",
     faqs: [
       {
         question: "How do I know if it's a corn?",
@@ -85,7 +85,7 @@ export const treatments: Treatment[] = [
       "A simple moisturising routine to slow it coming back",
     ],
     safety:
-      "Hard skin with a wound, signs of infection, sudden colour change or an acute diabetic foot concern needs your GP or a podiatrist first.",
+      "Hard skin with a wound, signs of infection, sudden colour change or an acute diabetic foot concern needs your GP first.",
     faqs: [
       {
         question: "Is hard skin the same as a callus?",
@@ -122,7 +122,7 @@ export const treatments: Treatment[] = [
       "Heels checked for deeper splits that need more than routine care",
       "An easy moisturising routine to follow between visits",
     ],
-    safety: "Deep cracks that bleed, look infected or don't heal need your GP or a podiatrist.",
+    safety: "Deep cracks that bleed, look infected or don't heal need your GP.",
     faqs: [
       {
         question: "Will one appointment fix cracked heels?",

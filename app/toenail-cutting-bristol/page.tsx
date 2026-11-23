@@ -51,7 +51,7 @@ const faqs = [
   {
     question: "Is this a pedicure or a podiatry appointment?",
     answer:
-      "This is routine nail and foot care from a qualified Foot Health Practitioner. It is not a cosmetic pedicure or an appointment with an HCPC-registered podiatrist. Foot+ will explain when podiatry or medical care is more appropriate.",
+      "Neither. It's routine nail and foot care from a qualified Foot Health Practitioner.",
   },
   {
     question: "How often will I need my toenails cut?",

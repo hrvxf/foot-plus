@@ -9,15 +9,14 @@ const payment = paymentMethods.join(", ").replace(/, ([^,]*)$/, " or $1");
  */
 export const locationFaqs = [
   {
-    short: "Same as a podiatrist?",
-    question: "Is a Foot+ visit the same as seeing a podiatrist?",
-    answer:
-      "No. We're qualified Foot Health Practitioners for routine nail and skin care, and we'll tell you if you need a podiatrist or GP.",
+    short: "Just nail cutting?",
+    question: "Can I book just for nail cutting?",
+    answer: "Yes. Nail cutting on its own is a perfectly good reason for a visit.",
   },
   {
     short: "Diabetic feet?",
     question: "Do you help with diabetic feet?",
-    answer: "Yes, routine care with foot checks every visit. Urgent problems need your GP or podiatrist.",
+    answer: "Yes, routine care with foot checks every visit. Urgent problems need your GP.",
   },
   {
     short: "At my own pace?",

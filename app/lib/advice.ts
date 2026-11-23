@@ -179,7 +179,7 @@ export const adviceArticles: AdviceArticle[] = [
       ]
     }
   ],
-  "practitionerView": "A thick or discoloured nail shouldn't automatically be treated as fungal. We can reduce it, ease the pressure and tell you when a pharmacist, GP, podiatrist or dermatologist is the better route.",
+  "practitionerView": "A thick or discoloured nail shouldn't automatically be treated as fungal. We can reduce it, ease the pressure and tell you when a pharmacist or your GP is the better route.",
   "relatedServiceRoutes": [
     {
       "href": "/toenail-cutting-bristol",
@@ -231,7 +231,7 @@ export const adviceArticles: AdviceArticle[] = [
     },
     {
       "question": "Can Foot+ cure thick toenails?",
-      "answer": "We reduce and look after thick nails to keep them comfortable. We don't diagnose fungal infection, skin disease, circulation problems or nail cancer, and we'll tell you when a pharmacist, GP, podiatrist or dermatologist is better placed to help."
+      "answer": "We reduce and look after thick nails to keep them comfortable. We don't diagnose fungal infection, skin disease, circulation problems or nail cancer, and we'll tell you when a pharmacist or your GP is better placed to help."
     }
   ]
 },
@@ -336,7 +336,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "How we help",
         "body": [
           "A Foot Health Practitioner can look at your feet, talk through what may be adding to the pain, and help with footwear, pressure, padding or insoles where appropriate, stretches and any painful callus.",
-          "If it needs further investigation, they'll suggest seeing your GP, a podiatrist or another professional."
+          "If it needs further investigation, they'll suggest seeing your GP."
         ]
       }
     ],
@@ -423,7 +423,7 @@ export const adviceArticles: AdviceArticle[] = [
           {
             "heading": "Dry between every toe",
             "body": [
-              "Damp skin between the toes can turn white, fragile and sore. If your feet sweat a lot, breathable socks and letting shoes dry out between wears can help. Skin that's cracked, itchy, weeping or sore needs a pharmacist, GP or podiatrist."
+              "Damp skin between the toes can turn white, fragile and sore. If your feet sweat a lot, breathable socks and letting shoes dry out between wears can help. Skin that's cracked, itchy, weeping or sore needs a pharmacist or your GP."
             ]
           },
           {
@@ -483,7 +483,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "Diabetes",
         "tone": "warning",
         "body": [
-          "Check your feet every day, and don't file or treat hard skin yourself. Small injuries are easier to miss and slower to heal, so ask your GP practice, diabetes team or a podiatrist first. If you have diabetes, make sure you have your annual foot check."
+          "Check your feet every day, and don't file or treat hard skin yourself. Small injuries are easier to miss and slower to heal, so ask your GP practice or diabetes team first. If you have diabetes, make sure you have your annual foot check."
         ]
       },
       {
@@ -491,7 +491,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "Getting help",
         "tone": "warning",
         "body": [
-          "Get medical or podiatry advice for a wound, spreading redness, heat, swelling, discharge, increasing or severe pain, sudden colour or temperature change, or new numbness.",
+          "Get medical advice for a wound, spreading redness, heat, swelling, discharge, increasing or severe pain, sudden colour or temperature change, or new numbness.",
           "For routine nail care, hard skin, callus, corns and cracked heels, a Foot Health Practitioner can help at home. If something is outside routine care, Foot+ will tell you who to see."
         ],
         "links": [
@@ -643,7 +643,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "Getting help",
         "body": [
           "Foot+ can treat corns, callus and verrucas at home where suitable, with advice on footwear and moisturising. A pharmacist can also advise on verruca products.",
-          "See a podiatrist, pharmacist or GP for wounds, infection, sudden severe pain, spreading redness, unexplained bleeding, or concerns linked to diabetes or circulation. Urgent symptoms shouldn't wait for routine care."
+          "See your GP or a pharmacist for wounds, infection, sudden severe pain, spreading redness, unexplained bleeding, or concerns linked to diabetes or circulation. Urgent symptoms shouldn't wait for routine care."
         ],
         "links": [
           {
@@ -926,7 +926,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "Afterwards",
         "body": [
           "You'll get practical advice on nails, footwear and moisturising, and a suggested time for your next visit.",
-          "Foot+ provides routine care, not emergency treatment or diagnosis. If something needs a podiatrist or doctor, your practitioner will tell you."
+          "Foot+ provides routine care, not emergency treatment or diagnosis. If something needs your GP, your practitioner will tell you."
         ]
       }
     ],
@@ -1040,7 +1040,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "Getting help",
         "tone": "warning",
         "body": [
-          "Get advice if hard skin comes with a wound, bleeding, spreading redness, swelling, discharge, sudden severe pain or a diabetic foot concern. A podiatrist or GP may be the right person if it needs diagnosis or wound care."
+          "Get advice if hard skin comes with a wound, bleeding, spreading redness, swelling, discharge, sudden severe pain or a diabetic foot concern. Your GP may be the right person if it needs diagnosis or wound care."
         ]
       }
     ],
@@ -1326,15 +1326,8 @@ export const adviceArticles: AdviceArticle[] = [
       "navLabel": "Getting help",
       "tone": "warning",
       "body": [
-        "A podiatrist, GP, NHS diabetic foot service or urgent medical service may be needed for open wounds or ulcers, suspected infection, spreading redness, heat or swelling, pus or discharge, sudden changes in skin colour or temperature, new loss of feeling, severe or unexplained pain, an acute injury, significant circulation concerns or high-risk diabetic foot concerns.",
-        "A podiatrist may also be needed for biomechanical assessment, prescription devices or surgery. Adam is a Foot Health Practitioner, not a podiatrist or chiropodist."
-      ],
-      "links": [
-        {
-          "href": "/advice/foot-health-practitioner-podiatrist-or-chiropodist",
-          "label": "FHP, podiatrist or chiropodist?",
-          "kind": "article"
-        }
+        "Your GP, an NHS diabetic foot service or urgent medical care may be needed for open wounds or ulcers, suspected infection, spreading redness, heat or swelling, pus or discharge, sudden changes in skin colour or temperature, new loss of feeling, severe or unexplained pain, an acute injury, significant circulation concerns or high-risk diabetic foot concerns.",
+        "Biomechanical assessment, prescription devices or surgery need other specialists."
       ]
     }
   ],
@@ -1591,7 +1584,7 @@ export const adviceNextSteps: Record<string, AdviceNextStep> = {
   },
   "corn-callus-or-verruca": {
     heading: "Corn, callus and verruca care at home",
-    summary: "Foot+ treats corns, callus and verrucas at home where suitable. A change you are unsure about may need GP or podiatry advice instead.",
+    summary: "Foot+ treats corns, callus and verrucas at home where suitable. A change you are unsure about may need your GP's advice instead.",
     treatments: [
       { href: "/corn-treatment", label: "Corn treatment" },
       { href: "/hard-skin-and-callus", label: "Hard skin and callus removal" },

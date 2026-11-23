@@ -100,7 +100,7 @@ export default function NailCuttingPage({
         </h2>
         <StandardsSpotlight standards={included.map((title) => ({ title }))} />
         <p className="mx-auto mt-3 max-w-[40ch] text-[0.84375rem] leading-[1.5] text-brand-muted">
-          Painful, infected or suddenly changing nails need your GP or a podiatrist first.
+          Painful, infected or suddenly changing nails need your GP first.
         </p>
       </section>
 

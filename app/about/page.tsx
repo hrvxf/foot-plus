@@ -163,11 +163,11 @@ export default function AboutPage() {
       <section className="mx-auto max-w-xl px-6 pt-14 text-center md:pt-20" aria-labelledby="scope-heading">
         <p className={eyebrow}>Good to know</p>
         <h2 id="scope-heading" className={`${headline} mt-2.5 text-[1.875rem] leading-[1.08] md:text-5xl`}>
-          Not a podiatrist, <span className="text-brand-sage">and we&rsquo;ll say so.</span>
+          Clear about <span className="text-brand-sage">what we do.</span>
         </h2>
         <p className="mt-3 leading-[1.55] text-brand-muted">
-          Foot Health Practitioners are not HCPC-registered podiatrists or chiropodists, and Foot+ does not use those titles.
-          If something needs a podiatrist or your GP, we will tell you.
+          We&rsquo;re Foot Health Practitioners, not podiatrists or chiropodists. If something needs your GP or another
+          service, we&rsquo;ll tell you.
         </p>
         <Link href="/advice/foot-health-practitioner-podiatrist-or-chiropodist" className={`${arrowLink} mt-2`}>
           Practitioner, podiatrist or chiropodist? <span aria-hidden="true">→</span>
