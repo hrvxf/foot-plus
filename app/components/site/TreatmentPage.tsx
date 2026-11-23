@@ -250,11 +250,14 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
               </Link>
             </li>
           ))}
-          <li>
-            <Link href="/toenail-cutting" className={chip}>
-              Toenail cutting
-            </Link>
-          </li>
+          {/* Straight to each town's toenail page rather than the chooser in between. */}
+          {(["bristol", "southampton"] as const).map((slug) => (
+            <li key={slug}>
+              <Link href={`/toenail-cutting-${slug}`} className={chip}>
+                Toenail cutting, {serviceLocations[slug].name}
+              </Link>
+            </li>
+          ))}
         </ul>
         <p className="mt-8 text-xs text-brand-muted">
           Reviewed by Adam James, Foot Health Practitioner, {treatment.lastReviewed}.
