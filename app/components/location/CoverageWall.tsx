@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import PostcodeChecker from "../home/PostcodeChecker";
+import styles from "./CoverageWall.module.css";
 import { focusRing, shell } from "../site/ui";
 
 /**
@@ -26,7 +27,9 @@ export default function CoverageWall({
   areasHref?: string;
   areasLabel?: string;
 }) {
-  // Repeat the names so the wall fills the space around the card.
+  // Repeat the names so the wall fills the space around the card. The wall is decoration only: each name is
+  // drawn by CSS from data-place (CoverageWall.module.css), so it isn't page text. Search engines and
+  // screen readers get the list once, from the sr-only line below, rather than a block of repeated place names.
   const wall = [...places, ...places, ...places];
   return (
     <section id={id} className="relative scroll-mt-24 overflow-hidden py-28 md:py-36" aria-label="Do we visit you?">
@@ -36,10 +39,8 @@ export default function CoverageWall({
         className="pointer-events-none absolute inset-0 flex flex-wrap content-center justify-center gap-x-4 gap-y-1 px-3 font-heading text-[1.625rem] font-semibold leading-tight tracking-[-0.01em] text-brand-sageDark/[0.11] md:text-[2.5rem]"
       >
         {wall.map((place, index) => (
-          <span key={index} className="place-glow" // One name lights at a time, working through the wall.
-            style={{ animationDelay: `${index * 1.3}s`, animationDuration: `${wall.length * 1.3}s` }}>
-            {place}
-          </span>
+          <span key={index} data-place={place} className={`${styles.name} place-glow`} // One name lights at a time, working through the wall.
+            style={{ animationDelay: `${index * 1.3}s`, animationDuration: `${wall.length * 1.3}s` }} />
         ))}
       </div>
       <div className={`${shell} relative`}>
