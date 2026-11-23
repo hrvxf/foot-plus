@@ -166,12 +166,44 @@ body {
   animation: none;
 }
 
-/* Pages with the sticky mobile Request / Call bar: make room for it under the
-   footer (the last thing on the page) rather than under the page content,
-   which left a large empty gap above the footer. */
-@media (max-width: 767px) {
-  body:has([data-mobile-actions]) > footer {
-    padding-bottom: calc(env(safe-area-inset-bottom) + 76px);
+/* Footer: "the pill lands" (Footer.tsx). On pages long enough to scroll, the footer pill waits out of
+   view; as it lands, the header pill and the small-screen Request / Call bar step aside so there's only
+   ever one "Request a visit" at the bottom of the page. */
+.footer-pill {
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+#site-footer[data-state="waiting"] .footer-pill {
+  opacity: 0;
+  transform: translateY(-40px) scale(0.96);
+}
+[data-site-header],
+[data-mobile-actions] {
+  transition:
+    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+html[data-footer-landed] [data-site-header] {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.97);
+}
+html[data-footer-landed] [data-mobile-actions] {
+  opacity: 0;
+  transform: translateY(100%);
+}
+html[data-footer-landed] [data-site-header],
+html[data-footer-landed] [data-mobile-actions] {
+  visibility: hidden;
+  transition-property: opacity, transform, visibility;
+  transition-delay: 0s, 0s, 550ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-pill,
+  [data-site-header],
+  [data-mobile-actions] {
+    transition: none;
   }
 }
 

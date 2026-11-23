@@ -191,13 +191,6 @@ export default function AboutPage() {
             </Link>
           ))}
         </div>
-        <Link
-          href="/book"
-          className={`mt-2.5 flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep ${focusRing}`}
-          data-analytics-id="about-close-book"
-        >
-          Request a visit
-        </Link>
       </section>
     </div>
   );

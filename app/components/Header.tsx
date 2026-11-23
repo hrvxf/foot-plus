@@ -96,7 +96,7 @@ export default function Header() {
   const pillButton = `inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-brand-sageDark px-5 text-base font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep ${focusRing}`;
 
   return (
-    <header className="pointer-events-none sticky top-0 z-30 px-3 pb-3 pt-[calc(env(safe-area-inset-top)+12px)] md:px-6">
+    <header data-site-header className="pointer-events-none sticky top-0 z-30 px-3 pb-3 pt-[calc(env(safe-area-inset-top)+12px)] md:px-6">
       <div
         className="site-pill-scrim fixed inset-0 bg-brand-charcoal/25 md:hidden"
         data-open={isMenuOpen}
