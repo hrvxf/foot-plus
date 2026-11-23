@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { homeServices } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
@@ -306,10 +306,10 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
               <label htmlFor="book-postcode" className="sr-only">
                 Postcode of the visit
               </label>
-              <div className="flex gap-2">
+              <div>
                 <input
                   id="book-postcode"
-                  className={`${field} font-heading text-xl font-semibold uppercase tracking-[-0.01em]`}
+                  className={`${field} font-heading text-xl font-semibold uppercase tracking-[-0.01em] placeholder:normal-case`}
                   placeholder="Postcode"
                   autoComplete="postal-code"
                   autoCapitalize="characters"
@@ -343,14 +343,6 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
                     }
                   }}
                 />
-                <button
-                  type="button"
-                  onClick={() => void check(postcode)}
-                  className={`inline-flex w-14 shrink-0 items-center justify-center rounded-full bg-brand-sageDark text-white hover:bg-brand-sageDeep ${focusRing}`}
-                >
-                  <span className="sr-only">Check postcode</span>
-                  <ArrowRight className="h-6 w-6" aria-hidden="true" />
-                </button>
               </div>
               <div id="book-postcode-result" aria-live="polite">
                 <PostcodeAnswer area={area} travel={travel} outsideChoice={outsideChoice} onChoose={setOutsideChoice} />
@@ -451,6 +443,13 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
                   onChange={setEmail}
                   maxLength={254}
                 />
+                <TextField
+                  id="book-heard"
+                  label="How did you hear about us?"
+                  value={heardAboutUs}
+                  onChange={setHeardAboutUs}
+                  maxLength={200}
+                />
                 <details className="group mt-1" open={Boolean(promoCode) || undefined}>
                   <summary
                     className={`inline-flex min-h-11 cursor-pointer list-none items-center rounded-md px-1 text-[15px] font-semibold text-brand-sageDark [&::-webkit-details-marker]:hidden ${focusRing}`}
@@ -474,20 +473,13 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
                       onChange={(event) => setAccessNotes(event.target.value)}
                     />
                     <TextField
-                      id="book-heard"
-                      label="How did you hear about us? (optional)"
-                      value={heardAboutUs}
-                      onChange={setHeardAboutUs}
-                      maxLength={200}
-                    />
-                    <TextField
                       id="book-promo"
                       label="Promo code (optional)"
                       value={promoCode}
                       onChange={setPromoCode}
                       onBlur={() => setPromoCode(normalisePromoCode(promoCode))}
                       maxLength={30}
-                      className="uppercase"
+                      className="uppercase placeholder:normal-case"
                     />
                   </div>
                 </details>
