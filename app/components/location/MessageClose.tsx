@@ -11,7 +11,8 @@ import { focusRing, shell, texturedGreen } from "../site/ui";
  * Location page closing section: "Say hello to <name>." over a message bar with the practitioner's photo.
  * Example first messages type themselves out in the bar; tapping it opens the practitioner's messaging
  * (WhatsApp or email). Reduced motion shows the plain placeholder. It ends the page: the small print sits at
- * the bottom of the section, and the site footer is left out (Footer.tsx).
+ * the bottom of the section, and the site footer is left out (Footer.tsx, hasOwnClose).
+ * The care homes page reuses it in its slate colours, with its own heading, example messages and links.
  */
 export default function MessageClose({
   id,
@@ -19,6 +20,11 @@ export default function MessageClose({
   portraitSrc,
   messageHref,
   messageLabel,
+  sectionId,
+  greeting = "Say hello",
+  examples,
+  tone = "sage",
+  children,
 }: {
   id: string;
   /** First name, e.g. "Adam". */
@@ -28,23 +34,33 @@ export default function MessageClose({
   messageHref: string;
   /** Screen reader name for the bar, e.g. "Message Adam on WhatsApp". */
   messageLabel: string;
+  /** Anchor for links that jump to the close, e.g. "care-contact". */
+  sectionId?: string;
+  /** First heading line; the second is "to <name>." */
+  greeting?: string;
+  /** Example first messages typed into the bar. */
+  examples?: string[];
+  /** "care" uses the slate palette of the care homes page. */
+  tone?: "sage" | "care";
+  /** Extra links under the bar. */
+  children?: React.ReactNode;
 }) {
-  const typed = useTyping([
-    `Hi ${name}, could you visit Dad?`,
-    "Any visits next week?",
-    "Can you help with thick nails?",
-  ]);
+  const typed = useTyping(
+    examples ?? [`Hi ${name}, could you visit Dad?`, "Any visits next week?", "Can you help with thick nails?"],
+  );
+  const care = tone === "care";
   const external = messageHref.startsWith("http");
 
   return (
     <section
-      className={`${texturedGreen} z-10 -mt-[30px] rounded-t-[30px] pb-[max(env(safe-area-inset-bottom),12px)] pt-10 text-center text-white md:pt-14`}
+      id={sectionId}
+      className={`${care ? "relative bg-care-deep text-white" : texturedGreen} z-10 scroll-mt-16 -mt-[30px] rounded-t-[30px] pb-[max(env(safe-area-inset-bottom),12px)] pt-10 text-center text-white md:pt-14`}
       aria-labelledby={id}
     >
       <div className={shell}>
         <h2 id={id} className="font-heading text-[2.375rem] font-semibold leading-[1.03] tracking-[-0.025em] md:text-5xl">
-          Say hello
-          <span className="block text-[#A8E6B8]">to {name}.</span>
+          {greeting}
+          <span className={`block ${care ? "text-care-soft" : "text-[#A8E6B8]"}`}>to {name}.</span>
         </h2>
 
         <a
@@ -58,11 +74,11 @@ export default function MessageClose({
             {typed ? <span className="text-brand-charcoal">{typed}</span> : `Message ${name}…`}
             <span className="ml-px inline-block h-[18px] w-[1.5px] animate-pulse bg-brand-sageDark align-[-3px] motion-reduce:hidden" />
           </span>
-          <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand-sageDark">
+          <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-full ${care ? "bg-care-deep" : "bg-brand-sageDark"}`}>
             <ArrowRight className="h-[18px] w-[18px] text-white" aria-hidden="true" />
           </span>
         </a>
-
+        {children}
       </div>
 
       {/* The page ends here: no footer pill on the location pages (see Footer.tsx). */}
