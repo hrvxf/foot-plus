@@ -75,12 +75,12 @@ export default function Header() {
   ];
 
   // The "Footsteps" entry animation (CSS in globals.css) plays while <html data-intro>
-  // is set. Its last step ends at 2.1s; clear the switch just after so the header's
+  // is set. Its last step (the page fade) ends at 2.5s; clear the switch just after so the header's
   // own states (glass, small, menu open) take over again.
   useEffect(() => {
     const root = document.documentElement;
     if (!root.hasAttribute("data-intro")) return;
-    const timer = window.setTimeout(() => root.removeAttribute("data-intro"), 2600);
+    const timer = window.setTimeout(() => root.removeAttribute("data-intro"), 2700);
     return () => window.clearTimeout(timer);
   }, []);
 
