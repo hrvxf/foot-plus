@@ -83,6 +83,7 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
   const top = useRef<HTMLDivElement>(null);
   const honeypot = useRef<HTMLInputElement>(null);
   const lookup = useRef<AbortController | null>(null);
+  const typingTimer = useRef<number | undefined>(undefined);
   const openedAt = useRef(0);
   const moved = useRef(false);
 
@@ -161,7 +162,8 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
   const contactOk = name.trim() !== "" && phone.trim() !== "" && /.+@.+\..+/.test(email.trim());
   const canContinue = [
     who !== null,
-    slug !== null && (area.status === "outside" || travel !== "loading"),
+    (area.status === "empty" && postcode.trim() !== "") ||
+      (slug !== null && (area.status === "outside" || travel !== "loading")),
     needs.length > 0 || note.trim() !== "",
     visit !== null,
     contactOk,
@@ -249,6 +251,11 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
         noValidate
         onSubmit={(event) => {
           event.preventDefault();
+          if (step === 1 && area.status === "empty" && postcode.trim()) {
+            window.clearTimeout(typingTimer.current);
+            void check(postcode);
+            return;
+          }
           if (!canContinue) return;
           if (onLast) void send();
           else go(step + 1);
@@ -311,12 +318,22 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
                   value={postcode}
                   aria-describedby="book-postcode-result"
                   onChange={(event) => {
-                    setPostcode(event.target.value);
+                    const value = event.target.value;
+                    setPostcode(value);
                     if (area.status !== "empty") {
                       lookup.current?.abort();
                       setArea({ status: "empty" });
                       setTravel(undefined);
                     }
+                    // Check as soon as a full postcode is typed, so nobody has to find the arrow.
+                    window.clearTimeout(typingTimer.current);
+                    if (checkServiceArea(value).status !== "invalid") {
+                      typingTimer.current = window.setTimeout(() => void check(value), 350);
+                    }
+                  }}
+                  onBlur={() => {
+                    window.clearTimeout(typingTimer.current);
+                    if (area.status === "empty" && postcode.trim()) void check(postcode);
                   }}
                   onKeyDown={(event) => {
                     // Enter checks the postcode first; once it's matched, Enter moves on.
