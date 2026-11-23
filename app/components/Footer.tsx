@@ -188,7 +188,7 @@ export default function Footer() {
                   onClick={close}
                   aria-current={active ? "page" : undefined}
                   style={{ "--i": menuLinks.length - 1 - index } as CSSProperties}
-                  className={`footer-menu-item rounded-xl px-3 font-heading text-[2rem] font-semibold leading-[1.3] tracking-[-0.02em] ${focusRing} ${
+                  className={`footer-menu-item whitespace-nowrap rounded-xl px-3 font-heading text-[2rem] font-semibold leading-[1.3] tracking-[-0.02em] ${focusRing} ${
                     active ? "text-brand-sage" : "text-brand-charcoal"
                   }`}
                 >
