@@ -89,7 +89,7 @@ export default function PricesPage() {
         </ol>
       </section>
 
-      <p className="mx-auto max-w-xl px-[18px] pb-8 pt-6 text-center md:pb-12">
+      <p className="mx-auto max-w-xl px-[18px] pb-14 pt-6 text-center md:pb-[4.5rem]">
         <Link href="/services" className={arrowLink}>
           What each treatment involves <span aria-hidden="true">→</span>
         </Link>

@@ -40,7 +40,7 @@ export default function MessageClose({
   const external = messageHref.startsWith("http");
 
   return (
-    <section className={`${texturedGreen} py-11 text-center text-white md:py-16`} aria-labelledby={id}>
+    <section className={`${texturedGreen} pb-16 pt-11 text-center text-white md:pb-[5.5rem] md:pt-16`} aria-labelledby={id}>
       <div className={shell}>
         <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#A8E6B8]">{place}</p>
         <h2 id={id} className="mt-3 font-heading text-[2.375rem] font-semibold leading-[1.03] tracking-[-0.025em] md:text-5xl">
