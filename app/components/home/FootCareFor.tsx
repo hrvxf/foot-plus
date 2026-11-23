@@ -36,7 +36,7 @@ export default function FootCareFor() {
   }, []);
 
   return (
-    <section className="px-4 py-6 md:py-10" aria-labelledby="for-heading">
+    <section className="relative z-10 px-4 py-6 md:py-10" aria-labelledby="for-heading">
       <div className={`mx-auto max-w-[1200px] rounded-[28px] px-6 py-14 text-center md:py-20 ${textured}`}>
         <h2
           id="for-heading"
