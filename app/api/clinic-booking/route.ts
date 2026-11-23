@@ -9,6 +9,7 @@ const str = (v: unknown, max = 200) => (typeof v === "string" ? v.trim().slice(0
 
 /** Starts a Stripe Checkout for one clinic slot and returns its URL. */
 export async function POST(req: Request) {
+  if (clinic.paused) return json({ error: "Booking is on hold" }, 503);
   const stripe = getStripe();
   if (!stripe || !bookingOpen() || clinic.pricePence === null) return json({ error: "Booking isn't open" }, 503);
 

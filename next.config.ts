@@ -1,6 +1,29 @@
 import type { NextConfig } from "next";
 
+// Sent on every page. A full script Content-Security-Policy would also need testing
+// against Google Maps, Splose, Stripe, the Google tag and Meta, so this CSP only sets
+// the rules that can't break anything: no framing by other sites, no plugins,
+// no <base> hijacking and forms posting only to this site.
+const securityHeaders = [
+  {
+    key: "Content-Security-Policy",
+    value: "frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
+  },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()",
+  },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+];
+
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
   async redirects() {
     return [
       // Short, easy-to-read link for WhatsApp follow-ups after an enquiry.

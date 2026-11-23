@@ -19,6 +19,12 @@ export type ClinicSession = {
 };
 
 export const clinic = {
+  /**
+   * On hold (Nov 2026): Age UK South Glos has paused its footcare service.
+   * While true, /ageuk shows an "on hold" notice and the booking APIs refuse
+   * every request before touching Stripe. Set to false to bring it back.
+   */
+  paused: true as boolean,
   partnerName: "Age UK South Gloucestershire",
   /** Venue name and address. */
   venue: null as string | null,
@@ -34,7 +40,7 @@ export const clinic = {
 export const formatPrice = (pence: number) =>
   `£${(pence / 100).toFixed(pence % 100 === 0 ? 0 : 2)}`;
 
-export const bookingOpen = () => clinic.pricePence !== null && clinic.sessions.length > 0;
+export const bookingOpen = () => !clinic.paused && clinic.pricePence !== null && clinic.sessions.length > 0;
 
 // ---------- Slots ----------
 

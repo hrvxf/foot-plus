@@ -16,15 +16,13 @@ export const dynamic = "force-dynamic";
 export default async function BookedPage({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
   const { session_id } = await searchParams;
   let slotLabel: string | null = null;
-  let email: string | null = null;
 
-  const stripe = getStripe();
+  const stripe = clinic.paused ? null : getStripe();
   if (stripe && session_id?.startsWith("cs_")) {
     try {
       const s = await stripe.checkout.sessions.retrieve(session_id);
       if (s.metadata?.clinic === CLINIC_TAG && s.payment_status === "paid") {
         slotLabel = s.metadata.slotLabel ?? null;
-        email = s.customer_details?.email ?? null;
       }
     } catch {
       // Fall through to the general message.
@@ -43,8 +41,8 @@ export default async function BookedPage({ searchParams }: { searchParams: Promi
             <p className="mt-4 font-heading text-2xl font-semibold text-brand-sageDeep">{slotLabel}</p>
             {clinic.venue && <p className={`${lead} mt-2`}>{clinic.venue}</p>}
             <p className={`${body} mt-6`}>
-              {email ? <>We&rsquo;ve emailed your confirmation and receipt to {email}. </> : null}
-              Please make a note of your time.
+              {/* No email address here: anyone holding this link would see it. */}
+              We&rsquo;ve emailed your confirmation and receipt. Please make a note of your time.
             </p>
           </>
         ) : (

@@ -5,6 +5,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  if (clinic.paused) return Response.json({ open: false, sessions: [] });
   const stripe = getStripe();
   if (!bookingOpen() || !stripe) return Response.json({ open: false, sessions: [] });
 
