@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import MobileActions from "../components/site/MobileActions";
+import AudienceSwitch from "../components/services/AudienceSwitch";
 import ServiceDeck from "../components/services/ServiceDeck";
 import { focusRing, texturedGreen } from "../components/site/ui";
 import { serviceLocations } from "../lib/locations";
@@ -86,6 +87,7 @@ export default function ServicesPage() {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <AudienceSwitch />
       <Hero />
       <EveryVisit />
       <WhoFor />
@@ -98,7 +100,7 @@ export default function ServicesPage() {
 
 function Hero() {
   return (
-    <section aria-labelledby="services-heading" className="pt-8 md:pt-14">
+    <section aria-labelledby="services-heading" className="pt-7 md:pt-12">
       <div className="px-6 text-center">
         <h1 id="services-heading" className={`${headline} text-[2.75rem] leading-[1.04] md:text-7xl`}>
           Nails. Skin.
