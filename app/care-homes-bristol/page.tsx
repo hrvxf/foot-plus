@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import AudienceSwitch from "../components/services/AudienceSwitch";
 import VisitDeck, { type VisitStep } from "../components/care/VisitDeck";
 import { portraits } from "../components/site/blocks";
 import MessageClose from "../components/location/MessageClose";
@@ -110,10 +111,12 @@ export default function CareHomesBristolPage() {
     <div className="bg-care-bg text-care-ink">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
+      <AudienceSwitch />
+
       {/* Opening */}
       <section
         aria-labelledby="care-heading"
-        className="relative mx-3 overflow-hidden rounded-[32px] bg-care-deep px-6 pb-14 pt-14 text-center text-white md:mx-auto md:max-w-5xl md:pb-20 md:pt-20"
+        className="relative mx-3 mt-5 overflow-hidden rounded-[32px] bg-care-deep px-6 pb-14 pt-14 text-center text-white md:mx-auto md:mt-8 md:max-w-5xl md:pb-20 md:pt-20"
       >
         {marks.map((className) => (
           <span key={className} aria-hidden="true" className={`pointer-events-none absolute font-heading font-semibold text-care-soft ${className}`}>
