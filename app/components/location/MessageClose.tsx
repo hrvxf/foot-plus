@@ -4,12 +4,14 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { SmallPrint } from "../Footer";
 import { focusRing, shell, texturedGreen } from "../site/ui";
 
 /**
  * Location page closing section: "Say hello to <name>." over a message bar with the practitioner's photo.
  * Example first messages type themselves out in the bar; tapping it opens the practitioner's messaging
- * (WhatsApp or email). Reduced motion shows the plain placeholder.
+ * (WhatsApp or email). Reduced motion shows the plain placeholder. It ends the page: the small print sits at
+ * the bottom of the section, and the site footer is left out (Footer.tsx).
  */
 export default function MessageClose({
   id,
@@ -18,7 +20,6 @@ export default function MessageClose({
   portraitSrc,
   messageHref,
   messageLabel,
-  phone,
 }: {
   id: string;
   /** First name, e.g. "Adam". */
@@ -30,7 +31,6 @@ export default function MessageClose({
   messageHref: string;
   /** Screen reader name for the bar, e.g. "Message Adam on WhatsApp". */
   messageLabel: string;
-  phone: { display: string; href: string };
 }) {
   const typed = useTyping([
     `Hi ${name}, could you visit Dad?`,
@@ -40,7 +40,7 @@ export default function MessageClose({
   const external = messageHref.startsWith("http");
 
   return (
-    <section className={`${texturedGreen} pb-16 pt-11 text-center text-white md:pb-[5.5rem] md:pt-16`} aria-labelledby={id}>
+    <section className={`${texturedGreen} pb-[max(env(safe-area-inset-bottom),12px)] pt-11 text-center text-white md:pt-16`} aria-labelledby={id}>
       <div className={shell}>
         <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#A8E6B8]">{place}</p>
         <h2 id={id} className="mt-3 font-heading text-[2.375rem] font-semibold leading-[1.03] tracking-[-0.025em] md:text-5xl">
@@ -64,12 +64,13 @@ export default function MessageClose({
           </span>
         </a>
 
-        <p className="mt-4 text-sm text-white/80">
-          or{" "}
-          <a href={phone.href} className={`font-semibold text-white ${focusRing}`}>
-            call {name}<span className="sr-only"> on {phone.display}</span>
-          </a>
-        </p>
+      </div>
+
+      {/* The page ends here: no footer pill on the location pages (see Footer.tsx). */}
+      <div role="contentinfo" className="mx-auto mt-12 max-w-[72rem] px-3 text-left md:mt-16 md:px-6">
+        <div className="border-t border-white/15 pt-1">
+          <SmallPrint />
+        </div>
       </div>
     </section>
   );

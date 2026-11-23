@@ -7,7 +7,7 @@ import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, coveragePlaces, locationEmails, locationPhones, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, coveragePlaces, locationEmails, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
 import { googleRatingLine } from "../../lib/reviews";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
@@ -91,7 +91,6 @@ export default function BristolLocationPage() {
         portraitSrc={portraits.bristol}
         messageHref={bristolWhatsAppHref}
         messageLabel="Message Adam on WhatsApp"
-        phone={locationPhones.bristol}
       />
     </div>
   );
