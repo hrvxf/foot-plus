@@ -67,6 +67,14 @@ export default function PartnersPage() {
           >
             Refer a client
           </Link>
+          <p className="mt-3">
+            <Link
+              href="/care-homes-bristol"
+              className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-brand-sageDeep ${focusRing}`}
+            >
+              Care homes and supported living in Bristol <span aria-hidden="true">→</span>
+            </Link>
+          </p>
         </section>
         <div className="rounded-[22px] bg-brand-sageDark px-6 py-7 text-center text-white">
           <h2 className="font-heading text-[1.375rem] font-semibold leading-tight">Run a local care service?</h2>

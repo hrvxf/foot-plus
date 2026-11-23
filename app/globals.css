@@ -14,6 +14,15 @@
   /* Review stars only. The lighter one is for dark green backgrounds. */
   --color-brand-gold: #E3AA33;
   --color-brand-goldLight: #EDBE4F;
+  /* Slate palette, used only on the care homes and supported living page so it reads as its own space. */
+  --color-care-ink: #1F2C35;
+  --color-care-deep: #2D4A5E;
+  --color-care-accent: #5F8BA6;
+  --color-care-soft: #A9CBE0;
+  --color-care-mist: #E7EFF3;
+  --color-care-line: #D6E2E9;
+  --color-care-muted: #4E616C;
+  --color-care-bg: #F5F8F9;
   --font-heading: "Poppins", "Montserrat", sans-serif;
   --font-body: "Inter", "Montserrat", sans-serif;
 }
