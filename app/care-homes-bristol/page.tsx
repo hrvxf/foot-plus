@@ -283,8 +283,7 @@ export default function CareHomesBristolPage() {
           messageLabel="Message Adam on WhatsApp"
           examples={["Hi Adam, could you visit on Tuesdays?", "Can you see three of our residents?", "Could you visit my son?"]}
         >
-          <p className="mt-3 text-sm text-white/75">I reply within 24 hours.</p>
-          <div className="mt-2 flex flex-wrap justify-center gap-x-5">
+          <div className="mt-4 flex flex-wrap justify-center gap-x-5">
             <Link href={bookingHref} className={`inline-flex min-h-11 items-center gap-1 rounded-lg text-sm font-semibold text-white ${focusRing}`} data-analytics-id="care-close-book">
               Request a visit <span aria-hidden="true">→</span>
             </Link>
