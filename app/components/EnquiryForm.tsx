@@ -14,7 +14,6 @@ import {
 type AppointmentType =
   | "New Patient Assessment & Treatment"
   | "Routine Foot Care"
-  | "Nail Care"
   | "Other / Unsure";
 
 
@@ -39,6 +38,7 @@ const fieldClass =
 export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void } = {}) {
   const searchParams = useSearchParams();
   const requestedLocation = searchParams.get("location")?.toLowerCase();
+  const fromNailPage = searchParams.get("service") === "nails";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +50,8 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
     postcode: normalisePostcode(searchParams.get("postcode") ?? ""),
     phone: "",
     email: "",
-    appointmentType: searchParams.get("service") === "nails" ? "Nail Care" : "Other / Unsure",
+    // Toenail pages link with ?service=nails; nail care is booked as routine foot care.
+    appointmentType: fromNailPage ? "Routine Foot Care" : "Other / Unsure",
     appointmentDetails: "",
     accessNotes: "",
     heardAboutUs: "",
@@ -159,7 +160,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
       trackAdviceEvent("generate_lead", {
         method: "enquiry_form",
         service_location: data.location.toLowerCase(),
-        service_interest: data.appointmentType === "Nail Care" ? "nail_care" : "routine_foot_care",
+        service_interest: fromNailPage ? "nail_care" : "routine_foot_care",
         lead_type: "appointment_enquiry",
         promo_code: promoCode || "none",
       });
@@ -352,7 +353,6 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
         >
           <option>New Patient Assessment & Treatment</option>
           <option>Routine Foot Care</option>
-          <option>Nail Care</option>
           <option>Other / Unsure</option>
         </select>
       </div>
