@@ -48,8 +48,7 @@ export function AdviceSafetyNotice() {
     <aside className={`mx-3.5 mt-5 rounded-[22px] bg-white px-5 py-[18px] sm:mx-auto sm:max-w-2xl ${amberEdge}`}>
       <h2 className="font-heading text-base font-semibold text-brand-charcoal">Safety note</h2>
       <p className="mt-2 text-sm leading-[1.55] text-brand-muted">
-        This guide provides general information only. It does not diagnose your foot concern. Seek appropriate medical support
-        for urgent symptoms, wounds, signs of infection, sudden severe pain or diabetic foot concerns.
+        This guide provides general information only. It does not diagnose your foot concern.
       </p>
       <p className="mt-2 text-sm leading-[1.55] text-brand-muted">
         If you need help urgently, contact your GP or call NHS 111. Call 999 for a medical emergency. If you have diabetes and
@@ -103,11 +102,6 @@ function Section({ section, slug }: { section: AdviceSection; slug: string }) {
                 {paragraph}
               </p>
             ))}
-            {warning ? (
-              <p className="mt-2.5 text-[0.8125rem] leading-[1.5] text-brand-muted">
-                Urgent? Contact your GP or call NHS 111. Call 999 in an emergency.
-              </p>
-            ) : null}
           </div>
         )
       ) : null}

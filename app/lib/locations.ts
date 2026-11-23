@@ -64,7 +64,7 @@ export const serviceLocations: Record<ServiceLocation["slug"], ServiceLocation> 
       imageAlt: "Portrait of Katie Preston, Foot+ Southampton foot health practitioner.",
       // Draft from what the site already says about Southampton; confirm the wording with Katie.
       intro:
-        "I visit homes across Southampton and nearby, including Romsey, Chandler’s Ford and Totton. My visits are unhurried, friendly and in the comfort of your own home.",
+        "I visit homes across Southampton and nearby, including Romsey, Chandler’s Ford and Totton.",
       bio: [],
     },
   },
