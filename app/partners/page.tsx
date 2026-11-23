@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 
 import PartnersDirectory, { PartnersList } from "../components/partners/PartnersDirectory";
@@ -49,6 +50,24 @@ export default function PartnersPage() {
       </Suspense>
 
       <div className={`${shell} max-w-3xl pb-16 pt-6`}>
+        <section
+          aria-labelledby="refer-heading"
+          className="mb-4 rounded-[22px] bg-white px-6 py-7 text-center shadow-[0_0_0_1px_var(--color-brand-line)]"
+        >
+          <h2 id="refer-heading" className="font-heading text-[1.375rem] font-semibold leading-tight text-brand-charcoal">
+            Referring a client?
+          </h2>
+          <p className="mx-auto mt-2 max-w-[38ch] text-brand-muted">
+            Care services and health professionals can send us a client&apos;s details, with their agreement. We usually reply
+            within 24 hours.
+          </p>
+          <Link
+            href="/book?for=client"
+            className={`mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-sageDark px-5 font-semibold text-white ${focusRing}`}
+          >
+            Refer a client
+          </Link>
+        </section>
         <div className="rounded-[22px] bg-brand-sageDark px-6 py-7 text-center text-white">
           <h2 className="font-heading text-[1.375rem] font-semibold leading-tight">Run a local care service?</h2>
           <p className="mt-2 text-white/80">We&apos;re always glad to hear from services our patients would value.</p>

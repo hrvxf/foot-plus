@@ -20,10 +20,13 @@ import { focusRing } from "../components/site/ui";
  * /book: the enquiry as five short questions, one per screen.
  * Who it's for → postcode (picks Bristol or Southampton and shows who's coming) →
  * what they need → first visit or not → contact details. Sends to /api/contact as before.
+ * Care services and other professionals referring a client arrive with ?for=client: the
+ * "who" answer is filled in, and the last step also asks for their organisation, the
+ * client's name and confirmation that the client has agreed.
  */
 
 type Slug = "bristol" | "southampton";
-type Who = "me" | "someone-else";
+type Who = "me" | "someone-else" | "client";
 type Visit = "first" | "routine";
 // undefined = not looked up, "loading", null = lookup failed
 type TravelState = TravelEstimate | "loading" | null | undefined;
@@ -49,9 +52,13 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
   const fromNailPage = searchParams.get("service") === "nails";
   const prefilledPostcode = normalisePostcode(searchParams.get("postcode") ?? "");
   const requested = searchParams.get("location")?.toLowerCase();
+  const arrivedReferring = searchParams.get("for") === "client";
 
-  const [step, setStep] = useState(0);
-  const [who, setWho] = useState<Who | null>(null);
+  const [step, setStep] = useState(arrivedReferring ? 1 : 0);
+  const [who, setWho] = useState<Who | null>(arrivedReferring ? "client" : null);
+  const [organisation, setOrganisation] = useState("");
+  const [clientName, setClientName] = useState("");
+  const [clientAgreed, setClientAgreed] = useState(false);
   const [postcode, setPostcode] = useState(prefilledPostcode);
   // A postcode passed from a checker elsewhere on the site is checked straight away.
   const [area, setArea] = useState<Area>(() => {
@@ -159,7 +166,12 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
     if (to > step) track("enquiry_step", { step: STEP_NAMES[to] });
   }
 
-  const contactOk = name.trim() !== "" && phone.trim() !== "" && /.+@.+\..+/.test(email.trim());
+  const referring = who === "client";
+  const contactOk =
+    name.trim() !== "" &&
+    phone.trim() !== "" &&
+    /.+@.+\..+/.test(email.trim()) &&
+    (!referring || (organisation.trim() !== "" && clientName.trim() !== "" && clientAgreed));
   const canContinue = [
     who !== null,
     (area.status === "empty" && postcode.trim() !== "") ||
@@ -180,7 +192,16 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
       `Service location: ${location.name}`,
       `Postcode: ${postcode}${area.status === "outside" ? " (outside our usual area)" : ""}`,
       `Phone: ${phone}`,
-      `For: ${who === "me" ? "Themselves" : "Someone else (a relative, friend or neighbour)"}`,
+      `For: ${
+        who === "me" ? "Themselves" : referring ? "A client (professional referral)" : "Someone else (a relative, friend or neighbour)"
+      }`,
+      ...(referring
+        ? [
+            `Referrer organisation: ${organisation.trim()}`,
+            `Client name: ${clientName.trim()}`,
+            "Client has agreed to the referral: Yes",
+          ]
+        : []),
       `Appointment type: ${appointmentType}`,
       `Appointment details: ${details}`,
       `Mobility or access requirements: ${accessNotes.trim() || "None provided"}`,
@@ -198,6 +219,7 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
           location: location.name as EnquiryLocation,
           postcode,
           promoCode: code,
+          referral: referring,
           message: messageLines.join("\n"),
           website: honeypot.current?.value ?? "",
           startedAt: openedAt.current,
@@ -211,7 +233,7 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
         method: "enquiry_form",
         service_location: slug,
         service_interest: fromNailPage ? "nail_care" : "routine_foot_care",
-        lead_type: "appointment_enquiry",
+        lead_type: referring ? "professional_referral" : "appointment_enquiry",
         promo_code: code || "none",
       });
     } catch {
@@ -291,6 +313,15 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
                   detail="A parent, relative or neighbour"
                   onSelect={() => {
                     setWho("someone-else");
+                    window.setTimeout(() => go(1), 260);
+                  }}
+                />
+                <BigChoice
+                  selected={who === "client"}
+                  title="A client I support"
+                  detail="For care services and health professionals"
+                  onSelect={() => {
+                    setWho("client");
                     window.setTimeout(() => go(1), 260);
                   }}
                 />
@@ -422,6 +453,26 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
             <>
               <Question headingRef={heading} first="How should we" second="reach you?" />
               <div className="grid gap-2.5">
+                {referring ? (
+                  <>
+                    <TextField
+                      id="book-client"
+                      label="Your client's name"
+                      autoComplete="off"
+                      value={clientName}
+                      onChange={setClientName}
+                      maxLength={120}
+                    />
+                    <TextField
+                      id="book-organisation"
+                      label="Your organisation"
+                      autoComplete="organization"
+                      value={organisation}
+                      onChange={setOrganisation}
+                      maxLength={160}
+                    />
+                  </>
+                ) : null}
                 <TextField id="book-name" label="Your name" autoComplete="name" value={name} onChange={setName} maxLength={120} />
                 <TextField
                   id="book-phone"
@@ -448,6 +499,19 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
                   onChange={setHeardAboutUs}
                   maxLength={200}
                 />
+                {referring ? (
+                  <label className="mt-1 flex cursor-pointer gap-3 rounded-[1.25rem] border-[1.5px] border-brand-line bg-white px-5 py-4">
+                    <input
+                      type="checkbox"
+                      checked={clientAgreed}
+                      onChange={(event) => setClientAgreed(event.target.checked)}
+                      className="mt-0.5 h-5 w-5 shrink-0 accent-brand-sageDark"
+                    />
+                    <span className="text-[15px] leading-[1.45] text-brand-charcoal">
+                      My client has agreed to this referral.
+                    </span>
+                  </label>
+                ) : null}
                 <details className="group mt-1" open={Boolean(promoCode) || undefined}>
                   <summary
                     className={`inline-flex min-h-11 cursor-pointer list-none items-center rounded-md px-1 text-[15px] font-semibold text-brand-sageDark [&::-webkit-details-marker]:hidden ${focusRing}`}

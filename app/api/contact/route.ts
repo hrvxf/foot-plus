@@ -134,7 +134,7 @@ export async function POST(req: Request) {
     }
 
     const resend = new Resend(apiKey);
-    const { name, email, message, location, postcode, promoCode, website, startedAt } = await req.json();
+    const { name, email, message, location, postcode, promoCode, referral, website, startedAt } = await req.json();
     const promo = String(promoCode ?? "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 30);
 
     // Bots: the hidden "website" field is filled, or the form was sent too fast.
@@ -179,7 +179,7 @@ export async function POST(req: Request) {
 
     const to = locationRecipients[location];
     const from = `Foot+ Contact <${emailDisplay}>`;
-    const enquiryType = "appointment enquiry";
+    const enquiryType = referral === true ? "referral" : "appointment enquiry";
     const subject = `New Foot+ ${location} ${enquiryType}: ${String(name).replace(/[\r\n]+/g, " ").trim()}${promo ? ` [Promo: ${promo}]` : ""}`;
 
     const html = `
