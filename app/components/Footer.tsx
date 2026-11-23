@@ -67,8 +67,9 @@ const isActive = (pathname: string, href: string) => (href === "/locations" ? pa
 type State = "still" | "waiting" | "landed";
 
 /**
- * Site footer: the header pill lands at the bottom of the page. A white pill (logo, "Request a visit", and on
- * phones a menu button whose menu opens upwards) on a Sage Deep band. On a page long enough to scroll it waits
+ * Site footer: the header pill lands at the bottom of the page. A white pill on a Sage Deep band. Desktop: logo,
+ * links and "Request a visit". Phones: like the scrolled header, a small centred pill (logo + menu button) that
+ * opens out to full width as its menu grows upwards, with "Request a visit" inside the menu. On a page long enough to scroll it waits
  * out of view and settles in as the visitor reaches the bottom, while the header pill and the small-screen
  * Request / Call bar step aside (html[data-footer-landed], styles in globals.css).
  *
@@ -202,6 +203,17 @@ export default function Footer() {
             style={{ "--i": 0 } as CSSProperties}
             aria-hidden="true"
           />
+          {showRequest ? (
+            <Link
+              href={requestHref}
+              onClick={close}
+              style={{ "--i": 0 } as CSSProperties}
+              className={`footer-menu-item mt-5 flex h-[52px] w-full items-center justify-center rounded-full bg-brand-sageDark text-base font-semibold text-white transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+              data-analytics-id="footer-menu-book"
+            >
+              Request a visit
+            </Link>
+          ) : null}
           <CallButton
             className={`footer-menu-item mx-auto mt-4 inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-base font-semibold text-brand-sageDeep hover:text-brand-sage ${focusRing}`}
             style={{ "--i": 0 } as CSSProperties}
@@ -216,7 +228,9 @@ export default function Footer() {
           </CallButton>
         </div>
 
-        <div className="footer-pill relative z-[2] flex h-[60px] items-center justify-between gap-2 rounded-full bg-white pl-[18px] pr-2 text-brand-charcoal shadow-[0_22px_50px_-24px_rgba(0,0,0,0.55)] md:pl-6">
+        <div
+          data-open={isMenuOpen}
+          className="footer-pill relative z-[2] mx-auto flex h-[60px] items-center justify-between gap-2 rounded-full bg-white pl-[18px] pr-2 text-brand-charcoal shadow-[0_22px_50px_-24px_rgba(0,0,0,0.55)] md:pl-6">
           <Link href="/" className={`flex shrink-0 items-center rounded-lg ${focusRing}`} aria-label="Foot+ home">
             <span className="relative block h-[34px] w-[106px] text-brand-sageDark md:h-[38px] md:w-[120px]">
               <AnimatedFootPlusLogo id="footplus-logo-footer" className="h-full w-full" animate={false} />
@@ -247,7 +261,7 @@ export default function Footer() {
             {showRequest ? (
               <Link
                 href={requestHref}
-                className={`inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-brand-sageDark px-4 text-[0.96875rem] font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep md:px-5 md:text-base ${focusRing}`}
+                className={`hidden h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-brand-sageDark px-5 text-base font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep md:inline-flex ${focusRing}`}
                 data-analytics-id="footer-book"
               >
                 Request a visit
@@ -258,7 +272,7 @@ export default function Footer() {
             )}
             <button
               type="button"
-              className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-wash text-brand-sageDeep md:hidden ${focusRing}`}
+              className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-sageDark text-white md:hidden ${focusRing}`}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
               aria-controls="footer-menu"
