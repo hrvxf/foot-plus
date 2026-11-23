@@ -141,7 +141,7 @@ export default function Footer() {
       id="site-footer"
       ref={footer}
       data-state={state}
-      className="relative z-10 -mt-[30px] w-full flex-none rounded-t-[30px] bg-brand-sageDeep px-3 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-5 text-brand-offwhite md:px-6 md:pt-7"
+      className="relative z-10 -mt-[30px] w-full flex-none rounded-t-[30px] bg-brand-sageDeep px-3 pb-[max(env(safe-area-inset-bottom),12px)] pt-5 text-brand-offwhite md:px-6 md:pt-7"
     >
       <div
         className="site-pill-scrim fixed inset-0 bg-brand-charcoal/25 md:hidden"
