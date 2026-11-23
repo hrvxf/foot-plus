@@ -50,10 +50,6 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <p className="mt-3 text-[0.65625rem] font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
-          Qualified · Insured · DBS-checked
-        </p>
-
         <div className="mt-6 flex items-center justify-between gap-4 border-t border-brand-line pt-3.5 text-[0.78125rem] text-brand-muted">
           <div className="flex items-center gap-2">
             <a

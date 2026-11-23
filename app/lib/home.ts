@@ -67,8 +67,6 @@ export const homeSteps = [
 ];
 
 /** One sentence each for the proof line under the home page hero. */
-export const homeCredentials =
-  "Diploma-trained, insured and DBS checked.";
 export const homeMemberships =
   "Members of the College of Foot Health Practitioners and the Association of Foot Health Practitioners.";
 
@@ -82,7 +80,7 @@ export const homeStandards = [
     body: "Clean, sterilised instruments for every appointment.",
   },
   {
-    title: "Insured and DBS checked",
+    title: "Insured and DBS-checked",
     body: "Full professional insurance and background checks.",
   },
   {

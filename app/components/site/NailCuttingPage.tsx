@@ -124,7 +124,7 @@ export default function NailCuttingPage({
             With {practitioner.name}
           </h2>
           <p className="mt-0.5 text-[0.8125rem] leading-[1.45] text-brand-muted">
-            {practitioner.role} ({practitioner.credentials.join(", ")}). Insured and DBS checked.
+            {practitioner.role} ({practitioner.credentials.join(", ")}). Insured and DBS-checked.
           </p>
           <Link href={aboutHref} className={`mt-1 inline-flex min-h-8 items-center rounded text-[0.8125rem] font-semibold text-brand-sageDeep ${focusRing}`}>
             About {firstName} <span aria-hidden="true">&nbsp;→</span>
