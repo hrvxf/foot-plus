@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { ServiceDetail } from "../../lib/services";
+import { trackAdviceEvent } from "../advice/AdviceTracker";
 import { focusRing } from "../site/ui";
 
 type Group = "nails" | "skin";
@@ -23,6 +24,8 @@ export default function ServiceDeck({ services }: { services: ServiceDetail[] })
   const [fading, setFading] = useState(false);
   const [active, setActive] = useState(0);
   const decks = useRef<Record<Group, HTMLDivElement | null>>({ nails: null, skin: null });
+  /** Cards already reported this visit, so swiping back and forth counts each once. */
+  const seen = useRef(new Set<string>());
 
   const sets: Record<Group, ServiceDetail[]> = {
     nails: services.filter((s) => s.group === "nails"),
@@ -44,6 +47,7 @@ export default function ServiceDeck({ services }: { services: ServiceDetail[] })
 
   const choose = (next: Group) => {
     if (next === group) return;
+    trackAdviceEvent("service_group_view", { group: next });
     setFading(true);
     setGroup(next);
   };
@@ -78,7 +82,14 @@ export default function ServiceDeck({ services }: { services: ServiceDetail[] })
     const deck = decks.current[g];
     const first = deck?.firstElementChild as HTMLElement | null;
     if (!deck || !first) return;
-    setActive(Math.round(deck.scrollLeft / (first.offsetWidth + 12)));
+    const index = Math.round(deck.scrollLeft / (first.offsetWidth + 12));
+    setActive(index);
+    // Swiping to a card on a phone shows interest in that treatment.
+    const service = sets[g][index];
+    if (index > 0 && service && !seen.current.has(service.id)) {
+      seen.current.add(service.id);
+      trackAdviceEvent("service_card_view", { service_id: service.id, group: g });
+    }
   };
 
   return (
@@ -134,6 +145,7 @@ export default function ServiceDeck({ services }: { services: ServiceDetail[] })
                   <p className="mt-2.5 flex-1 text-base leading-[1.55] text-brand-muted">{service.summary}</p>
                   <Link
                     href={service.link.href}
+                    onClick={() => trackAdviceEvent("service_click", { service_id: service.id, group: key })}
                     className={`mt-4 inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg font-semibold text-brand-sageDeep ${focusRing}`}
                   >
                     {service.link.label} <span aria-hidden="true">→</span>
