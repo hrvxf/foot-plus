@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { trackAdviceEvent } from "./advice/AdviceTracker";
 
 import {
+  checkServiceArea,
   normalisePostcode,
   validateServicePostcode,
   type EnquiryLocation as ServiceLocation,
@@ -41,6 +42,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [postcodeNote, setPostcodeNote] = useState<string | null>(null);
 
   const [data, setData] = useState<FormState>({
     location: requestedLocation === "southampton" ? "Southampton" : "Bristol",
@@ -68,6 +70,40 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setData((previous) => ({ ...previous, [key]: value }));
+  }
+
+  /**
+   * Runs when the postcode field loses focus. A Bristol or Southampton postcode switches the
+   * service location to match; any other valid postcode gets a gentle note rather than a block.
+   * Badly formed postcodes are left to the check on submit, so nobody is nagged mid-typing.
+   */
+  function checkPostcode(value: string) {
+    if (!value.trim()) {
+      setPostcodeNote(null);
+      return;
+    }
+
+    const area = checkServiceArea(value);
+    if (area.status === "invalid") {
+      setPostcodeNote(null);
+      return;
+    }
+
+    if (area.status === "outside") {
+      setPostcodeNote(
+        "This postcode may be outside our usual area. Send your enquiry anyway and we'll let you know if we can visit."
+      );
+      return;
+    }
+
+    const matched: ServiceLocation = area.status === "bristol" ? "Bristol" : "Southampton";
+    if (matched !== data.location) {
+      update("location", matched);
+      setError(null);
+      setPostcodeNote(`We've changed the service location to ${matched} to match your postcode.`);
+    } else {
+      setPostcodeNote(null);
+    }
   }
 
   async function onSubmit(event: React.FormEvent) {
@@ -219,7 +255,10 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
           id="service-location"
           className={fieldClass}
           value={data.location}
-          onChange={(event) => update("location", event.target.value as ServiceLocation)}
+          onChange={(event) => {
+            update("location", event.target.value as ServiceLocation);
+            setPostcodeNote(null);
+          }}
         >
           <option>Bristol</option>
           <option>Southampton</option>
@@ -250,16 +289,22 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
             autoComplete="postal-code"
             required
             aria-invalid={Boolean(error && currentPostcodeValidation && !currentPostcodeValidation.valid)}
-            aria-describedby={error ? "enquiry-error" : undefined}
+            aria-describedby={[error ? "enquiry-error" : "", postcodeNote ? "postcode-note" : ""].filter(Boolean).join(" ") || undefined}
             value={data.postcode}
             onChange={(event) => {
               update("postcode", event.target.value);
               if (error) setError(null);
+              if (postcodeNote) setPostcodeNote(null);
             }}
             onBlur={() => {
-              if (data.postcode.trim()) update("postcode", normalisePostcode(data.postcode));
+              if (!data.postcode.trim()) return;
+              update("postcode", normalisePostcode(data.postcode));
+              checkPostcode(data.postcode);
             }}
           />
+          <p id="postcode-note" aria-live="polite" className="mt-1.5 text-sm leading-5 text-brand-sageDark empty:hidden">
+            {postcodeNote}
+          </p>
         </div>
       </div>
 
