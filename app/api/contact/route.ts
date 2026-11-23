@@ -2,6 +2,7 @@ import { Resend } from "resend";
 
 import { emailDisplay, phoneDisplay, SITE_URL } from "../../lib/site";
 import { validateServicePostcode, type EnquiryLocation } from "../../lib/postcodes";
+import { allow, clientIp } from "../../lib/rateLimit";
 
 export const runtime = "nodejs";
 
@@ -32,7 +33,8 @@ async function sendPatientConfirmation(
     location,
   }: { from: string; to: string; name: string; location: EnquiryLocation }
 ) {
-  const firstName = name.split(" ")[0] || name;
+  // Letters, hyphens and apostrophes only, so the greeting can't carry a link.
+  const firstName = (name.split(" ")[0] || "").replace(/[^\p{L}'’-]/gu, "").slice(0, 40) || "there";
   const safeFirstName = escapeHtml(firstName);
   const formUrl = patientFormUrls[location];
   const font = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif";
@@ -108,6 +110,14 @@ async function sendPatientConfirmation(
 const isEnquiryLocation = (value: unknown): value is EnquiryLocation =>
   value === "Bristol" || value === "Southampton";
 
+const json = (body: unknown, status: number) =>
+  new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
+
+const LIMITS = { name: 120, email: 254, message: 5000 };
+const EMAIL_PATTERN = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
+/** Real people take longer than this to fill in the form; scripts usually don't. */
+const MIN_FILL_MS = 2500;
+
 export async function POST(req: Request) {
   try {
     const apiKey = process.env.RESEND_API_KEY;
@@ -118,11 +128,35 @@ export async function POST(req: Request) {
       );
     }
 
+    // 5 enquiries per visitor per hour.
+    if (!allow(`ip:${clientIp(req)}`, 5, 60 * 60 * 1000)) {
+      return json({ error: "Too many enquiries. Please call or try again later." }, 429);
+    }
+
     const resend = new Resend(apiKey);
-    const { name, email, message, location, postcode, promoCode } = await req.json();
+    const { name, email, message, location, postcode, promoCode, website, startedAt } = await req.json();
     const promo = String(promoCode ?? "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 30);
 
-    if (!name || !email || !message || !postcode || !isEnquiryLocation(location)) {
+    // Bots: the hidden "website" field is filled, or the form was sent too fast.
+    // Answer as if it worked, so the script learns nothing.
+    const elapsed = Date.now() - Number(startedAt);
+    if (website || !Number.isFinite(elapsed) || elapsed < MIN_FILL_MS) {
+      return json({ ok: true }, 200);
+    }
+
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof message !== "string" ||
+      name.length > LIMITS.name ||
+      email.length > LIMITS.email ||
+      message.length > LIMITS.message ||
+      !EMAIL_PATTERN.test(email.trim())
+    ) {
+      return json({ error: "Missing or invalid fields" }, 400);
+    }
+
+    if (!name.trim() || !email || !message || !postcode || !isEnquiryLocation(location)) {
       return new Response(JSON.stringify({ error: "Missing or invalid fields" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
@@ -146,7 +180,7 @@ export async function POST(req: Request) {
     const to = locationRecipients[location];
     const from = `Foot+ Contact <${emailDisplay}>`;
     const enquiryType = "appointment enquiry";
-    const subject = `New Foot+ ${location} ${enquiryType}: ${String(name).trim()}${promo ? ` [Promo: ${promo}]` : ""}`;
+    const subject = `New Foot+ ${location} ${enquiryType}: ${String(name).replace(/[\r\n]+/g, " ").trim()}${promo ? ` [Promo: ${promo}]` : ""}`;
 
     const html = `
       <div style="background:#0f1a16;padding:28px 16px;">
@@ -217,8 +251,9 @@ export async function POST(req: Request) {
     }
 
     // Confirmation to the patient, with the patient-form link where one exists.
+    // At most one per address per day, so the form can't be used to flood someone's inbox.
     // Best effort: a failure here must not fail the enquiry, which has already been sent.
-    try {
+    if (allow(`to:${replyTo.toLowerCase()}`, 1, 24 * 60 * 60 * 1000)) try {
       await sendPatientConfirmation(resend, {
         from,
         to: replyTo,

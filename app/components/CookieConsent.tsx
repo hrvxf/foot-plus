@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 
 /**
@@ -13,6 +14,21 @@ const STORAGE_KEY = "fp-cookie-consent";
 const GOOGLE_TAG_ID = "GT-NNS2WW3K";
 const META_PIXEL_ID = "948452367747908";
 export const OPEN_COOKIE_SETTINGS_EVENT = "fp:cookie-settings";
+
+/**
+ * Pages where the Meta Pixel never fires: booking, patient forms and the clinic screening.
+ * Visiting them can reveal health information, which shouldn't go to an ad platform.
+ */
+const PIXEL_EXCLUDED = [/^\/book(\/|$)/, /^\/forms?(\/|$)/, /^\/ageuk(\/|$)/];
+const pixelAllowed = (path: string) => !PIXEL_EXCLUDED.some((re) => re.test(path));
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+    /** Last path a Meta page view was sent for. */
+    __fpPixelPath?: string;
+  }
+}
 
 type Choice = "granted" | "denied";
 
@@ -70,6 +86,18 @@ export default function CookieConsent() {
   const choice = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [reopened, setReopened] = useState(false);
   const open = choice === null || reopened;
+  const pathname = usePathname() ?? "/";
+  // The Pixel loads on the first allowed page and stays loaded; page views are sent by hand below.
+  const [pixelWanted, setPixelWanted] = useState(false);
+  const allowedHere = pixelAllowed(pathname);
+  if (choice === "granted" && allowedHere && !pixelWanted) setPixelWanted(true);
+
+  // The Pixel's own script sends the first page view; this sends one per later allowed page.
+  useEffect(() => {
+    if (choice !== "granted" || !allowedHere || !window.fbq || window.__fpPixelPath === pathname) return;
+    window.__fpPixelPath = pathname;
+    window.fbq("track", "PageView");
+  }, [choice, allowedHere, pathname]);
 
   useEffect(() => {
     const reopen = () => setReopened(true);
@@ -105,6 +133,11 @@ export default function CookieConsent() {
               gtag('config', '${GOOGLE_TAG_ID}');
             `}
           </Script>
+        </>
+      )}
+
+      {choice === "granted" && pixelWanted && (
+        <>
           <Script id="meta-pixel" strategy="afterInteractive">
             {`
               !function(f,b,e,v,n,t,s)
@@ -115,7 +148,12 @@ export default function CookieConsent() {
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
+              // No automatic page views on navigation: CookieConsent sends them, only on allowed pages.
+              fbq.disablePushState = true;
+              // No automatic button-click or page-metadata events.
+              fbq('set', 'autoConfig', false, '${META_PIXEL_ID}');
               fbq('init', '${META_PIXEL_ID}');
+              window.__fpPixelPath = location.pathname;
               fbq('track', 'PageView');
             `}
           </Script>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { trackAdviceEvent } from "./advice/AdviceTracker";
 
@@ -44,6 +44,12 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
   const [error, setError] = useState<string | null>(null);
   const [postcodeNote, setPostcodeNote] = useState<string | null>(null);
   const started = useRef(false);
+  // When the form was opened; the server ignores enquiries sent implausibly fast.
+  const openedAt = useRef(0);
+  useEffect(() => {
+    openedAt.current = Date.now();
+  }, []);
+  const honeypot = useRef<HTMLInputElement>(null);
 
   /** Coarse funnel events: where people start, get stuck and drop off. No personal details. */
   function trackForm(name: string, params: Record<string, unknown> = {}) {
@@ -164,6 +170,8 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
           postcode: postcodeValidation.postcode,
           promoCode,
           message: messageLines.join("\n"),
+          website: honeypot.current?.value ?? "",
+          startedAt: openedAt.current,
         }),
       });
 
@@ -251,6 +259,13 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
       }}
       className="space-y-5"
     >
+      {/* Spam trap: hidden from people and screen readers; bots tend to fill it in. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label>
+          Website
+          <input ref={honeypot} type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
 
       {error ? (
         <div
@@ -303,6 +318,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
             autoComplete="name"
             required
             value={data.fullName}
+            maxLength={120}
             onChange={(event) => update("fullName", event.target.value)}
           />
         </div>
@@ -318,6 +334,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
             aria-invalid={Boolean(error && currentPostcodeValidation && !currentPostcodeValidation.valid)}
             aria-describedby={[error ? "enquiry-error" : "", postcodeNote ? "postcode-note" : ""].filter(Boolean).join(" ") || undefined}
             value={data.postcode}
+            maxLength={10}
             onChange={(event) => {
               update("postcode", event.target.value);
               if (error) setError(null);
@@ -347,6 +364,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
             autoComplete="tel"
             required
             value={data.phone}
+            maxLength={30}
             onChange={(event) => update("phone", event.target.value)}
           />
         </div>
@@ -361,6 +379,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
             autoComplete="email"
             required
             value={data.email}
+            maxLength={254}
             onChange={(event) => update("email", event.target.value)}
           />
         </div>
@@ -387,6 +406,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
           How can we help? *
         </label>
         <textarea
+          maxLength={1500}
           id="appointment-details"
           rows={4}
           className={fieldClass}
@@ -401,6 +421,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
           Mobility or access needs (optional)
         </label>
         <textarea
+          maxLength={1500}
           id="access-notes"
           rows={2}
           className={fieldClass}
@@ -417,6 +438,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
           id="heard-about"
           className={fieldClass}
           value={data.heardAboutUs}
+            maxLength={200}
           onChange={(event) => update("heardAboutUs", event.target.value)}
         />
       </div>
