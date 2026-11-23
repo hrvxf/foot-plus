@@ -14,6 +14,7 @@ const exploreLinks = [
 ];
 
 const legalLinks = [
+  { href: "/forms", label: "Forms" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
 ];
@@ -70,7 +71,7 @@ export default function Footer() {
               </svg>
             </a>
             <LgbtqFriendly flagOnly />
-            <p className="ml-1 whitespace-nowrap">&copy; {new Date().getFullYear()} Foot+</p>
+            <p className="ml-1">&copy; {new Date().getFullYear()} Foot+</p>
           </div>
           <nav aria-label="Legal links">
             <ul className="flex gap-x-3">
