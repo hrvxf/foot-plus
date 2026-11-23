@@ -74,7 +74,6 @@ const eyebrow = "text-xs font-semibold uppercase tracking-[0.24em] text-brand-sa
 const headline = "font-heading font-bold tracking-[-0.025em] text-brand-charcoal";
 const greenCard = `${texturedGreen} mx-3.5 rounded-[28px] px-6 py-11 text-center md:mx-auto md:max-w-[1100px] md:py-16`;
 const arrowLink = `inline-flex min-h-11 items-center gap-1.5 rounded-lg font-semibold text-brand-sageDeep ${focusRing}`;
-const pill = `inline-flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep ${focusRing}`;
 
 const healthCheck = serviceDetails.find((service) => service.group === "check");
 
@@ -209,10 +208,7 @@ function ChooseArea() {
           </Link>
         ))}
       </div>
-      <Link href="/book" className={`${pill} mt-2.5 w-full`} data-analytics-id="services-close-book">
-        Request a visit
-      </Link>
-      <p className="mt-4">
+      <p className="mt-6">
         <Link href="/prices" className={arrowLink}>
           See prices <span aria-hidden="true">→</span>
         </Link>

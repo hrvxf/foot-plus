@@ -7,7 +7,7 @@ import TravelSlider from "../components/prices/TravelSlider";
 import { focusRing, texturedGreen } from "../components/site/ui";
 import { homeSteps } from "../lib/home";
 import { appointmentTypes } from "../lib/services";
-import { bookingHref, paymentMethods, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
+import { SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 import { travelBases } from "../lib/travel";
 
 export const metadata: Metadata = {
@@ -89,21 +89,11 @@ export default function PricesPage() {
         </ol>
       </section>
 
-      <section className="mx-auto max-w-xl px-[18px] pb-16 pt-10 text-center md:pb-24" aria-label="Request a visit">
-        <p className="mb-4 text-[0.875rem] text-brand-muted">
-          Pay by {paymentMethods.slice(0, -1).join(", ")} or {paymentMethods.at(-1)}.
-        </p>
-        <Link
-          href={bookingHref}
-          className={`flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white transition-colors duration-150 hover:bg-brand-sageDeep ${focusRing}`}
-          data-analytics-id="prices-close-book"
-        >
-          Request a visit
-        </Link>
-        <Link href="/services" className={`${arrowLink} mt-4`}>
+      <p className="mx-auto max-w-xl px-[18px] pb-14 pt-8 text-center md:pb-20">
+        <Link href="/services" className={arrowLink}>
           What each treatment involves <span aria-hidden="true">→</span>
         </Link>
-      </section>
+      </p>
     </div>
   );
 }

@@ -91,7 +91,6 @@ export default function SouthamptonLocationPage() {
         portraitSrc={portraits.southampton}
         messageHref={locationEmails.southampton.href}
         messageLabel="Email Katie"
-        requestHref="/book?location=southampton"
         phone={locationPhones.southampton}
       />
     </div>

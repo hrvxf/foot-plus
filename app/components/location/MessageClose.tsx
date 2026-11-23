@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -19,7 +18,6 @@ export default function MessageClose({
   portraitSrc,
   messageHref,
   messageLabel,
-  requestHref,
   phone,
 }: {
   id: string;
@@ -32,7 +30,6 @@ export default function MessageClose({
   messageHref: string;
   /** Screen reader name for the bar, e.g. "Message Adam on WhatsApp". */
   messageLabel: string;
-  requestHref: string;
   phone: { display: string; href: string };
 }) {
   const typed = useTyping([
@@ -69,12 +66,8 @@ export default function MessageClose({
 
         <p className="mt-4 text-sm text-white/80">
           or{" "}
-          <Link href={requestHref} className={`font-semibold text-white ${focusRing}`}>
-            request a visit
-          </Link>{" "}
-          ·{" "}
           <a href={phone.href} className={`font-semibold text-white ${focusRing}`}>
-            call<span className="sr-only"> {phone.display}</span>
+            call {name}<span className="sr-only"> on {phone.display}</span>
           </a>
         </p>
       </div>

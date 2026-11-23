@@ -91,7 +91,6 @@ export default function BristolLocationPage() {
         portraitSrc={portraits.bristol}
         messageHref={bristolWhatsAppHref}
         messageLabel="Message Adam on WhatsApp"
-        requestHref="/book?location=bristol"
         phone={locationPhones.bristol}
       />
     </div>
