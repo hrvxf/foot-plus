@@ -3,11 +3,11 @@
 Needs: pip install playwright && playwright install chromium, plus ffmpeg.
 
 Example:
-  python docs/brand/templates/render-promo.py new-year-new-toes \
+  python docs/04-brand-and-promo/templates/render-promo.py new-year-new-toes \
     --eyebrow "January offer" --line1 "New Year," --line2 "New Toes." \
     --offer-bold "£5 off" --offer "your first home visit"
 
-Outputs go to docs/brand/examples/<name>.png and <name>.mp4.
+Outputs go to docs/04-brand-and-promo/examples/<name>.png and <name>.mp4.
 """
 import argparse
 import pathlib

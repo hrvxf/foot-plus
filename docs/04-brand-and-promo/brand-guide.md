@@ -11,7 +11,7 @@ Working brand guide for Foot+. It starts from the January 2027 "New Year, New To
 | File | Use |
 |---|---|
 | `public/images/footplus-generic-logo_MASTER_FINAL.svg` | **Master logo, no location.** Use for anything shared across Bristol and Southampton. White fill, so put it on a dark background or recolour it. |
-| `docs/brand/templates/logo-sagedark.svg` | The master logo recoloured to Sage Dark `#4F6F5F`, for light backgrounds. |
+| `docs/04-brand-and-promo/templates/logo-sagedark.svg` | The master logo recoloured to Sage Dark `#4F6F5F`, for light backgrounds. |
 | `public/images/footplus-logo-green.svg` | Logo with BRISTOL lockup, in green. Bristol-only materials. |
 | `public/images/footplus-logo-white.svg` | Logo with BRISTOL lockup, in white. Bristol-only, on dark green. |
 
@@ -129,16 +129,16 @@ The enquiry form has an optional promo code field. Codes appear in the enquiry e
 
 ## 10. Making a new promo graphic
 
-The template is `docs/brand/templates/promo-graphic.html`, and every text element is set from the command line:
+The template is `docs/04-brand-and-promo/templates/promo-graphic.html`, and every text element is set from the command line:
 
 ```bash
 pip install playwright && playwright install chromium   # once
-python docs/brand/templates/render-promo.py spring-feet \
+python docs/04-brand-and-promo/templates/render-promo.py spring-feet \
   --eyebrow "Spring offer" --line1 "Spring into" --line2 "Happy Feet." \
   --offer-bold "£5 off" --offer "your first home visit"
 ```
 
-This writes `docs/brand/examples/<name>.png` and `.mp4`. Add `--no-video` for the image only. Needs ffmpeg for the video.
+This writes `docs/04-brand-and-promo/examples/<name>.png` and `.mp4`. Add `--no-video` for the image only. Needs ffmpeg for the video.
 
 ## Examples
 
