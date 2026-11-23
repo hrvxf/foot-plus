@@ -145,6 +145,11 @@ export const adviceArticles: AdviceArticle[] = [
           "kind": "service"
         },
         {
+          "href": "/toenail-cutting-southampton",
+          "label": "Toenail cutting at home in Southampton",
+          "kind": "service"
+        },
+        {
           "href": "/prices",
           "label": "Prices",
           "kind": "pricing"
@@ -350,7 +355,7 @@ export const adviceArticles: AdviceArticle[] = [
       },
       {
         "href": "/",
-        "label": "Foot Health Practitioner Bristol",
+        "label": "Foot Health Practitioner",
         "kind": "service"
       },
       {
@@ -466,7 +471,12 @@ export const adviceArticles: AdviceArticle[] = [
           },
           {
             "href": "/toenail-cutting-bristol",
-            "label": "Toenail cutting at home",
+            "label": "Toenail cutting at home in Bristol",
+            "kind": "service"
+          },
+          {
+            "href": "/toenail-cutting-southampton",
+            "label": "Toenail cutting at home in Southampton",
             "kind": "service"
           }
         ]
@@ -754,7 +764,12 @@ export const adviceArticles: AdviceArticle[] = [
           },
           {
             "href": "/toenail-cutting-bristol",
-            "label": "Toenail cutting at home",
+            "label": "Toenail cutting at home in Bristol",
+            "kind": "service"
+          },
+          {
+            "href": "/toenail-cutting-southampton",
+            "label": "Toenail cutting at home in Southampton",
             "kind": "service"
           }
         ]
@@ -846,7 +861,7 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "what-happens-home-foot-health-appointment",
     "title": "What Happens During a Home Foot Health Appointment?",
     "shortTitle": "Your home nail and foot-care appointment",
-    "description": "What to expect from a Foot+ Bristol home visit: arranging your appointment, nail and skin care, prices and aftercare.",
+    "description": "What to expect from a Foot+ home visit: arranging your appointment, nail and skin care, prices and aftercare.",
     "category": "Home foot-care appointments",
     "authorId": "adam-james",
     "datePublished": "2026-07-13",
@@ -881,8 +896,8 @@ export const adviceArticles: AdviceArticle[] = [
         ],
         "links": [
           {
-            "href": "/forms?location=bristol",
-            "label": "Bristol patient form",
+            "href": "/forms",
+            "label": "Patient form",
             "kind": "forms"
           }
         ]
@@ -898,6 +913,11 @@ export const adviceArticles: AdviceArticle[] = [
           {
             "href": "/toenail-cutting-bristol",
             "label": "Toenail cutting at home in Bristol",
+            "kind": "service"
+          },
+          {
+            "href": "/toenail-cutting-southampton",
+            "label": "Toenail cutting at home in Southampton",
             "kind": "service"
           },
           {
@@ -1180,7 +1200,7 @@ export const adviceArticles: AdviceArticle[] = [
       },
       {
         "href": "/",
-        "label": "Foot Health Practitioner Bristol",
+        "label": "Foot Health Practitioner",
         "kind": "service"
       },
       {
@@ -1273,7 +1293,7 @@ export const adviceArticles: AdviceArticle[] = [
       "links": [
         {
           "href": "/toenail-cutting-bristol",
-          "label": "Toenail cutting at home",
+          "label": "Toenail cutting at home in Bristol",
           "kind": "service"
         },
         {
@@ -1504,6 +1524,11 @@ export const adviceArticles: AdviceArticle[] = [
           "kind": "service"
         },
         {
+          "href": "/toenail-cutting-southampton",
+          "label": "Toenail cutting at home in Southampton",
+          "kind": "service"
+        },
+        {
           "href": "/prices",
           "label": "Prices",
           "kind": "pricing"
@@ -1553,7 +1578,7 @@ export const draftAdviceArticles = adviceArticles.filter((a) => !a.isPublished |
 export function getAdviceArticle(slug: string) { return publishedAdviceArticles.find((a) => a.slug === slug); }
 
 // End-of-article "next step" for commercially relevant guides: the most
-// relevant Bristol treatment page and, only where booking is a natural next
+// relevant treatment pages and, only where booking is a natural next
 // step, a home-visit request link. Omit bookingHref where a direct booking
 // prompt could compete with diagnostic or safety advice.
 export type AdviceNextStep = {
@@ -1562,24 +1587,33 @@ export type AdviceNextStep = {
   treatments: { href: string; label: string }[];
   bookingHref?: string;
 };
-const nailBooking = "/book?location=bristol&service=nails";
+const nailBooking = "/book?service=nails";
 export const adviceNextSteps: Record<string, AdviceNextStep> = {
   "why-toenails-are-difficult-to-cut": {
-    heading: "Toenail cutting at home in Bristol",
+    heading: "Toenail cutting at home",
     summary: "If cutting your own toenails has become difficult, Foot+ provides careful routine toenail cutting and filing during a home visit.",
-    treatments: [{ href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" }],
+    treatments: [
+      { href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" },
+      { href: "/toenail-cutting-southampton", label: "Toenail cutting in Southampton" },
+    ],
     bookingHref: nailBooking,
   },
   "thickened-toenails-causes-treatment-and-when-to-worry": {
-    heading: "Thickened-nail care at home in Bristol",
-    summary: "Where suitable, Foot+ can trim and conservatively reduce thickened toenails during a home visit. Routine care manages the nail; it does not diagnose or cure an underlying cause.",
-    treatments: [{ href: "/toenail-cutting-bristol#thickened-nails", label: "Thickened-nail care in Bristol" }],
+    heading: "Thickened-nail care at home",
+    summary: "Where suitable, Foot+ can trim and conservatively reduce thickened toenails during a home visit.",
+    treatments: [
+      { href: "/toenail-cutting-bristol", label: "Thickened-nail care in Bristol" },
+      { href: "/toenail-cutting-southampton", label: "Thickened-nail care in Southampton" },
+    ],
     bookingHref: nailBooking,
   },
   "how-often-older-adults-should-cut-toenails": {
-    heading: "Routine toenail care at home in Bristol",
+    heading: "Routine toenail care at home",
     summary: "Foot+ provides routine toenail cutting at home, which can help when reach, eyesight or hand strength make home cutting harder.",
-    treatments: [{ href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" }],
+    treatments: [
+      { href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" },
+      { href: "/toenail-cutting-southampton", label: "Toenail cutting in Southampton" },
+    ],
     bookingHref: nailBooking,
   },
   "corn-callus-or-verruca": {
@@ -1613,7 +1647,7 @@ export function adviceMetadata(article: AdviceArticle): Metadata {
     openGraph: {
       type: "article",
       url,
-      siteName: "Foot+ Bristol",
+      siteName: "Foot+",
       title,
       description: article.description,
       images: [ADVICE_SOCIAL_IMAGE_METADATA],
