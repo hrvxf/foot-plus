@@ -55,6 +55,13 @@ const focusRingLight = "focus-visible:outline-[3px] focus-visible:outline-offset
 const noRequestButton = (pathname: string) =>
   pathname === "/" || pathname.startsWith("/book") || pathname.startsWith("/forms");
 
+/**
+ * Pages that end with their own closing section (the location pages' "Say hello" section), which carries the
+ * small print itself. The footer pill and band are left out there, and the header stays.
+ */
+export const hasOwnClose = (pathname: string) =>
+  pathname === "/locations/bristol" || pathname === "/locations/southampton";
+
 const isActive = (pathname: string, href: string) => (href === "/locations" ? pathname.startsWith(href) : pathname === href);
 
 type State = "still" | "waiting" | "landed";
@@ -130,6 +137,8 @@ export default function Footer() {
       window.removeEventListener("keydown", onKey);
     };
   }, [isMenuOpen]);
+
+  if (hasOwnClose(pathname)) return null;
 
   const close = () => setIsMenuOpen(false);
   const location = phoneLocationForPath(pathname);
@@ -265,39 +274,46 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-2.5 flex max-w-[72rem] items-center justify-between gap-4 px-1 text-[0.78125rem] text-brand-line md:mt-3 md:px-6">
-        <div className="flex items-center gap-2">
-          <a
-            href="https://www.facebook.com/profile.php?id=61586341484139"
-            target="_blank"
-            rel="noreferrer"
-            className={`-ml-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 ${focusRingLight}`}
-            aria-label="Visit Foot+ on Facebook"
-            title="Foot+ on Facebook"
-            data-analytics-id="footer-facebook"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-brand-offwhite">
-              <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
-            </svg>
-          </a>
-          <LgbtqFriendly flagOnly />
-          <p className="ml-1 whitespace-nowrap">&copy; {new Date().getFullYear()} Foot+</p>
-        </div>
-        <nav aria-label="Legal links">
-          <ul className="flex gap-x-3">
-            {legalLinks.map((item) => (
-              <li key={item.href}>
-                <Link className={`inline-flex min-h-9 items-center text-brand-offwhite hover:text-white hover:underline hover:underline-offset-4 ${focusRingLight}`} href={item.href}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <CookieSettingsButton className={`inline-flex min-h-9 items-center text-brand-offwhite hover:text-white hover:underline hover:underline-offset-4 ${focusRingLight}`} />
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <SmallPrint className="mt-2.5 md:mt-3" />
     </footer>
+  );
+}
+
+/** The small print row: Facebook, the Pride flag, copyright, Privacy, Terms, Cookies. Light, for green backgrounds. */
+export function SmallPrint({ className = "" }: { className?: string }) {
+  return (
+    <div className={`mx-auto flex max-w-[72rem] items-center justify-between gap-4 px-1 text-[0.78125rem] text-brand-line md:px-6 ${className}`}>
+      <div className="flex items-center gap-2">
+        <a
+          href="https://www.facebook.com/profile.php?id=61586341484139"
+          target="_blank"
+          rel="noreferrer"
+          className={`-ml-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 ${focusRingLight}`}
+          aria-label="Visit Foot+ on Facebook"
+          title="Foot+ on Facebook"
+          data-analytics-id="footer-facebook"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-brand-offwhite">
+            <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
+          </svg>
+        </a>
+        <LgbtqFriendly flagOnly />
+        <p className="ml-1 whitespace-nowrap">&copy; {new Date().getFullYear()} Foot+</p>
+      </div>
+      <nav aria-label="Legal links">
+        <ul className="flex gap-x-3">
+          {legalLinks.map((item) => (
+            <li key={item.href}>
+              <Link className={`inline-flex min-h-9 items-center text-brand-offwhite hover:text-white hover:underline hover:underline-offset-4 ${focusRingLight}`} href={item.href}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <CookieSettingsButton className={`inline-flex min-h-9 items-center text-brand-offwhite hover:text-white hover:underline hover:underline-offset-4 ${focusRingLight}`} />
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 }
