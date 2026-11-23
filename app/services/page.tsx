@@ -191,7 +191,7 @@ function Scope() {
 
 function ChooseArea() {
   return (
-    <section className="mx-auto max-w-xl px-[18px] pb-10 pt-12 text-center md:pb-14" aria-labelledby="area-heading">
+    <section className="mx-auto max-w-xl px-[18px] pb-14 pt-12 text-center md:pb-[4.5rem]" aria-labelledby="area-heading">
       <p className={eyebrow}>Who&rsquo;s visiting?</p>
       <h2 id="area-heading" className={`${headline} mt-2.5 text-[2.125rem] leading-[1.06] md:text-5xl`}>
         Choose your <span className="text-brand-sage">area.</span>
