@@ -73,7 +73,7 @@ export default function SouthamptonLocationPage() {
 
       <TreatmentsMarquee id="southampton-services" place="Southampton" />
 
-      <CoverageWall id="southampton-coverage" source="southampton" summary="Southampton and nearby, including Romsey, Chandler’s Ford and Totton." places={coveragePlaces.southampton} />
+      <CoverageWall id="southampton-coverage" source="southampton" summary="Southampton and nearby." places={coveragePlaces.southampton} />
 
       <VisitChat id="southampton-process" practitioner="Katie" place="Romsey" replies="Replies within 24 hours by phone or email." />
 

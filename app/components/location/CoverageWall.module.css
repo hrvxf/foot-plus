@@ -1,0 +1,4 @@
+/* The wall's names are drawn from data-place, so the repeated wall isn't page text (see CoverageWall.tsx). */
+.name::before {
+  content: attr(data-place);
+}
