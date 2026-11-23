@@ -15,7 +15,9 @@ const SCREENS = 3;
 /**
  * Home hero: a statement that builds as you scroll. On phones the section pins and each line lights up in
  * turn, ending on the sage "Just good foot care, at home." Desktop and reduced motion show it all lit,
- * without pinning. The page's h1 is kept for search but visually hidden.
+ * without pinning. The statement sits near the top rather than centred, so the first line, not empty cream,
+ * is what shows under the header (the sticky phone bar covers the foot of the screen). The page's h1 is kept
+ * for search but visually hidden.
  */
 export default function StatementHero() {
   const track = useRef<HTMLDivElement>(null);
@@ -79,7 +81,7 @@ export default function StatementHero() {
       <div ref={track} style={pinned && height ? { height: SCREENS * (height - HEADER) } : undefined}>
         <div
           data-hero-stage
-          className={`relative overflow-hidden ${pinned ? "sticky top-[84px] flex flex-col justify-center" : "py-20 md:py-28"}`}
+          className={`relative overflow-hidden ${pinned ? "sticky top-[84px] flex flex-col justify-start pt-10" : "pt-10 pb-16 md:pt-20 md:pb-24"}`}
           style={pinned && height ? { height: height - HEADER } : undefined}
         >
           <Snowfall />
