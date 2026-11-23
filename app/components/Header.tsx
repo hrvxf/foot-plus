@@ -74,10 +74,15 @@ export default function Header() {
     { label: "About", href: "/about", active: pathname === "/about" },
   ];
 
-  // Draw the logo once, on the page the visitor lands on (still static when landing
-  // on the home page, as before). The header persists across navigations,
-  // so freezing this at first render stops the logo redrawing on every click.
-  const [shouldAnimateLogo] = useState(() => pathname !== "/");
+  // The "Footsteps" entry animation (CSS in globals.css) plays while <html data-intro>
+  // is set. Its last step ends at 2.1s; clear the switch just after so the header's
+  // own states (glass, small, menu open) take over again.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (!root.hasAttribute("data-intro")) return;
+    const timer = window.setTimeout(() => root.removeAttribute("data-intro"), 2600);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   // Patients reach /forms after they have already enquired (usually from a WhatsApp
   // follow-up). Hide "Request a visit" there so they don't submit a second enquiry.
@@ -108,12 +113,12 @@ export default function Header() {
         <nav className="flex h-[60px] items-center justify-between gap-2 pl-[18px] pr-2 md:pl-6" aria-label="Main">
           <Link href="/" className={`flex shrink-0 items-center rounded-lg ${focusRing}`} aria-label="Foot+ home" onClick={close}>
             <div data-header-logo className="relative h-[34px] w-[106px] text-brand-sageDark md:h-[38px] md:w-[120px]">
-              <AnimatedFootPlusLogo className="h-full w-full" animate={shouldAnimateLogo} yieldToIntro />
+              <AnimatedFootPlusLogo className="h-full w-full" animate={false} />
             </div>
           </Link>
 
           {/* Desktop */}
-          <div className="hidden items-center gap-1 md:flex lg:gap-3">
+          <div className="hidden items-center gap-1 md:flex lg:gap-3" data-intro-fade>
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -150,7 +155,7 @@ export default function Header() {
           </div>
 
           {/* Phones */}
-          <div className="flex items-center gap-1.5 md:hidden">
+          <div className="flex items-center gap-1.5 md:hidden" data-intro-fade>
             <CallButton
               className={`site-pill-call ${round} bg-brand-wash text-brand-sageDeep hover:bg-brand-line`}
               label="Call Foot+"
