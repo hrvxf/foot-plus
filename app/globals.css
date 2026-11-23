@@ -39,7 +39,16 @@ body {
   --safe-area-left: env(safe-area-inset-left, 0px);
 }
 
+/* No rubber-band scrolling past the ends of the page (iOS Safari 16+, Chrome), so the footer stays put at the
+   bottom. Where a browser still bounces, the space it reveals is the footer's green at the bottom and the page's
+   cream at the top, so the footer just looks taller rather than lifting off the page. */
+html {
+  overscroll-behavior-y: none;
+  background: linear-gradient(to bottom, var(--color-brand-offwhite) 50%, var(--color-brand-sageDeep) 50%);
+}
+
 body {
+  overscroll-behavior-y: none;
   background-color: var(--color-brand-offwhite);
   color: var(--color-brand-charcoal);
   font-family: var(--font-body);
