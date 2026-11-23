@@ -1,18 +1,28 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
 
+import StandardsSpotlight from "../about/StandardsSpotlight";
 import PostcodeChecker from "../home/PostcodeChecker";
-import ContactIcons from "./ContactIcons";
-import { FaqList } from "./blocks";
+import { portraits } from "./blocks";
 import MobileActions from "./MobileActions";
-import { btnPrimary, container, h2, textLink } from "./ui";
-import { isPublishedAdviceHref } from "../../lib/advice";
+import { ContactRow, FaqCards, PriceTickets } from "./statement";
+import { focusRing, texturedGreen } from "./ui";
+import { getAdviceArticle } from "../../lib/advice";
+import { serviceLocations } from "../../lib/locations";
 import { BUSINESS_ID, emailHref, phoneDisplay, phoneHref, prices, SITE_URL } from "../../lib/site";
 import { treatments, treatmentUrl, type Treatment } from "../../lib/treatments";
 
 // Location-neutral treatment page (corns, hard skin and callus, cracked
-// heels). Same structure as the toenail cutting pages, without a town.
+// heels). Same "Statement" layout as the toenail cutting pages, without a town.
+
+const amberEdge = "shadow-[0_0_0_1px_var(--color-brand-line),inset_4px_0_0_#B08A3E]";
+
+/** "Corn treatment at home" → ["Corn treatment", "at home."]: the second line takes the brand green. */
+function headingLines(title: string): [string, string] {
+  const match = title.match(/^(.*?)\s+(at home)$/i);
+  return match ? [match[1], `${match[2]}.`] : [title, ""];
+}
 
 const socialImage = { url: "/images/social-card-v2.jpg", width: 1200, height: 630, alt: "Foot+: foot care that comes to you, in Bristol and Southampton" };
 
@@ -76,124 +86,179 @@ function schemaFor(treatment: Treatment) {
 export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
   const analytics = `treatment-${treatment.slug}`;
   const others = treatments.filter((item) => item.slug !== treatment.slug);
-  const guide = treatment.guide && isPublishedAdviceHref(treatment.guide.href) ? treatment.guide : undefined;
+  const guideSlug = treatment.guide?.href.replace(/^\/advice\//, "");
+  const guide = guideSlug ? getAdviceArticle(guideSlug) : undefined;
+  const [first, second] = headingLines(treatment.title);
+  const [lead, ...more] = treatment.about;
+  const contactActions = [
+    { kind: "phone" as const, href: phoneHref, label: `Call Foot+ on ${phoneDisplay}`, analyticsId: `${analytics}-phone` },
+    { kind: "email" as const, href: emailHref, label: "Email Foot+", analyticsId: `${analytics}-email` },
+  ];
+  const chip = `inline-flex min-h-11 items-center rounded-full bg-white px-4 text-[0.9375rem] font-medium text-brand-charcoal shadow-[0_0_0_1.5px_var(--color-brand-line)] transition-colors hover:bg-brand-wash ${focusRing}`;
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFor(treatment)) }} />
 
-      <section className="border-b border-brand-line bg-brand-wash">
-        <div className={`${container} py-8 md:py-14`}>
-          <nav aria-label="Breadcrumb" className="text-sm text-brand-muted">
-            <Link href="/services" className={textLink}>
-              Services
-            </Link>
-            <span aria-hidden="true"> / </span>
-            <span aria-current="page">{treatment.name}</span>
-          </nav>
-          <div className="mt-8 md:mt-10">
-            <div>
-              <h1 className="font-heading text-4xl font-semibold leading-[1.1] text-brand-sageDeep sm:text-5xl">
-                {treatment.title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-brand-muted">{treatment.intro}</p>
-              <p className="mt-2 text-base text-brand-muted">Home visits in Bristol and Southampton.</p>
-              <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-                <Link href="/book" className={btnPrimary} data-analytics-id={`${analytics}-hero-book`}>
-                  Request a visit
-                </Link>
-                <ContactIcons
-                  actions={[
-                    { kind: "phone", href: phoneHref, label: `Call Foot+ on ${phoneDisplay}`, analyticsId: `${analytics}-phone` },
-                    { kind: "email", href: emailHref, label: "Email Foot+", analyticsId: `${analytics}-email` },
-                  ]}
-                />
-              </div>
-              <p className="mt-5 text-base text-brand-muted">
-                Visits from {prices[1].price}.{" "}
-                <Link href="/prices" className={textLink}>
-                  See prices
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={`${container} grid gap-10 py-12 md:grid-cols-2 md:gap-14 md:py-16`}>
-        <div>
-          <h2 className={h2}>What it is</h2>
-          {treatment.about.map((paragraph) => (
-            <p key={paragraph} className="mt-4 leading-relaxed text-brand-muted">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-        <div>
-          <h2 className={h2}>What we do</h2>
-          <ul className="mt-4 grid gap-3">
-            {treatment.care.map((item) => (
-              <li key={item} className="flex gap-3 leading-relaxed text-brand-muted">
-                <Check className="mt-1 h-5 w-5 shrink-0 text-brand-sage" aria-hidden="true" />
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-5 text-sm leading-relaxed text-brand-muted">{treatment.safety}</p>
-        </div>
-      </section>
-
-      <section className="border-y border-brand-line bg-brand-wash">
-        <div className={`${container} grid gap-10 py-12 md:grid-cols-2 md:py-16`}>
-          <div>
-            <h2 className={h2}>Who visits</h2>
-            <p className="mt-4 leading-relaxed text-brand-muted">
-              Adam James in Bristol and Katie Preston in Southampton. Both are diploma-trained Foot Health Practitioners,
-              insured, DBS checked and using sterilised instruments.
-            </p>
-            <Link href="/about" className={`${textLink} mt-4 inline-block`}>
-              About our practitioners
-            </Link>
-          </div>
-          <div>
-            <h2 className={h2}>Do we visit you?</h2>
-            <div className="mt-4">
-              <PostcodeChecker tone="panel" source={analytics} label="Postcode for the visit" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={`${container} py-12 md:py-16`} aria-labelledby="treatment-faq-heading">
-        <h2 id="treatment-faq-heading" className={h2}>
-          Questions
-        </h2>
-        <FaqList faqs={treatment.faqs} className="mt-6" />
-        <p className="mt-8 text-sm leading-relaxed text-brand-muted">
-          {guide ? (
-            <>
-              Guide:{" "}
-              <Link href={guide.href} className={textLink}>
-                {guide.label}
+      <section className="px-6 pb-9 pt-8 text-center md:pt-14" aria-labelledby="treatment-heading">
+        <nav aria-label="Breadcrumb" className="mb-3.5 text-[0.8125rem] text-brand-muted">
+          <ol className="flex justify-center gap-1.5">
+            <li>
+              <Link href="/services" className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
+                Services
               </Link>
-              <span aria-hidden="true"> · </span>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page">{treatment.name}</li>
+          </ol>
+        </nav>
+        <h1
+          id="treatment-heading"
+          className="font-heading text-[2.5rem] font-bold leading-[1.05] tracking-[-0.03em] text-brand-charcoal md:text-7xl"
+        >
+          {first}
+          {second ? (
+            <>
+              <br />
+              <span className="text-brand-sage">{second}</span>
             </>
           ) : null}
-          Also:{" "}
-          {others.map((item, index) => (
-            <span key={item.slug}>
-              {index ? " · " : null}
-              <Link href={`/${item.slug}`} className={textLink}>
+        </h1>
+        <p className="mx-auto mt-3 max-w-[36ch] text-[1.0625rem] leading-[1.55] text-brand-muted md:text-lg">
+          {treatment.intro} Home visits in Bristol and Southampton.
+        </p>
+        <div className="mx-auto mt-6 max-w-sm">
+          <Link
+            href="/book"
+            className={`flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+            data-analytics-id={`${analytics}-hero-book`}
+          >
+            Request a visit
+          </Link>
+          <ContactRow actions={contactActions} />
+        </div>
+      </section>
+
+      <section
+        className={`mx-3 rounded-[28px] px-6 py-9 text-center sm:mx-auto sm:max-w-xl ${texturedGreen}`}
+        aria-labelledby="about-heading"
+      >
+        <h2 id="about-heading" className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
+          What it is
+        </h2>
+        <p className="mt-3 font-heading text-[1.375rem] font-semibold leading-[1.3] tracking-[-0.02em]">{lead}</p>
+        {more.map((paragraph) => (
+          <p key={paragraph} className="mt-3 text-[0.9375rem] leading-[1.6] text-white/85">
+            {paragraph}
+          </p>
+        ))}
+      </section>
+
+      <section className="mx-auto max-w-2xl px-[22px] pb-4 pt-12 text-center md:pt-16" aria-labelledby="visit-heading">
+        <h2 id="visit-heading" className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
+          At your visit
+        </h2>
+        <StandardsSpotlight standards={treatment.care.map((title) => ({ title }))} />
+        <aside className={`mx-auto mt-5 max-w-md rounded-[22px] bg-white px-5 py-[18px] text-left ${amberEdge}`}>
+          <h3 className="font-heading text-base font-semibold text-brand-charcoal">Safety first</h3>
+          <p className="mt-1.5 text-sm leading-[1.55] text-brand-muted">{treatment.safety}</p>
+        </aside>
+      </section>
+
+      <section className="px-[18px] pt-10 text-center md:pt-14" aria-labelledby="who-heading">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">Who visits</p>
+        <h2
+          id="who-heading"
+          className="mt-2.5 font-heading text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] text-brand-charcoal md:text-5xl"
+        >
+          Your practitioner
+          <br />
+          <span className="text-brand-sage">comes to you.</span>
+        </h2>
+        <p className="mx-auto mt-3 max-w-[34ch] text-[0.9375rem] leading-[1.5] text-brand-muted">
+          Diploma-trained Foot Health Practitioners. Insured, DBS checked and using sterilised instruments.
+        </p>
+        <ul className="mx-auto mt-5 flex max-w-md gap-2.5">
+          {(["bristol", "southampton"] as const).map((slug) => {
+            const location = serviceLocations[slug];
+            const practitioner = location.practitioner!;
+            return (
+              <li key={slug} className="flex-1">
+                <Link
+                  href={location.href}
+                  className={`flex h-full flex-col items-center rounded-3xl bg-white px-3 py-4 shadow-[0_0_0_1px_var(--color-brand-line)] transition-colors hover:bg-brand-wash ${focusRing}`}
+                  data-analytics-id={`${analytics}-who-${slug}`}
+                >
+                  <Image
+                    src={portraits[slug]}
+                    alt=""
+                    width={144}
+                    height={144}
+                    className="h-[72px] w-[72px] rounded-full bg-white object-cover object-[center_15%] shadow-[0_0_0_3px_#fff,0_0_0_4px_var(--color-brand-line)]"
+                  />
+                  <span className="mt-2.5 font-heading text-base font-semibold tracking-[-0.02em] text-brand-charcoal">
+                    {practitioner.name.split(" ")[0]}
+                  </span>
+                  <span className="text-[0.8125rem] text-brand-muted">{location.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <PriceTickets className="mt-7" />
+
+      <section
+        className="mx-3.5 mt-4 rounded-3xl bg-white p-5 text-center shadow-[0_18px_40px_-26px_rgba(36,48,40,0.45),0_0_0_1px_var(--color-brand-line)] sm:mx-auto sm:max-w-md"
+        aria-label="Do we visit you?"
+      >
+        <PostcodeChecker
+          tone="compact"
+          source={analytics}
+          bookLocation={null}
+          title="Do we visit you?"
+          label="Postcode for the visit"
+        />
+      </section>
+
+      <FaqCards faqs={treatment.faqs} headingId="treatment-faq-heading" />
+
+      <section className="px-[18px] pb-16 pt-10 text-center md:pb-24" aria-labelledby="more-heading">
+        {guide ? (
+          <Link
+            href={`/advice/${guide.slug}`}
+            className={`mx-auto mb-9 flex max-w-md flex-col rounded-[22px] bg-brand-wash px-5 pb-[18px] pt-5 text-left transition-colors hover:bg-brand-line ${focusRing}`}
+          >
+            <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-brand-sage">Guide</span>
+            <span className="mt-2 font-heading text-[1.1875rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-charcoal">
+              {guide.shortTitle}
+            </span>
+            <span className="mt-2.5 text-[0.84375rem] font-semibold text-brand-sageDeep">
+              Read <span aria-hidden="true">→</span>
+            </span>
+          </Link>
+        ) : null}
+        <h2 id="more-heading" className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
+          Also at home
+        </h2>
+        <ul className="mx-auto mt-3.5 flex max-w-md flex-wrap justify-center gap-2">
+          {others.map((item) => (
+            <li key={item.slug}>
+              <Link href={`/${item.slug}`} className={chip}>
                 {item.name}
               </Link>
-            </span>
+            </li>
           ))}
-          <span aria-hidden="true"> · </span>
-          <Link href="/toenail-cutting" className={textLink}>
-            Toenail cutting
-          </Link>
+          <li>
+            <Link href="/toenail-cutting" className={chip}>
+              Toenail cutting
+            </Link>
+          </li>
+        </ul>
+        <p className="mt-8 text-xs text-brand-muted">
+          Reviewed by Adam James, Foot Health Practitioner, {treatment.lastReviewed}.
         </p>
-        <p className="mt-3 text-sm text-brand-muted">Reviewed by Adam James, Foot Health Practitioner, {treatment.lastReviewed}.</p>
       </section>
 
       <MobileActions analyticsId={analytics} />
