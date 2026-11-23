@@ -486,3 +486,27 @@ body:has([data-fullscreen-page]) .entry-animation-logo {
     animation: none;
   }
 }
+
+/* /forms: the patient form slides up over the page, and back down when closed. */
+.patient-form-sheet {
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 0s linear 0.35s;
+}
+
+.patient-form-sheet.is-open {
+  transform: none;
+  visibility: visible;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-form-sheet,
+  .patient-form-sheet.is-open {
+    transition: none;
+  }
+}

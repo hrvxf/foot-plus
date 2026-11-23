@@ -7,7 +7,7 @@ import { portraits } from "../components/site/blocks";
 import { focusRing } from "../components/site/ui";
 import { serviceLocations } from "../lib/locations";
 import { emailHref, locationEmails, locationPhones, phoneDisplay, phoneHref, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
-import SplosePatientForm from "./SplosePatientForm";
+import PatientFormLauncher from "./PatientFormLauncher";
 
 const splosePatientFormUrl =
   "https://foot-plus.splose.com/public-form/e373fa16-a7c8-4138-a4fb-c2b9b8a1aa7d";
@@ -190,15 +190,18 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
         <Journey />
       </div>
 
-      <div className="mx-auto mt-6 max-w-3xl px-3 sm:px-6">
-        <SplosePatientForm
+      <div className="mx-auto mt-8 max-w-sm px-[22px]">
+        <PatientFormLauncher
           formUrl={splosePatientFormUrl}
           title={splosePatientFormTitle}
           contactHref={emailHref}
+          callHref={phoneHref}
+          callLabel="Call Adam"
+          analyticsId="forms-start-bristol"
         />
       </div>
 
-      <div className="mx-3 mt-5 flex items-center gap-3.5 rounded-[26px] bg-brand-sageDark p-5 text-white sm:mx-auto sm:max-w-md">
+      <div className="mx-3 mt-8 flex items-center gap-3.5 rounded-[26px] bg-brand-sageDark p-5 text-white sm:mx-auto sm:max-w-md">
         <Image
           src={portraits.bristol}
           alt=""

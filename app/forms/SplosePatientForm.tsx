@@ -10,11 +10,13 @@ export type SplosePatientFormProps = {
   formUrl: string;
   title: string;
   contactHref: string;
+  /** Fill the parent (the full-screen sheet) instead of the fixed-height card. */
+  fill?: boolean;
 };
 
 type FormStatus = "loading" | "loaded" | "timeout" | "error";
 
-export default function SplosePatientForm({ formUrl, title, contactHref }: SplosePatientFormProps) {
+export default function SplosePatientForm({ formUrl, title, contactHref, fill = false }: SplosePatientFormProps) {
   const [status, setStatus] = useState<FormStatus>("loading");
   const [retryCount, setRetryCount] = useState(0);
   const loadedRef = useRef(false);
@@ -35,8 +37,14 @@ export default function SplosePatientForm({ formUrl, title, contactHref }: Splos
   const showFallbackActions = status === "timeout" || status === "error";
 
   return (
-    <div className="overflow-hidden rounded-[22px] bg-white shadow-[0_0_0_1px_var(--color-brand-line)] sm:rounded-[28px] sm:p-4">
-      <div className={`${styles.formShell} relative bg-brand-offwhite`}>
+    <div
+      className={
+        fill
+          ? "h-full bg-white"
+          : "overflow-hidden rounded-[22px] bg-white shadow-[0_0_0_1px_var(--color-brand-line)] sm:rounded-[28px] sm:p-4"
+      }
+    >
+      <div className={`${fill ? "h-full" : styles.formShell} relative bg-brand-offwhite`}>
         <iframe
           key={retryCount}
           src={formUrl}
