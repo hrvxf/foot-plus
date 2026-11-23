@@ -102,14 +102,11 @@ function Hero() {
   return (
     <section aria-labelledby="services-heading" className="pt-7 md:pt-12">
       <div className="px-6 text-center">
-        <h1 id="services-heading" className={`${headline} text-[2.75rem] leading-[1.04] md:text-7xl`}>
-          Nails. Skin.
+        <h1 id="services-heading" className={`${headline} mb-7 text-[2.75rem] leading-[1.04] md:text-7xl`}>
+          Foot care,
           <br />
-          <span className="text-brand-sage">At home.</span>
+          <span className="text-brand-sage">in your own chair.</span>
         </h1>
-        <p className="mx-auto mb-7 mt-4 max-w-[34ch] text-[1.0625rem] leading-[1.55] text-brand-muted md:text-lg">
-          Routine foot care from a qualified Foot Health Practitioner.
-        </p>
       </div>
       <ServiceDeck services={serviceDetails} />
     </section>
