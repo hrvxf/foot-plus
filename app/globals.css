@@ -216,11 +216,12 @@ html[data-intro] .site-pill {
 html[data-intro] [data-intro-fade] {
   animation: intro-fade 500ms cubic-bezier(0.22, 1, 0.36, 1) 1.6s both;
 }
-/* The page itself waits for the header, then fades in. Opacity only: a transform
+/* The page fades in as the header forms, fully shown by 2s (kept short for
+   Largest Contentful Paint). Opacity only: a transform
    on <main> would carry the fixed mobile Request / Call bar with it. */
 html[data-intro] body > main,
 html[data-intro] body > footer {
-  animation: intro-page 600ms cubic-bezier(0.22, 1, 0.36, 1) 1.9s both;
+  animation: intro-page 500ms cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
 }
 html[data-intro] [data-header-logo] svg {
   overflow: visible;
