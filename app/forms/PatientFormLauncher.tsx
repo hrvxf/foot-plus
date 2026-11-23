@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Phone, X } from "lucide-react";
+import { X } from "lucide-react";
 
 import { focusRing } from "../components/site/ui";
 import SplosePatientForm from "./SplosePatientForm";
@@ -17,16 +17,11 @@ export default function PatientFormLauncher({
   formUrl,
   title,
   contactHref,
-  callHref,
-  callLabel,
   analyticsId,
 }: {
   formUrl: string;
   title: string;
   contactHref: string;
-  callHref: string;
-  /** e.g. "Call Adam" */
-  callLabel: string;
   analyticsId: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -104,21 +99,19 @@ export default function PatientFormLauncher({
           inert={!open}
           className={`patient-form-sheet fixed inset-0 z-50 flex flex-col bg-brand-offwhite ${open ? "is-open" : ""}`}
         >
-          <div className="flex shrink-0 items-center justify-between gap-2 border-b border-brand-line bg-white px-3 pb-2.5 pt-[calc(env(safe-area-inset-top)+10px)]">
+          {/* Close on the left, title centred; the empty right column keeps the title in the middle. */}
+          <div className="grid shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-2 border-b border-brand-line bg-white px-3 pb-2.5 pt-[calc(env(safe-area-inset-top)+10px)]">
             <button
               ref={closeButton}
               type="button"
               onClick={closeForm}
-              className={`${round} bg-brand-wash px-4 text-brand-sageDeep hover:bg-brand-line`}
+              className={`${round} justify-self-start bg-brand-wash px-4 text-brand-sageDeep hover:bg-brand-line`}
             >
               <X className="h-5 w-5" aria-hidden="true" />
               Close
             </button>
             <p className="truncate font-heading text-base font-semibold text-brand-charcoal">Patient form</p>
-            <a href={callHref} className={`${round} bg-brand-sageDark px-4 text-white hover:bg-brand-sageDeep`}>
-              <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
-              {callLabel}
-            </a>
+            <span aria-hidden="true" />
           </div>
           <div className="min-h-0 flex-1">
             <SplosePatientForm formUrl={formUrl} title={title} contactHref={contactHref} fill />
