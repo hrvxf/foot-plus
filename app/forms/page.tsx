@@ -195,13 +195,11 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
           formUrl={splosePatientFormUrl}
           title={splosePatientFormTitle}
           contactHref={emailHref}
-          callHref={phoneHref}
-          callLabel="Call Adam"
           analyticsId="forms-start-bristol"
         />
       </div>
 
-      <div className="mx-3 mt-8 flex items-center gap-3.5 rounded-[26px] bg-brand-sageDark p-5 text-white sm:mx-auto sm:max-w-md">
+      <div className="mx-3 mt-8 flex items-center gap-3.5 rounded-[26px] bg-white p-5 shadow-[0_0_0_1.5px_var(--color-brand-line)] sm:mx-auto sm:max-w-md">
         <Image
           src={portraits.bristol}
           alt=""
@@ -209,11 +207,11 @@ export default async function FormsPage({ searchParams }: FormsPageProps) {
           height={116}
           className={`h-[58px] w-[58px] shrink-0 ${portraitRing}`}
         />
-        <p className="text-[0.9375rem] leading-[1.45] text-white/90">
+        <p className="text-[0.9375rem] leading-[1.45] text-brand-muted">
           Stuck, or filling it in for someone else? Call me on{" "}
           <a
             href={phoneHref}
-            className={`rounded font-semibold text-white underline decoration-white/40 underline-offset-[3px] ${focusRing}`}
+            className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}
           >
             {phoneDisplay}
           </a>
