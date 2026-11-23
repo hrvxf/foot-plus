@@ -69,10 +69,10 @@ export default function PartnersPage() {
           </Link>
           <p className="mt-3">
             <Link
-              href="/care-homes-bristol"
+              href="/supported-living-foot-care"
               className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-brand-sageDeep ${focusRing}`}
             >
-              Care homes and supported living in Bristol <span aria-hidden="true">→</span>
+              Supported living and care homes <span aria-hidden="true">→</span>
             </Link>
           </p>
         </section>

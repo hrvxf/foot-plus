@@ -4,13 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-// Two-way switch between /services (families and individuals) and
-// /care-homes-bristol. Each side is a real link, so both pages keep their own
+// Two-way switch between /services (families and individuals) and the care settings page,
+// /supported-living-foot-care. Each side is a real link, so both pages keep their own
 // URL, title and search listing. The thumb slides before the page changes, and
 // the colours follow each page's palette (sage for services, slate for care).
 const options = [
   { href: "/services", label: "For individuals" },
-  { href: "/care-homes-bristol", label: "For care homes" },
+  { href: "/supported-living-foot-care", label: "For care settings" },
 ] as const;
 
 export default function AudienceSwitch() {
