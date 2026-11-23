@@ -44,6 +44,14 @@ export type Review = {
   highlight?: string;
 };
 
+/**
+ * Review shown on /care-homes-bristol, under Adam's quote. Empty until the
+ * reviewer agrees to it being used there (Sheena B.'s review mentions her son's
+ * learning disability; Adam asked her on 23 Nov 2026). Paste her exact words in
+ * once she says yes; the section stays hidden while this is null.
+ */
+export const careSettingsReview: Review | null = null;
+
 export type ReviewLocation = "bristol" | "southampton";
 export type ReviewScope = ReviewLocation | "all";
 
