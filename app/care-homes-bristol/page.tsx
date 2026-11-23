@@ -4,10 +4,10 @@ import Link from "next/link";
 
 import VisitDeck, { type VisitStep } from "../components/care/VisitDeck";
 import { portraits } from "../components/site/blocks";
-import MobileActions from "../components/site/MobileActions";
+import MessageClose from "../components/location/MessageClose";
 import { focusRing } from "../components/site/ui";
 import { careSettingsReview, formatReviewMonth } from "../lib/reviews";
-import { BRISTOL_BUSINESS_ID, locationPhones, paymentMethods, prices, SITE_URL } from "../lib/site";
+import { BRISTOL_BUSINESS_ID, paymentMethods, prices, SITE_URL } from "../lib/site";
 
 // Foot care for people in care homes and supported living, for managers and
 // families. Bristol only: the care experience described is Adam's.
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 const bookingHref = "/book?location=bristol";
 const referHref = "/book?location=bristol&for=client";
-const phone = locationPhones.bristol;
+const whatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to ask about foot care visits for someone I support.")}`;
 
 const steps: VisitStep[] = [
   {
@@ -270,51 +270,35 @@ export default function CareHomesBristolPage() {
         ))}
       </section>
 
-      {/* Contact */}
-      <section
-        id="care-contact"
-        aria-labelledby="care-contact-heading"
-        className="mt-14 scroll-mt-24 rounded-t-[36px] bg-care-mist px-[22px] pb-24 pt-12 text-center md:pb-20"
-      >
-        <div className="mx-auto max-w-md">
-          <p className={`${eyebrow} text-care-deep`}>Get in touch</p>
-          <h2 id="care-contact-heading" className={h2}>
-            Let&apos;s find a day <span className="block text-care-accent">that works.</span>
-          </h2>
-          <p className="mt-2.5 text-[0.9375rem] text-care-muted">I reply within 24 hours, by WhatsApp or email.</p>
-          {/* Phones get these from the sticky bar, so two "Request a visit" buttons never sit together. */}
-          <div className="hidden md:block">
-          <Link
-            href={bookingHref}
-            className={`${pill} mt-6 w-full bg-care-deep text-white hover:bg-care-ink`}
-            data-analytics-id="care-close-book"
-          >
-            Request a visit
-          </Link>
-          <a
-            href={phone.href}
-            className={`${pill} mt-2.5 w-full border-[1.5px] border-care-deep text-care-deep hover:bg-white`}
-            data-analytics-id="care-close-phone"
-          >
-            Call {phone.display}
-          </a>
+      {/* Close: message Adam, like the location pages. Ends the page; the footer is left out (Footer.tsx). */}
+      <div className="mt-16">
+        <MessageClose
+          id="care-contact-heading"
+          sectionId="care-contact"
+          name="Adam"
+          greeting="Talk"
+          tone="care"
+          portraitSrc={portraits.bristol}
+          messageHref={whatsAppHref}
+          messageLabel="Message Adam on WhatsApp"
+          examples={["Hi Adam, could you visit on Tuesdays?", "Can you see three of our residents?", "Could you visit my son?"]}
+        >
+          <p className="mt-4 text-[0.9375rem] text-white/80">I reply within 24 hours.</p>
+          <div className="mt-3 flex flex-col items-center gap-0.5">
+            <Link href={bookingHref} className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-white ${focusRing}`} data-analytics-id="care-close-book">
+              Or request a visit <span aria-hidden="true">→</span>
+            </Link>
+            <Link href={referHref} className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-care-soft ${focusRing}`} data-analytics-id="care-close-refer">
+              Referring someone you support? <span aria-hidden="true">→</span>
+            </Link>
           </div>
-          <Link
-            href={referHref}
-            className={`mt-4 inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-care-deep ${focusRing}`}
-            data-analytics-id="care-close-refer"
-          >
-            Referring someone you support? <span aria-hidden="true">→</span>
-          </Link>
-          <p className="mt-5 flex flex-wrap justify-center gap-x-3.5 gap-y-1 text-[0.6875rem] uppercase tracking-[0.14em] text-care-muted">
+          <p className="mt-4 flex flex-wrap justify-center gap-x-3.5 gap-y-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white/70">
             <span>Qualified</span>
             <span>Insured</span>
             <span>DBS-checked</span>
           </p>
-        </div>
-      </section>
-
-      <MobileActions bookingHref={bookingHref} callHref={phone.href} analyticsId="care" />
+        </MessageClose>
+      </div>
     </div>
   );
 }

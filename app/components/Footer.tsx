@@ -60,7 +60,7 @@ const noRequestButton = (pathname: string) =>
  * small print itself. The footer pill and band are left out there, and the header stays.
  */
 export const hasOwnClose = (pathname: string) =>
-  pathname === "/locations/bristol" || pathname === "/locations/southampton";
+  pathname === "/locations/bristol" || pathname === "/locations/southampton" || pathname === "/care-homes-bristol";
 
 const isActive = (pathname: string, href: string) => (href === "/locations" ? pathname.startsWith(href) : pathname === href);
 
