@@ -203,7 +203,7 @@ body:has([data-fullscreen-page]) > footer {
 /* Site entry animation, "Footsteps" (Nov 2026). On the first page of a visit the
    header logo's toes hop in from the right one by one and land on the logo, the
    "Foot" wordmark stamps down, the + pops in gold and settles to sage, and the
-   header pill and its buttons fade in around it.
+   header pill and its buttons fade in around it. Then the page fades in.
 
    Switched on by <html data-intro>, which the inline script in <head>
    (app/lib/entryAnimation.ts) sets before first paint: once per browser session,
@@ -215,6 +215,12 @@ html[data-intro] .site-pill {
 }
 html[data-intro] [data-intro-fade] {
   animation: intro-fade 500ms cubic-bezier(0.22, 1, 0.36, 1) 1.6s both;
+}
+/* The page itself waits for the header, then fades in. Opacity only: a transform
+   on <main> would carry the fixed mobile Request / Call bar with it. */
+html[data-intro] body > main,
+html[data-intro] body > footer {
+  animation: intro-page 600ms cubic-bezier(0.22, 1, 0.36, 1) 1.9s both;
 }
 html[data-intro] [data-header-logo] svg {
   overflow: visible;
@@ -247,6 +253,8 @@ html[data-intro] [data-header-logo] [data-logo="plus"] {
 @media (prefers-reduced-motion: reduce) {
   html[data-intro] .site-pill,
   html[data-intro] [data-intro-fade],
+  html[data-intro] body > main,
+  html[data-intro] body > footer,
   html[data-intro] [data-header-logo] [data-logo] {
     animation: none;
   }
@@ -263,6 +271,10 @@ html[data-intro] [data-header-logo] [data-logo="plus"] {
       0 10px 30px -18px rgb(36 48 40 / 0.35),
       0 0 0 1px rgb(220 229 222 / 0.8);
   }
+}
+@keyframes intro-page {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 @keyframes intro-fade {
   from { opacity: 0; }
