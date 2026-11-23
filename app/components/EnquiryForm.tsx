@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { trackAdviceEvent } from "./advice/AdviceTracker";
 
@@ -43,6 +43,12 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [postcodeNote, setPostcodeNote] = useState<string | null>(null);
+  const started = useRef(false);
+
+  /** Coarse funnel events: where people start, get stuck and drop off. No personal details. */
+  function trackForm(name: string, params: Record<string, unknown> = {}) {
+    trackAdviceEvent(name, { service_location: data.location.toLowerCase(), ...params });
+  }
 
   const [data, setData] = useState<FormState>({
     location: requestedLocation === "southampton" ? "Southampton" : "Bristol",
@@ -90,7 +96,10 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
       return;
     }
 
+    const outwardCode = area.postcode.split(" ")[0];
+
     if (area.status === "outside") {
+      trackForm("enquiry_postcode_outside", { outward_code: outwardCode });
       setPostcodeNote(
         "This postcode may be outside our usual area. Send your enquiry anyway and we'll let you know if we can visit."
       );
@@ -99,6 +108,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
 
     const matched: ServiceLocation = area.status === "bristol" ? "Bristol" : "Southampton";
     if (matched !== data.location) {
+      trackForm("enquiry_location_switched", { outward_code: outwardCode, to: matched.toLowerCase() });
       update("location", matched);
       setError(null);
       setPostcodeNote(`We've changed the service location to ${matched} to match your postcode.`);
@@ -112,12 +122,19 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
     setError(null);
 
     if (missingRequired) {
+      const missing = (["fullName", "postcode", "phone", "email", "appointmentDetails"] as const).filter(
+        (key) => !data[key].trim()
+      );
+      trackForm("enquiry_error", { reason: "missing_required", fields: missing.join(",") });
       setError("Please complete all required fields.");
       return;
     }
 
     const postcodeValidation = validateServicePostcode(data.postcode, data.location);
     if (!postcodeValidation.valid) {
+      trackForm("enquiry_error", {
+        reason: postcodeValidation.suggestedLocation ? "location_mismatch" : "invalid_postcode",
+      });
       setError(postcodeValidation.message);
       return;
     }
@@ -165,6 +182,7 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
         promo_code: promoCode || "none",
       });
     } catch {
+      trackForm("enquiry_error", { reason: "send_failed" });
       setError("Something went wrong. Please try again or contact us directly.");
     } finally {
       setIsSubmitting(false);
@@ -224,7 +242,15 @@ export default function EnquiryForm({ onSubmitted }: { onSubmitted?: () => void 
   const submitLabel = `Request a ${data.location} appointment`;
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5">
+    <form
+      onSubmit={onSubmit}
+      onFocus={() => {
+        if (started.current) return;
+        started.current = true;
+        trackForm("enquiry_start", { prefilled_postcode: Boolean(data.postcode) });
+      }}
+      className="space-y-5"
+    >
 
       {error ? (
         <div

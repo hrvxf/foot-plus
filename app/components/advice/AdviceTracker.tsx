@@ -14,6 +14,7 @@ const KEY = "footplus_attribution";
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 function host(ref: string) {
@@ -85,9 +86,35 @@ export function trackAdviceEvent(
   try {
     const attr = getAttr();
     window.gtag?.("event", name, { ...attr, ...params });
+    sendMetaEvent(name, params);
   } catch {
     /* Analytics must not block an enquiry or a link. */
   }
+}
+
+/**
+ * Mirrors the events that matter for Facebook ads into the Meta Pixel as standard events,
+ * so ads can optimise for enquiries and contact rather than page views. Only coarse fields
+ * are passed on: never names, contact details or full postcodes. fbq only exists once the
+ * visitor has accepted cookies.
+ */
+const metaEvents: Record<string, string> = {
+  generate_lead: "Lead",
+  phone_click: "Contact",
+  email_click: "Contact",
+  whatsapp_click: "Contact",
+  booking_click: "ViewContent",
+};
+
+function sendMetaEvent(name: string, params: Record<string, unknown>) {
+  const metaName = metaEvents[name];
+  if (!metaName || !window.fbq) return;
+  const location = params.service_location ?? params.source_page;
+  window.fbq("track", metaName, {
+    content_name: name,
+    ...(location ? { content_category: String(location) } : {}),
+    ...(params.service_interest ? { content_type: String(params.service_interest) } : {}),
+  });
 }
 export default function AdviceTracker({
   slug,

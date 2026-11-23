@@ -10,6 +10,7 @@ function typeFor(href: string) {
   if (href.startsWith("https://wa.me/")) return "whatsapp_click";
   if (href.startsWith("/book")) return "booking_click";
   if (href.startsWith("/forms")) return "patient_form_click";
+  if (/writereview|g\.page\/r\/.+\/review|google\.com\/maps\/search/.test(href)) return "review_click";
   return undefined;
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useState, type CSSProperties } from "react";
+import { useId, useRef, useState, type CSSProperties } from "react";
+import { trackAdviceEvent } from "../advice/AdviceTracker";
 import { FREE_UP_TO_MILES, STANDARD_UP_TO_MILES, travelBands, type TravelBand } from "../../lib/travel";
 
 const MAX = 10;
@@ -15,6 +16,14 @@ function bandFor(miles: number): TravelBand {
 export default function TravelSlider() {
   const id = useId();
   const [miles, setMiles] = useState(1);
+  const lastReported = useRef<number | null>(null);
+
+  /** Reported when the visitor lets go, so one drag is one event rather than one per step. */
+  const report = () => {
+    if (lastReported.current === miles) return;
+    lastReported.current = miles;
+    trackAdviceEvent("travel_slider_used", { miles, travel_band: bandFor(miles) });
+  };
   const band = travelBands[bandFor(miles)];
   const pct = (miles / MAX) * 100;
 
@@ -32,6 +41,8 @@ export default function TravelSlider() {
           step={0.5}
           value={miles}
           onChange={(event) => setMiles(Number(event.target.value))}
+          onPointerUp={report}
+          onKeyUp={report}
           aria-valuetext={`${miles} miles: ${band.label}`}
           className="travel-range w-full"
           style={{ "--p": `${pct}%` } as CSSProperties}

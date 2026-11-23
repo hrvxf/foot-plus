@@ -324,13 +324,13 @@ export default function PrivacyPage() {
           <Table
             head={["Tool", "What it does", "Needs your agreement?"]}
             rows={[
-              ["Meta (Facebook) Pixel", "Measures visits from our Facebook adverts", "Yes, only runs if you accept cookies"],
-              ["Google Analytics", "Counts visits and shows which pages are used", "Yes, only runs if you accept cookies"],
+              ["Meta (Facebook) Pixel", "Measures visits from our Facebook adverts and whether they lead to an enquiry or a call", "Yes, only runs if you accept cookies"],
+              ["Google Analytics", "Counts visits, shows which pages are used and where people get stuck on our enquiry form", "Yes, only runs if you accept cookies"],
             ]}
           />
           <p>
             You can change your choice at any time using the Cookies link at the bottom of each page. Forms on
-            the site never send health details to these tools.
+            the site never send your name, contact details, full postcode or health details to these tools.
           </p>
         </Section>
 
