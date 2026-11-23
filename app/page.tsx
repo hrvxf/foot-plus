@@ -1,22 +1,25 @@
 import HomeContent from "./components/HomeContent";
 import { DEFAULT_SOCIAL_IMAGE } from "./lib/site";
+import { googleRatingLine } from "./lib/reviews";
+
+const TITLE = "Toenail Cutting & Foot Care at Home | Foot+";
+const DESCRIPTION = `We come to you. Toenail cutting and routine foot care in your own home, across Bristol and Southampton. ${googleRatingLine("all")}Check your postcode and request a visit.`;
 
 export const metadata = {
-  title: { absolute: "Foot+ | Professional Nail & Foot Care at Home" },
-  description:
-    "Professional toenail cutting and foot care in your home. Appointments available in Bristol with Adam James and in Southampton with Katie Preston.",
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   keywords: ["Foot+", "home visit foot care", "mobile foot care"],
   openGraph: {
     images: [DEFAULT_SOCIAL_IMAGE],
-    title: "Foot+ | Professional Nail & Foot Care at Home",
-    description: "Nail cutting, thickened nail and routine skin care at home. Appointments available in Bristol and Southampton.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: "/",
     siteName: "Foot+",
   },
   twitter: {
     images: [DEFAULT_SOCIAL_IMAGE.url],
-    title: "Foot+ | Professional Nail & Foot Care at Home",
-    description: "Nail cutting, thickened nail and routine skin care at home. Appointments available in Bristol and Southampton.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
   alternates: { canonical: "/" },
 };

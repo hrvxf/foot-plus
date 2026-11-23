@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import NailCuttingPage from "../components/site/NailCuttingPage";
 import { serviceLocations } from "../lib/locations";
 import { locationEmails, locationPhones, prices, SITE_URL } from "../lib/site";
+import { googleRatingLine } from "../lib/reviews";
 
 // Southampton counterpart of /toenail-cutting-bristol. Keep it specific to
 // Southampton (practitioner, coverage, travel base) rather than a copy of the
@@ -11,7 +12,7 @@ import { locationEmails, locationPhones, prices, SITE_URL } from "../lib/site";
 const canonical = `${SITE_URL}/toenail-cutting-southampton`;
 const SOUTHAMPTON_BUSINESS_ID = `${SITE_URL}/locations/southampton#medicalbusiness`;
 const title = "Toenail Cutting at Home in Southampton | Foot+";
-const description = `Toenail cutting at home in Southampton, Romsey, Chandler's Ford and Totton with Katie Preston, Foot Health Practitioner. First visit ${prices[0].price}; returning visits ${prices[1].price}.`;
+const description = `We come to you. Toenail cutting in your own home across Southampton, Romsey, Chandler's Ford and Totton with Katie Preston, Foot Health Practitioner. ${googleRatingLine("southampton")}Request a visit.`;
 const bookingHref = "/book?location=southampton&service=nails";
 
 const socialImage = {

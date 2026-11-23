@@ -202,6 +202,14 @@ export function getRating(scope: ReviewScope) {
   return { average: Math.round(average * 10) / 10, count };
 }
 
+/** "Rated 5★ on Google. " for search snippets, or "" when there's no strong rating to show. */
+export function googleRatingLine(scope: ReviewScope) {
+  const rating = getRating(scope);
+  if (!rating || rating.average < 4.5) return "";
+  const stars = rating.average === 5 ? "5" : rating.average.toFixed(1);
+  return `Rated ${stars}★ on Google. `;
+}
+
 /** Reviews to show, taking turns between locations so "all" gets a fair mix. */
 export function getReviews(scope: ReviewScope, limit = 3) {
   const lists = locationsFor(scope).map((location) => location.reviews);

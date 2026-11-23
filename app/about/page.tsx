@@ -12,9 +12,9 @@ import { serviceLocations } from "../lib/locations";
 import { ADAM_ID, BUSINESS_ID, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 
 const canonical = `${SITE_URL}/about`;
-const title = "About Foot+ | Our Foot Health Practitioners";
+const title = "Meet Your Foot Health Practitioners | Foot+";
 const description =
-  "Meet Adam James in Bristol and Katie Preston in Southampton. Learn about Foot+ qualifications, professional standards and routine home nail and foot care.";
+  "Meet Adam in Bristol and Katie in Southampton: qualified, insured and DBS-checked Foot Health Practitioners who come to you for toenail cutting and foot care at home.";
 export const metadata: Metadata = {
   title: { absolute: title },
   description,

@@ -8,9 +8,9 @@ import { referOnSigns, serviceDetails, whoWeHelp } from "../lib/services";
 import { BUSINESS_ID, prices, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
 
 const PAGE_URL = `${SITE_URL}/services`;
-const TITLE = "Home-Visit Foot Care Services in Bristol & Southampton | Foot+";
+const TITLE = "Foot Care Services at Home: Nails, Corns & Hard Skin | Foot+";
 const DESCRIPTION =
-  "Toenail cutting, thickened nails, corns and routine skin care at home. Available in Bristol and Southampton.";
+  "We come to you. Toenail cutting, thickened nails, corns, hard skin and diabetic foot care in your own home, across Bristol and Southampton.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
