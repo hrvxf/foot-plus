@@ -87,7 +87,6 @@ export default function SouthamptonLocationPage() {
       <MessageClose
         id="southampton-closing"
         name="Katie"
-        place="Foot+ Southampton"
         portraitSrc={portraits.southampton}
         messageHref={locationEmails.southampton.href}
         messageLabel="Email Katie"
