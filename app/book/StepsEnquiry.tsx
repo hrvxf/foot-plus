@@ -238,8 +238,6 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
 
   return (
     <div ref={top} className="scroll-mt-24">
-      <h1 className="sr-only">Request a home visit</h1>
-
       <div className="h-[3px] overflow-hidden rounded-full bg-brand-line" aria-hidden="true">
         <div
           className="h-full rounded-full bg-brand-sage transition-[width] duration-500 ease-out"
