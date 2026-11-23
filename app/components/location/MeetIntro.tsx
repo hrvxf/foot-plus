@@ -51,6 +51,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
   const card = useRef<HTMLDivElement>(null);
   const cardText = useRef<HTMLDivElement>(null);
   const hint = useRef<HTMLDivElement>(null);
+  const actionsRow = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!intro) return;
@@ -111,6 +112,11 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
         cardText.current.style.opacity = String(b);
         cardText.current.style.transform = `translateY(${shift + (1 - b) * 20}px)`;
       }
+      // Once the card settles it is far shorter than the stage, so lift the buttons up to sit
+      // just under it, and pull the next section up by the same amount so no gap is left behind.
+      const lift = Math.max(0, H + 12 - cardH - CARD_GAP);
+      if (actionsRow.current) actionsRow.current.style.transform = `translateY(${-lift * clamp((t - 0.55) / 0.45)}px)`;
+      t0.style.marginBottom = `${-lift}px`;
       if (hint.current) hint.current.style.opacity = progress < 0.05 ? "1" : "0";
     }
 
@@ -220,7 +226,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
               </div>
             ) : null}
           </div>
-          <div className="relative pt-3">
+          <div ref={actionsRow} className="relative pt-3">
             {intro ? (
               // Out of the flow, so it never takes space from the card once it has faded.
               <div ref={hint} className="pointer-events-none absolute inset-x-0 -top-5 flex h-5 justify-center text-brand-muted transition-opacity" aria-hidden="true">
