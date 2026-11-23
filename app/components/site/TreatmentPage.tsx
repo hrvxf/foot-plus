@@ -176,7 +176,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
           <span className="text-brand-sage">comes to you.</span>
         </h2>
         <p className="mx-auto mt-3 max-w-[34ch] text-[0.9375rem] leading-[1.5] text-brand-muted">
-          Diploma-trained Foot Health Practitioners. Insured, DBS checked and using sterilised instruments.
+          Diploma-trained Foot Health Practitioners. Insured and DBS checked.
         </p>
         <ul className="mx-auto mt-5 flex max-w-md gap-2.5">
           {(["bristol", "southampton"] as const).map((slug) => {

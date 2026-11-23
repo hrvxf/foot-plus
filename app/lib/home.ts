@@ -62,7 +62,7 @@ export const homeSteps = [
   },
   {
     title: "We come to you",
-    body: "With sterilised instruments and everything needed.",
+    body: "With everything needed.",
   },
 ];
 
