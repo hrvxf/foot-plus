@@ -241,7 +241,7 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
           </span>
         </div>
         <p className="mx-auto mt-2.5 max-w-[46ch] text-xs leading-[1.5] text-brand-muted/80">
-          Foot Health Practitioner, insured and DBS checked.
+          Foot Health Practitioner, insured and DBS-checked.
         </p>
       </header>
 

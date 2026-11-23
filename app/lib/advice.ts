@@ -892,7 +892,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "During",
         "body": [
           "Your practitioner talks through your needs and health first, and explains the care as they go. You can ask questions or pause at any time.",
-          "Care may include toenail cutting and filing, reducing thick nails, hard skin and callus, corns and cracked heels, depending on what's suitable. Nail cutting alone is a perfectly good reason to book. Instruments are sterile, and practitioners are insured and DBS checked."
+          "Care may include toenail cutting and filing, reducing thick nails, hard skin and callus, corns and cracked heels, depending on what's suitable. Nail cutting alone is a perfectly good reason to book. Instruments are sterile, and practitioners are insured and DBS-checked."
         ],
         "links": [
           {
