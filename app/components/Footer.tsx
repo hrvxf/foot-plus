@@ -18,6 +18,9 @@ const exploreLinks = [
   { href: "/about", label: "About" },
 ];
 
+/** Focus ring for the small print on the dark green band. */
+const focusRingLight = "focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-offwhite";
+
 const legalLinks = [
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
@@ -101,9 +104,9 @@ export default function Footer() {
       id="site-footer"
       ref={footer}
       data-state={state}
-      className="relative z-10 w-full flex-none bg-brand-offwhite px-3 pb-[calc(env(safe-area-inset-bottom)+20px)] pt-2 text-brand-charcoal md:px-6"
+      className="relative z-10 w-full flex-none bg-brand-sageDeep px-3 pb-[calc(env(safe-area-inset-bottom)+14px)] pt-5 text-brand-offwhite md:px-6 md:pt-7"
     >
-      <div className="footer-pill mx-auto flex flex-col items-center gap-3.5 rounded-[30px] bg-white px-4 pb-4 pt-5 shadow-[0_22px_50px_-24px_rgba(36,48,40,0.45),0_0_0_1px_var(--color-brand-line)] md:flex-row md:justify-between md:gap-6 md:rounded-full md:py-2.5 md:pl-6 md:pr-2.5">
+      <div className="footer-pill mx-auto flex flex-col items-center gap-2.5 rounded-[30px] bg-white px-4 pb-3.5 pt-4 text-brand-charcoal shadow-[0_22px_50px_-24px_rgba(0,0,0,0.55)] md:flex-row md:justify-between md:gap-6 md:rounded-full md:py-2.5 md:pl-6 md:pr-2.5">
         <Link href="/" className={`flex shrink-0 items-center rounded-lg ${focusRing}`} aria-label="Foot+ home">
           <span className="relative block h-[34px] w-[106px] text-brand-sageDark md:h-[38px] md:w-[120px]">
             <AnimatedFootPlusLogo
@@ -123,8 +126,10 @@ export default function Footer() {
                 <Link
                   href={item.href}
                   aria-current={pathname === item.href ? "page" : undefined}
-                  className={`inline-flex min-h-11 items-center rounded-full font-medium transition-colors md:px-3 ${focusRing} ${
-                    pathname === item.href ? "text-brand-sage" : "text-brand-charcoal/80 hover:text-brand-sageDark"
+                  className={`relative inline-flex min-h-11 items-center rounded-full font-semibold text-brand-sageDeep transition-colors hover:text-brand-sage md:px-3 ${focusRing} ${
+                    pathname === item.href
+                      ? "after:absolute after:bottom-1 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2 after:rounded-full after:bg-brand-sage"
+                      : ""
                   }`}
                 >
                   {item.label}
@@ -148,18 +153,18 @@ export default function Footer() {
         )}
       </div>
 
-      <div className="mx-auto mt-3 flex max-w-[1180px] items-center justify-between gap-4 px-1 text-[0.78125rem] text-brand-muted md:mt-4 md:px-6">
+      <div className="mx-auto mt-2.5 flex max-w-[1180px] items-center justify-between gap-4 px-1 text-[0.78125rem] text-brand-line md:mt-3 md:px-6">
         <div className="flex items-center gap-2">
           <a
             href="https://www.facebook.com/profile.php?id=61586341484139"
             target="_blank"
             rel="noreferrer"
-            className={`-ml-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-brand-sageDark/10 ${focusRing}`}
+            className={`-ml-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 ${focusRingLight}`}
             aria-label="Visit Foot+ on Facebook"
             title="Foot+ on Facebook"
             data-analytics-id="footer-facebook"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-brand-sageDark">
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-brand-offwhite">
               <path d="M13.39 24v-10.95h3.68l.55-4.27h-4.23V6.05c0-1.24.34-2.08 2.12-2.08h2.26V.15C17.38.1 16.07 0 14.55 0c-3.17 0-5.34 1.94-5.34 5.49v3.29H5.63v4.27h3.58V24h4.18Z" />
             </svg>
           </a>
@@ -170,13 +175,13 @@ export default function Footer() {
           <ul className="flex gap-x-3">
             {legalLinks.map((item) => (
               <li key={item.href}>
-                <Link className={`inline-flex min-h-9 items-center text-brand-sageDark hover:text-brand-sageDeep ${focusRing}`} href={item.href}>
+                <Link className={`inline-flex min-h-9 items-center text-brand-offwhite hover:text-white hover:underline hover:underline-offset-4 ${focusRingLight}`} href={item.href}>
                   {item.label}
                 </Link>
               </li>
             ))}
             <li>
-              <CookieSettingsButton className={`inline-flex min-h-9 items-center text-brand-sageDark hover:text-brand-sageDeep ${focusRing}`} />
+              <CookieSettingsButton className={`inline-flex min-h-9 items-center text-brand-offwhite hover:text-white hover:underline hover:underline-offset-4 ${focusRingLight}`} />
             </li>
           </ul>
         </nav>
