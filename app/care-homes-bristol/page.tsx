@@ -283,20 +283,15 @@ export default function CareHomesBristolPage() {
           messageLabel="Message Adam on WhatsApp"
           examples={["Hi Adam, could you visit on Tuesdays?", "Can you see three of our residents?", "Could you visit my son?"]}
         >
-          <p className="mt-4 text-[0.9375rem] text-white/80">I reply within 24 hours.</p>
-          <div className="mt-3 flex flex-col items-center gap-0.5">
-            <Link href={bookingHref} className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-white ${focusRing}`} data-analytics-id="care-close-book">
-              Or request a visit <span aria-hidden="true">→</span>
+          <p className="mt-3 text-sm text-white/75">I reply within 24 hours.</p>
+          <div className="mt-2 flex flex-wrap justify-center gap-x-5">
+            <Link href={bookingHref} className={`inline-flex min-h-11 items-center gap-1 rounded-lg text-sm font-semibold text-white ${focusRing}`} data-analytics-id="care-close-book">
+              Request a visit <span aria-hidden="true">→</span>
             </Link>
-            <Link href={referHref} className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-semibold text-care-soft ${focusRing}`} data-analytics-id="care-close-refer">
-              Referring someone you support? <span aria-hidden="true">→</span>
+            <Link href={referHref} className={`inline-flex min-h-11 items-center gap-1 rounded-lg text-sm font-semibold text-care-soft ${focusRing}`} data-analytics-id="care-close-refer">
+              Refer someone <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <p className="mt-4 flex flex-wrap justify-center gap-x-3.5 gap-y-1 text-[0.6875rem] uppercase tracking-[0.14em] text-white/70">
-            <span>Qualified</span>
-            <span>Insured</span>
-            <span>DBS-checked</span>
-          </p>
         </MessageClose>
       </div>
     </div>
