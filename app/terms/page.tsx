@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { DEFAULT_SOCIAL_IMAGE, locationEmails, locationPhones, paymentMethods, SITE_URL } from "../lib/site";
-import { FREE_UP_TO_MILES, STANDARD_UP_TO_MILES } from "../lib/travel";
 
 export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/terms` },
@@ -80,35 +79,23 @@ export default function TermsPage() {
               sole trader. <A to={locationPhones.southampton} />, <A to={locationEmails.southampton} />
             </li>
           </ul>
-          <p>In these terms, &ldquo;we&rdquo; means that practitioner.</p>
+          <p>
+            In these terms, &ldquo;we&rdquo; means that practitioner. A relative or carer can book for someone
+            else, but we&rsquo;ll always check the patient is happy to be treated.
+          </p>
         </Section>
 
         <Section title="What we do">
           <p>
-            Our practitioners are qualified, insured and DBS-checked Foot Health Practitioners. We are not
-            podiatrists and don&rsquo;t provide NHS care. You can see everything we offer on our{" "}
+            We&rsquo;re qualified, insured and DBS-checked Foot Health Practitioners, not podiatrists, and we
+            offer the treatments on our{" "}
             <Link className={link} href="/services">
               services page
             </Link>
-            .
-          </p>
-          <p>
-            If something needs a GP, podiatrist or other professional, we&rsquo;ll tell you and suggest who to
-            see. We may decline a treatment that isn&rsquo;t right for you or is outside what we&rsquo;re trained
-            and insured to do.
+            . If you need something outside that, we&rsquo;ll suggest who to see.
           </p>
         </Section>
 
-        <Section title="Booking a visit">
-          <p>
-            Request a visit through the website, by phone, WhatsApp or email. A visit is booked once we&rsquo;ve
-            confirmed the day and time with you.
-          </p>
-          <p>
-            A relative or carer can book for someone else, but the patient must be happy to be treated. We&rsquo;ll
-            always check with them at the visit.
-          </p>
-        </Section>
 
         <Section title="Prices and payment">
           <p>
@@ -116,9 +103,7 @@ export default function TermsPage() {
             <Link className={link} href="/prices">
               prices page
             </Link>
-            . A travel fee may apply, based on driving distance from your practitioner&rsquo;s base: free under{" "}
-            {FREE_UP_TO_MILES} miles, £5 from {FREE_UP_TO_MILES} to {STANDARD_UP_TO_MILES} miles, and from £10
-            beyond that. We&rsquo;ll confirm the full price before your visit.
+            , along with any travel fee. We&rsquo;ll confirm the full price before your visit.
           </p>
           <p>Payment is due at the end of each visit, by {payment}.</p>
           <p>
@@ -130,8 +115,7 @@ export default function TermsPage() {
         <Section id="cancellations" title="Cancelling or moving a visit">
           <p>
             Please give at least 24 hours&rsquo; notice if you need to cancel or move a visit. If you cancel with
-            less notice, or we can&rsquo;t get in when we arrive, the full appointment price is charged. That time
-            could have gone to another patient.
+            less notice, or we can&rsquo;t get in when we arrive, the full appointment price is charged.
           </p>
           <p>
             If we need to cancel because of illness, bad weather or something else outside our control, we&rsquo;ll
@@ -181,7 +165,7 @@ export default function TermsPage() {
         <Section title="After your treatment">
           <p>
             Treatment is safe and gentle, but occasionally a small nick or minor bleeding can happen, especially
-            with very thick or fragile nails. We&rsquo;ll deal with it and tell you how to look after it.
+            with very thick or fragile nails.
           </p>
           <p>
             Please follow the aftercare advice we give you. If you notice redness, swelling, heat or anything
@@ -209,22 +193,13 @@ export default function TermsPage() {
             limits our responsibility for death or personal injury caused by our negligence, or your other
             rights under consumer law.
           </p>
-          <p>
-            We aren&rsquo;t responsible for losses we couldn&rsquo;t reasonably have foreseen, or for problems
-            caused by not following our advice.
-          </p>
         </Section>
 
         <Section title="Other things to know">
           <ul className="list-disc space-y-1.5 pl-5">
-            <li>
-              Clinics run with partner organisations may have their own booking terms. These are shown when you
-              book and apply alongside these terms.
-            </li>
             <li>We may update these terms. The version on this page when you book is the one that applies.</li>
             <li>These terms are governed by the law of England and Wales.</li>
           </ul>
-          <p>Last updated {LAST_UPDATED}.</p>
         </Section>
       </div>
     </section>
