@@ -67,7 +67,6 @@ export default function SharedExperience({ id }: { id: string }) {
       <p className="mx-auto mt-3.5 max-w-[30ch] text-[1.0625rem] leading-[1.5]">
         Between us, in health and social care, working with adults with learning disabilities and autism.
       </p>
-      <p className="mt-3.5 text-sm text-care-muted">Qualified, insured and DBS-checked.</p>
       <div className="mt-6 flex justify-center">
         {(["bristol", "southampton"] as const).map((slug, index) => (
           <span
@@ -80,7 +79,6 @@ export default function SharedExperience({ id }: { id: string }) {
           </span>
         ))}
       </div>
-      <p className="mt-2 text-[0.8125rem] text-care-muted">Adam in Bristol and Katie in Southampton</p>
     </section>
   );
 }
