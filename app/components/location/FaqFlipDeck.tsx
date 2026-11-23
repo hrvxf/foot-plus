@@ -37,7 +37,7 @@ export default function FaqFlipDeck({ id }: { id: string }) {
   const face = "absolute inset-0 flex flex-col justify-center rounded-[20px] px-5 py-[18px] text-left [backface-visibility:hidden] [-webkit-backface-visibility:hidden]";
 
   return (
-    <section id={id} className="scroll-mt-24 bg-white py-14 text-center md:py-20" aria-labelledby={`${id}-heading`}>
+    <section id={id} className="scroll-mt-24 bg-white pb-[4.5rem] pt-14 text-center md:py-20" aria-labelledby={`${id}-heading`}>
       <div className={shell}>
         <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-brand-sageDark">Good to know</p>
         <h2

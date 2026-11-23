@@ -16,7 +16,6 @@ import { focusRing, shell, texturedGreen } from "../site/ui";
 export default function MessageClose({
   id,
   name,
-  place,
   portraitSrc,
   messageHref,
   messageLabel,
@@ -24,8 +23,6 @@ export default function MessageClose({
   id: string;
   /** First name, e.g. "Adam". */
   name: string;
-  /** Eyebrow, e.g. "Foot+ Bristol". */
-  place: string;
   portraitSrc: string;
   /** Where the bar goes: a WhatsApp link, or a mailto: until there's WhatsApp. */
   messageHref: string;
@@ -40,10 +37,12 @@ export default function MessageClose({
   const external = messageHref.startsWith("http");
 
   return (
-    <section className={`${texturedGreen} pb-[max(env(safe-area-inset-bottom),12px)] pt-11 text-center text-white md:pt-16`} aria-labelledby={id}>
+    <section
+      className={`${texturedGreen} z-10 -mt-[30px] rounded-t-[30px] pb-[max(env(safe-area-inset-bottom),12px)] pt-10 text-center text-white md:pt-14`}
+      aria-labelledby={id}
+    >
       <div className={shell}>
-        <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#A8E6B8]">{place}</p>
-        <h2 id={id} className="mt-3 font-heading text-[2.375rem] font-semibold leading-[1.03] tracking-[-0.025em] md:text-5xl">
+        <h2 id={id} className="font-heading text-[2.375rem] font-semibold leading-[1.03] tracking-[-0.025em] md:text-5xl">
           Say hello
           <span className="block text-[#A8E6B8]">to {name}.</span>
         </h2>

@@ -87,7 +87,6 @@ export default function BristolLocationPage() {
       <MessageClose
         id="bristol-closing"
         name="Adam"
-        place="Foot+ Bristol"
         portraitSrc={portraits.bristol}
         messageHref={bristolWhatsAppHref}
         messageLabel="Message Adam on WhatsApp"
