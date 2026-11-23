@@ -26,6 +26,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // The care page now covers both locations (Nov 2026).
+      {
+        source: "/care-homes-bristol",
+        destination: "/supported-living-foot-care",
+        permanent: true,
+      },
       // Short, easy-to-read link for WhatsApp follow-ups after an enquiry.
       {
         source: "/form",

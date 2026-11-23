@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cracked-heels",
     "/toenail-cutting-bristol",
     "/toenail-cutting-southampton",
-    "/care-homes-bristol",
+    "/supported-living-foot-care",
     ...publishedAdviceArticles.map((article) => `/advice/${article.slug}`),
   ];
 
