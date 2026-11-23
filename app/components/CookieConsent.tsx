@@ -127,15 +127,13 @@ export default function CookieConsent() {
           role="dialog"
           aria-modal="false"
           aria-labelledby="cookie-consent-title"
-          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-xl rounded-2xl border border-brand-line bg-brand-offwhite p-5 text-left text-brand-charcoal shadow-[0_12px_40px_rgba(36,48,40,0.18)] sm:bottom-5"
+          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-xl rounded-2xl border border-brand-line bg-brand-offwhite p-4 text-left text-brand-charcoal shadow-[0_12px_40px_rgba(36,48,40,0.18)] sm:bottom-5 sm:p-5"
         >
-          <h2 id="cookie-consent-title" className="font-heading text-base font-semibold text-brand-sageDark">
+          <h2 id="cookie-consent-title" className="sr-only">
             Cookies
           </h2>
-          <p className="mt-2 text-sm leading-6 text-brand-charcoal/85">
-            We&rsquo;d like to use Google Analytics and the Facebook Pixel to see how the site is used and
-            whether our adverts work. They only run if you accept. Nothing you enter in our forms is
-            shared with them.{" "}
+          <p className="text-sm leading-6 text-brand-charcoal/85">
+            We&rsquo;d like to use analytics cookies to improve the site and our ads.{" "}
             <Link
               href="/privacy#cookies"
               className={`font-medium text-brand-sageDark underline decoration-brand-sageDark/30 underline-offset-4 hover:decoration-brand-sageDark ${focus}`}
@@ -143,7 +141,7 @@ export default function CookieConsent() {
               More about cookies
             </Link>
           </p>
-          <div className="mt-4 flex flex-wrap gap-3">
+          <div className="mt-3 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={() => decide("granted")}
