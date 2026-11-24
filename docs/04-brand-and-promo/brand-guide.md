@@ -14,6 +14,8 @@ Working brand guide for Foot+. It starts from the January 2027 "New Year, New To
 | `docs/04-brand-and-promo/templates/logo-sagedark.svg` | The master logo recoloured to Sage Dark `#4F6F5F`, for light backgrounds. |
 | `public/images/footplus-logo-green.svg` | Logo with BRISTOL lockup, in green. Bristol-only materials. |
 | `public/images/footplus-logo-white.svg` | Logo with BRISTOL lockup, in white. Bristol-only, on dark green. |
+| `public/images/footplus-logo-southampton-green.svg` / `-white.svg` | Logo with SOUTHAMPTON lockup. Southampton-only materials. |
+| `docs/04-brand-and-promo/templates/logo-southampton-sagedark.svg` | The Southampton lockup recoloured to Sage Dark, for light backgrounds. |
 
 Rules:
 - Always use the drawn wordmark. Never type "Foot+" in a font as a stand-in for the logo.
@@ -73,7 +75,8 @@ The "+" from the wordmark, scattered as a light confetti pattern. It's the brand
 ## 5. Imagery
 
 - **No stock photos of feet or people.** Type, colour and the "+" motif do the work.
-- Real photos of the practitioners (Adam, Katie) are fine for practitioner and location pages, not for promo graphics.
+- Real photos of the practitioners (Adam, Katie) are fine for practitioner and location pages. Keep them out of offer graphics.
+- **Exception: location launch and "meet the practitioner" posts.** These can use the practitioner's own photo, set in an arch frame (rounded top, 26px bottom corners) at the top of the post with a small "Meet <name>" pill overlapping its base. The logo never sits on the photo. Template: `templates/southampton-opening-facebook.html`.
 - `public/images/footplus-texture.png` is a sage paper texture for print and backgrounds. Use it sparingly.
 
 ## 6. Promo graphic layout
@@ -140,6 +143,19 @@ python docs/04-brand-and-promo/templates/render-promo.py spring-feet \
 
 This writes `docs/04-brand-and-promo/examples/<name>.png` and `.mp4`. Add `--no-video` for the image only. Needs ffmpeg for the video.
 
+### Photo promo (launch posts)
+
+For a location opening, the 1080×1350 Facebook layout is: arch photo → eyebrow → two-tone headline → rule → Sage Dark pill → one contact line → location logo and tagline. There's no offer, so the pill carries the news ("**Home visits** now booking") and the line under it is just the practitioner's phone number. Keep it that sparse. Copy is edited in the HTML; render with:
+
+```bash
+python docs/04-brand-and-promo/templates/render-photo-promo.py southampton-opening-facebook
+```
+
+This writes `examples/foot-plus-<template>.png` and an 8-second `.mp4` (photo reveals upward with a slow settle, then the text builds as in section 7). To make one for another location, copy the HTML and swap the photo, logo, headline and phone number.
+
+Tagline: "Foot care in your chair" is the preferred line under the logo on these posts.
+
 ## Examples
 
 - `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, £5 off the first home visit, code NEWTOES.
+- `examples/foot-plus-southampton-opening-facebook.png` / `.mp4`: November 2026 Facebook post announcing Foot+ Southampton, with Katie's photo. Headline "Hello, Southampton.", pill "Home visits now booking", Katie's number, tagline "Foot care in your chair".

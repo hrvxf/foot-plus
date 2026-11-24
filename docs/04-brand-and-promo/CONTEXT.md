@@ -9,8 +9,11 @@ Layer 3 reference. Read `brand-guide.md` before any visual or copy work: site se
 | `brand-guide.md` | Logo, colour, type, the "+" motif, imagery, promo layout, motion, voice, GBP offer fields, how to render a promo |
 | `templates/promo-graphic.html` | Promo graphic template; every text element set from the command line |
 | `templates/render-promo.py` | Renders the template to PNG and MP4 (Playwright and ffmpeg) |
+| `templates/southampton-opening-facebook.html` | Photo promo template: Southampton launch post with Katie's photo (1080×1350) |
+| `templates/render-photo-promo.py` | Renders a photo promo template to PNG and 8-second MP4 |
+| `templates/logo-southampton-sagedark.svg` | Southampton logo lockup in Sage Dark for light backgrounds |
 | `templates/logo-sagedark.svg` | Master logo in Sage Dark for light backgrounds |
-| `examples/` | Finished renders: `new-year-new-toes` (Jan 2027 offer, code NEWTOES) |
+| `examples/` | Finished renders: `new-year-new-toes` (Jan 2027 offer, code NEWTOES), `foot-plus-southampton-opening-facebook` (Southampton launch post) |
 
 Render a new promo:
 
