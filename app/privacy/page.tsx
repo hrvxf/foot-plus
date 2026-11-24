@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 /** Update this when the notice changes. */
 const LAST_UPDATED = "21 November 2026";
 
-/** ICO registration numbers. Leave null until the ICO confirms them; the line is hidden until both are set. */
+/** ICO registration numbers. Leave null until the ICO confirms them; only the numbers that are set are shown. */
 const ICO_REGISTRATION: Record<"bristol" | "southampton", string | null> = {
-  bristol: null,
+  bristol: "ZC309179",
   southampton: null,
 };
 
@@ -94,7 +94,10 @@ const Tel = ({ to }: { to: { display: string; href: string } }) => (
 );
 
 export default function PrivacyPage() {
-  const icoReady = ICO_REGISTRATION.bristol && ICO_REGISTRATION.southampton;
+  const icoNumbers = [
+    ICO_REGISTRATION.bristol && `Foot+ Bristol ${ICO_REGISTRATION.bristol}`,
+    ICO_REGISTRATION.southampton && `Foot+ Southampton ${ICO_REGISTRATION.southampton}`,
+  ].filter(Boolean);
 
   return (
     <section className="mx-auto max-w-4xl px-6 pb-16 pt-24">
@@ -135,10 +138,9 @@ export default function PrivacyPage() {
               ],
             ]}
           />
-          {icoReady && (
+          {icoNumbers.length > 0 && (
             <p>
-              ICO registration numbers: Bristol {ICO_REGISTRATION.bristol}, Southampton{" "}
-              {ICO_REGISTRATION.southampton}.
+              ICO registration {icoNumbers.length > 1 ? "numbers" : "number"}: {icoNumbers.join(", ")}.
             </p>
           )}
           <p>
