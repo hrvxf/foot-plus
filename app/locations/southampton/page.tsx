@@ -7,7 +7,7 @@ import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { southamptonContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, coveragePlaces, locationEmails, locationPhones, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
+import { KATIE_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, businessProfiles, coveragePlaces, facebookUrl, locationEmails, locationPhones, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
 import { googleRatingLine } from "../../lib/reviews";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
@@ -45,8 +45,14 @@ export default function SouthamptonLocationPage() {
     "@type": "MedicalBusiness",
     "@id": SOUTHAMPTON_BUSINESS_ID,
     name: "Foot+ Southampton",
+    alternateName: ["Foot Plus Southampton", "FootPlus Southampton"],
+    description: "Toenail cutting and routine foot care in your own home across Southampton, including care homes and supported living.",
     url: canonical,
-    areaServed: { "@type": "City", name: "Southampton" },
+    areaServed: [
+      { "@type": "City", name: "Southampton" },
+      ...coveragePlaces.southampton.map((name) => ({ "@type": "Place", name })),
+    ],
+    sameAs: [...businessProfiles.southampton, facebookUrl],
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     telephone: locationPhones.southampton.e164,
     email: locationEmails.southampton.display,

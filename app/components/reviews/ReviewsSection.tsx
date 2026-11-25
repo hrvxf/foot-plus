@@ -51,10 +51,11 @@ export default function ReviewsSection({
               What patients say
             </h2>
             <div className="flex shrink-0 items-center gap-2">
-              <p className="font-heading text-[2rem] font-semibold leading-none text-brand-sageDeep">{rating.average.toFixed(1)}</p>
+              <p className="sr-only">Rated {rating.average.toFixed(1)} out of 5 from {rating.count} Google reviews.</p>
+              <p aria-hidden="true" className="font-heading text-[2rem] font-semibold leading-none text-brand-sageDeep">{rating.average.toFixed(1)}</p>
               <div>
                 <Stars rating={rating.average} className="h-3.5 w-3.5" />
-                <p className="mt-0.5 text-[0.8125rem] text-brand-muted">{rating.count} Google reviews</p>
+                <p aria-hidden="true" className="mt-0.5 text-[0.8125rem] text-brand-muted">{rating.count} Google reviews</p>
               </div>
             </div>
           </div>
@@ -76,12 +77,13 @@ export default function ReviewsSection({
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-10">
             <div className="flex items-center gap-3">
-              <p className="font-heading text-[2.75rem] font-semibold leading-none tracking-[-0.02em] text-brand-sageDeep md:text-[3.25rem]">
+              <p className="sr-only">Rated {rating.average.toFixed(1)} out of 5 from {rating.count} Google reviews.</p>
+              <p aria-hidden="true" className="font-heading text-[2.75rem] font-semibold leading-none tracking-[-0.02em] text-brand-sageDeep md:text-[3.25rem]">
                 {rating.average.toFixed(1)}
               </p>
               <div>
                 <Stars rating={rating.average} className="h-5 w-5" />
-                <p className="mt-1 text-base text-brand-muted">from {rating.count} Google reviews</p>
+                <p aria-hidden="true" className="mt-1 text-base text-brand-muted">from {rating.count} Google reviews</p>
               </div>
             </div>
             <ReviewLinks links={links} analyticsPrefix={analyticsPrefix} />

@@ -11,10 +11,11 @@ export default function ReviewSwipe() {
 
   const summary = rating ? (
     <span className="inline-flex items-center gap-3.5">
-      <span className="font-heading text-[2.75rem] font-semibold leading-none text-brand-sageDeep">{rating.average.toFixed(1)}</span>
+      <span className="sr-only">Rated {rating.average.toFixed(1)} out of 5 from {rating.count} Google reviews.</span>
+      <span aria-hidden="true" className="font-heading text-[2.75rem] font-semibold leading-none text-brand-sageDeep">{rating.average.toFixed(1)}</span>
       <span className="flex flex-col items-start gap-1">
         <Stars rating={rating.average} className="h-4 w-4" />
-        <span className="text-[0.8125rem] text-brand-muted">{rating.count} Google reviews</span>
+        <span aria-hidden="true" className="text-[0.8125rem] text-brand-muted">{rating.count} Google reviews</span>
       </span>
     </span>
   ) : null;

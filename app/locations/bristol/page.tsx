@@ -7,7 +7,7 @@ import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, coveragePlaces, locationEmails, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, businessProfiles, coveragePlaces, facebookUrl, locationEmails, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
 import { googleRatingLine } from "../../lib/reviews";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
@@ -42,8 +42,14 @@ export default function BristolLocationPage() {
     "@type": "MedicalBusiness",
     "@id": BRISTOL_BUSINESS_ID,
     name: "Foot+ Bristol",
+    alternateName: ["Foot Plus Bristol", "FootPlus Bristol"],
+    description: "Toenail cutting and routine foot care in your own home across Bristol, including care homes and supported living.",
     url: canonical,
-    areaServed: { "@type": "City", name: "Bristol" },
+    areaServed: [
+      { "@type": "City", name: "Bristol" },
+      ...coveragePlaces.bristol.map((name) => ({ "@type": "Place", name })),
+    ],
+    sameAs: [...businessProfiles.bristol, facebookUrl],
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     telephone: "+447380301555",
     email: "bristol@foot-plus.co.uk",
