@@ -71,6 +71,21 @@ export function emailForPath(pathname: string | null) {
 export const bristolWhatsAppHref = `https://wa.me/447380301555?text=${encodeURIComponent("Hi Adam, I’d like to enquire about a Foot+ Bristol appointment.")}`;
 
 /** Place names shown on the location pages' coverage wall. */
+/**
+ * Public profiles of the same business elsewhere. Used as schema.org `sameAs`, which tells
+ * search engines and AI assistants that these listings and this site are one business.
+ * Add Bing Places and Apple Maps links here once those listings are live.
+ */
+export const facebookUrl = "https://www.facebook.com/profile.php?id=61586341484139";
+export const businessProfiles = {
+  bristol: [
+    "https://maps.google.com/maps?cid=6111773793229409736",
+    "https://share.google/MinQI5l61up6bKj7H",
+    "https://bcpasw.co.uk/directory/foot-bristol/",
+  ],
+  southampton: ["https://share.google/u2rQi70oqemsMhsK1"],
+};
+
 export const coveragePlaces = {
   bristol: [
     "City Centre", "Harbourside", "Clifton", "Hotwells", "Redland", "Cotham", "Stokes Croft", "Bishopston", "Horfield",

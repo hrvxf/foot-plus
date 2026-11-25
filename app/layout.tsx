@@ -7,7 +7,7 @@ import RouteViewTransition from "./components/RouteViewTransition";
 import PortraitWarmup from "./components/PortraitWarmup";
 import { entryAnimationScript } from "./lib/entryAnimation";
 
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL } from "./lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, facebookUrl } from "./lib/site";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -86,6 +86,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     alternateName: ["Foot Plus", "FootPlus"],
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}/images/footplus-generic-logo_MASTER_FINAL.svg`,
+    sameAs: [facebookUrl],
+    subOrganization: [{ "@id": BRISTOL_BUSINESS_ID }, { "@id": SOUTHAMPTON_BUSINESS_ID }],
   };
 
   const practitionerJsonLd = {

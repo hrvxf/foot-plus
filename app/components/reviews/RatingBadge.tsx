@@ -26,8 +26,9 @@ export default function RatingBadge({
   const content = (
     <>
       <Stars rating={rating.average} tone={tone} />
-      <span className="font-semibold">{rating.average.toFixed(1)}</span>
-      <span className={muted}>
+      <span className="sr-only">Rated {rating.average.toFixed(1)} out of 5 from {rating.count} Google reviews.</span>
+      <span aria-hidden="true" className="font-semibold">{rating.average.toFixed(1)}</span>
+      <span aria-hidden="true" className={muted}>
         · <span className="underline-offset-4 group-hover:underline">{rating.count} Google reviews</span>
       </span>
     </>

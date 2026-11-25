@@ -9,7 +9,7 @@ import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 import CookieSettingsButton from "./CookieSettingsButton";
 import CallButton from "./site/CallButton";
 import LgbtqFriendly from "./site/LgbtqFriendly";
-import { phoneLocationForPath } from "../lib/site";
+import { facebookUrl, phoneLocationForPath } from "../lib/site";
 import { focusRing } from "./site/ui";
 
 /** Desktop: inline in the pill. */
@@ -299,7 +299,7 @@ export function SmallPrint({ className = "" }: { className?: string }) {
     <div className={`mx-auto flex max-w-[72rem] items-center justify-between gap-4 px-1 text-[0.78125rem] text-brand-line md:px-6 ${className}`}>
       <div className="flex items-center gap-2">
         <a
-          href="https://www.facebook.com/profile.php?id=61586341484139"
+          href={facebookUrl}
           target="_blank"
           rel="noreferrer"
           className={`-ml-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 ${focusRingLight}`}
