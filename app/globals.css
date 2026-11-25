@@ -547,6 +547,11 @@ html[data-intro] [data-header-logo] [data-logo="plus"] {
     pointer-events: none;
   }
 }
+@media (min-width: 768px) {
+  .site-pill[data-small="true"] {
+    max-width: min(var(--pill-snug, 100%), 100%);
+  }
+}
 .site-pill[data-open="true"] {
   background-color: #fff;
   box-shadow:

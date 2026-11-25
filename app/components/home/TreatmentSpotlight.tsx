@@ -17,8 +17,8 @@ const summaries = homeServices.map(
  * Each line links to its entry on the services page.
  * - Phones and tablets: the line nearest the middle of the screen lights as you scroll. Reduced motion
  *   shows them all lit.
- * - Desktop (lg+ with a mouse): the line you point at or tab to lights, and a panel beside the list shows
- *   that treatment's summary from the services page.
+ * - Desktop (lg+ with a mouse): scrolling lights lines the same way, and the line you point at or tab to
+ *   lights too. A panel beside the list shows the lit treatment's summary from the services page.
  */
 export default function TreatmentSpotlight() {
   const list = useRef<HTMLUListElement>(null);
@@ -37,12 +37,12 @@ export default function TreatmentSpotlight() {
   }, []);
 
   useEffect(() => {
-    if (desktop) {
-      // Deferred so it isn't a synchronous update inside the effect.
-      const id = requestAnimationFrame(() => setActive(shown));
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // No scroll lighting. On desktop, light the first treatment so the panel matches; pointing moves it.
+      if (!desktop) return;
+      const id = requestAnimationFrame(() => setActive(0));
       return () => cancelAnimationFrame(id);
     }
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
     function render() {
       frame = 0;
@@ -60,7 +60,9 @@ export default function TreatmentSpotlight() {
         }
       });
       // Nothing lit while the list is well off screen.
-      setActive(distance < window.innerHeight * 0.4 ? best : -2);
+      const lit = distance < window.innerHeight * 0.4 ? best : -2;
+      setActive(lit);
+      if (desktop && lit >= 0) setShown(lit);
     }
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(render);
@@ -71,11 +73,14 @@ export default function TreatmentSpotlight() {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
     };
-  }, [desktop, shown]);
+  }, [desktop]);
 
   const lastIndex = homeServices.length - 1;
+  // Desktop: pointing at or tabbing to a line lights it until the next scroll.
   const pick = (index: number) => () => {
-    if (desktop) setShown(index);
+    if (!desktop) return;
+    setActive(index);
+    setShown(index);
   };
 
   return (

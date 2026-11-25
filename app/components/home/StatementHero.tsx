@@ -19,14 +19,14 @@ const TRAVEL = 0.75;
 const GAP = 8;
 
 /**
- * Home hero: a statement that builds as you scroll. On phones the section pins and each line lights up in
- * turn, ending on the sage "Just good foot care, at home." Desktop and reduced motion show it all lit,
- * without pinning. The statement sits near the top rather than centred, so the first line, not empty cream,
- * is what shows under the header (the sticky phone bar covers the foot of the screen). The next section rises
- * over the empty lower part of the pinned screen, so it lands just under the statement as the last line
- * lights, with no blank stretch. Text fades as it scrolls up under the pill header. The page's h1 is kept
- * for search but visually hidden. From lg up, `aside` (the practitioners and postcode check) sits beside the
- * statement in a second column.
+ * Home hero: a statement that builds as you scroll. The section pins and each line lights up in turn, ending
+ * on the sage "Just good foot care, at home." Reduced motion shows it all lit, without pinning. On phones the
+ * statement sits near the top rather than centred, so the first line, not empty cream, is what shows under
+ * the header (the sticky phone bar covers the foot of the screen); from lg up it's centred, with `aside`
+ * (the practitioners and postcode check) beside it in a second column. The next section rises over the
+ * empty lower part of the pinned screen, so it lands just under the statement as the last line lights, with
+ * no blank stretch. Text fades as it scrolls up under the pill header. The page's h1 is kept for search but
+ * visually hidden.
  */
 export default function StatementHero({ aside }: { aside?: ReactNode }) {
   const track = useRef<HTMLDivElement>(null);
@@ -39,18 +39,15 @@ export default function StatementHero({ aside }: { aside?: ReactNode }) {
   const [lit, setLit] = useState(lines.length + 1);
 
   useEffect(() => {
-    const phone = window.matchMedia("(max-width: 767px)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const decide = () => {
-      setPinned(phone.matches && !reduce.matches);
+      setPinned(!reduce.matches);
       setHeight(stableViewportHeight());
     };
     decide();
-    phone.addEventListener("change", decide);
     reduce.addEventListener("change", decide);
     window.addEventListener("resize", decide);
     return () => {
-      phone.removeEventListener("change", decide);
       reduce.removeEventListener("change", decide);
       window.removeEventListener("resize", decide);
     };
@@ -109,7 +106,7 @@ export default function StatementHero({ aside }: { aside?: ReactNode }) {
   // Pull the next section up over the empty lower part of the pinned screen.
   const overlap = sized && contentBottom ? Math.max(0, stage - contentBottom - GAP) : 0;
 
-  // Unpinned (desktop, reduced motion): everything lit.
+  // Unpinned (reduced motion): everything lit.
   const shown = pinned ? lit : lines.length + 1;
   const line = "block font-heading text-[2.875rem] font-semibold leading-[1.04] tracking-[-0.03em] transition-colors duration-500 md:text-7xl lg:text-[3.5rem] xl:text-[4.25rem]";
 
@@ -126,7 +123,7 @@ export default function StatementHero({ aside }: { aside?: ReactNode }) {
       <div ref={track} style={sized ? { height: stage + Math.round(TRAVEL * stage) } : undefined}>
         <div
           data-hero-stage
-          className={`relative overflow-hidden ${pinned ? "sticky top-[84px] flex flex-col justify-start pt-10" : "pt-10 pb-16 md:pt-20 md:pb-24"}`}
+          className={`relative overflow-hidden ${pinned ? "sticky top-[84px] flex flex-col justify-start pt-10 lg:justify-center lg:pt-0" : "pt-10 pb-16 md:pt-20 md:pb-24"}`}
           style={sized ? { height: stage } : undefined}
         >
           <Snowfall />
