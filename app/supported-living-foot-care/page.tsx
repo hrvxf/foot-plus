@@ -8,7 +8,7 @@ import AudienceSwitch from "../components/services/AudienceSwitch";
 import { portraits } from "../components/site/blocks";
 import { focusRing } from "../components/site/ui";
 import { careSettingsReview, formatReviewMonth } from "../lib/reviews";
-import { BRISTOL_BUSINESS_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID } from "../lib/site";
+import { BRISTOL_BUSINESS_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, bristolReferralForms } from "../lib/site";
 
 // Foot care for supported living and care homes, in both locations. Written for managers, support teams and
 // families arranging visits for adults with learning disabilities, autism or extra support needs.
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
 const guideHref = "/advice/foot-care-learning-disabilities-bristol";
 
 const contacts = [
-  { slug: "bristol", area: "Bristol", name: "Adam", href: "/book?location=bristol&for=client" },
-  { slug: "southampton", area: "Southampton", name: "Katie", href: "/book?location=southampton&for=client" },
+  { slug: "bristol", area: "Bristol", action: "Send Adam a referral", href: bristolReferralForms.careHome },
+  { slug: "southampton", area: "Southampton", action: "Talk to Katie", href: "/book?location=southampton&for=client" },
 ] as const;
 
 const faqs = [
@@ -196,7 +196,7 @@ export default function SupportedLivingFootCarePage() {
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block font-heading text-lg font-semibold">{contact.area}</span>
-                  <span className="text-sm text-care-muted">Talk to {contact.name}</span>
+                  <span className="text-sm text-care-muted">{contact.action}</span>
                 </span>
                 <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-care-deep text-white">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

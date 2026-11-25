@@ -9,7 +9,7 @@ import { Check } from "lucide-react";
 import { homeServices } from "../lib/home";
 import { serviceLocations } from "../lib/locations";
 import { checkServiceArea, normalisePostcode, type EnquiryLocation } from "../lib/postcodes";
-import { prices } from "../lib/site";
+import { bristolReferralForms, prices } from "../lib/site";
 import { estimateTravel, lookupPostcode, type TravelEstimate } from "../lib/travel";
 import { trackAdviceEvent } from "../components/advice/AdviceTracker";
 import RatingBadge from "../components/reviews/RatingBadge";
@@ -22,7 +22,8 @@ import { focusRing } from "../components/site/ui";
  * what they need → first visit or not → contact details. Sends to /api/contact as before.
  * Care services and other professionals referring a client arrive with ?for=client: the
  * "who" answer is filled in, and the last step also asks for their organisation, the
- * client's name and confirmation that the client has agreed.
+ * client's name and confirmation that the client has agreed. Bristol referrals stop at the
+ * postcode step and go to the Splose referral form, so they land in Adam's records.
  */
 
 type Slug = "bristol" | "southampton";
@@ -175,7 +176,7 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
   const canContinue = [
     who !== null,
     (area.status === "empty" && postcode.trim() !== "") ||
-      (slug !== null && (area.status === "outside" || travel !== "loading")),
+      (slug !== null && (area.status === "outside" || travel !== "loading") && !(referring && area.status === "bristol")),
     needs.length > 0 || note.trim() !== "",
     visit !== null,
     contactOk,
@@ -376,6 +377,20 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
               <div id="book-postcode-result" aria-live="polite">
                 <PostcodeAnswer area={area} travel={travel} outsideChoice={outsideChoice} onChoose={setOutsideChoice} />
               </div>
+              {referring && area.status === "bristol" ? (
+                <div className="steps-enter mt-3 rounded-[1.25rem] bg-brand-wash p-4 text-center">
+                  <p className="text-[15px] leading-6 text-brand-charcoal">
+                    <strong className="font-semibold">Bristol referrals have their own form.</strong> It goes straight to Adam.
+                  </p>
+                  <a
+                    href={bristolReferralForms.professional}
+                    data-analytics-id="book-bristol-referral-form"
+                    className={`${solid} mt-3 w-full`}
+                  >
+                    Open the referral form
+                  </a>
+                </div>
+              ) : null}
             </>
           ) : null}
 
