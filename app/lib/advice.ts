@@ -1713,6 +1713,142 @@ export const adviceArticles: AdviceArticle[] = [
         "answer": "No. Foot+ is a private service, so you or a relative can book directly."
       }
     ]
+  },
+  {
+    "slug": "how-much-does-toenail-cutting-at-home-cost",
+    "title": "How Much Does Toenail Cutting at Home Cost?",
+    "shortTitle": "What toenail cutting costs",
+    "seoTitle": "Toenail Cutting at Home: What It Costs | Foot+",
+    "description": "What toenail cutting costs in the UK, from basic nail-cutting clinics to home visits, what changes the price, and what to ask before you book.",
+    "category": "Home foot-care appointments",
+    "authorId": "adam-james",
+    "datePublished": "2026-11-25",
+    "dateModified": "2026-11-25",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "2 min read",
+    "wordCount": 346,
+    "intro": "It depends on what's included and where it happens. Basic nail-cutting clinics cost least. A home visit that also covers hard skin and corns costs more, because the practitioner travels to you and spends longer with you.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Basic nail-cutting services",
+        "navLabel": "Basic services",
+        "body": [
+          "Many Age UK branches and other charities run simple toenail-cutting services. In the examples we found in November 2026, a session cost roughly £17 to £35.",
+          "These are good value if nails are all you need. Most cover nails only, not corns, hard skin or infections. Many are clinic-based, some have age criteria, and some pause new referrals when they're busy, so check with your local branch."
+        ]
+      },
+      {
+        "heading": "NHS fee-paying clinics",
+        "navLabel": "NHS fee-paying",
+        "body": [
+          "Some NHS trusts run a paid service for people who don't qualify for free NHS podiatry. In Southampton, Hampshire and Isle of Wight Healthcare's Foot Health Experts charge £30 for nail care and £42 for nail care with hard skin, at clinics only."
+        ],
+        "links": [
+          {
+            "href": "/advice/can-i-get-my-toenails-cut-on-the-nhs",
+            "label": "Can I get my toenails cut on the NHS?",
+            "kind": "article"
+          }
+        ]
+      },
+      {
+        "heading": "What changes the price of a home visit",
+        "navLabel": "What changes it",
+        "body": [
+          "Private home visits cost more than a clinic because travel time is part of the appointment. Prices also depend on how long the visit is, whether a first assessment is included, and whether hard skin, corns and cracked heels are treated in the same visit.",
+          "Before you book, ask what the first visit includes, how long it takes, whether there's a travel fee, and how you can pay."
+        ]
+      },
+      {
+        "heading": "Foot+ prices",
+        "navLabel": "Our prices",
+        "body": [
+          "A first visit is £60 and takes about 60 minutes, including a full foot health assessment. Routine visits are £55 and take about 45 minutes. Nails, hard skin, corns and cracked heels are all covered in the same visit.",
+          "Travel is free within 2 miles of our base, £5 up to 7 miles, and from £10 beyond that. Any travel fee is confirmed before you book. You can pay by cash, card, cheque or bank transfer."
+        ],
+        "links": [
+          {
+            "href": "/prices",
+            "label": "Prices",
+            "kind": "pricing"
+          },
+          {
+            "href": "/advice/what-happens-home-foot-health-appointment",
+            "label": "What happens during a home visit",
+            "kind": "article"
+          }
+        ]
+      },
+      {
+        "heading": "Which option suits you",
+        "navLabel": "Which suits you",
+        "body": [
+          "If you can get to a clinic and only need your nails trimmed, a basic service may be all you need. A home visit makes more sense if travel is hard, you need skin or corn care too, or you'd like the same practitioner each time."
+        ]
+      }
+    ],
+    "practitionerView": "Cheapest isn't always worst and dearest isn't always best. Compare what's actually included, and whether you'd have to get to a clinic.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/prices",
+        "label": "Pricing",
+        "kind": "pricing"
+      },
+      {
+        "href": "/toenail-cutting",
+        "label": "Toenail cutting",
+        "kind": "service"
+      },
+      {
+        "href": "/services",
+        "label": "Services",
+        "kind": "service"
+      },
+      {
+        "href": "/book",
+        "label": "Book",
+        "kind": "book"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "can-i-get-my-toenails-cut-on-the-nhs",
+      "what-happens-home-foot-health-appointment",
+      "how-often-older-adults-should-cut-toenails"
+    ],
+    "references": [
+      {
+        "label": "Hampshire and Isle of Wight Healthcare: The Foot Health Experts",
+        "url": "https://hiowhealthcare.nhs.uk/our-services/a-z-list-of-services/podiatry/foot-health-experts"
+      },
+      {
+        "label": "Age UK South Gloucestershire: Toenail cutting",
+        "url": "https://www.ageuk.org.uk/southgloucestershire/our-services/toenail-cutting-233c8228-2274-ef11-a81c-000d3a49a0b2/"
+      },
+      {
+        "label": "Age UK Oxfordshire: Foot care",
+        "url": "https://ageuk.org.uk/oxfordshire/our-services/foot-care-f1b74e05-35fa-ed11-a81c-6045bd94e88e"
+      },
+      {
+        "label": "Age UK Northamptonshire: Toenail cutting service",
+        "url": "https://www.ageuk.org.uk/northamptonshire/our-services/toenail-cutting-service/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is there a free option?",
+        "answer": "Only if you qualify for NHS podiatry, which usually means your feet are at risk because of a medical condition. Routine toenail cutting on its own isn't usually covered."
+      },
+      {
+        "question": "Why does a home visit cost more than a clinic?",
+        "answer": "The practitioner's travel time is part of the visit, and home visits often cover more than nails, such as hard skin and corns."
+      },
+      {
+        "question": "Do Foot+ prices include travel?",
+        "answer": "Travel is free within 2 miles of our base. Further away there's a small fee, which we confirm before you book."
+      }
+    ]
   }
 ];
 
@@ -1732,6 +1868,15 @@ export type AdviceNextStep = {
 };
 const nailBooking = "/book?service=nails";
 export const adviceNextSteps: Record<string, AdviceNextStep> = {
+  "how-much-does-toenail-cutting-at-home-cost": {
+    heading: "Toenail cutting at home",
+    summary: "Foot+ covers nails, hard skin and corns in one home visit, with clear prices and any travel fee confirmed before you book.",
+    treatments: [
+      { href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" },
+      { href: "/toenail-cutting-southampton", label: "Toenail cutting in Southampton" },
+    ],
+    bookingHref: nailBooking,
+  },
   "can-i-get-my-toenails-cut-on-the-nhs": {
     heading: "Toenail cutting at home",
     summary: "If you don't qualify for NHS nail cutting, Foot+ provides routine toenail cutting and foot care during a home visit. No referral needed.",
