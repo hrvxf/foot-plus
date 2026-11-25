@@ -150,7 +150,7 @@ function WhoFor() {
       </ul>
       <p className="mt-6 leading-[1.5] text-white/85">Need extra time or someone with you? Just tell us.</p>
       <Link
-        href="/advice/foot-care-learning-disabilities-bristol"
+        href="/advice/foot-care-visits-learning-disabilities-carers-guide"
         className="mt-1 inline-flex min-h-11 items-center gap-1.5 rounded-lg font-semibold text-white focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white"
       >
         Accessible foot care guide <span aria-hidden="true">→</span>

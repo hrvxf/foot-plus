@@ -12,12 +12,11 @@ Each informational search intent has one primary Advice article. Other articles 
 | Struggling to cut my own toenails; how to cut toenails safely; who should not | `/advice/why-toenails-are-difficult-to-cut` | thickened toenails, older-adult intervals, maintain good foot health |
 | How often toenails should be cut (older adults) | `/advice/how-often-older-adults-should-cut-toenails` | difficult-to-cut, maintain good foot health |
 | Everyday foot-care routine (checking, washing, moisturising, footwear) | `/advice/maintain-good-foot-health` | — (hub that points to the nail and skin primaries) |
-| Hard skin and callus: causes, prevention, safe care, professional reduction | `/advice/hard-skin-on-feet` | corn/callus/verruca, maintain good foot health |
 | Is it a corn, callus or verruca? (telling them apart) | `/advice/corn-callus-or-verruca` | hard skin |
 | Heel pain on first steps in the morning | `/advice/why-does-my-heel-hurt-when-i-get-out-of-bed` | — |
 | What happens at a home foot-health appointment | `/advice/what-happens-home-foot-health-appointment` | accessible foot care |
 | Foot Health Practitioner vs podiatrist vs chiropodist | `/advice/foot-health-practitioner-podiatrist-or-chiropodist` | accessible foot care |
-| Accessible foot care for adults with learning disabilities or support needs | `/advice/foot-care-learning-disabilities-bristol` | — |
+| Preparing for a foot care visit: a carers' guide (learning disabilities) | `/advice/foot-care-visits-learning-disabilities-carers-guide` (was `/advice/foot-care-learning-disabilities-bristol`, 301) | — |
 
 ## Consolidation, 21 October 2026
 
@@ -33,3 +32,8 @@ Check this table first. If the question is already a primary intent, improve tha
 ## Publication gate
 
 Guides only appear publicly when `isPublished: true` and `approvalStatus: "approved"`. Anything else is excluded from `/advice`, article routes, the sitemap and related links.
+
+
+## Nov 2026 consolidation
+
+`/advice/hard-skin-on-feet` merged into `/hard-skin-and-callus` (301); its home-care advice is now an FAQ there. The learning disabilities guide was refocused on carers and made location-neutral so it no longer competes with `/supported-living-foot-care`. Both had been crawled and left out of Google's index since July.

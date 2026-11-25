@@ -98,10 +98,15 @@ export const treatments: Treatment[] = [
       {
         question: "Why does it keep coming back?",
         answer:
-          "The same pressure, footwear or dry skin keeps affecting the area. Regular moisturising, better-fitting shoes and routine visits help.",
+          "Hard skin can be reduced, but the same pressure, footwear or dry skin keeps affecting the area, so it often returns. Regular moisturising, better-fitting shoes and routine visits help.",
+      },
+      {
+        question: "Can I look after it myself between visits?",
+        answer:
+          "Moisturise regularly to keep skin supple. If the skin is unbroken and the feeling in your feet is normal, gentle filing may help; stop if it gets sore. Don't use blades, corn knives or strong chemical products, and if you have diabetes, reduced feeling or poor circulation, get advice first.",
       },
     ],
-    guide: { label: "Hard skin on feet", href: "/advice/hard-skin-on-feet" },
+    guide: { label: "Corn, callus or verruca?", href: "/advice/corn-callus-or-verruca" },
     lastReviewed: "November 2026",
   },
   {
