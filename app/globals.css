@@ -35,7 +35,11 @@ html {
 }
 
 body {
-  min-height: 100%;
+  /* At least one screen tall, so on short pages main grows and the footer sits at the foot of the window.
+     (A percentage here resolved to nothing, as html has no set height, and as unlayered CSS it also beat
+     Tailwind's min-h-screen on <body>, so short pages ended early and the green behind showed below.) */
+  min-height: 100vh;
+  min-height: 100svh;
   width: 100%;
   margin: 0;
   padding: 0;
