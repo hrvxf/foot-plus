@@ -192,7 +192,7 @@ export const adviceArticles: AdviceArticle[] = [
       "kind": "service"
     },
     {
-      "href": "/services",
+      "href": "/foot-care-services",
       "label": "Foot+ services",
       "kind": "service"
     },
@@ -349,7 +349,7 @@ export const adviceArticles: AdviceArticle[] = [
     "disclaimer": "This article provides general information and is not a substitute for individual medical advice, diagnosis or treatment.",
     "relatedServiceRoutes": [
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "Foot+ services",
         "kind": "service"
       },
@@ -506,7 +506,7 @@ export const adviceArticles: AdviceArticle[] = [
         ],
         "links": [
           {
-            "href": "/services",
+            "href": "/foot-care-services",
             "label": "Foot+ services",
             "kind": "service"
           },
@@ -521,7 +521,7 @@ export const adviceArticles: AdviceArticle[] = [
     "practitionerView": "The best routine is one simple enough to keep doing, with help sought early when something changes.",
     "relatedServiceRoutes": [
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "All Foot+ services",
         "kind": "service"
       },
@@ -683,7 +683,7 @@ export const adviceArticles: AdviceArticle[] = [
         "kind": "service"
       },
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "All Foot+ services",
         "kind": "service"
       },
@@ -812,7 +812,7 @@ export const adviceArticles: AdviceArticle[] = [
         "kind": "service"
       },
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "Services",
         "kind": "service"
       },
@@ -923,7 +923,7 @@ export const adviceArticles: AdviceArticle[] = [
             "kind": "service"
           },
           {
-            "href": "/services",
+            "href": "/foot-care-services",
             "label": "All Foot+ services",
             "kind": "service"
           }
@@ -1080,7 +1080,7 @@ export const adviceArticles: AdviceArticle[] = [
         "kind": "service"
       },
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "Services",
         "kind": "service"
       },
@@ -1141,7 +1141,7 @@ export const adviceArticles: AdviceArticle[] = [
         ],
         "links": [
           {
-            "href": "/services",
+            "href": "/foot-care-services",
             "label": "Foot+ services",
             "kind": "service"
           },
@@ -1198,7 +1198,7 @@ export const adviceArticles: AdviceArticle[] = [
         "kind": "about"
       },
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "Services",
         "kind": "service"
       },
@@ -1363,7 +1363,7 @@ export const adviceArticles: AdviceArticle[] = [
       "kind": "book"
     },
     {
-      "href": "/services",
+      "href": "/foot-care-services",
       "label": "Inclusive home visits",
       "kind": "service"
     },
@@ -1665,7 +1665,7 @@ export const adviceArticles: AdviceArticle[] = [
         "kind": "service"
       },
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "Services",
         "kind": "service"
       },
@@ -1806,7 +1806,7 @@ export const adviceArticles: AdviceArticle[] = [
         "kind": "service"
       },
       {
-        "href": "/services",
+        "href": "/foot-care-services",
         "label": "Services",
         "kind": "service"
       },
@@ -1923,7 +1923,7 @@ export const adviceNextSteps: Record<string, AdviceNextStep> = {
     treatments: [
       { href: "/corn-treatment", label: "Corn treatment" },
       { href: "/hard-skin-and-callus", label: "Hard skin and callus removal" },
-      { href: "/services#verrucas", label: "Verruca treatment" },
+      { href: "/foot-care-services#verrucas", label: "Verruca treatment" },
     ],
   },
   "hard-skin-on-feet": {

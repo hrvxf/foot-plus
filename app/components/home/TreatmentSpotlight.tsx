@@ -109,7 +109,7 @@ export default function TreatmentSpotlight() {
             })}
           </ul>
           <Link
-            href="/services"
+            href="/foot-care-services"
             className={`mt-6 inline-flex min-h-11 items-center text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-brand-sageDark lg:hidden ${focusRing}`}
           >
             All in one home visit →
@@ -131,7 +131,7 @@ export default function TreatmentSpotlight() {
               More about {homeServices[shown].title.toLowerCase()} →
             </Link>
             <Link
-              href="/services"
+              href="/foot-care-services"
               className={`mt-7 flex min-h-11 items-center border-t border-brand-line pt-5 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-brand-sageDark ${focusRing}`}
             >
               All in one home visit →

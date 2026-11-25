@@ -14,7 +14,7 @@ import { focusRing } from "./site/ui";
 
 /** Desktop: inline in the pill. */
 const pillLinks = [
-  { href: "/services", label: "Services" },
+  { href: "/foot-care-services", label: "Services" },
   { href: "/prices", label: "Prices" },
   { href: "/advice", label: "Advice" },
   { href: "/partners", label: "Partners" },
@@ -23,7 +23,7 @@ const pillLinks = [
 
 /** Phones: the menu that opens up out of the pill. Same order as the header menu, plus Advice and Partners. */
 const menuLinks = [
-  { href: "/services", label: "Services" },
+  { href: "/foot-care-services", label: "Services" },
   { href: "/prices", label: "Prices" },
   { href: "/locations", label: "Locations" },
   { href: "/advice", label: "Advice" },

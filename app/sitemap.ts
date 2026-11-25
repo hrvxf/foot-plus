@@ -15,7 +15,7 @@ const pages: Record<string, string> = {
   "/locations/southampton": "2026-11-25",
   "/toenail-cutting-bristol": "2026-11-23",
   "/toenail-cutting-southampton": "2026-11-23",
-  "/services": "2026-11-23",
+  "/foot-care-services": "2026-11-25",
   "/hard-skin-and-callus": "2026-11-25",
   "/corn-treatment": "2026-11-12",
   "/cracked-heels": "2026-11-25",

@@ -9,7 +9,7 @@ import { useState } from "react";
 // URL, title and search listing. The thumb slides before the page changes, and
 // the colours follow each page's palette (sage for services, slate for care).
 const options = [
-  { href: "/services", label: "For individuals" },
+  { href: "/foot-care-services", label: "For individuals" },
   { href: "/supported-living-foot-care", label: "For care settings" },
 ] as const;
 

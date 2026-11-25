@@ -13,7 +13,7 @@ import { BRISTOL_BUSINESS_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, bristolReferral
 // Foot care for supported living and care homes, in both locations. Written for managers, support teams and
 // families arranging visits for adults with learning disabilities, autism or extra support needs.
 // Only what this audience needs and can't find elsewhere: no prices (on /prices), no treatment list (on
-// /services). Experience is described as the practitioners' combined experience, not one person's story.
+// /foot-care-services). Experience is described as the practitioners' combined experience, not one person's story.
 // Uses the slate "care" palette (globals.css) so it reads as its own space.
 
 const canonical = `${SITE_URL}/supported-living-foot-care`;
