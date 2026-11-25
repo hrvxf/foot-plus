@@ -10,9 +10,9 @@ import { prices } from "../../lib/site";
 const contactLabels = { phone: "Call", whatsapp: "WhatsApp", email: "Email" } as const;
 
 /** Small round labelled contact icons under the hero's "Request a visit". */
-export function ContactRow({ actions }: { actions: ContactAction[] }) {
+export function ContactRow({ actions, className = "" }: { actions: ContactAction[]; className?: string }) {
   return (
-    <ul className="mt-3 flex justify-center gap-4">
+    <ul className={`mt-3 flex justify-center gap-4 ${className}`}>
       {actions.map((action) => (
         <li key={action.kind}>
           <a
@@ -72,20 +72,30 @@ export function PriceTickets({ className = "" }: { className?: string }) {
 export function FaqCards({
   faqs,
   headingId,
+  split = false,
 }: {
   faqs: { question: string; answer: string }[];
   headingId: string;
+  /** Desktop (lg+): heading on the left, staying in view, with the questions on the right. */
+  split?: boolean;
 }) {
+  const wide = split
+    ? "lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-14 lg:px-8 lg:pt-24"
+    : "";
   return (
-    <section className="mx-auto max-w-2xl px-4 pt-12 md:pt-16" aria-labelledby={headingId}>
-      <p className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">Questions</p>
-      <h2
-        id={headingId}
-        className="mt-2.5 text-center font-heading text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] text-brand-charcoal md:text-5xl"
-      >
-        Before you <span className="text-brand-sage">book.</span>
-      </h2>
-      <div className="mt-6 flex flex-col gap-2.5">
+    <section className={`mx-auto max-w-2xl px-4 pt-12 md:pt-16 ${wide}`} aria-labelledby={headingId}>
+      <div className={split ? "lg:sticky lg:top-32 lg:text-left" : ""}>
+        <p className={`text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark ${split ? "lg:text-left" : ""}`}>
+          Questions
+        </p>
+        <h2
+          id={headingId}
+          className={`mt-2.5 text-center font-heading text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] text-brand-charcoal md:text-5xl ${split ? "lg:text-left" : ""}`}
+        >
+          Before you <span className="text-brand-sage">book.</span>
+        </h2>
+      </div>
+      <div className={`mt-6 flex flex-col gap-2.5 ${split ? "lg:mt-0" : ""}`}>
         {faqs.map((faq) => (
           <details
             key={faq.question}

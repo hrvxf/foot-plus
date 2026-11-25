@@ -5,7 +5,14 @@ import { credentialMeanings } from "../../lib/about";
 import { focusRing } from "../site/ui";
 
 /** The letters after a practitioner's name as chips: tap one to see what it means. */
-export default function CredentialChips({ credentials }: { credentials: string[] }) {
+export default function CredentialChips({
+  credentials,
+  align = "center",
+}: {
+  credentials: string[];
+  /** "start" lines the chips and their meaning up on the left (desktop practitioner cards). */
+  align?: "center" | "start";
+}) {
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState<string | null>(null);
   const [fading, setFading] = useState(false);
@@ -22,7 +29,10 @@ export default function CredentialChips({ credentials }: { credentials: string[]
 
   return (
     <div>
-      <ul className="mt-4 flex flex-wrap justify-center gap-1.5" aria-label="Qualifications and memberships">
+      <ul
+        className={`mt-4 flex flex-wrap gap-1.5 ${align === "start" ? "justify-start" : "justify-center"}`}
+        aria-label="Qualifications and memberships"
+      >
         {credentials.map((credential) => (
           <li key={credential}>
             <button
