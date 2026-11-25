@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * The Foot+ standard: each title in large type, faded, with the one nearest the
- * middle of the screen lit and its line shown. Server render and reduced motion
- * show them all lit.
+ * middle of the screen lit and its line shown. On desktop, pointing at a line
+ * lights it as well. Server render and reduced motion show them all lit.
  */
 export default function StandardsSpotlight({
   standards,
@@ -60,7 +60,14 @@ export default function StandardsSpotlight({
         // Lines with a body are headings (the standards); plain lines are list text.
         const Title = standard.body ? "h3" : "span";
         return (
-          <li key={standard.title} className="py-2.5">
+          <li
+            key={standard.title}
+            className="py-2.5"
+            // Desktop: pointing at a line lights it too, until the next scroll.
+            onMouseEnter={() => {
+              if (window.matchMedia("(min-width: 1024px) and (hover: hover)").matches) setActive(index);
+            }}
+          >
             <Title
               className={`block font-heading text-[1.625rem] font-semibold leading-[1.15] tracking-[-0.015em] transition-colors duration-400 md:text-4xl ${
                 lit ? "text-brand-charcoal" : "text-brand-line"
