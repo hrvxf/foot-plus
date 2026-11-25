@@ -104,7 +104,6 @@ export default function AdvicePage() {
           <br />
           <span className="text-brand-sage">advice.</span>
         </h1>
-        <p className="mt-2.5 text-[1.0625rem] text-brand-muted">Short answers from your practitioner.</p>
       </section>
 
       <AdviceIndex topics={topicGroups.map(({ id, title }) => ({ id, title }))} items={items} />
