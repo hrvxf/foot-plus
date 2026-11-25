@@ -71,7 +71,7 @@ export const treatments: Treatment[] = [
     short: "Thick, rough skin safely smoothed",
     name: "Hard skin and callus",
     title: "Hard skin and callus removal at home",
-    metaTitle: "Hard Skin and Callus Removal at Home in Bristol and Southampton | Foot+",
+    metaTitle: "Hard Skin and Callus Removal at Home | Foot+",
     description:
       "Hard skin and callus removal at home in Bristol and Southampton. Thickened skin safely reduced by a qualified Foot Health Practitioner, with advice to slow build-up.",
     intro: "Thick, rough skin on heels and pressure points safely reduced, so walking is more comfortable.",
@@ -109,7 +109,7 @@ export const treatments: Treatment[] = [
     short: "Dry, split heels cared for",
     name: "Cracked heels",
     title: "Cracked heel treatment at home",
-    metaTitle: "Cracked Heel Treatment at Home in Bristol and Southampton | Foot+",
+    metaTitle: "Cracked Heel Treatment at Home | Foot+",
     description:
       "Cracked heel treatment at home in Bristol and Southampton: hard skin reduced around dry, split heels, with a simple moisturising routine.",
     intro: "Care for dry, split heels, and a simple routine to keep them comfortable.",

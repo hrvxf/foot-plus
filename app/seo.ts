@@ -4,7 +4,7 @@ export { SITE_URL };
 
 // Search engines and social platforms expect a stable absolute URL here.
 export const SEARCH_PREVIEW_IMAGE = `${SITE_URL}/WebsiteSearchThumbnail.png`;
-export const SEARCH_PREVIEW_ALT = "Foot+ Bristol foot health services";
+export const SEARCH_PREVIEW_ALT = "Foot+ home foot care";
 
 export const SEARCH_PREVIEW_IMAGE_METADATA = {
   url: SEARCH_PREVIEW_IMAGE,

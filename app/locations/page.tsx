@@ -6,7 +6,8 @@ export const metadata: Metadata = {
   title: "Choose a location",
   description: "Choose your local Foot+ service in Bristol or Southampton.",
   alternates: { canonical: "/locations" },
-  robots: { index: true, follow: true },
+  // A two-button router to the town pages, which do the ranking work.
+  robots: { index: false, follow: true },
 };
 
 export default function LocationsPage() {
