@@ -8,7 +8,6 @@ const AI_TRAINING_BOTS = [
   "GPTBot",
   "ClaudeBot",
   "anthropic-ai",
-  "Google-Extended",
   "Applebot-Extended",
   "CCBot",
   "meta-externalagent",
@@ -18,6 +17,8 @@ const AI_TRAINING_BOTS = [
 
 // AI search and user-request bots stay allowed (via the "*" rule) so
 // ChatGPT, Claude, Perplexity and others can still find and recommend Foot+.
+// Google-Extended is deliberately NOT blocked: the same token also controls
+// Gemini grounding, so blocking it stops Gemini citing Foot+ in its answers.
 // OAI-SearchBot, Claude-SearchBot, PerplexityBot, ChatGPT-User, Claude-User.
 
 export default function robots(): MetadataRoute.Robots {
