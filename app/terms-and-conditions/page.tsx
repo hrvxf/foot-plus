@@ -5,8 +5,8 @@ import type { ReactNode } from "react";
 import { DEFAULT_SOCIAL_IMAGE, locationEmails, locationPhones, paymentMethods, SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: `${SITE_URL}/terms` },
-  openGraph: { images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/terms` },
+  alternates: { canonical: `${SITE_URL}/terms-and-conditions` },
+  openGraph: { images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/terms-and-conditions` },
   title: "Terms & Conditions",
   description:
     "Booking, payment, cancellation and treatment terms for Foot+ Bristol and Foot+ Southampton home visits.",
