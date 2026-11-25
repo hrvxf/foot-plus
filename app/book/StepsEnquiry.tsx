@@ -260,6 +260,10 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
   const onLast = step === LAST;
 
   return (
+    // Desktop (lg+): a step list on the left, the form in the middle and who replies, the rating and
+    // "Already enquired?" on the right. Phones only show the middle column, as before.
+    <div className="lg:grid lg:grid-cols-[200px_minmax(0,560px)_280px] lg:items-start lg:justify-between lg:gap-12">
+    <StepRail step={step} />
     <div ref={top} className="scroll-mt-24">
       <div className="h-[3px] overflow-hidden rounded-full bg-brand-line" aria-hidden="true">
         <div
@@ -597,7 +601,7 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
       </form>
 
       {step === 0 ? (
-        <div className="mt-10 flex flex-col items-center gap-3 text-center">
+        <div className="mt-10 flex flex-col items-center gap-3 text-center lg:hidden">
           <RatingBadge scope="all" analyticsId="book-header-reviews" />
           <p className="text-[15px] text-brand-muted">
             Already enquired?{" "}
@@ -612,6 +616,78 @@ export default function StepsEnquiry({ onSubmitted }: { onSubmitted?: () => void
         </div>
       ) : null}
     </div>
+    <BookAside slug={slug} practitionerName={practitionerName} />
+    </div>
+  );
+}
+
+const RAIL_NAMES = ["Who it’s for", "Where", "What it’s for", "First visit?", "Your details"];
+
+/** Desktop only (lg+): the five steps, ticked off as you go. */
+function StepRail({ step }: { step: number }) {
+  return (
+    <nav aria-label="Your progress" className="sticky top-32 hidden pt-10 lg:block">
+      <ol className="grid gap-1">
+        {RAIL_NAMES.map((name, index) => {
+          const done = index < step;
+          const current = index === step;
+          return (
+            <li
+              key={name}
+              aria-current={current ? "step" : undefined}
+              className={`flex items-center gap-3 py-2 text-[0.9375rem] ${current ? "font-semibold" : "font-medium"} ${index <= step ? "text-brand-charcoal" : "text-brand-muted"}`}
+            >
+              <span
+                aria-hidden="true"
+                className={`flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full text-[0.8125rem] font-bold transition-colors duration-300 ${
+                  done ? "bg-brand-sage text-white" : current ? "bg-brand-charcoal text-white" : "bg-brand-wash text-brand-muted"
+                }`}
+              >
+                {done ? <Check className="h-3.5 w-3.5" strokeWidth={3} /> : index + 1}
+              </span>
+              {name}
+              {done ? <span className="sr-only"> (done)</span> : null}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
+
+/**
+ * Desktop only (lg+): who will be in touch (both practitioners until the postcode picks one), the Google
+ * rating and the patient-form link for people who have already enquired.
+ */
+function BookAside({ slug, practitionerName }: { slug: Slug | null; practitionerName: string | null }) {
+  const shown: Slug[] = slug ? [slug] : ["bristol", "southampton"];
+  const who = slug && practitionerName ? practitionerName : "Adam or Katie";
+  return (
+    <aside className="sticky top-32 hidden gap-[18px] pt-10 lg:grid">
+      <span className="flex">
+        {shown.map((key, index) => (
+          <Image
+            key={key}
+            src={portraits[key]}
+            alt=""
+            width={104}
+            height={104}
+            className={`h-[52px] w-[52px] rounded-full object-cover object-[center_15%] shadow-[0_0_0_3px_var(--color-brand-offwhite)] ${index > 0 ? "-ml-3.5" : ""}`}
+          />
+        ))}
+      </span>
+      <p className="text-[0.9375rem] leading-[1.5] text-brand-muted">
+        <span className="font-semibold text-brand-charcoal">{who}</span> will be in touch to confirm your visit.
+      </p>
+      <RatingBadge scope="all" analyticsId="book-aside-reviews" />
+      <p className="border-t border-brand-line pt-4 text-[0.9375rem] leading-[1.5] text-brand-muted">
+        Already enquired?
+        <br />
+        <Link href="/forms" className="font-semibold text-brand-sageDark" data-analytics-id="book-aside-already-enquired-forms">
+          Complete your patient form
+        </Link>
+      </p>
+    </aside>
   );
 }
 
@@ -628,10 +704,11 @@ function Question({
     <h2
       ref={headingRef}
       tabIndex={-1}
-      className="mb-6 mt-2.5 font-heading text-[2.15rem] font-bold leading-[1.05] tracking-[-0.035em] text-brand-charcoal outline-none"
+      className="mb-6 mt-2.5 font-heading text-[2.15rem] font-bold leading-[1.05] tracking-[-0.035em] text-brand-charcoal outline-none lg:text-[2.75rem]"
     >
-      {first}
-      <br />
+      {first}{" "}
+      {/* One line on desktop. */}
+      <br className="lg:hidden" />
       <span className="text-brand-sage">{second}</span>
     </h2>
   );
@@ -811,7 +888,7 @@ function Thanks({
       : `${practitionerName} will be in touch within 24–48 hours.`;
 
   return (
-    <div ref={topRef} className="steps-enter scroll-mt-24 pt-4 text-center">
+    <div ref={topRef} className="steps-enter scroll-mt-24 pt-4 text-center lg:mx-auto lg:max-w-md">
       <span className="relative mx-auto block h-[112px] w-[112px]">
         <Image
           src={portraits[slug]}
