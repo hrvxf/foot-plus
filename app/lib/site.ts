@@ -57,6 +57,12 @@ export const emailDisplay = "hello@foot-plus.co.uk";
 export const emailHref = `mailto:${emailDisplay}`;
 
 /** Each location has its own inbox. Its location pages and town-specific service pages use it instead of the general one. */
+/** Foot+ Bristol referral forms in Splose (Adam's account). Referrals land in his waitlist; Southampton keeps /book. */
+export const bristolReferralForms = {
+  professional: "https://foot-plus.splose.com/public-form/bad9fd9f-76fd-463a-92e7-73089ebe4433",
+  careHome: "https://foot-plus.splose.com/public-form/74e52abb-30b7-4853-8e5a-b058b2a85e2b",
+} as const;
+
 export const locationEmails = {
   bristol: { display: "bristol@foot-plus.co.uk", href: "mailto:bristol@foot-plus.co.uk", label: "Email Foot+ Bristol", heading: "Bristol enquiries" },
   southampton: { display: "southampton@foot-plus.co.uk", href: "mailto:southampton@foot-plus.co.uk", label: "Email Foot+ Southampton", heading: "Southampton enquiries" },
