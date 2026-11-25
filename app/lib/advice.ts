@@ -1789,7 +1789,7 @@ export const adviceArticles: AdviceArticle[] = [
         ]
       }
     ],
-    "practitionerView": "Cheapest isn't always worst and dearest isn't always best. Compare what's actually included, and whether you'd have to get to a clinic.",
+    "practitionerView": "Cheapest isn't always worst, and dearest isn't always best. Compare what's actually included, and whether convenience is your priority.",
     "relatedServiceRoutes": [
       {
         "href": "/prices",
