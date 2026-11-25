@@ -1593,7 +1593,7 @@ export const adviceArticles: AdviceArticle[] = [
         "navLabel": "Who qualifies",
         "body": [
           "NHS podiatry focuses on feet at risk of serious problems. That usually means wounds or ulcers on the foot, diabetes assessed as moderate or high risk, or a condition that affects circulation or feeling in the feet.",
-          "Finding nails hard to reach or cut is not usually enough on its own, even in later life. Low-risk diabetes, thick or fungal nails and everyday corns are often outside the criteria too."
+          "Finding nails hard to reach or cut is not usually enough on its own, even in later life. Thick or fungal nails and everyday corns are often outside the criteria too."
         ]
       },
       {
@@ -1706,7 +1706,7 @@ export const adviceArticles: AdviceArticle[] = [
       },
       {
         "question": "I have diabetes. Do I qualify?",
-        "answer": "It depends on your foot risk. People assessed as moderate or high risk are usually seen by NHS podiatry. Low-risk diabetes often isn't enough on its own. Your annual diabetic foot check will tell you your risk level."
+        "answer": "It depends on your foot risk. In Bristol, people whose diabetes is assessed as moderate or high risk can be referred to NHS podiatry. If your risk is low, you may not qualify for ongoing care. Your annual diabetic foot check will tell you your risk level."
       },
       {
         "question": "Do I need a referral for Foot+?",
