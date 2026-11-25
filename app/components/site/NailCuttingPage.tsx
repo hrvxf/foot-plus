@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import CredentialChips from "../about/CredentialChips";
 import StandardsSpotlight from "../about/StandardsSpotlight";
 import DesktopActionPill from "./DesktopActionPill";
 import PostcodeChecker from "../home/PostcodeChecker";
@@ -118,10 +119,11 @@ export default function NailCuttingPage({
           </div>
           <figcaption className="px-7 pb-6 pt-6">
             <p className="font-heading text-[1.375rem] font-semibold tracking-[-0.01em] text-brand-charcoal">With {practitioner.name}</p>
-            <p className="mt-1.5 text-[0.9375rem] leading-[1.5] text-brand-muted">
-              {practitioner.role} ({practitioner.credentials.join(", ")}). Insured and DBS-checked.
+            <p className="mt-1 text-[0.9375rem] leading-[1.5] text-brand-muted">
+              {practitioner.role} · Insured and DBS-checked
             </p>
-            <Link href={aboutHref} className={`mt-2 inline-flex min-h-10 items-center rounded text-[0.9375rem] font-semibold text-brand-sageDeep ${focusRing}`}>
+            <CredentialChips credentials={practitioner.credentials} align="start" />
+            <Link href={aboutHref} className={`inline-flex min-h-10 items-center rounded text-[0.9375rem] font-semibold text-brand-sageDeep ${focusRing}`}>
               About {firstName} <span aria-hidden="true">&nbsp;→</span>
             </Link>
           </figcaption>
