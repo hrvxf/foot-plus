@@ -89,11 +89,31 @@ body {
   .partner-drift {
     animation: partner-drift linear infinite;
   }
+
+  /* Home review wall (desktop): two rows drifting opposite ways, pausing while pointed at. */
+  .review-drift-left {
+    animation: review-drift 90s linear infinite;
+  }
+  .review-drift-right {
+    animation: review-drift 100s linear infinite reverse;
+  }
+  .review-wall:hover .review-drift-left,
+  .review-wall:hover .review-drift-right,
+  .review-wall:focus-within .review-drift-left,
+  .review-wall:focus-within .review-drift-right {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes partner-drift {
   to {
     transform: translateX(calc(-50% - 0.375rem));
+  }
+}
+
+@keyframes review-drift {
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
   }
 }
 

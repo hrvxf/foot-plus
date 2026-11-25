@@ -6,11 +6,11 @@ import { portraits } from "../site/blocks";
 import { focusRing } from "../site/ui";
 import PostcodeChecker from "./PostcodeChecker";
 
-/** Home: the two practitioners, each linking to their location page, then the postcode check. */
+/** Home on phones and tablets: the two practitioners, each linking to their location page, then the postcode check. On desktop this sits in the hero (`HeroVisit`). */
 export default function WhereWeVisit({ checkerId }: { checkerId: string }) {
   const locations = Object.values(serviceLocations);
   return (
-    <section className="border-t border-brand-line bg-white py-14 text-center md:py-20" aria-labelledby="where-heading">
+    <section className="border-t border-brand-line bg-white py-14 text-center md:py-20 lg:hidden" aria-labelledby="where-heading">
       <div className="mx-auto w-full max-w-md px-6">
         <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-brand-sageDark">Where we visit</p>
         <h2
