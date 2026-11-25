@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description, images: [socialImage.url] },
 };
 
-const guideHref = "/advice/foot-care-learning-disabilities-bristol";
+const guideHref = "/advice/foot-care-visits-learning-disabilities-carers-guide";
 
 const contacts = [
   { slug: "bristol", area: "Bristol", action: "Send Adam a referral", href: bristolReferralForms.careHome },

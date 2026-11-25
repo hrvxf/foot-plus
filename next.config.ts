@@ -52,6 +52,10 @@ const nextConfig: NextConfig = {
       { source: "/callus-removal-bristol", destination: "/hard-skin-and-callus", permanent: true },
       { source: "/hard-skin-treatment-bristol", destination: "/hard-skin-and-callus", permanent: true },
       { source: "/cracked-heels-bristol", destination: "/cracked-heels", permanent: true },
+      // Advice consolidation (Nov 2026): Google crawled both and left them out of the index.
+      // Hard skin merged into the treatment page; the accessibility guide became a carers' guide.
+      { source: "/advice/hard-skin-on-feet", destination: "/hard-skin-and-callus", statusCode: 301 },
+      { source: "/advice/foot-care-learning-disabilities-bristol", destination: "/advice/foot-care-visits-learning-disabilities-carers-guide", statusCode: 301 },
       {
         source: "/advice/why-toenails-become-thick",
         destination: "/advice/thickened-toenails-causes-treatment-and-when-to-worry",

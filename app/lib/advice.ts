@@ -465,9 +465,9 @@ export const adviceArticles: AdviceArticle[] = [
             "kind": "article"
           },
           {
-            "href": "/advice/hard-skin-on-feet",
-            "label": "Hard skin: causes and treatment",
-            "kind": "article"
+            "href": "/hard-skin-and-callus",
+            "label": "Hard skin and callus removal at home",
+            "kind": "service"
           },
           {
             "href": "/toenail-cutting-bristol",
@@ -548,7 +548,7 @@ export const adviceArticles: AdviceArticle[] = [
     ],
     "relatedArticleSlugs": [
       "why-toenails-are-difficult-to-cut",
-      "hard-skin-on-feet",
+      "corn-callus-or-verruca",
       "what-happens-home-foot-health-appointment"
     ],
     "references": [
@@ -628,9 +628,9 @@ export const adviceArticles: AdviceArticle[] = [
             "kind": "service"
           },
           {
-            "href": "/advice/hard-skin-on-feet",
-            "label": "Hard skin and callus: causes and treatment",
-            "kind": "article"
+            "href": "/hard-skin-and-callus",
+            "label": "Hard skin and callus removal at home",
+            "kind": "service"
           }
         ]
       },
@@ -694,7 +694,7 @@ export const adviceArticles: AdviceArticle[] = [
       }
     ],
     "relatedArticleSlugs": [
-      "hard-skin-on-feet",
+      "what-happens-home-foot-health-appointment",
       "foot-health-practitioner-podiatrist-or-chiropodist"
     ],
     "references": [
@@ -972,7 +972,7 @@ export const adviceArticles: AdviceArticle[] = [
     ],
     "relatedArticleSlugs": [
       "how-often-older-adults-should-cut-toenails",
-      "foot-care-learning-disabilities-bristol"
+      "foot-care-visits-learning-disabilities-carers-guide"
     ],
     "references": [],
     "faqs": [
@@ -983,135 +983,6 @@ export const adviceArticles: AdviceArticle[] = [
       {
         "question": "Do I need to travel to a clinic?",
         "answer": "No. Foot+ provides home visits. Share your postcode so coverage can be confirmed."
-      }
-    ]
-  },
-  {
-    "slug": "hard-skin-on-feet",
-    "title": "Hard Skin on Feet: Causes, Prevention and Professional Treatment",
-    "shortTitle": "Hard skin on feet",
-    "seoTitle": "Hard Skin on Feet: Causes, Prevention and Care | Foot+",
-    "description": "A practical guide to hard skin on feet, including causes, prevention, safe home care and professional reduction without permanent-removal claims.",
-    "category": "Skin and hard skin",
-    "authorId": "adam-james",
-    "datePublished": "2026-07-13",
-    "dateModified": "2026-11-23",
-    "isPublished": true,
-    "approvalStatus": "approved",
-    "readingTime": "2 min read",
-    "wordCount": 324,
-    "intro": "Hard skin builds up where your feet take pressure. It can usually be reduced and kept comfortable, but it often comes back while the pressure continues.",
-    "inBrief": [],
-    "sections": [
-      {
-        "heading": "Why it forms",
-        "navLabel": "Why it forms",
-        "body": [
-          "Hard skin is the skin protecting itself. It forms on heels, the balls of the feet and anywhere shoes rub. A callus is a defined patch of it.",
-          "Pressure, rubbing, worn or ill-fitting shoes, the way you walk, activity and dry skin can all play a part. A small, sharp spot may be a corn instead, and a verruca can look similar."
-        ],
-        "links": [
-          {
-            "href": "/advice/corn-callus-or-verruca",
-            "label": "Corn, callus or verruca: telling them apart",
-            "kind": "article"
-          }
-        ]
-      },
-      {
-        "heading": "Looking after it at home",
-        "navLabel": "At home",
-        "body": [
-          "Moisturise regularly to keep skin supple. If your skin is unbroken and the feeling in your feet is normal, gentle filing may help. Stop if it gets sore, and don't try to remove it all at once."
-        ]
-      },
-      {
-        "heading": "What not to do",
-        "navLabel": "What not to do",
-        "tone": "warning",
-        "body": [
-          "Don't use razor blades, scalpels or corn knives, or strong chemical products unless a pharmacist or clinician says they suit you.",
-          "If you have diabetes, reduced feeling, poor circulation, a wound or fragile skin, get advice before treating it yourself."
-        ]
-      },
-      {
-        "heading": "Professional care",
-        "navLabel": "Professional care",
-        "body": [
-          "Where suitable, Foot+ reduces hard skin and callus at a home visit, and talks through moisturising and footwear. The aim is comfort and easier upkeep, not a promise that it won't return."
-        ],
-        "links": [
-          {
-            "href": "/hard-skin-and-callus",
-            "label": "Hard skin and callus removal at home",
-            "kind": "service"
-          },
-          {
-            "href": "/cracked-heels",
-            "label": "Cracked heel care",
-            "kind": "service"
-          },
-          {
-            "href": "/book",
-            "label": "Request a home visit",
-            "kind": "book"
-          }
-        ]
-      },
-      {
-        "heading": "When to get it checked",
-        "navLabel": "Getting help",
-        "tone": "warning",
-        "body": [
-          "Get advice if hard skin comes with a wound, bleeding, spreading redness, swelling, discharge, sudden severe pain or a diabetic foot concern. Your GP may be the right person if it needs diagnosis or wound care."
-        ]
-      }
-    ],
-    "practitionerView": "Hard skin shows where pressure is building. Care makes feet comfortable; easing the pressure helps keep them that way.",
-    "relatedServiceRoutes": [
-      {
-        "href": "/hard-skin-and-callus",
-        "label": "Hard-skin treatment",
-        "kind": "service"
-      },
-      {
-        "href": "/cracked-heels",
-        "label": "Cracked heel care",
-        "kind": "service"
-      },
-      {
-        "href": "/foot-care-services",
-        "label": "Services",
-        "kind": "service"
-      },
-      {
-        "href": "/book",
-        "label": "Book",
-        "kind": "book"
-      }
-    ],
-    "relatedArticleSlugs": [
-      "corn-callus-or-verruca",
-      "what-happens-home-foot-health-appointment"
-    ],
-    "references": [
-      {
-        "label": "NHS: Corns and calluses",
-        "url": "https://www.nhs.uk/conditions/corns-and-calluses/"
-      },
-      {
-        "label": "Diabetes UK: Checking your feet",
-        "url": "https://www.diabetes.org.uk/guide-to-diabetes/complications/feet/checking-your-feet"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "Can hard skin be permanently removed?",
-        "answer": "Hard skin can often be reduced, but it may return if pressure or friction continues."
-      },
-      {
-        "question": "Is it safe to use a blade at home?",
-        "answer": "No. Cutting hard skin yourself can cause injury and is especially risky for people with diabetes, reduced sensation or circulation concerns."
       }
     ]
   },
@@ -1249,20 +1120,20 @@ export const adviceArticles: AdviceArticle[] = [
   },
 
   {
-  "slug": "foot-care-learning-disabilities-bristol",
-  "title": "Accessible Foot Care for Adults with Learning Disabilities and Additional Support Needs",
-  "shortTitle": "Accessible foot care",
-  "seoTitle": "Foot Care for Adults with Learning Disabilities Bristol | Foot+",
-  "description": "A practical Bristol guide to accessible home-visit foot care for adults with learning disabilities, sensory, mobility, communication or anxiety-related support needs.",
+  "slug": "foot-care-visits-learning-disabilities-carers-guide",
+  "title": "Preparing for a Foot Care Visit: A Guide for Carers of Adults with Learning Disabilities",
+  "shortTitle": "A carers' guide to foot care visits",
+  "seoTitle": "Foot Care Visits and Learning Disabilities: A Carers' Guide | Foot+",
+  "description": "For carers, families and support workers: consent and capacity, what to share before a visit, and the foot changes to look out for in adults with learning disabilities.",
   "category": "Accessible home visits",
   "authorId": "adam-james",
   "datePublished": "2026-07-13",
-  "dateModified": "2026-11-20",
+  "dateModified": "2026-11-25",
   "isPublished": true,
   "approvalStatus": "approved",
   "readingTime": "3 min read",
   "wordCount": 668,
-  "intro": "In Bristol, Foot+ home visits can be adapted for adults with learning disabilities, autism, or sensory, mobility, communication or anxiety-related needs: at home, at their pace, with someone they trust, and only with their consent.",
+  "intro": "If you care for or support an adult with a learning disability, autism, or sensory, mobility, communication or anxiety-related needs, a little preparation helps a foot care visit go well. Foot+ visits happen at home, at their pace, with someone they trust, and only with their consent.",
   "inBrief": [],
   "sections": [
     {
@@ -1296,13 +1167,8 @@ export const adviceArticles: AdviceArticle[] = [
       ],
       "links": [
         {
-          "href": "/toenail-cutting-bristol",
-          "label": "Toenail cutting at home in Bristol",
-          "kind": "service"
-        },
-        {
-          "href": "/hard-skin-and-callus",
-          "label": "Hard skin care",
+          "href": "/supported-living-foot-care",
+          "label": "Supported living and care home visits",
           "kind": "service"
         }
       ]
@@ -1417,11 +1283,11 @@ export const adviceArticles: AdviceArticle[] = [
     },
     {
       "question": "What happens at a first visit?",
-      "answer": "An introduction, a look at the feet and only the care that feels manageable. For some people, a good first visit is meeting Adam and agreeing a plan."
+      "answer": "An introduction, a look at the feet and only the care that feels manageable. For some people, a good first visit is meeting their practitioner and agreeing a plan."
     },
     {
       "question": "Can you visit supported living or a care setting?",
-      "answer": "We can discuss it when you enquire. Please share access details, consent considerations and who will be there."
+      "answer": "Yes, in Bristol and Southampton, for one person or several in a single visit. Please share access details, consent considerations and who will be there when you get in touch."
     }
   ]
 },
@@ -1925,12 +1791,6 @@ export const adviceNextSteps: Record<string, AdviceNextStep> = {
       { href: "/hard-skin-and-callus", label: "Hard skin and callus removal" },
       { href: "/foot-care-services#verrucas", label: "Verruca treatment" },
     ],
-  },
-  "hard-skin-on-feet": {
-    heading: "Hard-skin care at home",
-    summary: "Where suitable, Foot+ reduces hard skin and callus during a home visit and offers practical advice to help keep feet comfortable between appointments.",
-    treatments: [{ href: "/hard-skin-and-callus", label: "Hard skin and callus removal" }],
-    bookingHref: "/book",
   },
 };
 export function getAdviceNextStep(slug: string) { return adviceNextSteps[slug]; }
