@@ -81,6 +81,7 @@ export const businessProfiles = {
   bristol: [
     "https://maps.google.com/maps?cid=6111773793229409736",
     "https://share.google/MinQI5l61up6bKj7H",
+    "https://bcpasw.co.uk/directory/foot-bristol/",
   ],
   southampton: ["https://share.google/u2rQi70oqemsMhsK1"],
 };
