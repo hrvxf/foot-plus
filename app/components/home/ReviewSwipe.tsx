@@ -2,7 +2,7 @@ import { getRating, getReviewLinks, getReviews } from "../../lib/reviews";
 import Stars from "../reviews/Stars";
 import { focusRing } from "../site/ui";
 
-/** Home reviews: the overall rating, then real review lines as cards you swipe through. */
+/** Home reviews on phones and tablets: the overall rating, then real review lines as cards you swipe through. Desktop uses `ReviewWall`. */
 export default function ReviewSwipe() {
   const rating = getRating("all");
   const reviews = getReviews("all", 6);
@@ -21,7 +21,7 @@ export default function ReviewSwipe() {
   ) : null;
 
   return (
-    <section className="bg-white py-14 text-center md:py-20" aria-labelledby="reviews-heading">
+    <section className="bg-white py-14 text-center md:py-20 lg:hidden" aria-labelledby="reviews-heading">
       <h2 id="reviews-heading" className="sr-only">
         Reviews
       </h2>

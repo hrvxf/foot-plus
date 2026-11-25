@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { stableViewportHeight } from "../../lib/stableViewport";
 import { ChristmasAvailability } from "./ChristmasNotes";
@@ -25,9 +25,10 @@ const GAP = 8;
  * is what shows under the header (the sticky phone bar covers the foot of the screen). The next section rises
  * over the empty lower part of the pinned screen, so it lands just under the statement as the last line
  * lights, with no blank stretch. Text fades as it scrolls up under the pill header. The page's h1 is kept
- * for search but visually hidden.
+ * for search but visually hidden. From lg up, `aside` (the practitioners and postcode check) sits beside the
+ * statement in a second column.
  */
-export default function StatementHero() {
+export default function StatementHero({ aside }: { aside?: ReactNode }) {
   const track = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
   const [pinned, setPinned] = useState(false);
@@ -110,7 +111,7 @@ export default function StatementHero() {
 
   // Unpinned (desktop, reduced motion): everything lit.
   const shown = pinned ? lit : lines.length + 1;
-  const line = "block font-heading text-[2.875rem] font-semibold leading-[1.04] tracking-[-0.03em] transition-colors duration-500 md:text-7xl";
+  const line = "block font-heading text-[2.875rem] font-semibold leading-[1.04] tracking-[-0.03em] transition-colors duration-500 md:text-7xl lg:text-[3.5rem] xl:text-[4.25rem]";
 
   return (
     <section
@@ -129,21 +130,27 @@ export default function StatementHero() {
           style={sized ? { height: stage } : undefined}
         >
           <Snowfall />
-          <div ref={content} className="relative z-10 mx-auto w-full max-w-[1200px] px-6 sm:px-8">
-            <p className="mb-4 text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
-              Foot+ · Home foot care
-            </p>
-            <p aria-label={[...lines, last].join(" ")}>
-              {lines.map((text, index) => (
-                <span key={text} aria-hidden="true" className={`${line} ${index < shown ? "text-brand-charcoal" : "text-brand-line"}`}>
-                  {text}
+          <div
+            ref={content}
+            className="relative z-10 mx-auto w-full max-w-[1200px] px-6 sm:px-8 lg:grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-14"
+          >
+            <div>
+              <p className="mb-4 text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
+                Foot+ · Home foot care
+              </p>
+              <p aria-label={[...lines, last].join(" ")}>
+                {lines.map((text, index) => (
+                  <span key={text} aria-hidden="true" className={`${line} ${index < shown ? "text-brand-charcoal" : "text-brand-line"}`}>
+                    {text}
+                  </span>
+                ))}
+                <span aria-hidden="true" className={`${line} ${shown > lines.length ? "text-brand-sage" : "text-brand-line"}`}>
+                  {last}
                 </span>
-              ))}
-              <span aria-hidden="true" className={`${line} ${shown > lines.length ? "text-brand-sage" : "text-brand-line"}`}>
-                {last}
-              </span>
-            </p>
-            <ChristmasAvailability />
+              </p>
+              <ChristmasAvailability />
+            </div>
+            {aside}
           </div>
         </div>
       </div>

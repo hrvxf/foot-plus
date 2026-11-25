@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import { texturedGreen as textured } from "../site/ui";
 
@@ -9,9 +9,10 @@ const people = ["Mum.", "Dad.", "you.", "Grandad.", "a neighbour."];
 
 /**
  * "Foot care for / Mum." with the last word changing every couple of seconds. The word has its own line
- * so "for" never moves. Reduced motion keeps "you."
+ * so "for" never moves. Reduced motion keeps "you." From lg up the card is a two-column band, with `aside`
+ * (the prices ticket) on the right.
  */
-export default function FootCareFor() {
+export default function FootCareFor({ aside }: { aside?: ReactNode }) {
   const [index, setIndex] = useState(0);
   const [out, setOut] = useState(false);
 
@@ -37,11 +38,13 @@ export default function FootCareFor() {
 
   return (
     <section className="relative z-10 px-4 py-6 md:px-6 md:py-10" aria-labelledby="for-heading">
-      <div className={`mx-auto max-w-[1200px] rounded-[28px] px-6 py-14 text-center md:py-20 ${textured}`}>
+      <div
+        className={`mx-auto max-w-[1200px] rounded-[28px] px-6 py-14 text-center md:py-20 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-[72px] lg:py-16 lg:text-left ${textured}`}
+      >
         <h2
           id="for-heading"
           aria-label="Foot care for you, and for the people you care for."
-          className="font-heading text-[2.5rem] font-semibold leading-[1.06] tracking-[-0.025em] text-white md:text-6xl"
+          className="font-heading text-[2.5rem] font-semibold leading-[1.06] tracking-[-0.025em] text-white md:text-6xl lg:text-[4rem]"
         >
           <span aria-hidden="true">
             Foot care for
@@ -53,6 +56,7 @@ export default function FootCareFor() {
             </span>
           </span>
         </h2>
+        {aside}
       </div>
     </section>
   );
