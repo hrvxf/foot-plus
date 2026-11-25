@@ -85,7 +85,7 @@ export default function PatientFormLauncher({
         onClick={openForm}
         aria-haspopup="dialog"
         data-analytics-id={analyticsId}
-        className={`flex h-[60px] w-full items-center justify-center rounded-full bg-brand-sageDark px-7 text-lg font-semibold text-white shadow-[0_16px_34px_-22px_rgba(24,55,45,0.9)] transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+        className={`flex h-[60px] w-full items-center justify-center rounded-full bg-brand-sageDark px-7 text-lg font-semibold lg:h-16 lg:text-[1.1875rem] text-white shadow-[0_16px_34px_-22px_rgba(24,55,45,0.9)] transition-colors hover:bg-brand-sageDeep ${focusRing}`}
       >
         {mounted ? "Carry on with my form" : "Start my patient form"}
       </button>
