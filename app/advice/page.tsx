@@ -41,24 +41,28 @@ const topicGroups = [
   {
     id: "nails",
     title: "Nails",
+    short: "Nails",
     description: "Changes in nail growth, thickness and safe routine care.",
     categories: ["Toenail care", "Nail care", "Foot care for older adults"],
   },
   {
     id: "skin-and-pressure",
     title: "Skin and pressure",
+    short: "Skin",
     description: "Hard skin, corns, calluses and other common pressure concerns.",
     categories: ["Skin and hard skin"],
   },
   {
     id: "pain-and-comfort",
     title: "Pain and comfort",
+    short: "Pain",
     description: "Understanding discomfort and maintaining everyday foot health.",
     categories: ["Heel pain", "Everyday foot care"],
   },
   {
     id: "care-at-home",
     title: "Care at home",
+    short: "At home",
     description: "What to expect, accessible visits and choosing the right professional.",
     categories: [
       "Home foot-care appointments",
@@ -107,7 +111,7 @@ export default function AdvicePage() {
         <p className="mt-2.5 text-[1.0625rem] text-brand-muted">Short answers from your practitioner.</p>
       </section>
 
-      <AdviceIndex topics={topicGroups.map(({ id, title }) => ({ id, title }))} items={items} />
+      <AdviceIndex topics={topicGroups.map(({ id, title, short }) => ({ id, title, short }))} items={items} />
 
       <p className="mx-auto mt-10 max-w-md px-6 text-center text-[0.8125rem] leading-[1.55] text-brand-muted">
         These guides give general information and don&rsquo;t replace an individual assessment. Seek urgent help for wounds,
