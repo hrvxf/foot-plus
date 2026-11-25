@@ -1571,6 +1571,149 @@ export const adviceArticles: AdviceArticle[] = [
     }
   ]
 },
+  {
+    "slug": "can-i-get-my-toenails-cut-on-the-nhs",
+    "title": "Can I Get My Toenails Cut on the NHS?",
+    "shortTitle": "Toenail cutting on the NHS",
+    "seoTitle": "Toenail Cutting on the NHS: Who Qualifies? | Foot+",
+    "description": "Who can get toenails cut on the NHS in Bristol and Southampton, why most people can't, and your options if you don't qualify.",
+    "category": "Choosing the right professional",
+    "authorId": "adam-james",
+    "datePublished": "2026-11-25",
+    "dateModified": "2026-11-25",
+    "isPublished": true,
+    "approvalStatus": "approved",
+    "readingTime": "2 min read",
+    "wordCount": 381,
+    "intro": "Usually not. NHS podiatry is for people whose feet are at risk because of a medical condition. Routine toenail cutting is treated as personal care, so most people arrange it themselves.",
+    "inBrief": [],
+    "sections": [
+      {
+        "heading": "Who NHS podiatry is for",
+        "navLabel": "Who qualifies",
+        "body": [
+          "NHS podiatry focuses on feet at risk of serious problems. That usually means wounds or ulcers on the foot, diabetes assessed as moderate or high risk, or a condition that affects circulation or feeling in the feet.",
+          "Finding nails hard to reach or cut is not usually enough on its own, even in later life. Low-risk diabetes, thick or fungal nails and everyday corns are often outside the criteria too."
+        ]
+      },
+      {
+        "heading": "In Bristol",
+        "navLabel": "Bristol",
+        "body": [
+          "NHS podiatry in Bristol, South Gloucestershire and North Somerset is run by Sirona care & health. Its referral guidance says routine nail cutting is not undertaken, and nail cutting is only offered where there is a medical and podiatric risk.",
+          "Referrals come through your GP, and Sirona notes that waiting times vary because of limited capacity. For routine care of uncomplicated feet, it points people to private podiatrists and foot health practitioners."
+        ]
+      },
+      {
+        "heading": "In Southampton",
+        "navLabel": "Southampton",
+        "body": [
+          "NHS podiatry in Southampton is run by Hampshire and Isle of Wight Healthcare. It says it can't provide ongoing routine care to low-risk patients.",
+          "You can refer yourself only for painful ingrowing toenails. Anything else needs a referral from your GP or another health professional. The trust also runs a separate fee-paying service for people who don't qualify."
+        ]
+      },
+      {
+        "heading": "Home visits on the NHS",
+        "navLabel": "Home visits",
+        "body": [
+          "NHS podiatry is mainly clinic-based. Home visits are kept for people who meet strict criteria, usually those who are housebound and can't travel to a clinic."
+        ]
+      },
+      {
+        "heading": "If you don't qualify",
+        "navLabel": "Your options",
+        "body": [
+          "A relative or carer can often help with nail cutting if the feet are healthy and the nails are easy to cut. Some Age UK branches run basic nail-cutting services for older people, though these usually cover nails only.",
+          "For nails that are thick, curved or hard to reach, or for hard skin and corns too, a private podiatrist or foot health practitioner can help. Check they are qualified and insured. If they visit your home, ask whether they are DBS-checked."
+        ],
+        "links": [
+          {
+            "href": "/advice/foot-health-practitioner-podiatrist-or-chiropodist",
+            "label": "Foot health practitioner, podiatrist or chiropodist?",
+            "kind": "article"
+          },
+          {
+            "href": "/toenail-cutting-bristol",
+            "label": "Toenail cutting at home in Bristol",
+            "kind": "service"
+          },
+          {
+            "href": "/toenail-cutting-southampton",
+            "label": "Toenail cutting at home in Southampton",
+            "kind": "service"
+          }
+        ]
+      },
+      {
+        "heading": "When to see your GP",
+        "navLabel": "See your GP",
+        "tone": "warning",
+        "body": [
+          "Contact your GP or call 111 for an open wound, redness, swelling, discharge or signs of infection. If you have diabetes and notice a change in your feet, don't wait for a routine appointment."
+        ]
+      }
+    ],
+    "practitionerView": "Many families only find out the NHS won't cut toenails when they ask. Knowing early saves a long wait for a referral that won't be accepted.",
+    "relatedServiceRoutes": [
+      {
+        "href": "/toenail-cutting",
+        "label": "Toenail cutting",
+        "kind": "service"
+      },
+      {
+        "href": "/services",
+        "label": "Services",
+        "kind": "service"
+      },
+      {
+        "href": "/prices",
+        "label": "Pricing",
+        "kind": "pricing"
+      },
+      {
+        "href": "/book",
+        "label": "Book",
+        "kind": "book"
+      }
+    ],
+    "relatedArticleSlugs": [
+      "foot-health-practitioner-podiatrist-or-chiropodist",
+      "how-often-older-adults-should-cut-toenails",
+      "why-toenails-are-difficult-to-cut"
+    ],
+    "references": [
+      {
+        "label": "Remedy (BNSSG): Sirona community podiatry services",
+        "url": "https://remedy.bnssg.icb.nhs.uk/adults/podiatry/community-podiatry-services"
+      },
+      {
+        "label": "Hampshire and Isle of Wight Healthcare: Podiatry",
+        "url": "https://hiowhealthcare.nhs.uk/our-services/a-z-list-of-services/podiatry"
+      },
+      {
+        "label": "Hampshire and Isle of Wight Healthcare: The Foot Health Experts",
+        "url": "https://hiowhealthcare.nhs.uk/our-services/a-z-list-of-services/podiatry/foot-health-experts"
+      },
+      {
+        "label": "Age UK South Gloucestershire: Toenail cutting",
+        "url": "https://www.ageuk.org.uk/southgloucestershire/our-services/toenail-cutting-233c8228-2274-ef11-a81c-000d3a49a0b2/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can my GP refer me just for toenail cutting?",
+        "answer": "Usually not. In Bristol and Southampton, NHS podiatry only takes routine nail cutting where there's a medical risk to the feet, so a referral just for nail cutting is likely to be turned down."
+      },
+      {
+        "question": "I have diabetes. Do I qualify?",
+        "answer": "It depends on your foot risk. People assessed as moderate or high risk are usually seen by NHS podiatry. Low-risk diabetes often isn't enough on its own. Your annual diabetic foot check will tell you your risk level."
+      },
+      {
+        "question": "Do I need a referral for Foot+?",
+        "answer": "No. Foot+ is a private service, so you or a relative can book directly."
+      }
+    ]
+  }
 ];
 
 export const publishedAdviceArticles = adviceArticles.filter((a) => a.isPublished && a.approvalStatus === "approved");
@@ -1589,6 +1732,15 @@ export type AdviceNextStep = {
 };
 const nailBooking = "/book?service=nails";
 export const adviceNextSteps: Record<string, AdviceNextStep> = {
+  "can-i-get-my-toenails-cut-on-the-nhs": {
+    heading: "Toenail cutting at home",
+    summary: "If you don't qualify for NHS nail cutting, Foot+ provides routine toenail cutting and foot care during a home visit. No referral needed.",
+    treatments: [
+      { href: "/toenail-cutting-bristol", label: "Toenail cutting in Bristol" },
+      { href: "/toenail-cutting-southampton", label: "Toenail cutting in Southampton" },
+    ],
+    bookingHref: nailBooking,
+  },
   "why-toenails-are-difficult-to-cut": {
     heading: "Toenail cutting at home",
     summary: "If cutting your own toenails has become difficult, Foot+ provides careful routine toenail cutting and filing during a home visit.",
