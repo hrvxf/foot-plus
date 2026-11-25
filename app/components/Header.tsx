@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Phone } from "lucide-react";
 import AnimatedFootPlusLogo from "./AnimatedFootPlusLogo";
 import CallButton from "./site/CallButton";
@@ -20,8 +20,10 @@ const plusMarks = [
 /**
  * Floating pill header (Nov 2026). Phones: full width at the top of the page,
  * shrinks to a small centred pill (logo + menu) once you scroll, and the menu
- * grows out of it as a white card. Desktop: one wide pill with the links inline.
- * Styles for the states live under .site-pill in globals.css.
+ * grows out of it as a white card. Tablet and desktop: one wide pill with the
+ * links inline, which closes in around its contents once you scroll (the space
+ * between the logo and the links goes). Styles for the states live under
+ * .site-pill in globals.css.
  */
 export default function Header() {
   const pathname = usePathname();
@@ -31,6 +33,23 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const logo = useRef<HTMLAnchorElement>(null);
+  const links = useRef<HTMLDivElement>(null);
+  // Tablet and desktop: the pill's width once scrolled, just wide enough for its contents.
+  const [snugWidth, setSnugWidth] = useState<number | null>(null);
+
+  useEffect(() => {
+    const measure = () => {
+      if (!logo.current || !links.current || !links.current.offsetWidth) return;
+      // Contents, the nav's side padding (24 + 8) and its gap (8), plus 48px of breathing room.
+      setSnugWidth(Math.ceil(logo.current.offsetWidth + links.current.offsetWidth + 40 + 48));
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined" || !links.current) return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(links.current);
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -109,16 +128,17 @@ export default function Header() {
         data-open={isMenuOpen}
         data-small={isSmall}
         data-glass={isGlass}
+        style={snugWidth ? ({ "--pill-snug": `${snugWidth}px` } as CSSProperties) : undefined}
       >
         <nav className="flex h-[60px] items-center justify-between gap-2 pl-[18px] pr-2 md:pl-6" aria-label="Main">
-          <Link href="/" className={`flex shrink-0 items-center rounded-lg ${focusRing}`} aria-label="Foot+ home" onClick={close}>
+          <Link ref={logo} href="/" className={`flex shrink-0 items-center rounded-lg ${focusRing}`} aria-label="Foot+ home" onClick={close}>
             <div data-header-logo className="relative h-[34px] w-[106px] text-brand-sageDark md:h-[38px] md:w-[120px]">
               <AnimatedFootPlusLogo className="h-full w-full" animate={false} />
             </div>
           </Link>
 
           {/* Desktop */}
-          <div className="hidden items-center gap-1 md:flex lg:gap-3" data-intro-fade>
+          <div ref={links} className="hidden shrink-0 items-center gap-1 md:flex lg:gap-3" data-intro-fade>
             {navLinks.map((link) => (
               <Link
                 key={link.label}
