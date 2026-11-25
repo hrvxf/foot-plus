@@ -160,7 +160,7 @@ export default function Footer() {
         onClick={close}
       />
 
-      <div className="relative mx-auto max-w-[72rem]">
+      <div className="relative mx-auto max-w-[75rem]">
         {/* Phones: the menu grows up out of the pill. */}
         <div
           id="footer-menu"
@@ -296,7 +296,7 @@ export default function Footer() {
 /** The small print row: Facebook, the Pride flag, copyright, Privacy, Terms, Cookies. Light, for green backgrounds. */
 export function SmallPrint({ className = "" }: { className?: string }) {
   return (
-    <div className={`mx-auto flex max-w-[72rem] items-center justify-between gap-4 px-1 text-[0.78125rem] text-brand-line md:px-6 ${className}`}>
+    <div className={`mx-auto flex max-w-[75rem] items-center justify-between gap-4 px-1 text-[0.78125rem] text-brand-line md:px-6 ${className}`}>
       <div className="flex items-center gap-2">
         <a
           href={facebookUrl}
