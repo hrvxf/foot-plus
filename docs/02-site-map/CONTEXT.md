@@ -37,7 +37,7 @@ Content comes from these files, never typed straight into a page. Change the fac
 | `/forms` | Splose patient form, sent to patients after an enquiry |
 | `/locations`, `/toenail-cutting`, `/card`, `/review` | Location choosers (`app/components/site/LocationChooser.tsx`); not indexed. `/card` is the appointment-card QR target, `/review` the post-visit review link |
 | `/ageuk`, `/ageuk/booked` | Age UK clinic screening and booking. Hidden (link only, noindex). Paused |
-| `/privacy`, `/terms` | Legal |
+| `/privacy`, `/terms-and-conditions` (was `/terms`, 301) | Legal |
 | `/bristol`, `/southampton`, `/areas-we-cover` | Redirects to the pages above |
 
 Other redirects (old area and treatment URLs) are in `next.config.ts`. Keep them indefinitely.

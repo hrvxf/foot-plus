@@ -58,11 +58,11 @@ for path,links in concurrent.futures.ThreadPoolExecutor(max_workers=8).map(verif
     all_links.update(links)
 for link in all_links:
     target=urlsplit(link).path or '/'
-    if target in ['/bristol','/southampton','/areas-we-cover','/areas','/advice/why-toenails-become-thick','/services',*area_redirects]: raise AssertionError(('Redirected internal link',link))
+    if target in ['/bristol','/southampton','/areas-we-cover','/areas','/advice/why-toenails-become-thick','/services','/terms',*area_redirects]: raise AssertionError(('Redirected internal link',link))
     # Deliberate noindex pages, kept out of the sitemap: the /toenail-cutting and /locations
     # choosers (Bristol or Southampton) and /forms, the patient document link sent after an enquiry.
     assert target in paths or target in ['/toenail-cutting','/locations','/forms'] or target.startswith('/api/') or target.startswith('/images/'), ('Unknown internal page',link)
-for alias,destination in {**area_redirects,'/areas':'/locations/bristol/areas-we-cover','/areas-we-cover':'/locations/bristol/areas-we-cover','/foot-health-practitioner-bristol':'/locations/bristol','/bristol':'/locations/bristol','/southampton':'/locations/southampton','/advice/why-toenails-become-thick':'/advice/thickened-toenails-causes-treatment-and-when-to-worry','/services':'/foot-care-services'}.items():
+for alias,destination in {**area_redirects,'/areas':'/locations/bristol/areas-we-cover','/areas-we-cover':'/locations/bristol/areas-we-cover','/foot-health-practitioner-bristol':'/locations/bristol','/bristol':'/locations/bristol','/southampton':'/locations/southampton','/advice/why-toenails-become-thick':'/advice/thickened-toenails-causes-treatment-and-when-to-worry','/services':'/foot-care-services','/terms':'/terms-and-conditions'}.items():
     status,headers,_=fetch(alias)
     assert status in [301,308], (alias,status)
     assert headers.get('Location')==destination,(alias,headers.get('Location'))
@@ -74,4 +74,4 @@ assert {offer['price'] for offer in service['offers']}=={'55','60'}
 assert 'location=bristol&amp;service=nails' in body
 status,_,body=fetch('/about');page=Page();page.feed(body)
 assert 'id="adam-james"' in body and 'id="katie-preston"' in body
-print(json.dumps({'base':BASE,'sitemapPagesChecked':len(urls),'internalLinksChecked':len(all_links),'redirectsChecked':7+len(area_redirects),'result':'PASS'},indent=2))
+print(json.dumps({'base':BASE,'sitemapPagesChecked':len(urls),'internalLinksChecked':len(all_links),'redirectsChecked':8+len(area_redirects),'result':'PASS'},indent=2))

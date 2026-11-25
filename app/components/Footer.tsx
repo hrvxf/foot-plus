@@ -33,7 +33,7 @@ const menuLinks = [
 
 const legalLinks = [
   { href: "/privacy", label: "Privacy" },
-  { href: "/terms", label: "Terms" },
+  { href: "/terms-and-conditions", label: "Terms" },
 ];
 
 // "+" marks in the corners of the open menu card, as in the header menu (brand guide §4).
