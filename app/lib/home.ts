@@ -8,43 +8,43 @@ export const homeServices: {
 }[] = [
   {
     title: "Toenail cutting",
-    href: "/services#toenail-cutting",
+    href: "/foot-care-services#toenail-cutting",
   },
   {
     title: "Thickened nails",
-    href: "/services#thickened-nails",
+    href: "/foot-care-services#thickened-nails",
   },
   {
     title: "Ingrown toenails",
-    href: "/services#ingrown-toenails",
+    href: "/foot-care-services#ingrown-toenails",
   },
   {
     title: "Fungal nails",
-    href: "/services#fungal-nails",
+    href: "/foot-care-services#fungal-nails",
   },
   {
     title: "Corns",
-    href: "/services#corns",
+    href: "/foot-care-services#corns",
   },
   {
     title: "Hard skin and callus",
-    href: "/services#hard-skin",
+    href: "/foot-care-services#hard-skin",
   },
   {
     title: "Cracked heels",
-    href: "/services#cracked-heels",
+    href: "/foot-care-services#cracked-heels",
   },
   {
     title: "Verrucas",
-    href: "/services#verrucas",
+    href: "/foot-care-services#verrucas",
   },
   {
     title: "Athlete’s foot",
-    href: "/services#athletes-foot",
+    href: "/foot-care-services#athletes-foot",
   },
   {
     title: "Diabetic foot care",
-    href: "/services#foot-health-checks",
+    href: "/foot-care-services#foot-health-checks",
   },
 ];
 

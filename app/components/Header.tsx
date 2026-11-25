@@ -87,7 +87,7 @@ export default function Header() {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { label: "Services", href: "/services", active: pathname === "/services" || pathname === "/supported-living-foot-care" },
+    { label: "Services", href: "/foot-care-services", active: pathname === "/foot-care-services" || pathname === "/supported-living-foot-care" },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
     { label: "Locations", href: "/locations", active: pathname.startsWith("/locations") },
     { label: "About", href: "/about", active: pathname === "/about" },

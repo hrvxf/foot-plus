@@ -1,4 +1,4 @@
-// Content for /services. Wording is drawn from approved copy on the treatment
+// Content for /foot-care-services. Wording is drawn from approved copy on the treatment
 // and location pages, summarised for this hub. House style: no em dashes.
 //
 // Kept deliberately short: the detail for each treatment lives on its own page,
@@ -12,7 +12,7 @@ export type ServiceGroup = "nails" | "skin" | "check";
 
 export type ServiceDetail = {
   id: string;
-  /** /services shows nails and skin as two swipeable sets; checks get their own card. */
+  /** /foot-care-services shows nails and skin as two swipeable sets; checks get their own card. */
   group: ServiceGroup;
   icon: ServiceIconKey;
   title: string;

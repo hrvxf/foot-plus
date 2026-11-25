@@ -26,6 +26,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Descriptive URL for the shared services page (Nov 2026). Keep indefinitely.
+      { source: "/services", destination: "/foot-care-services", statusCode: 301 },
       // The care page now covers both locations (Nov 2026).
       {
         source: "/care-homes-bristol",

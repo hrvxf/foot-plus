@@ -89,7 +89,7 @@ export default function TermsPage() {
           <p>
             We&rsquo;re qualified, insured and DBS-checked Foot Health Practitioners, not podiatrists, and we
             offer the treatments on our{" "}
-            <Link className={link} href="/services">
+            <Link className={link} href="/foot-care-services">
               services page
             </Link>
             . If you need something outside that, we&rsquo;ll suggest who to see.

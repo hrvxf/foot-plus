@@ -67,7 +67,7 @@ function schemaFor(treatment: Treatment) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Services", item: `${SITE_URL}/services` },
+          { "@type": "ListItem", position: 1, name: "Services", item: `${SITE_URL}/foot-care-services` },
           { "@type": "ListItem", position: 2, name: treatment.name, item: url },
         ],
       },
@@ -104,7 +104,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         <nav aria-label="Breadcrumb" className="mb-3.5 text-[0.8125rem] text-brand-muted">
           <ol className="flex justify-center gap-1.5">
             <li>
-              <Link href="/services" className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
+              <Link href="/foot-care-services" className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
                 Services
               </Link>
             </li>

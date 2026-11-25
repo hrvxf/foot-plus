@@ -127,7 +127,7 @@ export default function TreatmentsMarquee({ id, place }: { id: string; place: st
               </div>
             ))}
           </dl>
-          <Link href="/services" className={`mt-1 inline-flex min-h-11 items-center gap-2 text-[0.9375rem] font-semibold text-brand-sageDeep ${focusRing}`}>
+          <Link href="/foot-care-services" className={`mt-1 inline-flex min-h-11 items-center gap-2 text-[0.9375rem] font-semibold text-brand-sageDeep ${focusRing}`}>
             All treatments
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
