@@ -17,7 +17,7 @@ import { BRISTOL_BUSINESS_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, bristolReferral
 // Uses the slate "care" palette (globals.css) so it reads as its own space.
 
 const canonical = `${SITE_URL}/supported-living-foot-care`;
-const title = "Foot Care for Supported Living & Care Homes, Bristol & Southampton | Foot+";
+const title = "Foot Care for Supported Living and Care Homes | Foot+";
 const description =
   "Calm foot care visits for adults with learning disabilities, autism or extra support needs, in supported living and care homes across Bristol and Southampton.";
 const socialImage = {

@@ -8,6 +8,8 @@ Layer 3 reference. SEO and Google rankings are the site's top priority. Read thi
 - Shared pages stay location-neutral; town-specific intent goes on `-bristol` / `-southampton` pages or the location pages.
 - Every moved or removed URL gets a permanent redirect in `next.config.ts`, kept indefinitely.
 - Visible FAQs and FAQPage structured data must match.
+- When a page's visible content changes, bump its date in `app/sitemap.ts` (Advice uses `dateModified` in `app/lib/advice.ts`). Routing and utility pages (`/locations`, `/forms`, `/toenail-cutting`) are `noindex` and stay out of the sitemap.
+- Google titles: keep under about 60 characters and end with `| Foot+` (never "Foot Plus" or "Foot+ Bristol" on shared pages). Put town names in the description when they would push the title over.
 - Run `python scripts/verify-seo.py http://127.0.0.1:3000` against a local `npm start` after SEO changes.
 
 ## Files

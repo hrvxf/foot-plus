@@ -20,7 +20,8 @@ export const metadata: Metadata = {
     images: [DEFAULT_SOCIAL_IMAGE], url: `${SITE_URL}/forms` },
   description:
     "Choose your local Foot+ service and complete the correct new-patient documentation.",
-  robots: { index: true, follow: true },
+  // Only reached from a WhatsApp link after an enquiry; nothing here to rank.
+  robots: { index: false, follow: true },
 };
 
 const eyebrow = "text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark";

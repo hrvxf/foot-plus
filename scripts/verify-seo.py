@@ -59,8 +59,9 @@ for path,links in concurrent.futures.ThreadPoolExecutor(max_workers=8).map(verif
 for link in all_links:
     target=urlsplit(link).path or '/'
     if target in ['/bristol','/southampton','/areas-we-cover','/areas','/advice/why-toenails-become-thick',*area_redirects]: raise AssertionError(('Redirected internal link',link))
-    # /toenail-cutting is a deliberate noindex chooser (Bristol or Southampton), linked from the services page.
-    assert target in paths or target in ['/toenail-cutting'] or target.startswith('/api/') or target.startswith('/images/'), ('Unknown internal page',link)
+    # Deliberate noindex pages, kept out of the sitemap: the /toenail-cutting and /locations
+    # choosers (Bristol or Southampton) and /forms, the patient document link sent after an enquiry.
+    assert target in paths or target in ['/toenail-cutting','/locations','/forms'] or target.startswith('/api/') or target.startswith('/images/'), ('Unknown internal page',link)
 for alias,destination in {**area_redirects,'/areas':'/locations/bristol/areas-we-cover','/areas-we-cover':'/locations/bristol/areas-we-cover','/foot-health-practitioner-bristol':'/locations/bristol','/bristol':'/locations/bristol','/southampton':'/locations/southampton','/advice/why-toenails-become-thick':'/advice/thickened-toenails-causes-treatment-and-when-to-worry'}.items():
     status,headers,_=fetch(alias)
     assert status in [301,308], (alias,status)
