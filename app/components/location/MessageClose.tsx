@@ -82,7 +82,7 @@ export default function MessageClose({
       </div>
 
       {/* The page ends here: no footer pill on the location pages (see Footer.tsx). */}
-      <div role="contentinfo" className={`mx-auto max-w-[72rem] px-3 text-left md:px-6 ${children ? "mt-6 md:mt-10" : "mt-12 md:mt-16"}`}>
+      <div role="contentinfo" className={`mx-auto max-w-[75rem] px-3 text-left md:px-6 ${children ? "mt-6 md:mt-10" : "mt-12 md:mt-16"}`}>
         <div className="border-t border-white/15 pt-1">
           <SmallPrint />
         </div>

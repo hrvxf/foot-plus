@@ -14,7 +14,7 @@ export default function PriceTicket() {
     { label: "Routine", price: routine.price },
   ];
   return (
-    <section className="px-4 py-6 md:py-10" aria-labelledby="prices-heading">
+    <section className="px-4 py-6 md:px-6 md:py-10" aria-labelledby="prices-heading">
       <div className={`mx-auto max-w-[1200px] rounded-[28px] px-[22px] py-11 text-center md:py-16 ${texturedGreen}`}>
         <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-[#A8E6B8]">Prices</p>
         <h2

@@ -606,7 +606,7 @@ html[data-intro] [data-header-logo] [data-logo="plus"] {
 }
 @media (min-width: 768px) {
   .site-pill {
-    max-width: 72rem;
+    max-width: 75rem;
   }
 }
 

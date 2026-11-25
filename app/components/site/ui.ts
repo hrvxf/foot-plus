@@ -15,6 +15,8 @@ export const textLink = "inline-flex items-center gap-2 font-semibold text-brand
 // type, hairline rules and one 8px-radius button. 16px minimum text size.
 // Three text levels: deep green for headings and figures, charcoal for body,
 // muted for supporting detail.
+// Desktop frame: the header pill, footer and full-width green cards all share one 1200px (75rem) frame with
+// 24px side margins from md up, so their edges line up. Text inside sits in `shell`.
 export const shell = "mx-auto w-full max-w-[1200px] px-5 sm:px-8";
 export const rule = "border-brand-charcoal/15";
 export const focusRing =
