@@ -13,7 +13,16 @@ const YEARS = 8;
  * overlap ("between us"). Reduced motion, and the server render, show the finished state. The real number is
  * always in the text for screen readers and search.
  */
-export default function SharedExperience({ id }: { id: string }) {
+export default function SharedExperience({
+  id,
+  variant = "band",
+  className = "",
+}: {
+  id: string;
+  /** band: the pale panel (phones and tablets). hero: white on the dark hero, portraits first (desktop). */
+  variant?: "band" | "hero";
+  className?: string;
+}) {
   const box = useRef<HTMLElement>(null);
   const [count, setCount] = useState(YEARS);
   const [met, setMet] = useState(true);
@@ -49,12 +58,42 @@ export default function SharedExperience({ id }: { id: string }) {
 
   const slide = "transition-[transform,opacity] duration-1000 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:transition-none";
 
+  if (variant === "hero") {
+    return (
+      <section ref={box} id={id} aria-labelledby={`${id}-heading`} className={`text-center ${className}`}>
+        <h2 id={`${id}-heading`} className="sr-only">
+          Our experience
+        </h2>
+        <div className="flex justify-center">
+          {(["bristol", "southampton"] as const).map((slug, index) => (
+            <span
+              key={slug}
+              className={`relative h-[150px] w-[150px] overflow-hidden rounded-full border-[5px] border-care-deep bg-care-line ${slide} ${
+                index === 0 ? "z-[1]" : "-ml-[26px]"
+              } ${met ? "translate-x-0 opacity-100" : `opacity-0 ${index === 0 ? "-translate-x-[70px]" : "translate-x-[70px]"}`}`}
+            >
+              <Image src={portraits[slug]} alt="" fill sizes="150px" className="object-cover object-[center_15%]" />
+            </span>
+          ))}
+        </div>
+        <p className="mt-7 font-heading text-[6.5rem] font-bold leading-[0.95] tracking-[-0.04em] tabular-nums">
+          <span aria-hidden="true">{count}</span>
+          <span className="sr-only">{YEARS}</span>
+          <span className="text-[2.375rem] tracking-[-0.02em] text-care-soft"> years</span>
+        </p>
+        <p className="mx-auto mt-3 max-w-[28ch] text-[1.0625rem] leading-[1.5] text-white/85">
+          Between us, in health and social care, working with adults with learning disabilities and autism.
+        </p>
+      </section>
+    );
+  }
+
   return (
     <section
       ref={box}
       id={id}
       aria-labelledby={`${id}-heading`}
-      className="mx-3 mt-14 rounded-[32px] bg-care-mist px-6 py-10 text-center md:mx-auto md:mt-20 md:max-w-3xl md:py-14"
+      className={`mx-3 mt-14 rounded-[32px] bg-care-mist px-6 py-10 text-center md:mx-auto md:mt-20 md:max-w-3xl md:py-14 ${className}`}
     >
       <h2 id={`${id}-heading`} className="text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-care-deep">
         Our experience
