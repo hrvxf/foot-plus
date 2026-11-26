@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { homeServices } from "../../lib/home";
 import { serviceDetails } from "../../lib/services";
-import { focusRing } from "../site/ui";
+import { focusRing, texturedGreen } from "../site/ui";
 
 /** The services-page summary for each home treatment, matched by its `#id` link. */
 const summaries = homeServices.map(
@@ -116,23 +116,23 @@ export default function TreatmentSpotlight() {
           </Link>
         </div>
         <div className="hidden lg:block">
-          <div className="sticky top-32 mt-11 rounded-[24px] bg-brand-offwhite p-10">
-            <p aria-hidden="true" className="font-heading text-[4rem] font-semibold leading-none text-brand-line">
+          <div className={`sticky top-32 mt-11 rounded-[28px] p-10 text-white ${texturedGreen}`}>
+            <p aria-hidden="true" className="font-heading text-[4rem] font-semibold leading-none text-white/25">
               {String(shown + 1).padStart(2, "0")}
             </p>
-            <h3 className="mt-4 font-heading text-[1.875rem] font-semibold leading-[1.15] tracking-[-0.02em] text-brand-charcoal">
+            <h3 className="mt-4 font-heading text-[1.875rem] font-semibold leading-[1.15] tracking-[-0.02em]">
               {homeServices[shown].title}
             </h3>
-            <p className="mt-3.5 text-lg leading-[1.55] text-brand-muted">{summaries[shown]}</p>
+            <p className="mt-3.5 text-lg leading-[1.55] text-white/88">{summaries[shown]}</p>
             <Link
               href={homeServices[shown].href}
-              className={`mt-6 inline-flex min-h-11 items-center text-base font-semibold text-brand-sageDeep hover:text-brand-charcoal ${focusRing}`}
+              className={`mt-6 inline-flex min-h-12 items-center rounded-full bg-white px-[22px] text-base font-semibold text-brand-sageDeep transition-colors hover:bg-brand-offwhite ${focusRing}`}
             >
               More about {homeServices[shown].title.toLowerCase()} →
             </Link>
             <Link
               href="/foot-care-services"
-              className={`mt-7 flex min-h-11 items-center border-t border-brand-line pt-5 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-brand-sageDark ${focusRing}`}
+              className={`mt-7 flex min-h-11 items-center border-t border-white/20 pt-5 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#A8E6B8] hover:text-white focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white`}
             >
               All in one home visit →
             </Link>
