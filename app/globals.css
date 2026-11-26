@@ -684,6 +684,31 @@ html[data-intro] [data-header-logo] [data-logo="plus"] {
   outline-offset: 4px;
   border-radius: 8px;
 }
+/* On a white card (the desktop price builder on /prices). */
+.travel-range--light::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, var(--color-brand-sage) var(--p, 0%), var(--color-brand-wash) var(--p, 0%));
+}
+.travel-range--light::-moz-range-track {
+  background: var(--color-brand-wash);
+}
+.travel-range--light::-moz-range-progress {
+  background: var(--color-brand-sage);
+}
+.travel-range--light::-webkit-slider-thumb {
+  background: var(--color-brand-sageDark);
+  border: 4px solid #fff;
+  box-shadow: 0 3px 10px rgb(36 48 40 / 0.35);
+}
+.travel-range--light::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--color-brand-sageDark);
+  border: 4px solid #fff;
+  box-shadow: 0 3px 10px rgb(36 48 40 / 0.35);
+}
+.travel-range--light:focus-visible {
+  outline-color: var(--color-brand-sageDark);
+}
 
 /* /book: each question fades up into place. */
 @keyframes steps-enter {
