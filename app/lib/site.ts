@@ -1,9 +1,9 @@
 export const SITE_URL = "https://foot-plus.co.uk";
 export const BUSINESS_ID = `${SITE_URL}/#organization`;
 export const BRISTOL_BUSINESS_ID = `${SITE_URL}/locations/bristol#medicalbusiness`;
-export const ADAM_ID = `${SITE_URL}/about#adam-james`;
+export const ADAM_ID = `${SITE_URL}/locations/bristol#adam-james`;
 export const SOUTHAMPTON_BUSINESS_ID = `${SITE_URL}/locations/southampton#medicalbusiness`;
-export const KATIE_ID = `${SITE_URL}/about#katie-preston`;
+export const KATIE_ID = `${SITE_URL}/locations/southampton#katie-preston`;
 
 /**
  * The default link-preview image. Next.js replaces the whole openGraph object when a page sets its own,

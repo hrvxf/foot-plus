@@ -56,7 +56,14 @@ export default function SouthamptonLocationPage() {
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     telephone: locationPhones.southampton.e164,
     email: locationEmails.southampton.display,
-    employee: { "@type": "Person", "@id": KATIE_ID, name: practitioner.name, jobTitle: practitioner.role },
+    employee: {
+      "@type": "Person",
+      "@id": KATIE_ID,
+      name: practitioner.name,
+      jobTitle: practitioner.role,
+      url: `${canonical}#katie-preston`,
+      hasCredential: { "@type": "EducationalOccupationalCredential", name: "Diploma in Foot Health" },
+    },
     priceRange: "££",
     // Same as the LGBTQ+ flag in the footer, for search engines.
     amenityFeature: { "@type": "LocationFeatureSpecification", name: "LGBTQ+ friendly", value: true },
@@ -67,6 +74,7 @@ export default function SouthamptonLocationPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Southampton", item: canonical } ] }, { "@type": "FAQPage", mainEntity: locationFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <MeetIntro
+        anchorId="katie-preston"
         status="Appointments available"
         title="Home foot care in Southampton"
         portraitSrc={portraits.southampton}

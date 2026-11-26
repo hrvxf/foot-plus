@@ -226,7 +226,7 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
             <Image src="/images/adam-james.webp" alt="" fill sizes="34px" className="object-cover object-[center_15%]" />
           </span>
           <span>
-            <Link href="/about#adam-james" className={`rounded font-semibold text-brand-charcoal ${focusRing}`}>
+            <Link href="/locations/bristol#adam-james" className={`rounded font-semibold text-brand-charcoal ${focusRing}`}>
               Adam James
             </Link>{" "}
             · Dip FH, MCFHP, MAFHP

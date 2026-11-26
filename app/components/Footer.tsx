@@ -18,7 +18,6 @@ const pillLinks = [
   { href: "/prices", label: "Prices" },
   { href: "/advice", label: "Advice" },
   { href: "/partners", label: "Partners" },
-  { href: "/about", label: "About" },
 ];
 
 /** Phones: the menu that opens up out of the pill. Same order as the header menu, plus Advice and Partners. */
@@ -28,7 +27,6 @@ const menuLinks = [
   { href: "/locations", label: "Locations" },
   { href: "/advice", label: "Advice" },
   { href: "/partners", label: "Partners" },
-  { href: "/about", label: "About" },
 ];
 
 const legalLinks = [

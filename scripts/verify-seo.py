@@ -37,7 +37,7 @@ class Page(HTMLParser):
 status, _, xml = fetch('/sitemap.xml'); assert status==200
 urls=[item.text for item in ET.fromstring(xml).iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
 assert len(urls)==len(set(urls)), 'Duplicate sitemap URLs'
-assert CANONICAL+'/about' in urls
+assert CANONICAL+'/about' not in urls
 assert CANONICAL+'/advice/why-toenails-are-difficult-to-cut' in urls
 paths={urlsplit(url).path or '/' for url in urls}
 all_links=set()
@@ -58,11 +58,11 @@ for path,links in concurrent.futures.ThreadPoolExecutor(max_workers=8).map(verif
     all_links.update(links)
 for link in all_links:
     target=urlsplit(link).path or '/'
-    if target in ['/bristol','/southampton','/areas-we-cover','/areas','/advice/why-toenails-become-thick','/services','/terms','/advice/hard-skin-on-feet','/advice/foot-care-learning-disabilities-bristol',*area_redirects]: raise AssertionError(('Redirected internal link',link))
+    if target in ['/about','/bristol','/southampton','/areas-we-cover','/areas','/advice/why-toenails-become-thick','/services','/terms','/advice/hard-skin-on-feet','/advice/foot-care-learning-disabilities-bristol',*area_redirects]: raise AssertionError(('Redirected internal link',link))
     # Deliberate noindex pages, kept out of the sitemap: the /toenail-cutting and /locations
     # choosers (Bristol or Southampton) and /forms, the patient document link sent after an enquiry.
     assert target in paths or target in ['/toenail-cutting','/locations','/forms'] or target.startswith('/api/') or target.startswith('/images/'), ('Unknown internal page',link)
-for alias,destination in {**area_redirects,'/areas':'/locations/bristol/areas-we-cover','/areas-we-cover':'/locations/bristol/areas-we-cover','/foot-health-practitioner-bristol':'/locations/bristol','/bristol':'/locations/bristol','/southampton':'/locations/southampton','/advice/why-toenails-become-thick':'/advice/thickened-toenails-causes-treatment-and-when-to-worry','/services':'/foot-care-services','/terms':'/terms-and-conditions','/advice/hard-skin-on-feet':'/hard-skin-and-callus','/advice/foot-care-learning-disabilities-bristol':'/advice/foot-care-visits-learning-disabilities-carers-guide'}.items():
+for alias,destination in {**area_redirects,'/areas':'/locations/bristol/areas-we-cover','/areas-we-cover':'/locations/bristol/areas-we-cover','/foot-health-practitioner-bristol':'/locations/bristol','/about':'/locations','/bristol':'/locations/bristol','/southampton':'/locations/southampton','/advice/why-toenails-become-thick':'/advice/thickened-toenails-causes-treatment-and-when-to-worry','/services':'/foot-care-services','/terms':'/terms-and-conditions','/advice/hard-skin-on-feet':'/hard-skin-and-callus','/advice/foot-care-learning-disabilities-bristol':'/advice/foot-care-visits-learning-disabilities-carers-guide'}.items():
     status,headers,_=fetch(alias)
     assert status in [301,308], (alias,status)
     assert headers.get('Location')==destination,(alias,headers.get('Location'))
@@ -72,6 +72,6 @@ service=next(node for node in nodes if node.get('@type')=='Service')
 assert service['provider']['@id']==CANONICAL+'/locations/bristol#medicalbusiness'
 assert {offer['price'] for offer in service['offers']}=={'55','60'}
 assert 'location=bristol&amp;service=nails' in body
-status,_,body=fetch('/about');page=Page();page.feed(body)
-assert 'id="adam-james"' in body and 'id="katie-preston"' in body
-print(json.dumps({'base':BASE,'sitemapPagesChecked':len(urls),'internalLinksChecked':len(all_links),'redirectsChecked':10+len(area_redirects),'result':'PASS'},indent=2))
+status,_,body=fetch('/locations/bristol');assert 'id="adam-james"' in body
+status,_,body=fetch('/locations/southampton');assert 'id="katie-preston"' in body
+print(json.dumps({'base':BASE,'sitemapPagesChecked':len(urls),'internalLinksChecked':len(all_links),'redirectsChecked':11+len(area_redirects),'result':'PASS'},indent=2))

@@ -1,5 +1,6 @@
 import FootCareFor from "./home/FootCareFor";
 import HeroVisit from "./home/HeroVisit";
+import HomeStandards from "./home/HomeStandards";
 import HomeMobileBar from "./home/HomeMobileBar";
 import PriceTicket, { PriceTicketAside } from "./home/PriceTicket";
 import ReviewWall from "./home/ReviewWall";
@@ -12,7 +13,7 @@ const CHECKER_ID = "check-postcode";
 
 /**
  * Home page: the brand's front door rather than another location page. A statement hero on why home
- * visits, who they're for, every treatment, prices, reviews, then the two practitioners and the postcode
+ * visits, who they're for, every treatment, prices, reviews, the Foot+ standard, then the two practitioners and the postcode
  * check that routes each visitor to the right one.
  *
  * Desktop (lg+) rearranges the same content: the practitioners and postcode check sit beside the hero
@@ -28,6 +29,7 @@ export default function HomeContent() {
       <PriceTicket />
       <ReviewSwipe />
       <ReviewWall />
+      <HomeStandards />
       <WhereWeVisit checkerId={CHECKER_ID} />
       <HomeMobileBar checkerId={CHECKER_ID} />
     </>

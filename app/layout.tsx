@@ -96,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@id": ADAM_ID,
     name: "Adam James",
     jobTitle: "Foot Health Practitioner",
-    url: `${SITE_URL}/about#adam-james`,
+    url: `${SITE_URL}/locations/bristol#adam-james`,
     image: `${SITE_URL}/images/adam-james-hero.webp`,
     worksFor: { "@id": BRISTOL_BUSINESS_ID },
     hasCredential: { "@type": "EducationalOccupationalCredential", name: "Diploma in Foot Health" },

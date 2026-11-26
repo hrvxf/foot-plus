@@ -90,7 +90,6 @@ export default function Header() {
     { label: "Services", href: "/foot-care-services", active: pathname === "/foot-care-services" || pathname === "/supported-living-foot-care" },
     { label: "Prices", href: "/prices", active: pathname === "/prices" },
     { label: "Locations", href: "/locations", active: pathname.startsWith("/locations") },
-    { label: "About", href: "/about", active: pathname === "/about" },
   ];
 
   // The "Footsteps" entry animation (CSS in globals.css) plays while <html data-intro>

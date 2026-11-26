@@ -16,6 +16,8 @@ type Props = {
   practitioner: Practitioner;
   portraitSrc: string;
   primaryAction: { label: string; href: string; analyticsId?: string };
+  /** Id for links to the practitioner, e.g. "adam-james" (the author link on advice articles). */
+  anchorId?: string;
   contactActions: ContactAction[];
 };
 
@@ -38,7 +40,7 @@ const CARD_GAP = 16;
  * settles the portrait into a green card with their own introduction, so arriving on the page feels like
  * meeting them. Large screens and reduced motion get the finished layout without the animation.
  */
-export default function MeetIntro({ title, status, practitioner, portraitSrc, primaryAction, contactActions }: Props) {
+export default function MeetIntro({ title, status, practitioner, portraitSrc, primaryAction, contactActions, anchorId }: Props) {
   const firstName = practitioner.name.split(" ")[0];
   const credentials = practitioner.credentials.join(" · ");
   const intro = practitioner.intro;
@@ -196,7 +198,7 @@ export default function MeetIntro({ title, status, practitioner, portraitSrc, pr
   ) : null;
 
   return (
-    <section aria-labelledby="location-heading" data-page-hero>
+    <section id={anchorId} aria-labelledby="location-heading" data-page-hero className="scroll-mt-24">
       <h1 id="location-heading" className="sr-only">
         {title}
       </h1>
