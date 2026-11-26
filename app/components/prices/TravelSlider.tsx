@@ -2,15 +2,9 @@
 
 import { useId, useRef, useState, type CSSProperties } from "react";
 import { trackAdviceEvent } from "../advice/AdviceTracker";
-import { FREE_UP_TO_MILES, STANDARD_UP_TO_MILES, travelBands, type TravelBand } from "../../lib/travel";
+import { FREE_UP_TO_MILES, STANDARD_UP_TO_MILES, travelBandFor as bandFor, travelBands } from "../../lib/travel";
 
 const MAX = 10;
-
-function bandFor(miles: number): TravelBand {
-  if (miles < FREE_UP_TO_MILES) return "free";
-  if (miles < STANDARD_UP_TO_MILES) return "standard";
-  return "extended";
-}
 
 /** Drag along the distance to see the travel fee. Styled in globals.css (.travel-range). */
 export default function TravelSlider() {

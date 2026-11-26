@@ -49,6 +49,13 @@ export const travelBands: Record<
   },
 };
 
+/** Which travel band a driving distance falls in (the /prices slider and price builder). */
+export function travelBandFor(miles: number): TravelBand {
+  if (miles < FREE_UP_TO_MILES) return "free";
+  if (miles < STANDARD_UP_TO_MILES) return "standard";
+  return "extended";
+}
+
 /** One-line summary for copy across the site. */
 export const travelSummary = `Travel is free within ${FREE_UP_TO_MILES} miles of our ${TRAVEL_BASE.label} base, £5 up to ${STANDARD_UP_TO_MILES} miles, and £10+ beyond that. Any travel fee is confirmed before you book.`;
 
