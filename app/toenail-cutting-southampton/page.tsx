@@ -110,7 +110,7 @@ export default function ToenailCuttingSouthamptonPage() {
         location={serviceLocations.southampton}
         intro="Katie Preston visits you at home to cut, file and thin difficult toenails."
         coverage={serviceLocations.southampton.coverage}
-        aboutHref="/about#katie-preston"
+        aboutHref="/locations/southampton#katie-preston"
         bookingHref={bookingHref}
         contactActions={[
           { kind: "phone", href: locationPhones.southampton.href, label: `Call Foot+ Southampton on ${locationPhones.southampton.display}`, analyticsId: "nails-soton-hero-phone" },

@@ -21,7 +21,6 @@ const pages: Record<string, string> = {
   "/cracked-heels": "2026-11-25",
   "/supported-living-foot-care": "2026-11-25",
   "/prices": "2026-11-23",
-  "/about": "2026-11-23",
   "/advice": "2026-11-25",
   "/book": "2026-11-25",
   "/partners": "2026-11-23",

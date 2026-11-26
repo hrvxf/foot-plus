@@ -965,7 +965,7 @@ export const adviceArticles: AdviceArticle[] = [
         "kind": "pricing"
       },
       {
-        "href": "/about",
+        "href": "/locations/bristol#adam-james",
         "label": "Meet your practitioner",
         "kind": "about"
       }
@@ -1017,7 +1017,7 @@ export const adviceArticles: AdviceArticle[] = [
             "kind": "service"
           },
           {
-            "href": "/about",
+            "href": "/locations/bristol#adam-james",
             "label": "About our practitioners",
             "kind": "about"
           }
@@ -1064,7 +1064,7 @@ export const adviceArticles: AdviceArticle[] = [
     "practitionerView": "Clear boundaries protect patients. Foot+ is for routine care at home; if something needs a clinician, we'll say so.",
     "relatedServiceRoutes": [
       {
-        "href": "/about",
+        "href": "/locations/bristol#adam-james",
         "label": "About Adam",
         "kind": "about"
       },
@@ -1824,4 +1824,4 @@ export function adviceMetadata(article: AdviceArticle): Metadata {
     robots: { index: true, follow: true },
   };
 }
-export function articleJsonLd(article: AdviceArticle) { const url = adviceCanonical(article.slug); return { "@context":"https://schema.org", "@graph":[{ "@type":"Article", "@id":`${url}#article`, headline:article.title, description:article.description, mainEntityOfPage:{"@type":"WebPage","@id":url}, author:{"@type":"Person","@id":ADAM_ID, name:"Adam James", jobTitle:"Foot Health Practitioner", url:`${SITE_URL}/about`}, publisher:{"@type":"Organization","@id":`${SITE_URL}/#organization`, name:"Foot+", url:SITE_URL}, datePublished:article.datePublished, dateModified:article.dateModified, articleSection:article.category }, {"@type":"BreadcrumbList","@id":`${url}#breadcrumb`, itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`${SITE_URL}/`},{"@type":"ListItem",position:2,name:"Advice",item:adviceCanonical()},{"@type":"ListItem",position:3,name:article.title,item:url}]}, {"@type":"FAQPage","@id":`${url}#faq`, mainEntity:article.faqs.map((faq)=>({"@type":"Question", name:faq.question, acceptedAnswer:{"@type":"Answer", text:faq.answer}}))}]}; }
+export function articleJsonLd(article: AdviceArticle) { const url = adviceCanonical(article.slug); return { "@context":"https://schema.org", "@graph":[{ "@type":"Article", "@id":`${url}#article`, headline:article.title, description:article.description, mainEntityOfPage:{"@type":"WebPage","@id":url}, author:{"@type":"Person","@id":ADAM_ID, name:"Adam James", jobTitle:"Foot Health Practitioner", url:`${SITE_URL}/locations/bristol#adam-james`}, publisher:{"@type":"Organization","@id":`${SITE_URL}/#organization`, name:"Foot+", url:SITE_URL}, datePublished:article.datePublished, dateModified:article.dateModified, articleSection:article.category }, {"@type":"BreadcrumbList","@id":`${url}#breadcrumb`, itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`${SITE_URL}/`},{"@type":"ListItem",position:2,name:"Advice",item:adviceCanonical()},{"@type":"ListItem",position:3,name:article.title,item:url}]}, {"@type":"FAQPage","@id":`${url}#faq`, mainEntity:article.faqs.map((faq)=>({"@type":"Question", name:faq.question, acceptedAnswer:{"@type":"Answer", text:faq.answer}}))}]}; }
