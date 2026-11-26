@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { createContext, useContext, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useId, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
+import { ArrowRight, Check } from "lucide-react";
 
 import { trackAdviceEvent } from "../advice/AdviceTracker";
-import PostcodeChecker from "../home/PostcodeChecker";
 import { focusRing } from "../site/ui";
+import { serviceLocations } from "../../lib/locations";
+import { checkServiceArea } from "../../lib/postcodes";
 import {
   FREE_UP_TO_MILES,
   STANDARD_UP_TO_MILES,
+  estimateTravel,
+  lookupPostcode,
   travelBandFor,
   travelBands,
-  travelBases,
 } from "../../lib/travel";
 import type { Ticket } from "./PriceTickets";
 
@@ -81,7 +84,31 @@ export function PriceBuilderReceipt() {
   const { tickets, visit, setVisit } = useBuilder();
   const sliderId = useId();
   const [miles, setMiles] = useState(1);
+  const [pop, setPop] = useState(0);
   const lastReported = useRef<number | null>(null);
+  const glide = useRef(0);
+
+  useEffect(() => () => cancelAnimationFrame(glide.current), []);
+
+  /** A postcode was checked: glide the slider to its distance, then pop the fee and total. */
+  const glideTo = (target: number) => {
+    cancelAnimationFrame(glide.current);
+    const to = Math.min(MAX_MILES, Math.round(target * 10) / 10);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setMiles(to);
+      return;
+    }
+    const from = miles;
+    const start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / 700);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setMiles(Math.round((from + (to - from) * eased) * 10) / 10);
+      if (t < 1) glide.current = requestAnimationFrame(step);
+      else setPop((n) => n + 1);
+    };
+    glide.current = requestAnimationFrame(step);
+  };
 
   const ticket = tickets[visit];
   const bandKey = travelBandFor(miles);
@@ -135,7 +162,7 @@ export function PriceBuilderReceipt() {
               <label htmlFor={sliderId} className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-sageDark">
                 Travel
               </label>
-              <p className="font-heading text-[1.875rem] font-semibold text-brand-charcoal" aria-live="polite">
+              <p key={`fee-${pop}`} className={`font-heading text-[1.875rem] font-semibold text-brand-charcoal ${pop ? "price-pop" : ""}`} aria-live="polite">
                 {band.fee}
               </p>
             </div>
@@ -144,7 +171,7 @@ export function PriceBuilderReceipt() {
               type="range"
               min={0}
               max={MAX_MILES}
-              step={0.5}
+              step={0.1}
               value={miles}
               onChange={(event) => setMiles(Number(event.target.value))}
               onPointerUp={report}
@@ -163,10 +190,6 @@ export function PriceBuilderReceipt() {
               </span>
               <span className="absolute right-0">{MAX_MILES}+</span>
             </div>
-            <p className="mt-2.5 text-sm leading-[1.5] text-brand-muted">
-              {band.range}. Distance from your practitioner&rsquo;s base: {travelBases.bristol.label} in Bristol,{" "}
-              {travelBases.southampton.label} in Southampton.
-            </p>
           </div>
         </div>
 
@@ -179,16 +202,145 @@ export function PriceBuilderReceipt() {
         <div className="px-[34px] pb-[30px] pt-[22px]">
           <div className="flex items-baseline justify-between">
             <p className="font-heading text-xl font-semibold text-brand-charcoal">Your visit</p>
-            <p className="font-heading text-[4rem] font-bold leading-none tracking-[-0.03em] text-brand-sageDeep" aria-live="polite">
+            <p
+              key={`total-${pop}`}
+              className={`origin-right font-heading text-[4rem] font-bold leading-none tracking-[-0.03em] text-brand-sageDeep ${pop ? "price-pop" : ""}`}
+              aria-live="polite"
+            >
               {total}
             </p>
           </div>
-          <p className="mt-1.5 text-right text-sm text-brand-muted">Always confirmed first.</p>
           <div className="mt-[22px] border-t border-brand-wash pt-5">
-            <PostcodeChecker tone="plain" source="prices" placement="builder" label="Or check your postcode" />
+            <ReceiptPostcode onDistance={glideTo} />
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+type Check =
+  | { state: "idle" }
+  | { state: "checking"; postcode: string }
+  | { state: "message"; text: string }
+  | { state: "found"; text: string; href: string };
+
+/**
+ * The receipt's postcode check. It never changes the card's size: the answer is one line in the
+ * label's place, the slider moves to the distance, and the button becomes "Request a visit".
+ */
+function ReceiptPostcode({ onDistance }: { onDistance: (miles: number) => void }) {
+  const inputId = useId();
+  const [value, setValue] = useState("");
+  const [check, setCheck] = useState<Check>({ state: "idle" });
+  const lookup = useRef<AbortController | null>(null);
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    lookup.current?.abort();
+    const area = checkServiceArea(value);
+    if (area.status === "invalid") {
+      setCheck({ state: "message", text: "Enter a full UK postcode." });
+      return;
+    }
+    setValue(area.postcode);
+    const params = { result: area.status, outward_code: area.postcode.split(" ")[0], placement: "builder" };
+    if (area.status === "outside") {
+      setCheck({ state: "message", text: `We don\u2019t visit ${area.postcode} yet.` });
+      trackAdviceEvent("prices_postcode_check", params);
+      return;
+    }
+
+    const controller = new AbortController();
+    lookup.current = controller;
+    setCheck({ state: "checking", postcode: area.postcode });
+    const point = await lookupPostcode(area.postcode, controller.signal);
+    if (controller.signal.aborted) return;
+    const estimate = point ? estimateTravel(point.lat, point.lng, area.status) : null;
+    trackAdviceEvent("prices_postcode_check", { ...params, travel_band: estimate?.band ?? "unknown" });
+
+    const location = serviceLocations[area.status];
+    const href = `/book?location=${location.slug}&postcode=${encodeURIComponent(area.postcode)}`;
+    if (!estimate) {
+      setCheck({ state: "found", text: `${area.postcode} is in the ${location.displayName} area.`, href });
+      return;
+    }
+    // Beyond the £5 band a visit is by arrangement, so don't promise it outright.
+    const byArrangement = estimate.band === "extended" && !estimate.borderline;
+    setCheck({
+      state: "found",
+      text: byArrangement ? `We may be able to visit ${area.postcode}.` : `Yes, we visit ${area.postcode}.`,
+      href,
+    });
+    onDistance(estimate.roadMiles);
+  }
+
+  const answer =
+    check.state === "checking" ? `Checking ${check.postcode}\u2026` : check.state === "idle" ? "" : check.text;
+
+  return (
+    <form onSubmit={onSubmit} noValidate>
+      <div className="relative h-6">
+        <label
+          htmlFor={inputId}
+          className={`absolute inset-0 text-[0.9375rem] font-semibold text-brand-charcoal transition-opacity duration-200 ${
+            check.state === "idle" ? "" : "opacity-0"
+          }`}
+        >
+          Or check your postcode
+        </label>
+        <p
+          aria-live="polite"
+          className={`absolute inset-0 flex items-center gap-1.5 truncate text-[0.9375rem] font-semibold ${
+            check.state === "found" ? "text-brand-sageDeep" : "text-brand-charcoal"
+          }`}
+        >
+          {check.state === "found" ? (
+            <span className="price-pop inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-sage text-white">
+              <Check className="h-3.5 w-3.5" strokeWidth={3} aria-hidden="true" />
+            </span>
+          ) : null}
+          {answer}
+        </p>
+      </div>
+      <div className="mt-2.5 flex gap-2.5">
+        <input
+          id={inputId}
+          name="postcode"
+          type="text"
+          autoComplete="postal-code"
+          autoCapitalize="characters"
+          spellCheck={false}
+          placeholder="Your postcode"
+          value={value}
+          onChange={(event) => {
+            setValue(event.target.value);
+            if (check.state !== "idle") {
+              lookup.current?.abort();
+              setCheck({ state: "idle" });
+            }
+          }}
+          className="h-14 min-w-0 flex-1 rounded-md border-[1.5px] border-brand-muted bg-white px-4 text-lg font-medium tracking-wide text-brand-charcoal placeholder:font-normal placeholder:tracking-normal placeholder:text-brand-muted focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-brand-sageDark"
+        />
+        {check.state === "found" ? (
+          <Link
+            href={check.href}
+            data-analytics-id="prices-builder-postcode-book"
+            className={`inline-flex h-14 w-[13rem] shrink-0 items-center justify-center gap-2 rounded-lg bg-brand-sageDark text-lg font-semibold text-white transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+          >
+            Request a visit
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </Link>
+        ) : (
+          <button
+            type="submit"
+            className={`inline-flex h-14 w-[13rem] shrink-0 items-center justify-center gap-2 rounded-lg bg-brand-sageDark text-lg font-semibold text-white transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+          >
+            Check postcode
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </button>
+        )}
+      </div>
+    </form>
   );
 }
