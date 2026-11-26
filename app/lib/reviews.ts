@@ -45,12 +45,18 @@ export type Review = {
 };
 
 /**
- * Review shown on /supported-living-foot-care, under "Our experience". Empty until the
- * reviewer agrees to it being used there (Sheena B.'s review mentions her son's
- * learning disability; Adam asked her on 23 Nov 2026). Paste her exact words in
- * once she says yes; the section stays hidden while this is null.
+ * Review shown on /supported-living-foot-care, under "Our experience". Sheena B. agreed
+ * to it being used there (it mentions her son's autism; Adam asked her on 23 Nov 2026).
+ * Her Google review (Jul 2026), word for word; only the spaces before punctuation and a
+ * closing emoji were tidied. The section hides itself if this is set back to null.
  */
-export const careSettingsReview: Review | null = null;
+export const careSettingsReview: Review | null = {
+  name: "Sheena B.",
+  month: "2026-07",
+  rating: 5,
+  text: "I highly recommend Adam James. He came to help my severely autistic adult son who was suffering with very uncomfortable feet! Adam showed patience, kindness, sensitivity and expertise which is exactly what was needed. He helped my son’s feet on to the road to healing in just one session. Amazing skills",
+  highlight: "patience, kindness, sensitivity and expertise",
+};
 
 export type ReviewLocation = "bristol" | "southampton";
 export type ReviewScope = ReviewLocation | "all";
@@ -83,8 +89,8 @@ export const reviewLocations: Record<ReviewLocation, LocationReviews> = {
     checked: "2026-11-19",
     readUrl: "https://maps.google.com/maps?cid=6111773793229409736",
     writeUrl: "https://search.google.com/local/writereview?placeid=ChIJocFh7_g3GqERyA37JOJh0VQ",
-    // Sheena B. (Jul 2026) is deliberately left out until she has agreed to it
-    // being used here, as it mentions her son's disability.
+    // Sheena B. (Jul 2026) is shown on /supported-living-foot-care only (careSettingsReview);
+    // she agreed to it being used there.
     reviews: [
       {
         // Posted by Jay on behalf of their mum.
