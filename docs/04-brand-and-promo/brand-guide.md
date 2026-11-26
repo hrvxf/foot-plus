@@ -12,9 +12,9 @@ Working brand guide for Foot+. It starts from the January 2027 "New Year, New To
 |---|---|
 | `public/images/footplus-generic-logo_MASTER_FINAL.svg` | **Master logo, no location.** Use for anything shared across Bristol and Southampton. White fill, so put it on a dark background or recolour it. |
 | `docs/04-brand-and-promo/templates/logo-sagedark.svg` | The master logo recoloured to Sage Dark `#4F6F5F`, for light backgrounds. |
-| `public/images/footplus-logo-green.svg` | Logo with BRISTOL lockup, in green. Bristol-only materials. |
+| `docs/04-brand-and-promo/logos/footplus-logo-green.svg` | Logo with BRISTOL lockup, in green. Bristol-only materials. |
 | `public/images/footplus-logo-white.svg` | Logo with BRISTOL lockup, in white. Bristol-only, on dark green. |
-| `public/images/footplus-logo-southampton-green.svg` / `-white.svg` | Logo with SOUTHAMPTON lockup. Southampton-only materials. |
+| `docs/04-brand-and-promo/logos/footplus-logo-southampton-green.svg` (white version: `public/images/footplus-logo-southampton-white.svg`) | Logo with SOUTHAMPTON lockup. Southampton-only materials. |
 | `docs/04-brand-and-promo/templates/logo-southampton-sagedark.svg` | The Southampton lockup recoloured to Sage Dark, for light backgrounds. |
 
 Rules:
