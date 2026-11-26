@@ -4,6 +4,7 @@ import PostcodeChecker from "../../../components/home/PostcodeChecker";
 import AreaDeck, { type AreaGroup } from "../../../components/areas/AreaDeck";
 import { bristolContactActions, ContactGlyph } from "../../../components/site/ContactIcons";
 import { focusRing, texturedGreen } from "../../../components/site/ui";
+import PreferredImage from "../../../components/site/PreferredImage";
 import {
   estimateTravel,
   travelSummary,
@@ -12,6 +13,7 @@ import {
   BRISTOL_BUSINESS_ID,
   phoneDisplay,
   SITE_URL,
+  searchImages,
  DEFAULT_SOCIAL_IMAGE } from "../../../lib/site";
 
 const canonical = `${SITE_URL}/locations/bristol/areas-we-cover`;
@@ -203,6 +205,7 @@ const contactLabels = { phone: "Call", whatsapp: "WhatsApp", email: "Email" } as
 export default function AreasWeCoverPage() {
   return (
     <main className="pb-16">
+      <PreferredImage path="/locations/bristol/areas-we-cover" image={searchImages.bristol} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

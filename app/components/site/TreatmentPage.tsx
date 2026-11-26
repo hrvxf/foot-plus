@@ -13,7 +13,8 @@ import { focusRing, texturedGreen } from "./ui";
 import { credentialMeanings } from "../../lib/about";
 import { getAdviceArticle } from "../../lib/advice";
 import { serviceLocations } from "../../lib/locations";
-import { BUSINESS_ID, emailHref, locationPhones, phoneDisplay, phoneHref, prices, SITE_URL } from "../../lib/site";
+import { BUSINESS_ID, DEFAULT_SOCIAL_IMAGE, emailHref, locationPhones, phoneDisplay, phoneHref, prices, SITE_URL, searchImages } from "../../lib/site";
+import PreferredImage from "./PreferredImage";
 import { treatments, treatmentUrl, type Treatment } from "../../lib/treatments";
 
 // Location-neutral treatment page (corns, hard skin and callus, cracked
@@ -32,7 +33,7 @@ function headingLines(title: string): [string, string] {
   return match ? [match[1], `${match[2]}.`] : [title, ""];
 }
 
-const socialImage = { url: "/images/social-card-v2.jpg", width: 1200, height: 630, alt: "Foot+: foot care that comes to you, in Bristol and Southampton" };
+const socialImage = DEFAULT_SOCIAL_IMAGE;
 
 export function treatmentMetadata(treatment: Treatment): Metadata {
   const url = treatmentUrl(treatment.slug);
@@ -107,6 +108,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFor(treatment)) }} />
+      <PreferredImage path={new URL(treatmentUrl(treatment.slug)).pathname} image={searchImages.both} />
 
       <section
         className="px-6 pb-9 pt-8 text-center md:pt-14 lg:mx-auto lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-14 lg:px-8 lg:pb-20 lg:pt-16 lg:text-left"

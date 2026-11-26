@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:var(--w);height:var(--h);overflow:hidden;font-family:Inter,sans-serif;position:relative}
+.plus{position:absolute;font-family:Poppins;font-weight:600;line-height:1}
+h1{font-family:Poppins;font-weight:700;letter-spacing:-.025em;line-height:1.0}
+.stack{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+/* A: bold mark, dark theme */
+.A{background:#3E5A4C url(../../../../public/images/footplus-texture.png);background-size:600px}
+.A::before{content:"";position:absolute;inset:0;background:rgba(62,90,76,.9)}
+.A .stack{color:#fff}
+.A .mark{width:var(--mark)}
+.A h1 span{color:#A8E6B8}
+.A .line{color:rgba(255,255,255,.8);font-weight:600;text-transform:uppercase;letter-spacing:.26em}
+.A .plus{color:#8FB39C}
+/* B: people, light theme */
+.B{background:#F7F6F2}
+.B h1{color:#243028}.B h1 span{color:#6C917B}
+.B .plus{color:#6C917B}
+.people{display:flex}
+.arch{position:relative;border-radius:999px 999px 28px 28px;overflow:hidden;background:#fff;border:6px solid #DCE5DE;box-shadow:0 24px 40px -24px rgba(36,48,40,.45)}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
+.pill{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;background:#4F6F5F;color:#fff;border-radius:999px;font-weight:600}
+.logo{position:absolute}
+</style></head><body>
+<div id="root"></div>
+<script>
+const q=new URLSearchParams(location.search), v=q.get('v'), sq=q.get('s')==='square';
+const W=1200,H=sq?1200:630; document.documentElement.style.setProperty('--w',W+'px'); document.documentElement.style.setProperty('--h',H+'px');
+document.body.className=v==='F'?'B':v;
+const plus=(x,y,s,o)=>`<span class="plus" style="left:${x}px;top:${y}px;font-size:${s}px;opacity:${o}">+</span>`;
+let html='';
+if(v==='A'){
+  html+=sq? plus(110,120,80,.5)+plus(1010,170,46,.6)+plus(140,960,40,.6)+plus(1000,1010,90,.4)+plus(200,560,26,.5)+plus(980,560,30,.5)
+          : plus(110,90,70,.5)+plus(1010,120,40,.6)+plus(170,470,34,.6)+plus(980,450,80,.4)+plus(60,300,24,.5)+plus(1110,300,26,.5);
+  html+=`<div class="stack" style="gap:${sq?40:22}px">
+    <img class="mark" src="mark-white.png" style="width:${sq?330:200}px">
+    <h1 style="font-size:${sq?128:76}px">Foot care<br><span>in your chair.</span></h1>
+    <p class="line" style="font-size:${sq?26:17}px">Bristol · Southampton</p></div>`;
+} else if(v==='F'){
+  const who=q.get('who')||'both', aw=who==='both'?540:780, ah=who==='both'?960:1040;
+  const arch=(img)=>`<div class="arch" style="width:${aw}px;height:${ah}px"><img src="${img}"></div>`;
+  const imgs=who==='both'?['../../../../public/images/adam-james.webp','../../../../public/images/katie-preston.webp']:[who==='adam'?'../../../../public/images/adam-james.webp':'../../../../public/images/katie-preston.webp'];
+  html+=`<div class="stack"><div class="people" style="gap:32px">${imgs.map(arch).join('')}</div></div>`;
+} else {
+  html+=sq? plus(100,140,70,.5)+plus(1030,120,44,.6)+plus(90,1000,40,.55)+plus(1040,980,80,.4)
+          : plus(120,100,64,.5)+plus(1030,110,40,.6)+plus(150,470,34,.55)+plus(1000,440,74,.4);
+  const aw=sq?380:236, ah=sq?470:292, pill=sq?22:15;
+  const arch=(img,name)=>`<div style="position:relative;padding-bottom:${sq?26:18}px"><div class="arch" style="width:${aw}px;height:${ah}px"><img src="${img}"></div><span class="pill" style="bottom:0;font-size:${pill}px;padding:${sq?'14px 26px':'9px 18px'}">${name}</span></div>`;
+  html+=`<div class="stack" style="gap:${sq?44:22}px">
+    <h1 style="font-size:${sq?112:62}px">Foot care ${sq?"<br>":""}<span>in your chair.</span></h1>
+    <div class="people" style="gap:${sq?28:20}px">${arch('../../../../public/images/adam-james.webp','Adam · Bristol')}${arch('../../../../public/images/katie-preston.webp','Katie · Southampton')}</div></div>`;
+}
+if(!sq && v!=='F') html+=`<img class="logo" src="${v==='A'?'logo-white.svg':'logo-sagedark.svg'}" style="width:150px;left:${v==='A'?525:60}px;bottom:${v==='A'?36:44}px">`;
+if(sq && v!=='F') html+=`<img class="logo" src="${v==='A'?'logo-white.svg':'logo-sagedark.svg'}" style="width:240px;left:480px;bottom:${v==='A'?70:60}px">`;
+document.getElementById('root').innerHTML=html;
+</script></body></html>

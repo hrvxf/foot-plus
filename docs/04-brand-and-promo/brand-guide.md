@@ -155,6 +155,16 @@ This writes `examples/foot-plus-<template>.png` and an 8-second `.mp4` (photo re
 
 Tagline: "Foot care in your chair" is the preferred line under the logo on these posts.
 
+## 11. Website share and search images
+
+Two jobs, two images (Nov 2026):
+
+- **Link previews (WhatsApp, Facebook, iMessage):** `public/images/foot-plus-share.jpg`, 1200×630, set as `og:image` on every shared page via `DEFAULT_SOCIAL_IMAGE`. Dark theme: white foot mark, "Foot care / in your chair.", "Bristol · Southampton", logo. Advice pages use `foot-plus-advice-share.jpg`.
+- **Google search thumbnails:** square, text-free practitioner portraits, set per page with `primaryImageOfPage` (`PreferredImage` component, `searchImages` in `app/lib/site.ts`): `foot-plus-practitioners.jpg` (shared pages), `adam-james-square.jpg` (Bristol pages and advice), `katie-preston-square.jpg` (Southampton pages). Google's guidance is to avoid logos or text in this image, and a 1.91:1 image gets shrunk with grey bars in its square thumbnail.
+- **Logo for Google:** `foot-plus-logo.png`, 512×512, Sage Dark foot mark on white (the master SVG is white, so invisible on white).
+
+Template and script: `docs/04-brand-and-promo/templates/share/` (`python docs/04-brand-and-promo/templates/share/render.py` rewrites all four JPGs). Adam's schema photo is the plain portrait (`adam-james.webp`), not the one with the SMAE badge.
+
 ## Examples
 
 - `examples/new-year-new-toes.png` / `.mp4`: January 2027 Google offer, £5 off the first home visit, code NEWTOES.

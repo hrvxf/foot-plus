@@ -7,7 +7,8 @@ import { locationFaqs } from "../../lib/locationFaqs";
 import PartnersStrip from "../../components/partners/PartnersStrip";
 import { bristolContactActions } from "../../components/site/ContactIcons";
 import { serviceLocations } from "../../lib/locations";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, businessProfiles, coveragePlaces, facebookUrl, locationEmails, DEFAULT_SOCIAL_IMAGE } from "../../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, bristolWhatsAppHref, businessProfiles, coveragePlaces, facebookUrl, locationEmails, DEFAULT_SOCIAL_IMAGE, searchImages } from "../../lib/site";
+import PreferredImage from "../../components/site/PreferredImage";
 import { googleRatingLine } from "../../lib/reviews";
 import ReviewsSection from "../../components/reviews/ReviewsSection";
 import TreatmentsMarquee from "../../components/location/TreatmentsMarquee";
@@ -54,6 +55,7 @@ export default function BristolLocationPage() {
     telephone: "+447380301555",
     email: "bristol@foot-plus.co.uk",
     employee: { "@type": "Person", "@id": ADAM_ID, name: practitioner.name, jobTitle: practitioner.role },
+    image: [searchImages.bristol, DEFAULT_SOCIAL_IMAGE.url],
     priceRange: "££",
     // Same as the LGBTQ+ flag in the footer, for search engines.
     amenityFeature: { "@type": "LocationFeatureSpecification", name: "LGBTQ+ friendly", value: true },
@@ -61,6 +63,7 @@ export default function BristolLocationPage() {
 
   return (
     <div>
+      <PreferredImage path="/locations/bristol" image={searchImages.bristol} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [schema, { "@type": "BreadcrumbList", itemListElement: [ { "@type": "ListItem", position: 1, name: "Locations", item: `${SITE_URL}/locations` }, { "@type": "ListItem", position: 2, name: "Bristol", item: canonical } ] }, { "@type": "FAQPage", mainEntity: locationFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] }) }} />
 
       <MeetIntro

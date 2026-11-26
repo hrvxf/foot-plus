@@ -8,7 +8,8 @@ import TravelSlider from "../components/prices/TravelSlider";
 import { focusRing, texturedGreen } from "../components/site/ui";
 import { homeSteps } from "../lib/home";
 import { appointmentTypes } from "../lib/services";
-import { SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
+import { SITE_URL, DEFAULT_SOCIAL_IMAGE, searchImages } from "../lib/site";
+import PreferredImage from "../components/site/PreferredImage";
 import { travelBases } from "../lib/travel";
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ const arrowLink = `inline-flex min-h-11 items-center gap-1.5 rounded-lg font-sem
 export default function PricesPage() {
   return (
     <div>
+      <PreferredImage path="/prices" image={searchImages.both} />
       <section aria-labelledby="prices-heading" className="pb-2 pt-10 text-center md:pt-16 lg:pb-24 lg:pt-[72px]">
         <PriceBuilder tickets={tickets}>
           <div className="lg:text-left">

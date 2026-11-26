@@ -9,7 +9,8 @@ import { portraits } from "../components/site/blocks";
 import { focusRing, texturedGreen } from "../components/site/ui";
 import { serviceLocations } from "../lib/locations";
 import { referOnSigns, serviceDetails, whoWeHelp } from "../lib/services";
-import { BUSINESS_ID, prices, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
+import { BUSINESS_ID, prices, SITE_URL, DEFAULT_SOCIAL_IMAGE, searchImages } from "../lib/site";
+import PreferredImage from "../components/site/PreferredImage";
 
 const PAGE_URL = `${SITE_URL}/foot-care-services`;
 const TITLE = "Foot Care Services at Home: Nails, Corns & Hard Skin | Foot+";
@@ -93,6 +94,7 @@ export default function ServicesPage() {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <PreferredImage path="/foot-care-services" image={searchImages.both} />
       <AudienceSwitch />
       <Hero />
       <div className="lg:mx-auto lg:grid lg:max-w-[1200px] lg:grid-cols-2 lg:gap-4 lg:px-8 lg:pt-[88px]">
