@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { stableViewportHeight } from "../../lib/stableViewport";
+import { focusRing } from "../site/ui";
 
 /** Header height (top-16): the pinned stage sits below it. */
 const HEADER = 64;
@@ -69,6 +70,9 @@ export default function ComfortStage({ id }: { id: string }) {
   const [height, setHeight] = useState(0);
   const [shown, setShown] = useState(points.length);
   const [lit, setLit] = useState(true);
+  // Desktop spotlight: the line lit by hover, focus or click.
+  const [active, setActive] = useState(0);
+  const activePoint = points[active];
 
   useEffect(() => {
     const phone = window.matchMedia("(max-width: 767px)");
@@ -116,17 +120,18 @@ export default function ComfortStage({ id }: { id: string }) {
     <section id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-24">
       <div ref={track} style={pinned && height ? { height: SCREENS * (height - HEADER) } : undefined}>
         <div
-          className={`mx-auto flex max-w-5xl flex-col px-[22px] text-center ${pinned ? "sticky top-16 justify-center" : "pt-14 md:pt-20"}`}
+          className={`mx-auto flex max-w-5xl flex-col px-[22px] text-center lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-14 lg:px-8 lg:pt-[104px] lg:text-left ${pinned ? "sticky top-16 justify-center" : "pt-14 md:pt-20"}`}
           style={pinned && height ? { height: height - HEADER } : undefined}
         >
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-care-deep">Their visit, their way</p>
+          <div>
+          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-care-deep lg:hidden">Their visit, their way</p>
           <h2
             id={`${id}-heading`}
-            className="mt-2.5 font-heading text-[1.875rem] font-semibold leading-[1.08] tracking-[-0.02em] md:text-[2.5rem]"
+            className="mt-2.5 font-heading text-[1.875rem] font-semibold leading-[1.08] tracking-[-0.02em] md:text-[2.5rem] lg:mt-0 lg:text-5xl"
           >
             Comfortable first. <span className="text-care-accent">Feet second.</span>
           </h2>
-          <ul className="mx-auto mt-6 flex w-full max-w-md flex-col gap-2.5 text-left md:mt-10 md:grid md:max-w-none md:grid-cols-3 md:gap-4">
+          <ul className="mx-auto mt-6 flex w-full max-w-md flex-col gap-2.5 text-left md:mt-10 md:grid md:max-w-none md:grid-cols-3 md:gap-4 lg:hidden">
             {points.map((point, index) => {
               // Unpinned (desktop, reduced motion, server render): everything shown and lit.
               const here = !pinned || index < shown;
@@ -157,6 +162,46 @@ export default function ComfortStage({ id }: { id: string }) {
               );
             })}
           </ul>
+
+          {/* Desktop: a spotlight list; the panel beside it shows the lit line. */}
+          <ul className="mt-7 hidden lg:block">
+            {points.map((point, index) => (
+              <li key={point.title}>
+                <button
+                  type="button"
+                  aria-pressed={index === active}
+                  aria-controls={`${id}-panel`}
+                  onMouseEnter={() => setActive(index)}
+                  onFocus={() => setActive(index)}
+                  onClick={() => setActive(index)}
+                  className={`block py-3 text-left font-heading text-[2.125rem] font-semibold xl:text-[2.5rem] leading-[1.12] tracking-[-0.025em] transition-[color,transform] duration-300 motion-reduce:transition-none ${focusRing} ${
+                    index === active ? "translate-x-1.5 text-care-ink" : "text-[#C5D4DD] hover:text-care-muted"
+                  }`}
+                >
+                  {point.title}
+                </button>
+              </li>
+            ))}
+          </ul>
+          </div>
+
+          <div
+            id={`${id}-panel`}
+            aria-live="polite"
+            className="hidden rounded-[32px] bg-white px-10 py-11 shadow-[0_0_0_1px_var(--color-care-line),0_30px_60px_-40px_rgba(31,44,53,0.4)] lg:block"
+          >
+            <span
+              className={`flex h-16 w-16 items-center justify-center rounded-[20px] transition-colors duration-300 ${
+                activePoint.icon === "light"
+                  ? "bg-[#FFF0CC] text-[#A87412] shadow-[0_0_24px_6px_rgba(237,190,79,0.35)]"
+                  : "bg-care-mist text-care-deep"
+              }`}
+            >
+              <Icon name={activePoint.icon} />
+            </span>
+            <h3 className="mt-6 font-heading text-[1.75rem] font-semibold tracking-[-0.02em]">{activePoint.title}</h3>
+            <p className="mt-3 text-[1.1875rem] leading-[1.55] text-care-muted">{activePoint.text}</p>
+          </div>
         </div>
       </div>
     </section>
