@@ -3,18 +3,26 @@ import Image from "next/image";
 import Link from "next/link";
 
 import StandardsSpotlight from "../about/StandardsSpotlight";
+import DesktopActionPill from "./DesktopActionPill";
+import PricesCard from "./PricesCard";
 import PostcodeChecker from "../home/PostcodeChecker";
 import { portraits } from "./blocks";
 import MobileActions from "./MobileActions";
 import { ContactRow, FaqCards, PriceTickets } from "./statement";
 import { focusRing, texturedGreen } from "./ui";
+import { credentialMeanings } from "../../lib/about";
 import { getAdviceArticle } from "../../lib/advice";
 import { serviceLocations } from "../../lib/locations";
-import { BUSINESS_ID, emailHref, phoneDisplay, phoneHref, prices, SITE_URL } from "../../lib/site";
+import { BUSINESS_ID, emailHref, locationPhones, phoneDisplay, phoneHref, prices, SITE_URL } from "../../lib/site";
 import { treatments, treatmentUrl, type Treatment } from "../../lib/treatments";
 
 // Location-neutral treatment page (corns, hard skin and callus, cracked
 // heels). Same "Statement" layout as the toenail cutting pages, without a town.
+//
+// Desktop (lg+) uses split sections: heading beside both practitioners, "What it is" beside "At your
+// visit", prices beside the postcode check, the questions beside their heading, and a floating pill
+// (both photos; the call button offers Adam or Katie). Phones are unchanged: each desktop-only block is
+// `hidden lg:…` and the phone block it replaces is `lg:hidden`.
 
 const amberEdge = "shadow-[0_0_0_1px_var(--color-brand-line),inset_4px_0_0_#B08A3E]";
 
@@ -100,9 +108,13 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFor(treatment)) }} />
 
-      <section className="px-6 pb-9 pt-8 text-center md:pt-14" aria-labelledby="treatment-heading">
+      <section
+        className="px-6 pb-9 pt-8 text-center md:pt-14 lg:mx-auto lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-14 lg:px-8 lg:pb-20 lg:pt-16 lg:text-left"
+        aria-labelledby="treatment-heading"
+      >
+        <div>
         <nav aria-label="Breadcrumb" className="mb-3.5 text-[0.8125rem] text-brand-muted">
-          <ol className="flex justify-center gap-1.5">
+          <ol className="flex justify-center gap-1.5 lg:justify-start">
             <li>
               <Link href="/foot-care-services" className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
                 Services
@@ -114,7 +126,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         </nav>
         <h1
           id="treatment-heading"
-          className="font-heading text-[2.5rem] font-bold leading-[1.05] tracking-[-0.03em] text-brand-charcoal md:text-7xl"
+          className="font-heading text-[2.5rem] font-bold leading-[1.05] tracking-[-0.03em] text-brand-charcoal md:text-7xl lg:text-[3.5rem] xl:text-[4rem]"
         >
           {first}
           {second ? (
@@ -124,48 +136,54 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
             </>
           ) : null}
         </h1>
-        <p className="mx-auto mt-3 max-w-[36ch] text-[1.0625rem] leading-[1.55] text-brand-muted md:text-lg">
+        <p className="mx-auto mt-3 max-w-[36ch] text-[1.0625rem] leading-[1.55] text-brand-muted md:text-lg lg:mx-0 lg:mt-5 lg:max-w-[40ch] lg:text-[1.1875rem]">
           {treatment.intro} Home visits in Bristol and Southampton.
         </p>
-        <div className="mx-auto mt-6 max-w-sm">
+        <div className="mx-auto mt-6 max-w-sm lg:mx-0 lg:mt-8 lg:flex lg:max-w-none lg:items-start lg:gap-5" data-hero-actions>
           <Link
             href="/book"
-            className={`flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white transition-colors hover:bg-brand-sageDeep ${focusRing}`}
+            className={`flex h-[52px] items-center justify-center rounded-full bg-brand-sageDark px-7 font-semibold text-white lg:h-14 lg:px-8 transition-colors hover:bg-brand-sageDeep ${focusRing}`}
             data-analytics-id={`${analytics}-hero-book`}
           >
             Request a visit
           </Link>
-          <ContactRow actions={contactActions} />
+          <ContactRow actions={contactActions} className="lg:mt-0.5 lg:justify-start" />
         </div>
+        </div>
+        <WhoVisitsCard analytics={analytics} />
       </section>
 
+      <div className="lg:bg-white lg:py-[88px]">
+      <div className="lg:mx-auto lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-14 lg:px-8">
       <section
-        className={`mx-3 rounded-[28px] px-6 py-9 text-center sm:mx-auto sm:max-w-xl ${texturedGreen}`}
+        className={`mx-3 rounded-[28px] px-6 py-9 text-center sm:mx-auto sm:max-w-xl lg:mx-0 lg:max-w-none lg:px-10 lg:pb-11 lg:pt-10 lg:text-left ${texturedGreen}`}
         aria-labelledby="about-heading"
       >
         <h2 id="about-heading" className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
           What it is
         </h2>
-        <p className="mt-3 font-heading text-[1.375rem] font-semibold leading-[1.3] tracking-[-0.02em]">{lead}</p>
+        <p className="mt-3 font-heading text-[1.375rem] font-semibold leading-[1.3] tracking-[-0.02em] lg:text-2xl">{lead}</p>
         {more.map((paragraph) => (
-          <p key={paragraph} className="mt-3 text-[0.9375rem] leading-[1.6] text-white/85">
+          <p key={paragraph} className="mt-3 text-[0.9375rem] leading-[1.6] text-white/85 lg:text-base">
             {paragraph}
           </p>
         ))}
       </section>
 
-      <section className="mx-auto max-w-2xl px-[22px] pb-4 pt-12 text-center md:pt-16" aria-labelledby="visit-heading">
+      <section className="mx-auto max-w-2xl px-[22px] pb-4 pt-12 text-center md:pt-16 lg:mx-0 lg:max-w-none lg:p-0 lg:text-left" aria-labelledby="visit-heading">
         <h2 id="visit-heading" className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
           At your visit
         </h2>
         <StandardsSpotlight standards={treatment.care.map((title) => ({ title }))} />
-        <aside className={`mx-auto mt-5 max-w-md rounded-[22px] bg-white px-5 py-[18px] text-left ${amberEdge}`}>
+        <aside className={`mx-auto mt-5 max-w-md rounded-[22px] bg-white px-5 py-[18px] text-left lg:mx-0 lg:max-w-none lg:px-6 lg:py-[22px] ${amberEdge}`}>
           <h3 className="font-heading text-base font-semibold text-brand-charcoal">Safety first</h3>
           <p className="mt-1.5 text-sm leading-[1.55] text-brand-muted">{treatment.safety}</p>
         </aside>
       </section>
+      </div>
+      </div>
 
-      <section className="px-[18px] pt-10 text-center md:pt-14" aria-labelledby="who-heading">
+      <section className="px-[18px] pt-10 text-center md:pt-14 lg:hidden" aria-labelledby="who-heading">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">Who visits</p>
         <h2
           id="who-heading"
@@ -207,10 +225,10 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         </ul>
       </section>
 
-      <PriceTickets className="mt-7" />
+      <PriceTickets className="mt-7 lg:hidden" />
 
       <section
-        className="mx-3.5 mt-4 rounded-3xl bg-white p-5 text-center shadow-[0_18px_40px_-26px_rgba(36,48,40,0.45),0_0_0_1px_var(--color-brand-line)] sm:mx-auto sm:max-w-md"
+        className="mx-3.5 mt-4 rounded-3xl bg-white p-5 text-center shadow-[0_18px_40px_-26px_rgba(36,48,40,0.45),0_0_0_1px_var(--color-brand-line)] sm:mx-auto sm:max-w-md lg:hidden"
         aria-label="Do we visit you?"
       >
         <PostcodeChecker
@@ -222,13 +240,29 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         />
       </section>
 
-      <FaqCards faqs={treatment.faqs} headingId="treatment-faq-heading" />
+      <section
+        className="mx-auto hidden max-w-[1200px] grid-cols-2 items-stretch gap-8 px-8 pt-[88px] lg:grid"
+        aria-label="Prices and postcode check"
+      >
+        <PricesCard />
+        <div className="flex flex-col justify-center rounded-[28px] bg-white p-9 shadow-[0_24px_48px_-32px_rgba(36,48,40,0.35)]">
+          <PostcodeChecker
+            tone="compact"
+            source={`${analytics}-desktop`}
+            bookLocation={null}
+            title="Do we visit you?"
+            label="Postcode for the visit"
+          />
+        </div>
+      </section>
 
-      <section className="px-[18px] pb-16 pt-10 text-center md:pb-24" aria-labelledby="more-heading">
+      <FaqCards faqs={treatment.faqs} headingId="treatment-faq-heading" split />
+
+      <section className="px-[18px] pb-16 pt-10 text-center md:pb-24 lg:mx-auto lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-14 lg:px-8 lg:pt-20 lg:text-left" aria-labelledby="more-heading">
         {guide ? (
           <Link
             href={`/advice/${guide.slug}`}
-            className={`mx-auto mb-9 flex max-w-md flex-col rounded-[22px] bg-brand-wash px-5 pb-[18px] pt-5 text-left transition-colors hover:bg-brand-line ${focusRing}`}
+            className={`mx-auto mb-9 flex max-w-md flex-col rounded-[22px] bg-brand-wash px-5 pb-[18px] pt-5 text-left lg:mx-0 lg:mb-0 lg:max-w-none lg:p-6 transition-colors hover:bg-brand-line ${focusRing}`}
           >
             <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-brand-sage">Guide</span>
             <span className="mt-2 font-heading text-[1.1875rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-charcoal">
@@ -239,10 +273,11 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
             </span>
           </Link>
         ) : null}
+        <div>
         <h2 id="more-heading" className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
           Also at home
         </h2>
-        <ul className="mx-auto mt-3.5 flex max-w-md flex-wrap justify-center gap-2">
+        <ul className="mx-auto mt-3.5 flex max-w-md flex-wrap justify-center gap-2 lg:mx-0 lg:max-w-none lg:justify-start">
           {others.map((item) => (
             <li key={item.slug}>
               <Link href={`/${item.slug}`} className={chip}>
@@ -262,9 +297,79 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         <p className="mt-8 text-xs text-brand-muted">
           Reviewed by Adam James, Foot Health Practitioner, {treatment.lastReviewed}.
         </p>
+        </div>
       </section>
 
       <MobileActions analyticsId={analytics} />
+      <DesktopActionPill
+        people={(["bristol", "southampton"] as const).map((slug) => ({
+          firstName: serviceLocations[slug].practitioner!.name.split(" ")[0],
+          portrait: portraits[slug],
+          town: serviceLocations[slug].name,
+          phoneDisplay: locationPhones[slug].display,
+          callHref: locationPhones[slug].href,
+        }))}
+        bookingHref="/book"
+        analyticsId={analytics}
+      />
     </div>
+  );
+}
+
+/** Desktop only (lg+): both practitioners beside the hero heading, with their letters as chips. */
+function WhoVisitsCard({ analytics }: { analytics: string }) {
+  return (
+    <aside
+      className="hidden rounded-[28px] bg-white p-8 shadow-[0_24px_48px_-32px_rgba(36,48,40,0.35)] lg:block"
+      aria-labelledby="who-desktop-heading"
+    >
+      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">Who visits</p>
+      <h2
+        id="who-desktop-heading"
+        className="mt-2.5 font-heading text-[1.875rem] font-bold leading-[1.06] tracking-[-0.025em] text-brand-charcoal"
+      >
+        Your practitioner
+        <span className="block text-brand-sage">comes to you.</span>
+      </h2>
+      <p className="mt-3 text-[0.9375rem] text-brand-muted">Foot Health Practitioners · Insured and DBS-checked</p>
+      <ul className="mt-5 flex flex-col gap-2.5">
+        {(["bristol", "southampton"] as const).map((slug) => {
+          const location = serviceLocations[slug];
+          const practitioner = location.practitioner!;
+          return (
+            <li key={slug} className="rounded-[22px] bg-white p-[18px] shadow-[0_0_0_1px_var(--color-brand-line)]">
+              <Link
+                href={location.href}
+                className={`group flex items-center gap-3.5 rounded-2xl ${focusRing}`}
+                data-analytics-id={`${analytics}-who-desktop-${slug}`}
+              >
+                <Image
+                  src={portraits[slug]}
+                  alt=""
+                  width={128}
+                  height={128}
+                  className="h-16 w-16 rounded-full object-cover object-[center_15%]"
+                />
+                <span>
+                  <span className="block font-heading text-lg font-semibold text-brand-charcoal">{practitioner.name}</span>
+                  <span className="text-sm font-semibold text-brand-sageDark group-hover:text-brand-sageDeep">{location.name} →</span>
+                </span>
+              </Link>
+              <ul className="mt-3 flex flex-wrap gap-1.5" aria-label={`${practitioner.name.split(" ")[0]}'s qualifications and memberships`}>
+                {practitioner.credentials.map((credential) => (
+                  <li
+                    key={credential}
+                    title={credentialMeanings[credential] ?? credential}
+                    className="rounded-full bg-brand-wash px-2.5 py-[5px] text-xs font-semibold text-brand-sageDeep"
+                  >
+                    {credential}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </aside>
   );
 }
