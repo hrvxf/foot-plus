@@ -10,7 +10,9 @@ import {
 import {
   ADVICE_SOCIAL_IMAGE,
   ADVICE_SOCIAL_IMAGE_METADATA,
+  searchImages,
 } from "../lib/site";
+import PreferredImage from "../components/site/PreferredImage";
 
 const adviceTitle = "Foot Health Advice | Foot+";
 const adviceDescription =
@@ -88,6 +90,7 @@ export default function AdvicePage() {
   }));
   return (
     <main className="pb-16">
+      <PreferredImage path="/advice" image={searchImages.bristol} />
       <section className="px-6 pb-5 pt-8 text-center md:pt-14" aria-labelledby="advice-heading">
         <nav aria-label="Breadcrumb" className="mb-3.5 text-[0.8125rem] text-brand-muted">
           <ol className="flex justify-center gap-1.5">

@@ -8,7 +8,7 @@ import AudienceSwitch from "../components/services/AudienceSwitch";
 import { portraits } from "../components/site/blocks";
 import { focusRing } from "../components/site/ui";
 import { careSettingsReview, formatReviewMonth } from "../lib/reviews";
-import { BRISTOL_BUSINESS_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, bristolReferralForms } from "../lib/site";
+import { BRISTOL_BUSINESS_ID, DEFAULT_SOCIAL_IMAGE, SITE_URL, SOUTHAMPTON_BUSINESS_ID, bristolReferralForms, searchImages } from "../lib/site";
 
 // Foot care for supported living and care homes, in both locations. Written for managers, support teams and
 // families arranging visits for adults with learning disabilities, autism or extra support needs.
@@ -20,12 +20,7 @@ const canonical = `${SITE_URL}/supported-living-foot-care`;
 const title = "Foot Care for Supported Living and Care Homes | Foot+";
 const description =
   "Calm foot care visits for adults with learning disabilities, autism or extra support needs, in supported living and care homes across Bristol and Southampton.";
-const socialImage = {
-  url: "/images/social-card-v2.jpg",
-  width: 1200,
-  height: 630,
-  alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
-};
+const socialImage = DEFAULT_SOCIAL_IMAGE;
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -91,6 +86,7 @@ const schema = {
       url: canonical,
       description,
       about: { "@id": `${canonical}#service` },
+      primaryImageOfPage: { "@type": "ImageObject", url: searchImages.both, width: 1200, height: 1200 },
     },
   ],
 };

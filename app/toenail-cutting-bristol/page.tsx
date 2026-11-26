@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { bristolContactActions } from "../components/site/ContactIcons";
 import NailCuttingPage from "../components/site/NailCuttingPage";
 import { serviceLocations } from "../lib/locations";
-import { ADAM_ID, BRISTOL_BUSINESS_ID, prices, SITE_URL } from "../lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, DEFAULT_SOCIAL_IMAGE, prices, SITE_URL, searchImages } from "../lib/site";
+import PreferredImage from "../components/site/PreferredImage";
 import { googleRatingLine } from "../lib/reviews";
 
 const canonical = `${SITE_URL}/toenail-cutting-bristol`;
@@ -11,12 +12,7 @@ const title = "Toenail Cutting at Home in Bristol | Foot+";
 const description = `We come to you. Toenail cutting in your own home across Bristol, by a qualified Foot Health Practitioner. ${googleRatingLine("bristol")}Check your postcode and request a visit.`;
 // Route-level openGraph/twitter objects replace the layout's, so restate the
 // site-wide social image, site name and card type here.
-const socialImage = {
-  url: "/images/social-card-v2.jpg",
-  width: 1200,
-  height: 630,
-  alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
-};
+const socialImage = DEFAULT_SOCIAL_IMAGE;
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
@@ -125,6 +121,7 @@ export default function ToenailCuttingPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <PreferredImage path="/toenail-cutting-bristol" image={searchImages.bristol} />
       <NailCuttingPage
         location={serviceLocations.bristol}
         intro="Adam James visits you at home to cut, file and thin difficult toenails."

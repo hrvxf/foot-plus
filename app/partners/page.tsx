@@ -4,7 +4,8 @@ import { Suspense } from "react";
 
 import PartnersDirectory, { PartnersList } from "../components/partners/PartnersDirectory";
 import { focusRing, shell } from "../components/site/ui";
-import { emailDisplay, emailHref, SITE_URL, DEFAULT_SOCIAL_IMAGE } from "../lib/site";
+import { emailDisplay, emailHref, SITE_URL, DEFAULT_SOCIAL_IMAGE, searchImages } from "../lib/site";
+import PreferredImage from "../components/site/PreferredImage";
 
 export const metadata: Metadata = {
   title: "Partners | Connected Care",
@@ -24,6 +25,7 @@ const marks = [
 export default function PartnersPage() {
   return (
     <div>
+      <PreferredImage path="/partners" image={searchImages.both} />
       <section className="relative overflow-hidden bg-brand-offwhite pb-8 pt-12 text-center md:pt-20" aria-labelledby="partners-heading">
         {marks.map((mark, index) => (
           <span key={index} aria-hidden="true" className={`pointer-events-none absolute font-heading font-semibold text-brand-sage ${mark.className}`}>

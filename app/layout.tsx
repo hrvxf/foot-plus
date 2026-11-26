@@ -7,7 +7,7 @@ import RouteViewTransition from "./components/RouteViewTransition";
 import PortraitWarmup from "./components/PortraitWarmup";
 import { entryAnimationScript } from "./lib/entryAnimation";
 
-import { ADAM_ID, BRISTOL_BUSINESS_ID, SITE_URL, SOUTHAMPTON_BUSINESS_ID, facebookUrl } from "./lib/site";
+import { ADAM_ID, BRISTOL_BUSINESS_ID, DEFAULT_SOCIAL_IMAGE, LOGO_IMAGE, SITE_URL, SOUTHAMPTON_BUSINESS_ID, facebookUrl } from "./lib/site";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,14 +34,7 @@ export const metadata = {
     title: "Foot+ | Professional Nail & Foot Care at Home",
     description:
       "Nail and foot care at home in Bristol and Southampton.",
-    images: [
-      {
-        url: "/images/social-card-v2.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
-      },
-    ],
+    images: [DEFAULT_SOCIAL_IMAGE],
   },
 
   twitter: {
@@ -49,16 +42,14 @@ export const metadata = {
     title: "Foot+ | Professional Nail & Foot Care at Home",
     description:
       "Nail and foot care at home in Bristol and Southampton.",
-    images: ["/images/social-card-v2.jpg"],
+    images: [DEFAULT_SOCIAL_IMAGE.url],
   },
 
   icons: {
     icon: [
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" },
     ],
-    shortcut: ["/favicon.ico"],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
@@ -85,7 +76,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: "Foot+",
     alternateName: ["Foot Plus", "FootPlus"],
     url: `${SITE_URL}/`,
-    logo: `${SITE_URL}/images/footplus-generic-logo_MASTER_FINAL.svg`,
+    logo: { "@type": "ImageObject", url: LOGO_IMAGE, width: 512, height: 512 },
+    image: DEFAULT_SOCIAL_IMAGE.url,
     sameAs: [facebookUrl],
     subOrganization: [{ "@id": BRISTOL_BUSINESS_ID }, { "@id": SOUTHAMPTON_BUSINESS_ID }],
   };
@@ -97,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: "Adam James",
     jobTitle: "Foot Health Practitioner",
     url: `${SITE_URL}/locations/bristol#adam-james`,
-    image: `${SITE_URL}/images/adam-james-hero.webp`,
+    image: `${SITE_URL}/images/adam-james.webp`,
     worksFor: { "@id": BRISTOL_BUSINESS_ID },
     hasCredential: { "@type": "EducationalOccupationalCredential", name: "Diploma in Foot Health" },
     memberOf: [

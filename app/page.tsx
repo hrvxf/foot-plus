@@ -1,5 +1,6 @@
 import HomeContent from "./components/HomeContent";
-import { DEFAULT_SOCIAL_IMAGE } from "./lib/site";
+import PreferredImage from "./components/site/PreferredImage";
+import { DEFAULT_SOCIAL_IMAGE, searchImages } from "./lib/site";
 import { googleRatingLine } from "./lib/reviews";
 
 const TITLE = "Toenail Cutting & Foot Care at Home | Foot+";
@@ -27,6 +28,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
+      <PreferredImage path="/" image={searchImages.both} />
       <HomeContent />
     </>
   );

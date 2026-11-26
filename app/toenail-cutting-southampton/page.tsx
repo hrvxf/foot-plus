@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 import NailCuttingPage from "../components/site/NailCuttingPage";
 import { serviceLocations } from "../lib/locations";
-import { locationEmails, locationPhones, prices, SITE_URL } from "../lib/site";
+import { DEFAULT_SOCIAL_IMAGE, locationEmails, locationPhones, prices, SITE_URL, searchImages } from "../lib/site";
+import PreferredImage from "../components/site/PreferredImage";
 import { googleRatingLine } from "../lib/reviews";
 
 // Southampton counterpart of /toenail-cutting-bristol. Keep it specific to
@@ -15,12 +16,7 @@ const title = "Toenail Cutting at Home in Southampton | Foot+";
 const description = `We come to you. Toenail cutting in your own home across Southampton, Romsey, Chandler's Ford and Totton with Katie Preston, Foot Health Practitioner. ${googleRatingLine("southampton")}Request a visit.`;
 const bookingHref = "/book?location=southampton&service=nails";
 
-const socialImage = {
-  url: "/images/social-card-v2.jpg",
-  width: 1200,
-  height: 630,
-  alt: "Foot+: foot care that comes to you, in Bristol and Southampton",
-};
+const socialImage = DEFAULT_SOCIAL_IMAGE;
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -106,6 +102,7 @@ export default function ToenailCuttingSouthamptonPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <PreferredImage path="/toenail-cutting-southampton" image={searchImages.southampton} />
       <NailCuttingPage
         location={serviceLocations.southampton}
         intro="Katie Preston visits you at home to cut, file and thin difficult toenails."
