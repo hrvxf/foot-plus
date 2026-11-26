@@ -117,7 +117,7 @@ export function PriceBuilderReceipt() {
                   index === visit ? "bg-brand-sageDark text-white" : "text-brand-sageDeep hover:bg-white/60"
                 }`}
               >
-                {option.name} · {option.price}
+                {option.name}
               </button>
             ))}
           </div>
