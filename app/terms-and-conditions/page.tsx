@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 /** Update this when the terms change. */
-const LAST_UPDATED = "23 November 2026";
+const LAST_UPDATED = "27 November 2026";
 
 const link =
   "font-medium text-brand-sageDark underline decoration-brand-sageDark/30 underline-offset-4 transition hover:decoration-brand-sageDark";
@@ -105,7 +105,14 @@ export default function TermsPage() {
             </Link>
             , along with any travel fee. We&rsquo;ll confirm the full price before your visit.
           </p>
-          <p>Payment is due at the end of each visit, by {payment}.</p>
+          <p>
+            Payment is due at the end of each visit, by {payment}. Care homes and organisations are invoiced
+            instead (see{" "}
+            <a className={link} href="#care-homes">
+              care homes and organisations
+            </a>
+            ).
+          </p>
           <p>
             Offer codes can be used once per patient, on a first appointment only, unless the offer says
             otherwise. They can&rsquo;t be exchanged for cash or combined with other offers.
@@ -120,6 +127,21 @@ export default function TermsPage() {
           <p>
             If we need to cancel because of illness, bad weather or something else outside our control, we&rsquo;ll
             let you know as soon as we can and offer a new time. There&rsquo;s no charge to you.
+          </p>
+        </Section>
+
+        <Section id="care-homes" title="Care homes and organisations">
+          <p>
+            When a care home or other organisation pays for residents&rsquo; visits, we invoice the organisation
+            after each visit, listing the residents seen.
+          </p>
+          <p>
+            Because some care homes have paid late in the past, we ask for a 50% deposit, based on the expected
+            cost, before each visit. It&rsquo;s deducted from that visit&rsquo;s invoice, and the balance is due
+            within 14 days.
+          </p>
+          <p>
+            Our 24-hour notice applies to each resident. A resident cancelled with less notice is charged in full.
           </p>
         </Section>
 
