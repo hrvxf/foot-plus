@@ -2,10 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { focusRing } from "../site/ui";
+import { focusRing, texturedGreen } from "../site/ui";
 
 export type AdviceIndexTopic = { id: string; title: string; short: string };
-export type AdviceIndexItem = { slug: string; title: string; readingTime: string; topic: string; searchText: string };
+export type AdviceIndexItem = {
+  slug: string;
+  title: string;
+  readingTime: string;
+  topic: string;
+  searchText: string;
+  /** Short title and the guide's short answer, for the desktop spotlight. */
+  short: string;
+  intro: string;
+};
 
 const ignored = new Set(["the", "and", "for", "are", "too", "my", "why", "how", "can", "you", "what", "does", "is", "do"]);
 
@@ -17,6 +26,8 @@ export default function AdviceIndex({ topics, items }: { topics: AdviceIndexTopi
   const [topic, setTopic] = useState("all");
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  // Desktop spotlight: the guide lit by hover or focus.
+  const [lit, setLit] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -54,6 +65,10 @@ export default function AdviceIndex({ topics, items }: { topics: AdviceIndexTopi
   const shows = (item: AdviceIndexItem) =>
     (topic === "all" || item.topic === topic) && words.every((word) => item.searchText.includes(word));
   const visibleCount = items.filter(shows).length;
+  // In topic order, as the list shows them.
+  const visibleItems = topics.flatMap((group) => items.filter((item) => item.topic === group.id && shows(item)));
+  const litItem = visibleItems.find((item) => item.slug === lit) ?? visibleItems[0];
+  const litTopic = litItem ? topics.find((group) => group.id === litItem.topic) : undefined;
   const currentTopic = topics.find((item) => item.id === topic);
   const menuOptions = [{ id: "all", title: "All topics", short: "All" }, ...topics].map((item) => ({
     ...item,
@@ -131,6 +146,7 @@ export default function AdviceIndex({ topics, items }: { topics: AdviceIndexTopi
         {visibleCount} {visibleCount === 1 ? "guide" : "guides"} shown
       </p>
 
+      <div className="lg:hidden">
       {topics.map((group) => {
         const groupItems = items.filter((item) => item.topic === group.id);
         const anyVisible = groupItems.some(shows);
@@ -165,6 +181,57 @@ export default function AdviceIndex({ topics, items }: { topics: AdviceIndexTopi
           </section>
         );
       })}
+      </div>
+
+      {/* Desktop: every guide in big type; the one under the pointer lights up and the panel shows its short answer. */}
+      {litItem ? (
+        <div className="mx-auto hidden max-w-[1200px] grid-cols-[minmax(0,7fr)_minmax(0,5fr)] items-start gap-14 px-8 pt-4 lg:grid">
+          <div>
+            {topics.map((group) => {
+              const groupItems = visibleItems.filter((item) => item.topic === group.id);
+              if (!groupItems.length) return null;
+              return (
+                <div key={group.id}>
+                  <p className="mb-1.5 mt-[26px] text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">{group.title}</p>
+                  <ul>
+                    {groupItems.map((item) => {
+                      const on = item.slug === litItem.slug;
+                      return (
+                        <li key={item.slug}>
+                          <Link
+                            href={`/advice/${item.slug}`}
+                            onMouseEnter={() => setLit(item.slug)}
+                            onFocus={() => setLit(item.slug)}
+                            className={`inline-block rounded-lg py-1.5 font-heading text-[2.125rem] font-semibold leading-[1.15] tracking-[-0.025em] transition-[color,transform] duration-300 motion-reduce:transition-none ${focusRing} ${
+                              on ? "translate-x-1.5 text-[#2F3D35]" : "text-[#C9D6CC]"
+                            }`}
+                          >
+                            {item.short}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+          <div aria-live="polite" className={`${texturedGreen} sticky top-32 mt-[26px] rounded-[28px] px-10 pb-10 pt-11`}>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageLight">
+              {litTopic?.title} · {litItem.readingTime}
+            </p>
+            <p className="mt-3 font-heading text-[1.875rem] font-bold leading-[1.15] tracking-[-0.02em]">{litItem.title}</p>
+            <p className="mt-4 text-[1.0625rem] leading-[1.6] text-white/88">{litItem.intro}</p>
+            <Link
+              href={`/advice/${litItem.slug}`}
+              tabIndex={-1}
+              className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-[22px] font-semibold text-brand-sageDeep transition-colors hover:bg-brand-offwhite"
+            >
+              Read the guide <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      ) : null}
 
       {visibleCount === 0 ? (
         <p className="px-6 pt-6 text-center text-brand-muted">

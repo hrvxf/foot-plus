@@ -83,6 +83,8 @@ export default function AdvicePage() {
     slug: article.slug,
     title: article.title,
     readingTime: article.readingTime,
+    short: article.shortTitle,
+    intro: article.intro,
     topic: topicFor(article),
     searchText: [article.title, article.shortTitle, article.description, article.category, ...article.sections.map((s) => s.heading)]
       .join(" ")
@@ -105,7 +107,7 @@ export default function AdvicePage() {
         </nav>
         <h1
           id="advice-heading"
-          className="font-heading text-[2.625rem] font-bold leading-[1.04] tracking-[-0.03em] text-brand-charcoal md:text-7xl"
+          className="font-heading text-[2.625rem] font-bold leading-[1.04] tracking-[-0.03em] text-brand-charcoal md:text-7xl lg:text-[5.5rem] lg:leading-none"
         >
           Foot-health
           <br />
