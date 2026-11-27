@@ -48,11 +48,12 @@ export default function AdviceJumpBar({ items }: { items: { id: string; label: s
   return (
     <nav
       aria-label="On this page"
-      className="sticky top-[calc(env(safe-area-inset-top)+84px)] z-20 mt-2 bg-brand-offwhite/90 py-2 backdrop-blur-md"
+      className="sticky top-[calc(env(safe-area-inset-top)+84px)] z-20 mt-2 bg-brand-offwhite/90 py-2 backdrop-blur-md lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:top-32 lg:mt-14 lg:bg-transparent lg:py-0 lg:backdrop-blur-none"
     >
+      <p className="mb-3 hidden text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark lg:block">On this page</p>
       <ul
         ref={row}
-        className="mx-auto flex max-w-2xl gap-1.5 overflow-x-auto px-[18px] [scrollbar-width:none] md:flex-wrap md:justify-center [&::-webkit-scrollbar]:hidden"
+        className="mx-auto flex max-w-2xl gap-1.5 overflow-x-auto px-[18px] [scrollbar-width:none] md:flex-wrap md:justify-center lg:mx-0 lg:max-w-none lg:flex-col lg:gap-0 lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item) => (
           <li key={item.id} className="shrink-0">
@@ -60,10 +61,10 @@ export default function AdviceJumpBar({ items }: { items: { id: string; label: s
               href={`#${item.id}`}
               data-id={item.id}
               aria-current={active === item.id ? "true" : undefined}
-              className={`block rounded-full px-[13px] py-2 text-[0.78125rem] font-semibold transition-colors duration-300 ${focusRing} ${
+              className={`block rounded-full px-[13px] py-2 text-[0.78125rem] font-semibold transition-colors duration-300 lg:rounded-none lg:border-l-2 lg:bg-transparent lg:px-4 lg:py-2.5 lg:text-[0.9375rem] lg:shadow-none ${focusRing} ${
                 active === item.id
-                  ? "bg-brand-sageDark text-white"
-                  : "bg-white text-brand-sageDeep shadow-[0_0_0_1px_var(--color-brand-line)]"
+                  ? "bg-brand-sageDark text-white lg:border-brand-sageDark lg:text-[#2F3D35]"
+                  : "bg-white text-brand-sageDeep shadow-[0_0_0_1px_var(--color-brand-line)] lg:border-brand-line lg:font-medium lg:text-brand-muted lg:hover:text-[#2F3D35]"
               }`}
             >
               {item.label}

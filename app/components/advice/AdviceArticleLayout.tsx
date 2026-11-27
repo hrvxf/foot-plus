@@ -31,7 +31,7 @@ function PlusList({ items }: { items: string[] }) {
       {items.map((item, index) => (
         <li
           key={item}
-          className={`flex gap-3 py-[11px] text-[0.96875rem] leading-[1.5] text-[#36433b] ${index ? "border-t border-brand-line" : ""}`}
+          className={`flex gap-3 py-[11px] text-[0.96875rem] leading-[1.5] text-[#36433b] lg:py-3 lg:text-[1.0625rem] lg:leading-[1.55] lg:text-[#4A5750] ${index ? "border-t border-brand-line" : ""}`}
         >
           <span aria-hidden="true" className="font-heading text-[1.1875rem] font-semibold leading-[1.2] text-brand-sage">
             +
@@ -63,7 +63,7 @@ function SectionLinks({ links, slug }: { links: AdviceLink[]; slug: string }) {
   const shown = links.filter((link) => link.kind !== "about" && link.kind !== "book");
   if (!shown.length) return null;
   return (
-    <div className="mt-3 flex flex-wrap justify-center gap-x-5 gap-y-1">
+    <div className="mt-3 flex flex-wrap justify-center gap-x-5 gap-y-1 lg:justify-start">
       {shown.map((link) => (
         <AdviceTrackedLink
           key={link.href + link.label}
@@ -83,22 +83,22 @@ function Section({ section, slug }: { section: AdviceSection; slug: string }) {
   const warning = section.tone === "warning";
   const hasCards = Boolean(section.list?.length || section.subsections?.length);
   return (
-    <section id={sectionId(section.heading)} className="scroll-mt-40 px-[18px] pt-9 sm:mx-auto sm:max-w-2xl">
-      <h2 className="px-2 text-center font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.015em] text-brand-charcoal md:text-3xl">
+    <section id={sectionId(section.heading)} className="scroll-mt-40 px-[18px] pt-9 sm:mx-auto sm:max-w-2xl lg:mx-0 lg:max-w-none lg:scroll-mt-32 lg:px-0 lg:pt-14">
+      <h2 className="px-2 text-center font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.015em] text-brand-charcoal md:text-3xl lg:px-0 lg:text-left lg:text-[2rem] lg:font-medium lg:leading-[1.2] lg:text-[#2F3D35]">
         {section.heading}
       </h2>
       {section.body.length ? (
         warning && section.list?.length ? null : hasCards ? (
           // A short lead-in ("If you can see and reach your nails comfortably:") sits under the heading.
           section.body.map((paragraph) => (
-            <p key={paragraph} className="mt-2 text-center text-[0.9375rem] leading-[1.55] text-brand-muted">
+            <p key={paragraph} className="mt-2 text-center text-[0.9375rem] leading-[1.55] text-brand-muted lg:mt-3 lg:text-left lg:text-lg lg:leading-[1.7] lg:text-[#4A5750]">
               {paragraph}
             </p>
           ))
         ) : (
-          <div className={`mt-3.5 px-5 py-[18px] ${warning ? `rounded-[22px] bg-white ${amberEdge}` : card}`}>
+          <div className={`mt-3.5 px-5 py-[18px] lg:mt-[18px] lg:px-7 lg:py-6 ${warning ? `rounded-[22px] bg-white ${amberEdge}` : card}`}>
             {section.body.map((paragraph, index) => (
-              <p key={paragraph} className={`text-[0.96875rem] leading-[1.6] text-[#36433b] ${index ? "mt-3" : ""}`}>
+              <p key={paragraph} className={`text-[0.96875rem] leading-[1.6] text-[#36433b] lg:text-lg lg:leading-[1.7] lg:text-[#4A5750] ${index ? "mt-3" : ""}`}>
                 {paragraph}
               </p>
             ))}
@@ -106,11 +106,11 @@ function Section({ section, slug }: { section: AdviceSection; slug: string }) {
         )
       ) : null}
       {section.list?.length ? (
-        <div className={`mt-3.5 rounded-[22px] bg-white px-5 py-1.5 ${warning ? amberEdge : "shadow-[0_0_0_1px_var(--color-brand-line)]"}`}>
+        <div className={`mt-3.5 rounded-[22px] bg-white px-5 py-1.5 lg:mt-[18px] lg:px-7 lg:py-2.5 ${warning ? amberEdge : "shadow-[0_0_0_1px_var(--color-brand-line)]"}`}>
           {/* Safety sections keep their lead-in inside the amber card, so a warning can't be skimmed past. */}
           {warning
             ? section.body.map((paragraph) => (
-                <p key={paragraph} className="border-b border-brand-line pb-3 pt-3.5 text-[0.96875rem] font-medium leading-[1.55] text-brand-charcoal">
+                <p key={paragraph} className="border-b border-brand-line pb-3 pt-3.5 text-[0.96875rem] font-medium leading-[1.55] text-brand-charcoal lg:text-lg lg:text-[#2F3D35]">
                   {paragraph}
                 </p>
               ))
@@ -119,17 +119,17 @@ function Section({ section, slug }: { section: AdviceSection; slug: string }) {
         </div>
       ) : null}
       {section.subsections?.length ? (
-        <div className="mt-3.5 flex flex-col gap-2.5">
+        <div className="mt-3.5 flex flex-col gap-2.5 lg:mt-[18px] lg:gap-3">
           {section.subsections.map((subsection, index) => (
-            <div key={subsection.heading} className={`${card} px-5 py-[18px]`}>
-              <h3 className="flex items-baseline gap-2.5 font-heading text-[1.09375rem] font-semibold text-brand-charcoal">
+            <div key={subsection.heading} className={`${card} px-5 py-[18px] lg:px-[26px] lg:py-[22px]`}>
+              <h3 className="flex items-baseline gap-2.5 font-heading text-[1.09375rem] font-semibold text-brand-charcoal lg:text-xl lg:font-medium lg:text-[#2F3D35]">
                 <span className="text-xs font-semibold tracking-[0.16em] text-brand-sage" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 {subsection.heading}
               </h3>
               {subsection.body?.map((paragraph) => (
-                <p key={paragraph} className="mt-1.5 text-[0.96875rem] leading-[1.55] text-[#36433b]">
+                <p key={paragraph} className="mt-1.5 text-[0.96875rem] leading-[1.55] text-[#36433b] lg:mt-2 lg:text-[1.0625rem] lg:leading-[1.7] lg:text-[#4A5750]">
                   {paragraph}
                 </p>
               ))}
@@ -139,7 +139,7 @@ function Section({ section, slug }: { section: AdviceSection; slug: string }) {
                 </div>
               ) : null}
               {subsection.afterList?.map((paragraph) => (
-                <p key={paragraph} className="mt-1.5 text-[0.96875rem] leading-[1.55] text-[#36433b]">
+                <p key={paragraph} className="mt-1.5 text-[0.96875rem] leading-[1.55] text-[#36433b] lg:mt-2 lg:text-[1.0625rem] lg:leading-[1.7] lg:text-[#4A5750]">
                   {paragraph}
                 </p>
               ))}
@@ -206,9 +206,10 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
     <main className="pb-16">
       <AdviceTracker slug={article.slug} title={article.title} category={article.category} />
 
-      <header className="px-6 pb-5 pt-8 text-center md:pt-14">
+      <div className="contents lg:mx-auto lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-14 lg:px-8 lg:pb-6 lg:pt-16">
+      <header className="px-6 pb-5 pt-8 text-center md:pt-14 lg:p-0 lg:text-left">
         <nav aria-label="Breadcrumb" className="mb-3.5 text-[0.8125rem] text-brand-muted">
-          <ol className="flex flex-wrap justify-center gap-1.5">
+          <ol className="flex flex-wrap justify-center gap-1.5 lg:justify-start">
             <li>
               <Link href="/advice" className={`rounded font-semibold text-brand-sageDeep ${focusRing}`}>
                 Advice
@@ -218,15 +219,15 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
             <li aria-current="page">{article.category}</li>
           </ol>
         </nav>
-        <h1 className="mx-auto max-w-3xl font-heading text-[2.25rem] font-bold leading-[1.06] tracking-[-0.03em] text-brand-charcoal md:text-6xl">
+        <h1 className="mx-auto max-w-3xl font-heading text-[2.25rem] font-bold leading-[1.06] tracking-[-0.03em] text-brand-charcoal md:text-6xl lg:mx-0 lg:text-[3.625rem] lg:font-semibold lg:tracking-[-0.025em] lg:text-[#2F3D35]">
           <TwoToneTitle title={article.title} />
         </h1>
-        <div className="mt-4 flex items-center justify-center gap-2.5 text-left text-[0.8125rem] leading-[1.4] text-brand-muted">
-          <span className="relative h-[34px] w-[34px] shrink-0 overflow-hidden rounded-full bg-brand-wash">
-            <Image src="/images/adam-james.webp" alt="" fill sizes="34px" className="object-cover object-[center_15%]" />
+        <div className="mt-4 flex items-center justify-center gap-2.5 text-left text-[0.8125rem] leading-[1.4] text-brand-muted lg:mt-6 lg:justify-start lg:gap-3.5 lg:text-sm">
+          <span className="relative h-[34px] w-[34px] shrink-0 overflow-hidden rounded-full bg-brand-wash lg:h-[52px] lg:w-[52px]">
+            <Image src="/images/adam-james.webp" alt="" fill sizes="(min-width: 1024px) 52px, 34px" className="object-cover object-[center_15%]" />
           </span>
           <span>
-            <Link href="/locations/bristol#adam-james" className={`rounded font-semibold text-brand-charcoal ${focusRing}`}>
+            <Link href="/locations/bristol#adam-james" className={`rounded font-semibold text-brand-charcoal lg:font-medium lg:text-[#2F3D35] ${focusRing}`}>
               Adam James
             </Link>{" "}
             · Dip FH, MCFHP, MAFHP
@@ -234,78 +235,82 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
             {article.readingTime} · Updated <time dateTime={article.dateModified}>{formatDate(article.dateModified)}</time>
           </span>
         </div>
-        <p className="mx-auto mt-2.5 max-w-[46ch] text-xs leading-[1.5] text-brand-muted/80">
+        <p className="mx-auto mt-2.5 max-w-[46ch] text-xs leading-[1.5] text-brand-muted/80 lg:mx-0">
           Foot Health Practitioner, insured and DBS-checked.
         </p>
       </header>
 
       <section
-        className={`${texturedGreen} mx-3.5 rounded-[28px] px-[22px] py-[26px] sm:mx-auto sm:max-w-2xl`}
+        className={`${texturedGreen} mx-3.5 rounded-[28px] px-[22px] py-[26px] sm:mx-auto sm:max-w-2xl lg:mx-0 lg:max-w-none lg:px-[34px] lg:py-9`}
         aria-label="The short answer"
       >
         <span className="pointer-events-none absolute right-4 top-3 font-heading text-[2.125rem] font-semibold leading-none text-brand-sageLight/50" aria-hidden="true">+</span>
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageLight">The short answer</p>
-        <p className="mt-2.5 font-heading text-xl font-semibold leading-[1.38]">{article.intro}</p>
+        <p className="mt-2.5 font-heading text-xl font-semibold leading-[1.38] lg:mt-3 lg:text-[1.375rem] lg:font-medium lg:leading-[1.45]">{article.intro}</p>
         {article.introAdditional?.map((paragraph) => (
           <p key={paragraph} className="mt-3 text-[0.9375rem] leading-[1.55] text-white/85">
             {paragraph}
           </p>
         ))}
       </section>
+      </div>
 
+      {/* From lg: "On this page" in a column on the left, the guide in a wider reading column beside it. */}
+      <div className="contents lg:mx-auto lg:grid lg:max-w-[1200px] lg:grid-cols-[220px_minmax(0,760px)] lg:items-start lg:justify-between lg:gap-x-14 lg:px-8">
       {article.inBrief.length ? (
-        <section className={`${card} mx-3.5 mt-3 px-5 py-1.5 sm:mx-auto sm:max-w-2xl`} aria-label="In brief">
+        <section className={`${card} mx-3.5 mt-3 px-5 py-1.5 sm:mx-auto sm:max-w-2xl lg:col-start-2 lg:row-start-1 lg:mx-0 lg:mt-14 lg:max-w-none`} aria-label="In brief">
           <PlusList items={article.inBrief} />
         </section>
       ) : null}
 
       <AdviceJumpBar items={jumpItems} />
 
-      <article>
+      <article className="lg:col-start-2 lg:row-start-2">
         {sections.map((section) => (
           <Section key={section.heading} section={section} slug={article.slug} />
         ))}
       </article>
+      </div>
 
       <section
-        className={`${texturedGreen} mx-3.5 mt-10 rounded-[28px] px-[22px] py-7 sm:mx-auto sm:max-w-2xl`}
+        className={`${texturedGreen} mx-3.5 mt-10 rounded-[28px] px-[22px] py-7 sm:mx-auto sm:max-w-2xl lg:mt-[88px] lg:grid lg:max-w-[1136px] lg:grid-cols-[160px_minmax(0,1fr)] lg:items-center lg:gap-x-11 lg:px-16 lg:py-14`}
         aria-labelledby="practitioner-view"
       >
-        <div className="flex items-center gap-3">
-          <span className="relative h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full bg-white shadow-[0_0_0_3px_rgba(255,255,255,0.6)]">
-            <Image src="/images/adam-james.webp" alt="" fill sizes="54px" className="object-cover object-[center_15%]" />
+        <div className="flex items-center gap-3 lg:contents">
+          <span className="relative h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full bg-white shadow-[0_0_0_3px_rgba(255,255,255,0.6)] lg:row-span-3 lg:h-40 lg:w-40 lg:shadow-[0_0_0_5px_rgba(255,255,255,0.2)]">
+            <Image src="/images/adam-james.webp" alt="" fill sizes="(min-width: 1024px) 160px, 54px" className="object-cover object-[center_15%]" />
           </span>
-          <div>
+          <div className="lg:col-start-2">
             <h2 id="practitioner-view" className="font-heading text-lg font-semibold">
               Adam&rsquo;s view
             </h2>
             <p className="text-[0.8125rem] text-white/75">Foot Health Practitioner</p>
           </div>
         </div>
-        <svg viewBox="0 0 32 24" className="mt-[18px] h-5 w-7 text-[#A8E6B8]" aria-hidden="true">
+        <svg viewBox="0 0 32 24" className="mt-[18px] h-5 w-7 text-[#A8E6B8] lg:col-start-2 lg:mt-4" aria-hidden="true">
           <path fill="currentColor" d="M0 24V14C0 6 4 1 12 0l1 4c-4 1-6 4-6 8h6v12H0zm19 0V14c0-8 4-13 12-14l1 4c-4 1-6 4-6 8h6v12H19z" />
         </svg>
-        <p className="mt-2 font-heading text-[1.1875rem] font-semibold leading-[1.4]">{article.practitionerView}</p>
+        <p className="mt-2 font-heading text-[1.1875rem] font-semibold leading-[1.4] lg:col-start-2 lg:mt-3 lg:text-[1.75rem] lg:leading-[1.35] lg:tracking-[-0.015em]">{article.practitionerView}</p>
       </section>
 
       <AdviceSafetyNotice />
 
       {article.faqs.length ? (
-        <section className="px-4 pt-10 sm:mx-auto sm:max-w-2xl" aria-labelledby="faq-heading">
-          <h2 id="faq-heading" className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
+        <section className="px-4 pt-10 sm:mx-auto sm:max-w-2xl lg:grid lg:max-w-[1200px] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-16 lg:px-8 lg:pt-[88px]" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark lg:text-left lg:font-heading lg:text-[2.625rem] lg:normal-case lg:leading-[1.1] lg:tracking-[-0.02em] lg:text-[#2F3D35]">
             {article.faqs.length === 1 ? "One more question" : "Common questions"}
           </h2>
-          <div className="mt-4 flex flex-col gap-2.5">
+          <div className="mt-4 flex flex-col gap-2.5 lg:mt-0">
             {article.faqs.map((faq) => (
               <details key={faq.question} className={`group ${card} [&_summary::-webkit-details-marker]:hidden`}>
-                <summary className={`flex cursor-pointer list-none items-center justify-between gap-3.5 rounded-[22px] px-5 py-[18px] font-semibold text-brand-charcoal ${focusRing}`}>
+                <summary className={`flex cursor-pointer list-none items-center justify-between gap-3.5 rounded-[22px] px-5 py-[18px] font-semibold text-brand-charcoal lg:px-6 lg:text-lg lg:font-medium lg:text-[#2F3D35] ${focusRing}`}>
                   {faq.question}
                   <span
                     aria-hidden="true"
                     className="relative h-[30px] w-[30px] shrink-0 rounded-full bg-brand-wash transition-[transform,background-color] duration-500 before:absolute before:left-1/2 before:top-1/2 before:h-0.5 before:w-[11px] before:-translate-x-1/2 before:-translate-y-1/2 before:rounded before:bg-brand-sageDeep after:absolute after:left-1/2 after:top-1/2 after:h-0.5 after:w-[11px] after:-translate-x-1/2 after:-translate-y-1/2 after:rotate-90 after:rounded after:bg-brand-sageDeep group-open:rotate-45 group-open:bg-brand-sageDark group-open:before:bg-white group-open:after:bg-white"
                   />
                 </summary>
-                <p className="px-5 pb-[18px] text-[0.9375rem] leading-[1.6] text-brand-muted">{faq.answer}</p>
+                <p className="px-5 pb-[18px] text-[0.9375rem] leading-[1.6] text-brand-muted lg:px-6 lg:text-base lg:leading-[1.65]">{faq.answer}</p>
               </details>
             ))}
           </div>
@@ -313,13 +318,13 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
       ) : null}
 
       {related.length ? (
-        <section className="pt-10" aria-labelledby="related-heading">
+        <section className="pt-10 lg:pt-[88px]" aria-labelledby="related-heading">
           <h2 id="related-heading" className="text-center text-xs font-semibold uppercase tracking-[0.24em] text-brand-sageDark">
             Read next
           </h2>
-          <ul className="flex gap-2.5 overflow-x-auto px-[18px] pb-1.5 pt-3.5 [scrollbar-width:none] md:justify-center [&::-webkit-scrollbar]:hidden">
+          <ul className="flex gap-2.5 overflow-x-auto px-[18px] pb-1.5 pt-3.5 [scrollbar-width:none] md:justify-center lg:gap-5 lg:pt-5 [&::-webkit-scrollbar]:hidden">
             {related.slice(0, 3).map((item) => (
-              <li key={item.slug} className="w-[72%] max-w-[300px] shrink-0 md:w-[260px]">
+              <li key={item.slug} className="w-[72%] max-w-[300px] shrink-0 md:w-[260px] lg:w-[360px] lg:max-w-none">
                 <AdviceTrackedLink
                   href={`/advice/${item.slug}`}
                   eventName="advice_related_article_click"
@@ -327,7 +332,7 @@ export default function AdviceArticleLayout({ article }: { article: AdviceArticl
                   className={`flex h-full flex-col rounded-[22px] bg-brand-wash px-5 pb-[18px] pt-5 transition-colors hover:bg-brand-line ${focusRing}`}
                 >
                   <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-brand-sage">{item.readingTime}</span>
-                  <span className="mt-2 flex-1 font-heading text-[1.1875rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-charcoal">
+                  <span className="mt-2 flex-1 font-heading text-[1.1875rem] font-semibold leading-[1.2] tracking-[-0.01em] text-brand-charcoal lg:text-[1.3125rem] lg:font-medium lg:text-[#2F3D35]">
                     {item.title}
                   </span>
                   <span className="mt-2.5 text-[0.84375rem] font-semibold text-brand-sageDeep">
