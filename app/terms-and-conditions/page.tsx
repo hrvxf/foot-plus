@@ -138,10 +138,13 @@ export default function TermsPage() {
           <p>
             Because some care homes have paid late in the past, we ask for either a signed agreement with
             someone who approves payments, or a 50% deposit of the expected cost before each visit. A deposit is
-            deducted from that visit&rsquo;s invoice. Invoices are due within 14 days.
+            deducted from that visit&rsquo;s invoice. Invoices are due within 14 days. Overdue invoices may be
+            charged interest at 8% a year above the Bank of England base rate, plus fixed compensation, under
+            the Late Payment of Commercial Debts (Interest) Act 1998.
           </p>
           <p>
-            Our 24-hour notice applies to each resident. A resident cancelled with less notice is charged in full.
+            Cancelling a visit day needs at least 72 hours&rsquo; notice. With less notice, the agreed day rate is
+            charged. Care home fees are reviewed every April.
           </p>
         </Section>
 
