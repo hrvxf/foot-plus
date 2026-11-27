@@ -159,7 +159,8 @@ Tagline: "Foot care in your chair" is the preferred line under the logo on these
 
 Two jobs, two images (Nov 2026):
 
-- **Link previews (WhatsApp, Facebook, iMessage):** `public/images/foot-plus-share.jpg`, 1200×630, set as `og:image` on every shared page via `DEFAULT_SOCIAL_IMAGE`. Dark theme: white foot mark, "Foot care / in your chair.", "Bristol · Southampton", logo. Advice pages use `foot-plus-advice-share.jpg`.
+- **Link previews (WhatsApp, Facebook, iMessage):** `public/images/foot-plus-share.jpg`, 1200×630, set as `og:image` on every shared page via `DEFAULT_SOCIAL_IMAGE`. Dark theme: white foot mark, "Foot care / in your chair.", "Bristol · Southampton", logo. The advice index uses `foot-plus-advice-share.jpg`.
+- **Advice article previews:** each article gets its own 1200×630 image, built with the site by `app/advice/[slug]/opengraph-image.tsx` (design in `app/lib/adviceShareImage.tsx`, fonts and logo in `assets/og/`). It's the promo layout: category and read time, two-tone headline, Sage rule, logo, "Foot care in your chair". The headline is the article's `shareLine1` (Charcoal) and `shareLine2` (Sage) in `app/lib/advice.ts`; leave them out and the short title is split in two. Check a new one at `/advice/<slug>/opengraph-image` on the Vercel preview.
 - **Google search thumbnails:** square, text-free practitioner portraits, set per page with `primaryImageOfPage` (`PreferredImage` component, `searchImages` in `app/lib/site.ts`): `foot-plus-practitioners.jpg` (shared pages), `adam-james-square.jpg` (Bristol pages and advice), `katie-preston-square.jpg` (Southampton pages). Google's guidance is to avoid logos or text in this image, and a 1.91:1 image gets shrunk with grey bars in its square thumbnail.
 - **Logo for Google:** `foot-plus-logo.png`, 512×512, Sage Dark foot mark on white (the master SVG is white, so invisible on white).
 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   ADVICE_SOCIAL_IMAGE,
   searchImages,
-  ADVICE_SOCIAL_IMAGE_METADATA,
   SITE_URL,
   ADAM_ID,
 } from "./site";
@@ -17,7 +16,7 @@ export type AdviceSection = {
   tone?: "warning";
 };
 export type AdviceArticle = {
-  slug: string; title: string; shortTitle: string; seoTitle?: string; description: string; category: string; authorId: "adam-james";
+  slug: string; title: string; shortTitle: string; seoTitle?: string; shareLine1?: string; shareLine2?: string; description: string; category: string; authorId: "adam-james";
   datePublished: string; dateModified: string; isPublished: boolean; approvalStatus: "approved" | "awaiting_adam_confirmation"; readingTime: string; wordCount: number;
   intro: string; introAdditional?: string[]; inBrief: string[]; sections: AdviceSection[]; practitionerView: string; disclaimer?: string; relatedServiceRoutes: AdviceLink[];
   relatedArticleSlugs: string[]; callToAction?: string; references: { label: string; url: string }[]; faqs: { question: string; answer: string }[];
@@ -28,6 +27,8 @@ export const adviceArticles: AdviceArticle[] = [
   "slug": "thickened-toenails-causes-treatment-and-when-to-worry",
   "title": "Thickened Toenails: Causes, Treatment and When to Worry",
   "shortTitle": "Thickened toenails: causes and treatment",
+  "shareLine1": "Thickened toenails.",
+  "shareLine2": "When to worry.",
   "seoTitle": "Thick Toenails: Why They Thicken and When to Worry | Foot+",
   "description": "Why toenails, often the big toe, become thick or discoloured, whether it's always fungal, how they're managed and when a thick nail needs checking.",
   "category": "Nail care",
@@ -245,6 +246,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "why-does-my-heel-hurt-when-i-get-out-of-bed",
     "title": "Why Does My Heel Hurt When I Get Out of Bed?",
     "shortTitle": "Why does my heel hurt in the morning?",
+    "shareLine1": "Why does my heel hurt",
+    "shareLine2": "in the morning?",
     "seoTitle": "Why Does My Heel Hurt When I Get Out of Bed? | Foot+",
     "description": "Sharp heel pain with your first steps in the morning? Learn the common causes, home treatments and when to seek professional advice.",
     "category": "Heel pain",
@@ -394,6 +397,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "maintain-good-foot-health",
     "title": "How to Maintain Good Foot Health",
     "shortTitle": "Maintain good foot health",
+    "shareLine1": "How to keep",
+    "shareLine2": "feet healthy.",
     "seoTitle": "How to Maintain Good Foot Health | Foot+",
     "description": "Simple everyday foot-care habits for checking, washing, moisturising, nail cutting, hard skin and knowing when to ask for professional advice.",
     "category": "Everyday foot care",
@@ -585,6 +590,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "corn-callus-or-verruca",
     "title": "Corn, Callus or Verruca: How Can You Tell the Difference?",
     "shortTitle": "Corn, callus or verruca",
+    "shareLine1": "Corn, callus",
+    "shareLine2": "or verruca?",
     "seoTitle": "Corn, Callus or Verruca? How to Tell the Difference | Foot+",
     "description": "Corns, callus and verrucas can look alike. The simple signs that tell them apart, why it matters for treatment, and when to get one looked at.",
     "category": "Skin and hard skin",
@@ -723,6 +730,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "how-often-older-adults-should-cut-toenails",
     "title": "How Often Should Older Adults Have Their Toenails Cut?",
     "shortTitle": "Toenail cutting for older adults",
+    "shareLine1": "Toenail cutting",
+    "shareLine2": "for older adults.",
     "seoTitle": "Toenail Cutting for the Elderly: How Often? | Foot+",
     "description": "How often elderly people need their toenails cut, why it varies and the signs care is needed sooner. Practical advice for families and carers.",
     "category": "Foot care for older adults",
@@ -863,6 +872,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "what-happens-home-foot-health-appointment",
     "title": "What Happens During a Home Foot Health Appointment?",
     "shortTitle": "Your home nail and foot-care appointment",
+    "shareLine1": "What happens at",
+    "shareLine2": "a home visit?",
     "seoTitle": "What Happens at a Home Foot Care Appointment? | Foot+",
     "description": "What to expect from a Foot+ home visit: arranging your appointment, nail and skin care, prices and aftercare.",
     "category": "Home foot-care appointments",
@@ -991,6 +1002,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "foot-health-practitioner-podiatrist-or-chiropodist",
     "title": "Foot Health Practitioner, Podiatrist or Chiropodist: Who Should You See?",
     "shortTitle": "FHP, podiatrist or chiropodist",
+    "shareLine1": "Who should",
+    "shareLine2": "you see?",
     "seoTitle": "Foot Health Practitioner, Podiatrist or Chiropodist? | Foot+",
     "description": "Understand the difference between a Foot Health Practitioner, podiatrist and chiropodist in the UK, including protected titles and routine-care boundaries.",
     "category": "Choosing the right professional",
@@ -1124,6 +1137,8 @@ export const adviceArticles: AdviceArticle[] = [
   "slug": "foot-care-visits-learning-disabilities-carers-guide",
   "title": "Preparing for a Foot Care Visit: A Guide for Carers of Adults with Learning Disabilities",
   "shortTitle": "A carers' guide to foot care visits",
+  "shareLine1": "A carers' guide",
+  "shareLine2": "to foot care visits.",
   "seoTitle": "Foot Care Visits and Learning Disabilities: A Carers' Guide | Foot+",
   "description": "For carers, families and support workers: consent and capacity, what to share before a visit, and the foot changes to look out for in adults with learning disabilities.",
   "category": "Accessible home visits",
@@ -1296,6 +1311,8 @@ export const adviceArticles: AdviceArticle[] = [
   "slug": "why-toenails-are-difficult-to-cut",
   "title": "Why Are Toenails Difficult to Cut?",
   "shortTitle": "Difficult-to-cut toenails and safe trimming",
+  "shareLine1": "Why are toenails",
+  "shareLine2": "hard to cut?",
   "seoTitle": "Why Are My Toenails So Hard to Cut? Causes and Safe Tips | Foot+",
   "description": "Thick nails, hard-to-reach feet or a weak grip can all make toenails hard to cut. Safe tips for trimming at home, and when a home visit helps.",
   "category": "Nail care",
@@ -1446,6 +1463,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "can-i-get-my-toenails-cut-on-the-nhs",
     "title": "Can I Get My Toenails Cut on the NHS?",
     "shortTitle": "Toenail cutting on the NHS",
+    "shareLine1": "Toenail cutting",
+    "shareLine2": "on the NHS?",
     "seoTitle": "Toenail Cutting on the NHS: Who Qualifies? | Foot+",
     "description": "Who can get toenails cut on the NHS in Bristol and Southampton, why most people can't, and your options if you don't qualify.",
     "category": "Choosing the right professional",
@@ -1589,6 +1608,8 @@ export const adviceArticles: AdviceArticle[] = [
     "slug": "how-much-does-toenail-cutting-at-home-cost",
     "title": "How Much Does Toenail Cutting at Home Cost?",
     "shortTitle": "What toenail cutting costs",
+    "shareLine1": "What does toenail",
+    "shareLine2": "cutting cost?",
     "seoTitle": "Toenail Cutting at Home: What It Costs | Foot+",
     "description": "What toenail cutting costs in the UK, from basic nail-cutting clinics to home visits, what changes the price, and what to ask before you book.",
     "category": "Home foot-care appointments",
@@ -1812,7 +1833,7 @@ export function adviceMetadata(article: AdviceArticle): Metadata {
       siteName: "Foot+",
       title,
       description: article.description,
-      images: [ADVICE_SOCIAL_IMAGE_METADATA],
+      // Images come from app/advice/[slug]/opengraph-image.tsx and twitter-image.tsx (one per article).
       publishedTime: article.datePublished,
       modifiedTime: article.dateModified,
     },
@@ -1820,7 +1841,6 @@ export function adviceMetadata(article: AdviceArticle): Metadata {
       card: "summary_large_image",
       title,
       description: article.description,
-      images: [ADVICE_SOCIAL_IMAGE],
     },
     robots: { index: true, follow: true },
   };
