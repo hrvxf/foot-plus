@@ -143,8 +143,9 @@ export default function TermsPage() {
             the Late Payment of Commercial Debts (Interest) Act 1998.
           </p>
           <p>
-            Cancelling a visit day needs at least 72 hours&rsquo; notice. With less notice, the agreed day rate is
-            charged. Care home fees are reviewed every April.
+            Please give at least 72 hours&rsquo; notice to cancel a visit day. We only charge for residents
+            seen. Care home fees are reviewed every April, and the full arrangements are set out in a written
+            agreement with each home.
           </p>
         </Section>
 
