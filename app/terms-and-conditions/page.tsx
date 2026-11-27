@@ -136,9 +136,9 @@ export default function TermsPage() {
             after each visit, listing the residents seen.
           </p>
           <p>
-            Because some care homes have paid late in the past, we ask for a 50% deposit, based on the expected
-            cost, before each visit. It&rsquo;s deducted from that visit&rsquo;s invoice, and the balance is due
-            within 14 days.
+            Because some care homes have paid late in the past, we ask for either a signed agreement with
+            someone who approves payments, or a 50% deposit of the expected cost before each visit. A deposit is
+            deducted from that visit&rsquo;s invoice. Invoices are due within 14 days.
           </p>
           <p>
             Our 24-hour notice applies to each resident. A resident cancelled with less notice is charged in full.
